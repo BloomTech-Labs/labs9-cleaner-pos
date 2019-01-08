@@ -5,7 +5,7 @@
   "main": "./backend/dist/server.prod.js",
   "scripts": {
     "start": "node ./backend/dist/server.prod.js",
-    "build": "cd backend && cross-env NODE_ENV=production webpack --config webpack.config.server.js"
+    "build": "cross-env NODE_ENV=production webpack --config backend/webpack.config.server.js"
   },
   "repository": {
     "type": "git",
