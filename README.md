@@ -4,7 +4,7 @@
 
 ![](/path/to/kelly.jpg)[Kelly Frohwein](https://github.com/kelfro)  
 ![](/path/to/chris.jpg)[Chris Honda](https://github.com/honda0306)  
-![](/path/to/chris.jpg)[Chris Honda](https://github.com/honda0306)  
+![](/path/to/ronald.jpg)[Ronald Libago](https://github.com/Mister-Corn)  
 ![](/path/to/nando.jpg)[Nando Theessen](https://github.com/NandoTheessen)  
 ![](/path/to/william.jpg)[William VanDolah](https://github.com/wvandolah)  
 
