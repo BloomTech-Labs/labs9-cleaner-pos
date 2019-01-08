@@ -8,7 +8,7 @@
     "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
     "nodemon-": "node-dev ./dist/server.prod.js",
     "watch:server": "webpack --config webpack.config.server.js --watch",
-    "test": "jest --watch --detectOpenHandles --forceExit",
+    "test": "cross-env CI=true jest",
     "build:dev": "webpack --config webpack.config.server.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.server.js"
   },

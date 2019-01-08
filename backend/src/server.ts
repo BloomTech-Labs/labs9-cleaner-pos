@@ -4,6 +4,7 @@ import morgan from 'morgan';
 
 export const server = express();
 
+server.use(morgan('dev'));
 /* tslint:disable */
 server.listen(3000, () => console.log('Server is listening!'));
 
