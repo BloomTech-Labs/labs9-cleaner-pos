@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3000;
 export const server = express();
 
 server.use(morgan('dev'));
+server.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 /* tslint:disable */
 server.listen(PORT, () => console.log('Server is listening!'));
 
