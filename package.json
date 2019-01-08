@@ -2,9 +2,9 @@
   "name": "labs9-cleaner-pos",
   "version": "1.0.0",
   "description": "",
-  "main": "./backend/src/dist/server.prod.js",
+  "main": "./backend/dist/server.prod.js",
   "scripts": {
-    "start": "node ./backend/src/dist/server.prod.js",
+    "start": "node ./backend/dist/server.prod.js",
     "build": "cd backend && cross-env NODE_ENV=production webpack --config webpack.config.server.js"
   },
   "repository": {
