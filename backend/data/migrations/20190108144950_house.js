@@ -1,14 +1,14 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('house', (table) => {
-    table.increments().unique().primary();
+    table.increments('id').unique().primary();
     table.string('name');
     table.text('address');
     table.decimal('price', 8, 2);
     table.decimal('cleaning_fee', 8, 2);
     table.decimal('extra_guest_fee', 8, 2);
-    table.string('default_ast').unsigned();
+    table.integer('default_ast').unsigned();
     table.foreign('default_ast').references('assistant.id');
-    table.string('manager').unsigned();
+    table.integer('manager').unsigned();
     table.foreign('manager').references('manager.id');
     table.json('guest_guide')
     table.json('ast_guide')

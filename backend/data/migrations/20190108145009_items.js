@@ -1,9 +1,9 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('items', (table) => {
-    table.increments().unique().primary();
+    table.increments('id').unique().primary();
     table.string('task');
-    table.string('list_id').unsigned();
+    table.integer('list_id').unsigned();
     table.foreign('list_id').references('list.id');
   });
 };
