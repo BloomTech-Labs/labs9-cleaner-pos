@@ -1,3 +1,5 @@
+.env
+
 # Frontend
 frontend/node_modules
 
@@ -30,3 +32,7 @@ backend/node_modules
 
 ## production
 backend/dist
+
+## msic
+backend/.DS_Store
+backend/.env
