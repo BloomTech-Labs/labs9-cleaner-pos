@@ -1,5 +1,5 @@
 .env
-.node_modules
+node_modules
 
 # Frontend
 frontend/node_modules
@@ -30,7 +30,6 @@ frontend/yarn-error.log*
 # Backend
 ## depedencies
 backend/node_modules
-.env
 
 ## production
 backend/dist
