@@ -4,6 +4,7 @@
   "description": "",
   "main": "./src/server.ts",
   "scripts": {
+    "start": "node dist/server.prod.js",
     "typecheck": "tsc --p ../",
     "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
     "nodemon-": "node-dev ./dist/server.prod.js",
