@@ -7,7 +7,9 @@ exports.up = function(knex, Promise) {
     table.decimal('cleaning_fee', 8, 2);
     table.decimal('extra_guest_fee', 8, 2);
     table.string('default_ast').unsigned();
+    table.foreign('default_ast').references('assistant.id');
     table.string('manager').unsigned();
+    table.foreign('manager').references('manager.id');
     table.json('guest_guide')
     table.json('ast_guide')
     table.timestamp('created_at').defaultTo(knex.fn.now());

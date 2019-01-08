@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('type');
     table.integer('hours_after');
     table.string('list_id').unsigned();
+    table.foreign('list_id').references('list.id');
   });
 };
 

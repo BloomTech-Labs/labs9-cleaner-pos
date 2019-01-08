@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments().unique().primary();
     table.string('task');
     table.string('list_id').unsigned();
+    table.foreign('list_id').references('list.id');
   });
 };
 

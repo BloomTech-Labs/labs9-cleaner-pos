@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments().unique().primary();
     table.string('type');
     table.string('house_id').unsigned();
+    table.foreign('house_id').references('house.id');
   });
 };
 
