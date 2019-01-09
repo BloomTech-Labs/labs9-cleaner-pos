@@ -1,5 +1,5 @@
 import express from 'express';
-import setGeneralMiddleware from './middleware/generalMiddleware';
+import setGeneralMiddleware from './middleware';
 
 export const server = express();
 
