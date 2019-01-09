@@ -51,6 +51,17 @@ describe('User DB functions', () => {
     }
   });
 
+  const cleanUp = async () => {
+    try {
+      await testDb.migrate.rollback();
+      await testDb.migrate.latest();
+      await testDb.seed.run();
+      testUsersInDb = await findUsers();
+    } catch (err) {
+      throw err;
+    }
+  };
+
   test('findUser finds by id', async () => {
     // Act
     const result = await findUser(1);
@@ -84,8 +95,8 @@ describe('User DB functions', () => {
     expect(userResult).toEqual(
       expect.arrayContaining([expect.objectContaining(testUser)]),
     );
-    console.log('managerResult:', managerResult);
     expect(managerResult).toBeTruthy();
+    cleanUp();
   });
 
   test('updateUser updates a user into the DB', async () => {
@@ -99,6 +110,7 @@ describe('User DB functions', () => {
     // Assert
     expect(numOfRecordsUpdated).toBe(1);
     expect(updatedUser).toEqual(updatedInfo);
+    cleanUp();
   });
 
   test('deleteUser removes a user from the database', async () => {
@@ -113,5 +125,6 @@ describe('User DB functions', () => {
     expect(users).not.toEqual(
       expect.arrayContaining([expect.objectContaining(testUser)]),
     );
+    cleanUp();
   });
 });
