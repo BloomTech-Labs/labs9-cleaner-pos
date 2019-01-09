@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
+import { app } from "./firebase.setup";
 import logo from "./logo.svg";
 import "./App.css";
 
 type Props = {};
 
 const App = (props: Props) => {
-  console.log(props);
+  console.log(process.env);
+  console.log(app.auth());
   return (
     <div className="App">
       <header className="App-header">
