@@ -6,16 +6,22 @@ below line avoids a warning about a "possible memory leak" that is not existant*
 // require('events').EventEmitter.defaultMaxListeners = 25;
 
 describe('User schema is implemented correctly!', async () => {
-  beforeEach((done) => {
-    return db.migrate
-      .rollback()
-      .then(() => db.migrate.latest())
-      .then(() => db.seed.run())
-      .then(() => done());
+  beforeEach(async () => {
+    try {
+      await db.migrate.rollback();
+      await db.migrate.latest();
+      await db.seed.run();
+    } catch (e) {
+      throw e;
+    }
   });
 
-  afterEach((done) => {
-    return db.migrate.rollback().then(() => done());
+  afterEach(async () => {
+    try {
+      await db.migrate.rollback();
+    } catch (e) {
+      throw e;
+    }
   });
 
   test('should be able to create a User according to spec', async (done) => {
