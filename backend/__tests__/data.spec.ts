@@ -1,41 +1,24 @@
 import db from '../data/dbConfig';
-// jest.setTimeout(20000);
+import 'jest';
+/* Due to setting more than 10 event listeners for the tests running
+below line avoids a warning about a "possible memory leak" that is not existant*/
+/* tslint:disable-next-line */
+// require('events').EventEmitter.defaultMaxListeners = 25;
 
-describe('Users schema is implemented correctly!', () => {
-  beforeEach(async (done) => {
+describe('User schema is implemented correctly!', async () => {
+  beforeEach((done) => {
     return db.migrate
       .rollback()
       .then(() => db.migrate.latest())
       .then(() => db.seed.run())
-      .finally(() => done());
-  });
-  afterEach(async () => {
-    return await db.migrate.rollback();
+      .then(() => done());
   });
 
-  test('Users should match seeded Users!', (done) => {
-    const users = [
-      { full_name: 'Harald Junke' },
-      { full_name: 'Gerhard Schroeder' },
-      { full_name: 'Guenter Jauch' },
-    ];
-
-    /* The above array is the same as the seed data
-    In the for-loop below we compare all users that are in our user
-    table with the seed data in order to confirm the seed to be working
-    */
-
-    db('user')
-      .then((res) => {
-        for (let i = 0; i < res.length; i++) {
-          expect(res[i].full_name).toBe(users[i].full_name);
-        }
-        done();
-      })
-      /* tslint:disable-next-line */
-      .catch((e) => done.fail(e));
+  afterEach((done) => {
+    return db.migrate.rollback().then(() => done());
   });
-  test('should be able to create a User and provide info provided in the schema', async (done) => {
+
+  test('should be able to create a User according to spec', async (done) => {
     const newUser = {
       address: 'Grossbeerenstr 9 14482 Potsdam Germany',
       email: 'pchang@gmail.com',
@@ -55,5 +38,46 @@ describe('Users schema is implemented correctly!', () => {
       .first();
 
     expect(user).toMatchObject(newUser);
+  });
+
+  test('should be possible to delete a user!', async (done) => {
+    /* Test plays off the knowledge that there are 3 seed users, deletes
+    one and checks if 2 users are left */
+    db('user')
+      .where({ full_name: 'Harald Junke' })
+      .del()
+      .then((res) => done());
+
+    const users = await db('user');
+
+    expect(users.length).toBe(2);
+  });
+
+  test('should be possible to update a user!', async (done) => {
+    db('user')
+      .where({ full_name: 'Harald Junke' })
+      .update({ email: 'HJunke@gmail.com' })
+      .then(() => done());
+    const user = await db('user')
+      .where({ full_name: 'Harald Junke' })
+      .first();
+    expect(user).toHaveProperty('email', 'HJunke@gmail.com');
+  });
+
+  test('seedData should match what is in the database', async () => {
+    const users = await db('user');
+
+    expect(users[0].full_name).toBe('Harald Junke');
+    expect(users[1].full_name).toBe('Gerhard Schroeder');
+    expect(users[2].full_name).toBe('Guenter Jauch');
+    expect(users.length).toBe(3);
+  });
+
+  test('should be able to find a user', async () => {
+    const user = await db('user')
+      .where({ full_name: 'Harald Junke' })
+      .first();
+
+    expect(user.full_name).toBe('Harald Junke');
   });
 });
