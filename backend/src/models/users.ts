@@ -11,7 +11,7 @@ interface User {
   //   phone: number;
   //   created_at: string; // added by DB
   //   address: string;
-  role: 'manager' | 'assistant';
+  role: string;
 }
 
 export function findUser(id: number): knex.QueryBuilder {
@@ -24,10 +24,9 @@ export function findUsers(): knex.QueryBuilder {
   return db('user');
 }
 
-export async function makeUser(user: User): Promise<any> {
+export async function makeUser(user: User): Promise<knex.QueryBuilder> {
   const role = user.role;
   const userIds = await db('user').insert(user);
-  console.log(userIds);
   const userId = userIds[0];
   return db(role).insert({ user_id: userId });
   // TODO: Figure out how to make this transactional
@@ -43,4 +42,10 @@ export async function makeUser(user: User): Promise<any> {
   //     throw err;
   //   }
   // });
+}
+
+export function deleteUser(id: number): knex.QueryBuilder {
+  return db('user')
+    .where({ id })
+    .del();
 }
