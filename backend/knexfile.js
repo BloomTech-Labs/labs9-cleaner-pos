@@ -3,7 +3,6 @@ require('dotenv').config();
 const pg = require('pg');
 pg.defaults.ssl = true;
 module.exports = {
-
   development: {
     client: 'pg',
     connection: process.env.STAGING_DB,
@@ -16,8 +15,22 @@ module.exports = {
       directory: './data/migrations',
     },
     seeds: {
-      directory: './data/seeds'
+      directory: './data/seeds',
     },
   },
 
+  testmem: {
+    client: 'sqlite3',
+    connection: {
+      filename: ':memory:',
+    },
+    useNullAsDefault: true,
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
 };
