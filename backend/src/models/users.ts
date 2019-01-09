@@ -4,7 +4,7 @@ import Bluebird from 'bluebird';
 import db from '../../data/dbConfig';
 
 interface User {
-  //   id: number;
+  id?: number;
   //   ext_it: string;
   full_name: string;
   //   email: string;
@@ -42,6 +42,12 @@ export async function makeUser(user: User): Promise<knex.QueryBuilder> {
   //     throw err;
   //   }
   // });
+}
+
+export function updateUser(id: number, updatedUser: User): knex.QueryBuilder {
+  return db('user')
+    .where({ id })
+    .update(updatedUser);
 }
 
 export function deleteUser(id: number): knex.QueryBuilder {
