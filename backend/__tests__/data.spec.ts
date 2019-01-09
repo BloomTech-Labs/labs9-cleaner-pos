@@ -1,13 +1,53 @@
-import 'jest';
-/* tslint:disable-next-line */
-require('dotenv').config();
+import db from '../data/dbConfig';
+// jest.setTimeout(20000);
 
-import knexfile from '../knexfile';
+describe('Users schema is implemented correctly!', () => {
+  beforeEach(async (done) => {
+    return db.migrate
+      .rollback()
+      .then(() => db.migrate.latest())
+      .then(() => db.seed.run())
+      .finally(() => done());
+  });
+  afterEach(async () => {
+    return await db.migrate.rollback();
+  });
 
-const db = knexfile.development;
+  test('Users should match seeded Users!', (done) => {
+    const users = [
+      { full_name: 'Harald Junke' },
+      { full_name: 'Gerhard Schroeder' },
+      { full_name: 'Guenter Jauch' },
+    ];
+    db('user')
+      .then((res) => {
+        for (let i = 0; i < res.length; i++) {
+          expect(res[i].full_name).toBe(users[i].full_name);
+        }
+        done();
+      })
+      /* tslint:disable-next-line */
+      .catch((e) => done.fail(e));
+  });
+  test('should be able to create a User and provide info provided in the schema', async (done) => {
+    const newUser = {
+      address: 'Grossbeerenstr 9 14482 Potsdam Germany',
+      email: 'pchang@gmail.com',
+      full_name: 'Peter Chang',
+      phone: '1012543453434',
+      role: 'manager',
+    };
+    db('user')
+      .insert(newUser)
+      .then((id) => {
+        done();
+      })
+      .catch((e) => done.fail(e));
 
-describe('true is true', () => {
-  test('should be true', () => {
-    expect(true).toBe(true);
+    const user = await db('user')
+      .where({ full_name: newUser.full_name })
+      .first();
+
+    expect(user).toMatchObject(newUser);
   });
 });

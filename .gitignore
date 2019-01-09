@@ -34,3 +34,4 @@ backend/dist
 ## msic
 backend/.DS_Store
 backend/.env
+backend/data/devdb.sqlite3

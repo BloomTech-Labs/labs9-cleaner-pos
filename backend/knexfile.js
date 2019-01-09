@@ -3,7 +3,6 @@ require('dotenv').config();
 const pg = require('pg');
 pg.defaults.ssl = true;
 module.exports = {
-
   development: {
     client: 'pg',
     connection: process.env.STAGING_DB,
@@ -16,8 +15,23 @@ module.exports = {
       directory: './data/migrations',
     },
     seeds: {
-      directory: './data/seeds'
+      directory: './data/seeds',
     },
   },
-
+  test: {
+    client: 'sqlite3',
+    connection: {
+      filename: './data/devdb.sqlite3',
+    },
+    pool: {
+      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
 };
