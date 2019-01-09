@@ -13,10 +13,14 @@ server.get('/', (req, res) => {
 });
 server
   .route('/users')
-  .get(users.userGet)
-  .post(users.userPost);
+  .get(users.get)
+  .post(users.post);
 
-server.route('/users/:id').get(users.userGet);
+server
+  .route('/users/:id')
+  .get(users.get)
+  .put(users.put)
+  .delete(users.deleteU);
 
 server.use(errorHandler);
 /* tslint:disable */
