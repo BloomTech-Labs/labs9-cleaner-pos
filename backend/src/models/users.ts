@@ -12,21 +12,27 @@ interface User {
   //   role: string;
 }
 
-const userModels = (db: knex) => ({
-  // Database functions
-  findUser: (id: number): knex.QueryBuilder => {
+const userModels = (db: knex) => {
+  // DB helper functions
+  function findUser(id: number): knex.QueryBuilder {
     return db('user')
       .first()
       .where({ id });
-  },
+  }
 
-  findUsers: (): knex.QueryBuilder => {
+  function findUsers(): knex.QueryBuilder {
     return db('user');
-  },
+  }
 
-  makeUser: (user: User): knex.QueryBuilder => {
+  function makeUser(user: User): knex.QueryBuilder {
     return db('user').insert(user);
-  },
-});
+  }
+
+  return {
+    findUser,
+    findUsers,
+    makeUser,
+  };
+};
 
 export default userModels;
