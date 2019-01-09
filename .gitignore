@@ -1,6 +1,3 @@
-.env
-node_modules
-
 # Frontend
 frontend/node_modules
 
@@ -37,3 +34,4 @@ backend/dist
 ## msic
 backend/.DS_Store
 backend/.env
+backend/data/devdb.sqlite3

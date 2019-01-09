@@ -1,6 +1,8 @@
 import express from 'express';
 import setGeneralMiddleware from './middleware';
 
+const PORT = process.env.PORT || 3000;
+
 export const server = express();
 
 setGeneralMiddleware(server);
