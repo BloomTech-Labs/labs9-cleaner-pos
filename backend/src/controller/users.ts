@@ -68,7 +68,7 @@ export const deleteU = async (
 ) => {
   try {
     const { id } = req.params;
-    const delUser = deleteUser(id);
+    const delUser = await deleteUser(id);
     console.log('delUser', delUser);
     res.status(201).json(delUser);
   } catch (e) {
