@@ -8,7 +8,9 @@ server.get('/', (req, res) => {
   res.send('hello world');
 });
 /* tslint:disable */
-server.listen(3000, () => console.log('Server is listening!'));
+server.listen(process.env.PORT || 3000, () =>
+  console.log('Server is listening!')
+);
 
 // @ts-ignore
 if (module.hot) {
