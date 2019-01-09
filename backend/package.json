@@ -9,7 +9,7 @@
     "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
     "nodemon-": "node-dev ./dist/server.prod.js",
     "watch:server": "webpack --config webpack.config.server.js --watch",
-    "test": "cross-env CI=true jest",
+    "test": "jest",
     "build:dev": "webpack --config webpack.config.server.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.server.js"
   },
@@ -19,14 +19,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsc && lint-staged"
+      "pre-commit": "tsc && lint-staged && npm test"
     }
   },
   "lint-staged": {
     "linters": {
       "*.{ts, tsx}": [
-        "prettier --write",
-        "npm test"
+        "prettier --write"
       ]
     }
   },
@@ -45,14 +44,14 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-typescript": "^7.1.0",
-    "express": "^4.16.4",
-    "knex": "^0.16.3",
-    "morgan": "^1.9.1",
-    "pg": "^7.7.1",
     "babel-loader": "^8.0.4",
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "dotenv-webpack": "^1.6.0",
+    "express": "^4.16.4",
+    "knex": "^0.16.3",
+    "morgan": "^1.9.1",
+    "pg": "^7.7.1",
     "typescript": "^3.2.2",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2",
@@ -71,6 +70,7 @@
     "nodemon": "^1.18.9",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.15.3",
+    "sqlite3": "^4.0.4",
     "supertest": "^3.3.0",
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.0"
