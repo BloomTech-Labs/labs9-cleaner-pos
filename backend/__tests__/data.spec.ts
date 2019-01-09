@@ -19,6 +19,12 @@ describe('Users schema is implemented correctly!', () => {
       { full_name: 'Gerhard Schroeder' },
       { full_name: 'Guenter Jauch' },
     ];
+
+    /* The above array is the same as the seed data
+    In the for-loop below we compare all users that are in our user
+    table with the seed data in order to confirm the seed to be working
+    */
+
     db('user')
       .then((res) => {
         for (let i = 0; i < res.length; i++) {
