@@ -53,13 +53,18 @@ describe('User DB functions', () => {
     // Arrange
     const newUser = {
       full_name: 'Ronaldo Lebagel',
+      role: 'manager',
     };
     // Act
     await makeUser(newUser);
-    const result = await findUsers();
+    const userResult = await findUsers();
+    const managerResult = await testDb('manager');
     // Assert
-    expect(result).toEqual(
-      expect.arrayContaining([expect.objectContaining(newUser)]),
+    const testUser = { ...newUser, role: 'manager' };
+    expect(userResult).toEqual(
+      expect.arrayContaining([expect.objectContaining(testUser)]),
     );
+    console.log('managerResult:', managerResult);
+    expect(managerResult).toBeTruthy();
   });
 });
