@@ -1,6 +1,13 @@
-import { findUser, findUsers, makeUser, deleteUser } from '../models/users';
+import {
+  findUser,
+  findUsers,
+  makeUser,
+  updateUser,
+  deleteUser,
+} from '../models/users';
 import { Request, Response, NextFunction } from 'express';
 import * as knex from 'knex';
+
 interface User {
   id?: number;
   ext_it: string;
@@ -10,6 +17,7 @@ interface User {
   address: string;
   role: string;
 }
+
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
@@ -42,23 +50,23 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const put = async (req: Request, res: Response, next: NextFunction) => {
-  // try {
-  //   const { id } = req.params;
-  //   const { ext_it, full_name, email, phone, address, role } = req.body;
-  //   const user: User = { id, ext_it, full_name, email, phone, address, role };
-  //   if (
-  //     user.role !== 'manager' &&
-  //     user.role !== 'assistant' &&
-  //     user.role !== undefined
-  //   ) {
-  //     throw Error('Role must be User or Manager');
-  //   }
-  //   const putUser = await updateUser(user);
-  //   res.status(201).json(putUser);
-  // } catch (e) {
-  //   e.statusCode = 400;
-  //   next(e);
-  // }
+  try {
+    const { id } = req.params;
+    const { ext_it, full_name, email, phone, address, role } = req.body;
+    const user: User = { id, ext_it, full_name, email, phone, address, role };
+    if (
+      user.role !== 'manager' &&
+      user.role !== 'assistant' &&
+      user.role !== undefined
+    ) {
+      throw Error('Role must be User or Manager');
+    }
+    const putUser = await updateUser(id, user);
+    res.status(201).json(putUser);
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
 };
 
 export const deleteU = async (
@@ -69,8 +77,7 @@ export const deleteU = async (
   try {
     const { id } = req.params;
     const delUser = await deleteUser(id);
-    console.log('delUser', delUser);
-    res.status(201).json(delUser);
+    res.status(200).json(delUser);
   } catch (e) {
     e.statusCode = 400;
     next(e);
