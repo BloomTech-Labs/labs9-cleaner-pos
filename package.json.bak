@@ -2,33 +2,14 @@
   "name": "labs9-cleaner-pos",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/server.ts",
+  "main": "./backend/dist/server.prod.js",
   "scripts": {
-    "start": "node dist/server.prod.js",
-    "typecheck": "tsc --p ../",
-    "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
-    "nodemon-": "node-dev ./dist/server.prod.js",
-    "watch:server": "webpack --config webpack.config.server.js --watch",
-    "test": "cross-env CI=true jest",
-    "build:dev": "webpack --config webpack.config.server.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.server.js"
+    "start": "node ./backend/dist/server.prod.js",
+    "build": "cross-env NODE_ENV=production webpack --config backend/webpack.config.server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lambda-School-Labs/labs9-cleaner-pos.git"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc && lint-staged"
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.{ts, tsx}": [
-        "prettier --write",
-        "npm test"
-      ]
-    }
   },
   "keywords": [],
   "author": "",
@@ -46,17 +27,14 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-typescript": "^7.1.0",
     "express": "^4.16.4",
-    "knex": "^0.16.3",
     "morgan": "^1.9.1",
-    "pg": "^7.7.1",
     "babel-loader": "^8.0.4",
     "cross-env": "^5.2.0",
-    "dotenv": "^6.2.0",
     "dotenv-webpack": "^1.6.0",
-    "typescript": "^3.2.2",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "typescript": "^3.2.2"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
