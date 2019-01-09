@@ -1,7 +1,12 @@
 import 'jest';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
-import { findUser, findUsers, makeUser } from '../../src/models/users';
+import {
+  deleteUser,
+  findUser,
+  findUsers,
+  makeUser,
+} from '../../src/models/users';
 
 // Data that was seeded into the test database
 import data from '../../data/seeds/data/usersData';
@@ -53,13 +58,32 @@ describe('User DB functions', () => {
     // Arrange
     const newUser = {
       full_name: 'Ronaldo Lebagel',
+      role: 'manager',
     };
     // Act
     await makeUser(newUser);
-    const result = await findUsers();
+    const userResult = await findUsers();
+    const managerResult = await testDb('manager');
     // Assert
-    expect(result).toEqual(
-      expect.arrayContaining([expect.objectContaining(newUser)]),
+    const testUser = { ...newUser, role: 'manager' };
+    expect(userResult).toEqual(
+      expect.arrayContaining([expect.objectContaining(testUser)]),
+    );
+    console.log('managerResult:', managerResult);
+    expect(managerResult).toBeTruthy();
+  });
+
+  test('deleteUser removes a user from the database', async () => {
+    // Arrange
+    const testUser = await findUser(1);
+    const idToDelete = testUser.id;
+    // Act
+    const numOfRecords = await deleteUser(idToDelete);
+    const users = await findUsers();
+    // Assert
+    expect(numOfRecords).toBe(1);
+    expect(users).not.toEqual(
+      expect.arrayContaining([expect.objectContaining(testUser)]),
     );
   });
 });
