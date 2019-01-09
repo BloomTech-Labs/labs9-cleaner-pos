@@ -5,10 +5,7 @@ exports.up = function(knex, Promise) {
       .unique()
       .primary();
     table.integer('user_id').unsigned();
-    table
-      .foreign('user_id')
-      .references('user.id')
-      .onDelete('CASCADE');
+    table.foreign('user_id').references('user.id');
   });
 };
 

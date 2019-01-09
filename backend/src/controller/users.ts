@@ -1,4 +1,4 @@
-import { findUser, findUsers, makeUser } from '../models/users';
+import { findUser, findUsers, makeUser, deleteUser } from '../models/users';
 import { Request, Response, NextFunction } from 'express';
 import * as knex from 'knex';
 interface User {
@@ -10,11 +10,7 @@ interface User {
   address: string;
   role: string;
 }
-export const userGet = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     let users: knex.QueryBuilder;
@@ -30,16 +26,51 @@ export const userGet = async (
   }
 };
 
-export const userPost = async (
+export const post = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { ext_it, full_name, email, phone, address, role } = req.body;
+    const user: User = { ext_it, full_name, email, phone, address, role };
+    if (user.role !== 'manager' && user.role !== 'assistant') {
+      throw Error('Role must be User or Manager');
+    }
+    const newUser = await makeUser(user);
+    res.status(201).json(newUser);
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
+};
+
+export const put = async (req: Request, res: Response, next: NextFunction) => {
+  // try {
+  //   const { id } = req.params;
+  //   const { ext_it, full_name, email, phone, address, role } = req.body;
+  //   const user: User = { id, ext_it, full_name, email, phone, address, role };
+  //   if (
+  //     user.role !== 'manager' &&
+  //     user.role !== 'assistant' &&
+  //     user.role !== undefined
+  //   ) {
+  //     throw Error('Role must be User or Manager');
+  //   }
+  //   const putUser = await updateUser(user);
+  //   res.status(201).json(putUser);
+  // } catch (e) {
+  //   e.statusCode = 400;
+  //   next(e);
+  // }
+};
+
+export const deleteU = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const { ext_it, full_name, email, phone, address, role } = req.body;
-    const user: User = { ext_it, full_name, email, phone, address, role };
-    const newUser = await makeUser(user);
-    res.status(201).json(newUser);
+    const { id } = req.params;
+    const delUser = deleteUser(id);
+    console.log('delUser', delUser);
+    res.status(201).json(delUser);
   } catch (e) {
     e.statusCode = 400;
     next(e);
