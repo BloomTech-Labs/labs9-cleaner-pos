@@ -1,5 +1,6 @@
 // From https://github.com/Jamaks/koa-knex-typescript-example/blob/master/src/server/db/services/movies.service.ts
 import * as knex from 'knex';
+import db from '../../data/dbConfig';
 
 interface User {
   //   id: number;
@@ -12,27 +13,16 @@ interface User {
   //   role: string;
 }
 
-const userModels = (db: knex) => {
-  // DB helper functions
-  function findUser(id: number): knex.QueryBuilder {
-    return db('user')
-      .first()
-      .where({ id });
-  }
+export function findUser(id: number): knex.QueryBuilder {
+  return db('user')
+    .first()
+    .where({ id });
+}
 
-  function findUsers(): knex.QueryBuilder {
-    return db('user');
-  }
+export function findUsers(): knex.QueryBuilder {
+  return db('user');
+}
 
-  function makeUser(user: User): knex.QueryBuilder {
-    return db('user').insert(user);
-  }
-
-  return {
-    findUser,
-    findUsers,
-    makeUser,
-  };
-};
-
-export default userModels;
+export function makeUser(user: User): knex.QueryBuilder {
+  return db('user').insert(user);
+}

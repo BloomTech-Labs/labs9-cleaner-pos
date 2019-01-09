@@ -1,14 +1,21 @@
 import 'jest';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
-import models from '../../src/models/users';
+import { findUser, findUsers, makeUser } from '../../src/models/users';
 
 // Data that was seeded into the test database
 import data from '../../data/seeds/data/usersData';
 
-const testDb = knex(knexConfig.test);
+// Mock db in users model functions
+jest.mock('../../data/dbConfig');
+import db from '../../data/dbConfig';
 
-const { findUser, findUsers, makeUser } = models(testDb);
+// Use testDb instead of DB defined in env
+const testDb = knex(knexConfig.test);
+// TODO: Find way to define type for mockImplementation
+// spyon is a lead, but only works on a particular method?
+// @ts-ignore
+db.mockImplementation((table: string) => testDb(table));
 
 describe('User DB functions', () => {
   beforeAll(async () => {
