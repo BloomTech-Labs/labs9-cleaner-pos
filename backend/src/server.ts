@@ -1,6 +1,6 @@
 import express from 'express';
 import { errorHandler } from './middleware/errorHandler';
-import setGeneralMiddleware from './middleware';
+import setGeneralMiddleware from './middleware/generalMiddleware';
 import * as users from './controller/users';
 const PORT = process.env.PORT || 3000;
 
