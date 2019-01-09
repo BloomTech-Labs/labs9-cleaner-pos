@@ -1,3 +1,7 @@
+# Root
+.env
+node_modules
+
 # Frontend
 frontend/node_modules
 

@@ -6,7 +6,7 @@ import models from '../../src/models/users';
 // Data that was seeded into the test database
 import data from '../../data/seeds/data/usersData';
 
-const testDb = knex(knexConfig.testmem);
+const testDb = knex(knexConfig.test);
 
 const { findUser, findUsers, makeUser } = models(testDb);
 

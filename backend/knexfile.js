@@ -19,31 +19,17 @@ module.exports = {
     },
   },
 
-  testmem: {
-    client: 'sqlite3',
-    connection: {
-      filename: ':memory:',
-    },
-    useNullAsDefault: true,
-    migrations: {
-      tableName: 'knex_migrations',
-      directory: './data/migrations',
-    },
-    seeds: {
-      directory: './data/seeds',
-    },
-  },
-
   test: {
     client: 'sqlite3',
     connection: {
-      filename: './data/devdb.sqlite3',
+      filename: ':memory:',
     },
     pool: {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
     },
     useNullAsDefault: true,
     migrations: {
+      tableName: 'knex_migrations',
       directory: './data/migrations',
     },
     seeds: {
