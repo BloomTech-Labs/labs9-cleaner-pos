@@ -6,8 +6,6 @@ import "./App.css";
 type Props = {};
 
 const App = (props: Props) => {
-  console.log(process.env);
-  console.log(app.auth());
   return (
     <div className="App">
       <header className="App-header">
