@@ -27,7 +27,10 @@ frontend/yarn-error.log*
 # Backend
 ## depedencies
 backend/node_modules
-.env
 
 ## production
 backend/dist
+
+## msic
+backend/.DS_Store
+backend/.env
