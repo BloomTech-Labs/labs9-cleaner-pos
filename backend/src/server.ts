@@ -1,6 +1,7 @@
 import express from 'express';
+import { errorHandler } from './middleware/errorHandler';
 import setGeneralMiddleware from './middleware';
-import { userGet } from './controller/users';
+import * as users from './controller/users';
 const PORT = process.env.PORT || 3000;
 
 export const server = express();
@@ -10,8 +11,14 @@ setGeneralMiddleware(server);
 server.get('/', (req, res) => {
   res.send('hello world');
 });
-server.get('/users', userGet);
+server
+  .route('/users')
+  .get(users.userGet)
+  .post(users.userPost);
 
+server.route('/users/:id').get(users.userGet);
+
+server.use(errorHandler);
 /* tslint:disable */
 server.listen(process.env.PORT || 3000, () =>
   console.log('Server is listening!'),
