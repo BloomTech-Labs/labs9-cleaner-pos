@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import firebase, { Unsubscribe } from 'firebase/app';
+import 'firebase/auth';
 
 const {
   REACT_APP_apiKey,
@@ -6,15 +7,16 @@ const {
   REACT_APP_databaseURL,
   REACT_APP_projectId,
   REACT_APP_storageBucket,
-  REACT_APP_messagingSenderId
+  REACT_APP_messagingSenderId,
 } = process.env;
 
-export const app = firebase.initializeApp({
+const app = firebase.initializeApp({
   apiKey: REACT_APP_apiKey,
   authDomain: REACT_APP_authDomain,
   databaseURL: REACT_APP_databaseURL,
+  messagingSenderId: REACT_APP_messagingSenderId,
   projectId: REACT_APP_projectId,
   storageBucket: REACT_APP_storageBucket,
-  messagingSenderId: REACT_APP_messagingSenderId
 });
-console.log(app);
+
+export default app;
