@@ -5,7 +5,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "start": "node dist/server.prod.js",
-    "typecheck": "tsc --p ../",
+    "typecheck": "tsc",
     "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
     "nodemon-": "node-dev ./dist/server.prod.js",
     "watch:server": "webpack --config webpack.config.server.js --watch",
