@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from "react";
-import { RouteProps } from 'react-router';
+import { RouteProps, RouteComponentProps } from 'react-router';
 import styled from '@emotion/styled';
 
+import Login from './Login';
 import Button from '../components/shared_components/Button';
 import house from '../assets/house.jpg';
 
@@ -16,6 +17,11 @@ const Nav = styled('nav')`
   max-width: 880px;
   display: flex;
   justify-content: space-between;
+  a {
+    text-decoration: none;
+    font-size: 2.1rem;
+    color: black;
+  }
 `
 
 const Wrapper = styled('div')`
@@ -34,6 +40,10 @@ const AppHeader = styled('h1')`
   font-family: 'Staaliches', 'sans-serif';
 `
 
+const SideHeader = styled('h3')`
+  font-family: 'Roboto';
+`
+
 const Footer = styled('div')`
   display: flex;
 `
@@ -43,25 +53,24 @@ type Props = {};
 //   return <div />;
 // };
 
-const Landing = (props: RouteProps) => {
+const Landing = (props: RouteComponentProps) => {
   return (
     <div>
       <Container>
         <AppHeader>Cleaner POS</AppHeader>
-        <h4>A POS that helps you keep things clean</h4>
+        <SideHeader>A POS that helps you keep things clean</SideHeader>
         <Nav>
           <a href='/'>Home</a>
           <a href='/'>About</a>
           <a href='/'>Contact</a>
-          <Button text='Sign In'/>
+          <Button text='Sign In' onClick={() => { props.history.push('/Login.tsx') }} />
         </Nav>
         <Wrapper>
-          <h3>Left</h3>
+          <SideHeader>Left</SideHeader>
             <CenterImg src={house} alt='Beautiful house with a pool' />
-          <h3>Right</h3>
+          <SideHeader>Right</SideHeader>
         </Wrapper>
-        <Button text="Get started" />
-
+        <Button text="Get started" onClick={() => { props.history.push('/Login.tsx') }}/>
         <Footer>
           <p>Test</p>
         </Footer>
