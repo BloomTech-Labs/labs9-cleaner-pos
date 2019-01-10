@@ -3,33 +3,50 @@ import { Link } from 'react-router-dom';
 //import './index.css';
 import Button from './Button'
 
+//each menu item is a button
+//each button will redirect the page to a different link
+
 const Sidebar ] (props) => {
 	return(
    		<nav>
     		<>
-     			<Button>Guests<Button>
+     			<Link to = '/guests'>
+					<Button>Guests</Button>
+				</Link>
 			</>
     		<>
-      			<Button>Checkout</Button>
-    		</>
+				<Link to = '/checkout'>
+      				<Button>Checkout</Button>
+    			</Link>
+			</>
     		<br />
 			<>
 	  			<Button>------</Button>
 			</>
     		<>
-      			<Button>Houses</Button>
+				<Link to = '/houses'>
+      				<Button>Houses</Button>
+				</Link>
     		</>
     		<>
-      			<Button>Assistants</Button>
+				<Link to = '/assistants'>
+      				<Button>Assistants</Button>
+				</Link>
     		</>
     		<>
-      			<Button>Reports</Button>
-    		</>
+				<Link to = '/reports'>
+      				<Button>Reports</Button>
+    			</Link>
+			</>
     		<>
-      			<Button>Settings</Button>
-    		</>
+				<Link to = '/settings'>
+      				<Button>Settings</Button>
+    			</Link>
+			</>
     		<>
-      			<Button>Billing</Button>
+				<Link to = '/billing'>
+      				<Button>Billing</Button>
+				</Link>
     		</>
 
    		</nav>
