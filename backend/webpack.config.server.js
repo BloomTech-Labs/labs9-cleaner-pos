@@ -12,8 +12,8 @@ if (!isProduction) {
   plugins.push(new Dotenv());
 }
 const entry = isProduction
-  ? ['/']
-  : ['webpack/hot/poll?1000', './src/server.ts'];
+  ? ['@babel/polyfill', '/']
+  : ['@babel/polyfill', 'webpack/hot/poll?1000', './src/server.ts'];
 module.exports = {
   devtool: false,
   entry: entry,

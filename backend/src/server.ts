@@ -1,16 +1,7 @@
-import express from 'express';
-import setGeneralMiddleware from './middleware';
+import server from './app';
 
 const PORT = process.env.PORT || 3000;
 
-export const server = express();
-
-setGeneralMiddleware(server);
-
-server.get('/', (req, res) => {
-  res.send('hello world');
-});
-/* tslint:disable */
 server.listen(process.env.PORT || 3000, () =>
   console.log('Server is listening!'),
 );
