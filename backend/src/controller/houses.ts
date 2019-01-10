@@ -7,19 +7,7 @@ import {
 } from '../models/houses';
 import { Request, Response, NextFunction } from 'express';
 import * as knex from 'knex';
-
-interface House {
-  id?: number;
-  name: string;
-  address: string;
-  price: number;
-  cleaning_fee: number;
-  extra_guest_fee: number;
-  default_ast: string;
-  manager: string;
-  guest_guide?: any;
-  ast_guide?: any;
-}
+import { House } from '../interface';
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {

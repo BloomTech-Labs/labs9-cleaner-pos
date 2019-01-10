@@ -1,18 +1,6 @@
 import * as knex from 'knex';
 import db from '../../data/dbConfig';
-
-interface House {
-  id?: number;
-  name: string;
-  address: string;
-  price: number;
-  cleaning_fee: number;
-  extra_guest_fee: number;
-  default_ast: string;
-  manager: string;
-  guest_guide?: any;
-  ast_guide?: any;
-}
+import { House } from '../interface';
 
 export const findHouses = (): knex.QueryBuilder => {
   return db('house');
