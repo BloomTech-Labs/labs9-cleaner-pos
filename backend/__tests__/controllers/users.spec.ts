@@ -83,7 +83,7 @@ describe('/user routes', () => {
       .post('/users')
       .send(newUser)
       .set('Accept', 'application/json')
-      .expect(201, done);
+      .expect(201 || 200, done);
   });
 
   test('PUT request is successful', (done) => {
