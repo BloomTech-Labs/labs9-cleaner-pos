@@ -1,22 +1,24 @@
 import React from "react";
 import styled from '@emotion/styled'
+import { string } from 'prop-types';
 
-
-const Button = styled.button`
+const StyledButton = styled('button')`
 	color: yellow;
 `
 
-render() {
-	const {
-		action: something //not sure what to do here as there are probably going to be a gazillion buttons that each do different things
-	} = this.props;
- 
+interface ButtonProps {
+	onClick?: () => React.MouseEvent;
+	text?: string;
+	datatestid?: string;
+}
+
+const Button = ({ onClick, text, datatestid }: ButtonProps) => {
     return (
-        <button onClick={ this.onClick }>
-            { action }
-        </button>
+		<>
+        	<StyledButton onClick={ onClick } type='button' data-testid={ datatestid}>
+            	{ text }
+        	</StyledButton>
     );
 };
 
 export default Button; 
-

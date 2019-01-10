@@ -1,54 +1,39 @@
-import React from "react";
-
-import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 //import './index.css';
+import Button from './Button'
 
-class Sidebar extends Component {
- render() {
-  return(
-   <nav>
-    <div>
-     <h3>Guests</h3>
-    </div>
-    <div>
-     <Link to='/'>
-      <h3>Checkout</h3>
-     </Link>
-    </div>
-    <br />
-	<div>
-	  <h3>------</h3>
-	</div>
-    <div>
-     <Link to='/'>
-      <h3>Houses</h3>
-     </Link>
-    </div>
-    <div>
-     <Link to='/'>
-      <h3>Assistants</h3>
-     </Link>
-    </div>
-    <div>
-     <Link to='/'>
-      <h3>Reports</h3>
-     </Link>
-    </div>
-    <div>
-     <Link to='/'>
-      <h3>Settings</h3>
-     </Link>
-    </div>
-    <div>
-     <Link to='/'>
-      <h3>Billing</h3>
-     </Link>
-    </div>
+const Sidebar ] (props) => {
+	return(
+   		<nav>
+    		<>
+     			<Button>Guests<Button>
+			</>
+    		<>
+      			<Button>Checkout</Button>
+    		</>
+    		<br />
+			<>
+	  			<Button>------</Button>
+			</>
+    		<>
+      			<Button>Houses</Button>
+    		</>
+    		<>
+      			<Button>Assistants</Button>
+    		</>
+    		<>
+      			<Button>Reports</Button>
+    		</>
+    		<>
+      			<Button>Settings</Button>
+    		</>
+    		<>
+      			<Button>Billing</Button>
+    		</>
 
-   </nav>
-  )
- }
+   		</nav>
+	)
 }
 
 export default Sidebar;
