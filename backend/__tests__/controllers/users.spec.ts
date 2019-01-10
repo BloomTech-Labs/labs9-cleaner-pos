@@ -23,6 +23,7 @@ describe('/user routes', () => {
     then applies seeds.
     */
     try {
+      await testDb.migrate.rollback();
       await testDb.migrate.latest();
       await testDb.seed.run();
     } catch (err) {
@@ -69,5 +70,50 @@ describe('/user routes', () => {
       });
   });
 
-  test('POST request is successful');
+  test('POST request is successful', (done) => {
+    const newUser = {
+      address: 'bbah',
+      email: 'rl@rl.com',
+      ext_it: '123',
+      full_name: 'RL',
+      phone: '3235551111',
+      role: 'manager',
+    };
+    request(app)
+      .post('/users')
+      .send(newUser)
+      .set('Accept', 'application/json')
+      .expect(201, done);
+  });
+
+  test('PUT request is successful', (done) => {
+    const newUser = {
+      address: 'bbah',
+      email: 'rl@rl.com',
+      ext_it: '123',
+      full_name: 'RL',
+      phone: '3235551111',
+      role: 'manager',
+    };
+    request(app)
+      .put('/users/1')
+      .send(newUser)
+      .set('Accept', 'application/json')
+      .expect(201)
+      .then((res) => {
+        expect(res.body).toBe(1);
+        done();
+      });
+  });
+
+  test('DELETE request is successful', (done) => {
+    request(app)
+      .delete('/users/2')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toBe(1);
+        done();
+      });
+  });
 });
