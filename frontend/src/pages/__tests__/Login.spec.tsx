@@ -4,13 +4,25 @@ import Login from '../Login';
 import 'jest';
 
 jest.mock('react-firebaseui/StyledFirebaseAuth', () => () => {
-  return <div>Hellooo</div>;
+  return (
+    <div>
+      <button />
+      <button />
+      <button />
+      <button />
+      <button />
+    </div>
+  );
 });
 
 afterEach(cleanup);
+
 describe('Login component', () => {
   test('should render the login component displaying a button for every OAuth provider', () => {
-    const { getByText } = render(<Login />);
-    const buttonOne = getByText('Hellooo');
+    const { container } = render(<Login />);
+    const buttons = container.querySelectorAll('button');
+    const button = document.createElement('button');
+    expect(buttons.length).toBe(5);
+    expect(buttons[0]).toMatchObject(button);
   });
 });
