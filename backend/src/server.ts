@@ -2,9 +2,7 @@ import server from './app';
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(process.env.PORT || 3000, () =>
-  console.log('Server is listening!'),
-);
+server.listen(PORT, () => console.log('Server is listening!'));
 
 // @ts-ignore
 if (module.hot) {

@@ -1,11 +1,11 @@
 // From https://github.com/Jamaks/koa-knex-typescript-example/blob/master/src/server/db/services/movies.service.ts
-import * as knex from 'knex';
+import { QueryBuilder } from 'knex';
 import Bluebird from 'bluebird';
 import db from '../../data/dbConfig';
 
 interface User {
   id?: number;
-  //   ext_it: string;
+  // ext_it: string;
   full_name: string;
   //   email: string;
   //   phone: number;
@@ -14,17 +14,23 @@ interface User {
   role: string;
 }
 
-export function findUser(id: number): knex.QueryBuilder {
+export function findUser(id: number): QueryBuilder {
   return db('user')
     .first()
     .where({ id });
 }
 
-export function findUsers(): knex.QueryBuilder {
+export function findUserByExt_it(extit: string): QueryBuilder {
+  return db('user')
+    .first()
+    .where({ ext_it: extit });
+}
+
+export function findUsers(): QueryBuilder {
   return db('user');
 }
 
-export async function makeUser(user: User): Promise<knex.QueryBuilder> {
+export async function makeUser(user: User): Promise<QueryBuilder> {
   const role = user.role;
   const userIds = await db('user').insert(user);
   const userId = userIds[0];
@@ -44,13 +50,13 @@ export async function makeUser(user: User): Promise<knex.QueryBuilder> {
   // });
 }
 
-export function updateUser(id: number, updatedUser: User): knex.QueryBuilder {
+export function updateUser(id: number, updatedUser: User): QueryBuilder {
   return db('user')
     .where({ id })
     .update(updatedUser);
 }
 
-export function deleteUser(id: number): knex.QueryBuilder {
+export function deleteUser(id: number): QueryBuilder {
   return db('user')
     .where({ id })
     .del();

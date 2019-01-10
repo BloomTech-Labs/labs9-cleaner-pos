@@ -40,6 +40,13 @@ const Login: FunctionComponent = (props: RouteProps) => {
     //   };
   }, []);
 
+  useEffect(
+    () => {
+      console.log(user);
+    },
+    [user],
+  );
+
   return (
     <div>
       <StyledFireBaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
