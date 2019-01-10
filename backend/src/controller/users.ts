@@ -1,6 +1,7 @@
 import { findUser, findUsers, makeUser, deleteUser } from '../models/users';
 import { Request, Response, NextFunction } from 'express';
 import * as knex from 'knex';
+
 interface User {
   id?: number;
   ext_it: string;
@@ -10,15 +11,22 @@ interface User {
   address: string;
   role: string;
 }
+
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    let users: knex.QueryBuilder;
+    // Find users
+    let users: any;
     if (id) {
       users = await findUser(id);
     } else {
       users = await findUsers();
     }
+    // Return status 404 if individual user is not found
+    if (users === undefined) {
+      return res.status(404).json({ msg: '404: User cannot be found.' });
+    }
+    // Send 200 OK and user data
     res.status(200).json(users);
   } catch (e) {
     e.statusCode = 400;
