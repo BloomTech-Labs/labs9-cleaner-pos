@@ -6,7 +6,7 @@ import Button from '../components/shared_components/Button';
 import house from '../assets/house.jpg';
 
 const Container = styled('div')`
-  background-color: gray;
+  /* background-color: gray; */
   padding: 20px;
   `
 
@@ -30,6 +30,14 @@ const CenterImg = styled('img')`
   border-radius: 100px;
 `
 
+const AppHeader = styled('h1')`
+  font-family: 'Staaliches', 'sans-serif';
+`
+
+const Footer = styled('div')`
+  display: flex;
+`
+
 type Props = {};
 // export const Button = () => {
 //   return <div />;
@@ -39,7 +47,7 @@ const Landing = (props: RouteProps) => {
   return (
     <div>
       <Container>
-        <h1>Cleaner POS</h1>
+        <AppHeader>Cleaner POS</AppHeader>
         <h4>A POS that helps you keep things clean</h4>
         <Nav>
           <a href='/'>Home</a>
@@ -52,6 +60,11 @@ const Landing = (props: RouteProps) => {
             <CenterImg src={house} alt='Beautiful house with a pool' />
           <h3>Right</h3>
         </Wrapper>
+        <Button text="Get started" />
+
+        <Footer>
+          <p>Test</p>
+        </Footer>
       </Container>
     </div>
   );
