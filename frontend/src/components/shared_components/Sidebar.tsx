@@ -1,51 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 //import './index.css';
-import Button from './Button'
 
-//each menu item is a button
-//each button will redirect the page to a different link
+interface LinkProps {
+	onClick?: () => React.MouseEvent;
+}
 
-const Sidebar = (props) => {
+const Sidebar = ({ onClick }: LinkProps) => {
 	return(
    		<nav>
     		<div>
      			<Link to = '/guests'>
-					<Button>Guests</Button>
+					<h3>Guests</h3>
 				</Link>
 			</div>
     		<div>
 				<Link to = '/checkout'>
-      				<Button>Checkout</Button>
+      				<h3>Checkout</h3>
     			</Link>
 			</div>
-    		<br />
-			<div>
-	  			<Button>------</Button>
-			</div>
     		<div>
+				<h3>------</h3>
+			</div>
+			<div>
 				<Link to = '/houses'>
-      				<Button>Houses</Button>
+      				<h3>Houses</h3>
 				</Link>
     		</div>
     		<div>
 				<Link to = '/assistants'>
-      				<Button>Assistants</Button>
+      				<h3>Assistants</h3>
 				</Link>
     		</div>
     		<div>
 				<Link to = '/reports'>
-      				<Button>Reports</Button>
+      				<h3>Reports</h3>
     			</Link>
 			</div>
     		<div>
 				<Link to = '/settings'>
-      				<Button>Settings</Button>
+      				<h3>Settings</h3>
     			</Link>
 			</div>
     		<div>
 				<Link to = '/billing'>
-      				<Button>Billing</Button>
+      				<h3>Billing</h3>
 				</Link>
     		</div>
 
