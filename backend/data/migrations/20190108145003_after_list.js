@@ -6,7 +6,10 @@ exports.up = function(knex, Promise) {
       .primary();
     table.integer('hours_after');
     table.integer('list_id').unsigned();
-    table.foreign('list_id').references('list.id');
+    table
+      .foreign('list_id')
+      .references('list.id')
+      .onDelete('CASCADE');
   });
 };
 

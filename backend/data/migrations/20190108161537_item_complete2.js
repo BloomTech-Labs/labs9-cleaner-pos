@@ -1,10 +1,19 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('item_complete', (table) => {
-    table.increments('id').unique().primary();
+    table
+      .increments('id')
+      .unique()
+      .primary();
     table.integer('item_id').unsigned();
-    table.foreign('item_id').references('items.id');
+    table
+      .foreign('item_id')
+      .references('items.id')
+      .onDelete('CASCADE');
     table.integer('stay_id').unsigned();
-    table.foreign('stay_id').references('stay.id');
+    table
+      .foreign('stay_id')
+      .references('stay.id')
+      .onDelete('CASCADE');
   });
 };
 
