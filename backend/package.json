@@ -5,7 +5,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "start": "node dist/server.prod.js",
-    "typecheck": "tsc --p ../",
+    "typecheck": "tsc",
     "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
     "nodemon-": "node-dev ./dist/server.prod.js",
     "watch:server": "webpack --config webpack.config.server.js --watch",
@@ -58,6 +58,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@types/dotenv": "^6.1.0",
     "@types/express": "^4.16.0",
     "@types/jest": "^23.3.12",

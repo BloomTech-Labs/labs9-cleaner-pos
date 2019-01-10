@@ -30,11 +30,33 @@ Next, ensure that all dependencies are installed locally by running:
 
 Lastly, start the development server by running:
     
-    > npm start
+    > npm dev:server
          OR
-    > yarn start
+    > yarn dev:server
 
-# Users
+# Other Scripts
+
+    > yarn typecheck
+        || Runs the TypeScript compiler
+
+    > yarn build
+        || Creates a build of the application
+
+    > yarn start
+        || Starts the production server after the build is created
+
+    > yarn test
+        || Runs tests in __tests__ directories
 
 
 # Routes
+
+* > /users
+    * > .get || Reads requested records
+    * > .post || Updates target resource
+
+* > /users/:id
+    * > .get || Reads requested record according to given ID
+    * > .put || Creates record with given ID
+    * > .delete || Destroys record with given ID
+
