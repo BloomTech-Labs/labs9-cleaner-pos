@@ -1,24 +1,29 @@
-import React from "react";
-import styled from '@emotion/styled'
+import React from 'react';
+import styled from '@emotion/styled';
 import { string } from 'prop-types';
 
+// functionality is different
+// text is different
+// data-testid
+
 const StyledButton = styled('button')`
-	color: yellow;
-`
+  border-radius: 5px;
+`;
 
 interface ButtonProps {
-	onClick?: () => React.MouseEvent;
-	text?: string;
-	datatestid?: string;
+  onClick?: () => React.MouseEvent;
+  text?: string;
+  datatestid?: string;
 }
 
 const Button = ({ onClick, text, datatestid }: ButtonProps) => {
-    return (
-		<>
-        	<StyledButton onClick={ onClick } type='button' data-testid={ datatestid}>
-            	{ text }
-        	</StyledButton>
-    );
+  return (
+    <>
+      <StyledButton onClick={onClick} type='button' data-testid={datatestid}>
+        {text}
+      </StyledButton>
+    </>
+  );
 };
 
-export default Button; 
+export default Button;

@@ -50,6 +50,6 @@ const Sidebar = ({ onClick }: LinkProps) => {
 
    		</nav>
 	)
-}
+};
 
 export default Sidebar;
