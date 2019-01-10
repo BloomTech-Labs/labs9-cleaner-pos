@@ -45,21 +45,6 @@ class Sidebar extends Component {
       <h3>Billing</h3>
      </Link>
     </div>
-   </nav>
-)
-}
-}
-
-export default Sidebar;
-
-
-
-
-
-
-
-
-
 
    </nav>
   )

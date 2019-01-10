@@ -1,14 +1,22 @@
 import React from "react";
+import styled from '@emotion/styled'
 
-const Button = (props) => {
+
+const Button = styled.button`
+	color: yellow;
+`
+
+render() {
+	const {
+		action: something //not sure what to do here as there are probably going to be a gazillion buttons that each do different things
+	} = this.props;
+ 
     return (
-        <button onClick={ props.onClick }className={ `${ props.style }` }>
-            {props.action}
+        <button onClick={ this.onClick }>
+            { action }
         </button>
     );
 };
-
-Button.defaultProps = {action: '&'};
 
 export default Button; 
 
