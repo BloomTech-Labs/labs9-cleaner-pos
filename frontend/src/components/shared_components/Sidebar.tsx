@@ -6,7 +6,7 @@ import Button from './Button'
 //each menu item is a button
 //each button will redirect the page to a different link
 
-const Sidebar ] (props) => {
+const Sidebar = (props) => {
 	return(
    		<nav>
     		<>
