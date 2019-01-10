@@ -1,7 +1,7 @@
 import 'jest';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
-import { findStaySummary } from '../../src/models/stays';
+import { findStaySummary, postStayData } from '../../src/models/stays';
 
 // Data that was seeded into the test database
 import usersData from '../../data/seeds/data/usersData';
@@ -57,5 +57,34 @@ describe('Stay DB functions', () => {
     // Assert
     expect(result.guest).toBe(testUser.full_name);
     expect(result.house).toBe(testHouse.name);
+  });
+
+  test('postStayData posts data to DB', async () => {
+    // Arrange
+    const stayIdinDb = 1;
+    const testStay = staysData[stayIdinDb - 1]; // - 1 to for 0-based indexing
+
+    const newStay = {
+      check_in: '2/1/2019',
+      check_out: '2/5/2019',
+      extra_guests: 3,
+      guest_id: testStay.guest_id,
+      house_id: testStay.house_id,
+    };
+    // Act
+    let resultIds: number[];
+    let result: Stay[];
+    try {
+      resultIds = await postStayData(newStay);
+      result = await testDb('stay');
+    } catch (e) {
+      throw e;
+    }
+    const resultId = resultIds[0];
+    // Assert
+    expect(resultId).toBeTruthy();
+    expect(result).toEqual(
+      expect.arrayContaining([expect.objectContaining(newStay)]),
+    );
   });
 });

@@ -13,21 +13,29 @@ interface Stay {
   created_at?: string;
 }
 
-export function findStaySummary(id: number): QueryBuilder {
+export function findStaySummary(stayId: number): QueryBuilder {
   /*
   Function returns guest name, check in/out dates, and checklist percentage.
   For Guests page: https://balsamiq.cloud/snv27r3/pwc7ekv/rFE5F
   */
   // TODO: Query list status once lists are set up
   return db('stay')
-    .where({ 'stay.id': id })
+    .where({ 'stay.id': stayId })
     .select(
       'user.full_name AS guest',
       'house.name AS house',
+      'house.id as houseId',
       'check_in',
       'check_out',
     )
     .join('user', 'user.id', '=', 'stay.guest_id')
     .join('house', 'house.id', '=', 'stay.house_id')
     .first();
+}
+
+export function postStayData(stayData: Stay): QueryBuilder {
+  /*
+  Post stay data into DB.
+  */
+  return db('stay').insert(stayData);
 }
