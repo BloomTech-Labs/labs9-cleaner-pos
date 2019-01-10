@@ -1,6 +1,4 @@
-// From https://github.com/Jamaks/koa-knex-typescript-example/blob/master/src/server/db/services/movies.service.ts
 import { QueryBuilder } from 'knex';
-import Bluebird from 'bluebird';
 import db from '../../data/dbConfig';
 
 interface User {
