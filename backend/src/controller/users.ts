@@ -1,12 +1,13 @@
 import {
   findUser,
+  findUserByExt_it,
   findUsers,
   makeUser,
   updateUser,
   deleteUser,
 } from '../models/users';
 import { Request, Response, NextFunction } from 'express';
-import * as knex from 'knex';
+import jwt, { Secret } from 'jsonwebtoken';
 
 interface User {
   id?: number;
@@ -43,12 +44,26 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { ext_it, full_name, email, phone, address, role } = req.body;
-    const user: User = { ext_it, full_name, email, phone, address, role };
-    if (user.role !== 'manager' && user.role !== 'assistant') {
-      throw Error('Role must be User or Manager');
+    const user = await findUserByExt_it(ext_it);
+    const { JWT_SECRET } = process.env;
+    if (!user) {
+      // If user does NOT yet exist, create a user in our db & send a token to the client
+      const userData: User = { ext_it, full_name, email, phone, address, role };
+
+      // should we save output to a variable? I don't think the client should be sent that info.
+      await makeUser(userData);
+      const token = await jwt.sign(userData, JWT_SECRET || '');
+
+      res.status(201).json({ token, first: true });
+    } else {
+      // If user does exist within db, sign a new JWT & send it to the client
+      if (user.role !== 'manager' && user.role !== 'assistant') {
+        throw Error('Role must be User or Manager');
+      }
+      const token = await jwt.sign(user, JWT_SECRET || '');
+
+      res.status(200).json({ token });
     }
-    const newUser = await makeUser(user);
-    res.status(201).json(newUser);
   } catch (e) {
     e.statusCode = 400;
     next(e);
