@@ -58,7 +58,7 @@ export const put = async (req: Request, res: Response, next: NextFunction) => {
     const house: House = hId;
     const putHouse = await updateHouse(house);
     if (!putHouse) {
-      throw Error('no user');
+      throw Error('No house with that id');
     }
     res.status(201).json(putHouse);
   } catch (e) {

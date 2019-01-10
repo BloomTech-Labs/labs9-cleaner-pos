@@ -106,4 +106,15 @@ describe('/house routes', () => {
           });
       });
   });
+
+  test('DELETE request is successful', (done) => {
+    request(app)
+      .delete('/houses/2')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toBe(1);
+        done();
+      });
+  });
 });
