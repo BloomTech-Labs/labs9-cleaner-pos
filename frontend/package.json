@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
     "@firebase/app-types": "^0.3.2",
     "@types/jest": "23.3.12",
     "@types/node": "10.12.18",
