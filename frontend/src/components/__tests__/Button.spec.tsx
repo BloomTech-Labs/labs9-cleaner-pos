@@ -13,15 +13,14 @@ describe('Button page', () => {
     expect(buttons.length).toBe(1);
   });
 
-  test.skip('should display the correct text on the Button', () => {
-    // const spy = jest.fn();
+  test('should display the correct text on the Button', () => {
     const text = 'This is a test';
     const { getByText } = render(<Button text={text} />);
     const button = getByText(text);
     expect(button).toHaveTextContent(text);
   });
 
-  test.skip('should carry the correct onClick handler', () => {
+  test('should carry the correct onClick handler', () => {
     const mock = jest.fn();
     const { container } = render(<Button onClick={mock} />);
     const button = container.querySelector('button');
@@ -32,9 +31,9 @@ describe('Button page', () => {
     expect(mock).toHaveBeenCalledTimes(2);
   });
 
-  test.skip('should carry the correct data-testid', () => {
+  test('should carry the correct data-testid', () => {
     const testid = 'randoButton';
-    const { getByTestId } = render(<Button testId={testid} />);
+    const { getByTestId } = render(<Button datatestid={testid} />);
     const button = getByTestId(testid);
     expect(button).toBeDefined();
   });
