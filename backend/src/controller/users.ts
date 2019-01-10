@@ -54,7 +54,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       await makeUser(userData);
       const token = await jwt.sign(userData, JWT_SECRET || '');
 
-      res.status(201).json({ token });
+      res.status(201).json({ token, first: true });
     } else {
       // If user does exist within db, sign a new JWT & send it to the client
       if (user.role !== 'manager' && user.role !== 'assistant') {
