@@ -36,6 +36,9 @@ server
   .put(houses.put)
   .delete(houses.deleteU);
 
+/* this route looks for a query. if `lists/1?stay=true`
+the id should be for a stay. Anything else the id should be for a house
+*/
 server.route('/lists/:id').get(lists.get);
 
 server.use(errorHandler);
