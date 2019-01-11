@@ -17,7 +17,7 @@ jest.mock('react-firebaseui/StyledFirebaseAuth', () => () => {
 
 afterEach(cleanup);
 
-describe.skip('Login component', () => {
+describe('Login component', () => {
   test('should render the login component displaying a button for every OAuth provider', () => {
     const { container } = render(<Login />);
     const buttons = container.querySelectorAll('button');
