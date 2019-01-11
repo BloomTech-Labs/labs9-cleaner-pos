@@ -44,6 +44,7 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { ext_it, full_name, email, phone, address, role } = req.body;
+    console.log(ext_it);
     const user = await findUserByExt_it(ext_it).catch((e) => {
       console.log(e);
     });
