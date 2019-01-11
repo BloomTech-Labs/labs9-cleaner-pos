@@ -6,6 +6,7 @@ const nodeExternals = require('webpack-node-externals');
 
 const nodeEnv = process.env.NODE_ENV;
 const isProduction = nodeEnv !== 'development';
+console.log('webpackconfig production?!', isProduction);
 // Common plugins
 let plugins = [new webpack.NamedModulesPlugin()];
 if (!isProduction) {
