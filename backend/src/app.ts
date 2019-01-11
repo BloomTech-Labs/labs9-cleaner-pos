@@ -36,7 +36,8 @@ server
   .put(houses.put)
   .delete(houses.deleteU);
 
-server.route('/lists/:houseId').get(lists.get);
+server.route('/lists/:id').get(lists.get);
+
 server.use(errorHandler);
 
 export default server;
