@@ -44,7 +44,9 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { ext_it, full_name, email, phone, address, role } = req.body;
-    const user = await findUserByExt_it(ext_it);
+    const user = await findUserByExt_it(ext_it).catch((e) => {
+      console.log(e);
+    });
     const { JWT_SECRET } = process.env;
     if (!user) {
       // If user does NOT yet exist, create a user in our db & send a token to the client

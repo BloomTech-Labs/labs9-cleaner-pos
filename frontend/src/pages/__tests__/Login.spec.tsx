@@ -19,6 +19,7 @@ afterEach(cleanup);
 
 describe('Login component', () => {
   test('should render the login component displaying a button for every OAuth provider', () => {
+    // @ts-ignore
     const { container } = render(<Login />);
     const buttons = container.querySelectorAll('button');
     const button = document.createElement('button');

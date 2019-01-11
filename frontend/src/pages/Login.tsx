@@ -6,7 +6,13 @@ import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../firebase.setup';
 
 const Login: FunctionComponent<RouteComponentProps> = (props) => {
-  const [user, setUser] = useState<object | null>(null);
+  interface NewUser {
+    email: string;
+    uid: string;
+    displayName: string;
+    photoURL?: string;
+  }
+  const [user, setUser] = useState<NewUser | null>(null);
   const observerRef = useRef<Unsubscribe>(null);
 
   const uiConfig = {
@@ -32,7 +38,7 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
     to set the User object once data has been obtained
     */
     // @ts-ignore
-    observerRef.current = app.auth().onAuthStateChanged((newUser) => {
+    observerRef.current = app.auth().onAuthStateChanged((newUser: NewUser) => {
       setUser(newUser);
     });
     // Removes the observer set up above
@@ -51,10 +57,20 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
 
   async function submitUser() {
     if (user) {
+      const { email, uid, displayName, photoURL } = user;
+      const nUser = {
+        // full_name: user.displayName,
+        email,
+        ext_it: uid,
+        full_name: displayName,
+        photoURL,
+        role: 'manager',
+      };
+      console.log(nUser);
       try {
         const { data } = await axios.post(
           'https://cleaner-pos.herokuapp.com/users/',
-          user,
+          nUser,
         );
         if (data.first) {
           props.history.push('/postreg');
@@ -63,7 +79,6 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
       } catch (e) {
         throw e;
       }
-      console.log(user);
     }
   }
   return (
