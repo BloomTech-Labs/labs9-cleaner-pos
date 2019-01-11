@@ -1,6 +1,5 @@
 import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
-import { statSync } from 'fs';
 
 interface Stay {
   id?: number;
