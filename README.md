@@ -1,5 +1,7 @@
 # Labs 9 - Cleaner POS
 
+
+
 ## Project Overview
 
 This is a Lambda Labs Capstone Project designed for rental property management. It consolidates key tasks like invoicing and employee management into one central location.  
@@ -19,9 +21,7 @@ See [Frontend README]() for details on the frontend.
 
 ### Contributors:
 
-![](/path/to/kelly.jpg)[Kelly Frohwein](https://github.com/kelfro)  
-![](/path/to/chris.jpg)[Chris Honda](https://github.com/honda0306)  
-![](/path/to/ronald.jpg)[Ronald Libago](https://github.com/Mister-Corn)  
-![](/path/to/nando.jpg)[Nando Theessen](https://github.com/NandoTheessen)  
-![](/path/to/william.jpg)[William VanDolah](https://github.com/wvandolah)  
- 
+|   [Kelly Frohwein](https://github.com/kelfro)  |   [Chris Honda](https://github.com/honda0306)   |    [Ronald Libago](https://github.com/Mister-Corn)    |   [Nando Theessen](https://github.com/NandoTheessen)  |   [William VanDolah](https://github.com/wvandolah)  |
+|:----------------:|:----------------:|:---------------:|:---------------:|:---------------:| 
+| [<img src=./assets/kelly.jpg />](https://github.com/aaharbaugh) | [<img src=./assets/honda.png />](https://github.com/jordan-massingill)  | [<img src=./assets/ronald.jpg />](https://github.com/juliejonak) | [<img src=./assets/nando.jpg />](https://github.com/Jkasem) | [<img src=./assets/william.jpg />](https://github.com/peytonrunyan) 
+|
