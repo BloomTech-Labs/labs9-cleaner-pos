@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-require('dotenv').config();
 const nodeExternals = require('webpack-node-externals');
 
 const isProduction = true;
