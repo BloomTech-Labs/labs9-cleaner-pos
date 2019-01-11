@@ -10,3 +10,14 @@ export interface House {
   guest_guide?: any;
   ast_guide?: any;
 }
+
+export interface Stay {
+  id?: number;
+  guest_id: number;
+  house_id: number;
+  extra_guests?: number;
+  check_in?: string;
+  check_out?: string;
+  url_id?: string;
+  created_at?: string;
+}

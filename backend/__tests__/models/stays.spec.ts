@@ -1,7 +1,12 @@
 import 'jest';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
-import { findStaySummary, postStayData } from '../../src/models/stays';
+import {
+  findStaySummary,
+  postStayData,
+  putStayData,
+  deleteStayData,
+} from '../../src/models/stays';
 
 // Data that was seeded into the test database
 import usersData from '../../data/seeds/data/usersData';
@@ -37,10 +42,11 @@ describe('Stay DB functions', () => {
     then applies seeds.
     */
     try {
+      await testDb.migrate.rollback();
       await testDb.migrate.latest();
       await testDb.seed.run();
-    } catch (err) {
-      throw err;
+    } catch (e) {
+      throw e;
     }
   });
 
@@ -85,6 +91,46 @@ describe('Stay DB functions', () => {
     expect(resultId).toBeTruthy();
     expect(result).toEqual(
       expect.arrayContaining([expect.objectContaining(newStay)]),
+    );
+  });
+
+  test('putStayData edits data to DB', async () => {
+    // Arrange
+    const stayIdinDb = 1;
+    const testStay = staysData[stayIdinDb - 1];
+    const updatedStay = { ...testStay, check_out: '2/8/2019' };
+    // Act
+    let count: number;
+    let result: Stay;
+    try {
+      count = await putStayData(stayIdinDb, updatedStay);
+      result = await testDb('stay')
+        .where({ id: stayIdinDb })
+        .first();
+    } catch (e) {
+      throw e;
+    }
+    // Assert
+    expect(count).toBe(1);
+    expect(result).toEqual(expect.objectContaining(updatedStay));
+  });
+
+  test('deleteStayData removes data to DB', async () => {
+    const stayIdinDb = 1;
+    const testStay = staysData[stayIdinDb - 1];
+    // Act
+    let count: number;
+    let result: Stay[];
+    try {
+      count = await deleteStayData(stayIdinDb);
+      result = await testDb('stay');
+    } catch (e) {
+      throw e;
+    }
+    // Assert
+    expect(count).toBe(1);
+    expect(result).not.toEqual(
+      expect.arrayContaining([expect.objectContaining(testStay)]),
     );
   });
 });

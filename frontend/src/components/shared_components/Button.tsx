@@ -11,7 +11,7 @@ const StyledButton = styled('button')`
 `;
 
 interface ButtonProps {
-  onClick?: () => React.MouseEvent;
+  onClick?: () => void;
   text?: string;
   datatestid?: string;
 }
