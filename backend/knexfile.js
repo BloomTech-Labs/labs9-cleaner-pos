@@ -16,6 +16,7 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
+    ssl: true,
   },
   production: {
     client: 'pg',
@@ -31,8 +32,8 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
+    ssl: true,
   },
-
   test: {
     client: 'sqlite3',
     connection: {
