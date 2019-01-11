@@ -17,12 +17,12 @@ export const findLists = async (houseId: number) => {
       .select('list.id', 'after_list.hours_after')
       .map(async (row: any) => {
         const hours: string = `hours after ${row.hours_after}`;
-        const something = await db('items')
+        const afterLists = await db('items')
           .where({ 'items.list_id': row.id })
           .select('items.task', 'items.id as items_id')
           .leftJoin('after_list', { 'items.list_id': 'after_list.list_id' });
 
-        return { [hours]: something };
+        return { [hours]: afterLists };
       })
       .catch((e) => {
         console.error(e);
