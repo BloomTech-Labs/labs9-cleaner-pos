@@ -1,18 +1,12 @@
 import axios from 'axios';
-import firebase, { Unsubscribe } from 'firebase/app';
+import firebase, { Unsubscribe, User } from 'firebase/app';
 import React, { useEffect, useState, useRef, FunctionComponent } from 'react';
 import { RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../firebase.setup';
 
 const Login: FunctionComponent<RouteComponentProps> = (props) => {
-  interface NewUser {
-    email: string;
-    uid: string;
-    displayName: string;
-    photoURL?: string;
-  }
-  const [user, setUser] = useState<NewUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const justMounted = useRef(true);
 
   const uiConfig = {
@@ -39,10 +33,7 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
     */
     let observer: Unsubscribe;
     if (!justMounted.current) {
-      // @ts-ignore
-      observer = app.auth().onAuthStateChanged((newUser: NewUser) => {
-        setUser(newUser);
-      });
+      observer = app.auth().onAuthStateChanged((newUser) => setUser(newUser));
     }
     justMounted.current = false;
     // Removes the observer set up above
