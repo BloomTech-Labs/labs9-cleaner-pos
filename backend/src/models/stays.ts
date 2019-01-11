@@ -1,6 +1,5 @@
 import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
-import { statSync } from 'fs';
 
 interface Stay {
   id?: number;
@@ -34,8 +33,17 @@ export function findStaySummary(stayId: number): QueryBuilder {
 }
 
 export function postStayData(stayData: Stay): QueryBuilder {
-  /*
-  Post stay data into DB.
-  */
   return db('stay').insert(stayData);
+}
+
+export function putStayData(id: number, stayData: Stay): QueryBuilder {
+  return db('stay')
+    .where({ id })
+    .update(stayData);
+}
+
+export function deleteStayData(id: number): QueryBuilder {
+  return db('stay')
+    .where({ id })
+    .del();
 }
