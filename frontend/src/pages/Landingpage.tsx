@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { RouteProps, RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import Login from './Login';
 import Button from '../components/shared_components/Button';
 import house from '../assets/house.jpg';
 
@@ -63,14 +63,16 @@ const Landing = (props: RouteComponentProps) => {
           <a href='/'>Home</a>
           <a href='/'>About</a>
           <a href='/'>Contact</a>
-          <Button text='Sign In' onClick={() => { props.history.push('/Login.tsx') }} />
+          <Link to='/Login'>
+            <Button text='Sign In'/>
+          </Link>
         </Nav>
         <Wrapper>
           <SideHeader>Left</SideHeader>
             <CenterImg src={house} alt='Beautiful house with a pool' />
           <SideHeader>Right</SideHeader>
         </Wrapper>
-        <Button text="Get started" onClick={() => { props.history.push('/Login.tsx') }}/>
+        <Button text="Get started" onClick={() => { props.history.push('/Login') }}/>
         <Footer>
           <p>Test</p>
         </Footer>
