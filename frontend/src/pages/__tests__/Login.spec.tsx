@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import Login from '../Login';
 import 'jest';
@@ -19,6 +19,7 @@ afterEach(cleanup);
 
 describe('Login component', () => {
   test('should render the login component displaying a button for every OAuth provider', () => {
+    // @ts-ignore
     const { container } = render(<Login />);
     const buttons = container.querySelectorAll('button');
     const button = document.createElement('button');
