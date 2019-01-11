@@ -1,7 +1,5 @@
 // Update with your config settings.
 require('dotenv').config();
-const pg = require('pg');
-pg.defaults.ssl = true;
 module.exports = {
   development: {
     client: 'pg',
@@ -17,6 +15,7 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
+    ssl: true,
   },
   production: {
     client: 'pg',
@@ -32,8 +31,8 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
+    ssl: true,
   },
-
   test: {
     client: 'sqlite3',
     connection: {
