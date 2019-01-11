@@ -23,5 +23,5 @@ See [Frontend README]() for details on the frontend.
 
 |   [Kelly Frohwein](https://github.com/kelfro)  |   [Chris Honda](https://github.com/honda0306)   |    [Ronald Libago](https://github.com/Mister-Corn)    |   [Nando Theessen](https://github.com/NandoTheessen)  |   [William VanDolah](https://github.com/wvandolah)  |
 |:----------------:|:----------------:|:---------------:|:---------------:|:---------------:| 
-| [<img src="./assets/kelly.jpg" width = "200" />](https://github.com/kelfro) | [<img src="./assets/honda.jpg" width = "200" />](https://github.com/honda0306)  | [<img src="./assets/ronald.jpg" width = "250" />](https://github.com/Mister-Corn) | [<img src="./assets/nando.jpg" width = "250" />](https://github.com/NandoTheessen) | [<img src="./assets/william.jpg" width = "250" />](https://github.com/wvandolah) 
+| [<img src="./assets/kelly.jpg" width = "200" />](https://github.com/kelfro) | [<img src="./assets/honda.jpg" width = "170" />](https://github.com/honda0306)  | [<img src="./assets/ronald.jpg" width = "250" />](https://github.com/Mister-Corn) | [<img src="./assets/nando.jpg" width = "250" />](https://github.com/NandoTheessen) | [<img src="./assets/william.jpg" width = "250" />](https://github.com/wvandolah) 
 |
