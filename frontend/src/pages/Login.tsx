@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef, FunctionComponent } from 'react';
-import { RouteProps } from 'react-router';
+import axios from 'axios';
 import firebase, { Unsubscribe } from 'firebase/app';
-import app from '../firebase.setup';
+import React, { useEffect, useState, useRef, FunctionComponent } from 'react';
+import { RouteProps, RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import app from '../firebase.setup';
 
-const Login: FunctionComponent = (props: RouteProps) => {
+const Login: FunctionComponent<RouteComponentProps> = (props) => {
   const [user, setUser] = useState<object | null>(null);
   const observerRef = useRef<Unsubscribe>(null);
 
@@ -42,11 +43,29 @@ const Login: FunctionComponent = (props: RouteProps) => {
 
   useEffect(
     () => {
-      console.log(user);
+      console.log('user!');
+      submitUser();
     },
     [user],
   );
 
+  async function submitUser() {
+    if (user) {
+      try {
+        const { data } = await axios.post(
+          'https://cleaner-pos.herokuapp.com/users/',
+          user,
+        );
+        if (data.first) {
+          props.history.push('/postreg');
+        }
+        localStorage.setItem('token', data.token);
+      } catch (e) {
+        throw e;
+      }
+      console.log(user);
+    }
+  }
   return (
     <div>
       <StyledFireBaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
