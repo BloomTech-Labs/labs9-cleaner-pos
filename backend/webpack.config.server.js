@@ -7,9 +7,10 @@ const nodeExternals = require('webpack-node-externals');
 const nodeEnv = process.env.NODE_ENV;
 const isProduction = nodeEnv !== 'development';
 // Common plugins
-let plugins = [new webpack.NamedModulesPlugin(), new Dotenv()];
+let plugins = [new webpack.NamedModulesPlugin()];
 if (!isProduction) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
+  plugins.push(new Dotenv());
 }
 const entry = isProduction
   ? ['@babel/polyfill', '/']
