@@ -8,6 +8,7 @@ import {
 import { Request, Response, NextFunction } from 'express';
 import * as knex from 'knex';
 import { House } from '../interface';
+import { any } from 'bluebird';
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
