@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { string } from 'prop-types';
 //import './index.css';
 
 const StyledUL = styled('ul')`
