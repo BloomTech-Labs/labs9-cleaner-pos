@@ -11,7 +11,7 @@
     "watch:server": "webpack --config webpack.config.server.js --watch",
     "test": "jest",
     "build:dev": "webpack --config webpack.config.server.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.server.js"
+    "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",

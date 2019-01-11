@@ -3,16 +3,11 @@ const path = require('path');
 require('dotenv').config();
 const nodeExternals = require('webpack-node-externals');
 
-const nodeEnv = process.env.NODE_ENV;
-const isProduction = nodeEnv !== 'development';
+const isProduction = true;
 // Common plugins
 let plugins = [new webpack.NamedModulesPlugin()];
-if (!isProduction) {
-  plugins.push(new webpack.HotModuleReplacementPlugin());
-}
-const entry = isProduction
-  ? ['@babel/polyfill', '/']
-  : ['@babel/polyfill', 'webpack/hot/poll?1000', './src/server.ts'];
+
+const entry = ['@babel/polyfill', '/'];
 module.exports = {
   devtool: false,
   entry: entry,
