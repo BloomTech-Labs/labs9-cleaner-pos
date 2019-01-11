@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteProps, Route, Switch } from 'react-router';
 import Login from './pages/Login';
 import PostRegister from './pages/PostRegister';
