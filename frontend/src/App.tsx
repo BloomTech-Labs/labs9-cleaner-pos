@@ -1,8 +1,6 @@
-import React from 'react';
-import { RouteProps } from 'react-router';
-import { Route, BrowserRouter } from 'react-router-dom';
-//import Login from './pages/Login';
-import logo from './logo.svg';
+import { RouteProps, Route, Switch } from 'react-router';
+import Login from './pages/Login';
+import PostRegister from './pages/PostRegister';
 import './App.css';
 import Sidebar from './components/shared_components/Sidebar';
 
@@ -10,13 +8,13 @@ import Sidebar from './components/shared_components/Sidebar';
 
 const App = (props: RouteProps) => {
   return (
-		<BrowserRouter>
-			<Route path = '/'>
-				<div><Sidebar /></div>
-			</Route>
-		</BrowserRouter>
-	);
-	
+    <div className='App'>
+      <Switch>
+        <Route path='/' component={Login} />
+        <Route exact path='/postreg' component={PostRegister} />
+      </Switch>
+    </div>
+  );
 };
 
 export default App;
