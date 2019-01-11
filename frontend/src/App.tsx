@@ -11,7 +11,8 @@ const App = (props: RouteProps) => {
   return (
     <div className='App'>
       <Switch>
-        <Route path='/' component={Login} />
+        <Route path='/' component={Landing} />
+        <Route path='/Login' component={Login} />
         <Route exact path='/postreg' component={PostRegister} />
       </Switch>
     </div>
