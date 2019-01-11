@@ -3,6 +3,7 @@ import { errorHandler } from './middleware/errorHandler';
 import setGeneralMiddleware from './middleware/generalMiddleware';
 import * as users from './controller/users';
 import * as houses from './controller/houses';
+import * as lists from './controller/lists';
 
 export const server = express();
 
@@ -35,6 +36,7 @@ server
   .put(houses.put)
   .delete(houses.deleteU);
 
+server.route('/lists/:houseId').get(lists.get);
 server.use(errorHandler);
 
 export default server;
