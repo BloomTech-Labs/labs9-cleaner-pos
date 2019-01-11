@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 const nodeExternals = require('webpack-node-externals');
 
 const nodeEnv = process.env.NODE_ENV;
@@ -9,7 +9,6 @@ const isProduction = nodeEnv !== 'development';
 let plugins = [new webpack.NamedModulesPlugin()];
 if (!isProduction) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
-  plugins.push(new Dotenv());
 }
 const entry = isProduction
   ? ['@babel/polyfill', '/']

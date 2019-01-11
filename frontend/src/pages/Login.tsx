@@ -1,13 +1,13 @@
 import axios from 'axios';
-import firebase, { Unsubscribe } from 'firebase/app';
+import firebase, { Unsubscribe, User } from 'firebase/app';
 import React, { useEffect, useState, useRef, FunctionComponent } from 'react';
-import { RouteProps, RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../firebase.setup';
 
 const Login: FunctionComponent<RouteComponentProps> = (props) => {
-  const [user, setUser] = useState<object | null>(null);
-  const observerRef = useRef<Unsubscribe>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const justMounted = useRef(true);
 
   const uiConfig = {
     callbacks: {
@@ -31,30 +31,43 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
     Sets up observer for the firebase authState and uses our setUser function
     to set the User object once data has been obtained
     */
-    // @ts-ignore
-    observerRef.current = app.auth().onAuthStateChanged((newUser) => {
-      setUser(newUser);
-    });
+    let observer: Unsubscribe;
+    if (!justMounted.current) {
+      observer = app.auth().onAuthStateChanged((newUser) => setUser(newUser));
+    }
+    justMounted.current = false;
     // Removes the observer set up above
     // @ts-ignore
-    return () => observerRef.current();
+    return () => {
+      if (observer) {
+        observer();
+      }
+    };
     //   };
   }, []);
 
   useEffect(
     () => {
-      console.log('user!');
       submitUser();
+      // @ts-ignore
     },
     [user],
   );
 
   async function submitUser() {
     if (user) {
+      const { email, uid, displayName, photoURL } = user;
+      const nUser = {
+        email,
+        ext_it: uid,
+        full_name: displayName,
+        photoURL,
+        role: 'manager',
+      };
       try {
         const { data } = await axios.post(
           'https://cleaner-pos.herokuapp.com/users/',
-          user,
+          nUser,
         );
         if (data.first) {
           props.history.push('/postreg');
@@ -63,7 +76,6 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
       } catch (e) {
         throw e;
       }
-      console.log(user);
     }
   }
   return (
