@@ -26,3 +26,5 @@ describe('Login component', () => {
     expect(buttons[0]).toMatchObject(button);
   });
 });
+
+// Test
