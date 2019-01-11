@@ -8,9 +8,9 @@
     "typecheck": "tsc",
     "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
     "nodemon-": "node-dev ./dist/server.prod.js",
-    "watch:server": "webpack --config webpack.config.server.js --watch",
+    "watch:server": "webpack --config webpack.dev.js --watch",
     "test": "jest",
-    "build:dev": "webpack --config webpack.config.server.js",
+    "build:dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
   "repository": {
