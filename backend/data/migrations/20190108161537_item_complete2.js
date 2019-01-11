@@ -14,10 +14,7 @@ exports.up = function(knex, Promise) {
       .foreign('stay_id')
       .references('stay.id')
       .onDelete('CASCADE');
-    table
-      .boolean('complete')
-      .notNullable()
-      .defaultTo(false);
+    table.boolean('complete').defaultTo(false);
   });
 };
 
