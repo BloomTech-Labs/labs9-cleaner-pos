@@ -15,7 +15,7 @@ module.exports = {
       whitelist: ['webpack/hot/poll?1000'],
     }),
   ],
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
