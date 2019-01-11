@@ -44,10 +44,7 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { ext_it, full_name, email, phone, address, role } = req.body;
-    console.log(ext_it, role);
-    const user = await findUserByExt_it(ext_it).catch((e) => {
-      console.log(e);
-    });
+    const user = await findUserByExt_it(ext_it).catch((e) => e);
     const { JWT_SECRET } = process.env;
     if (!user) {
       // If user does NOT yet exist, create a user in our db & send a token to the client
@@ -60,7 +57,6 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       res.status(201).json({ token, first: true });
     } else {
       // If user does exist within db, sign a new JWT & send it to the client
-      console.log(user);
       if (user.role !== 'manager' && user.role !== 'assistant') {
         throw Error('Role must be User or Manager');
       }
