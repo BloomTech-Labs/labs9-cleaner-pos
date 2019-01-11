@@ -10,7 +10,6 @@ const isProduction = nodeEnv !== 'development';
 let plugins = [new webpack.NamedModulesPlugin()];
 if (!isProduction) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
-  plugins.push(new Dotenv());
 }
 const entry = isProduction
   ? ['@babel/polyfill', '/']
