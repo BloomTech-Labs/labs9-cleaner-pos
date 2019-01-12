@@ -1,15 +1,21 @@
 import db from '../../data/dbConfig';
 
-const postItemsStay = async (stayId: number) => {
+export const postItemsStay = async (stayId: number) => {
   try {
     const items = await db('stay')
-      .leftJoin('list', { 'stay.id': 'list.house_id' })
+      .leftJoin('list', { 'stay.house_id': 'list.house_id' })
       .leftJoin('items', { 'list.id': 'items.list_id' })
       .where({ 'stay.id': stayId })
-      .select('items.id as items_id', 'stay.id as stay_id');
-
-    return db('items_complete').insert(items);
+      .select('items.id as item_id', 'stay.id as stay_id');
+    const complete = await db('item_complete')
+      .insert(items)
+      .returning('*');
+    if (complete.rowCount === null) {
+      return [];
+    } else {
+      return complete;
+    }
   } catch (e) {
-    throw console.error(e);
+    throw Error(e);
   }
 };

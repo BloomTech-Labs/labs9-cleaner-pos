@@ -1,6 +1,7 @@
 import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
 
+// this will output an object with all lists for a house
 export const findLists = async (houseId: number) => {
   try {
     const before = await db('list')
@@ -53,6 +54,7 @@ const beforeAfterList = (type: string, houseId: number, stayId: number) => {
   }
 };
 
+// this will output an object with all lists for a stay
 export const findListsStay = async (houseId: number, stayId: number) => {
   try {
     const before = await beforeAfterList('before', houseId, stayId);

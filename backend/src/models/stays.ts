@@ -33,7 +33,9 @@ export function findStaySummary(stayId: number): QueryBuilder {
 }
 
 export function postStayData(stayData: Stay): QueryBuilder {
-  return db('stay').insert(stayData);
+  return db('stay')
+    .insert(stayData)
+    .returning('id');
 }
 
 export function putStayData(id: number, stayData: Stay): QueryBuilder {
