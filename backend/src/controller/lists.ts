@@ -1,4 +1,10 @@
-import { findLists, findListsStay } from '../models/lists';
+import {
+  findLists,
+  findListsStay,
+  postList,
+  putList,
+  deleteList,
+} from '../models/lists';
 import { Request, Response, NextFunction } from 'express';
 import { findHouse } from '../models/houses';
 import { findStaySummary } from '../models/stays';
