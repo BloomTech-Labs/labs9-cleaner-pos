@@ -1,13 +1,23 @@
-import React from 'react';
+import * as React from 'react';
 import Sidebar from '../shared_components/Sidebar';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { render, cleanup } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';
 
 afterEach(cleanup);
 
-describe.skip('Sidebar page', () => {
-  test('should render a container', () => {
-    const { container } = render(<Sidebar />);
+describe('Sidebar page', () => {
+	
+  test('should render an unordered list', () => {
+    	const { container } = render(<Router><Sidebar /></Router>);
+		const ul = container.querySelectorAll('ul');
+		expect(ul.length).toBeGreaterThanOrEqual(1);
+  });
+
+  test('should render seven list items', () => {
+		const { container } = render(<Router><Sidebar /></Router>);
+		const li = container.querySelectorAll('li');
+		expect(li.length).toBe(7);
   });
 });
