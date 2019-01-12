@@ -21,3 +21,9 @@ export interface Stay {
   url_id?: string;
   created_at?: string;
 }
+
+export interface List {
+  id?: number;
+  type: string;
+  house_id: number;
+}

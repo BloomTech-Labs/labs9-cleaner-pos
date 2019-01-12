@@ -1,5 +1,6 @@
 import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
+import { List } from '../interface';
 
 // this will output an object with all lists for a house
 export const findLists = async (houseId: number) => {
@@ -83,4 +84,10 @@ export const findListsStay = async (houseId: number, stayId: number) => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const postList = (list: List): QueryBuilder => {
+  return db('list')
+    .insert(list)
+    .returning('id');
 };

@@ -2,6 +2,7 @@ import { findLists, findListsStay } from '../models/lists';
 import { Request, Response, NextFunction } from 'express';
 import { findHouse } from '../models/houses';
 import { findStaySummary } from '../models/stays';
+import { List } from '../interface';
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -24,6 +25,19 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
     }
   } catch (e) {
     e.statusCode = 404;
+    next(e);
+  }
+};
+
+export const post = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const newList: List = req.body;
+    if (!newList.type || newList.house_id) {
+      throw Error('Must include type and house_id');
+    }
+    // const ids =
+  } catch (e) {
+    e.statusCode = 400;
     next(e);
   }
 };
