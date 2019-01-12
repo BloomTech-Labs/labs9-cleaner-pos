@@ -4,6 +4,7 @@ import {
   postList,
   putList,
   deleteList,
+  justListsByHouse,
 } from '../models/lists';
 import { Request, Response, NextFunction } from 'express';
 import { findHouse } from '../models/houses';
@@ -38,10 +39,15 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const newList: List = req.body;
-    if (!newList.type || newList.house_id) {
+    if (!newList.type || !newList.house_id) {
       throw Error('Must include type and house_id');
     }
-    // const ids =
+    const houseLists = await justListsByHouse(newList.house_id);
+    if (newList.type !== 'after' && houseLists.length !== 0) {
+      throw Error('House can only have one before and during list');
+    }
+    const ids = await postList(newList);
+    res.status(201).json(ids[0]);
   } catch (e) {
     e.statusCode = 400;
     next(e);
