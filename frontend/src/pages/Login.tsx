@@ -5,9 +5,14 @@ import { RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../firebase.setup';
 
+interface RefObject<T> {
+  current: T | null;
+}
+
 const Login: FunctionComponent<RouteComponentProps> = (props) => {
   const [user, setUser] = useState<User | null>(null);
-  const justMounted = useRef(true);
+  // const justMounted = useRef(true);
+  const observer = useRef<Unsubscribe>(null);
 
   const uiConfig = {
     callbacks: {
@@ -27,35 +32,25 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
   };
 
   useEffect(() => {
-    /*
-    Sets up observer for the firebase authState and uses our setUser function
-    to set the User object once data has been obtained
-    */
-    let observer: Unsubscribe;
-    if (!justMounted.current) {
-      observer = app.auth().onAuthStateChanged((newUser) => setUser(newUser));
-    }
-    justMounted.current = false;
-    // Removes the observer set up above
-    // @ts-ignore
+    observer.current = app
+      .auth()
+      .onAuthStateChanged((newUser) => setUser(newUser));
     return () => {
-      if (observer) {
-        observer();
+      if (observer.current !== null) {
+        observer.current();
       }
     };
-    //   };
   }, []);
 
   useEffect(
     () => {
       submitUser();
-      // @ts-ignore
     },
     [user],
   );
 
   async function submitUser() {
-    if (user) {
+    if (user !== null) {
       const { email, uid, displayName, photoURL } = user;
       const nUser = {
         email,
@@ -70,9 +65,11 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
           nUser,
         );
         if (data.first) {
+          localStorage.setItem('token', data.token);
           props.history.push('/postreg');
         }
         localStorage.setItem('token', data.token);
+        props.history.push('/dashboard');
       } catch (e) {
         throw e;
       }
