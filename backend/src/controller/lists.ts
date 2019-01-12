@@ -53,3 +53,21 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
     next(e);
   }
 };
+
+export const deleteL = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.params;
+    const removed = await deleteList(id);
+    if (removed.length === 0) {
+      throw Error('Unable to remove a list with that ID');
+    }
+    res.status(200).json(removed);
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
+};

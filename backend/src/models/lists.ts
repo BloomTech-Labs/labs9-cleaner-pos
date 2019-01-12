@@ -102,7 +102,8 @@ export const putList = (id: number, list: List): QueryBuilder => {
 export const deleteList = (id: number): QueryBuilder => {
   return db('list')
     .where({ id })
-    .del();
+    .del()
+    .returning('id');
 };
 
 export const justListsByHouse = (houseId: number): QueryBuilder => {

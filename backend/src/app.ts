@@ -40,7 +40,10 @@ server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`
 the id should be for a stay. Anything else the id should be for a house
 */
-server.route('/lists/:id').get(lists.get);
+server
+  .route('/lists/:id')
+  .get(lists.get)
+  .delete(lists.deleteL);
 
 server.use(errorHandler);
 

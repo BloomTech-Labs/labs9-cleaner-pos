@@ -50,7 +50,7 @@ export async function post(req: Requests, res: Responses, next: Nexts) {
     const dataToBeSent = validateStayPost(req.body);
     const ids = await postStayData(dataToBeSent);
     await postItemsStay(ids[0]);
-    // when using postgres this if statment will never fire.
+    // TODO: when using postgres this if statment will never fire.
     if (ids.length === 0) {
       const e: any = new Error('Stay POST unsuccessful');
       e.statusCode = 500;
