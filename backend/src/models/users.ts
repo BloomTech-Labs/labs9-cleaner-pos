@@ -30,7 +30,9 @@ export function findUsers(): QueryBuilder {
 
 export async function makeUser(user: User): Promise<QueryBuilder> {
   const role = user.role;
-  const userIds = await db('user').insert(user);
+  const userIds = await db('user')
+    .insert(user)
+    .returning('id');
   const userId = userIds[0];
   return db(role).insert({ user_id: userId });
   // TODO: Figure out how to make this transactional
