@@ -1,18 +1,20 @@
 import axios from 'axios';
 import firebase, { Unsubscribe, User } from 'firebase/app';
-import React, { useEffect, useState, useRef, FunctionComponent } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  FunctionComponent,
+  MutableRefObject,
+} from 'react';
 import { RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../firebase.setup';
 
-interface RefObject<T> {
-  current: T | null;
-}
-
 const Login: FunctionComponent<RouteComponentProps> = (props) => {
   const [user, setUser] = useState<User | null>(null);
   // const justMounted = useRef(true);
-  const observer = useRef<Unsubscribe>(null);
+  const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
 
   const uiConfig = {
     callbacks: {

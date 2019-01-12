@@ -13,12 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "react": ["./custom_types/react/index.d.ts"]
-    },
-    "typeRoots": ["./node_modules/@types", "./custom_types/"]
+    "jsx": "preserve"
   },
   "include": ["src/*"]
 }
