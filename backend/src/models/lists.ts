@@ -98,3 +98,9 @@ export const putList = (id: number, list: List): QueryBuilder => {
     .update(list)
     .returning('id');
 };
+
+export const deleteList = (id: number): QueryBuilder => {
+  return db('list')
+    .where({ id })
+    .del();
+};
