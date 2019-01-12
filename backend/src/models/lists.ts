@@ -91,3 +91,10 @@ export const postList = (list: List): QueryBuilder => {
     .insert(list)
     .returning('id');
 };
+
+export const putList = (id: number, list: List): QueryBuilder => {
+  return db('list')
+    .where({ id })
+    .update(list)
+    .returning('id');
+};
