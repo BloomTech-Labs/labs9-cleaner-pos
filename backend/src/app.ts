@@ -3,6 +3,7 @@ import { errorHandler } from './middleware/errorHandler';
 import setGeneralMiddleware from './middleware/generalMiddleware';
 import * as users from './controller/users';
 import * as houses from './controller/houses';
+import * as lists from './controller/lists';
 
 export const server = express();
 
@@ -34,6 +35,11 @@ server
   .get(houses.get)
   .put(houses.put)
   .delete(houses.deleteU);
+
+/* this route looks for a query. if `lists/1?stay=true`
+the id should be for a stay. Anything else the id should be for a house
+*/
+server.route('/lists/:id').get(lists.get);
 
 server.use(errorHandler);
 
