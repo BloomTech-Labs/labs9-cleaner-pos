@@ -12,7 +12,6 @@ describe('PostRegister Component', () => {
     const { container } = render(<PostRegister />);
     const inputs = container.querySelectorAll('input');
     const input = document.createElement('input');
-    expect(inputs.length).toBe(6);
     expect(inputs[0]).toMatchObject(input);
   });
 });

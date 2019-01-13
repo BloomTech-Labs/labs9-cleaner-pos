@@ -14,6 +14,13 @@ const isCountryValid = (name: string) => {
 };
 
 const SignupSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  phone: Yup.string()
+    .min(2)
+    .max(15)
+    .required('Required'),
   address1: Yup.string().required('Required'),
   address2: Yup.string(),
   city: Yup.string().required('Required'),
@@ -22,9 +29,6 @@ const SignupSchema = Yup.object().shape({
     .required('Required')
     .test('is-country', 'Not a valid country', isCountryValid),
   postCode: Yup.string().required('Required'),
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
 });
 
 const PostForm = (props: RouteComponentProps) => {
@@ -54,13 +58,14 @@ const PostForm = (props: RouteComponentProps) => {
       <h1>Signup</h1>
       <Formik
         initialValues={{
+          email: '',
+          phone: '',
           address1: '',
           address2: '',
           city: '',
           state: '',
           country: '',
           postCode: '',
-          email: '',
         }}
         isInitialValid={false}
         validationSchema={SignupSchema}
@@ -69,51 +74,58 @@ const PostForm = (props: RouteComponentProps) => {
           actions.setSubmitting(false);
         }}
       >
-        {({ dirty, errors, touched, isSubmitting }) => (
-          <Form>
-            <label>Email</label>
-            <Field name='email' autoComplete='billing email' />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
+        {(formProps) => {
+          const { dirty, errors, touched, isSubmitting } = formProps;
+          return (
+            <Form>
+              <label>Email</label>
+              <Field name='email' autoComplete='billing email' />
+              {errors.email && touched.email ? <div>{errors.email}</div> : null}
 
-            <label>Address1</label>
-            <Field name='address1' autoComplete='billing street-address' />
-            {errors.address1 && touched.address1 ? (
-              <div>{errors.address1}</div>
-            ) : null}
+              <label>Phone Number</label>
+              <Field name='phone' autoComplete='billing phone' />
+              {errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
 
-            <label>Address 2</label>
-            <Field name='address2' />
+              <label>Address1</label>
+              <Field name='address1' autoComplete='billing street-address' />
+              {errors.address1 && touched.address1 ? (
+                <div>{errors.address1}</div>
+              ) : null}
 
-            <label>City</label>
-            <Field name='city' autoComplete='billing address-level2' />
-            {errors.city && touched.city ? <div>{errors.city}</div> : null}
+              <label>Address 2</label>
+              <Field name='address2' />
 
-            <label>State · Province · Region</label>
-            <Field name='state' autoComplete='billing address-level1' />
-            {errors.state && touched.state ? <div>{errors.state}</div> : null}
+              <label>City</label>
+              <Field name='city' autoComplete='billing address-level2' />
+              {errors.city && touched.city ? <div>{errors.city}</div> : null}
 
-            <label>Country</label>
-            <Field
-              name='country'
-              autoComplete='billing country-name'
-              component={CountryComboBox}
-            />
-            {errors.country && touched.country ? (
-              <div>{errors.country}</div>
-            ) : null}
+              <label>State · Province · Region</label>
+              <Field name='state' autoComplete='billing address-level1' />
+              {errors.state && touched.state ? <div>{errors.state}</div> : null}
 
-            <label>Post Code</label>
-            <Field name='postCode' />
-            {errors.postCode && touched.postCode ? (
-              <div>{errors.postCode}</div>
-            ) : null}
+              <label>Country</label>
+              <Field
+                name='country'
+                autoComplete='billing country-name'
+                component={CountryComboBox}
+              />
+              {errors.country && touched.country ? (
+                <div>{errors.country}</div>
+              ) : null}
 
-            <br />
-            <button type='submit' disabled={!dirty}>
-              {isSubmitting ? 'Submitted' : 'Submit'}
-            </button>
-          </Form>
-        )}
+              <label>Post Code</label>
+              <Field name='postCode' />
+              {errors.postCode && touched.postCode ? (
+                <div>{errors.postCode}</div>
+              ) : null}
+
+              <br />
+              <button type='submit' disabled={!dirty}>
+                {isSubmitting ? 'Submitted' : 'Submit'}
+              </button>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );
