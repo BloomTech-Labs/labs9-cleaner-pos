@@ -13,7 +13,7 @@ const StyledLink = styled(NavLink)`
 `;
 
 interface LinkProps {
-  onClick?: () => React.MouseEvent;
+  onClick?: () => MouseEvent;
 }
 
 const Sidebar = ({ onClick }: LinkProps) => {
