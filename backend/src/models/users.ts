@@ -4,12 +4,12 @@ import db from '../../data/dbConfig';
 interface User {
   id?: number;
   // ext_it: string;
-  full_name: string;
+  full_name?: string;
   //   email: string;
   //   phone: number;
   //   created_at: string; // added by DB
   //   address: string;
-  role: string;
+  role?: string;
 }
 
 export function findUser(id: number): QueryBuilder {

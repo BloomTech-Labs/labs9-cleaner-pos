@@ -7,6 +7,7 @@ import {
   findUsers,
   makeUser,
   updateUser,
+  findUserByExt_it,
 } from '../../src/models/users';
 
 // Data that was seeded into the test database
@@ -63,15 +64,34 @@ describe('User DB functions', () => {
   };
 
   test('findUser finds by id', async () => {
+    // Arrange
+    const testUser = data[0];
+    const userId = 1;
     // Act
-    const result = await findUser(1);
+    const result = await findUser(userId).catch((e) => {
+      throw e;
+    });
     // Assert
-    expect(result.full_name).toBe(data[0].full_name);
+    expect(result.full_name).toBe(testUser.full_name);
+  });
+
+  test('findUserExtId finds by ext_id', async () => {
+    // Arrange
+    const testUser = data[0];
+    const userExtId = testUser.ext_it;
+    // Act
+    const result = await findUserByExt_it(userExtId).catch((e) => {
+      throw e;
+    });
+    // Assert
+    expect(result.full_name).toBe(testUser.full_name);
   });
 
   test('findUsers returns all users', async () => {
     // Act
-    const result = await findUsers();
+    const result = await findUsers().catch((e) => {
+      throw e;
+    });
     // Assert
     expect(result.length).toBe(3);
 
@@ -88,8 +108,12 @@ describe('User DB functions', () => {
     };
     // Act
     await makeUser(newUser);
-    const userResult = await findUsers();
-    const managerResult = await testDb('manager');
+    const userResult = await findUsers().catch((e) => {
+      throw e;
+    });
+    const managerResult = await testDb('manager').catch((e) => {
+      throw e;
+    });
     // Assert
     const testUser = { ...newUser, role: 'manager' };
     expect(userResult).toEqual(
@@ -104,9 +128,16 @@ describe('User DB functions', () => {
     const testUser = testUsersInDb[0];
     const idToUpdate = testUser.id;
     const updatedInfo = { ...testUser, full_name: 'Willy Wonka' };
+    const updateObj = { full_name: 'Willy Wonka' };
     // Act
-    const numOfRecordsUpdated = await updateUser(idToUpdate, updatedInfo);
-    const updatedUser = await findUser(idToUpdate);
+    const numOfRecordsUpdated = await updateUser(idToUpdate, updateObj).catch(
+      (e) => {
+        throw e;
+      },
+    );
+    const updatedUser = await findUser(idToUpdate).catch((e) => {
+      throw e;
+    });
     // Assert
     expect(numOfRecordsUpdated).toBe(1);
     expect(updatedUser).toEqual(updatedInfo);
@@ -118,8 +149,12 @@ describe('User DB functions', () => {
     const testUser = testUsersInDb[0];
     const idToDelete = testUser.id;
     // Act
-    const numOfRecords = await deleteUser(idToDelete);
-    const users = await findUsers();
+    const numOfRecords = await deleteUser(idToDelete).catch((e) => {
+      throw e;
+    });
+    const users = await findUsers().catch((e) => {
+      throw e;
+    });
     // Assert
     expect(numOfRecords).toBe(1);
     expect(users).not.toEqual(
