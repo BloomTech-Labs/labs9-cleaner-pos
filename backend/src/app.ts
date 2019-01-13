@@ -1,6 +1,7 @@
 import express from 'express';
 import { errorHandler } from './middleware/errorHandler';
 import setGeneralMiddleware from './middleware/generalMiddleware';
+import verifyToken from './middleware/verifyToken';
 import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
@@ -17,7 +18,8 @@ server.get('/', (req, res) => {
 server
   .route('/users')
   .get(users.get)
-  .post(users.post);
+  .post(users.post)
+  .put(verifyToken, users.putByExtId);
 
 server
   .route('/users/:id')
