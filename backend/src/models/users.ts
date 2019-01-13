@@ -50,9 +50,9 @@ export async function makeUser(user: User): Promise<QueryBuilder> {
   // });
 }
 
-export function updateUser(id: number, updatedUser: User): QueryBuilder {
+export function updateUser(extId: string, updatedUser: User): QueryBuilder {
   return db('user')
-    .where({ id })
+    .where({ ext_it: extId })
     .update(updatedUser);
 }
 

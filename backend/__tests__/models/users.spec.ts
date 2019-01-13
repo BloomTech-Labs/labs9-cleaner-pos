@@ -123,10 +123,10 @@ describe('User DB functions', () => {
     cleanUp();
   });
 
-  test('updateUser updates a user into the DB', async () => {
+  test('updateUser updates a user by ext_id', async () => {
     // Arrange
-    const testUser = testUsersInDb[0];
-    const idToUpdate = testUser.id;
+    const testUser = data[0];
+    const idToUpdate = testUser.ext_it;
     const updatedInfo = { ...testUser, full_name: 'Willy Wonka' };
     const updateObj = { full_name: 'Willy Wonka' };
     // Act
@@ -135,12 +135,12 @@ describe('User DB functions', () => {
         throw e;
       },
     );
-    const updatedUser = await findUser(idToUpdate).catch((e) => {
+    const updatedUser = await findUserByExt_it(idToUpdate).catch((e) => {
       throw e;
     });
     // Assert
     expect(numOfRecordsUpdated).toBe(1);
-    expect(updatedUser).toEqual(updatedInfo);
+    expect(updatedUser).toEqual(expect.objectContaining(updatedInfo));
     cleanUp();
   });
 
