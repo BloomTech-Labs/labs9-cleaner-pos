@@ -7,7 +7,10 @@ import { Formik, FormikProps, Form, Field, FieldProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 
 const isCountryValid = (name: string) => {
-  return countryList[name.toString()] !== undefined;
+  if (!name) {
+    return false;
+  }
+  return countryList[name] !== undefined;
 };
 
 const SignupSchema = Yup.object().shape({
@@ -17,22 +20,12 @@ const SignupSchema = Yup.object().shape({
   state: Yup.string().required('Required'),
   country: Yup.string()
     .required('Required')
-    .test('is-country', '${path} is not a valid country', isCountryValid),
-  postCode: Yup.number().required('Required'),
+    .test('is-country', 'Not a valid country', isCountryValid),
+  postCode: Yup.string().required('Required'),
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
 });
-
-// interface SignupTypes {
-//   address1: string;
-//   address2?: string;
-//   city: string;
-//   state: string;
-//   country: string;
-//   postCode: number;
-//   email: string;
-// }
 
 const PostForm = (props: RouteComponentProps) => {
   // TODO: Find proper type of inputProps
@@ -69,33 +62,56 @@ const PostForm = (props: RouteComponentProps) => {
           postCode: '',
           email: '',
         }}
+        isInitialValid={false}
         validationSchema={SignupSchema}
-        onSubmit={(values) => {
+        onSubmit={(values, actions) => {
           console.log(values);
+          actions.setSubmitting(false);
         }}
       >
-        {({ errors, touched }) => (
+        {({ dirty, errors, touched, isSubmitting }) => (
           <Form>
             <label>Email</label>
-            <Field name='email' />
+            <Field name='email' autoComplete='billing email' />
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
+
             <label>Address1</label>
-            <Field name='address1' />
+            <Field name='address1' autoComplete='billing street-address' />
+            {errors.address1 && touched.address1 ? (
+              <div>{errors.address1}</div>
+            ) : null}
+
             <label>Address 2</label>
             <Field name='address2' />
+
             <label>City</label>
-            <Field name='city' />
+            <Field name='city' autoComplete='billing address-level2' />
+            {errors.city && touched.city ? <div>{errors.city}</div> : null}
+
             <label>State · Province · Region</label>
-            <Field name='state' />
+            <Field name='state' autoComplete='billing address-level1' />
+            {errors.state && touched.state ? <div>{errors.state}</div> : null}
+
             <label>Country</label>
-            <Field name='country' component={CountryComboBox} />
+            <Field
+              name='country'
+              autoComplete='billing country-name'
+              component={CountryComboBox}
+            />
             {errors.country && touched.country ? (
               <div>{errors.country}</div>
             ) : null}
+
             <label>Post Code</label>
             <Field name='postCode' />
+            {errors.postCode && touched.postCode ? (
+              <div>{errors.postCode}</div>
+            ) : null}
+
             <br />
-            <button type='submit'>Submit</button>
+            <button type='submit' disabled={!dirty}>
+              {isSubmitting ? 'Submitted' : 'Submit'}
+            </button>
           </Form>
         )}
       </Formik>
