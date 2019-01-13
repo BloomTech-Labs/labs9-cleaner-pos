@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent } from 'react';
 import { RouteProps, RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
@@ -9,7 +9,7 @@ import house from '../assets/house.jpg';
 const Container = styled('div')`
   /* background-color: gray; */
   padding: 20px;
-  `
+`;
 
 const Nav = styled('nav')`
   margin: 0 auto;
@@ -22,33 +22,32 @@ const Nav = styled('nav')`
     font-size: 2.1rem;
     color: black;
   }
-`
+`;
 
 const Wrapper = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const CenterImg = styled('img')`
   max-height: 500px;
   max-width: 800px;
   border-radius: 100px;
-`
+`;
 
 const AppHeader = styled('h1')`
   font-family: 'Staaliches', 'sans-serif';
-`
+`;
 
 const SideHeader = styled('h3')`
   font-family: 'Roboto';
-`
+`;
 
 const Footer = styled('div')`
   display: flex;
-`
+`;
 
-type Props = {};
 // export const Button = () => {
 //   return <div />;
 // };
@@ -64,15 +63,20 @@ const Landing = (props: RouteComponentProps) => {
           <a href='/'>About</a>
           <a href='/'>Contact</a>
           <Link to='/Login'>
-            <Button text='Sign In'/>
+            <Button text='Sign In' />
           </Link>
         </Nav>
         <Wrapper>
           <SideHeader>Left</SideHeader>
-            <CenterImg src={house} alt='Beautiful house with a pool' />
+          <CenterImg src={house} alt='Beautiful house with a pool' />
           <SideHeader>Right</SideHeader>
         </Wrapper>
-        <Button text="Get started" onClick={() => { props.history.push('/Login') }}/>
+        <Button
+          text='Get started'
+          onClick={() => {
+            props.history.push('/Login');
+          }}
+        />
         <Footer>
           <p>Test</p>
         </Footer>
