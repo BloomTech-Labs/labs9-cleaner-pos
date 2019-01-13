@@ -1,20 +1,18 @@
 import React from 'react';
 import { RouteProps, Route, Switch } from 'react-router';
-import Login from './pages/Login';
-import PostRegister from './pages/PostRegister';
+import { LandingPage, Houses, Login, PostRegister } from './pages/index';
 import './App.css';
 import Sidebar from './components/shared_components/Sidebar';
-
 import Button from './components/shared_components/Button';
-import Landing from './pages/Landingpage';
 
 const App = (props: RouteProps) => {
   return (
     <div className='App'>
       <Switch>
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/' component={LandingPage} />
         <Route path='/Login' component={Login} />
         <Route exact path='/postreg' component={PostRegister} />
+        <Route exact path='/dashboard' component={Houses} />
       </Switch>
     </div>
   );

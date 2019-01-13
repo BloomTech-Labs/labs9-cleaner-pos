@@ -1,16 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { string } from 'prop-types';
-// import './index.css';
 
 const StyledUL = styled('ul')`
   list-style-type: none;
 `;
-
-// const li = styled('li')`
-// 	text-decoration: none;
-// `;
 
 const StyledLink = styled(NavLink)`
   float: left;
@@ -19,7 +13,7 @@ const StyledLink = styled(NavLink)`
 `;
 
 interface LinkProps {
-  onClick?: () => React.MouseEvent;
+  onClick?: () => MouseEvent;
 }
 
 const Sidebar = ({ onClick }: LinkProps) => {
