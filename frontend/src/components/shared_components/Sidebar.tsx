@@ -1,50 +1,60 @@
-import React, { FunctionComponent } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from '@emotion/styled';
+import { string } from 'prop-types';
+//import './index.css';
 
-const Sidebar = (props) => {
-  return (
-    <>
-      <nav>
-        <div>
-          <h3>Guests</h3>
-        </div>
-        <div>
-          <Link to='/'>
-            <h3>Checkout</h3>
-          </Link>
-        </div>
-        <br />
-        <div>
-          <h3>------</h3>
-        </div>
-        <div>
-          <Link to='/'>
-            <h3>Houses</h3>
-          </Link>
-        </div>
-        <div>
-          <Link to='/'>
-            <h3>Assistants</h3>
-          </Link>
-        </div>
-        <div>
-          <Link to='/'>
-            <h3>Reports</h3>
-          </Link>
-        </div>
-        <div>
-          <Link to='/'>
-            <h3>Settings</h3>
-          </Link>
-        </div>
-        <div>
-          <Link to='/'>
-            <h3>Billing</h3>
-          </Link>
-        </div>
-      </nav>
-    </>
-  );
+const StyledUL = styled('ul')`
+	list-style-type: none;
+
+`;
+
+//const li = styled('li')`
+//	text-decoration: none;
+//`;
+
+const StyledLink = styled(NavLink)`
+	float: left;
+	text-decoration: none;
+	color: black;
+`;
+
+
+interface LinkProps {
+	onClick?: () => React.MouseEvent;
+}
+
+const Sidebar = ({ onClick }: LinkProps) => {
+	return(
+   		<nav>
+    		<div>
+				<StyledUL>
+					<li><StyledLink to = '/guests'>
+						<h3>Guests</h3>
+					</StyledLink></li>
+					<li><StyledLink to = '/checkout'>
+      					<h3>Checkout</h3>
+    				</StyledLink></li>
+					<li><StyledLink to = '/houses'>
+      					<h3>Houses</h3>
+					</StyledLink></li>
+					<li><StyledLink to = '/assistants'>
+      					<h3>Assistants</h3>
+					</StyledLink></li>
+					<li><StyledLink to = '/reports'>
+      					<h3>Reports</h3>
+    				</StyledLink></li>
+					<li><StyledLink to = '/settings'>
+      					<h3>Settings</h3>
+    				</StyledLink></li>
+					<li><StyledLink to = '/billing'>
+      					<h3>Billing</h3>
+					</StyledLink></li>
+				</StyledUL>
+    		</div>
+
+   		</nav>
+	)
 };
 
 export default Sidebar;

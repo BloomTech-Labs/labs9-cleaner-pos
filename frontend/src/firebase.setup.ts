@@ -9,7 +9,6 @@ const {
   REACT_APP_storageBucket,
   REACT_APP_messagingSenderId,
 } = process.env;
-console.log('API KEY', REACT_APP_apiKey);
 
 const app = firebase.initializeApp({
   apiKey: REACT_APP_apiKey,
