@@ -25,7 +25,8 @@ interface User {
 // https://www.reddit.com/r/typescript/comments/8wiusj/could_use_some_help_with_modifying_expressrequest/
 declare global {
   interface Token {
-    ext_id: string;
+    ext_it: string;
+    role: string;
   }
 
   namespace Express {
@@ -118,21 +119,21 @@ export const putByExtId = async (
   next: NextFunction,
 ) => {
   try {
-    const { ext_id } = req.token;
+    const { ext_it, role } = req.token;
     const user: User = req.body;
-    if (
-      user.role !== 'manager' &&
-      user.role !== 'assistant' &&
-      user.role !== undefined
-    ) {
+    if (role !== 'manager' && role !== 'assistant' && role !== undefined) {
       const e: StatusError = {
         ...new Error('Role must be User or Manager'),
         statusCode: 400,
       };
       throw e;
     }
-    await updateUser(ext_id, user);
-    res.status(204);
+    const numOfRecordsUpdated = await updateUser(ext_it, user);
+    if (numOfRecordsUpdated !== 1) {
+      throw new Error('Update was not successful.');
+    } else {
+      res.status(204).end();
+    }
   } catch (e) {
     e.statusCode = e.statusCode || 500;
     next(e);

@@ -21,7 +21,8 @@
     "no-console": {
       "severity": "warning",
       "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
-    }
+    },
+    "object-literal-sort-keys": false
   },
   "jsRules": {
     "max-line-length": {
@@ -39,7 +40,6 @@
         "import-sources-order": "any",
         "named-imports-order": "any"
       }
-    ],
-    "object-literal-sort-keys": false
+    ]
   }
 }

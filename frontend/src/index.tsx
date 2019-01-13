@@ -8,8 +8,8 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Roboto', 'Noto Serif', 'Staatliches']
-  }
+    families: ['Roboto', 'Noto Serif', 'Staatliches'],
+  },
 });
 
 ReactDOM.render(
