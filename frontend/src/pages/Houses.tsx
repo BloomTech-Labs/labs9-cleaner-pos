@@ -34,8 +34,7 @@ const HouseItem = styled('div')`
     margin-block-end: 1;
   }
 `;
-const ButtonContainer = styled('div')`
-`;
+const ButtonContainer = styled('div')``;
 
 const Houses = (props: RouteComponentProps) => {
   const [houses, setHouses] = useState<HousesEnum>([]);
@@ -61,11 +60,11 @@ const Houses = (props: RouteComponentProps) => {
     <div>
       {houses.map((house) => {
         return (
-          <HouseItem key={house.id}>
+          <HouseItem key={house.id} data-testid='house-item'>
             <h4>{house.name}</h4>
             <h6>{house.address}</h6>
-            <Button text='Edit Checklists' />
-            <Button text='Edit Resources' />
+            <Button text='Edit Checklists' datatestid='house-button' />
+            <Button text='Edit Resources' datatestid='house-button' />
           </HouseItem>
         );
       })}
