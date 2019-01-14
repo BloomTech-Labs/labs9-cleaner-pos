@@ -54,10 +54,22 @@ describe('List DB functions', () => {
     }
   });
 
-  test('fail to post a new list', async () => {
+  test('Able to post a new list', async () => {
     try {
       const makeList: number[] = await postList(newHouse);
       expect(makeList[0]).toBe(data.length + 1);
+    } catch (e) {
+      throw Error(e);
+    }
+  });
+
+  test('Able to delete a new list', async () => {
+    try {
+      const delList: number[] = await deleteList(13);
+      const findDel = await testDb('list').where({ id: 13 });
+      console.log('************', findDel);
+      expect(delList).toBe(1);
+      expect(findDel).toHaveLength(0);
     } catch (e) {
       throw Error(e);
     }
