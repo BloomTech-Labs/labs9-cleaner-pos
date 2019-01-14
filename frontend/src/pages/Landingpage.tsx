@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import Button from '../components/shared_components/Button';
+import Billing from './Billing';
 import house from '../assets/house.jpg';
 
 const Container = styled('div')`
@@ -77,6 +78,7 @@ const Landing = (props: RouteComponentProps) => {
           <p>Test</p>
         </Footer>
       </Container>
+	  <div> { Billing } </div>	
     </div>
   );
 };
