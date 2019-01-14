@@ -15,14 +15,14 @@ import { QueryBuilder } from 'knex';
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    let item: QueryBuilder;
+    let item: any;
     if (id) {
       item = await findItem(id);
+      if (item.length === 0) {
+        throw Error('No item with that Id');
+      }
     } else {
       item = await findItems();
-    }
-    if (item === undefined) {
-      throw Error('No item with that Id');
     }
     res.status(200).json(item);
   } catch (e) {

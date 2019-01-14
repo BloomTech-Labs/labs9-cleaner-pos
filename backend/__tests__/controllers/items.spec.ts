@@ -47,4 +47,11 @@ describe('/item routes', () => {
         done();
       });
   });
+
+  test('Unable to get single lists of unreal item', (done) => {
+    request(app)
+      .get('/items/199')
+      .set('Accept', 'application/json')
+      .expect(404, done);
+  });
 });
