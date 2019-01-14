@@ -1,6 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Button from './Button';
 import styled from '@emotion/styled';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+	google: {
+		families: ['Roboto: 300, 400, 700', 'sans-serif']
+	}
+});
 
 const StyledUL = styled('ul')`
   list-style-type: none;
@@ -8,6 +16,7 @@ const StyledUL = styled('ul')`
 
 const StyledLink = styled(NavLink)`
   float: left;
+  padding: 10px;
   text-decoration: none;
   color: black;
 `;
@@ -22,28 +31,18 @@ const Sidebar = ({ onClick }: LinkProps) => {
       <div>
         <StyledUL>
           <li>
-            <StyledLink to='/guests'>
-              <h3>Guests</h3>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/checkout'>
-              <h3>Checkout</h3>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/houses'>
-              <h3>Houses</h3>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/assistants'>
-              <h3>Assistants</h3>
-            </StyledLink>
-          </li>
-          <li>
             <StyledLink to='/reports'>
               <h3>Reports</h3>
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink to='/Properties'>
+              <h3>Properties</h3>
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink to='/Assistants'>
+              <h3>Assistants</h3>
             </StyledLink>
           </li>
           <li>
@@ -51,10 +50,11 @@ const Sidebar = ({ onClick }: LinkProps) => {
               <h3>Settings</h3>
             </StyledLink>
           </li>
-          <li>
-            <StyledLink to='/billing'>
-              <h3>Billing</h3>
-            </StyledLink>
+		  <li>
+			<StyledLink to='/logout'>
+			{/* <Button onClick={} t='button' data-testid='signout'>Sign Out</Button> */}
+			<button>Sign Out</button>
+			</StyledLink>			
           </li>
         </StyledUL>
       </div>
