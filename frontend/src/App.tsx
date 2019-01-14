@@ -11,7 +11,7 @@ const App = (props: RouteProps) => {
       <Switch>
         <Route exact path='/' component={LandingPage} />
         <Route path='/Login' component={Login} />
-		<Route path='/Billing' component={Billing} />
+		<Route path='/billing' component={Billing} />
         <Route exact path='/postreg' component={PostRegister} />
         <Route exact path='/dashboard' component={Houses} />
       </Switch>

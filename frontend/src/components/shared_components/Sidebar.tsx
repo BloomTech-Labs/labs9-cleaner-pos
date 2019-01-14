@@ -9,6 +9,7 @@ const StyledUL = styled('ul')`
 const StyledLink = styled(NavLink)`
   float: left;
   text-decoration: none;
+  padding: 10px;
   color: black;
 `;
 

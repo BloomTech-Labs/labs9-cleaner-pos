@@ -9,12 +9,19 @@ const Billing = (props: RouteComponentProps) => {
 //			[name].value
 //		});
 //	}
+
+const Main = styled.div`
+	margin: 50px 10px 10px 10px
+`
+
 	return(
 		<>
 		<div>
 			<Sidebar />
 		</div>
-		<div>
+		<Main>
+			
+			<div>
 			{/*Create form for collecting billing information - CC#, Exp. CVV [submit button]*/}
 			<form>
 				<label>
@@ -25,7 +32,8 @@ const Billing = (props: RouteComponentProps) => {
 			</form>
 			{/* Route billing information through stripe*/}
 			{/* Once processed, activate subscription? create confirmation code?*/}
-		</div>
+			</div>
+		</Main>
 		</>
 	)
 };
