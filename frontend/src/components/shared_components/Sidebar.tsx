@@ -39,6 +39,11 @@ const StyledLink = styled(NavLink)`
   padding: 10px;
   text-decoration: none;
   color: black;
+  h4 {
+    font-family: 'Roboto';
+    font-weight: condensed;
+    font-size: 24px;
+  }
 `;
 
 
@@ -53,17 +58,17 @@ const Sidebar = ({ onClick }: LinkProps) => {
         <StyledUL>
           <li>
             <StyledLink to='/reports'>
-              <h3>Reports</h3>
+              <h4>Reports</h4>
             </StyledLink>
           </li>
           <li>
             <StyledLink to='/dashboard'>
-              <h3>Properties</h3>
+              <h4>Properties</h4>
             </StyledLink>
           </li>
           <li>
             <StyledLink to='/assistants'>
-              <h3>Assistants</h3>
+              <h4>Assistants</h4>
             </StyledLink>
           </li>
         </StyledUL>
@@ -72,7 +77,7 @@ const Sidebar = ({ onClick }: LinkProps) => {
         <StyledUL>
           <li>
             <StyledLink to='/settings'>
-              <h3>Settings</h3>
+              <h4>Settings</h4>
             </StyledLink>
           </li>
           <li>
