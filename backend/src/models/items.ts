@@ -80,7 +80,6 @@ export const markComplete = async (
     .where({ item_id: itemId, stay_id: stayId })
     .select('complete')
     .first();
-  console.log('test', currStatus);
   return db('item_complete')
     .where({ item_id: itemId, stay_id: stayId })
     .update({ complete: !currStatus.complete })

@@ -66,4 +66,23 @@ describe('/item routes', () => {
       .set('Accept', 'application/json')
       .expect(400, done);
   });
+
+  test('able to delete item', (done) => {
+    request(app)
+      .delete('/items/5')
+      .set('Accept', 'application/json')
+      .expect(200, done);
+  });
+
+  test('unable to put item when invalid list_id is given', (done) => {
+    const newItem = {
+      list_id: 299,
+      task: 'lions tigers and snakes',
+    };
+    request(app)
+      .put('/items/599')
+      .set('Accept', 'application/json')
+      .send(newItem)
+      .expect(400, done);
+  });
 });

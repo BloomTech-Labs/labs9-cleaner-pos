@@ -75,6 +75,9 @@ export const put = async (req: Request, res: Response, next: NextFunction) => {
     }
     const reqItem: Item = { list_id, task };
     const updateItem = await putItem(id, reqItem);
+    if (updateItem.length === 0) {
+      throw Error('Not a valid Item ID');
+    }
     res.status(201).json(updateItem);
   } catch (e) {
     e.statusCode = 400;
