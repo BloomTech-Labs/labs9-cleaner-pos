@@ -86,6 +86,10 @@ export const findListsStay = async (houseId: number, stayId: number) => {
   }
 };
 
+export const getList = (id: number): QueryBuilder => {
+  return db('list').where({ id });
+};
+
 export const postList = (list: List): QueryBuilder => {
   return db('list')
     .insert(list)

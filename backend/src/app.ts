@@ -4,6 +4,7 @@ import setGeneralMiddleware from './middleware/generalMiddleware';
 import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
+import * as items from './controller/items';
 
 export const server = express();
 
@@ -44,6 +45,12 @@ server
   .route('/lists/:id')
   .get(lists.get)
   .delete(lists.deleteL);
+
+server
+  .route('/items')
+  .get(items.get)
+  .post(items.post);
+server.route('/items/:id').get(items.get);
 
 server.use(errorHandler);
 
