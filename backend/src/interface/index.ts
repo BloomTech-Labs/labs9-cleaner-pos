@@ -27,3 +27,9 @@ export interface List {
   type: string;
   house_id: number;
 }
+
+export interface Item {
+  id?: number;
+  task: string;
+  list_id: number;
+}

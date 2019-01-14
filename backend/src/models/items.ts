@@ -1,5 +1,6 @@
 import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
+import { Item } from '../interface';
 
 /*
 this takes in a stayID, finds all the items for the house
@@ -35,14 +36,18 @@ export const findItems = (): QueryBuilder => {
 /*
 get one items
 */
-export const findItems = (id: number): QueryBuilder => {
+export const findItem = (id: number): QueryBuilder => {
   return db('items').where({ id });
 };
 
 /*
 Post new item.  Must have a valid `list_id`
 */
-
+export const makeItem = (item: Item): QueryBuilder => {
+  return db('items')
+    .insert(item)
+    .returning('id');
+};
 /*
 del item.
 */
