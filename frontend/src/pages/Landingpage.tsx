@@ -14,6 +14,7 @@ const Container = styled('div')`
 const Nav = styled('nav')`
   margin: 0 auto;
   padding: 20px;
+  width: 50%;
   max-width: 880px;
   display: flex;
   justify-content: space-between;
@@ -33,12 +34,17 @@ const Wrapper = styled('div')`
 `
 const ButtonWrapper = styled('div')`
   /* border: 1px solid green; */
-  padding: 15px;
+  padding-top: 60px;
   margin: 0 auto;
   max-width: 70%;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  font-family: 'Roboto';
+  h2 {
+    padding-top: 25px;
+  }
 `
 
 const CenterImg = styled('img')`
@@ -48,24 +54,31 @@ const CenterImg = styled('img')`
 `
 
 const AppHeader = styled('h1')`
-  font-family: 'Staaliches', 'sans-serif';
+  font-family: 'Staatliches', 'sans-serif';
 `
 
 const SideHeader = styled('div')`
   font-family: 'Roboto';
   margin: 0 auto;
   padding: 15px;
-  max-width: 33%;
+  max-width: 20%;
 `
 
 const Footer = styled('div')`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   position: fixed;
+  padding-top: 20px;
   left: 0px;
   bottom: 0px;
   height: 10%;
   width: 100%;
+  a {
+    font-family: 'Roboto';
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: #3C3C3C;
+  }
 `
 
 type Props = {};
@@ -110,11 +123,12 @@ const Landing = (props: RouteComponentProps) => {
         </Wrapper>
         <ButtonWrapper>
           <Button text="Get started" onClick={() => { props.history.push('/Login') }}/>
+          <h2>Simplify managing your rental properties.</h2>
         </ButtonWrapper>
         <Footer>
-          <AppHeader>POS</AppHeader>
-          <p>Email</p>
-          <p>Twitter</p>
+          <a href='/'>POS</a>
+          <a href='https://example.com'>Email</a>
+          <a href="https://twitter.com">Twitter</a>
           <a href='https://github.com/Lambda-School-Labs/labs9-cleaner-pos'>GitHub</a>
         </Footer>
       </Container>
