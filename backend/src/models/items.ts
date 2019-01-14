@@ -1,3 +1,4 @@
+import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
 
 /*
@@ -24,3 +25,25 @@ export const postItemsStay = async (stayId: number) => {
     throw Error(e);
   }
 };
+
+/*
+get all items
+*/
+export const getItems = (): QueryBuilder => {
+  return db(items);
+};
+/*
+Post new item.  Must have a valid `list_id`
+*/
+
+/*
+del item.
+*/
+
+/*
+Put item.  Must have a valid `list_id`
+*/
+
+/*
+Mark Item as complete. must have list_id and stay_id
+*/
