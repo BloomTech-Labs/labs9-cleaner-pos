@@ -2,7 +2,6 @@ import {
   findLists,
   findListsStay,
   postList,
-  putList,
   deleteList,
   justListsByHouse,
 } from '../models/lists';

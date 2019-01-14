@@ -48,7 +48,16 @@ describe('List DB functions', () => {
   test('Find Lists for stay', async () => {
     try {
       const find: any = await findListsStay(1, 1);
-      expect(Object.keys(find)[0]).toBe('befores');
+      expect(Object.keys(find)[0]).toBe('before');
+    } catch (e) {
+      throw Error(e);
+    }
+  });
+
+  test('fail to post a new list', async () => {
+    try {
+      const makeList: number[] = await postList(newHouse);
+      expect(makeList[0]).toBe(data.length + 1);
     } catch (e) {
       throw Error(e);
     }
