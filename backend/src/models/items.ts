@@ -48,9 +48,16 @@ export const makeItem = (item: Item): QueryBuilder => {
     .insert(item)
     .returning('id');
 };
+
 /*
 del item.
 */
+export const deleteItem = (id: number): QueryBuilder => {
+  return db('items')
+    .where({ id })
+    .del()
+    .returning('id');
+};
 
 /*
 Put item.  Must have a valid `list_id`
