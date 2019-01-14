@@ -54,4 +54,16 @@ describe('/item routes', () => {
       .set('Accept', 'application/json')
       .expect(404, done);
   });
+
+  test('unable to post if valid List id isnt given', (done) => {
+    const newItem = {
+      list_id: 258,
+      task: 'lions tigers and snakes',
+    };
+    request(app)
+      .post('/items/')
+      .send(newItem)
+      .set('Accept', 'application/json')
+      .expect(400, done);
+  });
 });
