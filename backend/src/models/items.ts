@@ -68,6 +68,17 @@ export const putItem = (id: number, item: Item): QueryBuilder => {
     .update(item)
     .returning('id');
 };
+
 /*
 Mark Item as complete. must have list_id and stay_id
 */
+export const markComplete = (
+  listId: number,
+  stayId: number,
+  complete: boolean,
+): QueryBuilder => {
+  return db('item_complete')
+    .where({ list_id: listId, stay_id: stayId })
+    .update({ complete })
+    .returning('*');
+};
