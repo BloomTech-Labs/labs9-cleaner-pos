@@ -106,6 +106,7 @@ export const deleteList = (id: number): QueryBuilder => {
     .returning('id');
 };
 
+// this is used to get all lists for a house. will only return type and house_id
 export const justListsByHouse = (houseId: number): QueryBuilder => {
   return db('list').where({ house_id: houseId });
 };
