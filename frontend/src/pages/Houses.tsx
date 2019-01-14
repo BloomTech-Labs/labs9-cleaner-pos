@@ -19,42 +19,48 @@ interface House {
 }
 
 const cardHeight = 216;
+
 const HouseItem = styled('div')`
-  width: 70%;
   max-width: ${1136 * 0.9}px;
   height: ${cardHeight}px;
-  margin: auto;
-  margin-top: 25px;
+  border-radius: 0px;
+  padding-left: 1px;
+  margin-top: 24px;
   display: flex;
   text-align: left;
-  -moz-box-shadow: 0 0 3px #000;
-  -webkit-box-shadow: 0 0 3px #000;
-  box-shadow: 0 0 3px #000;
-  h4 {
-    font-size: 30px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
-  p {
-    font-size: 16px;
-    margin-block-start: 0;
-    margin-block-end: 1;
-  }
+  border: 0.5px solid black;
+  -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 `;
+
 const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 `;
+
 const ThumbNail = styled('img')`
-  width: ${cardHeight}px;
-  height: ${cardHeight}px;
+  width: ${cardHeight - 1}px;
+  height: ${cardHeight - 1}px;
 `;
+
 const CardHeading = styled('div')`
-  font-family: Roboto;
-  font-weight: bold;
-  font-size: 30px;
-  height: 80px;
+  margin-top: 12px;
+  height: 76px;
+  h4 {
+    margin: 0;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  p {
+    font-weight: light;
+    font-size: 16px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 `;
 const CardContent = styled('div')`
   padding: 0 15px;
@@ -73,6 +79,13 @@ const CheckList = styled('div')`
   -moz-box-shadow: 0 0 3px #000;
   -webkit-box-shadow: 0 0 3px #000;
   box-shadow: 0 0 3px #000;
+  padding: 0px 15px;
+  font-size: 24px;
+  font-weight: light;
+  p {
+    margin: auto;
+    font-weight: bold;
+  }
 `;
 
 const Cleaner = styled('div')`
@@ -80,6 +93,23 @@ const Cleaner = styled('div')`
   flex-direction: column;
   justify-content: center;
 `;
+
+const HousesContainer = styled('div')`
+  font-family: roboto;
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 48px;
+  span {
+    font-size: 36px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: left;
+    border-bottom: 1px solid #b8003f;
+  }
+`;
+
 const Houses = () => {
   const [houses, setHouses] = useState<HousesEnum>([]);
   const shouldFetch = useRef(true);
@@ -101,7 +131,8 @@ const Houses = () => {
   );
 
   return (
-    <div>
+    <HousesContainer>
+      <span>Recent Properties</span>
       {houses.map((house) => {
         return (
           <HouseItem key={house.id} data-testid='house-item'>
@@ -133,7 +164,7 @@ const Houses = () => {
           </HouseItem>
         );
       })}
-    </div>
+    </HousesContainer>
   );
 };
 
