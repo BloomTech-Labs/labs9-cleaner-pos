@@ -3,7 +3,7 @@ import 'jest';
 /* Due to setting more than 10 event listeners for the tests running
 below line avoids a warning about a "possible memory leak" that is not existant*/
 /* tslint:disable-next-line */
-// require('events').EventEmitter.defaultMaxListeners = 25;
+require('events').EventEmitter.defaultMaxListeners = 25;
 
 describe('User schema is implemented correctly!', async () => {
   beforeEach(async () => {
