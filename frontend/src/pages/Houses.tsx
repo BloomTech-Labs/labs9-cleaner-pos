@@ -19,24 +19,61 @@ interface House {
   ast_guide?: any;
 }
 
+const cardHeight = 100;
 const HouseItem = styled('div')`
-  width: 35%;
-  height: 125px;
+  width: 70%;
+  height: ${cardHeight}px;
   margin: auto;
   margin-top: 25px;
-  border: 1px solid black;
-  border-radius: 10px;
+  display: flex;
+  text-align: left;
+  -moz-box-shadow: 0 0 3px #000;
+  -webkit-box-shadow: 0 0 3px #000;
+  box-shadow: 0 0 3px #000;
   h4 {
+    font-size: 18px;
+    margin-block-start: 0;
     margin-block-end: 0;
   }
-  h6 {
+  p {
+    font-size: 10px;
     margin-block-start: 0;
     margin-block-end: 1;
   }
 `;
-const ButtonContainer = styled('div')``;
+const ButtonContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+`;
+const ThumbNail = styled('img')`
+  width: ${cardHeight}px;
+  height: ${cardHeight}px;
+`;
+const CardHeading = styled('div')``;
+const CardContent = styled('div')`
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
-const Houses = (props: RouteComponentProps) => {
+const CardBody = styled('div')`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CheckList = styled('div')`
+  text-align: center;
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px #ccc;
+`;
+
+const Cleaner = styled('div')`
+  display: flex;
+  flex-direction: column;
+`;
+const Houses = () => {
   const [houses, setHouses] = useState<HousesEnum>([]);
   const shouldFetch = useRef(true);
   async function fetchHouses() {
@@ -61,10 +98,31 @@ const Houses = (props: RouteComponentProps) => {
       {houses.map((house) => {
         return (
           <HouseItem key={house.id} data-testid='house-item'>
-            <h4>{house.name}</h4>
-            <h6>{house.address}</h6>
-            <Button text='Edit Checklists' datatestid='house-button' />
-            <Button text='Edit Resources' datatestid='house-button' />
+            <ThumbNail
+              src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
+              alt='house'
+            />
+            <CardContent>
+              <CardHeading>
+                <h4>{house.name}</h4>
+                <p>{house.address}</p>
+              </CardHeading>
+              <CardBody>
+                <CheckList>
+                  <p>Checklist Items</p> 27
+                </CheckList>
+                <ButtonContainer>
+                  <Button text='Edit Checklists' datatestid='house-button' />
+                  <Button text='Edit Resources' datatestid='house-button' />
+                </ButtonContainer>
+                <Cleaner>
+                  Default Cleaner
+                  <select>
+                    <option>Cleaner Jon</option>
+                  </select>
+                </Cleaner>
+              </CardBody>
+            </CardContent>
           </HouseItem>
         );
       })}
