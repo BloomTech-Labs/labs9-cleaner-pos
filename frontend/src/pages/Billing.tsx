@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { RouteComponentProps } from 'react-router';
 import Sidebar from '../components/shared_components/Sidebar';
 import styled from '@emotion/styled';
@@ -7,7 +7,7 @@ const Main = styled.div`
 	margin: 50px
 `
 
-const Billing = (props: RouteComponentProps) => {
+function Billing {
 //	handleChange(e) {
 //		this.setState({
 //			[name].value
@@ -26,12 +26,12 @@ const Billing = (props: RouteComponentProps) => {
 			{/*Create form for collecting billing information - CC#, Exp. CVV [submit button]*/}
 			<form>
 				<label>
-					<input name="CC Number" type="string" onClick={() => {
+{/*					<input name="CC Number" type="string" onClick={() => {
 						const NewCCN = prompt("Enter your CC number");
 						setCCNum(NewCCN);
 					}}
 					/>
-					<input name="Expiration" type="number"/>
+*/}					<input name="Expiration" type="number"/>
 					<input name="CVV" type="number"/>
 				</label>
 			</form>
