@@ -6,12 +6,14 @@ import styled from '@emotion/styled';
 // data-testid
 
 const StyledButton = styled('button')`
-  padding: 10px 30px;
-  background-color: #36302E;
-  color: white;
-  font-family: 'Roboto';
-  font-size: 1.4rem;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background: #393534;
+  width: 200px;
+  height: 50px;
+  color: #e4e4e4;
+  border: 0;
+  font-weight: condensed;
+  font-size: 24px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
 interface ButtonProps {

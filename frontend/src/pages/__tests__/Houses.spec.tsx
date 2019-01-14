@@ -1,7 +1,6 @@
 import React from 'react';
 import { Houses } from '../index';
 import { renderWithRouter } from '../../helpers/functions';
-import { createMemoryHistory } from 'history';
 import 'jest';
 import { waitForElement, cleanup } from 'react-testing-library';
 
@@ -56,30 +55,24 @@ jest.mock('axios', () => {
     ),
   };
 });
+
 afterEach(cleanup);
 
 describe('Houses dashboard', () => {
   test('should render a house card for every house received through axios call', async () => {
-    const { getAllByTestId } = renderWithRouter(
-      // @ts-ignore
-      <Houses />,
-      {},
-    );
+    const { getAllByTestId } = renderWithRouter(<Houses />, {});
     const houseCards = await waitForElement(() => getAllByTestId('house-item'));
     expect(houseCards.length).toBe(mockdata.length);
   });
+
   test('should include 2 buttons for every house card,', async () => {
-    const { getAllByTestId } = renderWithRouter(
-      // @ts-ignore
-      <Houses />,
-      {},
-    );
+    const { getAllByTestId } = renderWithRouter(<Houses />, {});
 
     const buttons = await waitForElement(() => getAllByTestId('house-button'));
     expect(buttons.length).toBe(mockdata.length * 2);
   });
+
   test('should include 1 button "Edit Checklists" for every house card', async () => {
-    // @ts-ignore
     const { getAllByText } = renderWithRouter(<Houses />, {});
 
     const buttons = await waitForElement(() =>
@@ -87,8 +80,8 @@ describe('Houses dashboard', () => {
     );
     expect(buttons.length).toBe(mockdata.length);
   });
+
   test('should include 1 button "Edit Resources" for every house card', async () => {
-    // @ts-ignore
     const { getAllByText } = renderWithRouter(<Houses />, {});
 
     const buttons = await waitForElement(() => getAllByText(/edit resources/i));

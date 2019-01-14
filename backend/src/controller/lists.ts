@@ -1,14 +1,21 @@
-import { findLists, findListsStay } from '../models/lists';
+import {
+  findLists,
+  findListsStay,
+  postList,
+  deleteList,
+  justListsByHouse,
+} from '../models/lists';
 import { Request, Response, NextFunction } from 'express';
 import { findHouse } from '../models/houses';
 import { findStaySummary } from '../models/stays';
+import { List } from '../interface';
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.query.stay !== 'true') {
       const { id } = req.params;
       const isHouse = await findHouse(id);
-      if (!id) {
+      if (!isHouse) {
         throw Error('an invalid house id was given');
       }
       const lists = await findLists(id);
@@ -24,6 +31,47 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
     }
   } catch (e) {
     e.statusCode = 404;
+    next(e);
+  }
+};
+
+export const post = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const newList: List = req.body;
+    if (!newList.type || !newList.house_id) {
+      throw Error('Must include type and house_id');
+    }
+    const houseLists = await justListsByHouse(newList.house_id);
+    if (newList.type !== 'after') {
+      houseLists.map((list: List) => {
+        if (list.type === newList.type) {
+          throw Error('House can only have one before and during list');
+        }
+      });
+    }
+
+    const ids = await postList(newList);
+    res.status(201).json(ids[0]);
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
+};
+
+export const deleteL = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.params;
+    const removed = await deleteList(id);
+    if (removed.length === 0) {
+      throw Error('Unable to remove a list with that ID');
+    }
+    res.status(200).json(removed);
+  } catch (e) {
+    e.statusCode = 400;
     next(e);
   }
 };

@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react';
-import { RouteProps, RouteComponentProps } from 'react-router';
+import React from 'react';
+import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { Button, Sidebar } from '../components/shared_components/index';
+import { Button } from '../components/shared_components/index';
 import house from '../assets/house.jpg';
 
 const Container = styled('div')`

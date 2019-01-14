@@ -13,6 +13,7 @@ import {
 } from '../../__tests__/controllers/stay.spec';
 import { QueryBuilder } from 'knex';
 import { Stay } from '../interface';
+import { postItemsStay } from '../models/items';
 
 type NextFunctionMock = (a: any) => any;
 
@@ -48,9 +49,10 @@ export async function post(req: Requests, res: Responses, next: Nexts) {
   try {
     const dataToBeSent = validateStayPost(req.body);
     const ids = await postStayData(dataToBeSent);
-
+    await postItemsStay(ids[0]);
+    // TODO: when using postgres this if statment will never fire.
     if (ids.length === 0) {
-      const e: any = new Error('POST unsuccessful');
+      const e: any = new Error('Stay POST unsuccessful');
       e.statusCode = 500;
       throw e;
     }
@@ -69,7 +71,7 @@ export async function put(req: Requests, res: Responses, next: Nexts) {
     const dataToBeSent = validateStayPost(req.body);
     const count = await putStayData(stayId, dataToBeSent);
     if (count === 0) {
-      const e: any = new Error('PUT unsuccessful');
+      const e: any = new Error('Stay PUT unsuccessful');
       e.statusCode = 500;
       throw e;
     }
