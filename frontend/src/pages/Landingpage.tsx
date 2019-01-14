@@ -3,7 +3,7 @@ import { RouteProps, RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import Button from '../components/shared_components/Button';
+import { Button, SpecialButton } from '../components/shared_components/index';
 import house from '../assets/house.jpg';
 
 const Container = styled('div')`
@@ -25,8 +25,19 @@ const Nav = styled('nav')`
 `
 
 const Wrapper = styled('div')`
+  margin: 0 auto;
+  max-width: 80%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+`
+const ButtonWrapper = styled('div')`
+  /* border: 1px solid green; */
+  padding: 15px;
+  margin: 0 auto;
+  max-width: 70%;
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
 `
 
@@ -46,6 +57,12 @@ const SideHeader = styled('h3')`
 
 const Footer = styled('div')`
   display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 10%;
+  width: 100%;
 `
 
 type Props = {};
@@ -72,7 +89,9 @@ const Landing = (props: RouteComponentProps) => {
             <CenterImg src={house} alt='Beautiful house with a pool' />
           <SideHeader>Right</SideHeader>
         </Wrapper>
-        <Button text="Get started" onClick={() => { props.history.push('/Login') }}/>
+        <ButtonWrapper>
+          <Button text="Get started" onClick={() => { props.history.push('/Login') }}/>
+        </ButtonWrapper>
         <Footer>
           <p>Test</p>
         </Footer>
