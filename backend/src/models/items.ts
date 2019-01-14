@@ -72,13 +72,17 @@ export const putItem = (id: number, item: Item): QueryBuilder => {
 /*
 Mark Item as complete. must have list_id and stay_id
 */
-export const markComplete = (
-  listId: number,
+export const markComplete = async (
+  itemId: number,
   stayId: number,
-  complete: boolean,
-): QueryBuilder => {
+): Promise<QueryBuilder> => {
+  const currStatus = await db('item_complete')
+    .where({ item_id: itemId, stay_id: stayId })
+    .select('complete')
+    .first();
+  console.log('test', currStatus);
   return db('item_complete')
-    .where({ list_id: listId, stay_id: stayId })
-    .update({ complete })
+    .where({ item_id: itemId, stay_id: stayId })
+    .update({ complete: !currStatus.complete })
     .returning('*');
 };

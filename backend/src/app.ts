@@ -50,7 +50,13 @@ server
   .route('/items')
   .get(items.get)
   .post(items.post);
-server.route('/items/:id').get(items.get);
+server
+  .route('/items/:id')
+  .get(items.get)
+  .put(items.put)
+  .delete(items.deleteL);
+
+server.route('/itemComplete').post(items.itemComplete);
 
 server.use(errorHandler);
 

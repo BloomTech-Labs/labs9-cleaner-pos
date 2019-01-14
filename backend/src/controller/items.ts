@@ -7,6 +7,7 @@ import {
   markComplete,
 } from '../models/items';
 import { getList } from '../models/lists';
+import { findStaySummary } from '../models/stays';
 import { Request, Response, NextFunction } from 'express';
 import { Item } from '../interface';
 import { QueryBuilder } from 'knex';
@@ -60,6 +61,38 @@ export const deleteL = async (
     res.status(200).json(removed);
   } catch (e) {
     e.statusCode = 404;
+    next(e);
+  }
+};
+
+export const put = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { list_id, task } = req.body;
+    const { id } = req.params;
+    const validList = await getList(list_id);
+    if (validList.length === 0) {
+      throw Error('Not a valid List ID');
+    }
+    const reqItem: Item = { list_id, task };
+    const updateItem = await putItem(id, reqItem);
+    res.status(201).json(updateItem);
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
+};
+
+export const itemComplete = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { item_id, stay_id } = req.body;
+    const toggleComplete = await markComplete(item_id, stay_id);
+    res.status(201).json(toggleComplete);
+  } catch (e) {
+    e.statusCode = 400;
     next(e);
   }
 };
