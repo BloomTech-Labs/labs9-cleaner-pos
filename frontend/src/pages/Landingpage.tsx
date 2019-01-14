@@ -26,7 +26,7 @@ const Nav = styled('nav')`
 
 const Wrapper = styled('div')`
   margin: 0 auto;
-  max-width: 80%;
+  max-width: 70%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -51,8 +51,11 @@ const AppHeader = styled('h1')`
   font-family: 'Staaliches', 'sans-serif';
 `
 
-const SideHeader = styled('h3')`
+const SideHeader = styled('div')`
   font-family: 'Roboto';
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 33%;
 `
 
 const Footer = styled('div')`
@@ -75,7 +78,7 @@ const Landing = (props: RouteComponentProps) => {
     <div>
       <Container>
         <AppHeader>Cleaner POS</AppHeader>
-        <SideHeader>A POS that helps you keep things clean</SideHeader>
+        <h2>A POS that helps you keep things clean</h2>
         <Nav>
           <a href='/'>Home</a>
           <a href='/'>About</a>
@@ -85,15 +88,34 @@ const Landing = (props: RouteComponentProps) => {
           </Link>
         </Nav>
         <Wrapper>
-          <SideHeader>Left</SideHeader>
-            <CenterImg src={house} alt='Beautiful house with a pool' />
-          <SideHeader>Right</SideHeader>
+
+          <SideHeader>
+            <h2>Lorem Ipsum</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper quam hendrerit, vehicula ligula quis, ultrices nisl. 
+              Phasellus placerat in elit in mattis. Integer suscipit nulla tempor, tempus eros at, congue lectus.
+            </p>
+          </SideHeader>
+
+          <CenterImg src={house} alt='Beautiful house with a pool' />
+
+          <SideHeader>
+          <h2>Lorem Ipsum</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper quam hendrerit, vehicula ligula quis, ultrices nisl. 
+              Phasellus placerat in elit in mattis. Integer suscipit nulla tempor, tempus eros at, congue lectus.
+            </p>
+          </SideHeader>
+
         </Wrapper>
         <ButtonWrapper>
           <Button text="Get started" onClick={() => { props.history.push('/Login') }}/>
         </ButtonWrapper>
         <Footer>
-          <p>Test</p>
+          <AppHeader>POS</AppHeader>
+          <p>Email</p>
+          <p>Twitter</p>
+          <a href='https://github.com/Lambda-School-Labs/labs9-cleaner-pos'>GitHub</a>
         </Footer>
       </Container>
     </div>
