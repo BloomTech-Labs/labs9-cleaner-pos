@@ -81,11 +81,6 @@ const Footer = styled('div')`
   }
 `
 
-type Props = {};
-// export const Button = () => {
-//   return <div />;
-// };
-
 const Landing = (props: RouteComponentProps) => {
   return (
     <div>
