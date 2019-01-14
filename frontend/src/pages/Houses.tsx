@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Button } from '../components/shared_components/index';
+import { Button, Sidebar } from '../components/shared_components/index';
 import axios from 'axios';
 import styled from '@emotion/styled';
 
@@ -18,6 +18,14 @@ interface House {
   guest_guide?: any;
   ast_guide?: any;
 }
+
+const Container = styled('div')`
+  /* background-color: gray; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const HouseItem = styled('div')`
   width: 35%;
@@ -57,7 +65,8 @@ const Houses = (props: RouteComponentProps) => {
   );
 
   return (
-    <div>
+    <Container>
+      <Sidebar />
       {houses.map((house) => {
         return (
           <HouseItem key={house.id} data-testid='house-item'>
@@ -68,7 +77,7 @@ const Houses = (props: RouteComponentProps) => {
           </HouseItem>
         );
       })}
-    </div>
+    </Container>
   );
 };
 

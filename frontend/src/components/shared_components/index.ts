@@ -1,5 +1,5 @@
 import Button from './Button';
 import SpecialButton from './SpecialButton';
-// import Form from './Form';
+import Sidebar from './Sidebar';
 
-export { Button, SpecialButton };
+export { Button, SpecialButton, Sidebar };

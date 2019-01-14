@@ -1,7 +1,10 @@
-import React from "react";
-
-type Props = {};
+import React from 'react';
+import { Sidebar } from '../components/shared_components/index';
 
 export const Button = () => {
-  return <div />;
+  return (
+    <>
+      <Sidebar />
+    </>
+  );
 };
