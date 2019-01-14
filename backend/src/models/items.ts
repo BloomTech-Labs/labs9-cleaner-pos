@@ -62,7 +62,12 @@ export const deleteItem = (id: number): QueryBuilder => {
 /*
 Put item.  Must have a valid `list_id`
 */
-
+export const putItem = (id: number, item: Item): QueryBuilder => {
+  return db('items')
+    .where({ id })
+    .update(item)
+    .returning('id');
+};
 /*
 Mark Item as complete. must have list_id and stay_id
 */
