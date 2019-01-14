@@ -14,7 +14,7 @@ module.exports = [
     price: 450.5,
     cleaning_fee: 65,
     extra_guest_fee: 30,
-    default_ast: 1,
+    default_ast: 2,
     manager: 1,
   },
   {
@@ -23,7 +23,7 @@ module.exports = [
     price: 450.5,
     cleaning_fee: 65,
     extra_guest_fee: 30,
-    default_ast: 1,
+    default_ast: 3,
     manager: 1,
   },
 ];
