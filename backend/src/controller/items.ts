@@ -45,3 +45,21 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
     next(e);
   }
 };
+
+export const deleteL = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.params;
+    const removed = await deleteItem(id);
+    if (removed.length === 0) {
+      throw Error('Unable to remove a item with that ID');
+    }
+    res.status(200).json(removed);
+  } catch (e) {
+    e.statusCode = 404;
+    next(e);
+  }
+};
