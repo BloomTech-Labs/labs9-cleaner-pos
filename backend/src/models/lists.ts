@@ -1,6 +1,8 @@
 import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
+import { List } from '../interface';
 
+// this will output an object with all lists for a house
 export const findLists = async (houseId: number) => {
   try {
     const before = await db('list')
@@ -53,6 +55,7 @@ const beforeAfterList = (type: string, houseId: number, stayId: number) => {
   }
 };
 
+// this will output an object with all lists for a stay
 export const findListsStay = async (houseId: number, stayId: number) => {
   try {
     const before = await beforeAfterList('before', houseId, stayId);
@@ -81,4 +84,33 @@ export const findListsStay = async (houseId: number, stayId: number) => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const getList = (id: number): QueryBuilder => {
+  return db('list').where({ id });
+};
+
+export const postList = (list: List): QueryBuilder => {
+  return db('list')
+    .insert(list)
+    .returning('id');
+};
+
+export const putList = (id: number, list: List): QueryBuilder => {
+  return db('list')
+    .where({ id })
+    .update(list)
+    .returning('id');
+};
+
+export const deleteList = (id: number): QueryBuilder => {
+  return db('list')
+    .where({ id })
+    .del()
+    .returning('id');
+};
+
+// this is used to get all lists for a house. will only return type and house_id
+export const justListsByHouse = (houseId: number): QueryBuilder => {
+  return db('list').where({ house_id: houseId });
 };
