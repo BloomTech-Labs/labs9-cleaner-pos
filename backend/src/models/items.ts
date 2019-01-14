@@ -29,9 +29,16 @@ export const postItemsStay = async (stayId: number) => {
 /*
 get all items
 */
-export const getItems = (): QueryBuilder => {
-  return db(items);
+export const findItems = (): QueryBuilder => {
+  return db('items');
 };
+/*
+get one items
+*/
+export const findItems = (id: number): QueryBuilder => {
+  return db('items').where({ id });
+};
+
 /*
 Post new item.  Must have a valid `list_id`
 */
