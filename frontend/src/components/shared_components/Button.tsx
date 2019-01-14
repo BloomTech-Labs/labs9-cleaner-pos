@@ -7,7 +7,11 @@ import { string } from 'prop-types';
 // data-testid
 
 const StyledButton = styled('button')`
-  border-radius: 5px;
+  background: #393534;
+  width: 200px;
+  height: 50px;
+  color: #e4e4e4;
+  border: 0;
 `;
 
 interface ButtonProps {

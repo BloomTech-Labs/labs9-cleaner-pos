@@ -1,5 +1,4 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
-import { RouteComponentProps } from 'react-router';
 import { Button } from '../components/shared_components/index';
 import axios from 'axios';
 import styled from '@emotion/styled';
@@ -19,9 +18,10 @@ interface House {
   ast_guide?: any;
 }
 
-const cardHeight = 100;
+const cardHeight = 216;
 const HouseItem = styled('div')`
   width: 70%;
+  max-width: ${1136 * 0.9}px;
   height: ${cardHeight}px;
   margin: auto;
   margin-top: 25px;
@@ -31,12 +31,12 @@ const HouseItem = styled('div')`
   -webkit-box-shadow: 0 0 3px #000;
   box-shadow: 0 0 3px #000;
   h4 {
-    font-size: 18px;
+    font-size: 30px;
     margin-block-start: 0;
     margin-block-end: 0;
   }
   p {
-    font-size: 10px;
+    font-size: 16px;
     margin-block-start: 0;
     margin-block-end: 1;
   }
@@ -44,12 +44,18 @@ const HouseItem = styled('div')`
 const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 `;
 const ThumbNail = styled('img')`
   width: ${cardHeight}px;
   height: ${cardHeight}px;
 `;
-const CardHeading = styled('div')``;
+const CardHeading = styled('div')`
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 30px;
+  height: 80px;
+`;
 const CardContent = styled('div')`
   padding: 0 15px;
   display: flex;
@@ -59,19 +65,20 @@ const CardContent = styled('div')`
 
 const CardBody = styled('div')`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 const CheckList = styled('div')`
   text-align: center;
-  -moz-box-shadow: 0 0 3px #ccc;
-  -webkit-box-shadow: 0 0 3px #ccc;
-  box-shadow: 0 0 3px #ccc;
+  -moz-box-shadow: 0 0 3px #000;
+  -webkit-box-shadow: 0 0 3px #000;
+  box-shadow: 0 0 3px #000;
 `;
 
 const Cleaner = styled('div')`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 const Houses = () => {
   const [houses, setHouses] = useState<HousesEnum>([]);
