@@ -16,7 +16,7 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
     if (req.query.stay !== 'true') {
       const { id } = req.params;
       const isHouse = await findHouse(id);
-      if (!id) {
+      if (!isHouse) {
         throw Error('an invalid house id was given');
       }
       const lists = await findLists(id);

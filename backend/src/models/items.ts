@@ -1,5 +1,10 @@
 import db from '../../data/dbConfig';
 
+/*
+this takes in a stayID, finds all the items for the house
+on that stay, them posts all those items to the item_complete table.
+this should only be called when a new stay is created.
+*/
 export const postItemsStay = async (stayId: number) => {
   try {
     const items = await db('stay')
