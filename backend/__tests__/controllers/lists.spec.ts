@@ -53,4 +53,35 @@ describe('/list routes', () => {
         done();
       });
   });
+
+  test('when posting new before list to house that already has before list, receive 400', (done) => {
+    const newList = {
+      house_id: 1,
+      type: 'before',
+    };
+    request(app)
+      .post('/lists/')
+      .send(newList)
+      .set('Accept', 'application/json')
+      .expect(400, done);
+  });
+
+  test('able to delete list', (done) => {
+    request(app)
+      .delete('/lists/1')
+      .set('Accept', 'application/json')
+      .expect(200, done);
+  });
+
+  test('able to post a list', (done) => {
+    const newList = {
+      house_id: 1,
+      type: 'before',
+    };
+    request(app)
+      .post('/lists/')
+      .send(newList)
+      .set('Accept', 'application/json')
+      .expect(201, done);
+  });
 });

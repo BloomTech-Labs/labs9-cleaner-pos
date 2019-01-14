@@ -21,7 +21,7 @@ export const findLists = async (houseId: number) => {
         const hours: string = `hours after ${row.hours_after}`;
         const afterLists = await db('items')
           .where({ 'items.list_id': row.id })
-          .select('items.tasks', 'items.id as items_id');
+          .select('items.task', 'items.id as items_id');
 
         return { [hours]: afterLists };
       })

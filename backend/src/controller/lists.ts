@@ -43,9 +43,14 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       throw Error('Must include type and house_id');
     }
     const houseLists = await justListsByHouse(newList.house_id);
-    if (newList.type !== 'after' && houseLists.length !== 0) {
-      throw Error('House can only have one before and during list');
+    if (newList.type !== 'after') {
+      houseLists.map((list: List) => {
+        if (list.type === newList.type) {
+          throw Error('House can only have one before and during list');
+        }
+      });
     }
+
     const ids = await postList(newList);
     res.status(201).json(ids[0]);
   } catch (e) {
