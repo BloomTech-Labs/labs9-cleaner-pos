@@ -7,6 +7,7 @@ class MyStoreCheckout extends React.Component {
   render() {
     return (
       <Elements>
+        nice
         <InjectedCheckoutForm />
       </Elements>
     );
