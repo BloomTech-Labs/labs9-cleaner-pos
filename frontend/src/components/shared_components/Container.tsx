@@ -6,15 +6,8 @@ const StyledContainer = styled('div')`
   position: relative;
   width: 70%;
   margin: 0 auto;
-  padding-top: 48px;
-  span {
-    font-size: 36px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: left;
-    border-bottom: 1px solid #b8003f;
-  }
+  display: flex;
+  flex-direction: column;
 `;
 
 const Container = ({ children }: { children: any }) => {

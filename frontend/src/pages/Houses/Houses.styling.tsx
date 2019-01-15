@@ -18,6 +18,7 @@ const HouseItem = styled('div')`
 `;
 
 const ButtonContainer = styled('div')`
+  height: 124px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -54,18 +55,24 @@ const CardContent = styled('div')`
 const CardBody = styled('div')`
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
 
 const CheckList = styled('div')`
+  padding: 0 15px;
   text-align: center;
+  height: 100px;
   -moz-box-shadow: 0 0 3px #000;
   -webkit-box-shadow: 0 0 3px #000;
   box-shadow: 0 0 3px #000;
-  padding: 0px 15px;
   font-size: 24px;
   font-weight: light;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   p {
-    margin: auto;
+    margin: 0;
     font-weight: bold;
   }
 `;
@@ -78,11 +85,12 @@ const Cleaner = styled('div')`
 
 const HouseHeader = styled('span')`
   font-size: 36px;
-  position: absolute;
   top: 0;
   left: 0;
   text-align: left;
   border-bottom: 1px solid #b8003f;
+  align-item: flex-start;
+  max-width: 290px;
 `;
 
 export {
