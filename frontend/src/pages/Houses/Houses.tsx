@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
-import { Button } from '../../components/shared_components/index';
+import { Button, Sidebar } from '../../components/shared_components/index';
 import axios from 'axios';
 import {
   HousesContainer,
@@ -50,6 +50,7 @@ const Houses = () => {
 
   return (
     <HousesContainer>
+    <Sidebar />
       <span>Recent Properties</span>
       {houses.map((house) => {
         return (

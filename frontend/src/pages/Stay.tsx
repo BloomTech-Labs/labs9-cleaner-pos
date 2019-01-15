@@ -1,5 +1,13 @@
-import React from "react";
+import React from 'react';
 
-export const Button = () => {
-  return <div />;
+import { Sidebar } from '../components/shared_components/index';
+
+const Stay = () => {
+  return (
+    <>
+      <Sidebar />
+    </>
+  );
 };
+
+export default Stay;

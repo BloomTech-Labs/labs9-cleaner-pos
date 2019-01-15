@@ -1,6 +1,13 @@
-import React from "react";
+import React from 'react';
 
-type Props = {};
-export const Button = () => {
-  return <div />;
+import { Sidebar } from '../components/shared_components/index';
+
+const Guests = () => {
+  return (
+    <>
+      <Sidebar />
+    </>
+  );
 };
+
+export default Guests;

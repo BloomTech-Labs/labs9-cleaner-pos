@@ -11,7 +11,7 @@ import styled from '@emotion/styled';
 // });
 
 const Container = styled('div')`
-  width: 40%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid gray;
@@ -36,7 +36,7 @@ const StyledUL = styled('ul')`
 
 const StyledLink = styled(NavLink)`
   float: left;
-  padding: 10px;
+  padding: 0 20px;
   text-decoration: none;
   color: black;
   h4 {

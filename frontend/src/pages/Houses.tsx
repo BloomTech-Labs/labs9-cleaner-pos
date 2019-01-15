@@ -66,7 +66,6 @@ const Houses = (props: RouteComponentProps) => {
 
   return (
     <Container>
-    <Sidebar />
       {houses.map((house) => {
         return (
           <HouseItem key={house.id} data-testid='house-item'>
