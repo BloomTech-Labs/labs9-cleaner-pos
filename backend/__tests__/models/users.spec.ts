@@ -73,7 +73,7 @@ describe('User DB functions', () => {
     // Act
     const result = await findUsers();
     // Assert
-    expect(result.length).toBe(3);
+    expect(result.length).toBe(data.length);
 
     for (const i of result.keys()) {
       expect(result[i].full_name).toBe(data[i].full_name);
