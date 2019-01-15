@@ -1,51 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Button } from './index';
-import styled from '@emotion/styled';
-// import WebFont from 'webfontloader';
-
-// WebFont.load({
-//   google: {
-//     families: ['Roboto: 300, 400, 700', 'sans-serif'],
-//   },
-// });
-
-const Container = styled('div')`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid gray;
-`;
-
-const NavWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  float: left;
-`;
-
-const SettingsWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  float: right;
-`;
-
-const StyledUL = styled('ul')`
-  list-style-type: none;
-  display: flex;
-`;
-
-const StyledLink = styled(NavLink)`
-  float: left;
-  padding: 0 20px;
-  text-decoration: none;
-  color: black;
-  h4 {
-    font-family: 'Roboto';
-    font-weight: condensed;
-    font-size: 24px;
-  }
-`;
-
+import { Button } from '../index';
+import {
+  Container,
+  NavWrapper,
+  SettingsWrapper,
+  StyledUL,
+  StyledLink,
+} from './Sidebar.styling';
 
 interface LinkProps {
   onClick?: () => MouseEvent;
