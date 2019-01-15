@@ -9,7 +9,7 @@ const Main = styled('div')`
 
 function Billing(props: RouteComponentProps) {
 	
-	const [info, setValues] = useState({
+	const [info, setInfo] = useState({
 		ccnum:'',
 		exp: '',
 		cvv: ''
@@ -20,8 +20,8 @@ function Billing(props: RouteComponentProps) {
 
 	};
 
-	const handleSubmit = e => {
-		setValues ({
+	const handleChange = e => {
+		setInfo ({
 			...info,
 			[e.target.name]: e.target.value
 		});
@@ -34,16 +34,19 @@ function Billing(props: RouteComponentProps) {
 			{/*Create form for collecting billing information - CC#, Exp. CVV [submit button]*/}
 			<form onSubmit={ printValues }>
 				<label>
-					<input name="CC Number" value={ info.ccnum }/>
+					CC Number:
+					<input name="CC Number" value={ info.ccnum } onChange={ handleChange }/>
 				</label>
 				<label>	
-					<input name="Expiration" value={ info.exp }/>
+					Expiration:
+					<input name="Expiration" value={ info.exp } onChange={ handleChange }/>
 				</label>
 				<label>
-					<input name="CVV" value={ info.cvv }/>
+					CVV:
+					<input name="CVV" value={ info.cvv } onChange= { handleChange }/>
 				</label>
 				<br />
-				<button type='button' onClick = { handleSubmit }>Submit</button>
+				<button type='button'>Submit</button>
 			</form>
 			{/* Route billing information through stripe*/}
 			{/* Once processed, activate subscription? create confirmation code?*/}
