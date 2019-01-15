@@ -78,7 +78,7 @@ describe('User DB functions', () => {
   test('findUserExtId finds by ext_id', async () => {
     // Arrange
     const testUser = data[0];
-    const userExtId = testUser.ext_it;
+    const userExtId = String(testUser.ext_it);
     // Act
     const result = await findUserByExt_it(userExtId).catch((e) => {
       throw e;
@@ -125,7 +125,7 @@ describe('User DB functions', () => {
 
   test('updateUser updates a user by ext_id', async () => {
     // Arrange
-    const testUser = data[0];
+    const testUser = { ...data[0], ext_it: String(data[0].ext_it) };
     const idToUpdate = testUser.ext_it;
     const updatedInfo = { ...testUser, full_name: 'Willy Wonka' };
     const updateObj = { full_name: 'Willy Wonka' };
