@@ -17,18 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/Lambda-School-Labs/labs9-cleaner-pos.git"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc && lint-staged && npm test"
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.{ts, tsx}": [
-        "prettier --write"
-      ]
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
