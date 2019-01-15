@@ -6,6 +6,7 @@ node_modules
 frontend/node_modules
 
 ## dependencies
+node_modules
 frontend/node_modules
 frontend/.pnp
 frontend/.pnp.js
@@ -39,3 +40,4 @@ backend/dist
 backend/.DS_Store
 backend/.env
 backend/data/devdb.sqlite3
+backend/test.db
