@@ -13,14 +13,19 @@ function Billing(props: RouteComponentProps) {
 		ccnum:'',
 		exp: '',
 		cvv: ''
- });
-	const printValues = e => {
+	 });
+
+{/* trying to set the type for the event handler */}
+	type InputEvent = React.ChangeEvent<HTMLInputElement>;
+	type FormEvent = React.FormEvent<HTMLFormElement>;
+
+	const printValues = (e: FormEvent) => {
 		e.preventDefault();
 		console.log(info.ccnum, info.exp, info.cvv);
 
 	};
 
-	const handleChange = e => {
+	const handleChange = (e: InputEvent) => {
 		setInfo ({
 			...info,
 			[e.target.name]: e.target.value
