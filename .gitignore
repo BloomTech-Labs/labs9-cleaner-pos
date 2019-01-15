@@ -18,6 +18,7 @@ frontend/coverage
 frontend/build
 
 # # misc
+.vscode
 frontend/.DS_Store
 frontend/.env
 frontend/.env.local
