@@ -19,6 +19,27 @@ interface User {
   role: string;
 }
 
+// Need to move these declarations somewhere else, but TS is picky where it should be
+
+// Global declarations and overrides
+// https://www.reddit.com/r/typescript/comments/8wiusj/could_use_some_help_with_modifying_expressrequest/
+declare global {
+  interface Token {
+    ext_it: string;
+    role: string;
+  }
+
+  namespace Express {
+    interface Request {
+      token: Token;
+    }
+  }
+
+  interface StatusError extends Error {
+    statusCode: number;
+  }
+}
+
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
@@ -44,7 +65,9 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { ext_it, full_name, email, phone, address, role } = req.body;
-    const user = await findUserByExt_it(ext_it).catch((e) => e);
+    const user = await findUserByExt_it(ext_it).catch((e) => {
+      throw e;
+    });
     const { JWT_SECRET } = process.env;
     if (!user) {
       // If user does NOT yet exist, create a user in our db & send a token to the client
@@ -86,6 +109,33 @@ export const put = async (req: Request, res: Response, next: NextFunction) => {
     res.status(201).json(putUser);
   } catch (e) {
     e.statusCode = 400;
+    next(e);
+  }
+};
+
+export const putByExtId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { ext_it, role } = req.token;
+    const user: User = req.body;
+    if (role !== 'manager' && role !== 'assistant' && role !== undefined) {
+      const e: StatusError = {
+        ...new Error('Role must be User or Manager'),
+        statusCode: 400,
+      };
+      throw e;
+    }
+    const numOfRecordsUpdated = await updateUser(ext_it, user);
+    if (numOfRecordsUpdated !== 1) {
+      throw new Error('Update was not successful.');
+    } else {
+      res.status(204).end();
+    }
+  } catch (e) {
+    e.statusCode = e.statusCode || 500;
     next(e);
   }
 };

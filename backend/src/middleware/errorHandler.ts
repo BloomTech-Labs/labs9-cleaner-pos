@@ -27,6 +27,11 @@ export const errorHandler = (
           'The server cannot or will not process the request due to an apparent client error',
       });
       break;
+    case 403:
+      res.status(403).json({
+        message: 'Forbidden. Please check credentials',
+      });
+      break;
     default:
       res.status(500).json({
         message: 'There was an error performing the specified operation',

@@ -6,27 +6,27 @@ import styled from '@emotion/styled';
 // data-testid
 
 const StyledButton = styled('button')`
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    background-color: #5D9ABC;
-    border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #5d9abc;
+  border: none;
 `;
 
 interface ButtonProps {
-    onClick?: () => void;
-    text?: string;
-    datatestid?: string;
+  onClick?: () => void;
+  text?: string;
+  datatestid?: string;
 }
 
 const SpecialButton = ({ onClick, text, datatestid }: ButtonProps) => {
-    return (
+  return (
     <>
-        <StyledButton onClick={onClick} type='button' data-testid={datatestid}>
+      <StyledButton onClick={onClick} type='button' data-testid={datatestid}>
         {text}
-        </StyledButton>
+      </StyledButton>
     </>
-    );
+  );
 };
 
 export default SpecialButton;

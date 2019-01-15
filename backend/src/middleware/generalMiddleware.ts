@@ -11,7 +11,6 @@ const setGeneralMiddleware = (server: Express) => {
       origin: true,
     }),
   );
-  // server.use(errorHandler);
 };
 
 export default setGeneralMiddleware;
