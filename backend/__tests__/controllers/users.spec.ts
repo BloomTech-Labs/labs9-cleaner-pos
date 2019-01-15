@@ -43,7 +43,7 @@ describe('/user routes', () => {
 
   test('Get request with invalid id returns a 404', (done) => {
     request(app)
-      .get('/users/8')
+      .get('/users/99')
       .set('Accept', 'application/json')
       .expect(404, done);
   });
