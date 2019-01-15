@@ -1,11 +1,12 @@
-// @ts-nocheck
-import React from 'react';
+import React, { ComponentClass, ClassicComponent } from 'react';
 import * as Yup from 'yup';
-import countryList from './utils/countryList';
 import axios from 'axios';
+// Styled Components
+import { StyledDiv, StyledForm, StyledTextField } from './styles';
 // Type Definitions
 import { AxiosRequestConfig } from 'axios';
 import {
+  ErrorMessage,
   Formik,
   FormikProps,
   FormikErrors,
@@ -15,56 +16,43 @@ import {
 } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 
-const isCountryValid = (name: string) => {
-  if (!name) {
-    return false;
-  }
-  return countryList[name] !== undefined;
-};
-
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
+    .email('Email is invalud')
+    .required('Email is required'),
   phone: Yup.string()
     .min(2)
     .max(15)
-    .required('Required'),
-  address1: Yup.string().required('Required'),
+    .required('Phone number is required'),
+  address1: Yup.string().required('Address is required'),
   address2: Yup.string(),
-  city: Yup.string().required('Required'),
-  state: Yup.string().required('Required'),
-  country: Yup.string()
-    .required('Required')
-    .test('is-country', 'Not a valid country', isCountryValid),
-  postCode: Yup.string().required('Required'),
+  city: Yup.string().required('City is required'),
+  state: Yup.string().required('Region is required'),
+  country: Yup.string().required('Country is required'),
+  // .test('is-country', 'Country is invalid', isCountryValid),
+  postCode: Yup.string().required('Post Code is required'),
 });
 
 const PostForm = (props: RouteComponentProps) => {
-  // TODO: Find proper type of inputProps
-  const CountryComboBox = (inputProps: any) => {
-    const { field } = inputProps;
-    return (
-      <div>
-        <input
-          type='text'
-          name='country'
-          list='countries'
+  const labelInputField = (label: string) => {
+    return ({ field, form }: FieldProps) => {
+      const { name } = field;
+      const { touched, errors } = form;
+      const errorState = Boolean(errors[name] && touched[name]);
+      return (
+        <StyledTextField
+          error={errorState}
+          className={`field-${name}`}
+          label={errorState ? errors[name] : label}
+          variant='filled'
           {...field}
-          {...inputProps}
         />
-        <datalist id='countries'>
-          {Object.keys(countryList).map((name, i) => (
-            <option key={i} value={name} />
-          ))}
-        </datalist>
-      </div>
-    );
+      );
+    };
   };
 
   return (
-    <div>
-      <h1>Signup</h1>
+    <StyledDiv>
       <Formik
         initialValues={{
           email: '',
@@ -144,60 +132,90 @@ const PostForm = (props: RouteComponentProps) => {
         }}
       >
         {(formProps) => {
-          const { dirty, errors, touched, isSubmitting, status } = formProps;
+          const {
+            dirty,
+            errors,
+            touched,
+            isSubmitting,
+            status,
+            resetForm,
+          } = formProps;
           return (
-            <Form>
-              <label>Email</label>
-              <Field name='email' autoComplete='billing email' />
-              {errors.email && touched.email ? <div>{errors.email}</div> : null}
+            <StyledForm>
+              <h2 className='title'>Just a few more things!</h2>
+              {/* <label>Email</label> */}
+              {/* <Field name='email' autoComplete='billing email' /> */}
+              <Field
+                name='email'
+                autoComplete='billing email'
+                render={labelInputField('Email')}
+              />
 
-              <label>Phone Number</label>
-              <Field name='phone' autoComplete='billing phone' />
-              {errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
+              <Field
+                name='phone'
+                autoComplete='billing phone'
+                render={labelInputField('Phone Number')}
+              />
 
-              <label>Address1</label>
-              <Field name='address1' autoComplete='billing street-address' />
-              {errors.address1 && touched.address1 ? (
-                <div>{errors.address1}</div>
-              ) : null}
+              <Field
+                name='address1'
+                autoComplete='billing street-address'
+                render={labelInputField('Address')}
+              />
 
-              <label>Address 2</label>
-              <Field name='address2' />
+              <Field
+                name='address2'
+                render={labelInputField('Address (cont.)')}
+              />
 
-              <label>City</label>
-              <Field name='city' autoComplete='billing address-level2' />
-              {errors.city && touched.city ? <div>{errors.city}</div> : null}
+              <Field
+                name='city'
+                autoComplete='billing address-level2'
+                render={labelInputField('City')}
+              />
 
-              <label>State · Province · Region</label>
-              <Field name='state' autoComplete='billing address-level1' />
-              {errors.state && touched.state ? <div>{errors.state}</div> : null}
+              <Field
+                name='state'
+                autoComplete='billing address-level1'
+                render={labelInputField('State · Province · Region')}
+              />
 
-              <label>Country</label>
+              {/* // TODO: refactor below to use downscript or react-suggest */}
+              {/* <label>Country</label>
               <Field
                 name='country'
                 autoComplete='billing country-name'
                 component={CountryComboBox}
               />
-              {errors.country && touched.country ? (
-                <div>{errors.country}</div>
-              ) : null}
+              <ErrorMessage name='country' /> */}
+              <Field
+                name='country'
+                autoComplete='billing country-name'
+                render={labelInputField('Country')}
+              />
 
-              <label>Post Code</label>
-              <Field name='postCode' />
-              {errors.postCode && touched.postCode ? (
-                <div>{errors.postCode}</div>
-              ) : null}
+              <Field name='postCode' render={labelInputField('Post Code')} />
 
               <br />
-              <button type='submit' disabled={isSubmitting || !dirty}>
+              {/* // TODO: mess with button component to accept optional props} */}
+              <button
+                className='submit'
+                type='submit'
+                disabled={isSubmitting || !dirty}
+              >
                 {isSubmitting ? 'Submitted' : 'Submit'}
               </button>
-              {status && status.msg && <div>{status.msg}</div>}
-            </Form>
+              <button className='clear' onClick={() => resetForm()}>
+                Clear
+              </button>
+              {status && status.msg && (
+                <div className='status'>{status.msg}</div>
+              )}
+            </StyledForm>
           );
         }}
       </Formik>
-    </div>
+    </StyledDiv>
   );
 };
 
