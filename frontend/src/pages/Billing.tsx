@@ -6,7 +6,9 @@ import styled from '@emotion/styled';
 const Main = styled('div')`
 	margin: 50px
 `
+
 function Billing(props: RouteComponentProps) {
+	
 	const [info, setValues] = useState({
 		ccnum:'',
 		exp: '',
@@ -28,17 +30,20 @@ function Billing(props: RouteComponentProps) {
 	return(
 		<>
 		<Main>
-			
 			<div>
 			{/*Create form for collecting billing information - CC#, Exp. CVV [submit button]*/}
 			<form onSubmit={ printValues }>
 				<label>
-					<input name="CC Number" value={ info.ccnum } onClick= { handleSubmit }/>
-					<input name="Expiration" value={ info.exp } onClick= { handleSubmit }/>
-					<input name="CVV" value={ info.cvv } onClick= { handleSubmit }/>
+					<input name="CC Number" value={ info.ccnum }/>
+				</label>
+				<label>	
+					<input name="Expiration" value={ info.exp }/>
+				</label>
+				<label>
+					<input name="CVV" value={ info.cvv }/>
 				</label>
 				<br />
-				<button>Submit</button>
+				<button type='button' onClick = { handleSubmit }>Submit</button>
 			</form>
 			{/* Route billing information through stripe*/}
 			{/* Once processed, activate subscription? create confirmation code?*/}
