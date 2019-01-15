@@ -1,8 +1,7 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
-import { Button } from '../../components/shared_components/index';
+import { Button, Container } from '../../components/shared_components/index';
 import axios from 'axios';
 import {
-  HousesContainer,
   HouseItem,
   CardBody,
   ThumbNail,
@@ -11,6 +10,7 @@ import {
   CardHeading,
   Cleaner,
   CheckList,
+  HouseHeader,
 } from './Houses.styling';
 
 interface HousesEnum extends Array<House> {}
@@ -49,8 +49,8 @@ const Houses = () => {
   );
 
   return (
-    <HousesContainer>
-      <span>Recent Properties</span>
+    <Container>
+      <HouseHeader>Recent Properties</HouseHeader>
       {houses.map((house) => {
         return (
           <HouseItem key={house.id} data-testid='house-item'>
@@ -82,7 +82,7 @@ const Houses = () => {
           </HouseItem>
         );
       })}
-    </HousesContainer>
+    </Container>
   );
 };
 

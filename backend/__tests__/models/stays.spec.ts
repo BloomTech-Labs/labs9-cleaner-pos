@@ -57,9 +57,7 @@ describe('Stay DB functions', () => {
     const testUser = usersData[testStay.guest_id - 1];
     const testHouse = housesData[testStay.house_id - 1];
     // Act
-    const result = await findStaySummary(stayIdinDb).catch((e) => {
-      throw e;
-    });
+    const result = await findStaySummary(stayIdinDb).catch((e) => e);
     // Assert
     expect(result.guest).toBe(testUser.full_name);
     expect(result.house).toBe(testHouse.name);
