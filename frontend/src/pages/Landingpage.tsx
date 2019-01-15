@@ -135,7 +135,6 @@ const Landing = (props: RouteComponentProps) => {
           </a>
         </Footer>
       </Container>
-	  <div> { Billing } </div>	
     </div>
   );
 };
