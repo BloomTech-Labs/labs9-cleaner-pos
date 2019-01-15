@@ -18,7 +18,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Email is invalud')
+    .email('Email is invalid')
     .required('Email is required'),
   phone: Yup.string()
     .min(2)
@@ -42,6 +42,8 @@ const PostForm = (props: RouteComponentProps) => {
       return (
         <StyledTextField
           error={errorState}
+          inputProps={{ 'data-testid': `input-${name}` }}
+          InputLabelProps={{ 'data-testid': `label-${name}` }}
           className={`field-${name}`}
           label={errorState ? errors[name] : label}
           variant='filled'
@@ -201,6 +203,7 @@ const PostForm = (props: RouteComponentProps) => {
               <button
                 className='submit'
                 type='submit'
+                data-testid='button-submit'
                 disabled={isSubmitting || !dirty}
               >
                 {isSubmitting ? 'Submitted' : 'Submit'}
@@ -209,7 +212,9 @@ const PostForm = (props: RouteComponentProps) => {
                 Clear
               </button>
               {status && status.msg && (
-                <div className='status'>{status.msg}</div>
+                <div className='status' data-testid='div-status'>
+                  {status.msg}
+                </div>
               )}
             </StyledForm>
           );

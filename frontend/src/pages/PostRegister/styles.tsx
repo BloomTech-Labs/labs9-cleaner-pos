@@ -25,8 +25,8 @@ export const StyledForm = styled(Form)`
   grid-gap: 24px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    '. title title .'
-    'email email email phone'
+    'title title . .'
+    'email email phone phone'
     'address1 address1 address1 address1'
     'address2 address2 address2 address2'
     'city city state state'
