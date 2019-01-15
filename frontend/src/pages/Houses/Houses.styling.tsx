@@ -89,7 +89,7 @@ const HouseHeader = styled('span')`
   left: 0;
   text-align: left;
   border-bottom: 1px solid #b8003f;
-  align-item: flex-start;
+  align-items: flex-start;
   max-width: 290px;
 `;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../shared_components/Sidebar';
+import Sidebar from '../shared_components/Sidebar/Sidebar';
 import { cleanup } from 'react-testing-library';
 import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
