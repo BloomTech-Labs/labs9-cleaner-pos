@@ -26,10 +26,13 @@ function Billing(props: RouteComponentProps) {
 	};
 
 	const handleChange = (e: InputEvent) => {
-		setInfo ({
+{/*		setInfo ({
 			...info,
 			[e.target.name]: e.target.value
 		});
+*/}
+		setInfo(prev => ({ ...prev, [e.target.name]: e.target.value}));
+
 	};
 
 	return(
