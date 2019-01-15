@@ -3,7 +3,7 @@ import { get, post, put, deleteStay } from '../../src/controller/stays';
 // Mocks
 jest.mock('../../src/models/stays');
 import * as stayModels from '../../src/models/stays';
-
+import * as itemsModels from '../../src/models/items';
 export interface RequestMock {
   params?: any;
   body?: any;
@@ -87,6 +87,9 @@ describe('Stay Route Handler Functions:', () => {
     jest
       .spyOn(stayModels, 'postStayData')
       .mockImplementationOnce(() => Promise.resolve([1]));
+    jest
+      .spyOn(itemsModels, 'postItemsStay')
+      .mockImplementationOnce(() => Promise.resolve(1));
     req.body = {
       guest_id: 1,
       house_id: 1,
