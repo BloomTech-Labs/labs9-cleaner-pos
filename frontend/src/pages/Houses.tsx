@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Button, Sidebar } from '../components/shared_components/index';
+import { Button, } from '../components/shared_components/index';
 import axios from 'axios';
 import styled from '@emotion/styled';
 

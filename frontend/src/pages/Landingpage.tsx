@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { Button, Sidebar } from '../components/shared_components/index';
+import { Button } from '../components/shared_components/index';
 import house from '../assets/house.jpg';
 
 const Container = styled('div')`
@@ -85,7 +85,6 @@ const Landing = (props: RouteComponentProps) => {
   return (
     <div>
       <Container>
-        <Sidebar />
         <AppHeader>Cleaner POS</AppHeader>
         <h2>A POS that helps you keep things clean</h2>
         <Nav>
