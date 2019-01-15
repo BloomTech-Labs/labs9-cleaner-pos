@@ -31,7 +31,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:precommit": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,7 +43,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "cross-env": "^5.2.0",
     "prettier": "^1.15.3",
     "tslint": "^5.12.0"
   }

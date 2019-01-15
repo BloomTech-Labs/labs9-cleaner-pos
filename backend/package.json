@@ -9,7 +9,7 @@
     "dev:server": "npm run build:dev && npm-run-all --parallel nodemon- watch:server",
     "nodemon-": "node-dev ./dist/server.prod.js",
     "watch:server": "webpack --config webpack.dev.js --watch",
-    "test": "jest",
+    "test": "jest --verbose",
     "build:dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
@@ -34,7 +34,6 @@
     "@babel/preset-typescript": "^7.1.0",
     "babel-loader": "^8.0.4",
     "cors": "^2.8.5",
-    "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "dotenv-webpack": "^1.6.0",
     "express": "^4.16.4",
