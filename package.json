@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "npm run test:precommit --prefix frontend && npm test --prefix backend",
-    "postinstall": "npm install --prefix backend && npm run build --prefix backend"
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend"
   },
   "husky": {
     "hooks": {
