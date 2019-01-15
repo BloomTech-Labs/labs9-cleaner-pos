@@ -2,7 +2,8 @@
   "name": "labs9-cleaner-pos",
   "version": "1.0.0",
   "scripts": {
-    "test": "cross-env CI=true npm run test --prefix frontend && npm test --prefix backend"
+    "test": "cross-env CI=true npm run test --prefix frontend && npm test --prefix backend",
+	"postinstall": "npm i --prefix backend && npm i --prefix frontend && npm run build --prefix backend"
   },
   "husky": {
     "hooks": {
