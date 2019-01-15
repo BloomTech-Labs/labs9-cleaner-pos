@@ -61,17 +61,16 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
         photoURL,
         role: 'manager',
       };
+      const url =
+        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
       try {
-        const { data } = await axios.post(
-          'https://cleaner-pos.herokuapp.com/users/',
-          nUser,
-        );
-        if (data.first) {
-          localStorage.setItem('token', data.token);
-          props.history.push('/postreg');
-        }
+        const { data } = await axios.post(`${url}/users/`, nUser);
         localStorage.setItem('token', data.token);
-        props.history.push('/dashboard');
+        if (data.first) {
+          props.history.push('/postreg');
+        } else {
+          props.history.push('/dashboard');
+        }
       } catch (e) {
         throw e;
       }
