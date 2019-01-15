@@ -46,44 +46,44 @@ describe('User schema is implemented correctly!', async () => {
     expect(user).toMatchObject(newUser);
   });
 
-  test('should be possible to delete a user!', async (done) => {
-    /* Test plays off the knowledge that there are 3 seed users, deletes
-    one and checks if 2 users are left */
-    db('user')
-      .where({ full_name: 'Harald Junke' })
-      .del()
-      .then((res) => done());
+  // test('should be possible to delete a user!', async (done) => {
+  //   /* Test plays off the knowledge that there are 3 seed users, deletes
+  //   one and checks if 2 users are left */
+  //   db('user')
+  //     .where({ full_name: 'Harald Junke' })
+  //     .del()
+  //     .then((res) => done());
 
-    const users = await db('user');
+  //   const users = await db('user');
 
-    expect(users.length).toBe(2);
-  });
+  //   expect(users.length).toBe(2);
+  // });
 
-  test('should be possible to update a user!', async (done) => {
-    db('user')
-      .where({ full_name: 'Harald Junke' })
-      .update({ email: 'HJunke@gmail.com' })
-      .then(() => done());
-    const user = await db('user')
-      .where({ full_name: 'Harald Junke' })
-      .first();
-    expect(user).toHaveProperty('email', 'HJunke@gmail.com');
-  });
+  // test('should be possible to update a user!', async (done) => {
+  //   db('user')
+  //     .where({ full_name: 'Harald Junke' })
+  //     .update({ email: 'HJunke@gmail.com' })
+  //     .then(() => done());
+  //   const user = await db('user')
+  //     .where({ full_name: 'Harald Junke' })
+  //     .first();
+  //   expect(user).toHaveProperty('email', 'HJunke@gmail.com');
+  // });
 
-  test('seedData should match what is in the database', async () => {
-    const users = await db('user');
+  // test('seedData should match what is in the database', async () => {
+  //   const users = await db('user');
 
-    expect(users[0].full_name).toBe('Harald Junke');
-    expect(users[1].full_name).toBe('Gerhard Schroeder');
-    expect(users[2].full_name).toBe('Guenter Jauch');
-    expect(users.length).toBe(3);
-  });
+  //   expect(users[0].full_name).toBe('Harald Junke');
+  //   expect(users[1].full_name).toBe('Gerhard Schroeder');
+  //   expect(users[2].full_name).toBe('Guenter Jauch');
+  //   expect(users.length).toBe(3);
+  // });
 
-  test('should be able to find a user', async () => {
-    const user = await db('user')
-      .where({ full_name: 'Harald Junke' })
-      .first();
+  // test('should be able to find a user', async () => {
+  //   const user = await db('user')
+  //     .where({ full_name: 'Harald Junke' })
+  //     .first();
 
-    expect(user.full_name).toBe('Harald Junke');
-  });
+  //   expect(user.full_name).toBe('Harald Junke');
+  // });
 });
