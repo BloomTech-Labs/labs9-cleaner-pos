@@ -25,13 +25,6 @@ function Billing(props: RouteComponentProps) {
 		});
 	};
 
-//const Billing = (props: RouteComponentProps) => {
-//	handleChange(e) {
-//		this.setState({
-//			[name].value
-//		});
-//	}
-//	const [ ccnum, setCCNum ] = useState(0);
 	return(
 		<>
 		<Main>
