@@ -34,16 +34,6 @@
     "test:precommit": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npx tsc && npm run test:precommit"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "prettier"
-    ]
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
