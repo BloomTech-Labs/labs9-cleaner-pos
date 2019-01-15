@@ -15,6 +15,14 @@ This is just the basic setup a post request to http://localhost:3000/email with
 }
 We can prob grap the 'from' address off the managers decoded token when the post is submitted.
 Will need a to address.
+output email is formatted
+```
+Hello James,
+
+You have been invited to clean for Steve
+
+Please visit this link to signup and accept Cleaner POS
+```
 */
 export const send = async (req: Request, res: Response, next: NextFunction) => {
   try {
