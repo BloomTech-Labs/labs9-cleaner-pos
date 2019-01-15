@@ -137,10 +137,10 @@ const PostForm = (props: RouteComponentProps) => {
           const {
             dirty,
             errors,
-            touched,
+            handleReset,
             isSubmitting,
             status,
-            resetForm,
+            touched,
           } = formProps;
           return (
             <StyledForm>
@@ -208,7 +208,7 @@ const PostForm = (props: RouteComponentProps) => {
               >
                 {isSubmitting ? 'Submitted' : 'Submit'}
               </button>
-              <button className='clear' onClick={() => resetForm()}>
+              <button className='clear' type='button' onClick={handleReset}>
                 Clear
               </button>
               {status && status.msg && (
