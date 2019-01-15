@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "cross-env CI=true npm run test --prefix frontend && npm test --prefix backend",
-    "postinstall": "npm i --prefix backend && npm i --prefix frontend && npm run build --prefix backend"
+    "postinstall": "yarn install --prefix backend && yarn install --prefix frontend && yarn build --prefix backend"
   },
   "husky": {
     "hooks": {
