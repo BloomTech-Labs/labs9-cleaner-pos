@@ -8,7 +8,7 @@ import knexConfig from '../../knexfile';
 // Mock db in users model functions
 jest.mock('../../data/dbConfig');
 import db from '../../data/dbConfig';
-
+import data from '../../data/seeds/data/usersData';
 // Use testDb instead of DB defined in env
 // TODO: Find way to define type for mockImplementation
 // spyon is a lead, but only works on a particular method?
@@ -65,7 +65,7 @@ describe('/user routes', () => {
       .set('Accept', 'application/json')
       .expect(200)
       .then(({ body }) => {
-        expect(body.length).toBe(3);
+        expect(body.length).toBe(data.length);
         done();
       });
   });
