@@ -4,6 +4,7 @@ import setGeneralMiddleware from './middleware/generalMiddleware';
 import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
+import * as items from './controller/items';
 
 export const server = express();
 
@@ -36,10 +37,26 @@ server
   .put(houses.put)
   .delete(houses.deleteU);
 
-/* this route looks for a query. if `lists/1?stay=true`
+server.route('/lists').post(lists.post);
+/* this get route looks for a query. if `lists/1?stay=true`
 the id should be for a stay. Anything else the id should be for a house
 */
-server.route('/lists/:id').get(lists.get);
+server
+  .route('/lists/:id')
+  .get(lists.get)
+  .delete(lists.deleteL);
+
+server
+  .route('/items')
+  .get(items.get)
+  .post(items.post);
+server
+  .route('/items/:id')
+  .get(items.get)
+  .put(items.put)
+  .delete(items.deleteL);
+
+server.route('/itemComplete').post(items.itemComplete);
 
 server.use(errorHandler);
 

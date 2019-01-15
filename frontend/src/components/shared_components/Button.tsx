@@ -1,13 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { string } from 'prop-types';
 
 // functionality is different
 // text is different
 // data-testid
 
 const StyledButton = styled('button')`
-  border-radius: 5px;
+  background: #393534;
+  width: 200px;
+  height: 50px;
+  color: #e4e4e4;
+  border: 0;
+  font-weight: condensed;
+  font-size: 24px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
 interface ButtonProps {
