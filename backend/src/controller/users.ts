@@ -62,6 +62,28 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+export const getByExtIt = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { ext_it } = req.token;
+    // Find users
+    let users: any;
+    if (ext_it) {
+      users = await findUserByExt_it(ext_it);
+    } else {
+      users = await findUsers();
+    }
+    // Return status 404 if individual user is not found
+    if (users === undefined) {
+      return res.status(404).json({ msg: '404: User cannot be found.' });
+    }
+    // Send 200 OK and user data
+    res.status(200).json(users);
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
+};
+
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { ext_it, full_name, email, phone, address, role } = req.body;
