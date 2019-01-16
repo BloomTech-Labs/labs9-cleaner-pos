@@ -107,12 +107,12 @@
 			<p><span>Endpoint URL: </span><code>/users</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12
-"ext_id": "55"
-"full_name": "Snidely Whiplash"
-"email": "snwh@whatever.com"
-"phone": "123-456-7890"
-"address": "1 Dudley Lane, Somewhere, ST 98765"
+"id": 12,
+"ext_id": "55",
+"full_name": "Snidely Whiplash",
+"email": "snwh@whatever.com",
+"phone": "123-456-7890",
+"address": "1 Dudley Lane, Somewhere, ST 98765",
 "role": "assistant"
 }</code></pre>
 	</section>
@@ -122,11 +122,11 @@
 			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 55
-"ext_id": 12
-"full_name": "Bullwinkle J. Moose"
-"email": "bumo@whatever.com"
-"phone": "098-765-4321"
+"id": 55,
+"ext_id": 12,
+"full_name": "Bullwinkle J. Moose",
+"email": "bumo@whatever.com",
+"phone": "098-765-4321",
 "role": "manager"
 }</code></pre>
 	</section>
@@ -136,16 +136,17 @@
 			<p><span>Endpoint URL: </span><code>/users/</code> <span>Method: </span><code>POST</code></p>
 				<strong>Expected Input</strong>
 					<pre><code>{
-"ext_id": 12
-"full_name": "Bullwinkle J. Moose"
+"ext_id": 12,
+"full_name": "Bullwinkle J. Moose",
 "role": "manager"
 }</code></pre>
-				<strong>Expected Output</strong>
+				<strong>Example Output</strong>
 					<pre><code>{
 "message": "user created",
 "id": [
 	7
 ]
+}</code></pre>
 	</section>
 	<hr />
 	<section id="edituserbyID" class="row">
@@ -154,8 +155,9 @@
 			<p>Only fields that are going to be updated need to be sent. Requires being logged in as Manager.</p>
 				<strong>Expected Input</strong>
 					<pre><code>{
-"full_name": "Bullwinkle J. Moose"
+"full_name": "Bullwinkle J. Moose",
 "role": "manager"
+}</code></pre>
 				<strong>Example Output</strong>
 					<pre><code>55</code></pre>
 	</section>
@@ -166,7 +168,7 @@
 				<p>This route requires being logged in as manager</p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"message": "deleted"
+"message": "deleted",
 "id": 12
 }</code></pre>
 	</section>
@@ -175,14 +177,24 @@
 		<h4>Get List of Houses</h4>
 			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
-					<pre><code>{
-"name": "are the houses really going to be named?
-"address": "1313 Mockingbird Lane"
-"default_ast": "I.P. Freely"
-"manager": "Amanda Hugginkiss"
-"guest_guide": "not sure what this is for"
-"ast_guide": "not sure what to put here, either"
-}</code></pre>
+					<pre><code>[
+	{
+		"name": "are the houses really going to be named?,
+		"address": "1313 Mockingbird Lane",
+		"default_ast": "I.P. Freely",
+		"manager": "Amanda Hugginkiss",
+		"guest_guide": "not sure what this is for",
+		"ast_guide": "not sure what to put here, either"
+	},
+	{
+		"name": "whatever",
+		"address": 308 Negra Arroyo Lane",
+		"default_ast": "Oliver Klozoff",
+		"manager": "Seymour Butz",
+		"guest_guide": "yeah",
+		"ast_guide": "not sure what the call this"
+	}
+]</code></pre>
 	</section>
 	<hr />
 	<section id="gethousebyID" class="row">
@@ -190,45 +202,44 @@
 			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 2
-"name": "whatever"
-"address": "308 Negra Arroyo Lane"
-"default_ast": "Oliver Klozoff"
-"manager": "Seymour Butz"
-"guest_guide": "yeah"
-"ast_guide": "running out of names for things"
+"id": 2,
+"name": "whatever",
+"address": "308 Negra Arroyo Lane",
+"default_ast": "Oliver Klozoff",
+"manager": "Seymour Butz",
+"guest_guide": "yeah",
+"ast_guide": "not sure what to call this"
 }</code></pre>
 	</section>
 	<hr />
 	<section id="postnewhouse" class="row">
 		<h4>Post New House</h4>
 			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>POST</code></p>
-				<strong>Example Output</strong>
+				<strong>Expected Input</strong>
 					<pre><code>{
-"address": "704 Hauser Street"
-"default_ast": "Anita Bath"
+"address": "704 Hauser Street",
+"default_ast": "Anita Bath",
 "manager": "Seymour Butz"
 }</code></pre>
-				<strong>Expected Output</strong>
+				<strong>Example Output</strong>
 					<pre><code>{
 "message": "house created",
-"id": [
+"house_id": [
 	3
 ]
+}</code></pre>
 	</section>
 	<hr />
 	<section id="edithousebyID" class="row">
 		<h4>Edit House by ID</h4>
 			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>PUT</code></p>
-				<strong>Example Output</strong>
+				<strong>Expected Input</strong>
 					<pre><code>{
-"name"
-"address"
-"default_ast"
-"manager"
-"guest_guide"
-"ast_guide"
+"address": "704 Hauser Street",
+"default_ast": "Yuri Nator"
 }</code></pre>
+				<strong>Example Output</strong>
+					<pre><code>3</code></pre>
 	</section>
 	<hr />
 	<section id="deletehousebyID" class="row">
@@ -236,12 +247,12 @@
 			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>DELETE</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12
-"name"
-"address"
-"default_ast"
-"manager"
-"guest_guide"
+"id": 12,
+"name",
+"address",
+"default_ast",
+"manager",
+"guest_guide",
 "ast_guide"
 }</code></pre>
 	</section>
@@ -251,8 +262,8 @@
 			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12
-"list_id"
+"id": 12,
+"list_id",
 "house_id"
 }</code></pre>
 	</section>
@@ -262,8 +273,8 @@
 			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>DELETE</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12
-"list_id"
+"id": 12,
+"list_id",
 "house_id"
 }</code></pre>
 	</section>
@@ -273,7 +284,7 @@
 			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"list_id"
+"list_id",
 "items"
 }</code></pre>
 	</section>
@@ -283,8 +294,8 @@
 			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 1
-"list_id"
+"id": 1,
+"list_id",
 "items"
 }</code></pre>
 	</section>
@@ -294,7 +305,7 @@
 			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"list_id"
+"list_id",
 "item"
 }</code></pre>
 	</section>
@@ -304,8 +315,8 @@
 			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 1
-"list_id"
+"id": 1,
+"list_id",
 "item"
 }</code></pre>
 	</section>
@@ -315,8 +326,8 @@
 			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 1
-"list_id"
+"id": 1,
+"list_id",
 "item"
 }</code></pre>
 	</section>
