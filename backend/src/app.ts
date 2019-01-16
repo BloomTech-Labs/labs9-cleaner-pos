@@ -1,6 +1,8 @@
 import express from 'express';
 import { errorHandler } from './middleware/errorHandler';
 import setGeneralMiddleware from './middleware/generalMiddleware';
+// @ts-ignore
+import companion from '@uppy/companion';
 import verifyToken from './middleware/verifyToken';
 import * as users from './controller/users';
 import * as houses from './controller/houses';
@@ -60,6 +62,22 @@ server
 
 server.route('/itemComplete').post(items.itemComplete);
 
+const options = {
+  filePath: '../uploads',
+  providerOptions: {
+    s3: {
+      bucket: 'cleaner-pos',
+      key: process.env.AWS_Key,
+      region: process.env.REGION,
+      secret: process.env.AWS_SECRET,
+    },
+  },
+  server: {
+    host: 'localhost:3020',
+    protocol: 'http',
+  },
+};
+server.use(companion.app(options));
 server.use(errorHandler);
 
 export default server;
