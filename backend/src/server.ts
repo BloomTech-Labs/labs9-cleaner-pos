@@ -1,7 +1,7 @@
 import server from './app';
 
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT || 4500;
+/* tslint:disable */
 server.listen(PORT, () => console.log(`Server is listening on port ${PORT}!`));
 
 // @ts-ignore

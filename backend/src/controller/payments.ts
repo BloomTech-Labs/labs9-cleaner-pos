@@ -6,19 +6,23 @@ const get = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const post = async (req: Request, res: Response, next: NextFunction) => {
-  const { plan, customer } = req.body;
+  const { id } = req.body;
   try {
-    await stripe.subscriptions.create({
-      customer,
+    const customer = await stripe.customers.create({
+      source: id,
+    });
+    const sub = await stripe.subscriptions.create({
+      customer: customer.id,
       items: [
         {
-          plan,
+          plan: '1',
         },
       ],
     });
+    res.send({ customer: customer.id, message: 'hooooorrayyyyy' });
   } catch (e) {
-    console.log('Error posting to payment gateway');
+    e.statusCode = 500;
     next(e);
   }
 };
-export { get };
+export { get, post };
