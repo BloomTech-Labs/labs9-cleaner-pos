@@ -4,12 +4,14 @@ const pg = require('pg');
 pg.defaults.ssl = true;
 module.exports = {
   development: {
-    client: 'pg',
-    connection: process.env.STAGING_DB,
-    pool: {
-      min: 2,
-      max: 10,
+    client: 'sqlite3',
+    connection: {
+      filename: './test.db',
     },
+    pool: {
+      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
+    },
+    useNullAsDefault: true,
     migrations: {
       tableName: 'knex_migrations',
       directory: './data/migrations',
@@ -17,7 +19,6 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
-    ssl: true,
   },
   production: {
     client: 'pg',
