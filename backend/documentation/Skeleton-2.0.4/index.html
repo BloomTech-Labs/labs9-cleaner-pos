@@ -159,7 +159,10 @@
 "role": "manager"
 }</code></pre>
 				<strong>Example Output</strong>
-					<pre><code>55</code></pre>
+					<pre><code>{
+"message": "success",
+"id":55
+}</code></pre>
 	</section>
 	<hr />
 	<section id="deleteuserbyID" class="row">
@@ -239,7 +242,10 @@
 "default_ast": "Yuri Nator"
 }</code></pre>
 				<strong>Example Output</strong>
-					<pre><code>3</code></pre>
+					<pre><code>{
+"message":"success",
+"house_id": 3
+}</code></pre>
 	</section>
 	<hr />
 	<section id="deletehousebyID" class="row">
@@ -247,13 +253,8 @@
 			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>DELETE</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12,
-"name",
-"address",
-"default_ast",
-"manager",
-"guest_guide",
-"ast_guide"
+"message": "deleted",
+"id": 1
 }</code></pre>
 	</section>
 	<hr />
@@ -262,9 +263,9 @@
 			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12,
-"list_id",
-"house_id"
+"list_id": 8,
+"house_id": 3,
+"items": 
 }</code></pre>
 	</section>
 	<hr />
@@ -273,9 +274,9 @@
 			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>DELETE</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12,
-"list_id",
-"house_id"
+"message": deleted,
+"list_id": 8,
+"house_id": 3
 }</code></pre>
 	</section>
 	<hr />
@@ -284,8 +285,8 @@
 			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"list_id",
-"items"
+"list_id": 4,
+"items":
 }</code></pre>
 	</section>
 	<hr />
@@ -294,41 +295,51 @@
 			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 1,
-"list_id",
-"items"
+"item:id": 1,
+"list_id": 6,
+"items:"
 }</code></pre>
 	</section>
 	<hr />
 	<section id="postnewlistitem" class="row">
 		<h4>Post New Checklist Item</h4>
 			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"list_id": 3,
+"house_id": 3,
+"items:"
+}</code></pre>
 				<strong>Example Output</strong>
 					<pre><code>{
-"list_id",
-"item"
+"message": "success"
+"item_id": 17
 }</code></pre>
 	</section>
 	<hr />
 	<section id="editlistitembyID" class="row">
 		<h4>Edit Checklist Item by ID</h4>
 			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
-				<strong>Example Output</strong>
+				<strong>Example Input</strong>
 					<pre><code>{
-"id": 1,
-"list_id",
-"item"
+"item_id": 1,
+"list_id": 6,
+"items:"
 }</code></pre>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"message": "success"
+"item_id": 1
+}
 	</section>
 	<hr />
 	<section id="deleteitembyID" class="row">
 		<h4>Delete Checklist Item by ID</h4>
 			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
-				<strong>Example Output</strong>
+				<strong>Expected Output</strong>
 					<pre><code>{
-"id": 1,
-"list_id",
-"item"
+"message": "deleted",
+"item_id": 1
 }</code></pre>
 	</section>
 	<hr />
