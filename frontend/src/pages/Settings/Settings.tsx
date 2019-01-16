@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
+import { Link } from 'react-router-dom';
 
 import { Container, Button } from '../../components/shared_components';
 
@@ -8,6 +9,13 @@ const url =
 
 const Settings = () => {
   // useState returns an array. first element is the value, second element is a setState function
+  const [contact, setContact] = useState({
+    address: '',
+    email: '',
+    ext_it: '',
+    full_name: '',
+    phone: '',
+  });
   const [settings, setSettings] = useState({
     setting_email: false,
     setting_text: false,
@@ -61,19 +69,30 @@ const Settings = () => {
     axios
       .get(`${url}/users`, headers)
       .then(({ data }) => {
-        console.log(data);
-        const { setting_email, setting_text } = data;
+        console.log('data:', data);
+        const {
+          address,
+          email,
+          ext_it,
+          full_name,
+          phone,
+          setting_email,
+          setting_text,
+        } = data;
         setSettings({
           setting_email,
           setting_text,
         });
+        setContact({ address, email, ext_it, full_name, phone });
       })
       .catch(errorHandler);
   }, []);
 
   return (
     <Container>
-      <Button text='Update Contact' />
+      <Link to={{ pathname: '/updateinfo', state: contact }}>
+        <Button text='Update Contact' />
+      </Link>
       <input
         type='checkbox'
         name='setting_email'

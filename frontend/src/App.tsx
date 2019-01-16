@@ -1,9 +1,14 @@
 import React from 'react';
 import { RouteProps, Route, Switch } from 'react-router';
-import { LandingPage, Houses, Login, PostRegister, Settings } from './pages/index';
+import {
+  LandingPage,
+  Houses,
+  Login,
+  PostRegister,
+  Settings,
+} from './pages/index';
 import { Sidebar } from './components/shared_components/index';
 import './App.css';
-
 
 const App = (props: RouteProps) => {
   return (
@@ -15,6 +20,7 @@ const App = (props: RouteProps) => {
         <Route exact path='/postreg' component={PostRegister} />
         <Route exact path='/dashboard' component={Houses} />
         <Route exact path='/settings' component={Settings} />
+        <Route exact path='/updateinfo' component={PostRegister} />
       </Switch>
     </div>
   );

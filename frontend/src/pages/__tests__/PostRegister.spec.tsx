@@ -38,17 +38,24 @@ describe('PostRegister Component', () => {
 
   test('validates e-mail and shows appropriate error', () => {
     // Arrange
-    const { getByTestId, container } = render(
+    const { debug, getByTestId } = render(
       // @ts-ignore
       <PostRegister />,
     );
     const submit = getByTestId('button-submit');
+    const parentDiv = getByTestId('field-email');
     const emailInput = getByTestId('input-email');
+    const label = getByTestId('label-email');
     // const label = container.querySelector('.field-email label');
     const spy = jest.spyOn(axiosMock, 'get');
     // Act
+    // debug();
     fireEvent.change(emailInput, { target: { value: 'a' } });
+    fireEvent.blur(emailInput);
+    fireEvent.blur(label);
+    fireEvent.blur(parentDiv);
     fireEvent.click(submit);
+    debug();
     // Assert
     expect(spy).toHaveBeenCalledTimes(0);
   });
