@@ -1,11 +1,13 @@
 import React from 'react';
+import Stripe from './Stripe';
 import { Container } from '../../components/index';
 
-export const HouseDetails = () => {
+const Billing = () => {
   return (
     <Container>
-      <h1>Hello World!2</h1>
-      <p>Add some amazing text into dis bish</p>
+      <Stripe />
     </Container>
   );
 };
+
+export default Billing;

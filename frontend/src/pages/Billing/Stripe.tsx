@@ -2,21 +2,23 @@ import React from 'react';
 import Stripecheckout, { Token } from 'react-stripe-checkout';
 import axios from 'axios';
 
+// @ts-ignore
 const key = process.env.REACT_APP_stripe_API || '';
 
 class Stripe extends React.Component {
-  public amount = 200;
+  public amount = 999;
   public onToken = async (token: Token) => {
-    console.log(token);
-    // try {
-    //   // const response = await axios.get('/save-api-token');
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    try {
+      const response = await axios.post(
+        'http://localhost:4500/payments',
+        token,
+      );
+    } catch (e) {
+      return e;
+    }
     // tslint:disable-next-line:semicolon
   };
   public render() {
-    console.log(this.onToken);
     return (
       <>
         <Stripecheckout
