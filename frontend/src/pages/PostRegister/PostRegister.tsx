@@ -96,7 +96,7 @@ const PostForm = (props: RouteComponentProps) => {
               process.env.REACT_APP_backendURL ||
               'https://cleaner-pos.herokuapp.com';
             await axios.put(`${url}/users/`, userData, headers);
-            actions.setSubmitting(false);
+            await actions.setSubmitting(false);
             props.history.push('/dashboard');
           } catch (error) {
             actions.setSubmitting(false);
@@ -123,7 +123,6 @@ const PostForm = (props: RouteComponentProps) => {
               });
             } else {
               // Something happened in setting up the request that triggered an Error
-              console.log('Error', error.message);
               actions.setStatus({
                 msg: 'Request could not be processed. Please refresh the page.',
               });
