@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
     table.string('role');
     table.string('photoUrl');
     table.boolean('setting_text').defaultTo(false);
-    table.boolean('setting_email').default(false);
+    table.boolean('setting_email').defaultTo(false);
     table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 };
