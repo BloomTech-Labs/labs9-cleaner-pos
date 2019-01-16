@@ -1,15 +1,14 @@
 import React from 'react';
 import { RouteProps, Route, Switch } from 'react-router';
 import { LandingPage, Houses, Login, PostRegister } from './pages/index';
+import { Sidebar } from './components/shared_components/index';
 import './App.css';
-import { StripeProvider } from 'react-stripe-elements';
-import Sidebar from './components/shared_components/Sidebar';
-import Button from './components/shared_components/Button';
 import Stripe from './stripe';
 
 const App = (props: RouteProps) => {
   return (
     <div className='App'>
+      <Sidebar />
       <Switch>
         <Route exact path='/test' component={Stripe} />
         <Route exact path='/' component={LandingPage} />

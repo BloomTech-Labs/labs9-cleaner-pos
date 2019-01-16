@@ -55,12 +55,15 @@ const SideHeader = styled('div')`
 const Footer = styled('div')`
   display: flex;
   justify-content: space-around;
-  position: absolute;
+  align-items: center;
+  background-color: gray;
+  padding: 10px 50px 0 50px;
+  position: fixed;
   margin: auto;
   left: 0px;
   bottom: 0px;
-  height: 24px;
-  width: 70%;
+  height: 10%;
+  width: 100%;
   a {
     font-family: 'Roboto';
     font-size: 1.4rem;
