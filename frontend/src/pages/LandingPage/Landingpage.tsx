@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Button, Container } from '../../components/shared_components/index';
+import { Button, Container } from '../../components/index';
 import house from '../../assets/house.jpg';
 import {
   Footer,

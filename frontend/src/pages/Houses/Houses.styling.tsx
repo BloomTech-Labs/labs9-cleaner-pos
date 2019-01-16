@@ -5,6 +5,7 @@ const cardHeight = 216;
 const HouseItem = styled('div')`
   max-width: ${1136 * 0.9}px;
   height: ${cardHeight}px;
+  width: 100%;
   border-radius: 0px;
   padding-left: 1px;
   margin-top: 24px;
