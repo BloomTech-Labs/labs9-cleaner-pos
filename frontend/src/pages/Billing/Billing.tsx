@@ -1,5 +1,5 @@
 import React from 'react';
-import Stripe from './Stripe';
+import Stripe from './index';
 import { Container } from '../../components/index';
 
 const Billing = () => {

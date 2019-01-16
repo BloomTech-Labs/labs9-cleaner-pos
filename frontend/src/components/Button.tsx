@@ -5,24 +5,26 @@ import styled from '@emotion/styled';
 // text is different
 // data-testid
 
-const StyledButton = styled('button')`
-  background: #393534;
-  width: 200px;
-  height: 50px;
-  color: #e4e4e4;
-  border: 0;
-  font-weight: condensed;
-  font-size: 24px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-`;
-
 interface ButtonProps {
-  onClick?: () => void;
+  onClick?: (ev: any) => Promise<any> | void;
   text?: string;
   datatestid?: string;
+  colour?: string;
 }
 
-const Button = ({ onClick, text, datatestid }: ButtonProps) => {
+const Button = ({ onClick, text, datatestid, colour }: ButtonProps) => {
+  const buttonColour = colour || '#393534';
+  const StyledButton = styled('button')`
+    background: ${buttonColour};
+    width: 200px;
+    height: 50px;
+    color: #e4e4e4;
+    border: 0;
+    font-weight: condensed;
+    font-size: 24px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  `;
   return (
     <>
       <StyledButton onClick={onClick} type='button' data-testid={datatestid}>
