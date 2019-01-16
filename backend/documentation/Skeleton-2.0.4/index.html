@@ -165,7 +165,10 @@
 			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>DELETE</code></p>
 				<p>This route requires being logged in as manager</p>
 				<strong>Example Output</strong>
-					<pre><code>12</code></pre>
+					<pre><code>{
+"message": "deleted"
+"id": 12
+}</code></pre>
 	</section>
 	<hr />
 	<section id="getlistofhouses" class="row">
@@ -173,12 +176,12 @@
 			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"name"
-"address"
-"default_ast"
-"manager"
-"guest_guide"
-"ast_guide"
+"name": "are the houses really going to be named?
+"address": "1313 Mockingbird Lane"
+"default_ast": "I.P. Freely"
+"manager": "Amanda Hugginkiss"
+"guest_guide": "not sure what this is for"
+"ast_guide": "not sure what to put here, either"
 }</code></pre>
 	</section>
 	<hr />
@@ -187,13 +190,13 @@
 			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12
-"name"
-"address"
-"default_ast"
-"manager"
-"guest_guide"
-"ast_guide"
+"id": 2
+"name": "whatever"
+"address": "308 Negra Arroyo Lane"
+"default_ast": "Oliver Klozoff"
+"manager": "Seymour Butz"
+"guest_guide": "yeah"
+"ast_guide": "running out of names for things"
 }</code></pre>
 	</section>
 	<hr />
@@ -202,14 +205,16 @@
 			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>POST</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12
-"name"
-"address"
-"default_ast"
-"manager"
-"guest_guide"
-"ast_guide"
+"address": "704 Hauser Street"
+"default_ast": "Anita Bath"
+"manager": "Seymour Butz"
 }</code></pre>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"message": "house created",
+"id": [
+	3
+]
 	</section>
 	<hr />
 	<section id="edithousebyID" class="row">
@@ -217,7 +222,6 @@
 			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>PUT</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"id": 12
 "name"
 "address"
 "default_ast"
