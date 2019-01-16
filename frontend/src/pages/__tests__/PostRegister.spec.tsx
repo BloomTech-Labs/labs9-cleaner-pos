@@ -47,15 +47,14 @@ describe('PostRegister Component', () => {
     const parentDiv = getByTestId('field-email');
     const emailInput = getByTestId('input-email');
     const label = getByTestId('label-email');
-    const spy = jest.spyOn(axiosMock, 'get');
     // Act
     fireEvent.change(emailInput, { target: { name: 'email', value: 'a' } });
     fireEvent.click(submit);
     // Assert
+    // Thanks Nando & https://github.com/kentcdodds/react-testing-library/issues/224
     await wait(() => {
       expect((emailInput as any).value).toBe('a');
       expect(label).toHaveTextContent('Email is invalid');
-      expect(spy).toHaveBeenCalledTimes(0);
     });
   });
 });
