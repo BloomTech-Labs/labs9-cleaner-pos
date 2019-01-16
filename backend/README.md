@@ -9,9 +9,6 @@ This project is the culmination of 5 weeks of combined effort by the contributor
 - PostgresQL (Database)
 - Webpack
 
-# API Documentation
-Please see our API Documentation [here](index.html).
-
 # Getting Started
 First, make sure you are in the `backend` sub-directory:
 
