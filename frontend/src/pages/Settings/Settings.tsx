@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
-import { Container, Button } from '../../components/shared_components';
+import { Container, Button } from '../../components/';
 import { Card, Positioner, Header, ButtonText, Checkbox } from './Settings.styling';
 
 const url =

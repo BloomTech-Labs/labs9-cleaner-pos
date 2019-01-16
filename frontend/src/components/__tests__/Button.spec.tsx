@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../shared_components/Button';
+import Button from '../Button';
 import { render, cleanup, fireEvent } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';

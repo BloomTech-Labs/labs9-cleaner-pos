@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
 // Styled Components
-import { Container } from '../../components/shared_components';
+import { Container } from '../../components/';
 import { StyledDiv, StyledForm, StyledTextField } from './styles';
 // Type Definitions
 import { AxiosRequestConfig } from 'axios';
