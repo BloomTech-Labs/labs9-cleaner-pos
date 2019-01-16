@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import { Container, Button } from '../../components/shared_components';
 
 const Settings = () => {
