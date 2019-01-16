@@ -6,6 +6,7 @@ import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
+import * as payments from './controller/payments';
 
 export const server = express();
 
@@ -38,6 +39,8 @@ server
   .get(houses.get)
   .put(houses.put)
   .delete(houses.deleteU);
+
+server.route('/payments').get(payments.get);
 
 server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`
