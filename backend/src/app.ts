@@ -18,7 +18,7 @@ server.get('/', (req, res) => {
 
 server
   .route('/users')
-  .get(users.getByExtIt)
+  .get(verifyToken, users.getByExtIt)
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
