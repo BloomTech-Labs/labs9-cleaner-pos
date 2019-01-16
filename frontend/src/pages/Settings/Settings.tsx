@@ -47,7 +47,6 @@ const Settings = () => {
     if (e.response) {
       // Error response from server
       const { status, data } = e.response;
-      console.log('data', data);
       setInfo({ msg: `${status}: ${data.message}`, error: true });
     } else if (e.request) {
       // This means that the server could not be reached
