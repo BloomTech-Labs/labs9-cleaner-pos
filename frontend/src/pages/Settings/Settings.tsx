@@ -69,7 +69,6 @@ const Settings = () => {
     axios
       .get(`${url}/users`, headers)
       .then(({ data }) => {
-        console.log('data:', data);
         const {
           address,
           email,
