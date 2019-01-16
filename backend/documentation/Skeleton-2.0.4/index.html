@@ -107,7 +107,13 @@
 			<p><span>Endpoint URL: </span><code>/users</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"fullname": "Snidely Whiplash"
+"id": 12
+"ext_id": "55"
+"full_name": "Snidely Whiplash"
+"email": "snwh@whatever.com"
+"phone": "123-456-7890"
+"address": "1 Dudley Lane, Somewhere, ST 98765"
+"role": "assistant"
 }</code></pre>
 	</section>
 	<hr />
@@ -116,72 +122,204 @@
 			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>GET</code></p>
 				<strong>Example Output</strong>
 					<pre><code>{
-"fullname": "Snidely Whiplash"
+"id": 55
+"ext_id": 12
+"full_name": "Bullwinkle J. Moose"
+"email": "bumo@whatever.com"
+"phone": "098-765-4321"
+"role": "manager"
 }</code></pre>
 	</section>
 	<hr />
 	<section id="postnewuser" class="row">
 		<h4>Post New User</h4>
+			<p><span>Endpoint URL: </span><code>/users/</code> <span>Method: </span><code>POST</code></p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"ext_id": 12
+"full_name": "Bullwinkle J. Moose"
+"role": "manager"
+}</code></pre>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"message": "user created",
+"id": [
+	7
+]
 	</section>
 	<hr />
 	<section id="edituserbyID" class="row">
 		<h4>Edit User by ID</h4>
+			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>PUT</code></p>
+			<p>Only fields that are going to be updated need to be sent. Requires being logged in as Manager.</p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"full_name": "Bullwinkle J. Moose"
+"role": "manager"
+				<strong>Example Output</strong>
+					<pre><code>55</code></pre>
 	</section>
 	<hr />
 	<section id="deleteuserbyID" class="row">
 		<h4>Delete User by ID</h4>
+			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>DELETE</code></p>
+				<p>This route requires being logged in as manager</p>
+				<strong>Example Output</strong>
+					<pre><code>12</code></pre>
 	</section>
 	<hr />
 	<section id="getlistofhouses" class="row">
 		<h4>Get List of Houses</h4>
+			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"name"
+"address"
+"default_ast"
+"manager"
+"guest_guide"
+"ast_guide"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="gethousebyID" class="row">
 		<h4>Get House by ID</h4>
+			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 12
+"name"
+"address"
+"default_ast"
+"manager"
+"guest_guide"
+"ast_guide"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="postnewhouse" class="row">
 		<h4>Post New House</h4>
+			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>POST</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 12
+"name"
+"address"
+"default_ast"
+"manager"
+"guest_guide"
+"ast_guide"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="edithousebyID" class="row">
 		<h4>Edit House by ID</h4>
+			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>PUT</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 12
+"name"
+"address"
+"default_ast"
+"manager"
+"guest_guide"
+"ast_guide"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="deletehousebyID" class="row">
 		<h4>Delete House by ID</h4>
+			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>DELETE</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 12
+"name"
+"address"
+"default_ast"
+"manager"
+"guest_guide"
+"ast_guide"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="getlistbyID" class="row">
 		<h4>Get Checklist by ID</h4>
+			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 12
+"list_id"
+"house_id"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="deletelistbyID" class="row">
 		<h4>Delete Checklist by ID</h4>
+			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>DELETE</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 12
+"list_id"
+"house_id"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="getlistitems" class="row">
 		<h4>Get Checklist Items</h4>
+			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"list_id"
+"items"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="getlistitembyID" class="row">
 		<h4>Get Checklist Item by ID</h4>
+			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 1
+"list_id"
+"items"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="postnewlistitem" class="row">
 		<h4>Post New Checklist Item</h4>
+			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"list_id"
+"item"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="editlistitembyID" class="row">
 		<h4>Edit Checklist Item by ID</h4>
+			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 1
+"list_id"
+"item"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="deleteitembyID" class="row">
 		<h4>Delete Checklist Item by ID</h4>
+			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 1
+"list_id"
+"item"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="itemcomplete" class="row">
 		<h4>Item Complete</h4>
+			<p><span>Endpoint URL: </span><code>/itemComplete</code> <span>Method: </span><code>POST</code></p>
 	</section>
 	<hr />
 	<section id="oauth" class="row">
