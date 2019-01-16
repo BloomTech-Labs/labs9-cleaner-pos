@@ -3,28 +3,50 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import { Container, Button } from '../../components/shared_components';
 
+const url =
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
 const Settings = () => {
   // useState returns an array. first element is the value, second element is a setState function
   const [settings, setSettings] = useState({
     setting_email: false,
     setting_text: false,
   });
-  const [error, setErrors] = useState({ msg: '' });
+  const [info, setInfo] = useState({ msg: '', error: false });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
     setSettings((prev) => ({ ...prev, [target.name]: target.checked }));
   };
 
+  const handleSubmit = () => {
+    const headers: AxiosRequestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    };
+
+    axios
+      .put(`${url}/users`, settings, headers)
+      .then(() => {
+        setInfo({ msg: 'Settings successfully saved.', error: false });
+      })
+      .catch(errorHandler);
+  };
+
   const errorHandler = (e: any) => {
     if (e.response) {
       const { status, data } = e.response;
-      setErrors({ msg: `${status}: ${data}` });
+      setInfo({ msg: `${status}: ${data}`, error: true });
     } else if (e.request) {
-      setErrors({ msg: 'Connection unsuccessful. Please try again.' });
+      setInfo({
+        msg: 'Connection unsuccessful. Please try again.',
+        error: true,
+      });
     } else {
-      setErrors({
+      setInfo({
         msg: 'Request could not be processed. Please refresh the page.',
+        error: true,
       });
     }
   };
@@ -35,9 +57,6 @@ const Settings = () => {
         Authorization: localStorage.getItem('token'),
       },
     };
-
-    const url =
-      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
     axios
       .get(`${url}/users`, headers)
@@ -71,8 +90,8 @@ const Settings = () => {
       />{' '}
       I would like to receive updates via text.
       <br />
-      <Button text='Save' />
-      {error.msg && <div className='settings-status'>{error.msg}</div>}
+      <Button text='Save' onClick={handleSubmit} />
+      {info.msg && <div className='settings-status'>{info.msg}</div>}
     </Container>
   );
 };
