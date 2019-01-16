@@ -66,6 +66,7 @@ const PostForm = (props: PostFormProps) => {
   };
 
   let startValues: InitialValueProps = {};
+  let location: string = '';
 
   if (props.location && props.location.state) {
     const { address, email, ext_it, full_name, phone } = props.location.state;
@@ -79,6 +80,7 @@ const PostForm = (props: PostFormProps) => {
     const state = addressArray[3];
     const country = addressArray[4];
     const postCode = addressArray[5];
+    location = props.location.pathname;
     startValues = {
       address1,
       address2,
@@ -91,8 +93,6 @@ const PostForm = (props: PostFormProps) => {
       phone,
     };
   }
-
-  const location = props.location.pathname;
 
   return (
     <Container>
