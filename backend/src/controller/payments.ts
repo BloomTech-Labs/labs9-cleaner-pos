@@ -7,6 +7,10 @@ const get = (req: Request, res: Response, next: NextFunction) => {
 
 const post = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.body;
+  if (!id) {
+    res.status(400).send({ message: 'Please include a valid token!' });
+    return;
+  }
   try {
     const customer = await stripe.customers.create({
       source: id,
@@ -19,7 +23,7 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
         },
       ],
     });
-    res.send({ customer: customer.id, message: 'hooooorrayyyyy' });
+    res.status(201).send({ customer: customer.id, message: 'hooooorrayyyyy' });
   } catch (e) {
     e.statusCode = 500;
     next(e);
