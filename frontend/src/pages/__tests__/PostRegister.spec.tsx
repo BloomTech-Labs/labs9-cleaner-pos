@@ -5,6 +5,7 @@ import {
   cleanup,
   waitForElement,
   getAllByTestId,
+  wait,
 } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';
@@ -36,9 +37,9 @@ describe('PostRegister Component', () => {
     expect(spy).toHaveBeenCalledTimes(0);
   });
 
-  test('validates e-mail and shows appropriate error', () => {
+  test('validates e-mail and shows appropriate error', async () => {
     // Arrange
-    const { debug, getByTestId } = render(
+    const { getByTestId } = render(
       // @ts-ignore
       <PostRegister />,
     );
@@ -46,17 +47,15 @@ describe('PostRegister Component', () => {
     const parentDiv = getByTestId('field-email');
     const emailInput = getByTestId('input-email');
     const label = getByTestId('label-email');
-    // const label = container.querySelector('.field-email label');
     const spy = jest.spyOn(axiosMock, 'get');
     // Act
-    // debug();
-    fireEvent.change(emailInput, { target: { value: 'a' } });
-    fireEvent.blur(emailInput);
-    fireEvent.blur(label);
-    fireEvent.blur(parentDiv);
+    fireEvent.change(emailInput, { target: { name: 'email', value: 'a' } });
     fireEvent.click(submit);
-    debug();
     // Assert
-    expect(spy).toHaveBeenCalledTimes(0);
+    await wait(() => {
+      expect((emailInput as any).value).toBe('a');
+      expect(label).toHaveTextContent('Email is invalid');
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
   });
 });

@@ -155,22 +155,22 @@ const PostForm = (props: PostFormProps) => {
                 // console.log(error.response.status);
                 // console.log(error.response.headers);
                 const { status, data } = error.response;
-                actions.setErrors({
+                await actions.setErrors({
                   errorStatus: status,
                 });
-                actions.setStatus({
+                await actions.setStatus({
                   msg: `${status}: ${data}`,
                 });
               } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                 // http.ClientRequest in node.js
-                actions.setStatus({
+                await actions.setStatus({
                   msg: 'Could not connect. Please try again later.',
                 });
               } else {
                 // Something happened in setting up the request that triggered an Error
-                actions.setStatus({
+                await actions.setStatus({
                   msg: `Request could not be processed. Please refresh the page.\n\nError:\n${
                     error.message
                   }`,
