@@ -59,7 +59,9 @@ describe('/user routes', () => {
       });
   });
 
-  test('GET request with no id returns all users', (done) => {
+  // Test is being skipped because functionality was changed
+  // Now `get` only returns one user based on ext_it
+  test.skip('GET request with no id returns all users', (done) => {
     request(app)
       .get('/users')
       .set('Accept', 'application/json')
