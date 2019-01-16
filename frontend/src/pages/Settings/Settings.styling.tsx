@@ -40,11 +40,16 @@ const ButtonText = styled('div')`
     /* border: 1px solid orange; */
 `;
 
+const Checkbox = styled('input')`
+    color: #393534;
+`;
+
 export {
     Card,
     Positioner,
     Header,
     ButtonText,
+    Checkbox,
 };
 
 // Git message test here

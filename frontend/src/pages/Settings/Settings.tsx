@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
 import { Container, Button } from '../../components/shared_components';
-import { Card, Positioner, Header, ButtonText } from './Settings.styling';
+import { Card, Positioner, Header, ButtonText, Checkbox } from './Settings.styling';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -100,21 +100,23 @@ const Settings = () => {
           <Positioner>
             <h3>Notification Settings</h3>
             <ButtonText>
-              <input
+              <Checkbox
                 type='checkbox'
                 name='setting_email'
                 checked={settings.setting_email}
                 onChange={handleInputChange}
-              />{' '}
+                data-testid={'checkbox'}
+                />{' '}
               I would like to receive updates via email.
               <br />
             </ButtonText>
             <ButtonText>
-              <input
+              <Checkbox
                 type='checkbox'
                 name='setting_text'
                 checked={settings.setting_text}
                 onChange={handleInputChange}
+                data-testid={'checkbox'}
               />{' '}
               I would like to receive updates via text.
               <br />
