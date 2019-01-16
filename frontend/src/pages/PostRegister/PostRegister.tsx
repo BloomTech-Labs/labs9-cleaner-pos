@@ -111,7 +111,6 @@ const PostForm = (props: RouteComponentProps) => {
               actions.setErrors({
                 errorStatus: status,
               });
-              console.log('POST ERROR: ', data);
               actions.setStatus({
                 msg: 'Internal Server Error. Please try again later.',
               });
@@ -126,8 +125,7 @@ const PostForm = (props: RouteComponentProps) => {
               // Something happened in setting up the request that triggered an Error
               console.log('Error', error.message);
               actions.setStatus({
-                msg:
-                  'Request could not be processed. Please refreshing the page.',
+                msg: 'Request could not be processed. Please refresh the page.',
               });
             }
           }

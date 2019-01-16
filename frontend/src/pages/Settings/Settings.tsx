@@ -9,10 +9,24 @@ const Settings = () => {
     setting_email: false,
     setting_text: false,
   });
+  const [error, setErrors] = useState({ msg: '' });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
     setSettings((prev) => ({ ...prev, [target.name]: target.checked }));
+  };
+
+  const errorHandler = (e: any) => {
+    if (e.response) {
+      const { status, data } = e.response;
+      setErrors({ msg: `${status}: ${data}` });
+    } else if (e.request) {
+      setErrors({ msg: 'Connection unsuccessful. Please try again.' });
+    } else {
+      setErrors({
+        msg: 'Request could not be processed. Please refresh the page.',
+      });
+    }
   };
 
   useEffect(() => {
@@ -35,9 +49,7 @@ const Settings = () => {
           setting_text,
         });
       })
-      .catch((e) => {
-        console.log(e);
-      });
+      .catch(errorHandler);
   }, []);
 
   return (
@@ -60,6 +72,7 @@ const Settings = () => {
       I would like to receive updates via text.
       <br />
       <Button text='Save' />
+      {error.msg && <div className='settings-status'>{error.msg}</div>}
     </Container>
   );
 };
