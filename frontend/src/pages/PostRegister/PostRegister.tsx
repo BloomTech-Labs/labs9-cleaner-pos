@@ -142,11 +142,11 @@ const PostForm = (props: PostFormProps) => {
                 process.env.REACT_APP_backendURL ||
                 'https://cleaner-pos.herokuapp.com';
               await axios.put(`${url}/users/`, userData, headers);
-              actions.setSubmitting(false);
-              actions.setStatus('Submission successful. Thank you!');
+              await actions.setSubmitting(false);
+              await actions.setStatus('Submission successful. Thank you!');
               props.history.push('/dashboard');
             } catch (error) {
-              actions.setSubmitting(false);
+              await actions.setSubmitting(false);
               if (error.response) {
                 // Resource: https://gist.github.com/fgilio/230ccd514e9381fafa51608fcf137253
                 // The request was made and the server responded with a status code
@@ -170,10 +170,10 @@ const PostForm = (props: PostFormProps) => {
                 });
               } else {
                 // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
                 actions.setStatus({
-                  msg:
-                    'Request could not be processed. Please refresh the page.',
+                  msg: `Request could not be processed. Please refresh the page.\n\nError:\n${
+                    error.message
+                  }`,
                 });
               }
             }
