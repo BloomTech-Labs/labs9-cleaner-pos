@@ -11,10 +11,12 @@ export const server = express();
 
 setGeneralMiddleware(server);
 
-server.get('/', (req, res) => {
+//server.get('/', (req, res) => {
   // TODO: Redirect to front-end site
-  res.send('hello world');
-});
+//  res.send('hello world');
+//});
+
+server.use(express.static('public'));
 
 server
   .route('/users')
