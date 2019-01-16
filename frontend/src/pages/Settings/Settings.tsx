@@ -95,39 +95,41 @@ const Settings = () => {
   return (
     <Container>
       <Header>
-        <h3>User Settings</h3>
-      </Header>
-      <Card>
-        <Positioner>
-          <ButtonText>
-            <input
-              type='checkbox'
-              name='setting_email'
-              checked={settings.setting_email}
-              onChange={handleInputChange}
-            />{' '}
-            I would like to receive updates via email.
-            <br />
-          </ButtonText>
-          <ButtonText>
-            <input
-              type='checkbox'
-              name='setting_text'
-              checked={settings.setting_text}
-              onChange={handleInputChange}
-            />{' '}
-            I would like to receive updates via text.
-            <br />
-          </ButtonText>
-        </Positioner>
-        <Positioner>
-          <Button text='Save' onClick={handleSubmit} />
-          <Link to={{ pathname: '/updateinfo', state: contact }}>
-            <Button text='Update Contact' />
-          </Link>
-          {info.msg && <div className='settings-status'>{info.msg}</div>}
-        </Positioner>
+        <h2>Account Settings</h2>
+        <Card>
+          <Positioner>
+            <h3>Notification Settings</h3>
+            <ButtonText>
+              <input
+                type='checkbox'
+                name='setting_email'
+                checked={settings.setting_email}
+                onChange={handleInputChange}
+              />{' '}
+              I would like to receive updates via email.
+              <br />
+            </ButtonText>
+            <ButtonText>
+              <input
+                type='checkbox'
+                name='setting_text'
+                checked={settings.setting_text}
+                onChange={handleInputChange}
+              />{' '}
+              I would like to receive updates via text.
+              <br />
+            </ButtonText>
+            <Button text='Save Settings' onClick={handleSubmit} />
+          </Positioner>
+          <Positioner>
+            <h3>Contact Information</h3>
+            <Link to={{ pathname: '/updateinfo', state: contact }}>
+              <Button text='Update Contact Info' />
+            </Link>
+            {info.msg && <div className='settings-status'>{info.msg}</div>}
+          </Positioner>
         </Card>
+      </Header>
     </Container>
   );
 };
