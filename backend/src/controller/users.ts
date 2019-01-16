@@ -64,13 +64,15 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 
 export const getByExtIt = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    if (!req.token) {
+      const e = {...new Error('Authentication required.'), statusCode: 403};
+      throw e;
+    }
     const { ext_it } = req.token;
     // Find users
     let users: any;
     if (ext_it) {
       users = await findUserByExt_it(ext_it);
-    } else {
-      users = await findUsers();
     }
     // Return status 404 if individual user is not found
     if (users === undefined) {
@@ -79,7 +81,7 @@ export const getByExtIt = async (req: Request, res: Response, next: NextFunction
     // Send 200 OK and user data
     res.status(200).json(users);
   } catch (e) {
-    e.statusCode = 400;
+    e.statusCode = e.statusCode || 400;
     next(e);
   }
 };
