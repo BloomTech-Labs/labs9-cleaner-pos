@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
 import { Container, Button } from '../../components/shared_components';
+import { Card, Positioner, Header, ButtonText } from './Settings.styling';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -44,14 +45,18 @@ const Settings = () => {
 
   const errorHandler = (e: any) => {
     if (e.response) {
+      // Error response from server
       const { status, data } = e.response;
-      setInfo({ msg: `${status}: ${data}`, error: true });
+      console.log('data', data);
+      setInfo({ msg: `${status}: ${data.message}`, error: true });
     } else if (e.request) {
+      // This means that the server could not be reached
       setInfo({
         msg: 'Connection unsuccessful. Please try again.',
         error: true,
       });
     } else {
+      // This means there is an error at the application level
       setInfo({
         msg: 'Request could not be processed. Please refresh the page.',
         error: true,
@@ -89,27 +94,40 @@ const Settings = () => {
 
   return (
     <Container>
-      <Link to={{ pathname: '/updateinfo', state: contact }}>
-        <Button text='Update Contact' />
-      </Link>
-      <input
-        type='checkbox'
-        name='setting_email'
-        checked={settings.setting_email}
-        onChange={handleInputChange}
-      />{' '}
-      I would like to receive updates via email.
-      <br />
-      <input
-        type='checkbox'
-        name='setting_text'
-        checked={settings.setting_text}
-        onChange={handleInputChange}
-      />{' '}
-      I would like to receive updates via text.
-      <br />
-      <Button text='Save' onClick={handleSubmit} />
-      {info.msg && <div className='settings-status'>{info.msg}</div>}
+      <Header>
+        <h3>User Settings</h3>
+      </Header>
+      <Card>
+        <Positioner>
+          <ButtonText>
+            <input
+              type='checkbox'
+              name='setting_email'
+              checked={settings.setting_email}
+              onChange={handleInputChange}
+            />{' '}
+            I would like to receive updates via email.
+            <br />
+          </ButtonText>
+          <ButtonText>
+            <input
+              type='checkbox'
+              name='setting_text'
+              checked={settings.setting_text}
+              onChange={handleInputChange}
+            />{' '}
+            I would like to receive updates via text.
+            <br />
+          </ButtonText>
+        </Positioner>
+        <Positioner>
+          <Button text='Save' onClick={handleSubmit} />
+          <Link to={{ pathname: '/updateinfo', state: contact }}>
+            <Button text='Update Contact' />
+          </Link>
+          {info.msg && <div className='settings-status'>{info.msg}</div>}
+        </Positioner>
+        </Card>
     </Container>
   );
 };
