@@ -2,7 +2,7 @@ import { QueryBuilder } from 'knex';
 import db from '../../../data/dbConfig';
 import { findUserByExt_it } from '../users';
 
-async function getPreparationProgress(houseId: number, stayId: number) {
+export async function getPreparationProgress(houseId: number, stayId: number) {
   const items = await db('items')
     .join('list', { 'list.id': 'list_id' })
     .where({ house_id: houseId })
