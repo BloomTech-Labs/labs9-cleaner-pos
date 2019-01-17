@@ -14,12 +14,11 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
-
     // Within the context of `Elements`, this call to createToken knows which Element to
     // tokenize, since there's only one in this group.
     try {
       // @ts-ignore
-      const { token } = await this.props.stripe.createToken({});
+      const { token } = await props.stripe.createToken({});
       const response = await axios.post(`${url}/payments`, token);
     } catch (e) {
       return e;

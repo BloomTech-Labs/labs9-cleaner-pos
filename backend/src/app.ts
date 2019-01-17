@@ -6,6 +6,11 @@ import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
+<<<<<<< HEAD
+=======
+import * as email from './controller/email';
+import * as payments from './controller/payments';
+>>>>>>> 5b7ef7a6cdbad365abdfb5104bb72df85f2d9aa2
 
 export const server = express();
 setGeneralMiddleware(server);
@@ -63,6 +68,8 @@ server
   .delete(items.deleteL);
 
 server.route('/itemComplete').post(items.itemComplete);
+
+server.route('/email').post(email.send);
 
 server.use(errorHandler);
 
