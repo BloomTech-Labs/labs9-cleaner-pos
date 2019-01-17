@@ -38,10 +38,21 @@ const StyledLink = styled(NavLink)`
     }
 `;
 
+const Accordion = styled('button')`
+	background-color: Transparent;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	display: none;
+	overflow: hidden;
+`;
+
 export {
     Container,
     NavWrapper,
     SettingsWrapper,
     StyledUL,
     StyledLink,
+	Accordion
 };

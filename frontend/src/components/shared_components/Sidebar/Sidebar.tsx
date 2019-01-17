@@ -19,7 +19,7 @@ const Sidebar = ({ onClick }: LinkProps) => {
         <StyledUL>
           <li>
             <StyledLink to='/reports'>
-              <h4>Reports</h4>
+              <button><h4>Reports</h4></button>
             </StyledLink>
           </li>
           <li>
