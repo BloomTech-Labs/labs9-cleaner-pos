@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Container } from '../../components/index';
+import 'leaflet/dist/leaflet.css';
 
 
 const LeafletMap = () => {
@@ -11,7 +13,7 @@ const LeafletMap = () => {
     });
 
     return(
-        <>
+        <Container>
         <Map center={[coordinates.lat, coordinates.lng]} zoom={coordinates.zoom}>
             <TileLayer
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -25,7 +27,7 @@ const LeafletMap = () => {
                 </Popup>
             </Marker>
         </Map>
-        </>
+        </Container>
     );
 };
 
