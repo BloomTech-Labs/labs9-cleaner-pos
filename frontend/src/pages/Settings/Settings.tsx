@@ -3,12 +3,34 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
 import { Container, Button } from '../../components/';
-import { Card, Positioner, Header, ButtonText, Checkbox } from './Settings.styling';
+import {
+  Card,
+  Positioner,
+  Header,
+  ButtonText,
+  Checkbox,
+} from './Settings.styling';
+import { RouteChildrenProps, RouteComponentProps } from 'react-router';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-const Settings = () => {
+const Settings: React.SFC<RouteComponentProps> = (props) => {
+  const { search } = props.location;
+  const params = search.match(/code=(.*)/);
+
+  if (params !== null && params.length === 2) {
+    const headers: AxiosRequestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    };
+    const clientId = params[1];
+    axios
+      .post(`${url}/payments/user`, clientId, headers)
+      .then((res) => res)
+      .catch((e) => e);
+  }
   // useState returns an array. first element is the value, second element is a setState function
   const [contact, setContact] = useState({
     address: '',
@@ -105,7 +127,7 @@ const Settings = () => {
                 checked={settings.setting_email}
                 onChange={handleInputChange}
                 data-testid={'checkbox'}
-                />{' '}
+              />{' '}
               I would like to receive updates via email.
               <br />
             </ButtonText>
