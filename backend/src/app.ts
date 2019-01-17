@@ -6,7 +6,6 @@ import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
-import * as payments from './controller/payments';
 
 export const server = express();
 setGeneralMiddleware(server);
@@ -17,14 +16,15 @@ setGeneralMiddleware(server);
 //});
 
 const path = require('path')
-server.use(express.static(path.resolve(path.join(__dirname, 'public'))));
-server.get('/', (_, res) => {
-	res.sendFile('/index.html');
+server.get('/', (req, res) => {
+	res.sendFile('index.html', { root: path.join(__dirname, 'public') })
+	res.sendFile('normalize.css', { root: path.join(__dirname, 'public/css') })
+	res.sendFile('skeleton.css', { root: path.join(__dirname, 'public/css') })
 });
 
 server
   .route('/users')
-  .get(verifyToken, users.getByExtIt)
+  .get(users.get)
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
@@ -44,11 +44,6 @@ server
   .get(houses.get)
   .put(houses.put)
   .delete(houses.deleteU);
-
-server
-  .route('/payments')
-  .get(payments.get)
-  .post(payments.post);
 
 server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`
