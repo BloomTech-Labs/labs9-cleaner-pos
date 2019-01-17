@@ -38,6 +38,26 @@ export function findStaySummary(stayId: number): QueryBuilder {
     .first();
 }
 
+export function findStaySummaryStandardized(stayId: number): QueryBuilder {
+  // TODO: Query list status once lists are set up
+  return db('stay')
+    .where({ 'stay.id': stayId })
+    .select(
+      'user.full_name AS guest_name',
+      'house.id AS house_id',
+      'house.name AS house_name',
+      'house.address AS house_address',
+      'house.default_ast AS default_ast',
+      'house.guest_guide AS guest_guide',
+      'house.ast_guide AS ast_guide',
+      'check_in',
+      'check_out',
+    )
+    .join('user', 'user.id', '=', 'stay.guest_id')
+    .join('house', 'house.id', '=', 'stay.house_id')
+    .first();
+}
+
 export async function findAllStays(userExtIt: string): Promise<any> {
   try {
     // Find manager id

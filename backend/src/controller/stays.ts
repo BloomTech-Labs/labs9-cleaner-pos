@@ -2,6 +2,7 @@
 import {
   deleteStayData,
   findStaySummary,
+  findStaySummaryStandardized,
   findAllStays,
   postStayData,
   putStayData,

@@ -1,5 +1,6 @@
 import {
   findStaySummary,
+  findStaySummaryStandardized,
   findAllStays,
   postStayData,
   putStayData,
@@ -9,6 +10,7 @@ import {
 export {
   deleteStayData,
   findAllStays,
+  findStaySummaryStandardized,
   findStaySummary,
   postStayData,
   putStayData,
