@@ -98,12 +98,12 @@ describe('Stay DB functions', () => {
     // Assert
     expect(result.length).toBe(3);
     const sampleObj = result[0];
-    expect(sampleObj).toHaveProperty('stayId');
-    expect(sampleObj).toHaveProperty('houseId');
-    expect(sampleObj).toHaveProperty('guestName');
-    expect(sampleObj).toHaveProperty('houseName');
-    expect(sampleObj).toHaveProperty('checkIn');
-    expect(sampleObj).toHaveProperty('checkOut');
+    expect(sampleObj).toHaveProperty('stay_id');
+    expect(sampleObj).toHaveProperty('house_id');
+    expect(sampleObj).toHaveProperty('guest_name');
+    expect(sampleObj).toHaveProperty('house_name');
+    expect(sampleObj).toHaveProperty('check_in');
+    expect(sampleObj).toHaveProperty('check_out');
   });
 
   test('postStayData posts data to DB', async () => {

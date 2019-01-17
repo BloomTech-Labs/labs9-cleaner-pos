@@ -75,20 +75,20 @@ export async function findAllStays(userExtIt: string): Promise<any> {
       .join('user', { 'user.id': 'guest_id' })
       .join('house', { 'house.id': 'house_id' })
       .select(
-        'stay.id AS stayId',
-        'house.id AS houseId',
-        'user.full_name AS guestName',
-        'house.name AS houseName',
-        'check_in AS checkIn',
-        'check_out AS checkOut',
+        'stay.id AS stay_id',
+        'house.id AS house_id',
+        'user.full_name AS guest_name',
+        'house.name AS house_name',
+        'check_in AS check_in',
+        'check_out AS check_out',
       )
       .map(async (val: any) => {
         // Find percentage of completed items over total items in checklist
-        const { houseId, stayId } = val;
+        const { house_id, stay_id } = val;
         const progress: number = await getPreparationProgress(
           'before',
-          houseId,
-          stayId,
+          house_id,
+          stay_id,
         );
         return { ...val, progress };
       });

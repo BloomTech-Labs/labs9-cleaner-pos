@@ -29,7 +29,7 @@ export async function get(
   const { id } = req.params;
 
   try {
-    const summary = await findStaySummary(id);
+    const summary: QueryBuilder = await findStaySummaryStandardized(id);
     if (summary === undefined) {
       const e: any = new Error(`Stay with given ID ${id} not found.`);
       e.statusCode = 404;

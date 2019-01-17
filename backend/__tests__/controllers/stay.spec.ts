@@ -59,7 +59,7 @@ describe('Stay Route Handler Functions:', () => {
   test('GET by id retrieves stay summary', async () => {
     // Arrange
     jest
-      .spyOn(stayModels, 'findStaySummary')
+      .spyOn(stayModels, 'findStaySummaryStandardized')
       .mockImplementationOnce(() => Promise.resolve(true));
     req.params = { id: 1 };
     // Act
