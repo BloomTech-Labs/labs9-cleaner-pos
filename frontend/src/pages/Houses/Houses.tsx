@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
-import { Button, Container } from '../../components/shared_components/index';
+import { Button, Container } from '../../components/index';
 import axios from 'axios';
 import {
   HouseItem,

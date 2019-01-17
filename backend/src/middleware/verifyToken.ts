@@ -21,7 +21,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   } catch (e) {
     console.log(e);
     e.statusCode = e.statusCode || 500;
-    res.status(e.statusCode).send('403: Not authenticated.');
+    res.status(e.statusCode).send('Cannot authenticate.');
   }
 };
 
