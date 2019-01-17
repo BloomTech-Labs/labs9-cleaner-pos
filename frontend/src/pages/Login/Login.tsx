@@ -9,7 +9,10 @@ import React, {
 } from 'react';
 import { RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import app from '../firebase.setup';
+import app from '../../firebase.setup';
+// Styles
+import Container from '../../components/Container';
+import LoginDiv from './Login.styling';
 
 const Login: FunctionComponent<RouteComponentProps> = (props) => {
   const [user, setUser] = useState<User | null>(null);
@@ -77,9 +80,13 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
     }
   }
   return (
-    <div>
-      <StyledFireBaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
-    </div>
+    <Container>
+      <LoginDiv>
+        <div className='login-container'>
+          <StyledFireBaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
+        </div>
+      </LoginDiv>
+    </Container>
   );
 };
 

@@ -1,5 +1,5 @@
 import Houses from './Houses/Houses';
-import Login from './Login';
+import Login from './Login/Login';
 import LandingPage from './LandingPage/Landingpage';
 import PostRegister from './PostRegister';
 import Billing from './Billing/Billing';
