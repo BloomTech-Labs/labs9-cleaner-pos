@@ -23,9 +23,13 @@ export function findStaySummary(stayId: number): QueryBuilder {
   return db('stay')
     .where({ 'stay.id': stayId })
     .select(
-      'user.full_name AS guest',
-      'house.name AS house',
-      'house.id as houseId',
+      'user.full_name AS guestName',
+      'house.id AS houseId',
+      'house.name AS houseName',
+      'house.address AS houseAddress',
+      'house.default_ast AS defaultAssistant',
+      'house.guest_guide AS guestGuide',
+      'house.ast_guide AS assistantGuide',
       'check_in',
       'check_out',
     )
@@ -36,12 +40,16 @@ export function findStaySummary(stayId: number): QueryBuilder {
 
 export async function findAllStays(userExtIt: string): Promise<any> {
   try {
+    // Find manager id
     const { id } = await findUserByExt_it(userExtIt);
+
+    // Find all house ids related to properties manager owns
     const houses = await db('house')
       .select('id')
       .where({ manager: id })
       .map((val: any) => val.id);
 
+    // Find all stays related to all found houses
     return db('stay')
       .whereIn('house_id', houses)
       .join('user', { 'user.id': 'guest_id' })
@@ -55,8 +63,13 @@ export async function findAllStays(userExtIt: string): Promise<any> {
         'check_out AS checkOut',
       )
       .map(async (val: any) => {
+        // Find percentage of completed items over total items in checklist
         const { houseId, stayId } = val;
-        const progress: number = await getPreparationProgress(houseId, stayId);
+        const progress: number = await getPreparationProgress(
+          'before',
+          houseId,
+          stayId,
+        );
         return { ...val, progress };
       });
   } catch (e) {

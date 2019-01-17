@@ -32,7 +32,8 @@ describe('Stay Route Handler Functions:', () => {
     jest
       .spyOn(stayModels, 'findAllStays')
       .mockImplementation(() => Promise.resolve(true));
-    req.params = { id: 1 };
+    // TODO: modify test for req.token.ext_it once complete
+    req.query = { extit: 1 };
     // Act
     await getAll(req, res, next);
     // Assert
@@ -45,7 +46,8 @@ describe('Stay Route Handler Functions:', () => {
     jest
       .spyOn(stayModels, 'findAllStays')
       .mockImplementation(() => Promise.reject(new Error('test')));
-    req.params = { id: 1 };
+    // TODO: modify test for req.token.ext_it once complete
+    req.query = { extit: 1 };
     // Act
     await getAll(req, res, next);
     // Assert

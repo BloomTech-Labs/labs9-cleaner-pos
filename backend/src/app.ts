@@ -70,7 +70,7 @@ server.route('/itemComplete').post(items.itemComplete);
 
 server.route('/email').post(email.send);
 
-server.route('/stays/:id').get(stays.getAll);
+server.route('/stays').get(stays.getAll);
 
 server.use(errorHandler);
 

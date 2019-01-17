@@ -65,8 +65,8 @@ describe('Stay DB functions', () => {
     // Act
     const result = await findStaySummary(stayIdinDb).catch((e) => e);
     // Assert
-    expect(result.guest).toBe(testUser.full_name);
-    expect(result.house).toBe(testHouse.name);
+    expect(result.guestName).toBe(testUser.full_name);
+    expect(result.houseName).toBe(testHouse.name);
   });
 
   test('findAllStays finds all upcoming guests of a user', async () => {

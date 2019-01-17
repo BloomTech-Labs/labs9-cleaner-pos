@@ -49,11 +49,14 @@ export async function getAll(
   next: Nexts,
 ): Promise<void> {
   // TODO: change to req.token.ext_it
-  const { id } = req.params;
+  const { extit } = req.query;
+
+  if (!extit) {
+    next(new Error('ext_it query is required'));
+  }
 
   try {
-    const stays = await findAllStays(String(id));
-    console.log(stays);
+    const stays = await findAllStays(String(extit));
     res.status(200).json(stays);
   } catch (e) {
     e.statusCode = e.statusCode || 400;
