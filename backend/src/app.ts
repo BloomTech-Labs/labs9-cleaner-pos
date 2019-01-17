@@ -8,15 +8,18 @@ import * as lists from './controller/lists';
 import * as items from './controller/items';
 
 export const server = express();
-
 setGeneralMiddleware(server);
 
 //server.get('/', (req, res) => {
   // TODO: Redirect to front-end site
-//  res.send('hello world');
+//  res.send('testing');
 //});
 
-server.use(express.static('public'));
+const path = require('path')
+server.use(express.static(path.resolve(path.join(__dirname, 'public'))));
+server.get('/', (_, res) => {
+	res.sendFile('/index.html');
+});
 
 server
   .route('/users')
