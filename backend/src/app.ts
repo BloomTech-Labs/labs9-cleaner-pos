@@ -16,11 +16,9 @@ setGeneralMiddleware(server);
 //});
 
 const path = require('path')
-server.get('/', (req, res) => {
-	res.sendFile('index.html', { root: path.join(__dirname, 'public') })
-	res.sendFile('normalize.css', { root: path.join(__dirname, 'public/css') })
-	res.sendFile('skeleton.css', { root: path.join(__dirname, 'public/css') })
-});
+
+server.use(express.static(path.resolve(path.join(__dirname, 'public'))));
+server.get('/', (__,res) => res.sendFile('index.html'));
 
 server
   .route('/users')
