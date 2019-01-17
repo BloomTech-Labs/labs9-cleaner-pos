@@ -26,11 +26,14 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
       { grant_type: 'authorization_code', code: authorizationCode },
       headers,
     );
-    const { ext_it } = req.token;
-    await updateUser(ext_it, { stripeUID: data.customer.stripe_user_id });
+
+    await updateUser('d7DXFYsNwTUKFAz3acyeUkMmtYQ2', {
+      stripeUID: data.customer.stripe_user_id,
+    });
 
     res.status(201).send({ message: 'Account succesfully connected!' });
   } catch (e) {
+    console.log(e);
     e.statusCode = 500;
     next(e);
   }

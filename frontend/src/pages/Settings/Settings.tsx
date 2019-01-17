@@ -19,6 +19,7 @@ const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const Settings: React.SFC<RouteComponentProps> = (props) => {
+  const clientId = process.env.REACT_APP_clientid;
   const { search } = props.location;
   const params = search.match(/code=(.*)/);
 
@@ -121,6 +122,12 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
         <h2>Account Settings</h2>
         <Card>
           <Positioner>
+            <a
+              /* tslint:disable-next-line */
+              href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
+            >
+              <span>Connect with stripe</span>
+            </a>
             <h3>Notification Settings</h3>
             <ButtonText>
               <Checkbox
