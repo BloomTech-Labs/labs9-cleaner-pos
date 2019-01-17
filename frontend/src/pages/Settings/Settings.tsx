@@ -28,8 +28,8 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     const clientId = params[1];
     axios
       .post(`${url}/payments/user`, clientId, headers)
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e));
+      .then((res) => res)
+      .catch((e) => e);
   }
   // useState returns an array. first element is the value, second element is a setState function
   const [contact, setContact] = useState({
