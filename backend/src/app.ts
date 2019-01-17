@@ -6,6 +6,7 @@ import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
+import * as email from './controller/email';
 import * as payments from './controller/payments';
 import * as stays from './controller/stays';
 
@@ -66,6 +67,8 @@ server
   .delete(items.deleteL);
 
 server.route('/itemComplete').post(items.itemComplete);
+
+server.route('/email').post(email.send);
 
 server.route('/stays/:id').get(stays.getAll);
 
