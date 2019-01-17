@@ -10,7 +10,7 @@ import {
   ButtonText,
   Checkbox,
 } from './Settings.styling';
-import { RouteChildrenProps, RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -25,9 +25,9 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
         Authorization: localStorage.getItem('token'),
       },
     };
-    const clientId = params[1];
+    const authorizationCode = params[1];
     axios
-      .post(`${url}/payments/user`, clientId, headers)
+      .post(`${url}/connect`, { authorizationCode }, headers)
       .then((res) => res)
       .catch((e) => e);
   }

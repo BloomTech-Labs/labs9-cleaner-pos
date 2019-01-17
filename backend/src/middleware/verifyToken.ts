@@ -19,7 +19,6 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     // ⬆️ https://stackoverflow.com/questions/47045185/jsonwebtoken-typescript-compiling-issue
     next();
   } catch (e) {
-    console.log(e);
     e.statusCode = e.statusCode || 500;
     res.status(e.statusCode).send('Cannot authenticate.');
   }
