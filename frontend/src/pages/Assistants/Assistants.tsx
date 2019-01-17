@@ -46,7 +46,7 @@ const Assistants = () => {
             {assistants.map((assistant) => {
                 return (
 
-                <AssistantItem key={assistants.id} data-testid='assistant-item'>
+                <AssistantItem key={assistant.id} data-testid='assistant-item'>
                     <ThumbNail
                         src='../../../../assets/ronald.jpg'
                         alt='Ronald'
