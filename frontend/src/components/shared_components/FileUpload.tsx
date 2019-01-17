@@ -13,9 +13,9 @@ import { DashboardModal } from '@uppy/react';
 import '@uppy/dashboard/dist/style.css';
 
 interface UploadProps {
-  type: string;
-  id: number;
-  text: string;
+  type?: string;
+  id?: number;
+  text?: string;
 }
 const AvatarPicker = (props: UploadProps) => {
   const [open, setOpen] = useState(false);
