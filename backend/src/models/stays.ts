@@ -13,39 +13,6 @@ interface Stay {
   created_at?: string;
 }
 
-export const findHouses = (userId: number) => {
-  return db('house')
-    .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })
-    .leftJoin('user', { 'assistant.user_id': 'user.id' })
-    .where({ manager_id: userId })
-    .select(
-      'house.id',
-      'house.name',
-      'house.address',
-      'house.default_ast',
-      'user.full_name as default_ast_name',
-      'house.manager',
-      'house.guest_guide',
-      'house.ast_guide',
-    )
-    .map(async (e: any) => {
-      const openAst = await db('house_ast')
-        .where({ 'house_ast.house_id': e.id })
-        .leftJoin('assistant', { 'house_ast.ast_id': 'assistant.id' })
-        .leftJoin('user', { 'assistant.user_id': 'user.id' })
-        .select(
-          'user.full_name',
-          'assistant.id as ast_id',
-          'house_ast.house_id',
-        );
-      const checkList = await db('list')
-        .where({ 'list.house_id': e.id })
-        .leftJoin('items', { 'list.id': 'items.list_id' })
-        .count('items.task');
-      return { ...e, openAst, checkList };
-    });
-};
-
 export function findStaySummary(stayId: number): QueryBuilder {
   /*
   Function returns guest name, check in/out dates, and checklist percentage.
@@ -66,6 +33,20 @@ export function findStaySummary(stayId: number): QueryBuilder {
     .first();
 }
 
+async function getPreparationProgress(houseId: number, stayId: number) {
+  const items = await db('items')
+    .join('list', { 'list.id': 'list_id' })
+    .where({ house_id: houseId })
+    .select('items.id');
+
+  const completeItems = await db('items')
+    .join('item_complete', { 'item_complete.item_id': 'items.id' })
+    .where({ stay_id: stayId })
+    .select('items.id');
+
+  return (completeItems.length / items.length) * 100;
+}
+
 export async function findAllStays(userExtIt: string) {
   try {
     const { id } = await findUserByExt_it(userExtIt);
@@ -73,7 +54,25 @@ export async function findAllStays(userExtIt: string) {
       .select('id')
       .where({ manager: id })
       .map((val: any) => val.id);
-    return db('stay').whereIn('house_id', houses);
+    return db('stay')
+      .whereIn('house_id', houses)
+      .join('user', { 'user.id': 'guest_id' })
+      .join('house', { 'house.id': 'house_id' })
+      .select(
+        'stay.id AS stayId',
+        'house.id AS houseId',
+        'user.full_name AS guestName',
+        'house.name AS houseName',
+        'check_in AS checkIn',
+        'check_out AS checkOut',
+      )
+      .map(async (val: any) => {
+        const { houseId, stayId } = val;
+        const progress = await getPreparationProgress(houseId, stayId);
+        console.log('progress:', progress);
+        val.progress = progress;
+        return val;
+      });
   } catch (e) {
     throw e;
   }
