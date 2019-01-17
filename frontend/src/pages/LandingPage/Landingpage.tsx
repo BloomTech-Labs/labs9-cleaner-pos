@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Button, Container, LeafletMap } from '../../components/index';
+import { Button, Container } from '../../components/index';
 import house from '../../assets/house.jpg';
 import {
   Footer,
@@ -55,7 +55,6 @@ const Landing = (props: RouteComponentProps) => {
           props.history.push('/Login');
         }}
       />
-      <LeafletMap />
       <Footer>
         <a href='/'>POS</a>
         <a href='https://example.com'>Email</a>
