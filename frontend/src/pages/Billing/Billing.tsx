@@ -3,38 +3,46 @@ import Stripe from './index';
 import { Container } from '../../components/index';
 import styled from '@emotion/styled';
 
-const Panel = styled('ul')`
-	list-style-type: none;
-	float:left;
-	text-align: left;
-	padding: 30px;
-	width: 300px;
-	background-color:#f1f1f1;
+{/* const Title = styled.h2`
+	background-color: aqua;
+	color: black;
+	padding: 15px;
+	margin-bottom: 0;
 `;
 
-const Li = styled('li')`
+const Content = styled.div`
+	opacity: ${ props => (props.open ? '1' : '0') };
+	max-height: ${ props => (props.open ? '100%' : '0') };
+	overflow: hidden;
+	padding: ${ props =P (props.open ? '15px' : '0 15px') };
+	transition: all 0.3s;
 `;
 
-const Accordion = styled('button')`
-	color: green;
-	text-align: left
-`;
- 
+class Billing extends React.Component {
+	constructor() {
+		super();
+		this.state = { open: false };
+	}
 
-
+toggleOpen() {
+	this.setState(prevState => ({ open: !prevState.open }));
+}
+*/}
 const Billing = () => {
+
+
+// render() {
   return (
     <Container>
-		<div>
-			<Panel>
-				<Li><Accordion>Choose Your Plan</Accordion></Li>
-				<Li><Accordion>Enter Your Payment Information</Accordion></Li>
-				<Li><Accordion>Confirm Your Subscription</Accordion></Li>
-			</Panel>
+{/*		<div>
+			<Title onClick = { this.toggleOpen }> First Thing </Title>
+			<Content open= { this.state.open }>
+				<p>Open Sesame!</p>
+			</Content>
 		</div>
-        <Stripe />
+   */}     <Stripe />
     </Container>
   );
 };
-
 export default Billing;
+
