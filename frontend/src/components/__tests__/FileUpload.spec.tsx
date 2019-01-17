@@ -1,6 +1,6 @@
 import React from 'react';
-import FileUpload from '../shared_components/FileUpload';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import FileUpload from '../FileUpload';
+import { render, cleanup } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';
 

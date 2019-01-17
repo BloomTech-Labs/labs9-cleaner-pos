@@ -67,7 +67,7 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
         const { data } = await axios.post(`${url}/users/`, nUser);
         localStorage.setItem('token', data.token);
         if (data.first) {
-          props.history.push('/postreg');
+          props.history.push('/updateinfo');
         } else {
           props.history.push('/dashboard');
         }

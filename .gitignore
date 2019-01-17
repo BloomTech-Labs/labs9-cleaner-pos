@@ -18,12 +18,14 @@ frontend/coverage
 frontend/build
 
 # # misc
+.vscode
 frontend/.DS_Store
 frontend/.env
 frontend/.env.local
 frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
+.vscode
 
 frontend/npm-debug.log*
 frontend/yarn-debug.log*

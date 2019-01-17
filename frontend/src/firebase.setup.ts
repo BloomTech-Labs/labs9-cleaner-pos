@@ -1,4 +1,4 @@
-import firebase, { Unsubscribe } from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const {

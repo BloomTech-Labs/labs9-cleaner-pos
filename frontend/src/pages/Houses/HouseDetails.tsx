@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '../../components/shared_components/index';
+import { Container } from '../../components/index';
 
 export const HouseDetails = () => {
   return (
