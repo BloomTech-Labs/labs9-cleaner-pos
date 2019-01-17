@@ -2,6 +2,7 @@
 import {
   deleteStayData,
   findStaySummary,
+  findAllStays,
   postStayData,
   putStayData,
 } from '../models/stays';
@@ -37,6 +38,26 @@ export async function get(
       throw e;
     }
     res.status(200).json(summary);
+  } catch (e) {
+    if (e.statusCode === undefined) {
+      e.statusCode = 400;
+    }
+    next(e);
+  }
+}
+
+export async function getAll(
+  req: Requests,
+  res: Responses,
+  next: Nexts,
+): Promise<void> {
+  // TODO: change to req.token.ext_it
+  const { id } = req.params;
+
+  try {
+    const stays = await findAllStays(String(id));
+    console.log(stays);
+    res.status(200).json(stays);
   } catch (e) {
     if (e.statusCode === undefined) {
       e.statusCode = 400;

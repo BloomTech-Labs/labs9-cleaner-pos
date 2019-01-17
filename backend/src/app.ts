@@ -7,6 +7,7 @@ import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
 import * as payments from './controller/payments';
+import * as stays from './controller/stays';
 
 export const server = express();
 
@@ -65,6 +66,8 @@ server
   .delete(items.deleteL);
 
 server.route('/itemComplete').post(items.itemComplete);
+
+server.route('/stays/:id').get(stays.getAll);
 
 server.use(errorHandler);
 
