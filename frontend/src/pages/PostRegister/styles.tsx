@@ -8,7 +8,7 @@ export const StyledDiv = styled('div')`
   font-family: 'Roboto';
   color: #393534;
   max-width: 1020px;
-  margin-top: 1rem;
+  margin: auto;
   display: flex;
   justify-content: center;
 `;

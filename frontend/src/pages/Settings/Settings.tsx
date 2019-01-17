@@ -3,7 +3,13 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
 import { Container, Button } from '../../components/';
-import { Card, Positioner, Header, ButtonText, Checkbox } from './Settings.styling';
+import {
+  Card,
+  Positioner,
+  Header,
+  ButtonText,
+  Checkbox,
+} from './Settings.styling';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -73,6 +79,7 @@ const Settings = () => {
     axios
       .get(`${url}/users`, headers)
       .then(({ data }) => {
+        console.log(data);
         const {
           address,
           email,
@@ -105,7 +112,7 @@ const Settings = () => {
                 checked={settings.setting_email}
                 onChange={handleInputChange}
                 data-testid={'checkbox'}
-                />{' '}
+              />{' '}
               I would like to receive updates via email.
               <br />
             </ButtonText>
