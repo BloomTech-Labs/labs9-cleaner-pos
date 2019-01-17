@@ -6,6 +6,7 @@ import * as users from './controller/users';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
+import * as payments from './controller/payments';
 
 export const server = express();
 setGeneralMiddleware(server);
@@ -23,7 +24,7 @@ server.get('/', (_, res) => {
 
 server
   .route('/users')
-  .get(users.get)
+  .get(verifyToken, users.getByExtIt)
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
@@ -43,6 +44,11 @@ server
   .get(houses.get)
   .put(houses.put)
   .delete(houses.deleteU);
+
+server
+  .route('/payments')
+  .get(payments.get)
+  .post(payments.post);
 
 server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`

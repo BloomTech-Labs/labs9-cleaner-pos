@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '../shared_components/index';
+import { Container } from '../index';
 import { render, cleanup } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';
