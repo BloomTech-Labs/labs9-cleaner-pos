@@ -25,7 +25,7 @@ server.get('/', (__, res) => res.sendFile('index.html'));
 
 server
   .route('/users')
-  .get(verifyToken, users.getByExtIt)
+  .get(users.getByExtIt)
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 

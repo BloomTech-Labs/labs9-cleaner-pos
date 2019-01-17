@@ -1,11 +1,18 @@
 import React from 'react';
-import { RouteProps, Route, Switch } from 'react-router';
-import { LandingPage, Houses, Login, PostRegister, Settings, HouseDetails } from './pages/index';
+import { Route, Switch, withRouter } from 'react-router';
+import {
+  LandingPage,
+  Houses,
+  Login,
+  PostRegister,
+  Settings,
+  HouseDetails,
+} from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
 import Billing from './pages/Billing/Billing';
 
-const App = (props: RouteProps) => {
+const App = (props: any) => {
   return (
     <div className='App'>
       <Sidebar />
@@ -23,4 +30,4 @@ const App = (props: RouteProps) => {
   );
 };
 
-export default App;
+export default withRouter(App);
