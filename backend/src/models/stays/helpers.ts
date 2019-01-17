@@ -1,17 +1,29 @@
 import { QueryBuilder } from 'knex';
 import db from '../../../data/dbConfig';
 import { findUserByExt_it } from '../users';
+import { findListsStay } from '../lists';
 
-export async function getPreparationProgress(houseId: number, stayId: number) {
-  const items = await db('items')
-    .join('list', { 'list.id': 'list_id' })
-    .where({ house_id: houseId })
-    .select('items.id');
+const errorHandler = (e: Error) => {
+  console.log(e);
+};
 
-  const completeItems = await db('items')
-    .join('item_complete', { 'item_complete.item_id': 'items.id' })
-    .where({ stay_id: stayId })
-    .select('items.id');
+type ListType = 'before' | 'during' | 'after';
 
-  return (completeItems.length / items.length) * 100;
+export async function getPreparationProgress(
+  listType: ListType,
+  houseId: number,
+  stayId: number,
+) {
+  const result: any = await findListsStay(houseId, stayId).catch(errorHandler);
+
+  const list = result[listType];
+
+  let numberOfCompleted = 0;
+  const numberOfItems = list.length;
+
+  for (const item of list) {
+    numberOfCompleted += Number(item.complete);
+  }
+
+  return (numberOfCompleted / numberOfItems) * 100;
 }
