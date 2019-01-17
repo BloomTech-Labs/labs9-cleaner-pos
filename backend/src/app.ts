@@ -19,7 +19,7 @@ setGeneralMiddleware(server);
 
 const path = require('path')
 
-server.use(express.static(path.resolve(path.join(__dirname, 'public'))));
+server.use(express.static(path.resolve(path.join(__dirname, '../public'))));
 server.get('/', (__,res) => res.sendFile('index.html'));
 
 server
