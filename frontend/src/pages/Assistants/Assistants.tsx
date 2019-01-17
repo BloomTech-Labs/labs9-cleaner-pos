@@ -42,8 +42,36 @@ const Assistants = () => {
 
     return (
         <Container>
-            
-        </Container>
-    )
+            <AssistantHeader>Turnover Assistants</AssistantHeader>
+            {assistants.map((assistant) => {
+                return (
 
-}
+                <AssistantItem key={assistants.id} data-testid='assistant-item'>
+                    <ThumbNail
+                        src='../../../../assets/ronald.jpg'
+                        alt='Ronald'
+                    />
+                    <CardContent>
+                        <CardHeading>
+                            <h4>{assistant.id}</h4>
+                        </CardHeading>
+                        <CardBody>
+                            <CheckList>
+                                <p>Items</p>
+                            </CheckList>
+                            <ButtonContainer>
+                                <Button text='House Availability' datatestid='assistant-button' />
+                            </ButtonContainer>
+                            <Asst>
+                                <div>This is a placeholder.</div>
+                            </Asst>
+                        </CardBody>
+                    </CardContent>
+                </AssistantItem>
+                );
+            })}
+        </Container>
+    );
+};
+
+export default Assistants;
