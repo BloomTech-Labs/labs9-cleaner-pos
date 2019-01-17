@@ -1,6 +1,9 @@
 import express from 'express';
 import { errorHandler } from './middleware/errorHandler';
 import setGeneralMiddleware from './middleware/generalMiddleware';
+import path from 'path';
+// @ts-ignore
+import companion from '@uppy/companion';
 import verifyToken from './middleware/verifyToken';
 import * as users from './controller/users';
 import * as houses from './controller/houses';
@@ -12,19 +15,17 @@ import * as payments from './controller/payments';
 export const server = express();
 setGeneralMiddleware(server);
 
-//server.get('/', (req, res) => {
-  // TODO: Redirect to front-end site
+// server.get('/', (req, res) => {
+// TODO: Redirect to front-end site
 //  res.send('testing');
-//});
-
-const path = require('path')
+// });
 
 server.use(express.static(path.resolve(path.join(__dirname, '../public'))));
-server.get('/', (__,res) => res.sendFile('index.html'));
+server.get('/', (__, res) => res.sendFile('index.html'));
 
 server
   .route('/users')
-  .get(users.get)
+  .get(users.getByExtIt)
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
@@ -46,9 +47,9 @@ server
   .delete(houses.deleteU);
 
 server
-	.route('/payments')
-	.get (payments.get)
-	.post(payments.post);
+  .route('/payments')
+  .get(payments.get)
+  .post(payments.post);
 
 server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`
@@ -72,6 +73,23 @@ server
 server.route('/itemComplete').post(items.itemComplete);
 
 server.route('/email').post(email.send);
+
+const options = {
+  filePath: '../uploads',
+  providerOptions: {
+    s3: {
+      bucket: 'cleaner-pos',
+      key: process.env.AWS_Key,
+      region: process.env.REGION,
+      secret: process.env.AWS_SECRET,
+    },
+  },
+  server: {
+    host: 'localhost:3020',
+    protocol: 'http',
+  },
+};
+server.use(companion.app(options));
 
 server.use(errorHandler);
 

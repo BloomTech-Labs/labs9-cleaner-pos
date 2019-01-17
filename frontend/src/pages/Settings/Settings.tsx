@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
+// adding this for testing
+import { FileUpload } from '../../components/index';
+
 import { Container, Button } from '../../components/';
 import {
   Card,
@@ -91,7 +94,6 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
         Authorization: localStorage.getItem('token'),
       },
     };
-
     axios
       .get(`${url}/users`, headers)
       .then(({ data }) => {
@@ -150,6 +152,9 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
               <Button text='Update Contact Info' />
             </Link>
             {info.msg && <div className='settings-status'>{info.msg}</div>}
+          </Positioner>
+          <Positioner>
+            <FileUpload text='upload a file' />
           </Positioner>
         </Card>
       </Header>
