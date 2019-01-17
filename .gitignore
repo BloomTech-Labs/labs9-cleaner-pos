@@ -1,6 +1,7 @@
 # Root
 .env
 node_modules
+yarn.lock
 
 # Frontend
 frontend/node_modules
@@ -30,15 +31,17 @@ frontend/.env.production.local
 frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
+frontend/yarn.lock
 
 # Backend
-## depedencies
+## dependencies
 backend/node_modules
+backend/yarn.lock
 
 ## production
 backend/dist
 
-## msic
+## misc
 backend/.DS_Store
 backend/.env
 backend/data/devdb.sqlite3

@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  RouteProps,
-  Route,
-  Switch,
-  withRouter,
-  RouteComponentProps,
-} from 'react-router';
+import { Route, Switch, withRouter } from 'react-router';
 import {
   LandingPage,
   Houses,
   Login,
   PostRegister,
   Settings,
+  HouseDetails,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
@@ -29,6 +24,7 @@ const App = (props: any) => {
         <Route exact path='/dashboard' component={Houses} />
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/updateinfo' component={PostRegister} />
+        <Route exact path='/houses' component={HouseDetails} />
       </Switch>
     </div>
   );
