@@ -4,6 +4,6 @@ import LandingPage from './LandingPage/Landingpage';
 import PostRegister from './PostRegister';
 import Billing from './Billing/Billing';
 import Settings from './Settings/Settings';
-import Map from './Map';
+import HouseDetails from './Houses/HouseDetails';
 
-export { Houses, Login, LandingPage, PostRegister, Billing, Settings, Map };
+export { Houses, Login, LandingPage, PostRegister, Billing, Settings, HouseDetails };
