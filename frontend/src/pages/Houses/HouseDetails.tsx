@@ -1,11 +1,14 @@
 import React from 'react';
-import { Container } from '../../components/index';
+import { Container, LeafletMap } from '../../components/index';
 
-export const HouseDetails = () => {
+const HouseDetails = () => {
   return (
     <Container>
+      <LeafletMap />
       <h1>Hello World!2</h1>
-      <p>Add some amazing text into dis bish</p>
+      <p>More awesome details to come!</p>
     </Container>
   );
 };
+
+export default HouseDetails;
