@@ -32,7 +32,7 @@ const FileUpLoad = (props: UploadProps) => {
   });
   useEffect(() => {
     uppy
-      .use(AwsS3, { serverUrl: process.env.REACT_APP_Backend })
+      .use(AwsS3, { serverUrl: process.env.REACT_APP_backendURL })
       .on('complete', (result: any) => {
         const url = result.successful[0].response.uploadURL;
         // TODO: this is where we are going to want to make an axios post request

@@ -2,8 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
+// adding this for testing
+import { FileUpload } from '../../components/index';
+
 import { Container, Button } from '../../components/';
-import { Card, Positioner, Header, ButtonText, Checkbox } from './Settings.styling';
+import {
+  Card,
+  Positioner,
+  Header,
+  ButtonText,
+  Checkbox,
+} from './Settings.styling';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -69,7 +78,6 @@ const Settings = () => {
         Authorization: localStorage.getItem('token'),
       },
     };
-
     axios
       .get(`${url}/users`, headers)
       .then(({ data }) => {
@@ -105,7 +113,7 @@ const Settings = () => {
                 checked={settings.setting_email}
                 onChange={handleInputChange}
                 data-testid={'checkbox'}
-                />{' '}
+              />{' '}
               I would like to receive updates via email.
               <br />
             </ButtonText>
@@ -128,6 +136,9 @@ const Settings = () => {
               <Button text='Update Contact Info' />
             </Link>
             {info.msg && <div className='settings-status'>{info.msg}</div>}
+          </Positioner>
+          <Positioner>
+            <FileUpload text='upload a file' />
           </Positioner>
         </Card>
       </Header>
