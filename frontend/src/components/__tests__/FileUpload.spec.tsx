@@ -8,8 +8,8 @@ afterEach(cleanup);
 
 describe('FileUpoad', () => {
   test('should render a Button', () => {
-    const { container } = render(<FileUpload />);
-    const buttons = container.querySelector('div');
+    const { getByTestId } = render(<FileUpload />);
+    const buttons = getByTestId('open-button');
 
     expect(buttons).toBeInTheDocument();
   });

@@ -17,7 +17,7 @@ interface UploadProps {
   id?: number;
   text?: string;
 }
-const AvatarPicker = (props: UploadProps) => {
+const FileUpLoad = (props: UploadProps) => {
   const [open, setOpen] = useState(false);
 
   const uppy = Uppy({
@@ -44,8 +44,12 @@ const AvatarPicker = (props: UploadProps) => {
   }, []);
 
   return (
-    <div>
-      <Button onClick={() => setOpen(!open)} text={props.text} />
+    <>
+      <Button
+        onClick={() => setOpen(!open)}
+        text={props.text}
+        datatestid='open-button'
+      />
       <DashboardModal
         uppy={uppy}
         open={open}
@@ -53,8 +57,8 @@ const AvatarPicker = (props: UploadProps) => {
         onRequestClose={() => setOpen(false)}
         closeModalOnClickOutside
       />
-    </div>
+    </>
   );
 };
 
-export default AvatarPicker;
+export default FileUpLoad;
