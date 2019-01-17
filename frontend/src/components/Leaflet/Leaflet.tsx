@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
-const position = [51.505, -0.09];
 
+const LeafletMap = () => {
+    // Set state for map coordinates
+    const [coordinates, setCoordinates] = useState({
+        lat: 51.505,
+        lng: -.09,
+        zoom: 13,
+    });
 
-const Leaflet = () => {
     return(
         <>
-        <Map center={position} zoom={13}>
+        <Map center={[coordinates.lat, coordinates.lng]} zoom={coordinates.zoom}>
             <TileLayer
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            <Marker position={position}>
+            <Marker position={[coordinates.lat, coordinates.lng]}>
                 <Popup>
                     A pretty CSS3 popup.
                     <br />
@@ -24,3 +29,4 @@ const Leaflet = () => {
     );
 };
 
+export default LeafletMap;
