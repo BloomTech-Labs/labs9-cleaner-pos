@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../shared_components/Sidebar';
+import Sidebar from '../Sidebar/Sidebar';
 import { cleanup } from 'react-testing-library';
 import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
@@ -17,6 +17,6 @@ describe('Sidebar page', () => {
   test('should render seven list items', () => {
     const { container } = renderWithRouter(<Sidebar />, {});
     const li = container.querySelectorAll('li');
-    expect(li.length).toBe(7);
+    expect(li.length).toBeGreaterThanOrEqual(3);
   });
 });

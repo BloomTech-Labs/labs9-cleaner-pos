@@ -8,12 +8,11 @@ import {
 import { Request, Response, NextFunction } from 'express';
 import { QueryBuilder } from 'knex';
 import { House } from '../interface';
-import { any } from 'bluebird';
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    let house: QueryBuilder;
+    let house: any;
     if (id) {
       house = await findHouse(id);
     } else {

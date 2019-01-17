@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Labs 9 Cleaner POS - Backend Documentation</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+		<header class = "twelve column">
+			<h1><style="margin-top: 30px">Labs 9 Cleaner POS</style></h1>
+        	<p>This is the documentation for the Cleaner POS project.</p>
+			<strong>Contents</strong>
+			<ul>
+				<li>
+					<a href="#getuserdata">Get User Data</a>
+				</li>
+				<li>
+					<a href="#getuserbyid">Get User by ID</a>
+				</li>
+				<li>
+					<a href="#postnewuser">Post New User</a>
+				</li>
+				<li>
+					<a href="#edituserbyID">Edit User by ID</a>
+				</li>
+				<li>
+					<a href="#deleteuserbyID">Delete User by ID</a>
+				</li>
+				<li>
+					<a href="#getlistofhouses">Get List of Houses</a>
+				</li>
+				<li>
+					<a href="#gethousebyID">Get House by ID</a>
+				</li>
+				<li>
+					<a href="#postnewhouse">Post New House</a>
+				</li>
+				<li>
+					<a href="#edithousebyID">Edit House by ID</a>
+				</li>
+				<li>
+					<a href="#deletehousebyID">Delete House by ID</a>
+				</li>
+				<li>
+					<a href="#getlistbyID">Get Checklist by ID</a>
+				</li>
+				<li>
+					<a href="#deletelistbyID">Delete Checklist by ID</a>
+				</li>
+				<li>
+					<a href="getlistitems">Get Checklist Items</a>
+				</li>
+				<li>
+					<a href="#getlistitembyID">Get Checklist Item by ID</a>
+				</li>
+				<li>
+					<a href="#postnewlistitem">Post New Checklist Item</a>
+				</li>
+				<li>
+					<a href="#editlistitembyID">Edit Checklist Item by ID</a>
+				</li>
+				<li>
+					<a href="#deleteitembyID">Delete Checklist Item by ID</a>
+				</li>
+				<li>
+					<a href="#itemcomplete">Item Complete</a>
+				</li>
+				<li>
+					<a href="#oauth">oAuth</a>
+				</li>
+			</ul>
+			<hr />
+		</header>
+    </div>
+	
+	<h2>Usage</h2>
+
+	<section id="getuserdata" class="row">
+		<h4>Get User Data</h4>
+			<p><span>Endpoint URL: </span><code>/users</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 4,
+"ext_id": "55",
+"full_name": "Snidely Whiplash",
+"email": "snwh@whatever.com",
+"phone": "123-456-7890",
+"address": "1 Dudley Lane, Somewhere, ST 98765",
+"role": "assistant"
+}</code></pre>
+	</section>
+	<hr />
+	<section id="getuserbyid" class="row">
+		<h4>Get User by ID</h4>
+			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 55,
+"ext_id": 12,
+"full_name": "Bullwinkle J. Moose",
+"email": "bumo@whatever.com",
+"phone": "098-765-4321",
+"role": "manager"
+}</code></pre>
+	</section>
+	<hr />
+	<section id="postnewuser" class="row">
+		<h4>Post New User</h4>
+			<p><span>Endpoint URL: </span><code>/users/</code> <span>Method: </span><code>POST</code></p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"ext_id": 12,
+"full_name": "Bullwinkle J. Moose",
+"role": "manager"
+}</code></pre>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message": "user created",
+"id": [
+	7
+]
+}</code></pre>
+	</section>
+	<hr />
+	<section id="edituserbyID" class="row">
+		<h4>Edit User by ID</h4>
+			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>PUT</code></p>
+			<p>Only fields that are going to be updated need to be sent. Requires being logged in as Manager.</p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"full_name": "Bullwinkle J. Moose",
+"role": "manager"
+}</code></pre>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message": "success",
+"id": 4
+}</code></pre>
+	</section>
+	<hr />
+	<section id="deleteuserbyID" class="row">
+		<h4>Delete User by ID</h4>
+			<p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>DELETE</code></p>
+				<p>This route requires being logged in as manager</p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message": "deleted",
+"id": 12
+}</code></pre>
+	</section>
+	<hr />
+	<section id="getlistofhouses" class="row">
+		<h4>Get List of Houses</h4>
+			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>[
+	{
+		"name": "are the houses really going to be named?,
+		"address": "1313 Mockingbird Lane",
+		"default_ast": "I.P. Freely",
+		"manager": "Amanda Hugginkiss",
+		"guest_guide": "not sure what this is for",
+		"ast_guide": "not sure what to put here, either"
+	},
+	{
+		"name": "whatever",
+		"address": 308 Negra Arroyo Lane",
+		"default_ast": "Oliver Klozoff",
+		"manager": "Seymour Butz",
+		"guest_guide": "yeah",
+		"ast_guide": "not sure what the call this"
+	}
+]</code></pre>
+	</section>
+	<hr />
+	<section id="gethousebyID" class="row">
+		<h4>Get House by ID</h4>
+			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"id": 2,
+"name": "whatever",
+"address": "308 Negra Arroyo Lane",
+"default_ast": "Oliver Klozoff",
+"manager": "Seymour Butz",
+"guest_guide": "yeah",
+"ast_guide": "not sure what to call this"
+}</code></pre>
+	</section>
+	<hr />
+	<section id="postnewhouse" class="row">
+		<h4>Post New House</h4>
+			<p><span>Endpoint URL: </span><code>/houses</code> <span>Method: </span><code>POST</code></p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"address": "704 Hauser Street",
+"default_ast": "Anita Bath",
+"manager": "Seymour Butz"
+}</code></pre>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message": "house created",
+"house_id": [
+	3
+]
+}</code></pre>
+	</section>
+	<hr />
+	<section id="edithousebyID" class="row">
+		<h4>Edit House by ID</h4>
+			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>PUT</code></p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"address": "704 Hauser Street",
+"default_ast": "Yuri Nator"
+}</code></pre>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message":"success",
+"house_id": 3
+}</code></pre>
+	</section>
+	<hr />
+	<section id="deletehousebyID" class="row">
+		<h4>Delete House by ID</h4>
+			<p><span>Endpoint URL: </span><code>/houses/:id</code> <span>Method: </span><code>DELETE</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message": "deleted",
+"house_id": 1
+}</code></pre>
+	</section>
+	<hr />
+	<section id="getlistbyID" class="row">
+		<h4>Get Checklist by ID</h4>
+			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"list_id": 8,
+"house_id": 3,
+"items": 
+}</code></pre>
+	</section>
+	<hr />
+	<section id="deletelistbyID" class="row">
+		<h4>Delete Checklist by ID</h4>
+			<p><span>Endpoint URL: </span><code>/lists/:id</code> <span>Method: </span><code>DELETE</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message": deleted,
+"list_id": 8,
+"house_id": 3
+}</code></pre>
+	</section>
+	<hr />
+	<section id="getlistitems" class="row">
+		<h4>Get Checklist Items</h4>
+			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"list_id": 4,
+"items":
+}</code></pre>
+	</section>
+	<hr />
+	<section id="getlistitembyID" class="row">
+		<h4>Get Checklist Item by ID</h4>
+			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>{
+"item:id": 1,
+"list_id": 6,
+"items:"
+}</code></pre>
+	</section>
+	<hr />
+	<section id="postnewlistitem" class="row">
+		<h4>Post New Checklist Item</h4>
+			<p><span>Endpoint URL: </span><code>/items</code> <span>Method: </span><code>GET</code></p>
+				<strong>Expected Input</strong>
+					<pre><code>{
+"list_id": 3,
+"house_id": 3,
+"items:"
+}</code></pre>
+				<strong>Example Output</strong>
+					<pre><code>{
+"message": "success",
+"item_id": 17
+}</code></pre>
+	</section>
+	<hr />
+	<section id="editlistitembyID" class="row">
+		<h4>Edit Checklist Item by ID</h4>
+			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Input</strong>
+					<pre><code>{
+"item_id": 1,
+"list_id": 6,
+"items:"
+}</code></pre>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"message": "success"
+"item_id": 1
+}</code></pre>
+	</section>
+	<hr />
+	<section id="deleteitembyID" class="row">
+		<h4>Delete Checklist Item by ID</h4>
+			<p><span>Endpoint URL: </span><code>/items/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"message": "deleted",
+"item_id": 1
+}</code></pre>
+	</section>
+	<hr />
+	<section id="itemcomplete" class="row">
+		<h4>Item Complete</h4>
+			<p><span>Endpoint URL: </span><code>/itemComplete</code> <span>Method: </span><code>POST</code></p>
+	</section>
+	<hr />
+	<section id="oauth" class="row">
+		<h4>OAuth Info</h4>
+      		<p><span>Endpoint URL: </span><code>/customers/register</code> 
+      		<p>You will need to have a clickable link to this url.  It will route to a google auth page. The backend will then send a redirect back to the frontend with the token as a query.  You will need to parse the token out of the query and add it to local storage.
+      		</p>
+      		<strong>Example Token Parse</strong>
+      		<pre><code>componentDidMount() {
+	const query = queryString.parse(this.props.location.search);
+	if (query.token) {
+		window.localStorage.setItem("jwt", query.token);
+		this.props.history.push("/");
+		}
+	}</code></pre>
+      		<p>This requires <code>queryString</code> and <code>react-router-dom</code>. Backend will need to modified to point at the component containing the <code>componentDidMount()</code> that will parse the token.
+      		</p>
+
+	</section>
+	<hr />
+</div>
+	<footer style="background-color: #eee; padding-top: 30px; margin-top: 50px;">
+    	<div class="container">
+      		<div class="row">
+        		<div class="one-half column">
+          			<ul style="list-style: none">
+            			<li>
+              				<a href="https://github.com/NandoTheessen/PM-Project-Backend" target="_blank" style="text-decoration: none;">
+                			<i class="fab fa-github"></i> <span>GitHub Repository</span>
+              				</a>
+            			</li>
+          			</ul>
+        		</div>
+        	<div class="one-half column">
+          		<p>This page was built using <a href="http://getskeleton.com/" target="_blank">S K E L E T O N.</a></p>
+        	</div>
+      	</div>
+      <hr />
+      <p style="text-align: center;"><small>&copy; 2019</small></p>
+    </div>
+  </footer>
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+
+</body>
+</html>

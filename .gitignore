@@ -1,11 +1,13 @@
 # Root
 .env
 node_modules
+yarn.lock
 
 # Frontend
 frontend/node_modules
 
 ## dependencies
+node_modules
 frontend/node_modules
 frontend/.pnp
 frontend/.pnp.js
@@ -17,25 +19,30 @@ frontend/coverage
 frontend/build
 
 # # misc
+.vscode
 frontend/.DS_Store
 frontend/.env
 frontend/.env.local
 frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
+.vscode
 
 frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
+frontend/yarn.lock
 
 # Backend
-## depedencies
+## dependencies
 backend/node_modules
+backend/yarn.lock
 
 ## production
 backend/dist
 
-## msic
+## misc
 backend/.DS_Store
 backend/.env
 backend/data/devdb.sqlite3
+backend/test.db
