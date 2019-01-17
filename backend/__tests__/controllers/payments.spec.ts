@@ -1,7 +1,6 @@
 import 'jest';
 import request from 'supertest';
 import app from '../../src/app';
-import { exec } from 'child_process';
 
 jest.mock('stripe', () => () => {
   return {

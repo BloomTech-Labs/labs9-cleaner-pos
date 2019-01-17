@@ -10,11 +10,27 @@ import {
   ButtonText,
   Checkbox,
 } from './Settings.styling';
+import { RouteChildrenProps, RouteComponentProps } from 'react-router';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-const Settings = () => {
+const Settings: React.SFC<RouteComponentProps> = (props) => {
+  const { search } = props.location;
+  const params = search.match(/code=(.*)/);
+
+  if (params !== null && params.length === 2) {
+    const headers: AxiosRequestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    };
+    const clientId = params[1];
+    axios
+      .post(`${url}/payments/user`, clientId, headers)
+      .then((res) => res)
+      .catch((e) => e);
+  }
   // useState returns an array. first element is the value, second element is a setState function
   const [contact, setContact] = useState({
     address: '',
@@ -79,7 +95,6 @@ const Settings = () => {
     axios
       .get(`${url}/users`, headers)
       .then(({ data }) => {
-        console.log(data);
         const {
           address,
           email,
