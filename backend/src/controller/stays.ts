@@ -8,10 +8,7 @@ import {
 } from '../models/stays';
 // Type Definitions
 import { Request, Response, NextFunction } from 'express';
-import {
-  RequestMock,
-  ResponseMock,
-} from '../../__tests__/controllers/stay.spec';
+import { RequestMock, ResponseMock } from '../../__tests__/helpers';
 import { QueryBuilder } from 'knex';
 import { Stay } from '../interface';
 import { postItemsStay } from '../models/items';
@@ -59,9 +56,7 @@ export async function getAll(
     console.log(stays);
     res.status(200).json(stays);
   } catch (e) {
-    if (e.statusCode === undefined) {
-      e.statusCode = 400;
-    }
+    e.statusCode = e.statusCode || 400;
     next(e);
   }
 }

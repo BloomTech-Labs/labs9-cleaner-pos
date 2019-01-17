@@ -48,20 +48,13 @@ describe('User DB functions', () => {
       await testDb.seed.run();
       testUsersInDb = await findUsers();
     } catch (err) {
-      throw err;
+      console.log(err);
     }
   });
 
-  const cleanUp = async () => {
-    try {
-      await testDb.migrate.rollback();
-      await testDb.migrate.latest();
-      await testDb.seed.run();
-      testUsersInDb = await findUsers();
-    } catch (err) {
-      throw err;
-    }
-  };
+  afterAll(async () => {
+    await testDb.destroy();
+  });
 
   test('findUser finds by id', async () => {
     // Arrange
@@ -69,7 +62,7 @@ describe('User DB functions', () => {
     const userId = 1;
     // Act
     const result = await findUser(userId).catch((e) => {
-      throw e;
+      console.log(e);
     });
     // Assert
     expect(result.full_name).toBe(testUser.full_name);
@@ -81,7 +74,7 @@ describe('User DB functions', () => {
     const userExtId = String(testUser.ext_it);
     // Act
     const result = await findUserByExt_it(userExtId).catch((e) => {
-      throw e;
+      console.log(e);
     });
     // Assert
     expect(result.full_name).toBe(testUser.full_name);
@@ -90,7 +83,7 @@ describe('User DB functions', () => {
   test('findUsers returns all users', async () => {
     // Act
     const result = await findUsers().catch((e) => {
-      throw e;
+      console.log(e);
     });
     // Assert
     expect(result.length).toBe(data.length);
@@ -109,10 +102,10 @@ describe('User DB functions', () => {
     // Act
     await makeUser(newUser);
     const userResult = await findUsers().catch((e) => {
-      throw e;
+      console.log(e);
     });
     const managerResult = await testDb('manager').catch((e) => {
-      throw e;
+      console.log(e);
     });
     // Assert
     const testUser = { ...newUser, role: 'manager' };
@@ -120,7 +113,6 @@ describe('User DB functions', () => {
       expect.arrayContaining([expect.objectContaining(testUser)]),
     );
     expect(managerResult).toBeTruthy();
-    cleanUp();
   });
 
   test('updateUser updates a user by ext_id', async () => {
@@ -132,16 +124,15 @@ describe('User DB functions', () => {
     // Act
     const numOfRecordsUpdated = await updateUser(idToUpdate, updateObj).catch(
       (e) => {
-        throw e;
+        console.log(e);
       },
     );
     const updatedUser = await findUserByExt_it(idToUpdate).catch((e) => {
-      throw e;
+      console.log(e);
     });
     // Assert
     expect(numOfRecordsUpdated).toBe(1);
     expect(updatedUser).toEqual(expect.objectContaining(updatedInfo));
-    cleanUp();
   });
 
   test('deleteUser removes a user from the database', async () => {
@@ -150,16 +141,15 @@ describe('User DB functions', () => {
     const idToDelete = testUser.id;
     // Act
     const numOfRecords = await deleteUser(idToDelete).catch((e) => {
-      throw e;
+      console.log(e);
     });
     const users = await findUsers().catch((e) => {
-      throw e;
+      console.log(e);
     });
     // Assert
     expect(numOfRecords).toBe(1);
     expect(users).not.toEqual(
       expect.arrayContaining([expect.objectContaining(testUser)]),
     );
-    cleanUp();
   });
 });

@@ -2,6 +2,7 @@ import 'jest';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
 import {
+  findAllStays,
   findStaySummary,
   postStayData,
   putStayData,
@@ -12,6 +13,11 @@ import {
 import usersData from '../../data/seeds/data/usersData';
 import housesData from '../../data/seeds/data/housesData';
 import staysData from '../../data/seeds/data/staysData';
+
+// Error handler function
+const errorHandler = (e: Error) => {
+  console.log(e);
+};
 
 // Mock db in users model functions
 jest.mock('../../data/dbConfig');
@@ -61,6 +67,23 @@ describe('Stay DB functions', () => {
     // Assert
     expect(result.guest).toBe(testUser.full_name);
     expect(result.house).toBe(testHouse.name);
+  });
+
+  test('findAllStays finds all upcoming guests of a user', async () => {
+    // Arrange
+    const extIt = '1'; // Harald Junke
+    // Seed data has three upcoming guests for this user
+    // Act
+    const result = await findAllStays(extIt).catch(errorHandler);
+    // Assert
+    expect(result.length).toBe(3);
+    const sampleObj = result[0];
+    expect(sampleObj).toHaveProperty('stayId');
+    expect(sampleObj).toHaveProperty('houseId');
+    expect(sampleObj).toHaveProperty('guestName');
+    expect(sampleObj).toHaveProperty('houseName');
+    expect(sampleObj).toHaveProperty('checkIn');
+    expect(sampleObj).toHaveProperty('checkOut');
   });
 
   test('postStayData posts data to DB', async () => {

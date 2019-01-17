@@ -34,13 +34,14 @@ export function findStaySummary(stayId: number): QueryBuilder {
     .first();
 }
 
-export async function findAllStays(userExtIt: string) {
+export async function findAllStays(userExtIt: string): Promise<any> {
   try {
     const { id } = await findUserByExt_it(userExtIt);
     const houses = await db('house')
       .select('id')
       .where({ manager: id })
       .map((val: any) => val.id);
+
     return db('stay')
       .whereIn('house_id', houses)
       .join('user', { 'user.id': 'guest_id' })
