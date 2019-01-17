@@ -1,6 +1,7 @@
 import { QueryBuilder } from 'knex';
-import db from '../../data/dbConfig';
-import { findUserByExt_it } from './users';
+import db from '../../../data/dbConfig';
+import { findUserByExt_it } from '../users';
+import { getPreparationProgress } from './helpers';
 
 interface Stay {
   id?: number;
@@ -33,20 +34,6 @@ export function findStaySummary(stayId: number): QueryBuilder {
     .first();
 }
 
-async function getPreparationProgress(houseId: number, stayId: number) {
-  const items = await db('items')
-    .join('list', { 'list.id': 'list_id' })
-    .where({ house_id: houseId })
-    .select('items.id');
-
-  const completeItems = await db('items')
-    .join('item_complete', { 'item_complete.item_id': 'items.id' })
-    .where({ stay_id: stayId })
-    .select('items.id');
-
-  return (completeItems.length / items.length) * 100;
-}
-
 export async function findAllStays(userExtIt: string) {
   try {
     const { id } = await findUserByExt_it(userExtIt);
@@ -68,10 +55,8 @@ export async function findAllStays(userExtIt: string) {
       )
       .map(async (val: any) => {
         const { houseId, stayId } = val;
-        const progress = await getPreparationProgress(houseId, stayId);
-        console.log('progress:', progress);
-        val.progress = progress;
-        return val;
+        const progress: number = await getPreparationProgress(houseId, stayId);
+        return { ...val, progress };
       });
   } catch (e) {
     throw e;
