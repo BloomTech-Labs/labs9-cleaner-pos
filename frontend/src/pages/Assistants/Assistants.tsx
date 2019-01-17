@@ -19,3 +19,31 @@ interface Assistant {
     id?: number;
     user_id: string;
 }
+
+const Assistants = () => {
+    const [assistants, setAssistants] = useState<AssistantsEnum>([]);
+    const shouldFetch = useRef(true);
+    async function fetchAssistants() {
+        try {
+            const res = await axios.get('https://cleaner-pos.herokuapp.com/houses');
+            setAssistants(res.data);
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    useLayoutEffect(
+        () => {
+            fetchAssistants();
+            shouldFetch.current = false;
+        },
+        [shouldFetch],
+    );
+
+    return (
+        <Container>
+            
+        </Container>
+    )
+
+}
