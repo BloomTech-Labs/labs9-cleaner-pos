@@ -1,9 +1,9 @@
-import React from 'react';
 import styled from '@emotion/styled';
-import { Map } from 'react-leaflet';
 
-const CoolMap = styled(Map)`
-    height: 500px;
+const MapDiv = styled('div')`
+    .container-map {
+        height: 500px;
+    }
 `;
 
-export default CoolMap;
+export default MapDiv;

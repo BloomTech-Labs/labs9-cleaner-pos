@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import { Container } from '../../components/index';
+import MapDiv from './Leaflet.styling';
 import 'leaflet/dist/leaflet.css';
-import styled from '@emotion/styled';
-
-const DumbDiv = styled('div')`
-    .container-map {
-        height: 500px;
-    }
-`;
 
 const LeafletMap = () => {
     // Set state for map coordinates
@@ -21,7 +14,7 @@ const LeafletMap = () => {
     const position: [number, number] = [coordinates.lat, coordinates.lng];
 
     return(
-        <DumbDiv>
+        <MapDiv>
             <Map className='container-map' center={position} zoom={coordinates.zoom}>
                 <TileLayer
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -35,7 +28,7 @@ const LeafletMap = () => {
                     </Popup>
                 </Marker>
             </Map>
-        </DumbDiv>
+        </MapDiv>
     );
 };
 
