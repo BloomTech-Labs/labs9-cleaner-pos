@@ -24,6 +24,9 @@ You have been invited to clean for Steve
 Please visit this link to signup and accept Cleaner POS
 ```
 */
+export const sgSend = (msg: any) => {
+  return sgMail.send(msg);
+};
 export const send = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const {
@@ -34,6 +37,16 @@ export const send = async (req: Request, res: Response, next: NextFunction) => {
       from,
       to,
     } = req.body;
+    if (
+      !ast_name ||
+      !manager_name ||
+      !subject ||
+      !link_address ||
+      !from ||
+      !to
+    ) {
+      throw Error('ast, manager, subject, link, from, and to are all required');
+    }
     const msg = {
       dynamic_template_data: {
         astName: ast_name,
@@ -45,7 +58,7 @@ export const send = async (req: Request, res: Response, next: NextFunction) => {
       templateId: 'd-5eb00ba7abad4637bf24a96ec83281d8',
       to,
     };
-    await sgMail.send(msg);
+    await sgSend(msg);
     res.status(200).json({ status: 'success' });
   } catch (e) {
     e.statusCode = 400;
