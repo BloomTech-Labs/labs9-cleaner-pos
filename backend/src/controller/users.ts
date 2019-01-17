@@ -70,16 +70,16 @@ export const getByExtIt = async (req: Request, res: Response, next: NextFunction
     }
     const { ext_it } = req.token;
     // Find users
-    let users: any;
+    let user: any;
     if (ext_it) {
-      users = await findUserByExt_it(ext_it);
+      user = await findUserByExt_it(ext_it);
     }
     // Return status 404 if individual user is not found
-    if (users === undefined) {
+    if (user === undefined) {
       return res.status(404).json({ msg: '404: User cannot be found.' });
     }
     // Send 200 OK and user data
-    res.status(200).json(users);
+    res.status(200).json(user);
   } catch (e) {
     e.statusCode = e.statusCode || 400;
     next(e);

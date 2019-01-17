@@ -1,14 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
 import { Container, Button } from '../../components/';
-import { Card, Positioner, Header, ButtonText, Checkbox } from './Settings.styling';
+import {
+  Card,
+  Positioner,
+  Header,
+  ButtonText,
+  Checkbox,
+} from './Settings.styling';
+import { UserContext } from '../../App';
+import { User } from 'firebase';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const Settings = () => {
+  const user = useContext(UserContext);
+
   // useState returns an array. first element is the value, second element is a setState function
   const [contact, setContact] = useState({
     address: '',
@@ -105,7 +115,7 @@ const Settings = () => {
                 checked={settings.setting_email}
                 onChange={handleInputChange}
                 data-testid={'checkbox'}
-                />{' '}
+              />{' '}
               I would like to receive updates via email.
               <br />
             </ButtonText>

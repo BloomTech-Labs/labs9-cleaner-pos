@@ -1,18 +1,16 @@
 import axios from 'axios';
 import firebase, { Unsubscribe, User } from 'firebase/app';
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  FunctionComponent,
-  MutableRefObject,
-} from 'react';
-import { RouteComponentProps } from 'react-router';
+import React, { useEffect, useState, useRef, MutableRefObject } from 'react';
+import { RouteComponentProps, RouteProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../firebase.setup';
 
-const Login: FunctionComponent<RouteComponentProps> = (props) => {
-  const [user, setUser] = useState<User | null>(null);
+// export interface LoginProps extends RouteComponentProps {
+//   user: User | null;
+//   setUser: React.Dispatch<React.SetStateAction<firebase.User | null>>;
+// }
+
+const Login: React.SFC<RouteComponentProps> = (props) => {
   // const justMounted = useRef(true);
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
 
@@ -36,7 +34,7 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
   useEffect(() => {
     observer.current = app
       .auth()
-      .onAuthStateChanged((newUser) => setUser(newUser));
+      .onAuthStateChanged((newUser) => submitUser(newUser));
     return () => {
       if (observer.current !== null) {
         observer.current();
@@ -44,14 +42,7 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
     };
   }, []);
 
-  useEffect(
-    () => {
-      submitUser();
-    },
-    [user],
-  );
-
-  async function submitUser() {
+  async function submitUser(user: any) {
     if (user !== null) {
       const { email, uid, displayName, photoURL } = user;
       const nUser = {
