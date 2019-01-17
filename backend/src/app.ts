@@ -72,6 +72,8 @@ server.route('/email').post(email.send);
 
 server.route('/stays').get(stays.getAll);
 
+server.route('/stays/:id').get(stays.get);
+
 server.use(errorHandler);
 
 export default server;
