@@ -1,10 +1,7 @@
-import { QueryBuilder } from 'knex';
-import db from '../../../data/dbConfig';
-import { findUserByExt_it } from '../users';
 import { findListsStay } from '../lists';
 
 const errorHandler = (e: Error) => {
-  console.log(e);
+  console.error(e);
 };
 
 type ListType = 'before' | 'during' | 'after';

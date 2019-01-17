@@ -16,7 +16,7 @@ import staysData from '../../data/seeds/data/staysData';
 
 // Error handler function
 const errorHandler = (e: Error) => {
-  console.log(e);
+  console.error(e);
 };
 
 // Mock db in users model functions

@@ -24,6 +24,10 @@ const testDb = knex(knexConfig.test);
 // @ts-ignore
 db.mockImplementation((table: string) => testDb(table));
 
+const errorHandler = (e: Error) => {
+  console.error(e);
+};
+
 interface User {
   id: number;
   //   ext_it: string;
@@ -47,8 +51,8 @@ describe('User DB functions', () => {
       await testDb.migrate.latest();
       await testDb.seed.run();
       testUsersInDb = await findUsers();
-    } catch (err) {
-      console.log(err);
+    } catch (e) {
+      errorHandler(e);
     }
   });
 
@@ -61,9 +65,7 @@ describe('User DB functions', () => {
     const testUser = data[0];
     const userId = 1;
     // Act
-    const result = await findUser(userId).catch((e) => {
-      console.log(e);
-    });
+    const result = await findUser(userId).catch(errorHandler);
     // Assert
     expect(result.full_name).toBe(testUser.full_name);
   });
@@ -73,18 +75,14 @@ describe('User DB functions', () => {
     const testUser = data[0];
     const userExtId = String(testUser.ext_it);
     // Act
-    const result = await findUserByExt_it(userExtId).catch((e) => {
-      console.log(e);
-    });
+    const result = await findUserByExt_it(userExtId).catch(errorHandler);
     // Assert
     expect(result.full_name).toBe(testUser.full_name);
   });
 
   test('findUsers returns all users', async () => {
     // Act
-    const result = await findUsers().catch((e) => {
-      console.log(e);
-    });
+    const result = await findUsers().catch(errorHandler);
     // Assert
     expect(result.length).toBe(data.length);
 
@@ -101,12 +99,8 @@ describe('User DB functions', () => {
     };
     // Act
     await makeUser(newUser);
-    const userResult = await findUsers().catch((e) => {
-      console.log(e);
-    });
-    const managerResult = await testDb('manager').catch((e) => {
-      console.log(e);
-    });
+    const userResult = await findUsers().catch(errorHandler);
+    const managerResult = await testDb('manager').catch(errorHandler);
     // Assert
     const testUser = { ...newUser, role: 'manager' };
     expect(userResult).toEqual(
@@ -123,13 +117,9 @@ describe('User DB functions', () => {
     const updateObj = { full_name: 'Willy Wonka' };
     // Act
     const numOfRecordsUpdated = await updateUser(idToUpdate, updateObj).catch(
-      (e) => {
-        console.log(e);
-      },
+      errorHandler,
     );
-    const updatedUser = await findUserByExt_it(idToUpdate).catch((e) => {
-      console.log(e);
-    });
+    const updatedUser = await findUserByExt_it(idToUpdate).catch(errorHandler);
     // Assert
     expect(numOfRecordsUpdated).toBe(1);
     expect(updatedUser).toEqual(expect.objectContaining(updatedInfo));
@@ -140,12 +130,8 @@ describe('User DB functions', () => {
     const testUser = testUsersInDb[0];
     const idToDelete = testUser.id;
     // Act
-    const numOfRecords = await deleteUser(idToDelete).catch((e) => {
-      console.log(e);
-    });
-    const users = await findUsers().catch((e) => {
-      console.log(e);
-    });
+    const numOfRecords = await deleteUser(idToDelete).catch(errorHandler);
+    const users = await findUsers().catch(errorHandler);
     // Assert
     expect(numOfRecords).toBe(1);
     expect(users).not.toEqual(
