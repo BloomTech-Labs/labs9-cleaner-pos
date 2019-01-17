@@ -1,11 +1,11 @@
 import React from 'react';
-import { LeafletMap } from '../components/index';
+import { Container, LeafletMap } from '../components/index';
 
 const Map = () => {
     return(
-        <>
+        <Container>
             <LeafletMap />
-        </>
+        </Container>
     );
 };
 
