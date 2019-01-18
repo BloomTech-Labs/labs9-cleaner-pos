@@ -93,6 +93,12 @@
 					<a href="#itemcomplete">Item Complete</a>
 				</li>
 				<li>
+					<a href="#getallstaysbyextitID">Get All Stays by <code>ext_it</code></a>
+				</li>
+				<li>
+					<a href="#getstaybyID">Get Stay by ID</a>
+				</li>
+				<li>
 					<a href="#oauth">oAuth</a>
 				</li>
 			</ul>
@@ -346,6 +352,49 @@
 	<section id="itemcomplete" class="row">
 		<h4>Item Complete</h4>
 			<p><span>Endpoint URL: </span><code>/itemComplete</code> <span>Method: </span><code>POST</code></p>
+	</section>
+	<hr />
+	<section id="getallstaysbyextitID" class="row">
+		<h4>Get Stays for a Given <code>ext_it</code></h4>
+			<p><span>Endpoint URL: </span><code>/stays?extit=:ext_it</code> <span>Method: </span><code>GET</code></p>
+				<strong>Expected Output</strong>
+					<pre><code>[
+	{
+		"stay_id": 1,
+		"house_id": 1,
+		"guest_name": "Harald Junke",
+		"house_name": "house name 1",
+		"check_in": "1/27/2018",
+		"check_out": "1/30/2018",
+		"progress": 50
+	},
+	{
+		"stay_id": 2,
+		"house_id": 1,
+		"guest_name": "Gerhard Schroeder",
+		"house_name": "house name 1",
+		"check_in": "1/27/2019",
+		"check_out": "1/30/2019",
+		"progress": 0
+	},
+]</code></pre>
+	</section>
+	<hr />
+	<section id="getstaybyID" class="row">
+		<h4>Get Stay Information by ID</h4>
+			<p><span>Endpoint URL: </span><code>/stays/:id</code> <span>Method: </span><code>GET</code></p>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"guest_name": "Harald Junke",
+"house_id": 1,
+"house_name": "house name 1",
+"house_address": "123 Quack Quack ave",
+"default_ast": 1,
+"guest_guide": null,
+"ast_guide": null,
+"check_in": "1/27/2018",
+"check_out": "1/30/2018"
+}</code></pre>
 	</section>
 	<hr />
 	<section id="oauth" class="row">

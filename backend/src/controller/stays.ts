@@ -2,15 +2,14 @@
 import {
   deleteStayData,
   findStaySummary,
+  findStaySummaryStandardized,
+  findAllStays,
   postStayData,
   putStayData,
 } from '../models/stays';
 // Type Definitions
 import { Request, Response, NextFunction } from 'express';
-import {
-  RequestMock,
-  ResponseMock,
-} from '../../__tests__/controllers/stay.spec';
+import { RequestMock, ResponseMock } from '../../__tests__/helpers';
 import { QueryBuilder } from 'knex';
 import { Stay } from '../interface';
 import { postItemsStay } from '../models/items';
@@ -30,7 +29,7 @@ export async function get(
   const { id } = req.params;
 
   try {
-    const summary = await findStaySummary(id);
+    const summary: QueryBuilder = await findStaySummaryStandardized(id);
     if (summary === undefined) {
       const e: any = new Error(`Stay with given ID ${id} not found.`);
       e.statusCode = 404;
@@ -41,6 +40,27 @@ export async function get(
     if (e.statusCode === undefined) {
       e.statusCode = 400;
     }
+    next(e);
+  }
+}
+
+export async function getAll(
+  req: Requests,
+  res: Responses,
+  next: Nexts,
+): Promise<void> {
+  // TODO: change to req.token.ext_it
+  const { extit } = req.query;
+
+  if (!extit) {
+    next(new Error('ext_it query is required'));
+  }
+
+  try {
+    const stays = await findAllStays(String(extit));
+    res.status(200).json(stays);
+  } catch (e) {
+    e.statusCode = e.statusCode || 400;
     next(e);
   }
 }
