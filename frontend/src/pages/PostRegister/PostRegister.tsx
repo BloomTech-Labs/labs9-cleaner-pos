@@ -47,7 +47,7 @@ interface PostFormProps extends RouteComponentProps {
 const PostForm = (props: PostFormProps) => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-  const clientId = process.env.REACT_APP_clientid;
+
   const labelInputField = (label: string) => {
     return ({ field, form }: FieldProps) => {
       const { name, value } = field;
@@ -268,12 +268,6 @@ const PostForm = (props: PostFormProps) => {
                     {status.msg}
                   </div>
                 )}
-                <a
-                  /* tslint:disable-next-line */
-                  href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
-                >
-                  <span>Connect with stripe</span>
-                </a>
               </StyledForm>
             );
           }}
