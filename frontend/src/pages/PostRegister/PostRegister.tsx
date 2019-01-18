@@ -45,6 +45,9 @@ interface PostFormProps extends RouteComponentProps {
 }
 
 const PostForm = (props: PostFormProps) => {
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
   const labelInputField = (label: string) => {
     return ({ field, form }: FieldProps) => {
       const { name, value } = field;
@@ -138,9 +141,6 @@ const PostForm = (props: PostFormProps) => {
                 email,
                 phone,
               };
-              const url =
-                process.env.REACT_APP_backendURL ||
-                'https://cleaner-pos.herokuapp.com';
               await axios.put(`${url}/users/`, userData, headers);
               await actions.setSubmitting(false);
               await actions.setStatus('Submission successful. Thank you!');

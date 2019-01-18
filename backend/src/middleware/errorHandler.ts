@@ -13,7 +13,7 @@ export const errorHandler = (
   next: NextFunction,
 ) => {
   /* tslint:disable */
-  console.log('error handler', err);
+  // console.log('error handler', err);
   // @ts-ignore
   switch (err.statusCode) {
     case 404:
