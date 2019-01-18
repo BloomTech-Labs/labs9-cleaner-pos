@@ -18,8 +18,8 @@ function Open ({ onClick, title, content }: MyConfig) {
 		<div>
 			<button onClick={handleClick} type='button'>{ title }</button>
 			{ open ?
-				null
-				: <div><p>{ content }</p></div>
+				<div><p>{ content }</p></div>
+				: null
 			}
 		</div>
 	)
