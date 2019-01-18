@@ -68,54 +68,56 @@ const PostForm = (props: PostFormProps) => {
     };
   };
 
+  const emptyValues = {
+    email: '',
+    phone: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    country: '',
+    postCode: '',
+    errorStatus: '',
+  };
+
   let startValues: InitialValueProps = {};
   let location: string = '';
 
   if (props.location && props.location.state) {
     const { address, email, ext_it, full_name, phone } = props.location.state;
-    const addressArray = address.split('\n');
-    if (addressArray.length < 6) {
-      addressArray.splice(1, 0, '');
+    if (!address) {
+      startValues = emptyValues;
+    } else {
+      const addressArray = address.split('\n');
+      if (addressArray.length < 6) {
+        addressArray.splice(1, 0, '');
+      }
+      const address1 = addressArray[0];
+      const address2 = addressArray[1];
+      const city = addressArray[2];
+      const state = addressArray[3];
+      const country = addressArray[4];
+      const postCode = addressArray[5];
+      location = props.location.pathname;
+      startValues = {
+        address1,
+        address2,
+        city,
+        state,
+        country,
+        postCode,
+        full_name,
+        email,
+        phone,
+      };
     }
-    const address1 = addressArray[0];
-    const address2 = addressArray[1];
-    const city = addressArray[2];
-    const state = addressArray[3];
-    const country = addressArray[4];
-    const postCode = addressArray[5];
-    location = props.location.pathname;
-    startValues = {
-      address1,
-      address2,
-      city,
-      state,
-      country,
-      postCode,
-      full_name,
-      email,
-      phone,
-    };
   }
 
   return (
     <Container>
       <StyledDiv>
         <Formik
-          initialValues={
-            location === '/updateinfo'
-              ? startValues
-              : {
-                  email: '',
-                  phone: '',
-                  address1: '',
-                  address2: '',
-                  city: '',
-                  state: '',
-                  country: '',
-                  postCode: '',
-                  errorStatus: '',
-                }
-          }
+          initialValues={location === '/updateinfo' ? startValues : emptyValues}
           validationSchema={SignupSchema}
           onSubmit={async (values, actions) => {
             const {
