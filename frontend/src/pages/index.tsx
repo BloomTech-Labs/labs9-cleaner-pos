@@ -5,5 +5,15 @@ import PostRegister from './PostRegister';
 import Billing from './Billing/Billing';
 import Settings from './Settings/Settings';
 import HouseDetails from './Houses/HouseDetails';
+import Guests from './Guests/Guests';
 
-export { Houses, Login, LandingPage, PostRegister, Billing, Settings, HouseDetails };
+export {
+  Houses,
+  Login,
+  LandingPage,
+  PostRegister,
+  Billing,
+  Settings,
+  HouseDetails,
+  Guests,
+};
