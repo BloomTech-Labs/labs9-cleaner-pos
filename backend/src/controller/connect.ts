@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { stripe } from '../util/stripe.setup';
 import { updateUser } from '../models/users';
 import axios from 'axios';
-import { eventNames } from 'cluster';
 
 const deleteL = (req: Request, res: Response, next: NextFunction) => {
   res.status(200).send({ message: 'connection removed' });
@@ -21,15 +20,19 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
         Authorization: `BEARER ${process.env.stripe_secret}`,
       },
     };
-    const { data } = await axios.post(
+    const response = await axios.post(
       url,
       { grant_type: 'authorization_code', code: authorizationCode },
       headers,
     );
-
-    await updateUser('d7DXFYsNwTUKFAz3acyeUkMmtYQ2', {
-      stripeUID: data.customer.stripe_user_id,
-    });
+    if (response !== undefined) {
+      console.log(response.data);
+    }
+    if (response !== undefined) {
+      await updateUser('d7DXFYsNwTUKFAz3acyeUkMmtYQ2', {
+        stripeUID: response.data.stripe_user_id,
+      });
+    }
 
     res.status(201).send({ message: 'Account succesfully connected!' });
   } catch (e) {

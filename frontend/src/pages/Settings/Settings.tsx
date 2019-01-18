@@ -20,21 +20,6 @@ const url =
 
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const clientId = process.env.REACT_APP_clientid;
-  const { search } = props.location;
-  const params = search.match(/code=(.*)/);
-
-  if (params !== null && params.length === 2) {
-    const headers: AxiosRequestConfig = {
-      headers: {
-        Authorization: localStorage.getItem('token'),
-      },
-    };
-    const authorizationCode = params[1];
-    axios
-      .post(`${url}/connect`, { authorizationCode }, headers)
-      .then((res) => res)
-      .catch((e) => e);
-  }
   // useState returns an array. first element is the value, second element is a setState function
   const [contact, setContact] = useState({
     address: '',
@@ -114,6 +99,27 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
         setContact({ address, email, ext_it, full_name, phone });
       })
       .catch(errorHandler);
+  }, []);
+
+  useEffect(() => {
+    const { search } = props.location;
+    const params = search.match(/code=(.*)/);
+
+    if (params !== null && params.length === 2) {
+      const headers: AxiosRequestConfig = {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      };
+      const authorizationCode = params[1];
+      axios
+        .post(`${url}/connect`, { authorizationCode }, headers)
+        .then((res) => {
+          props.history.replace('/settings');
+        })
+        .catch((e) => e);
+    }
+    return () => 'hello';
   }, []);
 
   return (
