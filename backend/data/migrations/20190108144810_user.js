@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
     table.text('address');
     table.string('role');
     table.string('photoUrl');
+    table.string('stripeUID');
     table.boolean('setting_text').defaultTo(false);
     table.boolean('setting_email').defaultTo(false);
     table.timestamp('created_at').defaultTo(knex.fn.now());

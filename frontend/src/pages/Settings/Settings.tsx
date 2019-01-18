@@ -13,27 +13,13 @@ import {
   ButtonText,
   Checkbox,
 } from './Settings.styling';
-import { RouteChildrenProps, RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const Settings: React.SFC<RouteComponentProps> = (props) => {
-  const { search } = props.location;
-  const params = search.match(/code=(.*)/);
-
-  if (params !== null && params.length === 2) {
-    const headers: AxiosRequestConfig = {
-      headers: {
-        Authorization: localStorage.getItem('token'),
-      },
-    };
-    const clientId = params[1];
-    axios
-      .post(`${url}/payments/user`, clientId, headers)
-      .then((res) => res)
-      .catch((e) => e);
-  }
+  const clientId = process.env.REACT_APP_clientid;
   // useState returns an array. first element is the value, second element is a setState function
   const [contact, setContact] = useState({
     address: '',
@@ -115,12 +101,39 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       .catch(errorHandler);
   }, []);
 
+  useEffect(() => {
+    const { search } = props.location;
+    const params = search.match(/code=(.*)/);
+
+    if (params !== null && params.length === 2) {
+      const headers: AxiosRequestConfig = {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      };
+      const authorizationCode = params[1];
+      axios
+        .post(`${url}/connect`, { authorizationCode }, headers)
+        .then((res) => {
+          props.history.replace('/settings');
+        })
+        .catch((e) => e);
+    }
+    return () => 'hello';
+  }, []);
+
   return (
     <Container>
       <Header>
         <h2>Account Settings</h2>
         <Card>
           <Positioner>
+            <a
+              /* tslint:disable-next-line */
+              href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
+            >
+              <span>Connect with stripe</span>
+            </a>
             <h3>Notification Settings</h3>
             <ButtonText>
               <Checkbox

@@ -1,7 +1,6 @@
 import express from 'express';
 import { errorHandler } from './middleware/errorHandler';
 import setGeneralMiddleware from './middleware/generalMiddleware';
-import path from 'path';
 // @ts-ignore
 import companion from '@uppy/companion';
 import verifyToken from './middleware/verifyToken';
@@ -11,14 +10,11 @@ import * as lists from './controller/lists';
 import * as items from './controller/items';
 import * as email from './controller/email';
 import * as payments from './controller/payments';
+import * as connect from './controller/connect';
+import path from 'path';
 
 export const server = express();
 setGeneralMiddleware(server);
-
-// server.get('/', (req, res) => {
-// TODO: Redirect to front-end site
-//  res.send('testing');
-// });
 
 server.use(express.static(path.resolve(path.join(__dirname, '../public'))));
 server.get('/', (__, res) => res.sendFile('index.html'));
@@ -50,6 +46,11 @@ server
   .route('/payments')
   .get(payments.get)
   .post(payments.post);
+
+server
+  .route('/connect')
+  .post(connect.post)
+  .delete(connect.deleteL);
 
 server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`

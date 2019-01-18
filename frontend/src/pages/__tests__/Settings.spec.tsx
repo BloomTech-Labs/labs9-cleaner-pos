@@ -24,7 +24,7 @@ describe('Settings dashboard', () => {
     const buttons = await waitForElement(() => getAllByText(/Save Settings/i));
     expect(buttons.length).toBe(1);
   });
-  test('should indluce a button with the text Update Contact Info', async () => {
+  test('should include a button with the text Update Contact Info', async () => {
     const { getAllByText } = renderWithRouter(<Settings {...props} />, {});
     const buttons = await waitForElement(() =>
       getAllByText(/Update Contact Info/i),
