@@ -11,14 +11,14 @@ interface MyConfig {
 
 
 const Open = ({ onClick, title, content }: MyConfig) => {
-	const [open, setOpen] = useState('false');
+	const [open, setOpen] = useState(false);
 
 	return(
 		<div>
 		{open ? (
-			<a onClick={() => setOpen('true')}> {title}{content}</a>
+			<button onClick={() => setOpen(true)}> {title}{content}</button>
 			) : (
-			<a onClick={() => setOpen('false')}> {title}</a>
+			<button onClick={() => setOpen(false)}> {title}</button>
 			)
 		}
 		</div>
