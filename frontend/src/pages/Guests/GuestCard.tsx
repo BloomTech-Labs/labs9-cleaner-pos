@@ -8,6 +8,25 @@ import { MainText, SecondaryText } from './Guests.styling';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
+function separateDateString(dateString: string) {
+  /* 
+  This function expects a date string input like this:
+  '2019-01-27T08:00:00.000Z'
+  returns {
+      year: string,
+      month: string,
+      day: string;
+  }
+  */
+  const [year, month, day, ...other] = dateString.split(/[-T]+/);
+
+  return {
+    year,
+    month,
+    day,
+  };
+}
+
 export const GuestCard = (props: GuestProps) => {
   const {
     check_in,
@@ -17,6 +36,11 @@ export const GuestCard = (props: GuestProps) => {
     progress,
     className,
   } = props;
+
+  const generateDisplayDate = (dateString: string) => {
+    const { month, day } = separateDateString(dateString);
+    return `${month} / ${day}`;
+  };
 
   return (
     <div className={`banner-card ${className}`}>
@@ -29,10 +53,14 @@ export const GuestCard = (props: GuestProps) => {
         <MainText>{guest_name}</MainText>
         <SecondaryText>Staying in {house_name}</SecondaryText>
       </div>
-      <InfoBox className='info-check-in' main={check_in} secondary='Check-In' />
+      <InfoBox
+        className='info-check-in'
+        main={generateDisplayDate(check_in)}
+        secondary='Check-In'
+      />
       <InfoBox
         className='info-check-out'
-        main={check_out}
+        main={generateDisplayDate(check_out)}
         secondary='Check-Out'
       />
       <InfoBox
