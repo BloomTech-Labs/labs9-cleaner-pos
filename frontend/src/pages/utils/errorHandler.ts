@@ -4,6 +4,7 @@ interface ErrorState {
   msg: string;
   error: boolean;
 }
+
 export const axiosErrorHandler = (
   stateCb: React.Dispatch<React.SetStateAction<ErrorState>>,
 ) => {
@@ -15,8 +16,8 @@ export const axiosErrorHandler = (
     error: boolean,
   }
   Use this function to set an error thrown by axios into state,
-  which can then be displayed on the component. 
-  Use it by calling the function as an argument for catch in the 
+  which can then be displayed on the component.
+  Use it by calling the function as an argument for catch in the
   promise.
   Or use it by going `axiosErrorHandler(stateCb)(e);` in a try
   catch block.
