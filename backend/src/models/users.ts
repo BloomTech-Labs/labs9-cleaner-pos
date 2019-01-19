@@ -10,6 +10,7 @@ interface User {
   //   created_at: string; // added by DB
   //   address: string;
   role?: string;
+  stripeUID?: string;
 }
 
 export function findUser(id: number): QueryBuilder {

@@ -8,18 +8,20 @@ export const StyledDiv = styled('div')`
   font-family: 'Roboto';
   color: #393534;
   max-width: 1020px;
-  margin-top: 1rem;
+  margin: auto;
   display: flex;
   justify-content: center;
 `;
 
-export const StyledForm = styled(Form)`
-  background-color: white;
-  padding: 1rem;
+/*
   -webkit-box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
     0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
     0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
+*/
+export const StyledForm = styled(Form)`
+  background-color: white;
+  padding: 1rem;
   width: 90%;
   display: grid;
   grid-gap: 24px;

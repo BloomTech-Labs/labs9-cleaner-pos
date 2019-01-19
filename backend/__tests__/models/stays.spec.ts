@@ -2,6 +2,7 @@ import 'jest';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
 import {
+  findAllStays,
   findStaySummary,
   postStayData,
   putStayData,
@@ -13,9 +14,15 @@ import usersData from '../../data/seeds/data/usersData';
 import housesData from '../../data/seeds/data/housesData';
 import staysData from '../../data/seeds/data/staysData';
 
+// Error handler function
+const errorHandler = (e: Error) => {
+  console.error(e);
+};
+
 // Mock db in users model functions
 jest.mock('../../data/dbConfig');
 import db from '../../data/dbConfig';
+import { findStaySummaryStandardized } from '../../src/models/stays/stays';
 
 // Use testDb instead of DB defined in env
 // TODO: Find way to define type for mockImplementation
@@ -59,8 +66,44 @@ describe('Stay DB functions', () => {
     // Act
     const result = await findStaySummary(stayIdinDb).catch((e) => e);
     // Assert
-    expect(result.guest).toBe(testUser.full_name);
-    expect(result.house).toBe(testHouse.name);
+    expect(result.guestName).toBe(testUser.full_name);
+    expect(result.houseName).toBe(testHouse.name);
+  });
+
+  test('findStaySummaryStandardized returns appropriate data formatted to match rest of DB', async () => {
+    // Arange
+    const stayIdinDb = 1;
+    const testStay = staysData[stayIdinDb - 1]; // - 1 to for 0-based indexing
+    const testUser = usersData[testStay.guest_id - 1];
+    const testHouse = housesData[testStay.house_id - 1];
+    // Act
+    const result = await findStaySummaryStandardized(stayIdinDb).catch(
+      (e) => e,
+    );
+    // Assert
+    expect(result.guest_name).toBe(testUser.full_name);
+    expect(result.house_name).toBe(testHouse.name);
+    expect(result.house_address).toBe(testHouse.address);
+    expect(result).toHaveProperty('default_ast');
+    expect(result).toHaveProperty('guest_guide');
+    expect(result).toHaveProperty('ast_guide');
+  });
+
+  test('findAllStays finds all upcoming guests of a user', async () => {
+    // Arrange
+    const extIt = '1'; // Harald Junke
+    // Seed data has three upcoming guests for this user
+    // Act
+    const result = await findAllStays(extIt).catch(errorHandler);
+    // Assert
+    expect(result.length).toBe(3);
+    const sampleObj = result[0];
+    expect(sampleObj).toHaveProperty('stay_id');
+    expect(sampleObj).toHaveProperty('house_id');
+    expect(sampleObj).toHaveProperty('guest_name');
+    expect(sampleObj).toHaveProperty('house_name');
+    expect(sampleObj).toHaveProperty('check_in');
+    expect(sampleObj).toHaveProperty('check_out');
   });
 
   test('postStayData posts data to DB', async () => {
