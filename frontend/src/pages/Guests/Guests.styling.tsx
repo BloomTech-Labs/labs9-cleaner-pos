@@ -1,5 +1,49 @@
-import styled from '@emotion/styled';
+// Components
 import Container from '../../components/Container';
+import { GuestCard } from './GuestCard';
+// Styles
+import styled from '@emotion/styled';
+
+const height = 216 / 16;
+
+export const StyledGuestCard = styled(GuestCard)`
+  /* Sizing and Box Model */
+  width: 100%;
+  height: ${height}rem;
+
+  /* Grid */
+  display: grid;
+  grid-gap: 36px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, ${height / 2});
+
+  .user-image {
+    /* Grid */
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .text-content {
+    grid-column: 2 / 3;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  .info-check-in {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .info-check-out {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .info-progress {
+    grid-column: 4;
+    grid-row: span 2;
+  }
+`;
 
 export const GuestsDiv = styled(Container)`
   /* Flexbox */
@@ -14,4 +58,18 @@ export const GuestsDiv = styled(Container)`
     display: flex;
     text-align: left;
   }
+`;
+
+export const MainText = styled.div`
+  display: block;
+  text-align: left;
+  font-family: 'Roboto Bold', Arial, sans-serif;
+  font-size: ${30 / 16}rem;
+`;
+
+export const SecondaryText = styled.div`
+  display: inline-block;
+  text-align: left;
+  font-family: 'Roboto Light', Arial, sans-serif;
+  font-size: 1rem;
 `;
