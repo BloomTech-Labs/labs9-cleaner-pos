@@ -1,15 +1,15 @@
 import React from 'react';
-// Components
-import { InfoBox } from './InfoBox';
 // Types
 import { GuestProps } from './types';
-// Styles
+// Components
+import { InfoBox } from './InfoBox';
+// Styled Components
 import { MainText, SecondaryText } from './Guests.styling';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
 function separateDateString(dateString: string) {
-  /* 
+  /*
   This function expects a date string input like this:
   '2019-01-27T08:00:00.000Z'
   returns {

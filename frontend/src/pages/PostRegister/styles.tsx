@@ -20,11 +20,17 @@ export const StyledDiv = styled('div')`
     0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
 */
 export const StyledForm = styled(Form)`
+  /* Color */
   background-color: white;
+
+  /* Sizing & Box Model */
   padding: 1rem;
   width: 90%;
+
+  /* Grid */
   display: grid;
-  grid-gap: 24px;
+  gap: ${36 / 16}rem;
+  grid-gap: ${36 / 16}rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas:
     'title title . .'
@@ -35,6 +41,7 @@ export const StyledForm = styled(Form)`
     'country country country postCode'
     '. submit clear .'
     '. status status .';
+
   .title {
     grid-area: title;
   }
@@ -68,17 +75,21 @@ export const StyledForm = styled(Form)`
   .clear {
     grid-area: clear;
   }
+
   button {
     border: none;
     padding: 6px;
     background-color: #393534;
     color: #eeeff5;
     font-family: 'Roboto Medium';
+    /*
     -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
       0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
       0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    */
   }
+
   .status {
     grid-area: status;
   }

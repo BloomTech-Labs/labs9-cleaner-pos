@@ -1,8 +1,9 @@
 :root {
-  --main-dark-color: #393534;
+  --main-black-color: #393534;
   --main-background-color: #eeeff5;
-  --main-accent-color: white;
   --accent-color: #4593b6;
+  --accent-background-color: white;
+  --border-color: rgba(22, 21, 20, 0.12);
 }
 
 body {
