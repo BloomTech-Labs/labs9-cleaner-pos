@@ -20,20 +20,55 @@ export const GuestsDiv = styled(Container)`
   display: flex;
   flex-flow: row wrap;
 
-  h2 {
-    display: inline;
+  .guests-header {
+    /* Sizing & Box Model */
+    height: ${pxToRem(48)}rem;
+    width: 100%;
+    margin: ${pxToRem(36)}rem 0;
+
+    /* Flexbox */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 
-  .title {
-    display: flex;
-    text-align: left;
+  .guests-header h2 {
+    /* Sizing & Box Model*/
+    margin: 0;
+
+    /* Text */
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: ${pxToRem(36)}rem;
+  }
+
+  .guests-header button {
+    /* Text */
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: ${pxToRem(20)}rem;
+  }
+
+  .guests-buttons-filter {
+    margin-bottom: ${pxToRem(36)}rem;
+  }
+
+  .guests-buttons-filter .button-filter {
+    /* Sizing & Box Model */
+    height: ${pxToRem(36)}rem;
+    width: ${pxToRem(120)}rem;
+    border: 1px solid rgba(238, 239, 245, 0.5);
+
+    /* Text */
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
   }
 `;
 
 export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
   width: 100%;
-  height: ${height + 0.075}rem;
+  height: ${height}rem;
   border: 1px solid var(--colour-border);
   margin-bottom: ${pxToRem(36)}rem;
 
@@ -75,8 +110,11 @@ export const StyledGuestCard = styled(GuestCard)`
     */
     /* Sizing & Box Model */
     width: ${pxToRem(206)}rem;
-    height: ${pxToRem(108)}rem;
+    height: 100%;
     margin-bottom: 1rem;
+
+    /* Color */
+    background-color: var(--colour-main-background);
   }
 
   .info-check-in {
@@ -100,6 +138,9 @@ export const StyledGuestCard = styled(GuestCard)`
     /* Grid */
     grid-column: 4;
     grid-row: span 2;
+
+    /* Color */
+    background-color: var(--colour-main-background);
   }
 
   .info-progress .text-main {
@@ -116,6 +157,35 @@ export const StyledGuestCard = styled(GuestCard)`
 
     /* Text */
     font-size: ${pxToRem(16)}rem;
+  }
+`;
+
+export const InfoDiv = styled.div`
+  /* Sizing & Box Model */
+  border: 1px solid var(--colour-border);
+
+  /* Flexbox */
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+
+  /* Color */
+  background-color: var(--colour-accent-background);
+
+  div[class^='text-'] {
+    display: block;
+  }
+
+  .text-main {
+    font-family: 'Roboto Medium', Arial, sans-serif;
+    font-size: ${36 / 16}rem;
+    color: var(--colour-accent);
+  }
+
+  .text-secondary {
+    font-family: 'Roboto Light', Arial, sans-serif;
+    font-size: ${20 / 16}rem;
+    color: var(--colour-main-black);
   }
 `;
 
