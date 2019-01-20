@@ -11,10 +11,29 @@ const pxToRem = (px: number) => px / 16;
 // Convert px to rem by dividing it by 16.
 // ASSUMPTION: A rem is set to 16px in high level css.
 
+export const GuestsDiv = styled(Container)`
+  /* Sizing & Box Model */
+  max-width: 1000px;
+  width: 100%;
+
+  /* Flexbox */
+  display: flex;
+  flex-flow: row wrap;
+
+  h2 {
+    display: inline;
+  }
+
+  .title {
+    display: flex;
+    text-align: left;
+  }
+`;
+
 export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
   width: 100%;
-  height: ${height + 0.1}rem;
+  height: ${height + 0.075}rem;
   border: 1px solid var(--border-color);
   margin-bottom: ${pxToRem(36)}rem;
 
@@ -55,6 +74,7 @@ export const StyledGuestCard = styled(GuestCard)`
     https://stackoverflow.com/a/8588532
     */
     /* Sizing & Box Model */
+    width: ${pxToRem(206)}rem;
     height: ${pxToRem(108)}rem;
     margin-bottom: 1rem;
   }
@@ -96,21 +116,6 @@ export const StyledGuestCard = styled(GuestCard)`
 
     /* Text */
     font-size: ${pxToRem(16)}rem;
-  }
-`;
-
-export const GuestsDiv = styled(Container)`
-  /* Flexbox */
-  display: flex;
-  flex-flow: row wrap;
-
-  h2 {
-    display: inline;
-  }
-
-  .title {
-    display: flex;
-    text-align: left;
   }
 `;
 
