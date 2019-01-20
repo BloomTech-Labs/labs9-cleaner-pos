@@ -63,6 +63,13 @@ export const GuestsDiv = styled(Container)`
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 1rem;
   }
+
+  .guests-buttons-filter button.button-filter:hover,
+  .guests-buttons-filter .active {
+    /* Color */
+    color: var(--colour-button-text-alt);
+    background-color: var(--colour-button-background-alt);
+  }
 `;
 
 export const StyledGuestCard = styled(GuestCard)`

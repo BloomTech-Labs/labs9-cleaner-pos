@@ -1,17 +1,15 @@
-/* :root {
-  --main-black-color: #393534;
-  --main-background-color: var(--colour-main-background);
-  --accent-color: var(--colour-accent);
-  --accent-background-color: white;
-  --border-color: rgba(22, 21, 20, 0.12);
-} */
-
 :root {
+  /* General Colours */
   --colour-main-black: #393534;
   --colour-main-background: #eeeff5;
   --colour-accent: #4593b6;
   --colour-accent-background: white;
   --colour-border: rgba(22, 21, 20, 0.12);
+  /* Buttons */
+  --colour-button-text: white;
+  --colour-button-background: #4593b6;
+  --colour-button-text-alt: #4593b6;
+  --colour-button-background-alt: white;
 }
 
 body {
