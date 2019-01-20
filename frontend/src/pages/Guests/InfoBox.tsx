@@ -9,7 +9,7 @@ export const InfoBox = (props: {
 }) => {
   const InfoDiv = styled.div`
     /* Sizing & Box Model */
-    border: 1px solid rgba(22, 21, 20, 0.12);
+    border: 1px solid var(--colour-border);
 
     /* Flexbox */
     display: flex;
@@ -17,7 +17,7 @@ export const InfoBox = (props: {
     justify-content: space-around;
 
     /* Color */
-    background-color: white;
+    background-color: var(--colour-accent-background);
 
     div[class^='text-'] {
       display: block;
@@ -26,13 +26,13 @@ export const InfoBox = (props: {
     .text-main {
       font-family: 'Roboto Medium', Arial, sans-serif;
       font-size: ${36 / 16}rem;
-      color: var(--accent-color);
+      color: var(--colour-accent);
     }
 
     .text-secondary {
       font-family: 'Roboto Light', Arial, sans-serif;
       font-size: ${20 / 16}rem;
-      color: var(--main-black-color);
+      color: var(--colour-main-black);
     }
   `;
 

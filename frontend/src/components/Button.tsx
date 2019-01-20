@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 const Button = ({ onClick, text, datatestid, colour }: ButtonProps) => {
-  const buttonColour = colour || '#393534';
+  const buttonColour = colour || 'var(--colour-main-black)';
   const StyledButton = styled('button')`
     background: ${buttonColour};
     width: 200px;

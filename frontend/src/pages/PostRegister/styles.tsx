@@ -21,7 +21,7 @@ export const StyledDiv = styled('div')`
 */
 export const StyledForm = styled(Form)`
   /* Color */
-  background-color: white;
+  background-color: var(--colour-accent-background);
 
   /* Sizing & Box Model */
   padding: 1rem;
@@ -80,7 +80,7 @@ export const StyledForm = styled(Form)`
     border: none;
     padding: 6px;
     background-color: #393534;
-    color: #eeeff5;
+    color: var(--colour-main-background);
     font-family: 'Roboto Medium';
     /*
     -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),

@@ -1,21 +1,29 @@
-:root {
+/* :root {
   --main-black-color: #393534;
-  --main-background-color: #eeeff5;
-  --accent-color: #4593b6;
+  --main-background-color: var(--colour-main-background);
+  --accent-color: var(--colour-accent);
   --accent-background-color: white;
   --border-color: rgba(22, 21, 20, 0.12);
+} */
+
+:root {
+  --colour-main-black: #393534;
+  --colour-main-background: #eeeff5;
+  --colour-accent: #4593b6;
+  --colour-accent-background: white;
+  --colour-border: rgba(22, 21, 20, 0.12);
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #eeeff5;
+  background-color: var(--colour-main-background);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #eeeff5;
+  background: var(--colour-main-background);
 }
 
 code {

@@ -34,7 +34,7 @@ export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
   width: 100%;
   height: ${height + 0.075}rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--colour-border);
   margin-bottom: ${pxToRem(36)}rem;
 
   /* Grid */
@@ -45,8 +45,8 @@ export const StyledGuestCard = styled(GuestCard)`
   grid-template-columns: repeat(4, 1fr);
 
   /* Color */
-  color: var(--main-black-color);
-  background-color: var(--accent-background-color);
+  color: var(--colour-main-black);
+  background-color: var(--colour-accent-background);
 
   .user-image {
     /* Sizing & Box Model*/
