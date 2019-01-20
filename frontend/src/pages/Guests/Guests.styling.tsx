@@ -14,7 +14,7 @@ const pxToRem = (px: number) => px / 16;
 export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
   width: 100%;
-  height: ${height + 0.25}rem;
+  height: ${height + 0.1}rem;
   border: 1px solid var(--border-color);
   margin-bottom: ${pxToRem(36)}rem;
 
@@ -32,7 +32,7 @@ export const StyledGuestCard = styled(GuestCard)`
   .user-image {
     /* Sizing & Box Model*/
     width: 100%;
-    height: ${height + 0.15}rem;
+    height: ${height}rem;
     object-fit: cover;
 
     /* Grid */
