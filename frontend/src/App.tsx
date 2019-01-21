@@ -25,7 +25,7 @@ const App = (props: any) => {
         <Route exact path='/dashboard' component={Houses} />
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/updateinfo' component={PostRegister} />
-        <Route exact path='/houses' component={HouseDetails} />
+        <Route exact path='/houses/:id' component={HouseDetails} />
         <Route exact path='/guests' component={Guests} />
       </Switch>
     </div>

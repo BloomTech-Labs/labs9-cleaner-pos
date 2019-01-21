@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import { Button, Container } from '../../components/index';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import {
   HouseItem,
   CardBody,
@@ -68,7 +69,14 @@ const Houses = () => {
                   <p>Checklist Items</p> 27
                 </CheckList>
                 <ButtonContainer>
-                  <Button text='Edit Checklists' datatestid='house-button' />
+                  <Link
+                    to={{
+                      pathname: `/houses/${house.id}`,
+                      state: house,
+                    }}
+                  >
+                    <Button text='Edit Checklists' datatestid='house-button' />
+                  </Link>
                   <Button text='Edit Resources' datatestid='house-button' />
                 </ButtonContainer>
                 <Cleaner>
