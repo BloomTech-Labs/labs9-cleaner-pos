@@ -12,7 +12,7 @@ const Guests = () => {
   const [stays, setStays] = useState([] as GuestProps[]);
   const [errors, setErrors] = useState({ msg: '', error: false });
 
-  useEffect(() => {
+  const getStays = (filter = 'all') => {
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -29,13 +29,18 @@ const Guests = () => {
 
     const url =
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+
     axios
-      .get(`${url}/stays?test=true`, headers)
+      .get(`${url}/stays?${'filter=' + filter}&test=true`, headers)
       .then((response) => {
         const { data } = response;
         setStays(data);
       })
       .catch(axiosErrorHandler(setErrors));
+  };
+
+  useEffect(() => {
+    getStays('upcoming');
   }, []);
 
   return (
@@ -49,16 +54,19 @@ const Guests = () => {
           className='button-filter upcoming'
           text='Upcoming'
           colour='var(--colour-accent)'
+          onClick={() => getStays('upcoming')}
         />
         <Button
           className='button-filter incomplete'
           text='Incomplete'
           colour='var(--colour-accent)'
+          onClick={() => getStays('incomplete')}
         />
         <Button
           className='button-filter complete'
           text='Complete'
           colour='var(--colour-accent)'
+          onClick={() => getStays('complete')}
         />
       </div>
       <div className='guests-errors'>{errors.msg}</div>
