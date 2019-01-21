@@ -84,7 +84,7 @@ const Properties = () => {
                 <Cleaner>
                   Default Cleaner
                   <select
-                    data-testid='cleaner-select'
+                    data-testid='assistant-select'
                     onChange={(event) => postAst(event, house.id)}
                   >
                     <option defaultValue={house.default_ast_name}>
