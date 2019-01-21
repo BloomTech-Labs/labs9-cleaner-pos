@@ -1,12 +1,16 @@
 import React from 'react';
 import Stripe from './index';
 import { Container } from '../../components/index';
-//import Example from '../../components/shared_components/Example';
+import Accordion from '../../components/Accordion';
+import Example from '../../components/shared_components/Example';
 
 const Billing = () => {
   return (
     <Container>
-//	  <Example />
+      <div>
+        <Accordion title='OUR AWESOME ACCORDION' />
+        <Example />
+      </div>
       <Stripe />
     </Container>
   );
