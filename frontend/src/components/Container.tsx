@@ -10,10 +10,16 @@ const StyledContainer = styled('div')`
   flex-direction: column;
 `;
 
-const Container = ({ children }: { children?: any }) => {
+const Container = ({
+  className,
+  children,
+}: {
+  className?: any;
+  children?: any;
+}) => {
   return (
     <>
-      <StyledContainer>{children}</StyledContainer>
+      <StyledContainer className={className}>{children}</StyledContainer>
     </>
   );
 };

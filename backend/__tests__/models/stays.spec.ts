@@ -106,6 +106,57 @@ describe('Stay DB functions', () => {
     expect(sampleObj).toHaveProperty('check_out');
   });
 
+  test('findAllStays filters by current date', async () => {
+    // Arrange
+    const extIt = '1'; // Harald Junke
+    // Seed data has three upcoming guests for this user
+    // Act
+    const result = await findAllStays(extIt, 'upcoming').catch(errorHandler);
+    // Assert
+    // TODO: Supply custom seed data within test.
+    // As is, this will break after 2/27/2019
+    // Idea: data is stored separately from the function that seeds
+    // Maybe we can mock the seed function?!
+    expect(result.length).toBe(2);
+    const sampleObj = result[0];
+    expect(sampleObj).toHaveProperty('stay_id');
+    expect(sampleObj).toHaveProperty('house_id');
+    expect(sampleObj).toHaveProperty('guest_name');
+    expect(sampleObj).toHaveProperty('house_name');
+    expect(sampleObj).toHaveProperty('check_in');
+    expect(sampleObj.check_in).toBe('2019-02-25T00:00:00Z');
+    expect(sampleObj).toHaveProperty('check_out');
+  });
+
+  test('findAllStays filters by completion', async () => {
+    // Arrange
+    const extIt = '1'; // Harald Junke
+    // Seed data has three upcoming guests for this user
+    // Act
+    const result = await findAllStays(extIt, 'complete').catch(errorHandler);
+    // Assert
+    // TODO: Supply custom seed data within test.
+    expect(result.length).toBe(0);
+  });
+
+  test('findAllStays filters by incompletion', async () => {
+    // Arrange
+    const extIt = '1'; // Harald Junke
+    // Seed data has three upcoming guests for this user
+    // Act
+    const result = await findAllStays(extIt, 'incomplete').catch(errorHandler);
+    // Assert
+    // TODO: Supply custom seed data within test.
+    expect(result.length).toBe(3);
+    const sampleObj = result[0];
+    expect(sampleObj).toHaveProperty('stay_id');
+    expect(sampleObj).toHaveProperty('house_id');
+    expect(sampleObj).toHaveProperty('guest_name');
+    expect(sampleObj).toHaveProperty('house_name');
+    expect(sampleObj).toHaveProperty('check_in');
+    expect(sampleObj).toHaveProperty('check_out');
+  });
+
   test('postStayData posts data to DB', async () => {
     // Arrange
     const stayIdinDb = 1;

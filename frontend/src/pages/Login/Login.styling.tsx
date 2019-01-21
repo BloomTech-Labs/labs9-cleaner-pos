@@ -10,7 +10,8 @@ const LoginDiv = styled('div')`
 
   /* Grid */
   display: grid;
-  grid-gap: 36px;
+  gap: ${36 / 16}rem;
+  grid-gap: ${36 / 16}rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: '. . login';
   align-items: center;
@@ -40,6 +41,6 @@ const LoginDiv = styled('div')`
 `;
 
 /*
-    background-color: #eeeff5;
+    background-color: var(--colour-main-background);
 */
 export default LoginDiv;

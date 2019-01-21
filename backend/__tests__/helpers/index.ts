@@ -1,7 +1,8 @@
 export interface RequestMock {
-  params?: any;
   body?: any;
+  params?: any;
   query?: any;
+  token?: any;
 }
 
 export class ResponseMock {
