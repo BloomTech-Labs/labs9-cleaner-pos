@@ -68,18 +68,21 @@ const Guests = () => {
           text='Upcoming'
           colour='var(--colour-accent)'
           onClick={() => getStays('upcoming')}
+          datatestid='button-upcoming'
         />
         <Button
           className={`button-filter incomplete ${activeClass('incomplete')}`}
           text='Incomplete'
           colour='var(--colour-accent)'
           onClick={() => getStays('incomplete')}
+          datatestid='button-incomplete'
         />
         <Button
           className={`button-filter complete ${activeClass('complete')}`}
           text='Complete'
           colour='var(--colour-accent)'
           onClick={() => getStays('complete')}
+          datatestid='button-complete'
         />
       </div>
       <div className='guests-errors'>{errors.msg}</div>

@@ -12,7 +12,7 @@ export const InfoBox = (props: {
   const { main, secondary, className } = props;
 
   return (
-    <InfoDiv className={className}>
+    <InfoDiv className={className} data-testid='info-box'>
       <div className='text-main'>{main}</div>
       <div className='text-secondary'>{secondary}</div>
     </InfoDiv>
