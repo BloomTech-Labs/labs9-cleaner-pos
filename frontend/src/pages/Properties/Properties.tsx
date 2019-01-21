@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, Container } from '../../components/index';
 import axios from 'axios';
 import {
@@ -11,24 +11,10 @@ import {
   Cleaner,
   CheckList,
   HouseHeader,
-} from './Houses.styling';
+} from './Properties.styling';
+import { HousesEnum } from './types';
 
-interface HousesEnum extends Array<House> {}
-
-interface House {
-  id?: number;
-  name: string;
-  address: string;
-  price: number;
-  cleaning_fee: number;
-  extra_guest_fee: number;
-  default_ast?: string;
-  manager?: string;
-  guest_guide?: any;
-  ast_guide?: any;
-}
-
-const Houses = () => {
+const Properties = () => {
   const [houses, setHouses] = useState<HousesEnum>([]);
   const shouldFetch = useRef(true);
   async function fetchHouses() {
@@ -40,7 +26,7 @@ const Houses = () => {
     }
   }
 
-  useLayoutEffect(
+  useEffect(
     () => {
       fetchHouses();
       shouldFetch.current = false;
@@ -65,7 +51,8 @@ const Houses = () => {
               </CardHeading>
               <CardBody>
                 <CheckList>
-                  <p>Checklist Items</p> 27
+                  <p>Checklist Items</p>
+                  {house.checkList[0].count}
                 </CheckList>
                 <ButtonContainer>
                   <Button text='Edit Checklists' datatestid='house-button' />
@@ -74,7 +61,9 @@ const Houses = () => {
                 <Cleaner>
                   Default Cleaner
                   <select>
-                    <option>Cleaner Jon</option>
+                    {house.openAst.map((ast: any) => {
+                      return <option key={ast.ast_id}>{ast.full_name}</option>;
+                    })}
                   </select>
                 </Cleaner>
               </CardBody>
@@ -86,4 +75,4 @@ const Houses = () => {
   );
 };
 
-export default Houses;
+export default Properties;
