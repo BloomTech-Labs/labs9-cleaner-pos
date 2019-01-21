@@ -14,6 +14,8 @@ const Guests = () => {
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [active, setActive] = useState('upcoming' as FilterArgs);
 
+  // TODO: Add loading animation
+
   const getStays = (filter: FilterArgs = 'all') => {
     /*
     Retrieves stay information from server
@@ -82,7 +84,7 @@ const Guests = () => {
       </div>
       <div className='guests-errors'>{errors.msg}</div>
       {stays.map((stay) => (
-        <StyledGuestCard {...stay} />
+        <StyledGuestCard key={stay.stay_id} {...stay} />
       ))}
     </GuestsDiv>
   );

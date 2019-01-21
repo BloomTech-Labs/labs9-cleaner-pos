@@ -29,6 +29,7 @@ function separateDateString(dateString: string) {
 
 export const GuestCard = (props: GuestProps) => {
   const {
+    stay_id,
     check_in,
     check_out,
     house_name,
@@ -43,7 +44,7 @@ export const GuestCard = (props: GuestProps) => {
   };
 
   return (
-    <div className={`banner-card ${className}`}>
+    <div className={`banner-card ${className}`} data-testid='guest-card'>
       <img
         className='user-image'
         src={defaultUser}
