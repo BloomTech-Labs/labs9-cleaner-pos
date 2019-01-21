@@ -31,15 +31,29 @@ describe('Stay Route Handler Functions:', () => {
   test('GET all sends 200 upon success', async () => {
     jest
       .spyOn(stayModels, 'findAllStays')
-      .mockImplementation(() => Promise.resolve(true));
+      .mockImplementation((extit: string) => Promise.resolve(extit));
     // TODO: modify test for req.token.ext_it once complete
-    req.query = { extit: 1 };
+    req.token = { ext_it: '2' };
     // Act
     await getAll(req, res, next);
     // Assert
     const { statusValue, jsonValue } = res;
     expect(statusValue).toBe(200);
-    expect(jsonValue).toBeTruthy();
+    expect(jsonValue).toBe(req.token.ext_it);
+  });
+
+  test('GET all test functionality works', async () => {
+    jest
+      .spyOn(stayModels, 'findAllStays')
+      .mockImplementation((extit: string) => Promise.resolve(extit));
+    // TODO: modify test for req.token.ext_it once complete
+    req.query = { test: true };
+    // Act
+    await getAll(req, res, next);
+    // Assert
+    const { statusValue, jsonValue } = res;
+    expect(statusValue).toBe(200);
+    expect(jsonValue).toBe('1');
   });
 
   test('GET all properly sends error reponse', async () => {
