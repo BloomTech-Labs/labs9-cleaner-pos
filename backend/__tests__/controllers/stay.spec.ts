@@ -69,7 +69,7 @@ describe('Stay Route Handler Functions:', () => {
         Promise.resolve({ extit, filter }),
       );
     // TODO: modify test for req.token.ext_it once complete
-    req.query = { test: true };
+    req.query = { test: 'true' };
     // Act
     await getAll(req, res, next);
     // Assert
