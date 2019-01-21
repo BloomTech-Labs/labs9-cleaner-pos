@@ -72,7 +72,7 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
         if (data.first) {
           props.history.push('/updateinfo');
         } else {
-          props.history.push('/dashboard');
+          props.history.push('/properties');
         }
       } catch (e) {
         throw e;
