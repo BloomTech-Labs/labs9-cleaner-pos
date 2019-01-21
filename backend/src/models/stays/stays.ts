@@ -58,7 +58,12 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
     .first();
 }
 
-export async function findAllStays(userExtIt: string): Promise<any> {
+export async function findAllStays(
+  userExtIt: string,
+  filter?: 'all' | 'upcoming' | 'incomplete' | 'complete',
+): Promise<any> {
+  const filterValue = filter || 'all';
+
   try {
     // Find manager id
     const { id } = await findUserByExt_it(userExtIt);
@@ -70,7 +75,7 @@ export async function findAllStays(userExtIt: string): Promise<any> {
       .map((val: any) => val.id);
 
     // Find all stays related to all found houses
-    return db('stay')
+    const query: QueryBuilder = db('stay')
       .whereIn('house_id', houses)
       .join('user', { 'user.id': 'guest_id' })
       .join('house', { 'house.id': 'house_id' })
@@ -81,17 +86,41 @@ export async function findAllStays(userExtIt: string): Promise<any> {
         'house.name AS house_name',
         'check_in AS check_in',
         'check_out AS check_out',
-      )
-      .map(async (val: any) => {
-        // Find percentage of completed items over total items in checklist
-        const { house_id, stay_id } = val;
-        const progress: number = await getPreparationProgress(
-          'before',
-          house_id,
-          stay_id,
-        );
-        return { ...val, progress };
+      );
+
+    if (filterValue === 'upcoming') {
+      // Date comparison: https://stackoverflow.com/a/51668192
+      // Date format: https://stackoverflow.com/a/41941071
+      query.where('check_in', '>=', new Date().toISOString());
+    }
+
+    // TODO: Refactor for efficiency
+    const result = query.map(async (val: any) => {
+      // Find percentage of completed items over total items in checklist
+      const { house_id, stay_id } = val;
+      const progress: number = await getPreparationProgress(
+        'before',
+        house_id,
+        stay_id,
+      );
+      return { ...val, progress };
+    });
+
+    // We're separating the filter from the rest of the promise chain
+    // to prevent an additional linear operation for filters which don't
+    // need it.
+    if (filterValue === 'complete' || filterValue === 'incomplete') {
+      return result.filter((val: any) => {
+        if (filterValue === 'complete') {
+          return val.progress === 100;
+        } else if (filterValue === 'incomplete') {
+          return val.progress !== 100;
+        }
+        return false;
       });
+    }
+
+    return result;
   } catch (e) {
     throw e;
   }

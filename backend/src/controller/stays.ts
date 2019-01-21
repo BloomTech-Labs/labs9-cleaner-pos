@@ -37,9 +37,7 @@ export async function get(
     }
     res.status(200).json(summary);
   } catch (e) {
-    if (e.statusCode === undefined) {
-      e.statusCode = 400;
-    }
+    e.statusCode = e.statusCode || 400;
     next(e);
   }
 }
@@ -49,15 +47,17 @@ export async function getAll(
   res: Responses,
   next: Nexts,
 ): Promise<void> {
-  // TODO: change to req.token.ext_it
-  const { extit } = req.query;
+  const test = req.query && req.query.test;
+  const filter = req.query && req.query.filter ? req.query.filter : 'all';
+  // If test query is true, set extit to '1'
+  const extit = test !== 'true' ? req.token && req.token.ext_it : '1';
 
   if (!extit) {
-    next(new Error('ext_it query is required'));
+    next({ ...new Error('Authentication Required'), statusCode: 403 });
   }
 
   try {
-    const stays = await findAllStays(String(extit));
+    const stays = await findAllStays(String(extit), filter);
     res.status(200).json(stays);
   } catch (e) {
     e.statusCode = e.statusCode || 400;

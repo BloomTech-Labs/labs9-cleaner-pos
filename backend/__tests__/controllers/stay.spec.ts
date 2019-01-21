@@ -31,15 +31,52 @@ describe('Stay Route Handler Functions:', () => {
   test('GET all sends 200 upon success', async () => {
     jest
       .spyOn(stayModels, 'findAllStays')
-      .mockImplementation(() => Promise.resolve(true));
+      .mockImplementation((extit: string, filter: string) =>
+        Promise.resolve({ extit, filter }),
+      );
     // TODO: modify test for req.token.ext_it once complete
-    req.query = { extit: 1 };
+    req.token = { ext_it: '2' };
     // Act
     await getAll(req, res, next);
     // Assert
     const { statusValue, jsonValue } = res;
     expect(statusValue).toBe(200);
-    expect(jsonValue).toBeTruthy();
+    expect(jsonValue.extit).toBe(req.token.ext_it);
+  });
+
+  test('GET accepts filter query', async () => {
+    jest
+      .spyOn(stayModels, 'findAllStays')
+      .mockImplementation((extit: string, filter: string) =>
+        Promise.resolve({ extit, filter }),
+      );
+    // TODO: modify test for req.token.ext_it once complete
+    req.token = { ext_it: '2' };
+    req.query = { filter: 'upcoming' };
+    // Act
+    await getAll(req, res, next);
+    // Assert
+    const { statusValue, jsonValue } = res;
+    expect(statusValue).toBe(200);
+    expect(jsonValue.extit).toBe(req.token.ext_it);
+    expect(jsonValue.filter).toBe('upcoming');
+  });
+
+  test('GET all test functionality works', async () => {
+    jest
+      .spyOn(stayModels, 'findAllStays')
+      .mockImplementation((extit: string, filter: string) =>
+        Promise.resolve({ extit, filter }),
+      );
+    // TODO: modify test for req.token.ext_it once complete
+    req.query = { test: 'true' };
+    // Act
+    await getAll(req, res, next);
+    // Assert
+    const { statusValue, jsonValue } = res;
+    expect(statusValue).toBe(200);
+    expect(jsonValue.extit).toBe('1');
+    expect(jsonValue.filter).toBe('all');
   });
 
   test('GET all properly sends error reponse', async () => {

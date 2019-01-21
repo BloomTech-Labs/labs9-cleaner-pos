@@ -7,6 +7,7 @@ import {
   PostRegister,
   Settings,
   HouseDetails,
+  Guests,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
@@ -25,6 +26,7 @@ const App = (props: any) => {
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/updateinfo' component={PostRegister} />
         <Route exact path='/houses' component={HouseDetails} />
+        <Route exact path='/guests' component={Guests} />
       </Switch>
     </div>
   );
