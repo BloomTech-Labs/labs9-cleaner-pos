@@ -124,7 +124,7 @@ describe('Stay DB functions', () => {
     expect(sampleObj).toHaveProperty('guest_name');
     expect(sampleObj).toHaveProperty('house_name');
     expect(sampleObj).toHaveProperty('check_in');
-    expect(sampleObj.check_in).toBe('2019-02-27T00:00:00Z');
+    expect(sampleObj.check_in).toBe('2019-02-25T00:00:00Z');
     expect(sampleObj).toHaveProperty('check_out');
   });
 
