@@ -89,10 +89,13 @@ export async function findAllStays(
       );
 
     if (filterValue === 'upcoming') {
+      // Date comparison: https://stackoverflow.com/a/51668192
+      // Date format: https://stackoverflow.com/a/41941071
       query.where('check_in', '>=', new Date().toISOString());
     }
 
-    return query.map(async (val: any) => {
+    // TODO: Refactor for efficiency
+    const result = query.map(async (val: any) => {
       // Find percentage of completed items over total items in checklist
       const { house_id, stay_id } = val;
       const progress: number = await getPreparationProgress(
@@ -102,6 +105,22 @@ export async function findAllStays(
       );
       return { ...val, progress };
     });
+
+    // We're separating the filter from the rest of the promise chain
+    // to prevent an additional linear operation for filters which don't
+    // need it.
+    if (filterValue === 'complete' || filterValue === 'incomplete') {
+      return result.filter((val: any) => {
+        if (filterValue === 'complete') {
+          return val.progress === 100;
+        } else if (filterValue === 'incomplete') {
+          return val.progress !== 100;
+        }
+        return false;
+      });
+    }
+
+    return result;
   } catch (e) {
     throw e;
   }
