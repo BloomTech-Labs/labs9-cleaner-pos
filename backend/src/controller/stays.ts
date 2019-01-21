@@ -48,6 +48,8 @@ export async function getAll(
   next: Nexts,
 ): Promise<void> {
   const test = req.query && req.query.test;
+  const filter = req.query && req.query.filter ? req.query.filter : 'all';
+  // If test query is true, set extit to '1'
   const extit = !test ? req.token && req.token.ext_it : '1';
 
   if (!extit) {
@@ -55,7 +57,7 @@ export async function getAll(
   }
 
   try {
-    const stays = await findAllStays(String(extit));
+    const stays = await findAllStays(String(extit), filter);
     res.status(200).json(stays);
   } catch (e) {
     e.statusCode = e.statusCode || 400;
