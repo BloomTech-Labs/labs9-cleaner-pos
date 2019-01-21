@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 // Types
 import { GuestProps } from './types';
@@ -13,10 +13,24 @@ const Guests = () => {
   const [errors, setErrors] = useState({ msg: '', error: false });
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      setErrors({
+        msg: 'Authentication error. Please try logging in again.',
+        error: true,
+      });
+      return;
+    }
+
+    const headers: AxiosRequestConfig = {
+      headers: { Authorization: token },
+    };
+
     const url =
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
     axios
-      .get(`${url}/stays?extit=1`)
+      .get(`${url}/stays?test=true`, headers)
       .then((response) => {
         const { data } = response;
         setStays(data);
@@ -28,10 +42,7 @@ const Guests = () => {
     <GuestsDiv>
       <div className='guests-header'>
         <h2>Guests</h2>
-        <Button
-          text='New Guest'
-          colour='var(--colour-accent)'
-        />
+        <Button text='New Guest' colour='var(--colour-accent)' />
       </div>
       <div className='guests-buttons-filter'>
         <Button
