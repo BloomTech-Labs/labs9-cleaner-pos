@@ -58,7 +58,12 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
     .first();
 }
 
-export async function findAllStays(userExtIt: string): Promise<any> {
+export async function findAllStays(
+  userExtIt: string,
+  filter?: 'all' | 'upcoming' | 'incomplete' | 'complete',
+): Promise<any> {
+  const filterValue = filter || 'all';
+
   try {
     // Find manager id
     const { id } = await findUserByExt_it(userExtIt);
@@ -70,7 +75,7 @@ export async function findAllStays(userExtIt: string): Promise<any> {
       .map((val: any) => val.id);
 
     // Find all stays related to all found houses
-    return db('stay')
+    const query: QueryBuilder = db('stay')
       .whereIn('house_id', houses)
       .join('user', { 'user.id': 'guest_id' })
       .join('house', { 'house.id': 'house_id' })
@@ -81,17 +86,22 @@ export async function findAllStays(userExtIt: string): Promise<any> {
         'house.name AS house_name',
         'check_in AS check_in',
         'check_out AS check_out',
-      )
-      .map(async (val: any) => {
-        // Find percentage of completed items over total items in checklist
-        const { house_id, stay_id } = val;
-        const progress: number = await getPreparationProgress(
-          'before',
-          house_id,
-          stay_id,
-        );
-        return { ...val, progress };
-      });
+      );
+
+    if (filterValue === 'upcoming') {
+      query.where('check_in', '>=', new Date().toISOString());
+    }
+
+    return query.map(async (val: any) => {
+      // Find percentage of completed items over total items in checklist
+      const { house_id, stay_id } = val;
+      const progress: number = await getPreparationProgress(
+        'before',
+        house_id,
+        stay_id,
+      );
+      return { ...val, progress };
+    });
   } catch (e) {
     throw e;
   }

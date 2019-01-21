@@ -2,19 +2,19 @@ module.exports = [
   {
     guest_id: 1,
     house_id: 1,
-    check_in: '1/27/2018',
-    check_out: '1/30/2018',
+    check_in: '2018-01-27T00:00:00Z',
+    check_out: '2018-01-30T00:00:00Z',
   },
   {
     guest_id: 2,
     house_id: 1,
-    check_in: '1/27/2019',
-    check_out: '1/30/2019',
+    check_in: '2019-02-27T00:00:00Z',
+    check_out: '2019-02-30T00:00:00Z',
   },
   {
     guest_id: 1,
     house_id: 2,
-    check_in: '1/27/2019',
-    check_out: '1/30/2019',
+    check_in: '2019-02-27T00:00:00Z',
+    check_out: '2019-02-30T00:00:00Z',
   },
 ];
