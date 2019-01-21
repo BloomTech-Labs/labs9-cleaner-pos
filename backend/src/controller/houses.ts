@@ -6,7 +6,6 @@ import {
   deleteHouse,
 } from '../models/houses';
 import { Request, Response, NextFunction } from 'express';
-import { QueryBuilder } from 'knex';
 import { House } from '../interface';
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
@@ -41,9 +40,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
 export const put = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
-    const hId = { ...req.body, id };
-    const house: House = hId;
+    const house: House = { ...req.body, id: req.params.id };
     const putHouse = await updateHouse(house);
     if (!putHouse) {
       throw Error('No house with that id');

@@ -4,6 +4,49 @@ import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
 import { waitForElement, cleanup } from 'react-testing-library';
 
+jest.mock('axios', () => {
+  return {
+    get: jest.fn(() =>
+      Promise.resolve({
+        data: mockdata,
+      }),
+    ),
+  };
+});
+
+afterEach(cleanup);
+
+describe('Houses dashboard', () => {
+  test('should render a house card for every house received through axios call', async () => {
+    const { getAllByTestId } = renderWithRouter(<Properties />, {});
+    const houseCards = await waitForElement(() => getAllByTestId('house-item'));
+    expect(houseCards.length).toBe(mockdata.length);
+  });
+
+  test('should include 2 buttons for every house card,', async () => {
+    const { getAllByTestId } = renderWithRouter(<Properties />, {});
+
+    const buttons = await waitForElement(() => getAllByTestId('house-button'));
+    expect(buttons.length).toBe(mockdata.length * 2);
+  });
+
+  test('should include 1 button "Edit Checklists" for every house card', async () => {
+    const { getAllByText } = renderWithRouter(<Properties />, {});
+
+    const buttons = await waitForElement(() =>
+      getAllByText(/edit checklists/i),
+    );
+    expect(buttons.length).toBe(mockdata.length);
+  });
+
+  test('should include 1 button "Edit Resources" for every house card', async () => {
+    const { getAllByText } = renderWithRouter(<Properties />, {});
+
+    const buttons = await waitForElement(() => getAllByText(/edit resources/i));
+    expect(buttons.length).toBe(mockdata.length);
+  });
+});
+
 const mockdata = [
   {
     address: '123 go duck yourself ave',
@@ -126,46 +169,3 @@ const mockdata = [
     ],
   },
 ];
-
-jest.mock('axios', () => {
-  return {
-    get: jest.fn(() =>
-      Promise.resolve({
-        data: mockdata,
-      }),
-    ),
-  };
-});
-
-afterEach(cleanup);
-
-describe('Houses dashboard', () => {
-  test('should render a house card for every house received through axios call', async () => {
-    const { getAllByTestId } = renderWithRouter(<Properties />, {});
-    const houseCards = await waitForElement(() => getAllByTestId('house-item'));
-    expect(houseCards.length).toBe(mockdata.length);
-  });
-
-  test('should include 2 buttons for every house card,', async () => {
-    const { getAllByTestId } = renderWithRouter(<Properties />, {});
-
-    const buttons = await waitForElement(() => getAllByTestId('house-button'));
-    expect(buttons.length).toBe(mockdata.length * 2);
-  });
-
-  test('should include 1 button "Edit Checklists" for every house card', async () => {
-    const { getAllByText } = renderWithRouter(<Properties />, {});
-
-    const buttons = await waitForElement(() =>
-      getAllByText(/edit checklists/i),
-    );
-    expect(buttons.length).toBe(mockdata.length);
-  });
-
-  test('should include 1 button "Edit Resources" for every house card', async () => {
-    const { getAllByText } = renderWithRouter(<Properties />, {});
-
-    const buttons = await waitForElement(() => getAllByText(/edit resources/i));
-    expect(buttons.length).toBe(mockdata.length);
-  });
-});

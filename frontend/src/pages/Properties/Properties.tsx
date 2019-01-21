@@ -13,10 +13,13 @@ import {
   HouseHeader,
 } from './Properties.styling';
 import { HousesEnum } from './types';
+import { Link } from 'react-router-dom';
 
 const Properties = () => {
   const [houses, setHouses] = useState<HousesEnum>([]);
   const shouldFetch = useRef(true);
+
+  /* Axios calls to fetch / update properties */
   async function fetchHouses() {
     try {
       const res = await axios.get('https://cleaner-pos.herokuapp.com/houses');
@@ -26,6 +29,21 @@ const Properties = () => {
     }
   }
 
+  async function postAst(
+    event: React.FormEvent<HTMLSelectElement>,
+    id: number | undefined,
+  ) {
+    const token = localStorage.getItem('token');
+    try {
+      const [astId, fullName] = event.currentTarget.value.split(':');
+      const res = await axios.put(`http://localhost:4500/houses/${id}`, {
+        default_ast: Number(astId),
+      });
+    } catch (e) {
+      throw e;
+    }
+  }
+  // Axios call to display list of properties
   useEffect(
     () => {
       fetchHouses();
@@ -34,6 +52,7 @@ const Properties = () => {
     [shouldFetch],
   );
 
+  // Presentational layer
   return (
     <Container>
       <HouseHeader>Recent Properties</HouseHeader>
@@ -55,14 +74,30 @@ const Properties = () => {
                   {house.checkList[0].count}
                 </CheckList>
                 <ButtonContainer>
-                  <Button text='Edit Checklists' datatestid='house-button' />
-                  <Button text='Edit Resources' datatestid='house-button' />
+                  <Link to={`properties/${house.id}#checklists`}>
+                    <Button text='Edit Checklists' datatestid='house-button' />
+                  </Link>
+                  <Link to={`/houses/${house.id}#resources`}>
+                    <Button text='Edit Resources' datatestid='house-button' />
+                  </Link>
                 </ButtonContainer>
                 <Cleaner>
                   Default Cleaner
-                  <select>
+                  <select
+                    data-testid='cleaner-select'
+                    onChange={(event) => postAst(event, house.id)}
+                  >
+                    <option defaultValue={house.default_ast_name}>
+                      {house.default_ast}: {house.default_ast_name}
+                    </option>
                     {house.openAst.map((ast: any) => {
-                      return <option key={ast.ast_id}>{ast.full_name}</option>;
+                      if (ast.ast_id !== house.default_ast) {
+                        return (
+                          <option key={ast.ast_id}>
+                            {ast.ast_id}: {ast.full_name}
+                          </option>
+                        );
+                      }
                     })}
                   </select>
                 </Cleaner>

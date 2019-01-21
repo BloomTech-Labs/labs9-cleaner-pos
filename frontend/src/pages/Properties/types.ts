@@ -13,4 +13,5 @@ export interface House {
   ast_guide?: any;
   checkList?: any;
   openAst?: any;
+  default_ast_name: string;
 }
