@@ -8,3 +8,5 @@ export interface GuestProps {
   progress: number;
   className?: string;
 }
+
+export type FilterArgs = 'all' | 'upcoming' | 'complete' | 'incomplete';

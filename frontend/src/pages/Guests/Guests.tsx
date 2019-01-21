@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 // Types
 import { GuestProps } from './types';
+import { FilterArgs } from './types';
 // Components
 import Button from '../../components/Button';
 // Styling & Styled Components
@@ -11,8 +12,14 @@ import { GuestsDiv, StyledGuestCard } from './Guests.styling';
 const Guests = () => {
   const [stays, setStays] = useState([] as GuestProps[]);
   const [errors, setErrors] = useState({ msg: '', error: false });
+  const [active, setActive] = useState('upcoming' as FilterArgs);
 
-  const getStays = (filter = 'all') => {
+  const getStays = (filter: FilterArgs = 'all') => {
+    /*
+    Retrieves stay information from server
+    Accepts a string 'filter', which would set the appropriate
+    filter query in the request.
+    */
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -35,9 +42,13 @@ const Guests = () => {
       .then((response) => {
         const { data } = response;
         setStays(data);
+        setActive(filter);
       })
       .catch(axiosErrorHandler(setErrors));
   };
+
+  const activeClass = (filter: FilterArgs) =>
+    active === filter ? 'active' : '';
 
   useEffect(() => {
     getStays('upcoming');
@@ -51,19 +62,19 @@ const Guests = () => {
       </div>
       <div className='guests-buttons-filter'>
         <Button
-          className='button-filter upcoming'
+          className={`button-filter upcoming ${activeClass('upcoming')}`}
           text='Upcoming'
           colour='var(--colour-accent)'
           onClick={() => getStays('upcoming')}
         />
         <Button
-          className='button-filter incomplete'
+          className={`button-filter incomplete ${activeClass('incomplete')}`}
           text='Incomplete'
           colour='var(--colour-accent)'
           onClick={() => getStays('incomplete')}
         />
         <Button
-          className='button-filter complete'
+          className={`button-filter complete ${activeClass('complete')}`}
           text='Complete'
           colour='var(--colour-accent)'
           onClick={() => getStays('complete')}
