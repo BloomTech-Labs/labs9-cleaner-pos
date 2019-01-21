@@ -10,6 +10,7 @@
   --colour-button-background: #4593b6;
   --colour-button-text-alt: #4593b6;
   --colour-button-background-alt: white;
+  /* var(--name-of-variable) */
 }
 
 body {
