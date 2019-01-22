@@ -4,6 +4,9 @@ import { axiosErrorHandler } from '../utils';
 // Types
 import { RouteComponentProps } from 'react-router';
 import { GuestProps } from './types';
+// Components
+import { InfoBox } from './InfoBox';
+import { Button } from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
 // Assets
@@ -12,6 +15,7 @@ import defaultUser from '../../assets/default-user.jpg';
 export const GuestDetailView = ({
   guest_name,
   house_id,
+  house_name,
   house_address,
   default_ast,
   guest_guide,
@@ -25,9 +29,25 @@ export const GuestDetailView = ({
         <img className='guest-header--img' src={defaultUser} alt='User Image' />
         <div className='guest-header--text'>
           <div className='main'>{guest_name}</div>
+          <div className='sub-house'>Staying at {house_name}</div>
+          <div className='sub-address'>{house_address}</div>
         </div>
-        <div className='guest-header--checkdates'>Hello</div>
-        <div className='guest-header--buttons'>Hello</div>
+        <div className='guest-header--checkdates'>
+          <InfoBox className='checkin' main={check_in} secondary='Check-In' />
+          <InfoBox
+            className='checkout'
+            main={check_out}
+            secondary='Check-Out'
+          />
+        </div>
+        <div className='guest-header--buttons'>
+          <Button
+            className='back'
+            text='Go Back ↩'
+            colour='var(--colour-accent'
+            datatestid='button-back'
+          />
+        </div>
       </div>
       <div className='guest-info'>
         <div className='guest-info--checklist'>

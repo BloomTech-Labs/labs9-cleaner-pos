@@ -1,4 +1,4 @@
-import { RouteComponentProps } from 'axios';
+import { RouteComponentProps } from 'react-router-dom';
 
 // Guests
 export interface GuestsProps {
@@ -15,9 +15,10 @@ export interface GuestsProps {
 export type FilterArgs = 'all' | 'upcoming' | 'complete' | 'incomplete';
 // Guest Detail
 
-export interface GuestProps extends RouteComponentProps {
+export interface GuestProps {
   guest_name: string;
   house_id: number;
+  house_name: string;
   house_address: string;
   default_ast: string;
   guest_guide: string;
