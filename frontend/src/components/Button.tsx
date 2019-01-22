@@ -6,10 +6,10 @@ import styled from '@emotion/styled';
 // data-testid
 
 interface ButtonProps {
-  onClick?: (ev: any) => Promise<any> | void;
+  onClick?: (ev: React.FormEvent) => Promise<any> | void;
   text?: string;
   datatestid?: string;
-  colour?: string;
+  color?: string;
   className?: string;
 }
 
@@ -17,10 +17,10 @@ const Button = ({
   onClick,
   text,
   datatestid,
-  colour,
+  color,
   className,
 }: ButtonProps) => {
-  const buttonColour = colour || 'var(--colour-main-black)';
+  const buttonColour = color || 'var(--colour-main-black)';
   const StyledButton = styled('button')`
     background: ${buttonColour};
     width: 200px;
