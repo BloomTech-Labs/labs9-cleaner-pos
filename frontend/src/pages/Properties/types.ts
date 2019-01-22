@@ -6,7 +6,8 @@ export interface ListProps {
   type: string;
   list_id?: number;
   submitNew: any;
-  deleteTaks: any;
+  deleteTasks: any;
+  deleteList?: any;
 }
 
 export interface House {

@@ -27,11 +27,12 @@ export const PropertyLists = (props: ListProps) => {
   };
 
   const handleDelete = (id: number) => {
-    props.deleteTaks(id);
+    props.deleteTasks(id);
   };
   const handleNew = () => {
     const createTask: any = { list_id: props.list_id, task: newItem };
     props.submitNew(createTask);
+    setNewItem('');
     setInputItem(false);
   };
   return (
@@ -91,16 +92,16 @@ export const AfterPropertyLists = (props: ListProps) => {
   const handleNew = () => {
     const createTask: any = { list_id: props.list_id, task: newItem };
     props.submitNew(createTask);
+    setNewItem('');
     setInputItem(false);
   };
 
   const handleDelete = (id: number) => {
-    props.deleteTaks(id);
+    props.deleteTasks(id);
   };
 
   const handleListDelete = () => {
-    console.log(props);
-    // props.deleteTaks(id);
+    props.deleteList(props.list_id);
   };
   return (
     <AfterListDiv2>
@@ -141,7 +142,7 @@ export const AfterPropertyLists = (props: ListProps) => {
         ) : (
           <>
             <WhiteButton text='+ Add New Item' onClick={toggleText} />
-            <WhiteButton text='Delete List' onClick={toggleText} />
+            <WhiteButton text='Delete List' onClick={handleListDelete} />
           </>
         )}
       </AfterItemDiv>

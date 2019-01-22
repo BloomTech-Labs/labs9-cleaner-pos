@@ -68,9 +68,17 @@ const PropertyDetails = (props: any) => {
     }
   }
 
-  async function deleteTaks(id: number) {
+  async function deleteTasks(id: number) {
     try {
       await axios.delete(`${url}/items/${id}`);
+      fetchLists(props.match.params.id);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  }
+  async function deleteList(id: number) {
+    try {
+      await axios.delete(`${url}/lists/${id}`);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -91,6 +99,7 @@ const PropertyDetails = (props: any) => {
       };
       await axios.post(`${url}/lists/`, postList);
       toggleText();
+      setNewItem('');
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -135,14 +144,14 @@ const PropertyDetails = (props: any) => {
               list_id={lists.before_id}
               type='Before'
               submitNew={submitNew}
-              deleteTaks={deleteTaks}
+              deleteTasks={deleteTasks}
             />
             <PropertyLists
               list={lists.during}
               list_id={lists.during_id}
               type='During'
               submitNew={submitNew}
-              deleteTaks={deleteTaks}
+              deleteTasks={deleteTasks}
             />
           </ListContainer>
           <AfterListDiv>
@@ -155,7 +164,8 @@ const PropertyDetails = (props: any) => {
                   list_id={aList.after_id}
                   type={aList.time}
                   submitNew={submitNew}
-                  deleteTaks={deleteTaks}
+                  deleteTasks={deleteTasks}
+                  deleteList={deleteList}
                 />
               );
             })}

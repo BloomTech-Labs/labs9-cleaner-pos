@@ -111,7 +111,6 @@ export const AfterListDiv = styled(ListDiv)`
 
 export const AfterListDiv2 = styled(ListDiv)`
   margin: ${pxToRem(36)}rem ${pxToRem(28)}rem;
-  border: none;
   width: ${pxToRem(254)}rem;
 `;
 
