@@ -1,4 +1,8 @@
 export interface HousesEnum extends Array<House> {}
+export interface ListProps {
+  list: List[];
+  type: string;
+}
 
 export interface House {
   id?: number;

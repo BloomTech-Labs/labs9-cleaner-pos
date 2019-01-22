@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import PropertyLists from './PropertyLists';
-import { Container, Button } from '../../components/index';
+import { PropertyLists, AfterPropertyLists } from './PropertyLists';
+import {
+  PropertyContainer,
+  ThumbNail,
+  Top,
+  MainText,
+  SecondaryText,
+  ListContainer,
+  BackButton,
+  Header,
+  AfterListDiv,
+  WhiteButton,
+} from './PropertyDetails.styling';
 import axios from 'axios';
 import { axiosErrorHandler } from '../utils';
-import styled from '@emotion/styled';
 import { Lists } from './types';
-import { ThumbNail } from './Properties.styling';
-
-const WhiteButton = styled(Button)`
-  color: var(--colour-button-text-alt);
-  background-color: var(--colour-button-background-alt);
-`;
 
 // TODO: fix types
 const PropertyDetails = (props: any) => {
@@ -48,50 +52,40 @@ const PropertyDetails = (props: any) => {
     fetchLists(props.match.params.id);
   }, []);
   return (
-    <Container>
+    <>
       {!lists.before || shouldFetch ? (
         <div>Loading.....</div>
       ) : (
-        <>
-          <div>
-            <ThumbNail
-              src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
-              alt='house'
-            />
-            <p>{property.name}</p>
-            <p>{property.address}</p>
-          </div>
-          <div>
-            <Button text='Go Back' colour='var(--colour-accent)' />
-          </div>
-          <div>
-            <PropertyLists {...lists.before} />
-            During
-            <ul>
-              {lists.during.map((item: any) => {
-                return <li key={item.items_id}>{item.task}</li>;
-              })}
-              <WhiteButton text='+ Add New Item' />
-            </ul>
-          </div>
-          <div>
+        <PropertyContainer>
+          <ThumbNail
+            src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
+            alt='house'
+          />
+          <Top>
+            <MainText>{property.name}</MainText>
+            <SecondaryText>{property.address}</SecondaryText>
+          </Top>
+          <BackButton text='Go Back' colour='var(--colour-accent)' />
+          <ListContainer>
+            <PropertyLists list={lists.before} type='Before' />
+            <PropertyLists list={lists.during} type='During' />
+          </ListContainer>
+          <AfterListDiv>
+            <Header>After Stay</Header>
             {lists.after.map((aList: any) => {
               return (
-                <div key={aList.time}>
-                  {aList.time}
-                  <ul>
-                    {aList.afterLists.map((item: any) => {
-                      return <li key={item.items_id}>{item.task}</li>;
-                    })}
-                  </ul>
-                  <WhiteButton text='+ Add New Item' />
-                </div>
+                <AfterPropertyLists
+                  key={aList.time}
+                  list={aList.afterLists}
+                  type={aList.time}
+                />
               );
             })}
-          </div>
-        </>
+            <WhiteButton text='+ New Stay List' />
+          </AfterListDiv>
+        </PropertyContainer>
       )}
-    </Container>
+    </>
   );
 };
 
