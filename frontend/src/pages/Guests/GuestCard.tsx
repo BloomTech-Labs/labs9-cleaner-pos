@@ -1,6 +1,6 @@
 import React from 'react';
 // Types
-import { GuestProps } from './types';
+import { GuestsProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
 // Styled Components
@@ -27,7 +27,7 @@ function separateDateString(dateString: string) {
   };
 }
 
-export const GuestCard = (props: GuestProps) => {
+export const GuestCard = (props: GuestsProps) => {
   const {
     stay_id,
     check_in,
