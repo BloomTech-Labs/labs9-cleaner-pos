@@ -47,15 +47,17 @@ const Assistants = () => {
                 return (
 
                 <AssistantItem key={assistant.id} data-testid='assistant-item'>
-                    <ThumbNail
+                    {/* ThumbNail image should render inline with each assistant card}
+                    {/* <ThumbNail
                         src='../../../../assets/ronald.jpg'
                         alt='Ronald'
-                    />
+                    /> */}
                     <CardContent>
                         <CardHeading>
-                            <h4>{assistant.id}</h4>
+                            {/* <h4>{assistant.id}</h4> */}
                         </CardHeading>
                         <CardBody>
+                            <ThumbNail src='./ronald.jpg' alt='Ronald' />
                             <CheckList>
                                 <h3>Checklist Items</h3>
                             </CheckList>
