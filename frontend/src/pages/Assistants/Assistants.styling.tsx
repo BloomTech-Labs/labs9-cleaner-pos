@@ -22,12 +22,12 @@ const ButtonContainer = styled('div')`
 `;
 
 const ThumbNail = styled('img')`
-    width: ${cardHeight - 1}px;
-    height: ${cardHeight - 1}px;
+    width: ${cardHeight - 5}px;
+    height: ${cardHeight - 5}px;
 `;
 
 const CardHeading = styled('div')`
-    margin-top: 12px;
+    /* margin-top: 12px; */
     height: 76px;
     h4 {
         margin: 0;
@@ -74,10 +74,20 @@ const CheckList = styled('div')`
 `;
 
 const Asst = styled('div')`
+    padding: 0 15px;
+    text-align: center;
+    height: 100px;
+    box-shadow: 0 0 3px #000;
+    font-size: 24px;
+    font-weight: light;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid #393534;
+    align-items: center;
+    p {
+        margin: 0;
+        font-weight: bold;
+    }
 `;
 
 const AssistantHeader = styled('span')`

@@ -57,12 +57,15 @@ const Assistants = () => {
                             {/* <h4>{assistant.id}</h4> */}
                         </CardHeading>
                         <CardBody>
-                            <ThumbNail src='./ronald.jpg' alt='Ronald' />
+                            <ThumbNail
+                                src='../assets/ronald.jpg'
+                                alt='Ronald'
+                            />
                             <CheckList>
                                 <h3>Checklist Items</h3>
                             </CheckList>
                             <Asst>
-                                <div>This is a placeholder.</div>
+                                <h3>Available Houses</h3>
                             </Asst>
                             <ButtonContainer>
                                 <Button text='House Availability' datatestid='assistant-button' />
