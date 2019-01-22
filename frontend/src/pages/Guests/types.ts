@@ -25,4 +25,8 @@ export interface GuestProps {
   ast_guide: string;
   check_in: string;
   check_out: string;
+  errors: {
+    msg: string;
+    error: boolean;
+  };
 }

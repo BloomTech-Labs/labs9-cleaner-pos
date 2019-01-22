@@ -6,13 +6,13 @@ import { RouteComponentProps } from 'react-router';
 import { GuestProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
-import { Button } from '../../components/Button';
+import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
-export const GuestDetailView = ({
+const GuestDetailView = ({
   guest_name,
   house_id,
   house_name,
@@ -22,9 +22,11 @@ export const GuestDetailView = ({
   ast_guide,
   check_in,
   check_out,
+  errors,
 }: GuestProps) => {
   return (
     <GuestsDiv>
+      {errors.error && <div>{errors.msg}</div>}
       <div className='guest-header'>
         <img className='guest-header--img' src={defaultUser} alt='User Image' />
         <div className='guest-header--text'>
@@ -77,11 +79,13 @@ export const GuestDetailView = ({
   );
 };
 
-export const GuestDetail = (props: RouteComponentProps) => {
+const GuestDetail = (props: RouteComponentProps) => {
   const [stay, setStay] = useState({} as GuestProps);
   const [errors, setErrors] = useState({ msg: '', error: false });
 
   useEffect(() => {
+    // TODO: Figure out how to extend RouteComponentPros with params.id
+    // @ts-ignore
     const id = props.match.params.id;
     const token = localStorage.getItem('token');
 
@@ -107,7 +111,9 @@ export const GuestDetail = (props: RouteComponentProps) => {
         setStay(data);
       })
       .catch(axiosErrorHandler(setErrors));
-  });
+  }, []);
 
-  return <GuestDetailView {...stay} />;
+  return <GuestDetailView {...stay} errors={errors} />;
 };
+
+export default GuestDetail;
