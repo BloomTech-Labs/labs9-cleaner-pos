@@ -55,56 +55,62 @@ const HouseDetails = (props: any) => {
   useEffect(() => {
     fetchLists(props.match.params.id);
   }, []);
-
+  console.log(shouldFetch);
   return (
     <Container>
-      <div>
-        <ThumbNail
-          src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
-          alt='house'
-        />
-        <p>{house.name}</p>
-        <p>{house.address}</p>
-      </div>
-      <div>
-        <Button text='Go Back' colour='var(--colour-accent)' />
-      </div>
-      {lists.before ? (
+      {shouldFetch ? (
+        <div>Loading</div>
+      ) : (
         <>
           <div>
-            Before
-            <ul>
-              {lists.before.map((item: any) => {
-                return <li key={item.id}>{item.task}</li>;
-              })}
-              <WhiteButton text='+ Add New Item' />
-            </ul>
-            During
-            <ul>
-              {lists.during.map((item: any) => {
-                return <li key={item.id}>{item.task}</li>;
-              })}
-              <WhiteButton text='+ Add New Item' />
-            </ul>
+            <ThumbNail
+              src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
+              alt='house'
+            />
+            <p>{house.name}</p>
+            <p>{house.address}</p>
           </div>
           <div>
-            {lists.after.map((aList: any) => {
-              return (
-                <div>
-                  {aList.time}
-                  <ul>
-                    {aList.afterLists.map((item: any) => {
-                      return <li>{item.task}</li>;
-                    })}
-                  </ul>
-                  <WhiteButton text='+ Add New Item' />
-                </div>
-              );
-            })}
+            <Button text='Go Back' colour='var(--colour-accent)' />
           </div>
+          {lists.before ? (
+            <>
+              <div>
+                Before
+                <ul>
+                  {lists.before.map((item: any) => {
+                    return <li key={item.id}>{item.task}</li>;
+                  })}
+                  <WhiteButton text='+ Add New Item' />
+                </ul>
+                During
+                <ul>
+                  {lists.during.map((item: any) => {
+                    return <li key={item.id}>{item.task}</li>;
+                  })}
+                  <WhiteButton text='+ Add New Item' />
+                </ul>
+              </div>
+              <div>
+                {lists.after.map((aList: any) => {
+                  return (
+                    <div>
+                      {aList.time}
+                      <ul>
+                        {aList.afterLists.map((item: any) => {
+                          return <li>{item.task}</li>;
+                        })}
+                      </ul>
+                      <WhiteButton text='+ Add New Item' />
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            <div>no</div>
+          )}
         </>
-      ) : (
-        <div>no</div>
       )}
     </Container>
   );
