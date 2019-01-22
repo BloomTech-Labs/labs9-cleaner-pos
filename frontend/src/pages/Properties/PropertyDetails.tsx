@@ -12,7 +12,7 @@ import {
   AfterListDiv,
   WhiteButton,
 } from './PropertyDetails.styling';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { Lists } from './types';
 
@@ -27,7 +27,19 @@ const PropertyDetails = (props: any) => {
 
   async function fetchHouse(id: number) {
     try {
-      const res = await axios.get(`${url}/houses/${id}`);
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        setErrors({
+          msg: 'Authentication error. Please try logging in again.',
+          error: true,
+        });
+        return;
+      }
+      const headers: AxiosRequestConfig = {
+        headers: { Authorization: token },
+      };
+      const res = await axios.get(`${url}/houses/${id}`, headers);
       setProperty(res.data);
       shouldFetch = false;
     } catch (e) {
@@ -53,6 +65,7 @@ const PropertyDetails = (props: any) => {
   }, []);
   return (
     <>
+      <div>{errors.msg}</div>
       {!lists.before || shouldFetch ? (
         <div>Loading.....</div>
       ) : (
@@ -65,7 +78,12 @@ const PropertyDetails = (props: any) => {
             <MainText>{property.name}</MainText>
             <SecondaryText>{property.address}</SecondaryText>
           </Top>
-          <BackButton text='Go Back' colour='var(--colour-accent)' />
+          <BackButton text='Edit Property' colour='var(--colour-accent)' />
+          <BackButton
+            text='Go Back'
+            colour='var(--colour-accent)'
+            onClick={() => props.history.push('/properties')}
+          />
           <ListContainer>
             <PropertyLists list={lists.before} type='Before' />
             <PropertyLists list={lists.during} type='During' />

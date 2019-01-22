@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Lists, List, ListProps } from './types';
+import axios, { AxiosRequestConfig } from 'axios';
+import { axiosErrorHandler } from '../utils';
 import {
   Header,
   ListDiv,
@@ -10,11 +12,33 @@ import {
   AfterItemDiv,
   AfterListDiv2,
 } from './PropertyDetails.styling';
-import { Container, Button } from '../../components/index';
+import { TextField } from '@material-ui/core';
 import styled from '@emotion/styled';
 
 export const PropertyLists = (props: ListProps) => {
-  console.log(props);
+  const [errors, setErrors] = useState({ msg: '', error: false });
+  const [newItem, setNewItem] = useState('');
+  const [inputItem, setInputItem] = useState(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewItem(event.target.value);
+  };
+
+  const toggleText = () => {
+    setInputItem(!inputItem);
+  };
+
+  const submitNew = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const headers: AxiosRequestConfig = {
+        headers: { Authorization: token },
+      };
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  };
+  console.log(newItem, inputItem);
   return (
     <ListDiv>
       <Header>{props.type}</Header>
@@ -35,7 +59,19 @@ export const PropertyLists = (props: ListProps) => {
             );
           })}
         </TaskDiv>
-        <WhiteButton text='+ Add New Item' />
+        {inputItem ? (
+          <>
+            <TextField
+              placeholder='Add New Item'
+              value={newItem}
+              onChange={handleChange}
+            />
+            <WhiteButton text='Submit' onClick={toggleText} />
+            <WhiteButton text='Cancel' onClick={toggleText} />
+          </>
+        ) : (
+          <WhiteButton text='+ Add New Item' onClick={toggleText} />
+        )}
       </ItemDiv>
     </ListDiv>
   );

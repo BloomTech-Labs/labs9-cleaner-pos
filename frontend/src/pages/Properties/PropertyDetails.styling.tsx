@@ -9,7 +9,7 @@ export const BackButton = styled(Button)`
   margin-left: auto;
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
-  font-size: ${pxToRem(20)};
+  font-size: ${pxToRem(20)}rem;
 `;
 
 export const WhiteButton = styled(Button)`
@@ -31,7 +31,7 @@ export const PropertyContainer = styled(Container)`
 
 export const Top = styled(PropertyContainer)`
   margin: 0 ${pxToRem(22)}rem;
-  width: 50%;
+  width: 40%;
   display: flex;
   align-items: flex-start;
   /* Text */
@@ -70,9 +70,11 @@ export const ListContainer = styled('div')`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-flow: row wrap;
 `;
 export const ListDiv = styled('div')`
-  width: 47.5%;
+  width: 45%;
+  min-width: ${pxToRem(254)}rem;
   border: solid #707070 1px;
   margin: ${pxToRem(36)}rem 0;
 `;
@@ -110,7 +112,7 @@ export const AfterListDiv = styled(ListDiv)`
 export const AfterListDiv2 = styled(ListDiv)`
   margin: ${pxToRem(36)}rem ${pxToRem(28)}rem;
   border: none;
-  width: 25%;
+  width: ${pxToRem(254)}rem;
 `;
 
 export const AfterHeader = styled(Header)`
