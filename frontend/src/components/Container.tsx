@@ -25,7 +25,3 @@ const Container = ({
 };
 
 export default Container;
-<<<<<<< HEAD
-
-=======
->>>>>>> 79c993865d8c6f419405edf50b70002d1bc79c88
