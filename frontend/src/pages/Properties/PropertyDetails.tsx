@@ -20,19 +20,19 @@ const WhiteButton = styled(Button)`
   background-color: var(--colour-button-background-alt);
 `;
 
-const HouseDetails = (props: any) => {
-  const [house, setHouse] = useState(props.location.state);
+const PropertyDetails = (props: any) => {
+  const [property, setProperty] = useState(props.location.state);
   // TODO: fix this type
   const [lists, setLists] = useState<any>({});
   const [errors, setErrors] = useState({ msg: '', error: false });
-  let shouldFetch = house ? false : true;
+  let shouldFetch = property ? false : true;
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
 
   async function fetchHouse(id: number) {
     try {
       const res = await axios.get(`${url}/houses/${id}`);
-      setHouse(res.data);
+      setProperty(res.data);
       shouldFetch = false;
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -55,11 +55,10 @@ const HouseDetails = (props: any) => {
   useEffect(() => {
     fetchLists(props.match.params.id);
   }, []);
-  console.log(shouldFetch);
   return (
     <Container>
       {shouldFetch ? (
-        <div>Loading</div>
+        <div>Loading.....</div>
       ) : (
         <>
           <div>
@@ -67,8 +66,8 @@ const HouseDetails = (props: any) => {
               src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
               alt='house'
             />
-            <p>{house.name}</p>
-            <p>{house.address}</p>
+            <p>{property.name}</p>
+            <p>{property.address}</p>
           </div>
           <div>
             <Button text='Go Back' colour='var(--colour-accent)' />
@@ -116,4 +115,4 @@ const HouseDetails = (props: any) => {
   );
 };
 
-export default HouseDetails;
+export default PropertyDetails;
