@@ -30,3 +30,19 @@ export interface GuestProps {
     error: boolean;
   };
 }
+
+// Checklists
+
+interface Checkitem {
+  complete: boolean;
+  task: string;
+  items_id: number;
+  stay_id: number;
+}
+
+interface ChecklistsData {
+  before: Checkitem[];
+  during: Checkitem[];
+  // TODO: Figure out to dynamically type "hours after X"
+  after: any;
+}

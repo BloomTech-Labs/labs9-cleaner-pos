@@ -53,7 +53,7 @@ const GuestDetailView = ({
           <Button
             className='back'
             text='Go Back ↩'
-            colour='var(--colour-accent'
+            colour='var(--colour-accent)'
             datatestid='button-back'
           />
         </div>
@@ -112,7 +112,7 @@ const GuestDetail = (props: RouteComponentProps) => {
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
 
     axios
-      .get(`${url}/stays/${id}`)
+      .get(`${url}/stays/${id}`, headers)
       .then((response) => {
         const { data } = response;
         setStay(data);
