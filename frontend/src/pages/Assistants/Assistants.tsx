@@ -47,14 +47,9 @@ const Assistants = () => {
                 return (
 
                 <AssistantItem key={assistant.id} data-testid='assistant-item'>
-                    {/* ThumbNail image should render inline with each assistant card}
-                    {/* <ThumbNail
-                        src='../../../../assets/ronald.jpg'
-                        alt='Ronald'
-                    /> */}
                     <CardContent>
                         <CardHeading>
-                            {/* <h4>{assistant.id}</h4> */}
+                            {/* May move a header in here later */}
                         </CardHeading>
                         <CardBody>
                             <ThumbNail
