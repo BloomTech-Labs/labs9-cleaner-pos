@@ -54,4 +54,7 @@ const Sidebar = ({ onClick }: LinkProps) => {
 };
 
 export default Sidebar;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 79c993865d8c6f419405edf50b70002d1bc79c88

@@ -7,6 +7,7 @@ import {
   findUsers,
   makeUser,
   updateUser,
+  findUserByExt_it,
 } from '../../src/models/users';
 
 // Data that was seeded into the test database
@@ -22,6 +23,10 @@ import db from '../../data/dbConfig';
 const testDb = knex(knexConfig.test);
 // @ts-ignore
 db.mockImplementation((table: string) => testDb(table));
+
+const errorHandler = (e: Error) => {
+  console.error(e);
+};
 
 interface User {
   id: number;
@@ -46,34 +51,40 @@ describe('User DB functions', () => {
       await testDb.migrate.latest();
       await testDb.seed.run();
       testUsersInDb = await findUsers();
-    } catch (err) {
-      throw err;
+    } catch (e) {
+      errorHandler(e);
     }
   });
 
-  const cleanUp = async () => {
-    try {
-      await testDb.migrate.rollback();
-      await testDb.migrate.latest();
-      await testDb.seed.run();
-      testUsersInDb = await findUsers();
-    } catch (err) {
-      throw err;
-    }
-  };
+  afterAll(async () => {
+    await testDb.destroy();
+  });
 
   test('findUser finds by id', async () => {
+    // Arrange
+    const testUser = data[0];
+    const userId = 1;
     // Act
-    const result = await findUser(1);
+    const result = await findUser(userId).catch(errorHandler);
     // Assert
-    expect(result.full_name).toBe(data[0].full_name);
+    expect(result.full_name).toBe(testUser.full_name);
+  });
+
+  test('findUserExtId finds by ext_id', async () => {
+    // Arrange
+    const testUser = data[0];
+    const userExtId = String(testUser.ext_it);
+    // Act
+    const result = await findUserByExt_it(userExtId).catch(errorHandler);
+    // Assert
+    expect(result.full_name).toBe(testUser.full_name);
   });
 
   test('findUsers returns all users', async () => {
     // Act
-    const result = await findUsers();
+    const result = await findUsers().catch(errorHandler);
     // Assert
-    expect(result.length).toBe(3);
+    expect(result.length).toBe(data.length);
 
     for (const i of result.keys()) {
       expect(result[i].full_name).toBe(data[i].full_name);
@@ -88,29 +99,30 @@ describe('User DB functions', () => {
     };
     // Act
     await makeUser(newUser);
-    const userResult = await findUsers();
-    const managerResult = await testDb('manager');
+    const userResult = await findUsers().catch(errorHandler);
+    const managerResult = await testDb('manager').catch(errorHandler);
     // Assert
     const testUser = { ...newUser, role: 'manager' };
     expect(userResult).toEqual(
       expect.arrayContaining([expect.objectContaining(testUser)]),
     );
     expect(managerResult).toBeTruthy();
-    cleanUp();
   });
 
-  test('updateUser updates a user into the DB', async () => {
+  test('updateUser updates a user by ext_id', async () => {
     // Arrange
-    const testUser = testUsersInDb[0];
-    const idToUpdate = testUser.id;
+    const testUser = { ...data[0], ext_it: String(data[0].ext_it) };
+    const idToUpdate = testUser.ext_it;
     const updatedInfo = { ...testUser, full_name: 'Willy Wonka' };
+    const updateObj = { full_name: 'Willy Wonka' };
     // Act
-    const numOfRecordsUpdated = await updateUser(idToUpdate, updatedInfo);
-    const updatedUser = await findUser(idToUpdate);
+    const numOfRecordsUpdated = await updateUser(idToUpdate, updateObj).catch(
+      errorHandler,
+    );
+    const updatedUser = await findUserByExt_it(idToUpdate).catch(errorHandler);
     // Assert
     expect(numOfRecordsUpdated).toBe(1);
-    expect(updatedUser).toEqual(updatedInfo);
-    cleanUp();
+    expect(updatedUser).toEqual(expect.objectContaining(updatedInfo));
   });
 
   test('deleteUser removes a user from the database', async () => {
@@ -118,13 +130,12 @@ describe('User DB functions', () => {
     const testUser = testUsersInDb[0];
     const idToDelete = testUser.id;
     // Act
-    const numOfRecords = await deleteUser(idToDelete);
-    const users = await findUsers();
+    const numOfRecords = await deleteUser(idToDelete).catch(errorHandler);
+    const users = await findUsers().catch(errorHandler);
     // Assert
     expect(numOfRecords).toBe(1);
     expect(users).not.toEqual(
       expect.arrayContaining([expect.objectContaining(testUser)]),
     );
-    cleanUp();
   });
 });

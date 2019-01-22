@@ -1,47 +1,50 @@
 {
-  "name": "pos-front-end",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
     "@firebase/app-types": "^0.3.2",
+    "@material-ui/core": "^3.8.3",
     "@types/jest": "23.3.12",
+    "@types/material-ui": "^0.21.5",
     "@types/node": "10.12.18",
     "@types/react": "^16.7.18",
     "@types/react-dom": "16.0.11",
+    "@types/react-leaflet": "^1.1.6",
     "@types/react-router": "^4.4.3",
     "@types/react-router-dom": "^4.3.1",
     "@types/webfontloader": "^1.6.29",
+    "@types/yup": "^0.26.4",
+    "@uppy/aws-s3": "^0.29.1",
+    "@uppy/core": "^0.29.1",
+    "@uppy/react": "^0.29.1",
     "axios": "^0.18.0",
     "firebase": "^5.7.2",
+    "formik": "^1.4.2",
     "jest-dom": "^3.0.0",
+    "leaflet": "^1.4.0",
     "react": "16.7.0-alpha.2",
     "react-dom": "16.7.0-alpha.2",
     "react-firebaseui": "^3.1.2",
+    "react-leaflet": "^2.2.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3",
+    "react-stripe-checkout": "^2.6.3",
+    "react-stripe-elements": "^2.0.1",
     "react-testing-library": "^5.4.4",
+    "stripe": "^6.20.0",
     "typescript": "3.2.2",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "yup": "^0.26.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:precommit": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npx tsc && npm run test:precommit"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "prettier"
-    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,9 +56,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.0",
+    "@types/react-stripe-elements": "^1.1.10",
+    "@types/stripe": "^6.19.1",
     "prettier": "^1.15.3",
     "tslint": "^5.12.0"
   }

@@ -13,7 +13,7 @@ export const errorHandler = (
   next: NextFunction,
 ) => {
   /* tslint:disable */
-  console.log('error handler', err);
+  // console.log('error handler', err);
   // @ts-ignore
   switch (err.statusCode) {
     case 404:
@@ -25,6 +25,11 @@ export const errorHandler = (
       res.status(400).json({
         message:
           'The server cannot or will not process the request due to an apparent client error',
+      });
+      break;
+    case 403:
+      res.status(403).json({
+        message: 'Forbidden. Please check credentials',
       });
       break;
     default:

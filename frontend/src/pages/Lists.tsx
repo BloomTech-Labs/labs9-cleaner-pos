@@ -1,6 +1,10 @@
-import React from "react";
+import React from 'react';
 
-type Props = {};
-export const Button = () => {
-  return <div />;
+const Lists = () => {
+  return (
+    <>
+    </>
+  );
 };
+
+export default Lists;
