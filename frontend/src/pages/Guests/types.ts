@@ -16,6 +16,7 @@ export type FilterArgs = 'all' | 'upcoming' | 'complete' | 'incomplete';
 // Guest Detail
 
 export interface GuestProps {
+  stay_id: number;
   guest_name: string;
   house_id: number;
   house_name: string;
@@ -40,9 +41,13 @@ interface Checkitem {
   stay_id: number;
 }
 
-interface ChecklistsData {
+export interface ChecklistsData {
   before: Checkitem[];
   during: Checkitem[];
-  // TODO: Figure out to dynamically type "hours after X"
-  after: any;
+  // DONE: Figure out to dynamically type "hours after X"
+  // Resource 1: https://github.com/Microsoft/TypeScript/issues/7803#issuecomment-205279410
+  // Resource 2: https://stackoverflow.com/a/53084649
+  after: Array<{
+    [key: string]: Checkitem[];
+  }>;
 }

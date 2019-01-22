@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router';
 import { GuestProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
+import { Checklist } from './Checklist';
 import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
@@ -15,6 +16,7 @@ import { generateDisplayDate } from '../utils';
 import defaultUser from '../../assets/default-user.jpg';
 
 const GuestDetailView = ({
+  stay_id,
   guest_name,
   house_id,
   house_name,
@@ -64,7 +66,11 @@ const GuestDetailView = ({
             <div className='top-text'>Stay Information and Checklists</div>
             <div className='progress'>50%</div>
           </div>
-          <div className='guest-info--checklist-bottom'>hey</div>
+          {/* <div className='guest-info--checklist-bottom'>hey</div> */}
+          <Checklist
+            className='guest-info--checklist-bottom'
+            stayId={stay_id}
+          />
         </div>
         <div className='guest-info-=resources'>
           <div className='guest-info--resources-top'>
@@ -115,7 +121,7 @@ const GuestDetail = (props: RouteComponentProps) => {
       .get(`${url}/stays/${id}`, headers)
       .then((response) => {
         const { data } = response;
-        setStay(data);
+        setStay({ ...data, stay_id: id });
       })
       .catch(axiosErrorHandler(setErrors));
   }, []);

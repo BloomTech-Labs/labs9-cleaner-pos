@@ -4,58 +4,68 @@ import { axiosErrorHandler } from '../utils';
 // Types
 import { ChecklistsData } from './types';
 import { listenerCount } from 'cluster';
+import { RouteComponentProps } from 'react-router';
 
 const ChecklistView = (props: {
   lists: ChecklistsData;
   className?: string;
 }) => {
-  const { className } = props;
+  if (!props.lists.before) {
+    return <div>Loading</div>;
+  }
+
+  const definedClass = props.className || '';
 
   const CheckItem = (itemProps: { task: string; items_id: number }) => {
     return <div>{itemProps.task}</div>;
   };
 
   return (
-    <div className={className}>
+    <div className={definedClass}>
       {props.lists.before.map((item) => (
-        <CheckItem {...item} />
+        <CheckItem key={item.items_id} {...item} />
       ))}
     </div>
   );
 };
 
-export const Checklist = () => {
+export const Checklist = (props: { stayId: number; className?: string }) => {
   const [lists, setLists] = useState({} as ChecklistsData);
   const [errors, setErrors] = useState({ msg: '', error: false });
 
-  useEffect(() => {
-    // TODO: Figure out how to extend RouteComponentPros with params.id
-    // @ts-ignore
-    const id = props.match.params.id;
-    const token = localStorage.getItem('token');
+  console.log('Errors:', errors.msg);
+  useEffect(
+    () => {
+      const token = localStorage.getItem('token');
 
-    if (!token) {
-      setErrors({
-        msg: 'Authentication error. Please try logging in again.',
-        error: true,
-      });
-      return;
-    }
+      if (!token) {
+        setErrors({
+          msg: 'Authentication error. Please try logging in again.',
+          error: true,
+        });
+        return;
+      }
 
-    const headers: AxiosRequestConfig = {
-      headers: { Authorization: token },
-    };
+      const headers: AxiosRequestConfig = {
+        headers: { Authorization: token },
+      };
 
-    const url =
-      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+      const url =
+        process.env.REACT_APP_backendURL ||
+        'https://cleaner-pos.herokuapp.com/';
 
-    axios
-      .get(`${url}/lists/${id}?stay=true`, headers)
-      .then((response) => {
-        const { data } = response;
-        setLists(data);
-      })
-      .catch(axiosErrorHandler(setErrors));
-  }, []);
-  return <ChecklistView lists={lists} />;
+      console.log('full url:', `${url}/lists/${props.stayId}?stay=true`);
+      axios
+        .get(`${url}/lists/${props.stayId}?stay=true`, headers)
+        .then((response) => {
+          const { data } = response;
+          console.log('data:', data);
+          setLists(data);
+        })
+        .catch(axiosErrorHandler(setErrors));
+    },
+    [props.stayId],
+  );
+
+  return <ChecklistView className={props.className} lists={lists} />;
 };
