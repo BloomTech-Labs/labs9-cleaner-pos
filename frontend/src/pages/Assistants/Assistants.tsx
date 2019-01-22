@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
-import { Button, Container } from '../../components/index';
+import { Button, Container, SpecialButton } from '../../components/index';
 import axios from 'axios';
 import {
     AssistantItem,
@@ -11,6 +11,7 @@ import {
     Asst,
     CheckList,
     AssistantHeader,
+    HeaderWrapper,
 } from './Assistants.styling';
 
 interface AssistantsEnum extends Array<Assistant> {}
@@ -42,10 +43,12 @@ const Assistants = () => {
 
     return (
         <Container>
-            <AssistantHeader>Turnover Assistants</AssistantHeader>
+            <HeaderWrapper>
+                <AssistantHeader>Turnover Assistants</AssistantHeader>
+                <Button text='+ New Assistant' />
+            </HeaderWrapper>
             {assistants.map((assistant) => {
                 return (
-
                 <AssistantItem key={assistant.id} data-testid='assistant-item'>
                     <CardContent>
                         <CardHeading>
