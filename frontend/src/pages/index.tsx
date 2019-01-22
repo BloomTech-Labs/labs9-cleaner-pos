@@ -1,19 +1,19 @@
-import Houses from './Houses/Houses';
+import Properties from './Properties/Properties';
 import Login from './Login/Login';
 import LandingPage from './LandingPage/Landingpage';
 import PostRegister from './PostRegister';
 import Billing from './Billing/Billing';
 import Settings from './Settings/Settings';
-import HouseDetails from './Houses/HouseDetails';
+import PropertyDetails from './Properties/PropertyDetails';
 import Guests from './Guests/Guests';
 
 export {
-  Houses,
+  Properties,
   Login,
   LandingPage,
   PostRegister,
   Billing,
   Settings,
-  HouseDetails,
+  PropertyDetails,
   Guests,
 };
