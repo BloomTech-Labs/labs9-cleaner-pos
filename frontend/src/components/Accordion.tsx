@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 
 interface MySettings {
   title?: string;
-  content?: any;
   onToggle?: (show: boolean) => void;
   onClick?: () => void;
   children?: any;
@@ -31,7 +30,7 @@ const Accordion = ({ title, children, onToggle }: MySettings) => {
 };
 
 Accordion.propTypes = {
-  content: PropTypes.any.isRequired,
+  children: PropTypes.any,
   onToggle: PropTypes.func,
   title: PropTypes.string.isRequired,
 };
