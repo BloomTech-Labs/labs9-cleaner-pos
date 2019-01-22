@@ -56,15 +56,23 @@ const PropertyDetails = (props: any) => {
     }
   }
 
-  const submitNew = async (newTaks: any) => {
+  async function submitNew(newTaks: any) {
     try {
       await axios.post(`${url}/items/`, newTaks);
       setShouldFetch(true);
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
-  };
+  }
 
+  async function deleteTaks(id: number) {
+    try {
+      await axios.delete(`${url}/items/${id}`);
+      setShouldFetch(true);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  }
   useEffect(() => {
     fetchHouse(props.match.params.id);
   }, []);
@@ -76,7 +84,7 @@ const PropertyDetails = (props: any) => {
     },
     [shouldFetch],
   );
-  console.log('property', lists);
+
   return (
     <>
       <div>{errors.msg}</div>
@@ -104,12 +112,14 @@ const PropertyDetails = (props: any) => {
               list_id={lists.before_id}
               type='Before'
               submitNew={submitNew}
+              deleteTaks={deleteTaks}
             />
             <PropertyLists
               list={lists.during}
               list_id={lists.during_id}
               type='During'
               submitNew={submitNew}
+              deleteTaks={deleteTaks}
             />
           </ListContainer>
           <AfterListDiv>
@@ -122,6 +132,7 @@ const PropertyDetails = (props: any) => {
                   list_id={aList.after_id}
                   type={aList.time}
                   submitNew={submitNew}
+                  deleteTaks={deleteTaks}
                 />
               );
             })}

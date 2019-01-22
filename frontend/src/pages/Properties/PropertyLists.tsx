@@ -18,6 +18,7 @@ import styled from '@emotion/styled';
 export const PropertyLists = (props: ListProps) => {
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
+  const [modiftyItem, setModiftyItem] = useState(false);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem(event.target.value);
   };
@@ -26,6 +27,9 @@ export const PropertyLists = (props: ListProps) => {
     setInputItem(!inputItem);
   };
 
+  const handleDelete = (id: number) => {
+    props.deleteTaks(id);
+  };
   const handleNew = () => {
     const createTask: any = { list_id: props.list_id, task: newItem };
     props.submitNew(createTask);
@@ -46,7 +50,12 @@ export const PropertyLists = (props: ListProps) => {
                   readOnly
                   data-testid={'checkbox'}
                 />
-                <label htmlFor={task.task}>{task.task}</label>
+                <label
+                  htmlFor={task.task}
+                  onClick={() => handleDelete(task.items_id)}
+                >
+                  {task.task}
+                </label>
               </div>
             );
           })}
@@ -81,11 +90,13 @@ export const AfterPropertyLists = (props: ListProps) => {
   };
 
   const handleNew = () => {
-    console.log(props);
     const createTask: any = { list_id: props.list_id, task: newItem };
-    console.log(createTask);
     props.submitNew(createTask);
     setInputItem(false);
+  };
+
+  const handleDelete = (id: number) => {
+    props.deleteTaks(id);
   };
   return (
     <AfterListDiv2>
@@ -102,7 +113,12 @@ export const AfterPropertyLists = (props: ListProps) => {
                   readOnly
                   data-testid={'checkbox'}
                 />
-                <label htmlFor={task.task}>{task.task}</label>
+                <label
+                  htmlFor={task.task}
+                  onClick={() => handleDelete(task.items_id)}
+                >
+                  {task.task}
+                </label>
               </div>
             );
           })}
