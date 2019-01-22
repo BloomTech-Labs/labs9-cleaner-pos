@@ -16,10 +16,8 @@ import { TextField } from '@material-ui/core';
 import styled from '@emotion/styled';
 
 export const PropertyLists = (props: ListProps) => {
-  const [errors, setErrors] = useState({ msg: '', error: false });
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem(event.target.value);
   };
@@ -28,17 +26,11 @@ export const PropertyLists = (props: ListProps) => {
     setInputItem(!inputItem);
   };
 
-  const submitNew = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const headers: AxiosRequestConfig = {
-        headers: { Authorization: token },
-      };
-    } catch (e) {
-      axiosErrorHandler(setErrors);
-    }
+  const handleNew = () => {
+    const createTask: any = { list_id: props.list_id, task: newItem };
+    props.submitNew(createTask);
+    setInputItem(false);
   };
-  console.log(newItem, inputItem);
   return (
     <ListDiv>
       <Header>{props.type}</Header>
@@ -66,7 +58,7 @@ export const PropertyLists = (props: ListProps) => {
               value={newItem}
               onChange={handleChange}
             />
-            <WhiteButton text='Submit' onClick={toggleText} />
+            <WhiteButton text='Submit' onClick={handleNew} />
             <WhiteButton text='Cancel' onClick={toggleText} />
           </>
         ) : (
@@ -78,7 +70,23 @@ export const PropertyLists = (props: ListProps) => {
 };
 
 export const AfterPropertyLists = (props: ListProps) => {
-  console.log(props);
+  const [newItem, setNewItem] = useState('');
+  const [inputItem, setInputItem] = useState(false);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewItem(event.target.value);
+  };
+
+  const toggleText = () => {
+    setInputItem(!inputItem);
+  };
+
+  const handleNew = () => {
+    console.log(props);
+    const createTask: any = { list_id: props.list_id, task: newItem };
+    console.log(createTask);
+    props.submitNew(createTask);
+    setInputItem(false);
+  };
   return (
     <AfterListDiv2>
       <AfterHeader>{props.type}</AfterHeader>
@@ -99,7 +107,20 @@ export const AfterPropertyLists = (props: ListProps) => {
             );
           })}
         </TaskDiv>
-        <WhiteButton text='+ Add New Item' />
+        {inputItem ? (
+          <>
+            <TextField
+              placeholder='Add New Item'
+              required={true}
+              value={newItem}
+              onChange={handleChange}
+            />
+            <WhiteButton text='Submit' onClick={handleNew} />
+            <WhiteButton text='Cancel' onClick={toggleText} />
+          </>
+        ) : (
+          <WhiteButton text='+ Add New Item' onClick={toggleText} />
+        )}
       </AfterItemDiv>
     </AfterListDiv2>
   );

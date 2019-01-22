@@ -1,7 +1,11 @@
+import { number } from 'yup';
+
 export interface HousesEnum extends Array<House> {}
 export interface ListProps {
   list: List[];
   type: string;
+  list_id?: number;
+  submitNew: any;
 }
 
 export interface House {
@@ -24,11 +28,15 @@ export interface Lists {
   before: List[];
   during: List[];
   after: AfterLists[];
+  before_id: number;
+  during_id: number;
+  after_id?: number;
 }
 
 interface AfterLists {
   time: string;
   afterLists: List[];
+  after_id: number;
 }
 
 export interface List {

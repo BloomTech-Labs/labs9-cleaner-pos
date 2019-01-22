@@ -21,7 +21,8 @@ const PropertyDetails = (props: any) => {
   const [property, setProperty] = useState(props.location.state);
   const [lists, setLists] = useState({} as Lists);
   const [errors, setErrors] = useState({ msg: '', error: false });
-  let shouldFetch = property ? false : true;
+  const [shouldFetch, setShouldFetch] = useState(true);
+
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
 
@@ -41,7 +42,6 @@ const PropertyDetails = (props: any) => {
       };
       const res = await axios.get(`${url}/houses/${id}`, headers);
       setProperty(res.data);
-      shouldFetch = false;
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
@@ -56,13 +56,27 @@ const PropertyDetails = (props: any) => {
     }
   }
 
-  if (shouldFetch) {
-    fetchHouse(props.match.params.id);
-  }
+  const submitNew = async (newTaks: any) => {
+    try {
+      await axios.post(`${url}/items/`, newTaks);
+      setShouldFetch(true);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  };
 
   useEffect(() => {
-    fetchLists(props.match.params.id);
+    fetchHouse(props.match.params.id);
   }, []);
+
+  useEffect(
+    () => {
+      fetchLists(props.match.params.id);
+      setShouldFetch(false);
+    },
+    [shouldFetch],
+  );
+  console.log('property', lists);
   return (
     <>
       <div>{errors.msg}</div>
@@ -85,8 +99,18 @@ const PropertyDetails = (props: any) => {
             onClick={() => props.history.push('/properties')}
           />
           <ListContainer>
-            <PropertyLists list={lists.before} type='Before' />
-            <PropertyLists list={lists.during} type='During' />
+            <PropertyLists
+              list={lists.before}
+              list_id={lists.before_id}
+              type='Before'
+              submitNew={submitNew}
+            />
+            <PropertyLists
+              list={lists.during}
+              list_id={lists.during_id}
+              type='During'
+              submitNew={submitNew}
+            />
           </ListContainer>
           <AfterListDiv>
             <Header>After Stay</Header>
@@ -95,7 +119,9 @@ const PropertyDetails = (props: any) => {
                 <AfterPropertyLists
                   key={aList.time}
                   list={aList.afterLists}
+                  list_id={aList.after_id}
                   type={aList.time}
+                  submitNew={submitNew}
                 />
               );
             })}

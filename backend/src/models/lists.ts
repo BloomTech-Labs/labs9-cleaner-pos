@@ -8,11 +8,17 @@ export const findLists = async (houseId: number) => {
     const before = await db('list')
       .where({ house_id: houseId, type: 'before' })
       .leftJoin('items', { 'list.id': 'items.list_id' })
-      .select('items.task', 'items.id as items_id');
+      .select('list.id as list_id', 'items.task', 'items.id as items_id')
+      .then((e) => {
+        return { before: e, before_id: e[0].list_id };
+      });
     const during = await db('list')
       .where({ house_id: houseId, type: 'during' })
       .leftJoin('items', { 'list.id': 'items.list_id' })
-      .select('items.task', 'items.id as items_id');
+      .select('list.id as list_id', 'items.task', 'items.id as items_id')
+      .then((e) => {
+        return { during: e, during_id: e[0].list_id };
+      });
     const after = await db('list')
       .where({ house_id: houseId, type: 'after' })
       .leftOuterJoin('after_list', { 'list.id': 'after_list.list_id' })
@@ -23,12 +29,12 @@ export const findLists = async (houseId: number) => {
           .where({ 'items.list_id': row.id })
           .select('items.task', 'items.id as items_id');
 
-        return { time: hours, afterLists };
+        return { after_id: row.id, time: hours, afterLists };
       })
       .catch((e) => {
         console.error(e);
       });
-    return { before, during, after };
+    return { ...before, ...during, after };
   } catch (e) {
     throw console.error(e);
   }
