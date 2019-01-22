@@ -57,14 +57,14 @@ const Assistants = () => {
                         </CardHeading>
                         <CardBody>
                             <CheckList>
-                                <p>Items</p>
+                                <h3>Checklist Items</h3>
                             </CheckList>
-                            <ButtonContainer>
-                                <Button text='House Availability' datatestid='assistant-button' />
-                            </ButtonContainer>
                             <Asst>
                                 <div>This is a placeholder.</div>
                             </Asst>
+                            <ButtonContainer>
+                                <Button text='House Availability' datatestid='assistant-button' />
+                            </ButtonContainer>
                         </CardBody>
                     </CardContent>
                 </AssistantItem>

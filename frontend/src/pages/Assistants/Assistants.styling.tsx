@@ -36,12 +36,14 @@ const CheckList = styled('div')`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid #393534;
 `;
 
 const Asst = styled('div')`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: 1px solid #393534;
 `;
 
 const AssistantHeader = styled('span')`
