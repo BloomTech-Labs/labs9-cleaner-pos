@@ -9,6 +9,8 @@ import { InfoBox } from './InfoBox';
 import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
+// Utilities
+import { generateDisplayDate } from '../utils';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
@@ -24,6 +26,7 @@ const GuestDetailView = ({
   check_out,
   errors,
 }: GuestProps) => {
+  console.log('check-in', check_in);
   return (
     <GuestsDiv>
       {errors.error && <div>{errors.msg}</div>}
@@ -35,10 +38,14 @@ const GuestDetailView = ({
           <div className='sub-address'>{house_address}</div>
         </div>
         <div className='guest-header--checkdates'>
-          <InfoBox className='checkin' main={check_in} secondary='Check-In' />
+          <InfoBox
+            className='checkin'
+            main={generateDisplayDate(check_in)}
+            secondary='Check-In'
+          />
           <InfoBox
             className='checkout'
-            main={check_out}
+            main={generateDisplayDate(check_out)}
             secondary='Check-Out'
           />
         </div>
@@ -105,7 +112,7 @@ const GuestDetail = (props: RouteComponentProps) => {
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
 
     axios
-      .get(`${url}/stay/${id}`)
+      .get(`${url}/stays/${id}`)
       .then((response) => {
         const { data } = response;
         setStay(data);

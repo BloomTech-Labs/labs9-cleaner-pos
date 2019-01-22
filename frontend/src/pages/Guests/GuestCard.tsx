@@ -5,27 +5,10 @@ import { GuestsProps } from './types';
 import { InfoBox } from './InfoBox';
 // Styled Components
 import { MainText, SecondaryText } from './Guests.styling';
+// Utils
+import { generateDisplayDate } from '../utils';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
-
-function separateDateString(dateString: string) {
-  /*
-  This function expects a date string input like this:
-  '2019-01-27T08:00:00.000Z'
-  returns {
-      year: string,
-      month: string,
-      day: string;
-  }
-  */
-  const [year, month, day, ...other] = dateString.split(/[-T]+/);
-
-  return {
-    year,
-    month,
-    day,
-  };
-}
 
 export const GuestCard = (props: GuestsProps) => {
   const {
@@ -37,11 +20,6 @@ export const GuestCard = (props: GuestsProps) => {
     progress,
     className,
   } = props;
-
-  const generateDisplayDate = (dateString: string) => {
-    const { month, day } = separateDateString(dateString);
-    return `${month} / ${day}`;
-  };
 
   return (
     <div className={`banner-card ${className}`} data-testid='guest-card'>

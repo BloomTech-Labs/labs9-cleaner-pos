@@ -1,3 +1,4 @@
 import { axiosErrorHandler } from './errorHandler';
+import { generateDisplayDate } from './dateUtils';
 
-export { axiosErrorHandler };
+export { axiosErrorHandler, generateDisplayDate };
