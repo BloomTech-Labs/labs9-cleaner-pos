@@ -13,7 +13,7 @@ import {
   Cleaner,
   CheckList,
   HouseHeader,
-} from './Houses.styling';
+} from './Properties.styling';
 
 const WhiteButton = styled(Button)`
   color: var(--colour-button-text-alt);
@@ -55,7 +55,7 @@ const HouseDetails = (props: any) => {
   useEffect(() => {
     fetchLists(props.match.params.id);
   }, []);
-  console.log(lists);
+
   return (
     <Container>
       <div>

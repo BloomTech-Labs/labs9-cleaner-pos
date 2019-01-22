@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Switch, withRouter } from 'react-router';
 import {
   LandingPage,
-  Houses,
+  Properties,
   Login,
   PostRegister,
   Settings,
-  HouseDetails,
+  PropertyDetails,
   Guests,
 } from './pages/index';
 import { Sidebar } from './components/index';
@@ -22,10 +22,10 @@ const App = (props: any) => {
         <Route exact path='/' component={LandingPage} />
         <Route path='/Login' component={Login} />
         <Route exact path='/postreg' component={PostRegister} />
-        <Route exact path='/dashboard' component={Houses} />
+        <Route exact path='/properties' component={Properties} />
+        <Route exact path='/properties/:id' component={PropertyDetails} />
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/updateinfo' component={PostRegister} />
-        <Route exact path='/houses/:id' component={HouseDetails} />
         <Route exact path='/guests' component={Guests} />
       </Switch>
     </div>
