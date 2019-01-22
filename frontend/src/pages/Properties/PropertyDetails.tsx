@@ -12,6 +12,7 @@ import {
   AfterListDiv,
   WhiteButton,
 } from './PropertyDetails.styling';
+import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { Lists } from './types';
@@ -22,6 +23,8 @@ const PropertyDetails = (props: any) => {
   const [lists, setLists] = useState({} as Lists);
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [shouldFetch, setShouldFetch] = useState(true);
+  const [newItem, setNewItem] = useState('');
+  const [inputItem, setInputItem] = useState(false);
 
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
@@ -59,7 +62,7 @@ const PropertyDetails = (props: any) => {
   async function submitNew(newTaks: any) {
     try {
       await axios.post(`${url}/items/`, newTaks);
-      setShouldFetch(true);
+      fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
@@ -68,7 +71,27 @@ const PropertyDetails = (props: any) => {
   async function deleteTaks(id: number) {
     try {
       await axios.delete(`${url}/items/${id}`);
-      setShouldFetch(true);
+      fetchLists(props.match.params.id);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  }
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setNewItem(event.target.value);
+  }
+  function toggleText() {
+    setInputItem(!inputItem);
+  }
+  async function newList() {
+    try {
+      const postList = {
+        type: 'after',
+        house_id: property.id,
+        hours_after: newItem,
+      };
+      await axios.post(`${url}/lists/`, postList);
+      toggleText();
+      fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
@@ -136,7 +159,20 @@ const PropertyDetails = (props: any) => {
                 />
               );
             })}
-            <WhiteButton text='+ New Stay List' />
+            {inputItem ? (
+              <>
+                <TextField
+                  placeholder='Number of hours'
+                  type='number'
+                  value={newItem}
+                  onChange={handleChange}
+                />
+                <WhiteButton text='Submit' onClick={newList} />
+                <WhiteButton text='Cancel' onClick={toggleText} />
+              </>
+            ) : (
+              <WhiteButton text='+ New Stay List' onClick={toggleText} />
+            )}
           </AfterListDiv>
         </PropertyContainer>
       )}

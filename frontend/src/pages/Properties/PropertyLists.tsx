@@ -18,7 +18,6 @@ import styled from '@emotion/styled';
 export const PropertyLists = (props: ListProps) => {
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
-  const [modiftyItem, setModiftyItem] = useState(false);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem(event.target.value);
   };
@@ -98,6 +97,11 @@ export const AfterPropertyLists = (props: ListProps) => {
   const handleDelete = (id: number) => {
     props.deleteTaks(id);
   };
+
+  const handleListDelete = () => {
+    console.log(props);
+    // props.deleteTaks(id);
+  };
   return (
     <AfterListDiv2>
       <AfterHeader>{props.type}</AfterHeader>
@@ -135,7 +139,10 @@ export const AfterPropertyLists = (props: ListProps) => {
             <WhiteButton text='Cancel' onClick={toggleText} />
           </>
         ) : (
-          <WhiteButton text='+ Add New Item' onClick={toggleText} />
+          <>
+            <WhiteButton text='+ Add New Item' onClick={toggleText} />
+            <WhiteButton text='Delete List' onClick={toggleText} />
+          </>
         )}
       </AfterItemDiv>
     </AfterListDiv2>

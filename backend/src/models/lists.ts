@@ -102,6 +102,15 @@ export const postList = (list: List): QueryBuilder => {
     .returning('id');
 };
 
+export const postAfterList = (
+  listId: number,
+  hoursAfter: number,
+): QueryBuilder => {
+  return db('after_list')
+    .insert({ list_id: listId, hours_after: hoursAfter })
+    .returning('id');
+};
+
 export const putList = (id: number, list: List): QueryBuilder => {
   return db('list')
     .where({ id })
