@@ -1,6 +1,7 @@
-import Houses from './Houses';
+//import Houses from './Houses';
 import Login from './Login';
 import LandingPage from './Landingpage';
 import PostRegister from './PostRegister';
+import Billing from './Billing/Billing';
 
-export { Houses, Login, LandingPage, PostRegister };
+export { Login, LandingPage, PostRegister, Billing };
