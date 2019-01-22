@@ -15,3 +15,19 @@ export interface House {
   openAst?: any;
   default_ast_name: string;
 }
+
+export interface Lists {
+  before: List[];
+  during: List[];
+  after: AfterLists[];
+}
+
+interface AfterLists {
+  time: string;
+  afterLists: List[];
+}
+
+export interface List {
+  task: string;
+  items_id: number;
+}

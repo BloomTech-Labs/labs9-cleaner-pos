@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import PropertyLists from './PropertyLists';
 import { Container, Button } from '../../components/index';
 import axios from 'axios';
 import { axiosErrorHandler } from '../utils';
 import styled from '@emotion/styled';
-import {
-  HouseItem,
-  CardBody,
-  ThumbNail,
-  CardContent,
-  ButtonContainer,
-  CardHeading,
-  Cleaner,
-  CheckList,
-  HouseHeader,
-} from './Properties.styling';
+import { Lists } from './types';
+import { ThumbNail } from './Properties.styling';
 
 const WhiteButton = styled(Button)`
   color: var(--colour-button-text-alt);
   background-color: var(--colour-button-background-alt);
 `;
 
+// TODO: fix types
 const PropertyDetails = (props: any) => {
   const [property, setProperty] = useState(props.location.state);
-  // TODO: fix this type
-  const [lists, setLists] = useState<any>({});
+  const [lists, setLists] = useState({} as Lists);
   const [errors, setErrors] = useState({ msg: '', error: false });
   let shouldFetch = property ? false : true;
   const url =
@@ -57,7 +49,7 @@ const PropertyDetails = (props: any) => {
   }, []);
   return (
     <Container>
-      {shouldFetch ? (
+      {!lists.before || shouldFetch ? (
         <div>Loading.....</div>
       ) : (
         <>
@@ -72,43 +64,31 @@ const PropertyDetails = (props: any) => {
           <div>
             <Button text='Go Back' colour='var(--colour-accent)' />
           </div>
-          {lists.before ? (
-            <>
-              <div>
-                Before
-                <ul>
-                  {lists.before.map((item: any) => {
-                    return <li key={item.id}>{item.task}</li>;
-                  })}
+          <div>
+            <PropertyLists {...lists.before} />
+            During
+            <ul>
+              {lists.during.map((item: any) => {
+                return <li key={item.items_id}>{item.task}</li>;
+              })}
+              <WhiteButton text='+ Add New Item' />
+            </ul>
+          </div>
+          <div>
+            {lists.after.map((aList: any) => {
+              return (
+                <div key={aList.time}>
+                  {aList.time}
+                  <ul>
+                    {aList.afterLists.map((item: any) => {
+                      return <li key={item.items_id}>{item.task}</li>;
+                    })}
+                  </ul>
                   <WhiteButton text='+ Add New Item' />
-                </ul>
-                During
-                <ul>
-                  {lists.during.map((item: any) => {
-                    return <li key={item.id}>{item.task}</li>;
-                  })}
-                  <WhiteButton text='+ Add New Item' />
-                </ul>
-              </div>
-              <div>
-                {lists.after.map((aList: any) => {
-                  return (
-                    <div>
-                      {aList.time}
-                      <ul>
-                        {aList.afterLists.map((item: any) => {
-                          return <li>{item.task}</li>;
-                        })}
-                      </ul>
-                      <WhiteButton text='+ Add New Item' />
-                    </div>
-                  );
-                })}
-              </div>
-            </>
-          ) : (
-            <div>no</div>
-          )}
+                </div>
+              );
+            })}
+          </div>
         </>
       )}
     </Container>

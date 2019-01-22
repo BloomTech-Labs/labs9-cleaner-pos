@@ -12,6 +12,10 @@ import Uppy from '@uppy/core';
 import { DashboardModal } from '@uppy/react';
 import '@uppy/dashboard/dist/style.css';
 
+DashboardModal.prototype.componentWillUnmount = function componentWillUnmount() {
+  // this is here to override node_modules/@uppy/react/lib/DashboardModal.js
+};
+
 interface UploadProps {
   type?: string;
   id?: number;
