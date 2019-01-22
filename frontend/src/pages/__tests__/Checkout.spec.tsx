@@ -9,7 +9,11 @@ afterEach(cleanup);
 const props: any = {
   location: { search: 'code=34134123dsfasfdads' },
   history: {},
-  match: {},
+  match: {
+    params: {
+      id: 5,
+    },
+  },
 };
 
 describe('Checkout Page UI', () => {
