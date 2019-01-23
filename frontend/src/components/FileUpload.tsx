@@ -32,7 +32,7 @@ const FileUpLoad = (props: UploadProps) => {
       minNumberOfFiles: 1,
     },
     autoProceed: false,
-    debug: true,
+    debug: false,
   });
   useEffect(() => {
     uppy
