@@ -75,9 +75,27 @@ const Checkout = (props: CheckoutProps) => {
         <div>
           <h1 data-testid='guest-name'>{guest_name}</h1>
 
-          <div>Nights: {diff}</div>
+          <div>
+            Nights:{' '}
+            <input
+              value={diff}
+              onChange={(e) =>
+                // @ts-ignore
+                setStay({ ...stay, diff: e.target.value })
+              }
+            />
+          </div>
           <div>Cleaning Fee: ${cleaning_fee}</div>
-          {extra_guests && <div>Extra Guests: {extra_guests}</div>}
+          <div>
+            Extra Guests:{' '}
+            <input
+              value={extra_guests}
+              onChange={(e) =>
+                // @ts-ignore
+                setStay({ ...stay, extra_guests: e.target.value })
+              }
+            />
+          </div>
         </div>
         <div>
           <CheckoutForm>
