@@ -8,7 +8,7 @@ const deleteL = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const post = async (req: Request, res: Response, next: NextFunction) => {
-  const { authorizationCode } = req.body;
+  const { authorizationCode, id } = req.body;
   if (!authorizationCode) {
     res.status(400).send({ message: 'Please include a valid token!' });
     return;
@@ -26,7 +26,7 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
     );
     if (response !== undefined) {
       // hardcoded UID until we have logic implemented that allows us to pass this
-      await updateUser('d7DXFYsNwTUKFAz3acyeUkMmtYQ2', {
+      await updateUser(id, {
         stripeUID: response.data.stripe_user_id,
       });
     }
