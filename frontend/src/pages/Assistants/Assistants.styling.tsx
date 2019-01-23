@@ -107,6 +107,20 @@ const AssistantHeader = styled('span')`
 
 const AssistantBar = styled('div')`
     display: flex;
+    flex-direction: column;
+`;
+
+const AsstDetail = styled('div')`
+    display: flex;
+`;
+
+const AsstProperty = styled('div')`
+    display: flex;
+    flex-direction: column;
+`;
+
+const DetailMap = styled('div')`
+    display: flex;
 `;
 
 export {
@@ -121,4 +135,7 @@ export {
     AssistantHeader,
     HeaderWrapper,
     AssistantBar,
+    AsstDetail,
+    AsstProperty,
+    DetailMap,
 };
