@@ -107,20 +107,18 @@ const AssistantHeader = styled('span')`
 
 const AssistantBar = styled('div')`
     display: flex;
-    flex-direction: column;
+    border: 1px solid black;
 `;
 
 const AsstDetail = styled('div')`
     display: flex;
+    border: 1px dotted red;
 `;
 
 const AsstProperty = styled('div')`
     display: flex;
     flex-direction: column;
-`;
-
-const DetailMap = styled('div')`
-    display: flex;
+    border: 1px dashed green;
 `;
 
 export {
@@ -137,5 +135,4 @@ export {
     AssistantBar,
     AsstDetail,
     AsstProperty,
-    DetailMap,
 };

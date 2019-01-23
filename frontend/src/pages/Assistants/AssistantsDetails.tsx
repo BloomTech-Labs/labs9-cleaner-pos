@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { RowContainer, LeafletMap } from '../../components/index';
-import { AssistantBar, AsstDetail, AsstProperty, ThumbNail, DetailMap } from './Assistants.styling';
+import { Container, LeafletMap } from '../../components/index';
+import { AssistantBar, AsstDetail, AsstProperty, ThumbNail } from './Assistants.styling';
 
 const AssistantsDetails = () => {
     return (
-        <RowContainer>
-            <DetailMap>
+        <Container>
                 <AssistantBar>
                     <AsstDetail>
                         <ThumbNail
@@ -16,11 +15,10 @@ const AssistantsDetails = () => {
                             <h2>Ronald LeBagels</h2>
                             <h3>378 Corny Way</h3>
                         </AsstProperty>
-                        </AsstDetail>
-                    </AssistantBar>
-            </DetailMap>
-        <LeafletMap />
-        </RowContainer>
+                    </AsstDetail>
+                </AssistantBar>
+            <LeafletMap />
+        </Container>
     );
 };
 
