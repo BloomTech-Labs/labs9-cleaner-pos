@@ -8,7 +8,6 @@ const Billing = () => {
   return (
     <Container>
       <div>
-        <Accordion title='OUR AWESOME ACCORDION' />
         <Example />
       </div>
       <Stripe />
