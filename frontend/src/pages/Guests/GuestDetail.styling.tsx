@@ -17,10 +17,12 @@ export const GuestDetailStyle = styled('div')`
   width: 100%;
   margin: auto;
 
+  /* Header CSS */
   .guest-header {
     /* Sizing & Box Model */
     height: ${headerHeight};
     width: auto;
+    margin-bottom: 1.5rem;
 
     /* Grid */
     display: grid;
@@ -108,5 +110,47 @@ export const GuestDetailStyle = styled('div')`
   .guest-header--checkdates .text-secondary {
     /* font-size: calc(0.75rem + (1 - 0.75) * ((100vw - 300px) / (1000 - 300))); */
     font-size: 1rem;
+  }
+
+  /* Guest-Info CSS */
+  .guest-info,
+  .guest-info--checklist,
+  .guest-info--resources,
+  .guest-info--checkout {
+    border: 1px solid gray;
+  }
+
+  .guest-info--top,
+  .guest-info--checklist-top,
+  .guest-info--resources-top,
+  .guest-info--checkout-top {
+    /* Box Model & Sizing */
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+    border: 2px solid black;
+  }
+
+  .guest-info--checklist,
+  .guest-info--resources,
+  .guest-info--checkout {
+    /* Box Model & Sizing */
+    margin: 1rem;
+  }
+
+  @media only screen and (min-width: 600px) {
+    .guest-info--bottom {
+      display: grid;
+      gap: 1.5rem;
+      grid-gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .guest-info--bottom-left {
+      grid-column: 1;
+    }
+
+    .guest-info--bottom-right {
+      grid-column: 2;
+    }
   }
 `;

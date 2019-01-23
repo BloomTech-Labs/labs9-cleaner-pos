@@ -23,6 +23,7 @@ const AstDropdownView = (props: {
   return (
     <div className='ast-dropdown'>
       Default Cleaner
+      <br />
       <select data-testid='assistant-select' onChange={(event) => event}>
         <option defaultValue={house.default_ast_name}>
           {house.default_ast}: {house.default_ast_name}
