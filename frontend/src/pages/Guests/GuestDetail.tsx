@@ -97,7 +97,7 @@ export const GuestDetailView = ({
                     <div className='ast-guide'>
                       <i className='fas fa-question' />
                       <br />
-                      <label>Upload an Assistant Guide</label>
+                      <label>No Assistant Guide</label>
                     </div>
                   )}
                   {guest_guide ? (
@@ -112,7 +112,7 @@ export const GuestDetailView = ({
                     <div className='guest-guide'>
                       <i className='fas fa-question' />
                       <br />
-                      <label>Upload a Guest Guide</label>
+                      <label>No Guest Guide</label>
                     </div>
                   )}
                 </div>

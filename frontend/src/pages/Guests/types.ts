@@ -34,6 +34,8 @@ export interface GuestProps {
 
 // Checklists
 
+export type ListTypes = 'before' | 'during' | 'after';
+
 interface Checkitem {
   complete: boolean;
   task: string;
@@ -48,7 +50,12 @@ export interface ChecklistsData {
   // Resource 1: https://github.com/Microsoft/TypeScript/issues/7803#issuecomment-205279410
   // Resource 2: https://stackoverflow.com/a/53084649
   after: Array<{
-    [key: string]: Checkitem[];
+    [key: string]: Array<{
+      complete: boolean;
+      task: string;
+      items_id: number;
+      stay_id: number;
+    }>;
   }>;
 }
 
