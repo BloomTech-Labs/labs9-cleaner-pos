@@ -69,7 +69,7 @@ export const getByExtIt = async (
 ) => {
   try {
     if (!req.token) {
-      const e = { ...new Error('Authentication required.'), statusCode: 403 };
+      const e = { error: Error('Authentication required.'), statusCode: 403 };
       throw e;
     }
     const { ext_it } = req.token;
