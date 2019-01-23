@@ -33,13 +33,13 @@ const PropertyDetails = (props: any) => {
     try {
       const token = localStorage.getItem('token');
 
-      if (!token) {
-        setErrors({
-          msg: 'Authentication error. Please try logging in again.',
-          error: true,
-        });
-        return;
-      }
+      // if (!token) {
+      //   setErrors({
+      //     msg: 'Authentication error. Please try logging in again.',
+      //     error: true,
+      //   });
+      //   return;
+      // }
       const headers: AxiosRequestConfig = {
         headers: { Authorization: token },
       };
@@ -129,7 +129,7 @@ const PropertyDetails = (props: any) => {
             alt='house'
           />
           <Top>
-            <MainText>{property.name}</MainText>
+            <MainText data-testid='house-detail'>{property.name}</MainText>
             <SecondaryText>{property.address}</SecondaryText>
           </Top>
           <BackButton text='Edit Property' colour='var(--colour-accent)' />

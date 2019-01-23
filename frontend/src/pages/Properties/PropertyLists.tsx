@@ -104,7 +104,7 @@ export const AfterPropertyLists = (props: ListProps) => {
     props.deleteList(props.list_id);
   };
   return (
-    <AfterListDiv2>
+    <AfterListDiv2 data-testid='after-list'>
       <AfterHeader>{props.type}</AfterHeader>
       <AfterItemDiv>
         <TaskDiv>

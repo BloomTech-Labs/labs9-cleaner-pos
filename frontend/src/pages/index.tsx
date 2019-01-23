@@ -1,4 +1,5 @@
 import Properties from './Properties/Properties';
+import PropertiesDetail from './Properties/PropertyDetails';
 import Login from './Login/Login';
 import LandingPage from './LandingPage/Landingpage';
 import PostRegister from './PostRegister';
@@ -10,6 +11,7 @@ import Assistants from './Assistants/Assistants';
 
 export {
   Properties,
+  PropertiesDetail,
   Login,
   LandingPage,
   PostRegister,
