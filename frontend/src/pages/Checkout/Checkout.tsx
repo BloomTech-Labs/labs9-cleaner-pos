@@ -47,6 +47,28 @@ const Checkout = (props: CheckoutProps) => {
       axiosErrorHandler(setError);
     }
   }
+
+  async function triggerPayment(sum: number) {
+    // const { id } = useContext(user);
+    return;
+    try {
+      const body = {
+        id: 1,
+        token: '324234234234',
+        amount: sum,
+      };
+
+      const { data }: AxiosResponse = await axios.post(
+        `${url}connect/createpayment`,
+        body,
+        headers,
+      );
+      setStay(data);
+    } catch (e) {
+      axiosErrorHandler(setError);
+    }
+  }
+
   useLayoutEffect(() => {
     fetchStay();
   }, []);
@@ -89,7 +111,7 @@ const Checkout = (props: CheckoutProps) => {
           <div>
             Extra Guests:{' '}
             <input
-              value={extra_guests}
+              value={extra_guests || 0}
               onChange={(e) =>
                 // @ts-ignore
                 setStay({ ...stay, extra_guests: e.target.value })
@@ -113,6 +135,7 @@ const Checkout = (props: CheckoutProps) => {
             <Button
               text={`Pay $${total}`}
               colour='#0aa047'
+              onClick={() => triggerPayment(total)}
               datatestid='payment-button'
             />
             <InvoiceBox>
