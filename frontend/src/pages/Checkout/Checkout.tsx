@@ -76,7 +76,7 @@ const Checkout = (props: CheckoutProps) => {
           <h1 data-testid='guest-name'>{guest_name}</h1>
 
           <div>Nights: {diff}</div>
-          <div>Cleaning Fee: {cleaning_fee}</div>
+          <div>Cleaning Fee: ${cleaning_fee}</div>
           {extra_guests && <div>Extra Guests: {extra_guests}</div>}
         </div>
         <div>
@@ -92,7 +92,11 @@ const Checkout = (props: CheckoutProps) => {
           </CheckoutForm>
           <Invoice>
             <h3>Invoice</h3>
-            <Button text={`Pay $${total}`} colour='#0aa047' />
+            <Button
+              text={`Pay $${total}`}
+              colour='#0aa047'
+              datatestid='payment-button'
+            />
             <InvoiceBox>
               <span>
                 {diff} Nights x ${price}
@@ -104,14 +108,14 @@ const Checkout = (props: CheckoutProps) => {
               <span>${cleaning_fee}</span>
             </InvoiceBox>
             {extra_guests && (
-              <InvoiceBox>
+              <InvoiceBox data-testid='extra-guests'>
                 <span>
                   {extra_guests} Extra Guests x ${extra_fee}
                 </span>
                 <span>{extra_fee * extra_guests}</span>
               </InvoiceBox>
             )}
-            <div>Total: ${total}</div>
+            <div data-testid='total-amount'>Total: ${total}</div>
           </Invoice>
         </div>
       </div>

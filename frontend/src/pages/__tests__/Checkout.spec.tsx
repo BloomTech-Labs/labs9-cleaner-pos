@@ -5,6 +5,7 @@ import {
   waitForElement,
   render,
   flushEffects,
+  wait,
 } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';
@@ -21,15 +22,21 @@ const props: any = {
 };
 
 const mockData = {
-  ast_guide: null,
-  check_in: '2018-01-26T23:00:00.000Z',
-  check_out: '2018-01-29T23:00:00.000Z',
-  default_ast: 4,
-  guest_guide: null,
   guest_name: 'Harald Junke',
-  house_address: '123 go duck yourself ave',
   house_id: 1,
   house_name: 'house name 1',
+  house_address: '123 go duck yourself ave',
+  default_ast: 4,
+  guest_guide: null,
+  ast_guide: null,
+  price: '450.50',
+  extra_fee: '30.00',
+  cleaning_fee: '65.00',
+  extra_guests: null,
+  stay_id: 1,
+  check_in: '2018-01-26T23:00:00.000Z',
+  check_out: '2018-01-29T23:00:00.000Z',
+  diff: 3,
 };
 
 // Mock of axios get request
@@ -54,5 +61,32 @@ describe('Checkout Page UI', () => {
     const { getByTestId } = render(<Checkout {...props} />);
     const header = await waitForElement(() => getByTestId('guest-name'));
     expect(header).toHaveTextContent(mockData.guest_name);
+  });
+
+  test('should render a payment button, displaying "Pay $total amount"', async () => {
+    const { getByText } = render(<Checkout {...props} />);
+    const { diff, price, cleaning_fee } = mockData;
+    const total = diff * +price + +cleaning_fee;
+    const payButton = await waitForElement(() => getByText(`Pay $${total}`));
+    flushEffects();
+
+    expect(payButton).toHaveTextContent(`Pay $${total}`);
+  });
+
+  test('should display the correct total amount of the stay', async () => {
+    const { getByText } = render(<Checkout {...props} />);
+    const { diff, price, cleaning_fee } = mockData;
+    const total = diff * +price + +cleaning_fee;
+    const totalDisplay = await waitForElement(() =>
+      getByText(`Total: $${total}`),
+    );
+    expect(totalDisplay).toHaveTextContent(`Total: $${total}`);
+  });
+
+  test('should not display the Extra Guest invoice box when there are 0 extra guests', async () => {
+    const { queryByTestId } = render(<Checkout {...props} />);
+    await waitForElement(() => setTimeout(() => null, 2000));
+
+    expect(queryByTestId('extra-guests')).toBeNull();
   });
 });
