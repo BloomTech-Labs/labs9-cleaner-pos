@@ -11,12 +11,13 @@ import { AstDropdown } from './AstDropdown';
 import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
+import { GuestDetailStyle } from './GuestDetail.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
-const GuestDetailView = ({
+export const GuestDetailView = ({
   stay_id,
   guest_name,
   house_id,
@@ -30,7 +31,7 @@ const GuestDetailView = ({
   errors,
 }: GuestProps) => {
   return (
-    <GuestsDiv>
+    <GuestDetailStyle>
       {errors.error && <div>{errors.msg}</div>}
       <div className='guest-header'>
         <img className='guest-header--img' src={defaultUser} alt='User Image' />
@@ -120,7 +121,7 @@ const GuestDetailView = ({
           </div>
         </div>
       </div>
-    </GuestsDiv>
+    </GuestDetailStyle>
   );
 };
 
