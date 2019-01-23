@@ -23,13 +23,6 @@ export const GuestDetailStyle = styled('div')`
     height: ${headerHeight};
     width: auto;
     margin-bottom: 1.5rem;
-
-    /* Grid */
-    display: grid;
-    gap: ${pxRem(16)};
-    grid-gap: ${pxRem(16)};
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr 1fr;
   }
 
   .guest-header--img {
@@ -37,19 +30,11 @@ export const GuestDetailStyle = styled('div')`
     height: ${headerHeight};
     width: ${pxVw(213)};
     object-fit: cover;
-
-    /* Grid */
-    grid-column: 1;
-    grid-row: span 2;
   }
 
   .guest-header--text {
     /* Box Model & Sizing */
     height: ${pxRem(157)};
-
-    /* Grid */
-    grid-column: 2 / 4;
-    grid-row: span 2;
 
     /* Flex */
     display: flex;
@@ -72,10 +57,6 @@ export const GuestDetailStyle = styled('div')`
   }
 
   .guest-header--checkdates {
-    /* Grid */
-    grid-column: 4 / -1;
-    grid-row: 1;
-
     /* Flex */
     display: flex;
     flex-flow: row nowrap;
@@ -83,12 +64,6 @@ export const GuestDetailStyle = styled('div')`
   }
 
   .guest-header--buttons {
-    /* Grid */
-    grid-column: 5 / 7;
-    grid-row: 2;
-    justify-self: end;
-    align-self: flex-end;
-
     /* Flex */
     display: flex;
     flex-flow: row nowrap;
@@ -138,6 +113,41 @@ export const GuestDetailStyle = styled('div')`
   }
 
   @media only screen and (min-width: 600px) {
+    .guest-header {
+      /* Grid */
+      display: grid;
+      gap: ${pxRem(16)};
+      grid-gap: ${pxRem(16)};
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .guest-header--img {
+      /* Grid */
+      grid-column: 1;
+      grid-row: span 2;
+    }
+
+    .guest-header--text {
+      /* Grid */
+      grid-column: 2 / 4;
+      grid-row: span 2;
+    }
+
+    .guest-header--checkdates {
+      /* Grid */
+      grid-column: 4 / -1;
+      grid-row: 1;
+    }
+
+    .guest-header--buttons {
+      /* Grid */
+      grid-column: 5 / 7;
+      grid-row: 2;
+      justify-self: end;
+      align-self: flex-end;
+    }
+
     .guest-info--bottom {
       display: grid;
       gap: 1.5rem;
