@@ -9,6 +9,7 @@ import {
   PropertyDetails,
   Guests,
   GuestDetail,
+  Assistants,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
@@ -27,6 +28,7 @@ const App = (props: any) => {
         <Route exact path='/properties/:id' component={PropertyDetails} />
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/updateinfo' component={PostRegister} />
+        <Route exact path='/assistants' component={Assistants} />
         <Route exact path='/guests' component={Guests} />
         <Route exact path='/guests/:id' component={GuestDetail} />
       </Switch>
