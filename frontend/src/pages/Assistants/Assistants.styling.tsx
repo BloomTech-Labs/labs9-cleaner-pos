@@ -105,6 +105,10 @@ const AssistantHeader = styled('span')`
     max-width: 18.125rem;
 `;
 
+const AssistantBar = styled('div')`
+    display: flex;
+`;
+
 export {
     AssistantItem,
     ButtonContainer,
@@ -116,4 +120,5 @@ export {
     Asst,
     AssistantHeader,
     HeaderWrapper,
+    AssistantBar,
 };

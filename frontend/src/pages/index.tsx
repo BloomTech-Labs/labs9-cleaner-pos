@@ -7,6 +7,7 @@ import Settings from './Settings/Settings';
 import PropertyDetails from './Properties/PropertyDetails';
 import Guests from './Guests/Guests';
 import Assistants from './Assistants/Assistants';
+import AssistantsDetails from './Assistants/AssistantsDetails';
 
 export {
   Properties,
@@ -18,4 +19,5 @@ export {
   PropertyDetails,
   Guests,
   Assistants,
+  AssistantsDetails,
 };

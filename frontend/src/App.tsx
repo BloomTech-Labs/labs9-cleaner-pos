@@ -9,6 +9,7 @@ import {
   PropertyDetails,
   Guests,
   Assistants,
+  AssistantsDetails,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
@@ -28,6 +29,7 @@ const App = (props: any) => {
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/updateinfo' component={PostRegister} />
         <Route exact path='/assistants' component={Assistants} />
+        <Route exact path='/asstdetail' component={AssistantsDetails} />
         <Route exact path='/guests' component={Guests} />
       </Switch>
     </div>
