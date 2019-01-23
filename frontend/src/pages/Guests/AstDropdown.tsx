@@ -41,7 +41,7 @@ const AstDropdownView = (props: {
   );
 };
 
-export const AstDropdown = (props: { houseId: number }) => {
+export const AstDropdown = (props: { houseId: number; className?: string }) => {
   const [formState, setFormState] = useState({
     // TODO: Research more about this unknown business
     ast_id: (null as unknown) as number,
@@ -51,50 +51,46 @@ export const AstDropdown = (props: { houseId: number }) => {
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [loading, setLoading] = useState(false);
 
-  useEffect(
-    () => {
-      // Set loading flag
-      setLoading(true);
+  useEffect(() => {
+    // Set loading flag
+    setLoading(true);
 
-      // Get token from local storage
-      const token = localStorage.getItem('token');
+    // Get token from local storage
+    const token = localStorage.getItem('token');
 
-      // Ask user to login if token is not available
-      if (!token) {
-        setErrors({
-          msg: 'Authentication error. Please try logging in again.',
-          error: true,
-        });
-        return;
-      }
+    // Ask user to login if token is not available
+    if (!token) {
+      setErrors({
+        msg: 'Authentication error. Please try logging in again.',
+        error: true,
+      });
+      return;
+    }
 
-      // Prepare token to be sent in headers of request
-      const headers: AxiosRequestConfig = {
-        headers: { Authorization: token },
-      };
+    // Prepare token to be sent in headers of request
+    const headers: AxiosRequestConfig = {
+      headers: { Authorization: token },
+    };
 
-      // URL. If backendURL is not defined, defaults to deployed backend
-      const url =
-        process.env.REACT_APP_backendURL ||
-        'https://cleaner-pos.herokuapp.com/';
+    // URL. If backendURL is not defined, defaults to deployed backend
+    const url =
+      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
 
-      // Request
-      axios
-        .get(`${url}/houses/${props.houseId}`, headers)
-        .then((response) => {
-          const { data } = response;
-          setHouse(data);
-          const { default_ast, default_ast_name } = data;
-          setFormState({ ast_id: default_ast, full_name: default_ast_name });
-          setErrors({ msg: '', error: false });
-        })
-        .catch(axiosErrorHandler(setErrors));
+    // Request
+    axios
+      .get(`${url}/houses/${props.houseId}`, headers)
+      .then((response) => {
+        const { data } = response;
+        setHouse(data);
+        const { default_ast, default_ast_name } = data;
+        setFormState({ ast_id: default_ast, full_name: default_ast_name });
+        setErrors({ msg: '', error: false });
+      })
+      .catch(axiosErrorHandler(setErrors));
 
-      // Toggle loading flag
-      setLoading(false);
-    },
-    [props.houseId],
-  );
+    // Toggle loading flag
+    setLoading(false);
+  }, [props.houseId]);
 
   const onChangeFunc = (e: any) => {
     setFormState((prev) => ({ ...prev }));
@@ -102,6 +98,7 @@ export const AstDropdown = (props: { houseId: number }) => {
 
   return (
     <AstDropdownView
+      className={props.className || ''}
       formState={formState}
       onChangeFunc={onChangeFunc}
       house={house}

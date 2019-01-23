@@ -66,18 +66,45 @@ const GuestDetailView = ({
             <div className='top-text'>Stay Information and Checklists</div>
             <div className='progress'>50%</div>
           </div>
-          {/* <div className='guest-info--checklist-bottom'>hey</div> */}
           <Checklist
             className='guest-info--checklist-bottom'
             stayId={stay_id}
           />
         </div>
-        <div className='guest-info-=resources'>
+        <div className='guest-info--resources'>
           <div className='guest-info--resources-top'>
             <div className='top-text'>Assistants and Resources</div>
           </div>
           <div className='guest-info--resources-bottom'>
-            <AstDropdown houseId={house_id} />
+            <AstDropdown className='left' houseId={house_id} />
+            <div className='right'>
+              {ast_guide ? (
+                <div className='ast-guide'>
+                  <a href={ast_guide} target='_blank'>
+                    <i className='fas fa-file' />
+                  </a>
+                  <label>Assistant Guide</label>
+                </div>
+              ) : (
+                <div className='ast-guide'>
+                  <i className='fas fa-question' />
+                  <label>Upload an Assistant Guide</label>
+                </div>
+              )}
+              {guest_guide ? (
+                <div className='guest-guide'>
+                  <a href={guest_guide} target='_blank'>
+                    <i className='fas fa-file' />
+                  </a>
+                  <label>Guest Guide</label>
+                </div>
+              ) : (
+                <div className='guest-guide'>
+                  <i className='fas fa-question' />
+                  <label>Upload a Guest Guide</label>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className='guest-info--checkout'>
@@ -86,7 +113,10 @@ const GuestDetailView = ({
           </div>
           <div className='guest-info--checkout-bottom'>
             <div className='code'>AB47C</div>
-            <div className='buttons'>Invoice</div>
+            <div className='buttons'>
+              <Button className='button-invoice' text='Invoice' />
+              <Button className='button-checkout' text='Checkout' />
+            </div>
           </div>
         </div>
       </div>
