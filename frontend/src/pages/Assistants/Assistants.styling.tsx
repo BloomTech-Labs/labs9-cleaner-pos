@@ -107,11 +107,13 @@ const AssistantHeader = styled('span')`
 
 const AssistantBar = styled('div')`
     display: flex;
+    justify-content: space-around;
     border: 1px solid black;
 `;
 
 const AsstDetail = styled('div')`
     display: flex;
+    flex-direction: column;
     border: 1px dotted red;
 `;
 
