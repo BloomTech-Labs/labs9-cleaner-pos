@@ -18,11 +18,10 @@ export const GuestDetailStyle = styled('div')`
   margin: auto;
 
   /* Header CSS */
-  .guest-header {
+  .guest-header,
+  .guest-info {
     /* Sizing & Box Model */
-    height: ${headerHeight};
-    width: auto;
-    margin-bottom: 1.5rem;
+    margin: 1rem 1rem 1.5rem 1rem;
   }
 
   .guest-header--img {
@@ -35,12 +34,11 @@ export const GuestDetailStyle = styled('div')`
   .guest-header--text {
     /* Box Model & Sizing */
     height: ${pxRem(157)};
+    /* margin: auto; */
 
     /* Flex */
     display: flex;
     flex-flow: column nowrap;
-
-    text-align: left;
   }
 
   .guest-header--text .main {
@@ -59,14 +57,17 @@ export const GuestDetailStyle = styled('div')`
   .guest-header--checkdates {
     /* Flex */
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
   }
 
   .guest-header--buttons {
+    /* Box Model & Sizing */
+    /* margin: auto; */
+
     /* Flex */
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
   }
 
@@ -112,8 +113,18 @@ export const GuestDetailStyle = styled('div')`
     margin: 1rem;
   }
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 700px) {
+    .guest-header,
+    .guest-info {
+      /* Sizing & Box Model */
+      margin: 0 0 1.5rem 0;
+    }
+
     .guest-header {
+      /* Sizing & Box Model */
+      height: ${headerHeight};
+      width: auto;
+
       /* Grid */
       display: grid;
       gap: ${pxRem(16)};
@@ -132,9 +143,15 @@ export const GuestDetailStyle = styled('div')`
       /* Grid */
       grid-column: 2 / 4;
       grid-row: span 2;
+
+      /* Text */
+      text-align: left;
     }
 
     .guest-header--checkdates {
+      /* Flex */
+      flex-flow: row nowrap;
+
       /* Grid */
       grid-column: 4 / -1;
       grid-row: 1;
