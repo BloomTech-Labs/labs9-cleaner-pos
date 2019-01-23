@@ -28,7 +28,6 @@ const GuestDetailView = ({
   check_out,
   errors,
 }: GuestProps) => {
-  console.log('check-in', check_in);
   return (
     <GuestsDiv>
       {errors.error && <div>{errors.msg}</div>}
