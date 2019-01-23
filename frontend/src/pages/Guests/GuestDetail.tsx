@@ -7,6 +7,7 @@ import { GuestProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
 import { Checklist } from './Checklist';
+import { AstDropdown } from './AstDropdown';
 import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
@@ -75,7 +76,9 @@ const GuestDetailView = ({
           <div className='guest-info--resources-top'>
             <div className='top-text'>Assistants and Resources</div>
           </div>
-          <div className='guest-info--resources-bottom'>hey</div>
+          <div className='guest-info--resources-bottom'>
+            <AstDropdown houseId={house_id} />
+          </div>
         </div>
         <div className='guest-info--checkout'>
           <div className='guest-info--checkout-top'>

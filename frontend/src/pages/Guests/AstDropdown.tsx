@@ -2,43 +2,52 @@ import React, { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 // Components
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 // Types
 import { House } from './types';
 
-const AstDropdownView = (props: any) => {
+const AstDropdownView = (props: {
+  formState: { ast_id: number; full_name: string };
+  onChangeFunc: (e: any) => void;
+  house: House;
+  loading: boolean;
+  errors: { msg: string; error: boolean };
+  className?: string;
+}) => {
+  const { formState, onChangeFunc, house, loading, className } = props;
+
+  if (loading || props.house.openAst === undefined) {
+    return <div>⌛</div>;
+  }
+
+  // Good working code
   return (
-    <FormControl className='ast-dropdown'>
-      <InputLabel shrink htmlFor='ast-label-placeholder'>
-        Assistant
-      </InputLabel>
-      <Select
-        value='{state.age}'
-        onChange={(e) => e}
-        input={<Input name='age' id='age-label-placeholder' />}
-        displayEmpty
-        name='age'
-        className='{classes.selectEmpty}'
-      >
-        <MenuItem value=''>
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
-      </Select>
-      <FormHelperText>Label + placeholder</FormHelperText>
-    </FormControl>
+    <div className='ast-dropdown'>
+      Default Cleaner
+      <select data-testid='assistant-select' onChange={(event) => event}>
+        <option defaultValue={house.default_ast_name}>
+          {house.default_ast}: {house.default_ast_name}
+        </option>
+        {house.openAst.map((ast: any) => {
+          if (ast.ast_id !== house.default_ast) {
+            return (
+              <option key={ast.ast_id}>
+                {ast.ast_id}: {ast.full_name}
+              </option>
+            );
+          }
+        })}
+      </select>
+    </div>
   );
 };
 
-const AstDropdown = (props: { houseId: number }) => {
-  const [houses, setHouses] = useState([] as House[]);
+export const AstDropdown = (props: { houseId: number }) => {
+  const [formState, setFormState] = useState({
+    // TODO: Research more about this unknown business
+    ast_id: (null as unknown) as number,
+    full_name: (null as unknown) as string,
+  });
+  const [house, setHouse] = useState({} as House);
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [loading, setLoading] = useState(false);
 
@@ -71,10 +80,12 @@ const AstDropdown = (props: { houseId: number }) => {
 
       // Request
       axios
-        .get(`${url}/houses/${props.houseId}?user=true`, headers)
+        .get(`${url}/houses/${props.houseId}`, headers)
         .then((response) => {
           const { data } = response;
-          setHouses(data);
+          setHouse(data);
+          const { default_ast, default_ast_name } = data;
+          setFormState({ ast_id: default_ast, full_name: default_ast_name });
           setErrors({ msg: '', error: false });
         })
         .catch(axiosErrorHandler(setErrors));
@@ -85,5 +96,17 @@ const AstDropdown = (props: { houseId: number }) => {
     [props.houseId],
   );
 
-  return <AstDropdownView />;
+  const onChangeFunc = (e: any) => {
+    setFormState((prev) => ({ ...prev }));
+  };
+
+  return (
+    <AstDropdownView
+      formState={formState}
+      onChangeFunc={onChangeFunc}
+      house={house}
+      loading={loading}
+      errors={errors}
+    />
+  );
 };
