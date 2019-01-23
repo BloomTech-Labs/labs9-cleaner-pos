@@ -46,6 +46,19 @@ describe('/house routes', () => {
       });
   });
 
+  test('Get request with user query returns houses of which the user ID matches default_ast', (done) => {
+    request(app)
+      .get('/houses/1?user=true')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.length).toBe(1);
+        expect(body[0].default_ast).toBe(1);
+        expect(body[0].name).toBe('house name 1');
+        done();
+      });
+  });
+
   test('Get request with invalid id returns a 404', (done) => {
     request(app)
       .get('/houses/69')

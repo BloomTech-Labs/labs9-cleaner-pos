@@ -7,6 +7,7 @@ import {
   makeHouse,
   updateHouse,
   deleteHouse,
+  findAllHousesByAstId,
 } from '../../src/models/houses';
 import { House } from '../../src/interface';
 import data from '../../data/seeds/data/housesData';
@@ -44,6 +45,17 @@ describe('Houses DB functions', () => {
       expect(find.length).toBe(data.length);
     } catch (e) {
       throw Error(e);
+    }
+  });
+
+  test('Find All houses from assistant user ID', async () => {
+    try {
+      const find = await findAllHousesByAstId(1);
+      expect(find.length).toBe(1);
+      expect(find[0].default_ast).toBe(1);
+      expect(find[0].name).toBe('house name 1');
+    } catch (e) {
+      throw e;
     }
   });
 

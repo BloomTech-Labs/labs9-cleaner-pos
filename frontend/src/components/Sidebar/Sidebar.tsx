@@ -23,7 +23,7 @@ const Sidebar = ({ onClick }: LinkProps) => {
             </StyledLink>
           </li>
           <li>
-            <StyledLink to='/dashboard'>
+            <StyledLink to='/properties'>
               <h4>Properties</h4>
             </StyledLink>
           </li>

@@ -74,7 +74,13 @@ const Properties = () => {
                   {house.checkList[0].count}
                 </CheckList>
                 <ButtonContainer>
-                  <Link to={`properties/${house.id}#checklists`}>
+                  <Link
+                    to={{
+                      pathname: `properties/${house.id}`,
+                      hash: '#checklists',
+                      state: house,
+                    }}
+                  >
                     <Button text='Edit Checklists' datatestid='house-button' />
                   </Link>
                   <Link to={`/houses/${house.id}#resources`}>
