@@ -36,8 +36,8 @@ describe('/list routes', () => {
       .expect(200)
       .then(({ body }) => {
         expect(typeof body).toBe('object');
-        expect(Object.keys(body.during[0])).toHaveLength(2);
-        expect(Object.keys(body.before[0])[0]).toBe('task');
+        expect(Object.keys(body.during[0])).toHaveLength(3);
+        expect(Object.keys(body.before[0])[0]).toBe('list_id');
         done();
       });
   });

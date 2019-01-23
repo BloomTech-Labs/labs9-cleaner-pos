@@ -26,6 +26,7 @@ export interface List {
   id?: number;
   type: string;
   house_id: number;
+  hours_after?: number;
 }
 
 export interface Item {
