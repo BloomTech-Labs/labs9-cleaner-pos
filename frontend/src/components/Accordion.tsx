@@ -11,7 +11,7 @@ interface MySettings {
 }
 
 const Accordion = ({ title, children, onToggle }: MySettings) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   return (
     <div>
       <h2
@@ -24,13 +24,15 @@ const Accordion = ({ title, children, onToggle }: MySettings) => {
       >
         {title}
       </h2>
-      {show ? <Fragment>{children}</Fragment> : null}
+	  {show ? <Fragment>{children}</Fragment> : null}
+{/* I think I'm going to have to use a map to get each individual child from the children and either show/hide. This means I'm probably going to have a key. Or else I can just scrap the whole children thing. Still thinking about this.*/}
+
     </div>
   );
 };
 
 Accordion.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.instanceOf(Object).isRequired,
   onToggle: PropTypes.func,
   title: PropTypes.string.isRequired,
 };

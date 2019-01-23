@@ -7,33 +7,24 @@ const Example = () => {
   return (
 	<div>
     <Accordion
-      title='Accordion Title'
+      title='example 1'
       onToggle={(show) => {
         console.log('show -->', show);
       }}
     >
-      <ul>
-        <li>
-          <span>example1</span>
-        </li>
-        <li>
-          <span>example2</span>
-        </li>
-        <li>
-          <span>example3</span>
-        </li>
-      </ul>
-    </Accordion>
+		<ul>
+			<li>Something here 1</li>
+			<li>Maybe more</li>
+		</ul>
+	</Accordion>
 	<Accordion
-		title="Another accordion"
+		title='example2'
 		onToggle={(show) => {
-			console.log('2nd', show);
+			console.log('ex2', show);
 		}}
 	>
 		<ul>
-			<li>
-				<span>Listen, do you want to know a secret? Do you promise not to tell?</span>
-			</li>
+			<li>Something else here 2</li>
 		</ul>
 	</Accordion>
 	</div>
