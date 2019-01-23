@@ -10,6 +10,8 @@
   --colour-button-background: #4593b6;
   --colour-button-text-alt: #4593b6;
   --colour-button-background-alt: white;
+  --colour-button-background-action: #0aa047;
+  --colour-button-text-action: white;
 }
 
 body {

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { Container } from '../../components/index';
+import { Container, Button } from '../../components/index';
 import { RouteComponentProps } from 'react-router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosErrorHandler } from '../utils';
@@ -39,7 +39,7 @@ const Checkout = (props: CheckoutProps) => {
     const { id } = props.match.params;
     try {
       const { data }: AxiosResponse = await axios.get(
-        `${url}/stays/${id}`,
+        `${url}stays/${id}`,
         headers,
       );
       setStay(data);
@@ -92,6 +92,7 @@ const Checkout = (props: CheckoutProps) => {
           </CheckoutForm>
           <Invoice>
             <h3>Invoice</h3>
+            <Button text={`Pay $${total}`} colour='#0aa047' />
             <InvoiceBox>
               <span>
                 {diff} Nights x ${price}
