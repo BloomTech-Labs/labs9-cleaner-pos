@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import { Button, Container, SpecialButton } from '../../components/index';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import {
     AssistantItem,
     CardBody,
@@ -21,12 +21,18 @@ interface Assistant {
     user_id: string;
 }
 
+const token = localStorage.getItem('token');
+
+const header: AxiosRequestConfig = {
+    headers: { Authorization: token },
+};
+
 const Assistants = () => {
     const [assistants, setAssistants] = useState<AssistantsEnum>([]);
     const shouldFetch = useRef(true);
     async function fetchAssistants() {
         try {
-            const res = await axios.get('https://cleaner-pos.herokuapp.com/houses');
+            const res = await axios.get('https://cleaner-pos.herokuapp.com/houses', header);
             setAssistants(res.data);
         } catch (e) {
             throw e;
