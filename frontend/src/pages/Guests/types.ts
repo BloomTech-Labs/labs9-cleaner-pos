@@ -51,3 +51,24 @@ export interface ChecklistsData {
     [key: string]: Checkitem[];
   }>;
 }
+
+// AstDropdown
+
+interface OpenAst {
+  full_name: string;
+  ast_id: number;
+  house_id: number;
+}
+
+export interface House {
+  id: number;
+  name: string;
+  address: string;
+  default_ast: number;
+  default_ast_name: string;
+  manager: number;
+  guest_guide: string;
+  ast_guide: string;
+  openAst: OpenAst[];
+  checkList: Array<{ count: number }>;
+}

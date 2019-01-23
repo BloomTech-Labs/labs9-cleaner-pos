@@ -8,6 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+// Types
+import { House } from './types';
 
 const AstDropdownView = () => {
   return (
@@ -33,4 +35,9 @@ const AstDropdownView = () => {
       <FormHelperText>Label + placeholder</FormHelperText>
     </FormControl>
   );
+};
+
+const AstDropdown = (houseId: number) => {
+  const [houses, setHouses] = useState([] as House[]);
+  const [errors, setErrors] = useState({ msg: '', error: false });
 };
