@@ -1,3 +1,4 @@
+import 'jest';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
 import {
