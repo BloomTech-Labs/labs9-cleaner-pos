@@ -2,6 +2,7 @@ import {
   findLists,
   findListsStay,
   postList,
+  postAfterList,
   deleteList,
   justListsByHouse,
 } from '../models/lists';
@@ -37,11 +38,13 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const newList: List = req.body;
+    const { type, house_id, hours_after } = req.body;
+    const newList: List = { type, house_id };
     if (!newList.type || !newList.house_id) {
       throw Error('Must include type and house_id');
     }
     const houseLists = await justListsByHouse(newList.house_id);
+
     if (newList.type !== 'after') {
       houseLists.map((list: List) => {
         if (list.type === newList.type) {
@@ -51,6 +54,10 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     const ids = await postList(newList);
+
+    if (newList.type === 'after') {
+      await postAfterList(ids[0], hours_after);
+    }
     res.status(201).json(ids[0]);
   } catch (e) {
     e.statusCode = 400;

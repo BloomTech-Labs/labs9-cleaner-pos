@@ -67,10 +67,24 @@ export const findAllHousesByAstId = (astId: number) => {
     });
 };
 
-export const findHouse = (id: number): QueryBuilder => {
-  return db('house')
-    .first()
-    .where({ id });
+export const findHouse = async (id: number) => {
+  const house = await db('house')
+    .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })
+    .leftJoin('user', { 'assistant.user_id': 'user.id' })
+    .select(
+      'house.id',
+      'house.name',
+      'house.address',
+      'house.default_ast',
+      'user.full_name as default_ast_name',
+      'house.manager',
+      'house.guest_guide',
+      'house.ast_guide',
+    )
+    .where({ 'house.id': id })
+    .first();
+
+  return house;
 };
 
 export const makeHouse = (house: House): QueryBuilder => {
