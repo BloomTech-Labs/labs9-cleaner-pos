@@ -4,7 +4,6 @@ import { RouteComponentProps } from 'react-router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { CheckoutForm, Invoice, InvoiceBox } from './Checkout.styles';
-import { NavigationFullscreenExit } from 'material-ui/svg-icons';
 
 interface CheckoutProps extends RouteComponentProps {
   match: any;
@@ -24,8 +23,6 @@ const Checkout = (props: CheckoutProps) => {
     extra_guests: 0,
     extra_fee: 0,
   });
-
-  console.log(stay);
 
   const token = localStorage.getItem('token');
   const headers: AxiosRequestConfig = {
