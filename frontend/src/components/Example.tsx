@@ -8,18 +8,26 @@ const Example = () => {
   return (
 	<div>
     	<Accordion
-			title='Accordion Title'
+			title='Subscription'
 			onToggle={(show) => {
 				console.log('show', show);
-			}}
+			}}	
 		>
 			<ul>
-				<Accordion title='Inner Accordion'>
-					<Accordion title='Deep Inner Accordionness'>
-						<Accordion title='Another one'>
-						</Accordion>
+				<Accordion title='Child 1 of Subscription'>
+					<Accordion title='Child 2 of Subscription'>
 					</Accordion>
 				</Accordion>
+			</ul>
+		</Accordion>
+		<Accordion title='Credit Card'>
+			<li>
+				<ul> Something here</ul>
+			</li>
+		</Accordion>
+		<Accordion title='Confirmation'>
+			<ul>
+				<li>Child of Confirmation></li>
 			</ul>
 		</Accordion>
 	</div>
