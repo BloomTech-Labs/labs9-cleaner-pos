@@ -11,7 +11,7 @@ import Select from '@material-ui/core/Select';
 // Types
 import { House } from './types';
 
-const AstDropdownView = () => {
+const AstDropdownView = (props: any) => {
   return (
     <FormControl className='ast-dropdown'>
       <InputLabel shrink htmlFor='ast-label-placeholder'>
@@ -37,7 +37,53 @@ const AstDropdownView = () => {
   );
 };
 
-const AstDropdown = (houseId: number) => {
+const AstDropdown = (props: { houseId: number }) => {
   const [houses, setHouses] = useState([] as House[]);
   const [errors, setErrors] = useState({ msg: '', error: false });
+  const [loading, setLoading] = useState(false);
+
+  useEffect(
+    () => {
+      // Set loading flag
+      setLoading(true);
+
+      // Get token from local storage
+      const token = localStorage.getItem('token');
+
+      // Ask user to login if token is not available
+      if (!token) {
+        setErrors({
+          msg: 'Authentication error. Please try logging in again.',
+          error: true,
+        });
+        return;
+      }
+
+      // Prepare token to be sent in headers of request
+      const headers: AxiosRequestConfig = {
+        headers: { Authorization: token },
+      };
+
+      // URL. If backendURL is not defined, defaults to deployed backend
+      const url =
+        process.env.REACT_APP_backendURL ||
+        'https://cleaner-pos.herokuapp.com/';
+
+      // Request
+      axios
+        .get(`${url}/houses/${props.houseId}?user=true`, headers)
+        .then((response) => {
+          const { data } = response;
+          setHouses(data);
+          setErrors({ msg: '', error: false });
+        })
+        .catch(axiosErrorHandler(setErrors));
+
+      // Toggle loading flag
+      setLoading(false);
+    },
+    [props.houseId],
+  );
+
+  return <AstDropdownView />;
 };

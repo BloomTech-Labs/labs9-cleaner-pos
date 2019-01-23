@@ -34,6 +34,7 @@ export const findHouses = () => {
     });
 };
 
+// TODO: Combine with original findHouses by gating where clause
 export const findAllHousesByAstId = (astId: number) => {
   return db('house')
     .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })
@@ -82,9 +83,24 @@ export const findHouse = async (id: number) => {
       'house.ast_guide',
     )
     .where({ 'house.id': id })
-    .first();
+    .map(async (e: any) => {
+      const openAst = await db('house_ast')
+        .where({ 'house_ast.house_id': e.id })
+        .leftJoin('assistant', { 'house_ast.ast_id': 'assistant.id' })
+        .leftJoin('user', { 'assistant.user_id': 'user.id' })
+        .select(
+          'user.full_name',
+          'assistant.id as ast_id',
+          'house_ast.house_id',
+        );
+      const checkList = await db('list')
+        .where({ 'list.house_id': e.id })
+        .leftJoin('items', { 'list.id': 'items.list_id' })
+        .count('items.task');
+      return { ...e, openAst, checkList };
+    });
 
-  return house;
+  return house[0];
 };
 
 export const makeHouse = (house: House): QueryBuilder => {
