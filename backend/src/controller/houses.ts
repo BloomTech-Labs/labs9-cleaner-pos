@@ -4,11 +4,27 @@ import {
   makeHouse,
   updateHouse,
   deleteHouse,
+  findAllHousesByAstId,
 } from '../models/houses';
 import { Request, Response, NextFunction } from 'express';
 import { House } from '../interface';
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
+  const user = req.query && req.query.user;
+
+  if (user) {
+    try {
+      const { id } = req.params;
+
+      const result = await findAllHousesByAstId(Number(id));
+
+      res.status(200).json(result);
+    } catch (e) {
+      e.statusCode = e.statusCode || 400;
+      next(e);
+    }
+  }
+
   try {
     const { id } = req.params;
     let house: any;
