@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Container, Button } from '../../components/index';
 import { RouteComponentProps } from 'react-router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { CheckoutForm, Invoice, InvoiceBox } from './Checkout.styles';
+import { UserContext } from '../../App';
 
 interface CheckoutProps extends RouteComponentProps {
   match: any;
@@ -26,7 +27,7 @@ const Checkout = (props: CheckoutProps) => {
   });
   const [stays, setStays] = useState([]);
 
-  const token = localStorage.getItem('token');
+  const token = useContext(UserContext);
   const headers: AxiosRequestConfig = {
     headers: { Authorization: token },
   };
@@ -48,11 +49,10 @@ const Checkout = (props: CheckoutProps) => {
   }
 
   async function triggerPayment(sum: number) {
-    // const { id } = useContext(user);
-    return;
+    const { id } = useContext(UserContext);
     try {
       const body = {
-        id: 1,
+        id,
         token: '324234234234',
         amount: sum,
       };
