@@ -10,6 +10,7 @@ import {
   Guests,
   Checkout,
   Assistants,
+  InviteAst,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
@@ -32,6 +33,7 @@ const App = (props: any) => {
         <Route exact path='/updateinfo' component={PostRegister} />
         <Route exact path='/assistants' component={Assistants} />
         <Route exact path='/guests' component={Guests} />
+        <Route exact path='/invite' component={InviteAst} />
       </Switch>
     </div>
   );

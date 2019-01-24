@@ -22,7 +22,7 @@ server.get('/', (__, res) => res.sendFile('index.html'));
 
 server
   .route('/users')
-  .get(users.getByExtIt)
+  .get(verifyToken, users.getByExtIt)
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
@@ -76,7 +76,7 @@ server
 
 server.route('/itemComplete').post(items.itemComplete);
 
-server.route('/email').post(email.send);
+server.route('/email').post(verifyToken, email.send);
 
 server.route('/stays').get(stays.getAll);
 
