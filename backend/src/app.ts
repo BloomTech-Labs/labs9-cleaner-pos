@@ -12,6 +12,7 @@ import * as email from './controller/email';
 import * as payments from './controller/payments';
 import * as stays from './controller/stays';
 import * as connect from './controller/connect';
+import * as assistants from './controller/assistants';
 import path from 'path';
 
 export const server = express();
@@ -73,6 +74,9 @@ server
   .get(items.get)
   .put(items.put)
   .delete(items.deleteL);
+server
+  .route('/assistants')
+  .get(assistants.get);
 
 server.route('/itemComplete').post(items.itemComplete);
 

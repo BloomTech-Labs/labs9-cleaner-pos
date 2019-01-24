@@ -102,6 +102,9 @@
 					<a href="#getstaybyID">Get Stay by ID</a>
 				</li>
 				<li>
+					<a href="#getassistants">Get Assistants</a>
+				</li>
+				<li>
 					<a href="#oauth">oAuth</a>
 				</li>
 			</ul>
@@ -441,6 +444,31 @@
 "ast_guide": null,
 "check_in": "1/27/2018",
 "check_out": "1/30/2018"
+}</code></pre>
+	</section>
+	<hr />
+	<section id="getassistants" class="row">
+		<h4>Get Assistants</h4>
+			<p><span>Endpoint URL: </span><code>/assistants</code> <span>Method: </span><code>GET</code></p>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"user_id": 4,
+"ast_id": 1,
+"full_name": "Big Stevo",
+"address": null,
+"photo_url": null,
+"openAst": [
+	{
+		"full_name": "Big Stevo",
+		"ast_id": 1,
+		"house_id": 1
+	},
+	{
+		"full_name": "Big Stevo",
+		"ast_id": 1,
+		"house_id": 2
+	}
+]
 }</code></pre>
 	</section>
 	<hr />
