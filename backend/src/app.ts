@@ -5,6 +5,7 @@ import setGeneralMiddleware from './middleware/generalMiddleware';
 import companion from '@uppy/companion';
 import verifyToken from './middleware/verifyToken';
 import * as users from './controller/users';
+import * as guests from './controller/guests';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
@@ -12,6 +13,7 @@ import * as email from './controller/email';
 import * as payments from './controller/payments';
 import * as stays from './controller/stays';
 import * as connect from './controller/connect';
+import * as assistants from './controller/assistants';
 import path from 'path';
 
 export const server = express();
@@ -22,7 +24,7 @@ server.get('/', (__, res) => res.sendFile('index.html'));
 
 server
   .route('/users')
-  .get(users.getByExtIt)
+  .get(verifyToken, users.getByExtIt)
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
@@ -31,6 +33,8 @@ server
   .get(users.get)
   .put(users.put)
   .delete(users.deleteU);
+
+server.route('/guests').post(guests.post);
 
 server
   .route('/houses')
@@ -53,6 +57,8 @@ server
   .post(connect.post)
   .delete(connect.deleteL);
 
+server.route('/connect/createpayment').post(connect.createPayment);
+
 server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`
 the id should be for a stay. Anything else the id should be for a house
@@ -71,12 +77,16 @@ server
   .get(items.get)
   .put(items.put)
   .delete(items.deleteL);
+server.route('/assistants').get(assistants.get);
 
 server.route('/itemComplete').post(items.itemComplete);
 
-server.route('/email').post(email.send);
+server.route('/email').post(verifyToken, email.send);
 
-server.route('/stays').get(stays.getAll);
+server
+  .route('/stays')
+  .get(stays.getAll)
+  .post(stays.post);
 
 server.route('/stays/:id').get(stays.get);
 const options = {

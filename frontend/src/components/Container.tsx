@@ -19,7 +19,9 @@ const Container = ({
 }) => {
   return (
     <>
-      <StyledContainer className={className}>{children}</StyledContainer>
+      <StyledContainer data-testid='container-component' className={className}>
+        {children}
+      </StyledContainer>
     </>
   );
 };
