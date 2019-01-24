@@ -116,7 +116,7 @@ const InviteAst = (props: RouteComponentProps) => {
               />
               <Button
                 type='submit'
-                onClick={handleSubmit}
+                onClick={() => handleSubmit()}
                 disabled={isSubmitting}
                 text={isSubmitting ? 'Submitted' : 'Submit'}
               />
