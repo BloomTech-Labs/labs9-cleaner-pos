@@ -58,9 +58,9 @@ const AssistantCard = (assistant: any) => {
     return (
         <AssistantItem key={assistant.id} data-testid='assistant-item'>
         <CardContent>
-            <CardHeading>{/* May move a header in here later */}</CardHeading>
+            <CardHeading><div>{assistant.full_name}</div></CardHeading>
             <CardBody>
-            <ThumbNail src='../assets/ronald.jpg' alt='Ronald' />
+            <ThumbNail src='../assets/ronald.jpg' alt='' />
             <CheckList>
                 <h3>Checklist Items</h3>
                 <div>{itemCount}</div>
