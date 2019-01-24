@@ -14,7 +14,6 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
     return;
   }
   try {
-    console.log(authorizationCode, id);
     const headers: AxiosRequestConfig = {
       headers: {
         Authorization: `BEARER ${process.env.stripe_secret}`,
@@ -31,7 +30,6 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
         stripeUID: response.data.stripe_user_id,
       });
       const user = await findUser(id);
-      console.log('updated user', user);
     }
 
     res.status(201).send({ message: 'Account succesfully connected!' });
@@ -49,10 +47,8 @@ const createPayment = async (
   try {
     const { id, amount } = req.body;
     const stripeToken = req.body.token;
-    console.log('input data verification', id, amount, stripeToken);
 
     const user = await findUser(id);
-    console.log('USER:', user);
     if (user.stripeUID === '') {
       next({
         ...new Error(
@@ -63,25 +59,15 @@ const createPayment = async (
       return;
     }
 
-    const charge = await stripe.charges
-      .create({
-        amount,
-        currency: 'usd',
-        destination: {
-          account: user.stripeUID,
-        },
-        source: stripeToken,
-      })
-      .catch((error: Error) => console.log('Creating charge failed', error));
-    if (charge.id) {
-      const result = await stripe.charges.capture(charge.id);
-
-      res.status(200).send({
-        msg: 'Sucessfully processed payments',
-        receipt: result.receipt_url,
-      });
-      return;
-    }
+    const charge = await stripe.charges.create({
+      amount: Math.round(amount * 100),
+      currency: 'usd',
+      destination: {
+        account: user.stripeUID,
+      },
+      source: stripeToken,
+    });
+    res.status(200).send({ msg: 'Payment succeeded!' });
   } catch (e) {
     e.statusCode = 500;
     next(e);
