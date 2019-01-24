@@ -34,7 +34,7 @@ const Container = styled('div')`
 const NavWrapper = styled('div')`
   display: none;
 
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: ${bp}) {
     display: flex;
     justify-content: space-between;
     float: left;

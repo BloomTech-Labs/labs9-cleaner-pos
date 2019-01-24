@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../App';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Mark from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { Button } from '../index';
 import {
@@ -17,7 +18,7 @@ interface LinkProps {
   onClick?: () => MouseEvent;
 }
 
-const Sidebar = ({ onClick }: LinkProps) => {
+const Sidebar = ({ onClick, history }: any) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (e: any) => {
@@ -27,6 +28,16 @@ const Sidebar = ({ onClick }: LinkProps) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logOut = () => {
+    console.log('logout function called');
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('role');
+    history.push('/');
+  };
+
+  const user = useContext(UserContext);
   return (
     <Container>
       <div className='menu'>
@@ -83,7 +94,11 @@ const Sidebar = ({ onClick }: LinkProps) => {
           <li>
             <StyledLink to='/logout'>
               {/* <Button onClick={} t='button' data-testid='signout'>Sign Out</Button> */}
-              <Button className='button-sign-out' text='Sign Out' />
+              <Button
+                onClick={() => logOut()}
+                className='button-sign-out'
+                text='Sign Out'
+              />
             </StyledLink>
           </li>
         </StyledUL>
@@ -92,4 +107,4 @@ const Sidebar = ({ onClick }: LinkProps) => {
   );
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);
