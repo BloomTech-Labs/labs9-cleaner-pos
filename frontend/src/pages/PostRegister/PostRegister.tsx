@@ -143,7 +143,7 @@ const PostForm = (props: PostFormProps) => {
                 email,
                 phone,
               };
-              await axios.put(`${url}/users/`, userData, headers);
+              await axios.put(`${url}/users`, userData, headers);
               await actions.setSubmitting(false);
               await actions.setStatus('Submission successful. Thank you!');
               props.history.push('/dashboard');
