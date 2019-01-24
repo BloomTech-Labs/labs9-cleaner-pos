@@ -6,6 +6,7 @@ import {
   updateUser,
   deleteUser,
 } from '../models/users';
+import { addAstMan } from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 
@@ -92,7 +93,16 @@ export const getByExtIt = async (
 
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { ext_it, full_name, email, phone, address, role } = req.body;
+    //  manager only be passed in when an ast is signing up. the value = manager.id
+    const {
+      ext_it,
+      full_name,
+      email,
+      phone,
+      address,
+      role,
+      manager,
+    } = req.body;
     const user = await findUserByExt_it(ext_it).catch((e) => {
       throw e;
     });
@@ -105,11 +115,17 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       const newUser = await makeUser(userData);
       const token = await jwt.sign(userData, JWT_SECRET || '');
 
+      // if the user signing up is an assistant, needs to be linked to manager
+      if (newUser.role === 'assistant') {
+        await addAstMan(newUser.id, manager);
+      }
       res
         .status(201)
         .json({ token, first: true, id: newUser.id, role: newUser.role });
     } else {
       // If user does exist within db, sign a new JWT & send it to the client
+
+      // TODO: do we still need this logic?
       if (user.role !== 'manager' && user.role !== 'assistant') {
         throw Error('Role must be User or Manager');
       }
