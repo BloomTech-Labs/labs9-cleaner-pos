@@ -47,10 +47,8 @@ const Checkout = (props: CheckoutProps) => {
         `${url}/stays/${id}`,
         headers,
       );
-      console.log('fire');
       setStay(data);
     } catch (e) {
-      console.log(e);
       axiosErrorHandler(setError);
     }
   }
