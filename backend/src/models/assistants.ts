@@ -21,10 +21,10 @@ export function findAssistants() {
                     'assistant.id as ast_id',
                     'house_ast.house_id',
                 );
-            const checkList = await db('list')
-                .where({ 'list.house_id': e.id })
-                .leftJoin('items', { 'list.id': 'items.list_id' })
-                .count('items.task');
-            return { ...e, openAst, checkList };
+            // const checkList = await db('list')
+            //     .where({ 'list.house_id': e.id })
+            //     .leftJoin('items', { 'list.id': 'items.list_id' })
+            //     .count('items.task');
+            return { ...e, openAst };
         });
 }
