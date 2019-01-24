@@ -3,12 +3,19 @@ import styled from '@emotion/styled';
 // Components
 import { Form } from 'formik';
 import { TextField } from '@material-ui/core';
+import Container from '../../components/Container';
 
-export const StyledDiv = styled('div')`
+export const StyledDiv = styled(Container)`
+  /* Text */
   font-family: 'Roboto';
   color: #393534;
+
+  /* Box Model & Sizing */
   max-width: 1020px;
+  width: 90%;
   margin: auto;
+
+  /* Flex */
   display: flex;
   justify-content: center;
 `;
@@ -25,56 +32,7 @@ export const StyledForm = styled(Form)`
 
   /* Sizing & Box Model */
   padding: 1rem;
-  width: 90%;
-
-  /* Grid */
-  display: grid;
-  gap: ${36 / 16}rem;
-  grid-gap: ${36 / 16}rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-    'title    title    .        .'
-    'email    email    phone    phone'
-    'address1 address1 address1 address1'
-    'address2 address2 address2 address2'
-    'city     city     state    state'
-    'country  country  postCode postCode'
-    '.        submit   clear    .'
-    '.        status   status   .';
-
-  .title {
-    grid-area: title;
-  }
-  .field-email {
-    grid-area: email;
-  }
-  .field-phone {
-    grid-area: phone;
-  }
-  .field-address1 {
-    grid-area: address1;
-  }
-  .field-address2 {
-    grid-area: address2;
-  }
-  .field-city {
-    grid-area: city;
-  }
-  .field-state {
-    grid-area: state;
-  }
-  .field-country {
-    grid-area: country;
-  }
-  .field-postCode {
-    grid-area: postCode;
-  }
-  .submit {
-    grid-area: submit;
-  }
-  .clear {
-    grid-area: clear;
-  }
+  max-width: 1000px;
 
   button {
     border: none;
@@ -90,8 +48,58 @@ export const StyledForm = styled(Form)`
     */
   }
 
-  .status {
-    grid-area: status;
+  @media only screen and (min-width: 720px) {
+    /* Grid */
+    display: grid;
+    gap: ${36 / 16}rem;
+    grid-gap: ${36 / 16}rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      'title    title    title        .'
+      'email    email    phone    phone'
+      'address1 address1 address1 address1'
+      'address2 address2 address2 address2'
+      'city     city     state    state'
+      'country  country  postCode postCode'
+      '.        submit   clear    .'
+      '.        status   status   .';
+
+    .title {
+      grid-area: title;
+    }
+    .field-email {
+      grid-area: email;
+    }
+    .field-phone {
+      grid-area: phone;
+    }
+    .field-address1 {
+      grid-area: address1;
+    }
+    .field-address2 {
+      grid-area: address2;
+    }
+    .field-city {
+      grid-area: city;
+    }
+    .field-state {
+      grid-area: state;
+    }
+    .field-country {
+      grid-area: country;
+    }
+    .field-postCode {
+      grid-area: postCode;
+    }
+    .submit {
+      grid-area: submit;
+    }
+    .clear {
+      grid-area: clear;
+    }
+    .status {
+      grid-area: status;
+    }
   }
 `;
 
