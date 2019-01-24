@@ -24,6 +24,7 @@ const App = (props: any) => {
         <Route exact path='/checkout/:id' component={Checkout} />
         <Route exact path='/test' component={Billing} />
         <Route path='/Login' component={Login} />
+        <Route path='/billing' component={Billing} />
         <Route exact path='/postreg' component={PostRegister} />
         <Route exact path='/properties' component={Properties} />
         <Route exact path='/properties/:id' component={PropertyDetails} />
