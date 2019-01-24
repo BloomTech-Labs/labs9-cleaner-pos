@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { Formik, Field } from 'formik';
@@ -8,6 +8,7 @@ import { FileUploadHOF } from '../../../components/FileUpload';
 import { NewPropertyStyled, StyledTextField } from './styles';
 // Types
 import {
+  AstObj,
   MyFormProps,
   NewPropertySchema,
   NewPropertyInitialValues,
@@ -16,7 +17,8 @@ import {
 import { AxiosRequestConfig } from 'axios';
 import { FieldProps, FormikActions } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
-// Etc
+// Utils
+import { axiosErrorHandler } from '../../utils';
 import { EmptyPropertyValues } from './types';
 
 const labelInputField = (label: string) => {
@@ -52,6 +54,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
     touched,
     values,
     Uppy,
+    assistants,
   } = formProps;
 
   return (
@@ -98,6 +101,16 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <div className='property-resources'>
         <h3>Resources</h3>
+        {assistants ? (
+          <Field name='defaultAst' component='select' placeHolder='Assistant'>
+            {assistants.map((ast) => (
+              <option value={ast.ast_id}>{ast.full_name}</option>
+            ))}
+          </Field>
+        ) : (
+          <div>Loading</div>
+        )}
+        <br />
         <Uppy type='ast_guide' text='Upload Assistant Guide' />
         <br />
         <Uppy type='guest_guide' text='Upload Guest Guide' />
@@ -123,6 +136,26 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
 const NewProperty = (props: RouteComponentProps) => {
   const [urls, setUrls] = useState({} as UrlObj);
+  const [assistants, setAssistants] = useState([] as AstObj[]);
+  const [errors, setErrors] = useState({ msg: '', error: false });
+
+  useEffect(() => {
+    const url =
+      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+    const headers: AxiosRequestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    };
+
+    axios
+      .get(`${url}/assistants`, headers)
+      .then((res) => {
+        setAssistants(res.data);
+      })
+      .catch(axiosErrorHandler(setErrors));
+  }, []);
 
   const urlFileUpload = FileUploadHOF((url: string, type?: string) => {
     if (type) {
@@ -134,7 +167,6 @@ const NewProperty = (props: RouteComponentProps) => {
     values: NewPropertyInitialValues,
     actions: FormikActions<NewPropertyInitialValues>,
   ) => {
-    console.log('onSubmit is happening');
     const {
       propertyName,
       address1,
@@ -212,8 +244,13 @@ const NewProperty = (props: RouteComponentProps) => {
       validationSchema={NewPropertySchema}
       onSubmit={onSubmit}
       render={(formProps) => {
-        console.log('formProps', formProps);
-        return <NewPropertyView {...formProps} Uppy={urlFileUpload} />;
+        return (
+          <NewPropertyView
+            {...formProps}
+            Uppy={urlFileUpload}
+            assistants={assistants}
+          />
+        );
       }}
     />
   );

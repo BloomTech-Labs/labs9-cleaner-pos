@@ -13,16 +13,16 @@ export const NewPropertySchema = Yup.object().shape({
   photoUrl: Yup.string().url(),
   pricePerNight: Yup.number()
     .required('Price per night is required')
-    .positive()
-    .integer(),
+    .positive('Must be greater than 0')
+    .integer('Has to be a number'),
   feePerGuest: Yup.number()
     .required('Fee per guest is required')
-    .positive()
-    .integer(),
+    .positive('Must be greater than 0')
+    .integer('Has to be a number'),
   cleaningFee: Yup.number()
     .required('Cleaning fee is required')
-    .positive()
-    .integer(),
+    .positive('Must be greater than 0')
+    .integer('Has to be a number'),
   defaultAst: Yup.number(),
   astGuide: Yup.string().url(),
   guestGuide: Yup.string().url(),
@@ -78,5 +78,20 @@ interface UploadProps {
 }
 
 export interface MyFormProps extends FormikProps<NewPropertyInitialValues> {
+  assistants: AstObj[];
   Uppy: (props: UploadProps) => JSX.Element;
+}
+
+// Dropdown
+export interface AstObj {
+  user_id: number;
+  ast_id: number;
+  full_name: string;
+  address: string;
+  photo_url: string;
+  openAst: Array<{
+    full_name: string;
+    ast_id: number;
+    house_id: number;
+  }>;
 }
