@@ -133,7 +133,7 @@ export const put = async (req: Request, res: Response, next: NextFunction) => {
       user.role !== 'assistant' &&
       user.role !== undefined
     ) {
-      throw Error('Role must be User or Manager');
+      throw Error('Role must be Assistant or Manager');
     }
     const putUser = await updateUser(id, user);
     res.status(201).json(putUser);
