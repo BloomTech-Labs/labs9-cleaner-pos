@@ -62,7 +62,7 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-    padding: 0 15px;
+    padding: 10px 15px 45px;
     text-align: center;
     height: 6.25rem;
     border: .5px solid #393534;
@@ -79,7 +79,7 @@ const CheckList = styled('div')`
     `;
 
 const Asst = styled('div')`
-    padding: 0 15px;
+    padding: 10px 15px 45px;
     text-align: center;
     height: 6.25rem;
     border: .5px solid #393534;

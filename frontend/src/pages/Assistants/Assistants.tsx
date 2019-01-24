@@ -19,6 +19,8 @@ interface AssistantsEnum extends Array<Assistant> {}
 interface Assistant {
     id?: number;
     user_id: string;
+    openAst: any;
+    house_id: any;
 }
 
 const token = localStorage.getItem('token');
@@ -32,7 +34,7 @@ const Assistants = () => {
     const shouldFetch = useRef(true);
     async function fetchAssistants() {
         try {
-            const res = await axios.get('https://cleaner-pos.herokuapp.com/houses', header);
+            const res = await axios.get('https://cleaner-pos.herokuapp.com/assistants', header);
             setAssistants(res.data);
         } catch (e) {
             throw e;
@@ -67,9 +69,11 @@ const Assistants = () => {
                             />
                             <CheckList>
                                 <h3>Checklist Items</h3>
+                                <div>{assistant.openAst.length}</div>
                             </CheckList>
                             <Asst>
                                 <h3>Available Houses</h3>
+                                <div>{assistant.openAst.length}</div>
                             </Asst>
                             <ButtonContainer>
                                 <Button text='House Availability' datatestid='assistant-button' />
