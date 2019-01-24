@@ -52,10 +52,10 @@ const InviteAst = (props: RouteComponentProps) => {
           validateOnChange={false}
           onSubmit={async (values, actions) => {
             try {
-              // await axios.post(`${url}/email/`, values, headers);
-              // await actions.setSubmitting(false);
-              // await actions.setStatus('Submission successful. Thank you!');
-              // props.history.push('/');
+              await axios.post(`${url}/email/`, values, headers);
+              await actions.setSubmitting(false);
+              await actions.setStatus('Submission successful. Thank you!');
+              props.history.push('/');
             } catch (error) {
               await actions.setSubmitting(false);
               if (error.response) {
