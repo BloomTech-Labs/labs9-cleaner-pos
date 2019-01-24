@@ -37,8 +37,11 @@ export async function makeUser(user: User): Promise<QueryBuilder> {
     .returning('id');
 
   if (user.role === 'guest') {
+    // If created user is a guest, we will return the query now, as
+    // they don't have a role table of their own
     return query;
   } else {
+    // Otherwise, proceed as normal
     const userIds = await query;
     const userId = userIds[0];
     return db(role).insert({ user_id: userId });

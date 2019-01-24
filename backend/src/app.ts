@@ -83,7 +83,10 @@ server.route('/itemComplete').post(items.itemComplete);
 
 server.route('/email').post(verifyToken, email.send);
 
-server.route('/stays').get(stays.getAll);
+server
+  .route('/stays')
+  .get(stays.getAll)
+  .post(stays.post);
 
 server.route('/stays/:id').get(stays.get);
 const options = {
