@@ -22,6 +22,7 @@ import { axiosErrorHandler } from '../../utils';
 import { EmptyPropertyValues } from './types';
 
 const labelInputField = (label: string) => {
+  // Material UI Textfield made to interface with Formik
   return ({ field, form }: FieldProps) => {
     const { name, value, onChange } = field;
     const { touched, errors } = form;
@@ -147,6 +148,7 @@ const NewProperty = (props: RouteComponentProps) => {
   const [errors, setErrors] = useState({ msg: '', error: false });
 
   useEffect(() => {
+    // Get list of assistants from backend
     const url =
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
@@ -164,12 +166,15 @@ const NewProperty = (props: RouteComponentProps) => {
       .catch(axiosErrorHandler(setErrors));
   }, []);
 
+  // Invoke FileUploadHOF, passing a callback function which will update
+  // state with URLs of uploaded files
   const urlFileUpload = FileUploadHOF((url: string, type?: string) => {
     if (type) {
       setUrls((prev) => ({ ...prev, [type]: url }));
     }
   });
 
+  // Function Formik will call. POSTs to houses
   const onSubmit = async (
     values: NewPropertyInitialValues,
     actions: FormikActions<NewPropertyInitialValues>,

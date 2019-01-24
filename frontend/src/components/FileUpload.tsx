@@ -65,6 +65,10 @@ const FileUpLoad = (props: UploadProps) => {
   );
 };
 
+// FileUploadHOF is a higher order function. It accepts a CB and returns
+// the FileUpload component. The difference from the above is that it will
+// run whatever you specified in the CB after a file is successfully uploaded
+// and the file URL is received.
 export const FileUploadHOF = (cb?: (url: string, type?: string) => void) => {
   return (props: UploadProps) => {
     const [open, setOpen] = useState(false);
@@ -84,7 +88,7 @@ export const FileUploadHOF = (cb?: (url: string, type?: string) => void) => {
         .use(AwsS3, { serverUrl: 'https://cleaner-pos.herokuapp.com/' })
         .on('complete', (result: any) => {
           const url = result.successful[0].response.uploadURL;
-          // TODO: this is where we are going to want to make an axios post request
+          // Whatever you put in the CB is going to be called here
           if (cb) {
             cb(url, props.type);
           }
