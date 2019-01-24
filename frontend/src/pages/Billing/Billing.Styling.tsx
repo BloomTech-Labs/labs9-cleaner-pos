@@ -1,31 +1,29 @@
 import styled from '@emotion/styled';
 
-const Wrapper = styled('div')`
-	border: 1px solid black;
-	display:flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: left;
-`;
-
 const SubBox = styled('div')`
-	border: 1px solid red;
+	border: 1px solid black;
+	padding: 20px;
 `;
 
 const AccUL = styled('ul')`
+	list-style-type: none;
 	text-decoration: none;
 `;
 
-const AccLI = styled('li')`
+const Confirmation = styled('div')`
+	border: 1px solid black;
+	padding: 20px;
 `;
 
-const Confirmation = styled('div')`
-	border: 1px solid green;
-`;
+const ConfUL = styled('ul')`
+	list-style-type: none;
+	text-decoration: none;
+	text-align: left;
+`
 
 export {
-	Wrapper,
 	SubBox,
 	AccUL,
 	Confirmation,
+	ConfUL,
 };
