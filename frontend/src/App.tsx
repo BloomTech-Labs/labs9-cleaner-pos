@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { Route, Switch, withRouter } from 'react-router';
 import {
   LandingPage,
@@ -16,27 +16,39 @@ import {
 import { Sidebar } from './components/index';
 import './App.css';
 import Billing from './pages/Billing/Billing';
+interface UserData {
+  id: number;
+  loggedIn: boolean;
+}
 
 const App = (props: any) => {
+  const token = localStorage.getItem('token');
+  const defaultValue = token
+    ? { id: Number(localStorage.getItem('id')), loggedIn: true }
+    : { id: 0, loggedIn: false };
+  const UserContext = createContext<UserData>(defaultValue);
+
   return (
     <div className='App'>
-      <Sidebar />
-      <Switch>
-        <Route exact path='/' component={LandingPage} />
-        <Route path='/Login' component={Login} />
-        <Route exact path='/checkout/:id' component={Checkout} />
-        <Route exact path='/test' component={Billing} />
-        <Route path='/billing' component={Billing} />
-        <Route exact path='/postreg' component={PostRegister} />
-        <Route exact path='/properties' component={Properties} />
-        <Route exact path='/properties/:id' component={PropertyDetails} />
-        <Route exact path='/settings' component={Settings} />
-        <Route exact path='/updateinfo' component={PostRegister} />
-        <Route exact path='/assistants' component={Assistants} />
-        <Route exact path='/guests' component={Guests} />
-        <Route exact path='/guests/:id' component={GuestDetail} />
-        <Route exact path='/invite' component={InviteAst} />
-      </Switch>
+      <UserContext.Provider value={defaultValue}>
+        <Sidebar />
+        <Switch>
+          <Route exact path='/' component={LandingPage} />
+          <Route path='/Login' render={() => <Login {...props} />} />
+          <Route exact path='/checkout/:id' component={Checkout} />
+          <Route exact path='/test' component={Billing} />
+          <Route path='/billing' component={Billing} />
+          <Route exact path='/postreg' component={PostRegister} />
+          <Route exact path='/properties' component={Properties} />
+          <Route exact path='/properties/:id' component={PropertyDetails} />
+          <Route exact path='/settings' component={Settings} />
+          <Route exact path='/updateinfo' component={PostRegister} />
+          <Route exact path='/assistants' component={Assistants} />
+          <Route exact path='/guests' component={Guests} />
+          <Route exact path='/guests/:id' component={GuestDetail} />
+          <Route exact path='/invite' component={InviteAst} />
+        </Switch>
+      </UserContext.Provider>
     </div>
   );
 };
