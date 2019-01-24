@@ -146,7 +146,12 @@ const PostForm = (props: PostFormProps) => {
             await axios.put(`${url}/users/`, userData, headers);
             await actions.setSubmitting(false);
             await actions.setStatus('Submission successful. Thank you!');
-            props.history.push('/properties');
+            console.log(props.location.pathname);
+            if (props.location.pathname === '/updateinfo') {
+              props.history.push('/settings');
+            } else {
+              props.history.push('/properties');
+            }
           } catch (error) {
             await actions.setSubmitting(false);
             if (error.response) {
