@@ -9,7 +9,9 @@ import {
   PropertyDetails,
   Guests,
   GuestDetail,
+  Checkout,
   Assistants,
+  InviteAst,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
@@ -20,9 +22,10 @@ const App = (props: any) => {
     <div className='App'>
       <Sidebar />
       <Switch>
-        <Route exact path='/test' component={Billing} />
         <Route exact path='/' component={LandingPage} />
         <Route path='/Login' component={Login} />
+        <Route exact path='/checkout/:id' component={Checkout} />
+        <Route exact path='/test' component={Billing} />
         <Route path='/billing' component={Billing} />
         <Route exact path='/postreg' component={PostRegister} />
         <Route exact path='/properties' component={Properties} />
@@ -32,6 +35,7 @@ const App = (props: any) => {
         <Route exact path='/assistants' component={Assistants} />
         <Route exact path='/guests' component={Guests} />
         <Route exact path='/guests/:id' component={GuestDetail} />
+        <Route exact path='/invite' component={InviteAst} />
       </Switch>
     </div>
   );
