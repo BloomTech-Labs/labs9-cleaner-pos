@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { stripe } from '../util/stripe.setup';
-import { updateUser, findUser } from '../models/users';
+import { updateUserById, findUser } from '../models/users';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const deleteL = (req: Request, res: Response, next: NextFunction) => {
@@ -14,6 +14,7 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
     return;
   }
   try {
+    console.log(authorizationCode, id);
     const headers: AxiosRequestConfig = {
       headers: {
         Authorization: `BEARER ${process.env.stripe_secret}`,
@@ -26,14 +27,15 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
     );
     if (response !== undefined) {
       // hardcoded UID until we have logic implemented that allows us to pass this
-      await updateUser(id, {
+      const updatedUser = await updateUserById(id, {
         stripeUID: response.data.stripe_user_id,
       });
+      const user = await findUser(id);
+      console.log('updated user', user);
     }
 
     res.status(201).send({ message: 'Account succesfully connected!' });
   } catch (e) {
-    console.log(e);
     e.statusCode = 500;
     next(e);
   }
@@ -45,17 +47,20 @@ const createPayment = async (
   next: NextFunction,
 ) => {
   try {
-    const { id, amount, stripe_token } = req.body;
+    const { id, amount } = req.body;
+    const stripeToken = req.body.token;
+    console.log('input data verification', id, amount, stripeToken);
 
     const user = await findUser(id);
-
-    if (!user.stripeUID) {
+    console.log('USER:', user);
+    if (user.stripeUID === '') {
       next({
         ...new Error(
           'Please connect to stripe first, before processing payments',
         ),
         statusCode: 400,
       });
+      return;
     }
 
     const charge = await stripe.charges
@@ -65,7 +70,7 @@ const createPayment = async (
         destination: {
           account: user.stripeUID,
         },
-        source: stripe_token,
+        source: stripeToken,
       })
       .catch((error: Error) => console.log('Creating charge failed', error));
     if (charge.id) {
