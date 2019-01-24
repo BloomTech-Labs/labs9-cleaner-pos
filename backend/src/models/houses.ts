@@ -68,6 +68,20 @@ export const findAllHousesByAstId = (astId: number) => {
     });
 };
 
+// TODO: Combine with original findHouses by gating where clause
+export const findAllHousesByManagerId = (managerId: number) => {
+  return db('house')
+    .where({ 'house.manager': managerId })
+    .leftJoin('manager', { 'house.manager': 'manager.id' })
+    .leftJoin('user', { 'manager.user_id': 'user.id' })
+    .select(
+      'house.id AS id',
+      'house.name AS name',
+      'house.address AS address',
+      'house.manager AS manager_id',
+    );
+};
+
 export const findHouse = async (id: number) => {
   const house = await db('house')
     .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })

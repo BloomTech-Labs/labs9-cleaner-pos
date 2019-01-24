@@ -5,6 +5,7 @@ import setGeneralMiddleware from './middleware/generalMiddleware';
 import companion from '@uppy/companion';
 import verifyToken from './middleware/verifyToken';
 import * as users from './controller/users';
+import * as guests from './controller/guests';
 import * as houses from './controller/houses';
 import * as lists from './controller/lists';
 import * as items from './controller/items';
@@ -32,6 +33,8 @@ server
   .get(users.get)
   .put(users.put)
   .delete(users.deleteU);
+
+server.route('/guests').post(guests.post);
 
 server
   .route('/houses')
@@ -74,15 +77,16 @@ server
   .get(items.get)
   .put(items.put)
   .delete(items.deleteL);
-server
-  .route('/assistants')
-  .get(assistants.get);
+server.route('/assistants').get(assistants.get);
 
 server.route('/itemComplete').post(items.itemComplete);
 
 server.route('/email').post(verifyToken, email.send);
 
-server.route('/stays').get(stays.getAll);
+server
+  .route('/stays')
+  .get(stays.getAll)
+  .post(stays.post);
 
 server.route('/stays/:id').get(stays.get);
 const options = {
