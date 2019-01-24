@@ -23,7 +23,7 @@ describe('Houses detail', () => {
 
     const pDetail = await waitForElement(() => getAllByTestId('house-detail'));
 
-    expect(pDetail[0]).toHaveTextContent('');
+    expect(pDetail[0].textContent).toContain('');
   });
 
   test('should find all after lists', async () => {
