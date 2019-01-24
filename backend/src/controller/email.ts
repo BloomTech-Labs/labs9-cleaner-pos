@@ -41,7 +41,7 @@ export const send = async (req: Requests, res: Responses, next: Nexts) => {
     const { ast_name, manager_name, to } = req.body;
     const subject: string = `${manager_name} invites you to do work`;
     const { id, email } = req.token;
-    const linkAddress: string = `https://cleanerpos.netlify.com/newassistant?manager=${id}`;
+    const linkAddress: string = `https://cleanerpos.netlify.com/login?manager=${id}&ast=true`;
     if (
       !ast_name ||
       !manager_name ||
