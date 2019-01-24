@@ -12,6 +12,7 @@ import GuestDetail from './Guests/GuestDetail';
 import NewGuest from './Guests/NewGuest/NewGuest';
 import Checkout from './Checkout/Checkout';
 import Assistants from './Assistants/Assistants';
+import AssistantsDetails from './Assistants/AssistantsDetails';
 import InviteAst from './InviteAst/InviteAst';
 
 export {
@@ -29,5 +30,6 @@ export {
   NewGuest,
   Checkout,
   Assistants,
+  AssistantsDetails,
   InviteAst,
 };

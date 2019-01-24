@@ -13,6 +13,7 @@ import {
   NewGuest,
   Checkout,
   Assistants,
+  AssistantsDetails,
   InviteAst,
 } from './pages/index';
 import { Sidebar } from './components/index';
