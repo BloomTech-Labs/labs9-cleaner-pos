@@ -8,6 +8,7 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
 } from 'react-testing-library';
 jest.mock('axios', () => {
   return {
@@ -29,7 +30,7 @@ describe('Invite test', () => {
     expect(inputs.length).toBe(3);
     expect(inputs[0]).toMatchObject(input);
   });
-  test('does not submit when form is empty', () => {
+  test('does not submit when form is empty', async () => {
     // Arrange
     // @ts-ignore
     const { getByText, container, debug } = render(<InviteAst />);
@@ -38,7 +39,9 @@ describe('Invite test', () => {
     // Act
     fireEvent.click(submit[0]);
     // Assert
-    expect(spy).toHaveBeenCalledTimes(0);
+    await wait(() => {
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
   });
 });
 
