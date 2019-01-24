@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
+const bp = '700px';
+
 const Container = styled('div')`
   /* Box Model & Sizing */
   margin: auto;
@@ -16,12 +18,27 @@ const Container = styled('div')`
   .button-sign-out {
     margin-bottom: 1.5rem;
   }
+
+  .menu {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  @media only screen and (min-width: ${bp}) {
+    .menu {
+      display: none;
+    }
+  }
 `;
 
 const NavWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  float: left;
+  display: none;
+
+  @media only screen and (min-width: 700px) {
+    display: flex;
+    justify-content: space-between;
+    float: left;
+  }
 `;
 
 const SettingsWrapper = styled('div')`
@@ -32,6 +49,7 @@ const SettingsWrapper = styled('div')`
 
 const StyledUL = styled('ul')`
   list-style-type: none;
+
   display: flex;
   justify-content: space-between;
   align-items: baseline;
