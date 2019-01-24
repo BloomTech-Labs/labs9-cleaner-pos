@@ -125,6 +125,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
           onChange={(e) => setFieldValue('checkOut', e)}
         />
         <br />
+        <br />
         <Field name='extraGuests' render={labelInputField('Extra Guests')} />
       </div>
       <br />

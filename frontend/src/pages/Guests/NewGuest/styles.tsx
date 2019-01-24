@@ -5,7 +5,14 @@ import { Form } from 'formik';
 // Types
 import { ComponentClass } from 'react';
 
-export const StyledForm = styled(Form)``;
+export const StyledForm = styled(Form)`
+  max-width: 700px;
+  margin: auto;
+
+  label {
+    margin-right: 0.5rem;
+  }
+`;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`
   /* -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
