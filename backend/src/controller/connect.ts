@@ -49,6 +49,15 @@ const createPayment = async (
 
     const user = await findUser(id);
 
+    if (!user.stripeUID) {
+      next({
+        ...new Error(
+          'Please connect to stripe first, before processing payments',
+        ),
+        statusCode: 400,
+      });
+    }
+
     const charge = await stripe.charges
       .create({
         amount,
@@ -69,7 +78,6 @@ const createPayment = async (
       return;
     }
   } catch (e) {
-    console.log('Error creating and capturing a charge :(');
     e.statusCode = 500;
     next(e);
   }
