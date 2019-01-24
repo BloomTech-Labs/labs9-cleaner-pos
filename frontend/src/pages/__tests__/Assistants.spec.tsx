@@ -10,13 +10,13 @@ describe('Houses dashboard', () => {
     test('should render an assistant card for every assistant received through axios call', async () => {
         const { getAllByTestId } = renderWithRouter(<Assistants />, {});
         const assistantCards = await waitForElement(() => getAllByTestId('assistant-item'));
-        expect(assistantCards.length).toBe(6);
+        expect(assistantCards.length).toBe(7);
     });
 
     test('should include 1 button for every assistant card,', async () => {
         const { getAllByTestId } = renderWithRouter(<Assistants />, {});
 
         const buttons = await waitForElement(() => getAllByTestId('assistant-button'));
-        expect(buttons.length).toBe(6);
+        expect(buttons.length).toBe(7);
     });
 });

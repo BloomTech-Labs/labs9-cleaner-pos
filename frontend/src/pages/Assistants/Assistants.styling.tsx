@@ -11,7 +11,11 @@ const AssistantItem = styled('div')`
     margin-top: 1.5rem;
     display: flex;
     text-align: left;
-    border: 0.5px solid black;
+    border: 0.5px solid blue;
+    @media only screen and (max-width: 600px) {
+        width: 50%;
+        height: 100%;
+    }
 `;
 
 const HeaderWrapper = styled('div')`
@@ -59,6 +63,10 @@ const CardBody = styled('div')`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border: 1px solid red;
+    @media only screen and (max-width: 600px) {
+        flex-direction: column;
+    }
 `;
 
 const CheckList = styled('div')`
@@ -121,7 +129,7 @@ const AsstProperty = styled('div')`
     display: flex;
     flex-direction: column;
     border: 1px dashed green;
-`;
+    `;
 
 export {
     AssistantItem,
