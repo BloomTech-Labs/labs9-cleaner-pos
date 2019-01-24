@@ -210,7 +210,7 @@ const NewProperty = (props: RouteComponentProps) => {
         ast_guide,
       };
 
-      await axios.post(`${url}/houses`, houseData, headers);
+      await axios.post(`${url}/houses?test=true`, houseData, headers);
       await actions.setSubmitting(false);
       await actions.setStatus('Submission successful. Thank you!');
       props.history.push('/properties');
