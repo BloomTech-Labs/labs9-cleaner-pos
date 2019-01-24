@@ -8,6 +8,7 @@ import {
   Settings,
   PropertyDetails,
   Guests,
+  Checkout,
   Assistants,
   InviteAst,
 } from './pages/index';
@@ -20,9 +21,11 @@ const App = (props: any) => {
     <div className='App'>
       <Sidebar />
       <Switch>
-        <Route exact path='/test' component={Billing} />
         <Route exact path='/' component={LandingPage} />
         <Route path='/Login' component={Login} />
+        <Route exact path='/checkout/:id' component={Checkout} />
+        <Route exact path='/test' component={Billing} />
+        <Route path='/billing' component={Billing} />
         <Route exact path='/postreg' component={PostRegister} />
         <Route exact path='/properties' component={Properties} />
         <Route exact path='/properties/:id' component={PropertyDetails} />
