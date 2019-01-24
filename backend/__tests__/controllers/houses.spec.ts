@@ -66,7 +66,7 @@ describe('/house routes', () => {
       .expect(404, done);
   });
 
-  test('POST request is successful', (done) => {
+  test('POST test request is successful', (done) => {
     const newHouse = {
       address: 'See my test, see my test, made from real gorilla chest',
       cleaning_fee: 65,
@@ -75,7 +75,7 @@ describe('/house routes', () => {
       price: 959.55,
     };
     request(app)
-      .post('/houses')
+      .post('/houses?test=true')
       .send(newHouse)
       .set('Accept', 'application/json')
       .expect(201)
@@ -92,6 +92,8 @@ describe('/house routes', () => {
           });
       });
   });
+
+  // TODO: Write more POST tests
 
   test('put request is successful', (done) => {
     const newHouse = {
