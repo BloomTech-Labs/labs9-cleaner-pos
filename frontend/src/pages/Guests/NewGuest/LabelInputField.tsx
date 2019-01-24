@@ -16,7 +16,6 @@ export const labelInputField = (label: string) => {
         className={`field-${name}`}
         data-testid={`field-${name}`}
         label={errorState ? errors[name] : label}
-        variant='filled'
         {...field}
       />
     );

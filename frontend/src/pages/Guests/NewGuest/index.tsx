@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 // Components
 import { labelInputField } from './labelInputField';
+import { Datepicker } from 'react-formik-ui';
 // Styled Components
 import { StyledForm } from './styles';
 // Types
@@ -86,7 +87,9 @@ const NewGuestView = (formProps: MyGuestProps) => {
 
       <div className='guest-stay--fields'>
         {/* TODO: Implement auto-complete search bar */}
-        <label>Which property guest will be staying at?</label>
+        <label htmlFor='houseId'>
+          Which property guest will be staying at?
+        </label>
         <br />
         {houses ? (
           <Field name='houseId' component='select' placeholder='Property'>
@@ -101,6 +104,10 @@ const NewGuestView = (formProps: MyGuestProps) => {
         )}
         <br />
         <br />
+        <Datepicker name='checkIn' label='Check-In Date' />
+        <Datepicker name='checkOut' label='Check-Out Date' />
+
+        <Field name='extraGuests' render={labelInputField('Extra Guests')} />
       </div>
       <br />
       <button
