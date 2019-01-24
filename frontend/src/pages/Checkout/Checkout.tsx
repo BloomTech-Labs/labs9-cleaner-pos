@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { Container, Button } from '../../components/index';
 import { RouteComponentProps } from 'react-router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -23,6 +23,8 @@ const Checkout = (props: CheckoutProps) => {
     extra_guests: 0,
     extra_fee: 0,
   });
+  const [stays, setStays] = useState([]);
+  console.log(stays);
 
   const token = localStorage.getItem('token');
   const headers: AxiosRequestConfig = {
@@ -60,7 +62,20 @@ const Checkout = (props: CheckoutProps) => {
         body,
         headers,
       );
-      setStay(data);
+      setStay({ ...stay, ...data });
+    } catch (e) {
+      axiosErrorHandler(setError);
+    }
+  }
+
+  async function fetchStays() {
+    // return;
+    try {
+      const { data }: AxiosResponse = await axios.get(
+        `${url}stays?test=true`,
+        headers,
+      );
+      setStays(data);
     } catch (e) {
       axiosErrorHandler(setError);
     }
@@ -68,7 +83,9 @@ const Checkout = (props: CheckoutProps) => {
 
   useLayoutEffect(() => {
     fetchStay();
+    fetchStays();
   }, []);
+
   const {
     guest_name,
     house_id,
