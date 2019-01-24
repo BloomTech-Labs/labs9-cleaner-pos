@@ -156,6 +156,13 @@ const NewGuestView = (formProps: MyGuestProps) => {
       >
         {isSubmitting ? 'Submitted' : 'Submit'}
       </button>
+      <button
+        className='back'
+        data-testid='button-back'
+        onClick={formProps.goBack}
+      >
+        Go Back ↩
+      </button>
       {status && status.msg && (
         <div className='status' data-testid='div-status'>
           {status.msg}
@@ -173,6 +180,7 @@ const NewGuest = (props: RouteComponentProps) => {
     Sets default URL, loads/checks token, and sets header
     Returns url and header as an array in said order
     */
+    // TODO: Refactor to take advantage of Context API handling user info
     const url =
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
@@ -244,7 +252,7 @@ const NewGuest = (props: RouteComponentProps) => {
       };
 
       const result = await axios.post(`${url}/guests/`, userData, headers);
-      console.log('axios result:', result);
+
       const userId = result.data[0];
 
       const stayData = {
@@ -282,12 +290,16 @@ const NewGuest = (props: RouteComponentProps) => {
     }
   };
 
+  const goBack = () => props.history.push('/guests');
+
   return (
     <Formik
       initialValues={emptyValues}
       validationSchema={SignupSchema}
       onSubmit={onSubmit}
-      render={(formProps) => <NewGuestView houses={houses} {...formProps} />}
+      render={(formProps) => (
+        <NewGuestView houses={houses} goBack={goBack} {...formProps} />
+      )}
     />
   );
 };
