@@ -27,7 +27,7 @@ const PropertyDetails = (props: any) => {
   const [inputItem, setInputItem] = useState(false);
 
   const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
   async function fetchHouse(id: number) {
     try {
