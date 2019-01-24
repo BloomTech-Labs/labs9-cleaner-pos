@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext } from 'react';
 import { Route, Switch, withRouter } from 'react-router';
 import {
   LandingPage,
@@ -34,7 +34,6 @@ const App = (props: any) => {
 
   const UserContext = createContext<UserData>(defaultValue);
 
-  console.log(UserContext);
   return (
     <div className='App'>
       <UserContext.Provider value={defaultValue}>

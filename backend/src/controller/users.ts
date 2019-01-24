@@ -118,7 +118,6 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       res.status(200).json({ token, id: user.id, role: user.role });
     }
   } catch (e) {
-    console.log('User failed cuz', e);
     e.statusCode = 400;
     next(e);
   }
