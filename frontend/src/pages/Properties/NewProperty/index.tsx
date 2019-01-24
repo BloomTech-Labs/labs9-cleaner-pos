@@ -102,9 +102,11 @@ const NewPropertyView = (formProps: MyFormProps) => {
       <div className='property-resources'>
         <h3>Resources</h3>
         {assistants ? (
-          <Field name='defaultAst' component='select' placeHolder='Assistant'>
+          <Field name='defaultAst' component='select' placeholder='Assistant'>
             {assistants.map((ast) => (
-              <option value={ast.ast_id}>{ast.full_name}</option>
+              <option key={ast.ast_id} value={ast.ast_id}>
+                {ast.full_name}
+              </option>
             ))}
           </Field>
         ) : (
