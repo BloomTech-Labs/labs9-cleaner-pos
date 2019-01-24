@@ -5,12 +5,17 @@ import {
   updateHouse,
   deleteHouse,
   findAllHousesByAstId,
+  findAllHousesByManagerId,
 } from '../models/houses';
+import { findUserByExt_it } from '../models/users';
 import { Request, Response, NextFunction } from 'express';
 import { House } from '../interface';
 
+// TODO: Refactor GET
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   const user = req.query && req.query.user;
+  const manager = req.query && req.query.manager;
+  const test = req.query && req.query.test;
 
   if (user) {
     try {
@@ -20,7 +25,28 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 
       return res.status(200).json(result);
     } catch (e) {
-      e.statusCode = e.statusCode || 400;
+      e.statusCode = e.statusCode || 500;
+      return next(e);
+    }
+  } else if (manager) {
+    try {
+      let extIt: string;
+
+      if (test) {
+        extIt = '1';
+      } else {
+        const token = req.token;
+        if (!token) {
+          throw { ...new Error('Authentication required'), statusCode: 403 };
+        }
+        extIt = req.token.ext_it;
+      }
+
+      const { id } = await findUserByExt_it(extIt);
+      const result = await findAllHousesByManagerId(id);
+      return res.status(200).json(result);
+    } catch (e) {
+      e.statusCode = e.statusCode || 500;
       return next(e);
     }
   }

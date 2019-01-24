@@ -96,6 +96,25 @@ const NewGuestView = (formProps: FormikProps<NewGuestInitialValues>) => {
 };
 
 const NewGuest = (props: RouteComponentProps) => {
+  const setUpUrlAndHeaders = () => {
+    const url =
+      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      throw new Error('Not authenticated');
+    }
+
+    const headers: AxiosRequestConfig = {
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    return [url, headers];
+  };
+
   const onSubmit = async (values, actions) => {
     const {
       email,
@@ -109,14 +128,8 @@ const NewGuest = (props: RouteComponentProps) => {
     } = values;
 
     try {
-      const url =
-        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+      const [url, headers] = setUpUrlAndHeaders();
 
-      const headers: AxiosRequestConfig = {
-        headers: {
-          Authorization: localStorage.getItem('token'),
-        },
-      };
       const userData = {
         address: `${address1}\n${
           address2 ? address2 + '\n' : ''
@@ -124,6 +137,7 @@ const NewGuest = (props: RouteComponentProps) => {
         email,
         phone,
       };
+
       await axios.post(`${url}/users`, userData, headers);
       await actions.setSubmitting(false);
       await actions.setStatus('Submission successful. Thank you!');
