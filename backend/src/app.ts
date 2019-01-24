@@ -53,6 +53,8 @@ server
   .post(connect.post)
   .delete(connect.deleteL);
 
+server.route('/connect/createpayment').post(connect.createPayment);
+
 server.route('/lists').post(lists.post);
 /* this get route looks for a query. if `lists/1?stay=true`
 the id should be for a stay. Anything else the id should be for a house

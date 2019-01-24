@@ -1,4 +1,4 @@
-import { QueryBuilder } from 'knex';
+import knex, { QueryBuilder } from 'knex';
 import db from '../../../data/dbConfig';
 import { findUserByExt_it } from '../users';
 import { getPreparationProgress } from './helpers';
@@ -30,6 +30,9 @@ export function findStaySummary(stayId: number): QueryBuilder {
       'house.default_ast AS defaultAssistant',
       'house.guest_guide AS guestGuide',
       'house.ast_guide AS assistantGuide',
+      'house.price AS price',
+      'house.extra_guest_fee as extraFee',
+      'house.cleaning_fee AS cleaningFee',
       'check_in',
       'check_out',
     )
@@ -50,8 +53,14 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
       'house.default_ast AS default_ast',
       'house.guest_guide AS guest_guide',
       'house.ast_guide AS ast_guide',
+      'house.price AS price',
+      'house.extra_guest_fee as extra_fee',
+      'house.cleaning_fee AS cleaning_fee',
+      'extra_guests as extra_guests',
+      'stay.id AS stay_id',
       'check_in',
       'check_out',
+      db.raw('check_out - check_in AS diff'),
     )
     .join('user', 'user.id', '=', 'stay.guest_id')
     .join('house', 'house.id', '=', 'stay.house_id')
