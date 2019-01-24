@@ -25,7 +25,7 @@ export const NewPropertySchema = Yup.object().shape({
   guestGuide: Yup.string().url(),
 });
 
-export interface NewPropertyInitialvalues {
+export interface NewPropertyInitialValues {
   propertyName: string;
   address1: string;
   address2: string;
