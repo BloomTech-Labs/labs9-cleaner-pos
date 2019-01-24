@@ -69,6 +69,12 @@ export function updateUser(extIt: string, updatedUser: User): QueryBuilder {
     .update(updatedUser);
 }
 
+export function updateUserById(id: number, updatedUser: User): QueryBuilder {
+  return db('user')
+    .where({ id })
+    .update(updatedUser);
+}
+
 export function deleteUser(id: number): QueryBuilder {
   return db('user')
     .where({ id })

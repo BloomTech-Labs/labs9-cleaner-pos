@@ -1,14 +1,18 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, createContext } from 'react';
 import { Container, Button } from '../../components/index';
 import { RouteComponentProps } from 'react-router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { CheckoutForm, Invoice, InvoiceBox } from './Checkout.styles';
 import { UserContext } from '../../App';
+import { StripeProvider } from 'react-stripe-elements';
+
+import MyStoreCheckout from './Checkout.1';
 
 interface CheckoutProps extends RouteComponentProps {
   match: any;
 }
+export const PaymentContext = createContext({ sum: 0 });
 
 const Checkout = (props: CheckoutProps) => {
   const [error, setError] = useState<any>({ msg: '', error: false });
@@ -26,6 +30,7 @@ const Checkout = (props: CheckoutProps) => {
     extra_fee: 0,
   });
   const [stays, setStays] = useState([]);
+  const [show, setShow] = useState<boolean>(false);
 
   const token = useContext(UserContext);
   const headers: AxiosRequestConfig = {
@@ -39,30 +44,10 @@ const Checkout = (props: CheckoutProps) => {
     const { id } = props.match.params;
     try {
       const { data }: AxiosResponse = await axios.get(
-        `${url}stays/${id}`,
+        `${url}/stays/${id}`,
         headers,
       );
       setStay(data);
-    } catch (e) {
-      axiosErrorHandler(setError);
-    }
-  }
-
-  async function triggerPayment(sum: number) {
-    const { id } = useContext(UserContext);
-    try {
-      const body = {
-        id,
-        token: '324234234234',
-        amount: sum,
-      };
-
-      const { data }: AxiosResponse = await axios.post(
-        `${url}connect/createpayment`,
-        body,
-        headers,
-      );
-      setStay({ ...stay, ...data });
     } catch (e) {
       axiosErrorHandler(setError);
     }
@@ -98,6 +83,8 @@ const Checkout = (props: CheckoutProps) => {
     extra_guests,
     extra_fee,
   } = stay;
+
+  const key = process.env.REACT_APP_stripe_API || '';
 
   const total = +extra_guests * +extra_fee + diff * price + +cleaning_fee;
   return (
@@ -148,10 +135,20 @@ const Checkout = (props: CheckoutProps) => {
           <Invoice>
             <h3>Invoice</h3>
             {/* TODO: implement axios call to change stay to account for new inputs */}
+            {show && (
+              // @ts-ignore
+              <PaymentContext.Provider value={{ sum: total }}>
+                <StripeProvider apiKey={key}>
+                  <MyStoreCheckout sum={total} />
+                </StripeProvider>
+              </PaymentContext.Provider>
+            )}
             <Button
               text={`Pay $${total}`}
               colour='#0aa047'
-              onClick={() => triggerPayment(total)}
+              onClick={() => {
+                setShow(true);
+              }}
               datatestid='payment-button'
             />
             <InvoiceBox>

@@ -1,6 +1,6 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef, useEffect } from 'react';
 import { Button, Container, SpecialButton } from '../../components/index';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import {
     AssistantItem,
     CardBody,
@@ -19,60 +19,96 @@ interface AssistantsEnum extends Array<Assistant> {}
 interface Assistant {
     id?: number;
     user_id: string;
+    openAst: any;
+    house_id: any;
 }
+
+const token = localStorage.getItem('token');
+
+const header: AxiosRequestConfig = {
+    headers: { Authorization: token },
+};
+
+const AssistantCard = (assistant: any) => {
+    const [itemCount, setItemCount] = useState(0);
+    useEffect(() => {
+        axios
+        .get(
+            `https://cleaner-pos.herokuapp.com/houses/${
+            assistant.ast_id
+            }?user=true`,
+            header,
+        )
+        .then((res) => {
+            // console.log(res.data);
+            const checkList: number = res.data.reduce((acc: number, obj: any) => {
+            const checkLists = obj.checkList;
+            const count = checkLists.reduce((acc2: number, inObj: any) => {
+                return acc2 + inObj.count;
+            }, 0);
+            return acc + count;
+            }, 0);
+            // console.log(checkList);
+            setItemCount(checkList);
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+    }, []);
+    return (
+        <AssistantItem key={assistant.id} data-testid='assistant-item'>
+        <CardContent>
+            <CardHeading><div>{assistant.full_name}</div></CardHeading>
+            <CardBody>
+            <ThumbNail src='../assets/ronald.jpg' alt='' />
+            <CheckList>
+                <h3>Checklist Items</h3>
+                <div>{itemCount}</div>
+            </CheckList>
+            <Asst>
+                <h3>Available Houses</h3>
+                <div>{assistant.openAst.length}</div>
+            </Asst>
+            <ButtonContainer>
+                <Button text='House Availability' datatestid='assistant-button' />
+            </ButtonContainer>
+            </CardBody>
+        </CardContent>
+        </AssistantItem>
+    );
+    };
 
 const Assistants = () => {
     const [assistants, setAssistants] = useState<AssistantsEnum>([]);
     const shouldFetch = useRef(true);
     async function fetchAssistants() {
         try {
-            const res = await axios.get('https://cleaner-pos.herokuapp.com/houses');
-            setAssistants(res.data);
+        const res = await axios.get(
+            'https://cleaner-pos.herokuapp.com/assistants',
+            header,
+        );
+        setAssistants(res.data);
+        // console.log(res.data);
         } catch (e) {
-            throw e;
+        throw e;
         }
     }
 
-    useLayoutEffect(
+    useEffect(
         () => {
-            fetchAssistants();
-            shouldFetch.current = false;
+        fetchAssistants();
+        shouldFetch.current = false;
         },
         [shouldFetch],
     );
 
     return (
         <Container>
-            <HeaderWrapper>
-                <AssistantHeader>Turnover Assistants</AssistantHeader>
-                <Button text='+ New Assistant' />
-            </HeaderWrapper>
-            {assistants.map((assistant) => {
-                return (
-                <AssistantItem key={assistant.id} data-testid='assistant-item'>
-                    <CardContent>
-                        <CardHeading>
-                            {/* May move a header in here later */}
-                        </CardHeading>
-                        <CardBody>
-                            <ThumbNail
-                                src='../assets/ronald.jpg'
-                                alt='Ronald'
-                            />
-                            <CheckList>
-                                <h3>Checklist Items</h3>
-                            </CheckList>
-                            <Asst>
-                                <h3>Available Houses</h3>
-                            </Asst>
-                            <ButtonContainer>
-                                <Button text='House Availability' datatestid='assistant-button' />
-                            </ButtonContainer>
-                        </CardBody>
-                    </CardContent>
-                </AssistantItem>
-                );
-            })}
+        <HeaderWrapper>
+            <AssistantHeader>Turnover Assistants</AssistantHeader>
+            <Button text='+ New Assistant' />
+        </HeaderWrapper>
+        {assistants.map(AssistantCard)}
         </Container>
     );
 };

@@ -62,7 +62,7 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-    padding: 0 15px;
+    padding: 10px 15px 45px;
     text-align: center;
     height: 6.25rem;
     border: .5px solid #393534;
@@ -79,7 +79,7 @@ const CheckList = styled('div')`
     `;
 
 const Asst = styled('div')`
-    padding: 0 15px;
+    padding: 10px 15px 45px;
     text-align: center;
     height: 6.25rem;
     border: .5px solid #393534;
@@ -105,6 +105,24 @@ const AssistantHeader = styled('span')`
     max-width: 18.125rem;
 `;
 
+const AssistantBar = styled('div')`
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+`;
+
+const AsstDetail = styled('div')`
+    display: flex;
+    flex-direction: column;
+    border: 1px dotted red;
+`;
+
+const AsstProperty = styled('div')`
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed green;
+`;
+
 export {
     AssistantItem,
     ButtonContainer,
@@ -116,4 +134,7 @@ export {
     Asst,
     AssistantHeader,
     HeaderWrapper,
+    AssistantBar,
+    AsstDetail,
+    AsstProperty,
 };

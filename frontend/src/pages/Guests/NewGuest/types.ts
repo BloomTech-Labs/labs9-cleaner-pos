@@ -75,4 +75,5 @@ export interface ManagerHouse {
 
 export interface MyGuestProps extends FormikProps<NewGuestInitialValues> {
   houses: ManagerHouse[];
+  goBack: () => void;
 }

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 // adding this for testing
 import { FileUpload } from '../../components/index';
@@ -33,6 +34,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     setting_text: false,
   });
   const [info, setInfo] = useState({ msg: '', error: false });
+  const { id } = useContext(UserContext);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
@@ -113,7 +115,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       };
       const authorizationCode = params[1];
       axios
-        .post(`${url}/connect`, { authorizationCode }, headers)
+        .post(`${url}/connect`, { authorizationCode, id }, headers)
         .then((res) => {
           props.history.replace('/settings');
         })

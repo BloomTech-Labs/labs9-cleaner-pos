@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import styled from '@emotion/styled';
 
+const Label = styled('h3')`
+	text-align: left
+`;
+
 interface MySettings {
   title?: string;
   onToggle?: (show: boolean) => void;
@@ -15,7 +19,7 @@ const Accordion = ({ title, children, onToggle }: MySettings) => {
   const [show, setShow] = useState(false);
   return (
     <div>
-      <h2
+      <Label
         onClick={() => {
           setShow(!show);
           if (onToggle) {
@@ -24,7 +28,7 @@ const Accordion = ({ title, children, onToggle }: MySettings) => {
         }}
       >
         {title}
-      </h2>
+      </Label>
 	  {show ? <Fragment>{children}</Fragment> : null}
 {/* I think I'm going to have to use a map to get each individual child from the children and either show/hide. This means I'm probably going to have a key. Or else I can just scrap the whole children thing. Still thinking about this.*/}
 

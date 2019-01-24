@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { stripe } from '../util/stripe.setup';
-import { updateUser, findUser } from '../models/users';
+import { updateUserById, findUser } from '../models/users';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const deleteL = (req: Request, res: Response, next: NextFunction) => {
@@ -26,14 +26,14 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
     );
     if (response !== undefined) {
       // hardcoded UID until we have logic implemented that allows us to pass this
-      await updateUser(id, {
+      const updatedUser = await updateUserById(id, {
         stripeUID: response.data.stripe_user_id,
       });
+      const user = await findUser(id);
     }
 
     res.status(201).send({ message: 'Account succesfully connected!' });
   } catch (e) {
-    console.log(e);
     e.statusCode = 500;
     next(e);
   }
@@ -45,38 +45,29 @@ const createPayment = async (
   next: NextFunction,
 ) => {
   try {
-    const { id, amount, stripe_token } = req.body;
+    const { id, amount } = req.body;
+    const stripeToken = req.body.token;
 
     const user = await findUser(id);
-
-    if (!user.stripeUID) {
+    if (user.stripeUID === '') {
       next({
         ...new Error(
           'Please connect to stripe first, before processing payments',
         ),
         statusCode: 400,
       });
-    }
-
-    const charge = await stripe.charges
-      .create({
-        amount,
-        currency: 'usd',
-        destination: {
-          account: user.stripeUID,
-        },
-        source: stripe_token,
-      })
-      .catch((error: Error) => console.log('Creating charge failed', error));
-    if (charge.id) {
-      const result = await stripe.charges.capture(charge.id);
-
-      res.status(200).send({
-        msg: 'Sucessfully processed payments',
-        receipt: result.receipt_url,
-      });
       return;
     }
+
+    const charge = await stripe.charges.create({
+      amount: Math.round(amount * 100),
+      currency: 'usd',
+      destination: {
+        account: user.stripeUID,
+      },
+      source: stripeToken,
+    });
+    res.status(200).send({ msg: 'Payment succeeded!' });
   } catch (e) {
     e.statusCode = 500;
     next(e);
