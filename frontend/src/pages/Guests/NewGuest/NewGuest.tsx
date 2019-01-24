@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Formik, Field } from 'formik';
 // Components
-import { labelInputField } from './labelInputField';
+import { TextField } from '@material-ui/core';
 import Datepicker from 'react-datepicker';
 // Styled Components
-import { StyledForm } from './styles';
+import { StyledForm, StyledTextField } from './styles';
 // Types
 import {
   ManagerHouse,
@@ -20,6 +20,25 @@ import { RouteComponentProps } from 'react-router-dom';
 import { emptyValues } from './types';
 import { axiosErrorHandler } from '../../utils';
 import 'react-datepicker/dist/react-datepicker.css';
+
+const labelInputField = (label: string) => {
+  return ({ field, form }: FieldProps) => {
+    const { name, value } = field;
+    const { touched, errors } = form;
+    const errorState = Boolean(errors[name] && touched[name]);
+    return (
+      <StyledTextField
+        error={errorState}
+        inputProps={{ ...field, 'data-testid': `input-${name}` }}
+        InputLabelProps={{ 'data-testid': `label-${name}` }}
+        className={`field-${name}`}
+        data-testid={`field-${name}`}
+        label={errorState ? errors[name] : label}
+        {...field}
+      />
+    );
+  };
+};
 
 const NewGuestView = (formProps: MyGuestProps) => {
   const {
