@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Formik, Field } from 'formik';
 // Components
 import { labelInputField } from './labelInputField';
-import { Datepicker } from 'react-formik-ui';
 // Styled Components
 import { StyledForm } from './styles';
 // Types
@@ -13,7 +13,7 @@ import {
   SignupSchema,
 } from './types';
 import { AxiosRequestConfig } from 'axios';
-import { Formik, Field, FieldProps, FormikProps } from 'formik';
+import { FormikActions, FieldProps, FormikProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 // Utils
 import { emptyValues } from './types';
@@ -104,8 +104,6 @@ const NewGuestView = (formProps: MyGuestProps) => {
         )}
         <br />
         <br />
-        <Datepicker name='checkIn' label='Check-In Date' />
-        <Datepicker name='checkOut' label='Check-Out Date' />
 
         <Field name='extraGuests' render={labelInputField('Extra Guests')} />
       </div>
@@ -150,12 +148,15 @@ const NewGuest = (props: RouteComponentProps) => {
       },
     };
 
-    return [url, headers];
+    return { url, headers };
   };
 
   useEffect(() => {
     // Get properties manager manages
-    const [url, headers] = setUpUrlAndHeaders();
+    const {
+      url,
+      headers,
+    }: { url: string; headers: AxiosRequestConfig } = setUpUrlAndHeaders();
 
     axios
       .get(`${url}/houses?manager=true&test=true`, headers)
@@ -165,7 +166,10 @@ const NewGuest = (props: RouteComponentProps) => {
       .catch(axiosErrorHandler(setErrors));
   }, []);
 
-  const onSubmit = async (values, actions) => {
+  const onSubmit = async (
+    values: NewGuestInitialValues,
+    actions: FormikActions<NewGuestInitialValues>,
+  ) => {
     const {
       email,
       phone,
@@ -178,7 +182,10 @@ const NewGuest = (props: RouteComponentProps) => {
     } = values;
 
     try {
-      const [url, headers] = setUpUrlAndHeaders();
+      const {
+        url,
+        headers,
+      }: { url: string; headers: AxiosRequestConfig } = setUpUrlAndHeaders();
 
       const userData = {
         address: `${address1}\n${
