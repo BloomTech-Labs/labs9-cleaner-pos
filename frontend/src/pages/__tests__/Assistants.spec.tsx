@@ -13,7 +13,7 @@ describe('Houses dashboard', () => {
         expect(assistantCards.length).toBe(7);
     });
 
-    test('should include 1 button for every assistant card,', async () => {
+    test.skip('should include 1 button for every assistant card,', async () => {
         const { getAllByTestId } = renderWithRouter(<Assistants />, {});
 
         const buttons = await waitForElement(() => getAllByTestId('assistant-button'));
