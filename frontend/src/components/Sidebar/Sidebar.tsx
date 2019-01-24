@@ -18,13 +18,13 @@ const Sidebar = ({ onClick }: LinkProps) => {
       <NavWrapper>
         <StyledUL>
           <li>
-            <StyledLink to='/reports'>
-              <h4>Reports</h4>
+            <StyledLink to='/properties'>
+              <h4>Properties</h4>
             </StyledLink>
           </li>
           <li>
-            <StyledLink to='/properties'>
-              <h4>Properties</h4>
+            <StyledLink to='/guests'>
+              <h4>Guests</h4>
             </StyledLink>
           </li>
           <li>
@@ -44,7 +44,7 @@ const Sidebar = ({ onClick }: LinkProps) => {
           <li>
             <StyledLink to='/logout'>
               {/* <Button onClick={} t='button' data-testid='signout'>Sign Out</Button> */}
-              <Button text='Sign Out' />
+              <Button className='button-sign-out' text='Sign Out' />
             </StyledLink>
           </li>
         </StyledUL>
