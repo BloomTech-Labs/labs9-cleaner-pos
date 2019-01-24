@@ -6,7 +6,7 @@ import {
   updateUser,
   deleteUser,
 } from '../models/users';
-import { addAstMan } from '../models/assistants';
+import { addAstMan, addAstToAllManHouse } from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 
@@ -101,7 +101,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       phone,
       address,
       role,
-      manager,
+      managerID,
     } = req.body;
     const user = await findUserByExt_it(ext_it).catch((e) => {
       throw e;
@@ -116,8 +116,9 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       const token = await jwt.sign(userData, JWT_SECRET || '');
 
       // if the user signing up is an assistant, needs to be linked to manager
-      if (newUser.role === 'assistant') {
-        await addAstMan(newUser.id, manager);
+      if (role === 'assistant') {
+        const ass = await addAstMan(newUser[0].id, managerID);
+        const ass2 = await addAstToAllManHouse(newUser[0].id, managerID);
       }
       res
         .status(201)

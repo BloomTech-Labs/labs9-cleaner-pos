@@ -32,3 +32,16 @@ export function findAssistants() {
 export function addAstMan(astId: number, manId: number) {
   return db('manager_ast').insert({ manager_id: manId, ast_id: astId });
 }
+
+export function addAstToAllManHouse(astId: number, manId: number) {
+  return db('manager_ast')
+    .where({
+      'manager_ast.ast_id': astId,
+      'manager_ast.manager_id': manId,
+    })
+    .leftJoin('house', { 'manager_ast.manager_id': 'house.manager' })
+    .select('house.id')
+    .map((e: any) => {
+      return db('house_ast').insert({ ast_id: astId, house_id: e.id });
+    });
+}

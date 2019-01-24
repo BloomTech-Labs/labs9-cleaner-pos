@@ -44,7 +44,9 @@ export async function makeUser(user: User): Promise<QueryBuilder> {
     // Otherwise, proceed as normal
     const userIds = await query;
     const userId = userIds[0];
-    return db(role).insert({ user_id: userId });
+    return db(role)
+      .insert({ user_id: userId })
+      .returning(['user_id', 'id']);
   }
   // TODO: Figure out how to make this transactional
   // return db.transaction(async (trx) => {
