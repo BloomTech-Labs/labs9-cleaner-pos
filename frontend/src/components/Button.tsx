@@ -11,6 +11,8 @@ interface ButtonProps {
   datatestid?: string;
   colour?: string;
   className?: string;
+  type?: string;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -19,6 +21,7 @@ const Button = ({
   datatestid,
   colour,
   className,
+  disabled,
 }: ButtonProps) => {
   const buttonColour = colour || 'var(--colour-main-black)';
   const StyledButton = styled('button')`
@@ -39,6 +42,7 @@ const Button = ({
         onClick={onClick}
         type='button'
         data-testid={datatestid}
+        disabled={disabled}
       >
         {text}
       </StyledButton>

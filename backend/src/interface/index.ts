@@ -34,3 +34,19 @@ export interface Item {
   task: string;
   list_id: number;
 }
+
+export interface Token {
+  id: number;
+  ext_it: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  address: string;
+  role: string;
+  photoUrl: string;
+  stripeUID: string;
+  setting_text: boolean;
+  setting_email: boolean;
+  created_at: string;
+  iat: number;
+}
