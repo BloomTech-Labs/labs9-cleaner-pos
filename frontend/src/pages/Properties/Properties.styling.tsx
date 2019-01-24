@@ -12,6 +12,9 @@ const HouseItem = styled('div')`
   display: flex;
   text-align: left;
   border: 0.5px solid black;
+	@media only screen (max-width: 600px) {
+		max-width: 70%;
+	}
 `;
 
 const ButtonContainer = styled('div')`
@@ -41,18 +44,29 @@ const CardHeading = styled('div')`
     margin-block-start: 0;
     margin-block-end: 0;
   }
+	@media only screen(max-width: 600px {
+		h4 {
+			font-size:25px;
+		}
+	}
 `;
 const CardContent = styled('div')`
   padding: 0 15px;
   display: flex;
   flex-direction: column;
   width: 100%;
+	@media only screen(max-width: 600px) {
+		flex-direction: column;
+	}
 `;
 
 const CardBody = styled('div')`
   display: flex;
   justify-content: space-around;
   align-items: center;
+	@media only screen(max-width:600px) {
+		flex-direction: column;
+	}
 `;
 
 const CheckList = styled('div')`

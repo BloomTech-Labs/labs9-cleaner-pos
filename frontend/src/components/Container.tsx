@@ -8,6 +8,9 @@ const StyledContainer = styled('div')`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width 700px) {
+	width: 70%;
+  }
 `;
 
 const Container = ({
