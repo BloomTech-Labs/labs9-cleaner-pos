@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Formik, Field } from 'formik';
 // Components
 import { labelInputField } from './labelInputField';
+import Datepicker from 'react-datepicker';
 // Styled Components
 import { StyledForm } from './styles';
 // Types
@@ -18,6 +19,7 @@ import { RouteComponentProps } from 'react-router-dom';
 // Utils
 import { emptyValues } from './types';
 import { axiosErrorHandler } from '../../utils';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const NewGuestView = (formProps: MyGuestProps) => {
   const {
@@ -29,6 +31,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
     touched,
     values,
     houses,
+    setFieldValue,
   } = formProps;
   return (
     <StyledForm>
@@ -85,10 +88,11 @@ const NewGuestView = (formProps: MyGuestProps) => {
         <Field name='postCode' render={labelInputField('Post Code')} />
       </div>
 
+      <h3>Reservation Information</h3>
       <div className='guest-stay--fields'>
         {/* TODO: Implement auto-complete search bar */}
         <label htmlFor='houseId'>
-          Which property guest will be staying at?
+          Which property will the guest be staying at?
         </label>
         <br />
         {houses ? (
@@ -105,7 +109,22 @@ const NewGuestView = (formProps: MyGuestProps) => {
         )}
         <br />
         <br />
-
+        {/* TODO: Make it impossible to set Check-In date before today */}
+        <label htmlFor='checkIn'>Check-In Date</label>
+        {/* Resource: https://stackoverflow.com/a/52273407 */}
+        <Datepicker
+          name='checkIn'
+          selected={values.checkIn}
+          onChange={(e) => setFieldValue('checkIn', e)}
+        />
+        <br />
+        <label htmlFor='checkOut'>Check-Out Date</label>
+        <Datepicker
+          name='checkOut'
+          selected={values.checkOut}
+          onChange={(e) => setFieldValue('checkOut', e)}
+        />
+        <br />
         <Field name='extraGuests' render={labelInputField('Extra Guests')} />
       </div>
       <br />

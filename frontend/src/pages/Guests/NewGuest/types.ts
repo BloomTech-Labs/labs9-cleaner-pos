@@ -42,8 +42,8 @@ export interface NewGuestInitialValues {
   postCode: string;
   houseId: number;
   extraGuests: number;
-  checkIn: string;
-  checkOut: string;
+  checkIn: Date;
+  checkOut: Date;
   errorStatus?: string;
 }
 
@@ -60,8 +60,8 @@ export const emptyValues = {
   postCode: '',
   houseId: 0,
   extraGuests: 0,
-  checkIn: '',
-  checkOut: '',
+  checkIn: new Date(),
+  checkOut: new Date(),
   errorStatus: '',
 };
 
