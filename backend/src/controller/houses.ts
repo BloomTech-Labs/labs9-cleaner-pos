@@ -21,7 +21,7 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
       return res.status(200).json(result);
     } catch (e) {
       e.statusCode = e.statusCode || 400;
-      next(e);
+      return next(e);
     }
   }
 

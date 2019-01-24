@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 // Types
-import { GuestProps } from './types';
+import { GuestsProps } from './types';
 import { FilterArgs } from './types';
 // Components
 import Button from '../../components/Button';
@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 import { GuestsDiv, StyledGuestCard } from './Guests.styling';
 
 const Guests = () => {
-  const [stays, setStays] = useState([] as GuestProps[]);
+  const [stays, setStays] = useState([] as GuestsProps[]);
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [active, setActive] = useState('upcoming' as FilterArgs);
 
