@@ -24,7 +24,7 @@ const Login: FunctionComponent<LoginProps> = (props) => {
   // const justMounted = useRef(true);
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
   const { ast, manager } = queryString.parse(props.location.search);
-  console.log(ast, manager);
+
   const uiConfig = {
     callbacks: {
       // Avoid redirects after sign-in.

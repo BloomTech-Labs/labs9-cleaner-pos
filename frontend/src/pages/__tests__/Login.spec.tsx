@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
+import { renderWithRouter } from '../../helpers/functions';
 import Login from '../Login';
 import 'jest';
 
@@ -20,7 +21,11 @@ afterEach(cleanup);
 describe('Login component', () => {
   test('should render the login component displaying a button for every OAuth provider', () => {
     // @ts-ignore
-    const { container } = render(<Login />);
+    const { container } = renderWithRouter(
+      // @ts-ignore
+      <Login location={{ search: '' }} />,
+      {},
+    );
     const buttons = container.querySelectorAll('button');
     const button = document.createElement('button');
     expect(buttons.length).toBe(5);
