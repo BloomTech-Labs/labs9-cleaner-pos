@@ -8,6 +8,7 @@ import {
   Settings,
   PropertyDetails,
   Guests,
+  GuestDetail,
   Checkout,
   Assistants,
   InviteAst,
@@ -33,6 +34,7 @@ const App = (props: any) => {
         <Route exact path='/updateinfo' component={PostRegister} />
         <Route exact path='/assistants' component={Assistants} />
         <Route exact path='/guests' component={Guests} />
+        <Route exact path='/guests/:id' component={GuestDetail} />
         <Route exact path='/invite' component={InviteAst} />
       </Switch>
     </div>
