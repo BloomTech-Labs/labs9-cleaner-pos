@@ -1,4 +1,6 @@
 import * as Yup from 'yup';
+import React from 'react';
+import { FormikProps } from 'formik';
 
 export const NewPropertySchema = Yup.object().shape({
   propertyName: Yup.string().required('Property name is required'),
@@ -8,6 +10,7 @@ export const NewPropertySchema = Yup.object().shape({
   state: Yup.string().required('Region is required'),
   country: Yup.string().required('Country is required'),
   postCode: Yup.string().required('Post Code is required'),
+  photoUrl: Yup.string().url(),
   pricePerNight: Yup.number()
     .required('Price per night is required')
     .positive()
@@ -33,6 +36,7 @@ export interface NewPropertyInitialValues {
   state: string;
   postCode: string;
   country: string;
+  photoUrl: string;
   pricePerNight: number;
   feePerGuest: number;
   cleaningFee: number;
@@ -50,6 +54,7 @@ export const EmptyPropertyValues = {
   state: '',
   postCode: '',
   country: '',
+  photoUrl: '',
   pricePerNight: 0,
   feePerGuest: 0,
   cleaningFee: 0,
@@ -57,3 +62,21 @@ export const EmptyPropertyValues = {
   astGuide: '',
   guestGuide: '',
 };
+
+// URL related
+export interface UrlObj {
+  photo_url: string;
+  ast_guide: string;
+  guest_guide: string;
+}
+
+// From FileUpload.tsx
+interface UploadProps {
+  type?: string;
+  id?: number;
+  text?: string;
+}
+
+export interface MyFormProps extends FormikProps<NewPropertyInitialValues> {
+  Uppy: (props: UploadProps) => JSX.Element;
+}

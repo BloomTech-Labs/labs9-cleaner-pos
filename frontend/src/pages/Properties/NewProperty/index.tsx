@@ -1,27 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { Formik, Field, FormikActions } from 'formik';
+import { Formik, Field } from 'formik';
 // Components
-import FileUpload from '../../../components/FileUpload';
+import { FileUploadHOF } from '../../../components/FileUpload';
 // Styles
 import { NewPropertyStyled, StyledTextField } from './styles';
 // Types
-import { NewPropertySchema, NewPropertyInitialValues } from './types';
+import {
+  MyFormProps,
+  NewPropertySchema,
+  NewPropertyInitialValues,
+  UrlObj,
+} from './types';
 import { AxiosRequestConfig } from 'axios';
-import { FieldProps, FormikProps } from 'formik';
+import { FieldProps, FormikActions } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 // Etc
 import { EmptyPropertyValues } from './types';
 
 const labelInputField = (label: string) => {
   return ({ field, form }: FieldProps) => {
-    const { name, value } = field;
+    const { name, value, onChange } = field;
     const { touched, errors } = form;
     const errorState = Boolean(errors[name] && touched[name]);
     return (
       <StyledTextField
         error={errorState}
+        name={name}
+        value={value}
+        onChange={onChange}
         inputProps={{ ...field, 'data-testid': `input-${name}` }}
         InputLabelProps={{ 'data-testid': `label-${name}` }}
         className={`field-${name}`}
@@ -34,7 +42,7 @@ const labelInputField = (label: string) => {
   };
 };
 
-const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
+const NewPropertyView = (formProps: MyFormProps) => {
   const {
     dirty,
     errors,
@@ -43,6 +51,7 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
     status,
     touched,
     values,
+    Uppy,
   } = formProps;
 
   return (
@@ -51,7 +60,7 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
       <div className='property-information'>
         <h3>Information</h3>
         <Field
-          name='email'
+          name='propertyName'
           value={values.propertyName}
           render={labelInputField('Property Name')}
         />
@@ -72,7 +81,7 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
       </div>
 
       <div className='property-photo'>
-        <FileUpload text='Upload a Picture' />
+        <Uppy type='photo_url' text='Upload a Photo!' />
       </div>
 
       <div className='property-prices'>
@@ -87,9 +96,14 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
         <Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
       </div>
 
-      <div className='propert-resources'>Placeholder</div>
+      <div className='property-resources'>
+        <h3>Resources</h3>
+        <Uppy type='ast_guide' text='Upload Assistant Guide' />
+        <br />
+        <Uppy type='guest_guide' text='Upload Guest Guide' />
+      </div>
       <br />
-      {/* // TODO: mess with button component to accept optional props} */}
+
       <button
         className='submit'
         type='submit'
@@ -108,10 +122,19 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
 };
 
 const NewProperty = (props: RouteComponentProps) => {
+  const [urls, setUrls] = useState({} as UrlObj);
+
+  const urlFileUpload = FileUploadHOF((url: string, type?: string) => {
+    if (type) {
+      setUrls((prev) => ({ ...prev, [type]: url }));
+    }
+  });
+
   const onSubmit = async (
     values: NewPropertyInitialValues,
     actions: FormikActions<NewPropertyInitialValues>,
   ) => {
+    console.log('onSubmit is happening');
     const {
       propertyName,
       address1,
@@ -120,6 +143,7 @@ const NewProperty = (props: RouteComponentProps) => {
       state,
       country,
       postCode,
+      photoUrl,
       pricePerNight,
       feePerGuest,
       cleaningFee,
@@ -127,6 +151,9 @@ const NewProperty = (props: RouteComponentProps) => {
       astGuide,
       guestGuide,
     } = values;
+
+    const { photo_url, ast_guide, guest_guide } = urls;
+
     try {
       const url =
         process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -142,12 +169,13 @@ const NewProperty = (props: RouteComponentProps) => {
         address: `${address1}\n${
           address2 ? address2 + '\n' : ''
         }${city}\n${state}\n${country}\n${postCode}`,
+        photo_url,
         price: pricePerNight,
         cleaning_fee: cleaningFee,
         extra_guest_fee: feePerGuest,
         default_ast: defaultAst,
-        guest_guide: guestGuide,
-        ast_guide: astGuide,
+        guest_guide,
+        ast_guide,
       };
 
       await axios.post(`${url}/houses`, houseData, headers);
@@ -162,7 +190,7 @@ const NewProperty = (props: RouteComponentProps) => {
           errorStatus: status,
         });
         await actions.setStatus({
-          msg: `${status}: ${data}`,
+          msg: `${status}: ${data.message}`,
         });
       } else if (error.request) {
         await actions.setStatus({
@@ -183,9 +211,11 @@ const NewProperty = (props: RouteComponentProps) => {
       initialValues={EmptyPropertyValues}
       validationSchema={NewPropertySchema}
       onSubmit={onSubmit}
-    >
-      {NewPropertyView}
-    </Formik>
+      render={(formProps) => {
+        console.log('formProps', formProps);
+        return <NewPropertyView {...formProps} Uppy={urlFileUpload} />;
+      }}
+    />
   );
 };
 

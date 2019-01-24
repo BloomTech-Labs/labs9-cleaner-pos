@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 // Components
+import { Form } from 'formik';
 import { TextField } from '@material-ui/core';
 // Types
 import { ComponentClass } from 'react';
 
-export const NewPropertyStyled = styled('div')``;
+export const NewPropertyStyled = styled(Form)``;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`
   /* -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
