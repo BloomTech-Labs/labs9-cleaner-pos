@@ -13,6 +13,7 @@ import app from '../../firebase.setup';
 // Styles
 import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
+import queryString from 'query-string';
 
 interface LoginProps extends RouteComponentProps {
   onUser: any;
@@ -22,7 +23,8 @@ const Login: FunctionComponent<LoginProps> = (props) => {
   const [user, setUser] = useState<User | null>(null);
   // const justMounted = useRef(true);
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
-
+  const { ast, manager } = queryString.parse(props.location.search);
+  console.log(ast, manager);
   const uiConfig = {
     callbacks: {
       // Avoid redirects after sign-in.
@@ -51,9 +53,12 @@ const Login: FunctionComponent<LoginProps> = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    submitUser();
-  }, [user]);
+  useEffect(
+    () => {
+      submitUser();
+    },
+    [user],
+  );
 
   async function submitUser() {
     if (user !== null) {
@@ -63,7 +68,8 @@ const Login: FunctionComponent<LoginProps> = (props) => {
         ext_it: uid,
         full_name: displayName,
         photoURL,
-        role: 'manager',
+        role: ast ? 'assistant' : 'manager',
+        managerID: manager,
       };
       const url =
         process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
