@@ -27,6 +27,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
     status,
     touched,
     values,
+    houses,
   } = formProps;
   return (
     <StyledForm>
@@ -83,6 +84,24 @@ const NewGuestView = (formProps: MyGuestProps) => {
         <Field name='postCode' render={labelInputField('Post Code')} />
       </div>
 
+      <div className='guest-stay--fields'>
+        {/* TODO: Implement auto-complete search bar */}
+        <label>Which property guest will be staying at?</label>
+        <br />
+        {houses ? (
+          <Field name='houseId' component='select' placeholder='Property'>
+            {houses.map((house) => (
+              <option key={house.id} value={house.id}>
+                {house.name}
+              </option>
+            ))}
+          </Field>
+        ) : (
+          <div>Loading</div>
+        )}
+        <br />
+        <br />
+      </div>
       <br />
       <button
         className='submit'
