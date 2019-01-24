@@ -89,11 +89,13 @@ const Guests = () => {
         />
       </div>
       <div className='guests-errors'>{errors.msg}</div>
-      {stays.map((stay) => (
-        <Link to={`/guests/${stay.stay_id}`}>
-          <StyledGuestCard key={stay.stay_id} {...stay} />
-        </Link>
-      ))}
+      <div className='guests-cards'>
+        {stays.map((stay) => (
+          <Link key={stay.stay_id} to={`/guests/${stay.stay_id}`}>
+            <StyledGuestCard {...stay} />
+          </Link>
+        ))}
+      </div>
     </GuestsDiv>
   );
 };

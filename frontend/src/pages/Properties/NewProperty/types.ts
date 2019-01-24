@@ -80,6 +80,7 @@ interface UploadProps {
 export interface MyFormProps extends FormikProps<NewPropertyInitialValues> {
   assistants: AstObj[];
   Uppy: (props: UploadProps) => JSX.Element;
+  goBack: () => void;
 }
 
 // Dropdown

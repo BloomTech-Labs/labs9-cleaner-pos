@@ -13,12 +13,24 @@ const pxToRem = (px: number) => px / 16;
 
 export const GuestsDiv = styled(Container)`
   /* Sizing & Box Model */
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline wavy gray;
+  }
+
+  a:active {
+    text-decoration: underline wavy gray;
+  }
+
   max-width: 1000px;
   width: 100%;
-
-  /* Flexbox */
-  display: flex;
-  flex-flow: row wrap;
 
   .guests-header {
     /* Sizing & Box Model */
@@ -50,7 +62,13 @@ export const GuestsDiv = styled(Container)`
   }
 
   .guests-buttons-filter {
-    margin-bottom: ${pxToRem(36)}rem;
+    display: block;
+    margin: auto;
+  }
+
+  .guests-cards {
+    display: block;
+    margin: auto;
   }
 
   .guests-buttons-filter .button-filter {
@@ -70,100 +88,119 @@ export const GuestsDiv = styled(Container)`
     color: var(--colour-button-text-alt);
     background-color: var(--colour-button-background-alt);
   }
+
+  @media only screen and (min-width: 720px) {
+    /* Flexbox */
+    display: flex;
+    flex-flow: row wrap;
+
+    .guests-header {
+      /* Flexbox */
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .guests-buttons-filter {
+      margin-bottom: ${pxToRem(36)}rem;
+    }
+  }
 `;
 
 export const StyledGuestCard = styled(GuestCard)`
-  /* Sizing and Box Model */
-  width: 100%;
-  height: ${height}rem;
-  border: 1px solid var(--colour-border);
-  margin-bottom: ${pxToRem(36)}rem;
-
-  /* Grid */
-  display: grid;
-  align-items: end;
-  gap: ${pxToRem(30)}rem;
-  grid-gap: ${pxToRem(30)}rem;
-  grid-template-columns: repeat(4, 1fr);
-
-  /* Color */
-  color: var(--colour-main-black);
-  background-color: var(--colour-accent-background);
-
-  .user-image {
-    /* Sizing & Box Model*/
+  @media only screen and (min-width: 720px) {
+    /* Sizing and Box Model */
     width: 100%;
     height: ${height}rem;
-    object-fit: cover;
-
-    /* Grid */
-    grid-column: span 1;
-    grid-row: span 2;
-  }
-
-  .text-content {
-    /* Grid */
-    grid-column: 2 / 4;
-    grid-row: 1;
-
-    /* Text */
-    text-align: left;
-  }
-
-  div[class^='info-check'] {
-    /*
-    Above fancy selector courtesy of:
-    https://stackoverflow.com/a/8588532
-    */
-    /* Sizing & Box Model */
-    width: ${pxToRem(206)}rem;
-    height: 100%;
-    margin-bottom: 1rem;
+    border: 1px solid var(--colour-border);
+    margin-bottom: ${pxToRem(36)}rem;
 
     /* Color */
-    background-color: var(--colour-main-background);
-  }
-
-  .info-check-in {
-    /* Grid */
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .info-check-out {
-    /* Grid */
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  .info-progress {
-    /* Sizing & Box Model */
-    width: ${pxToRem(206)}rem;
-    height: ${pxToRem(165)}rem;
-    margin: 0 1rem 1rem 0;
+    color: var(--colour-main-black);
+    background-color: var(--colour-accent-background);
 
     /* Grid */
-    grid-column: 4;
-    grid-row: span 2;
+    display: grid;
+    align-items: end;
+    gap: ${pxToRem(30)}rem;
+    grid-gap: ${pxToRem(30)}rem;
+    grid-template-columns: repeat(4, 1fr);
 
-    /* Color */
-    background-color: var(--colour-main-background);
-  }
+    .user-image {
+      /* Sizing & Box Model*/
+      width: 100%;
+      height: ${height}rem;
+      object-fit: cover;
 
-  .info-progress .text-main {
-    /* Sizing & Box Model */
-    padding-top: 1rem;
+      /* Grid */
+      grid-column: span 1;
+      grid-row: span 2;
+    }
 
-    /* Text */
-    font-size: ${pxToRem(48)}rem;
-  }
+    .text-content {
+      /* Text */
+      text-align: left;
 
-  .info-progress .text-secondary {
-    /* Sizing & Box Model */
-    padding-bottom: 1rem;
+      /* Grid */
+      grid-column: 2 / 4;
+      grid-row: 1;
+    }
 
-    /* Text */
-    font-size: ${pxToRem(16)}rem;
+    div[class^='info-check'] {
+      /*
+      Above fancy selector courtesy of:
+      https://stackoverflow.com/a/8588532
+      */
+      /* Sizing & Box Model */
+      width: ${pxToRem(206)}rem;
+      height: 100%;
+      margin-bottom: 1rem;
+
+      /* Color */
+      background-color: var(--colour-main-background);
+    }
+
+    .info-check-in {
+      /* Grid */
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .info-check-out {
+      /* Grid */
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .info-progress {
+      /* Sizing & Box Model */
+      width: ${pxToRem(206)}rem;
+      height: ${pxToRem(165)}rem;
+      margin: 0 1rem 1rem 0;
+
+      /* Grid */
+      grid-column: 4;
+      grid-row: span 2;
+
+      /* Color */
+      background-color: var(--colour-main-background);
+    }
+
+    .info-progress .text-main {
+      /* Sizing & Box Model */
+      padding-top: 1rem;
+
+      /* Text */
+      font-size: ${pxToRem(48)}rem;
+    }
+
+    .info-progress .text-secondary {
+      /* Sizing & Box Model */
+      padding-bottom: 1rem;
+
+      /* Text */
+      font-size: ${pxToRem(16)}rem;
+    }
   }
 `;
 
