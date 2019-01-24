@@ -1,3 +1,4 @@
+import React from 'react';
 // Styled Components
 import { StyledTextField } from './styles';
 // Types
