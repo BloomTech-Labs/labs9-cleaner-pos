@@ -73,73 +73,17 @@ export const GuestsDiv = styled(Container)`
 `;
 
 export const StyledGuestCard = styled(GuestCard)`
-  /* Sizing and Box Model */
-  width: 100%;
-  height: ${height}rem;
-  border: 1px solid var(--colour-border);
-  margin-bottom: ${pxToRem(36)}rem;
-
-  /* Color */
-  color: var(--colour-main-black);
-  background-color: var(--colour-accent-background);
-
-  .user-image {
-    /* Sizing & Box Model*/
+  @media only screen and (min-width: 700px) {
+    /* Sizing and Box Model */
     width: 100%;
     height: ${height}rem;
-    object-fit: cover;
-  }
-
-  .text-content {
-    /* Text */
-    text-align: left;
-  }
-
-  div[class^='info-check'] {
-    /*
-    Above fancy selector courtesy of:
-    https://stackoverflow.com/a/8588532
-    */
-    /* Sizing & Box Model */
-    width: ${pxToRem(206)}rem;
-    height: 100%;
-    margin-bottom: 1rem;
+    border: 1px solid var(--colour-border);
+    margin-bottom: ${pxToRem(36)}rem;
 
     /* Color */
-    background-color: var(--colour-main-background);
-  }
+    color: var(--colour-main-black);
+    background-color: var(--colour-accent-background);
 
-  .info-progress {
-    /* Sizing & Box Model */
-    width: ${pxToRem(206)}rem;
-    height: ${pxToRem(165)}rem;
-    margin: 0 1rem 1rem 0;
-
-    /* Grid */
-    grid-column: 4;
-    grid-row: span 2;
-
-    /* Color */
-    background-color: var(--colour-main-background);
-  }
-
-  .info-progress .text-main {
-    /* Sizing & Box Model */
-    padding-top: 1rem;
-
-    /* Text */
-    font-size: ${pxToRem(48)}rem;
-  }
-
-  .info-progress .text-secondary {
-    /* Sizing & Box Model */
-    padding-bottom: 1rem;
-
-    /* Text */
-    font-size: ${pxToRem(16)}rem;
-  }
-
-  @media only screen and (min-width: 700px) {
     /* Grid */
     display: grid;
     align-items: end;
@@ -148,15 +92,37 @@ export const StyledGuestCard = styled(GuestCard)`
     grid-template-columns: repeat(4, 1fr);
 
     .user-image {
+      /* Sizing & Box Model*/
+      width: 100%;
+      height: ${height}rem;
+      object-fit: cover;
+
       /* Grid */
       grid-column: span 1;
       grid-row: span 2;
     }
 
     .text-content {
+      /* Text */
+      text-align: left;
+
       /* Grid */
       grid-column: 2 / 4;
       grid-row: 1;
+    }
+
+    div[class^='info-check'] {
+      /*
+      Above fancy selector courtesy of:
+      https://stackoverflow.com/a/8588532
+      */
+      /* Sizing & Box Model */
+      width: ${pxToRem(206)}rem;
+      height: 100%;
+      margin-bottom: 1rem;
+
+      /* Color */
+      background-color: var(--colour-main-background);
     }
 
     .info-check-in {
@@ -169,6 +135,36 @@ export const StyledGuestCard = styled(GuestCard)`
       /* Grid */
       grid-column: 3;
       grid-row: 2;
+    }
+
+    .info-progress {
+      /* Sizing & Box Model */
+      width: ${pxToRem(206)}rem;
+      height: ${pxToRem(165)}rem;
+      margin: 0 1rem 1rem 0;
+
+      /* Grid */
+      grid-column: 4;
+      grid-row: span 2;
+
+      /* Color */
+      background-color: var(--colour-main-background);
+    }
+
+    .info-progress .text-main {
+      /* Sizing & Box Model */
+      padding-top: 1rem;
+
+      /* Text */
+      font-size: ${pxToRem(48)}rem;
+    }
+
+    .info-progress .text-secondary {
+      /* Sizing & Box Model */
+      padding-bottom: 1rem;
+
+      /* Text */
+      font-size: ${pxToRem(16)}rem;
     }
   }
 `;
