@@ -105,7 +105,9 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       const newUser = await makeUser(userData);
       const token = await jwt.sign(userData, JWT_SECRET || '');
 
-      res.status(201).json({ token, first: true, id: newUser.id });
+      res
+        .status(201)
+        .json({ token, first: true, id: newUser.id, role: newUser.role });
     } else {
       // If user does exist within db, sign a new JWT & send it to the client
       if (user.role !== 'manager' && user.role !== 'assistant') {
@@ -113,7 +115,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       }
       const token = await jwt.sign(user, JWT_SECRET || '');
 
-      res.status(200).json({ token, id: user.id });
+      res.status(200).json({ token, id: user.id, role: user.role });
     }
   } catch (e) {
     console.log('User failed cuz', e);

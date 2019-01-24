@@ -19,15 +19,22 @@ import Billing from './pages/Billing/Billing';
 interface UserData {
   id: number;
   loggedIn: boolean;
+  role: string;
 }
 
 const App = (props: any) => {
   const token = localStorage.getItem('token');
-  const defaultValue = token
-    ? { id: Number(localStorage.getItem('id')), loggedIn: true }
-    : { id: 0, loggedIn: false };
+  const role = localStorage.getItem('role') || '';
+  const id = Number(localStorage.getItem('id')) || -1;
+  const defaultValue = {
+    id,
+    loggedIn: token ? true : false,
+    role,
+  };
+
   const UserContext = createContext<UserData>(defaultValue);
 
+  console.log(UserContext);
   return (
     <div className='App'>
       <UserContext.Provider value={defaultValue}>
