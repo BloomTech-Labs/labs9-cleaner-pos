@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 // Components
 import { TextField } from 'material-ui';
+import { Form } from 'formik';
 // Types
 import { ComponentClass } from 'react';
+
+export const StyledForm = styled(Form)``;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`
   /* -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),

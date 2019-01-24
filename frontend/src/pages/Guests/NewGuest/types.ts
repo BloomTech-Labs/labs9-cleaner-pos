@@ -4,6 +4,10 @@ import * as Yup from 'yup';
 
 // --Yup Validator
 export const SignupSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .min(2)
+    .max(128)
+    .required('Name is required'),
   email: Yup.string()
     .email('Email is invalid')
     .required('Email is required'),
@@ -17,25 +21,33 @@ export const SignupSchema = Yup.object().shape({
   state: Yup.string().required('Region is required'),
   country: Yup.string().required('Country is required'),
   postCode: Yup.string().required('Post Code is required'),
+  houseId: Yup.number().required(),
+  extraGuests: Yup.number(),
+  checkIn: Yup.date().required('Check-In date is required'),
+  checkOut: Yup.date().required('Check-Out date is required'),
 });
 
 // --InitialValueProps
 export interface NewGuestInitialValues {
-  email?: string;
-  phone?: string;
-  address1?: string;
-  address2?: string;
-  city?: string;
-  state?: string;
-  country?: string;
-  postCode?: string;
-  full_name?: string;
-  ext_it?: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  country: string;
+  postCode: string;
+  houseId: number;
+  extraGuests: number;
+  checkIn: string;
+  checkOut: string;
   errorStatus?: string;
 }
 
 // Empty Values Object
 export const emptyValues = {
+  fullName: '',
   email: '',
   phone: '',
   address1: '',
@@ -44,5 +56,9 @@ export const emptyValues = {
   state: '',
   country: '',
   postCode: '',
+  houseId: (null as unknown) as number,
+  extraGuests: 0,
+  checkIn: '',
+  checkOut: '',
   errorStatus: '',
 };
