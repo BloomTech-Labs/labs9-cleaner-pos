@@ -1,5 +1,6 @@
 import Properties from './Properties/Properties';
 import PropertiesDetail from './Properties/PropertyDetails';
+import NewProperty from './Properties/NewProperty';
 import Login from './Login/Login';
 import LandingPage from './LandingPage/Landingpage';
 import PostRegister from './PostRegister';
@@ -16,6 +17,7 @@ import InviteAst from './InviteAst/InviteAst';
 export {
   Properties,
   PropertiesDetail,
+  NewProperty,
   Login,
   LandingPage,
   PostRegister,

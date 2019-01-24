@@ -44,18 +44,18 @@ const Properties = () => {
     }
   }
   // Axios call to display list of properties
-  useEffect(
-    () => {
-      fetchHouses();
-      shouldFetch.current = false;
-    },
-    [shouldFetch],
-  );
+  useEffect(() => {
+    fetchHouses();
+    shouldFetch.current = false;
+  }, [shouldFetch]);
 
   // Presentational layer
   return (
     <Container>
       <HouseHeader>Recent Properties</HouseHeader>
+      <Link to='/properties/new'>
+        <Button text='New Property' />
+      </Link>
       {houses.map((house) => {
         return (
           <HouseItem key={house.id} data-testid='house-item'>
