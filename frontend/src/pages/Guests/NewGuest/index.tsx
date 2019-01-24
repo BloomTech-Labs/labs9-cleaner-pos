@@ -5,14 +5,20 @@ import { labelInputField } from './labelInputField';
 // Styled Components
 import { StyledForm } from './styles';
 // Types
-import { NewGuestInitialValues, SignupSchema } from './types';
+import {
+  ManagerHouse,
+  MyGuestProps,
+  NewGuestInitialValues,
+  SignupSchema,
+} from './types';
 import { AxiosRequestConfig } from 'axios';
 import { Formik, Field, FieldProps, FormikProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 // Utils
 import { emptyValues } from './types';
+import { axiosErrorHandler } from '../../utils';
 
-const NewGuestView = (formProps: FormikProps<NewGuestInitialValues>) => {
+const NewGuestView = (formProps: MyGuestProps) => {
   const {
     dirty,
     errors,
@@ -96,7 +102,13 @@ const NewGuestView = (formProps: FormikProps<NewGuestInitialValues>) => {
 };
 
 const NewGuest = (props: RouteComponentProps) => {
+  const [houses, setHouses] = useState([] as ManagerHouse[]);
+  const [errors, setErrors] = useState({ msg: '', error: false });
   const setUpUrlAndHeaders = () => {
+    /*
+    Sets default URL, loads/checks token, and sets header
+    Returns url and header as an array in said order
+    */
     const url =
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
@@ -114,6 +126,18 @@ const NewGuest = (props: RouteComponentProps) => {
 
     return [url, headers];
   };
+
+  useEffect(() => {
+    // Get properties manager manages
+    const [url, headers] = setUpUrlAndHeaders();
+
+    axios
+      .get(`${url}/houses?manager=true&test=true`, headers)
+      .then((res) => {
+        setHouses(res.data);
+      })
+      .catch(axiosErrorHandler(setErrors));
+  }, []);
 
   const onSubmit = async (values, actions) => {
     const {
@@ -171,7 +195,7 @@ const NewGuest = (props: RouteComponentProps) => {
       initialValues={emptyValues}
       validationSchema={SignupSchema}
       onSubmit={onSubmit}
-      render={NewGuestView}
+      render={(formProps) => <NewGuestView houses={houses} {...formProps} />}
     />
   );
 };

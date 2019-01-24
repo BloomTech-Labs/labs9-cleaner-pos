@@ -74,7 +74,12 @@ export const findAllHousesByManagerId = (managerId: number) => {
     .where({ 'house.manager': managerId })
     .leftJoin('manager', { 'house.manager': 'manager.id' })
     .leftJoin('user', { 'manager.user_id': 'user.id' })
-    .select('house.id', 'house.name', 'house.address', 'house.manager');
+    .select(
+      'house.id AS id',
+      'house.name AS name',
+      'house.address AS address',
+      'house.manager AS manager_id',
+    );
 };
 
 export const findHouse = async (id: number) => {

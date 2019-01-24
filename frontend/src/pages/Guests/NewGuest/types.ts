@@ -1,4 +1,6 @@
 import * as Yup from 'yup';
+// Types
+import { FormikProps } from 'formik';
 
 // For New User
 
@@ -62,3 +64,15 @@ export const emptyValues = {
   checkOut: '',
   errorStatus: '',
 };
+
+// GET houses in useEffect
+export interface ManagerHouse {
+  id: number;
+  name: string;
+  address: string;
+  manager_id: number;
+}
+
+export interface MyGuestProps extends FormikProps<NewGuestInitialValues> {
+  houses: ManagerHouse[];
+}
