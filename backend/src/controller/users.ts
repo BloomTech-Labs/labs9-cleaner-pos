@@ -102,10 +102,12 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       const userData: User = { ext_it, full_name, email, phone, address, role };
 
       // should we save output to a variable? I don't think the client should be sent that info.
-      await makeUser(userData);
+      const newUser = await makeUser(userData);
       const token = await jwt.sign(userData, JWT_SECRET || '');
 
-      res.status(201).json({ token, first: true });
+      res
+        .status(201)
+        .json({ token, first: true, id: newUser.id, role: newUser.role });
     } else {
       // If user does exist within db, sign a new JWT & send it to the client
       if (user.role !== 'manager' && user.role !== 'assistant') {
@@ -113,7 +115,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       }
       const token = await jwt.sign(user, JWT_SECRET || '');
 
-      res.status(200).json({ token });
+      res.status(200).json({ token, id: user.id, role: user.role });
     }
   } catch (e) {
     e.statusCode = 400;

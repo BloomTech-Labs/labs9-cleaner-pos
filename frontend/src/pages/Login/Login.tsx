@@ -14,7 +14,11 @@ import app from '../../firebase.setup';
 import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
 
-const Login: FunctionComponent<RouteComponentProps> = (props) => {
+interface LoginProps extends RouteComponentProps {
+  onUser: any;
+}
+
+const Login: FunctionComponent<LoginProps> = (props) => {
   const [user, setUser] = useState<User | null>(null);
   // const justMounted = useRef(true);
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
@@ -47,12 +51,9 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
     };
   }, []);
 
-  useEffect(
-    () => {
-      submitUser();
-    },
-    [user],
-  );
+  useEffect(() => {
+    submitUser();
+  }, [user]);
 
   async function submitUser() {
     if (user !== null) {
@@ -69,6 +70,8 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
       try {
         const { data } = await axios.post(`${url}/users/`, nUser);
         localStorage.setItem('token', data.token);
+        localStorage.setItem('id', data.id);
+        localStorage.setItem('role', data.role);
         if (data.first) {
           props.history.push('/updateinfo');
         } else {
