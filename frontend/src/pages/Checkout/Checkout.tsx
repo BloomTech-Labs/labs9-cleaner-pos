@@ -11,6 +11,7 @@ interface CheckoutProps extends RouteComponentProps {
 
 const Checkout = (props: CheckoutProps) => {
   const [error, setError] = useState<any>({ msg: '', error: false });
+  // TODO: change state to include no default values
   const [stay, setStay] = useState({
     guest_name: '',
     house_id: 0,
@@ -24,7 +25,6 @@ const Checkout = (props: CheckoutProps) => {
     extra_fee: 0,
   });
   const [stays, setStays] = useState([]);
-  console.log(stays);
 
   const token = localStorage.getItem('token');
   const headers: AxiosRequestConfig = {
@@ -81,7 +81,7 @@ const Checkout = (props: CheckoutProps) => {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetchStay();
     fetchStays();
   }, []);
@@ -135,6 +135,7 @@ const Checkout = (props: CheckoutProps) => {
         </div>
         <div>
           <CheckoutForm>
+            {/* TODO: implement onChange to filter through stays */}
             <label htmlFor='stay-search' style={{ display: 'hidden' }}>
               Search for different Stay
             </label>
@@ -146,6 +147,7 @@ const Checkout = (props: CheckoutProps) => {
           </CheckoutForm>
           <Invoice>
             <h3>Invoice</h3>
+            {/* TODO: implement axios call to change stay to account for new inputs */}
             <Button
               text={`Pay $${total}`}
               colour='#0aa047'

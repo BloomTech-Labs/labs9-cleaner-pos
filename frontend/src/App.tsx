@@ -21,9 +21,9 @@ const App = (props: any) => {
       <Sidebar />
       <Switch>
         <Route exact path='/' component={LandingPage} />
+        <Route path='/Login' component={Login} />
         <Route exact path='/checkout/:id' component={Checkout} />
         <Route exact path='/test' component={Billing} />
-        <Route path='/Login' component={Login} />
         <Route path='/billing' component={Billing} />
         <Route exact path='/postreg' component={PostRegister} />
         <Route exact path='/properties' component={Properties} />
