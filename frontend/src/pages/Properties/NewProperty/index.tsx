@@ -25,7 +25,7 @@ const labelInputField = (label: string) => {
         className={`field-${name}`}
         data-testid={`field-${name}`}
         label={errorState ? errors[name] : label}
-        variant='filled'
+        margin='normal'
         {...field}
       />
     );
@@ -84,6 +84,21 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
       </div>
 
       <div className='propert-resources'>Placeholder</div>
+      <br />
+      {/* // TODO: mess with button component to accept optional props} */}
+      <button
+        className='submit'
+        type='submit'
+        data-testid='button-submit'
+        disabled={isSubmitting || !dirty}
+      >
+        {isSubmitting ? 'Submitting' : 'Submit'}
+      </button>
+      {status && status.msg && (
+        <div className='status' data-testid='div-status'>
+          {status.msg}
+        </div>
+      )}
     </NewPropertyStyled>
   );
 };
