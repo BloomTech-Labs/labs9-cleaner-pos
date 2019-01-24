@@ -93,6 +93,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
         <br />
         {houses ? (
           <Field name='houseId' component='select' placeholder='Property'>
+            <option value={-1}>Choose a property</option>
             {houses.map((house) => (
               <option key={house.id} value={house.id}>
                 {house.name}

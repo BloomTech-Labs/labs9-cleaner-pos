@@ -58,7 +58,7 @@ export const emptyValues = {
   state: '',
   country: '',
   postCode: '',
-  houseId: (null as unknown) as number,
+  houseId: 0,
   extraGuests: 0,
   checkIn: '',
   checkOut: '',
