@@ -29,13 +29,20 @@ export function findUsers(): QueryBuilder {
   return db('user');
 }
 
+// TODO: Test please.
 export async function makeUser(user: User): Promise<QueryBuilder> {
   const role = user.role;
-  const userIds = await db('user')
+  const query: QueryBuilder = db('user')
     .insert(user)
     .returning('id');
-  const userId = userIds[0];
-  return db(role).insert({ user_id: userId });
+
+  if (user.role === 'guest') {
+    return query;
+  } else {
+    const userIds = await query;
+    const userId = userIds[0];
+    return db(role).insert({ user_id: userId });
+  }
   // TODO: Figure out how to make this transactional
   // return db.transaction(async (trx) => {
   //   try {
