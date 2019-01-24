@@ -13,12 +13,24 @@ const pxToRem = (px: number) => px / 16;
 
 export const GuestsDiv = styled(Container)`
   /* Sizing & Box Model */
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline wavy gray;
+  }
+
+  a:active {
+    text-decoration: underline wavy gray;
+  }
+
   max-width: 1000px;
   width: 100%;
-
-  /* Flexbox */
-  display: flex;
-  flex-flow: row wrap;
 
   .guests-header {
     /* Sizing & Box Model */
@@ -50,7 +62,13 @@ export const GuestsDiv = styled(Container)`
   }
 
   .guests-buttons-filter {
-    margin-bottom: ${pxToRem(36)}rem;
+    display: block;
+    margin: auto;
+  }
+
+  .guests-cards {
+    display: block;
+    margin: auto;
   }
 
   .guests-buttons-filter .button-filter {
@@ -70,10 +88,27 @@ export const GuestsDiv = styled(Container)`
     color: var(--colour-button-text-alt);
     background-color: var(--colour-button-background-alt);
   }
+
+  @media only screen and (min-width: 720px) {
+    /* Flexbox */
+    display: flex;
+    flex-flow: row wrap;
+
+    .guests-header {
+      /* Flexbox */
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .guests-buttons-filter {
+      margin-bottom: ${pxToRem(36)}rem;
+    }
+  }
 `;
 
 export const StyledGuestCard = styled(GuestCard)`
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 720px) {
     /* Sizing and Box Model */
     width: 100%;
     height: ${height}rem;
