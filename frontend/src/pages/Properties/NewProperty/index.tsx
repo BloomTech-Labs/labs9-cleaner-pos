@@ -2,6 +2,8 @@ import React from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { Formik, Field, FormikActions } from 'formik';
+// Components
+import FileUpload from '../../../components/FileUpload';
 // Styles
 import { NewPropertyStyled, StyledTextField } from './styles';
 // Types
@@ -69,7 +71,9 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
         <Field name='postCode' render={labelInputField('Post Code')} />
       </div>
 
-      <div className='property-photo'>Placeholder</div>
+      <div className='property-photo'>
+        <FileUpload text='Upload a Picture' />
+      </div>
 
       <div className='property-prices'>
         <h3>Prices</h3>
