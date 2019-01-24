@@ -60,27 +60,29 @@ const NewPropertyView = (formProps: MyFormProps) => {
   return (
     <NewPropertyStyled>
       <h2>Properties</h2>
-      <div className='property-information'>
+      <div className='property-info'>
         <h3>Information</h3>
-        <Field
-          name='propertyName'
-          value={values.propertyName}
-          render={labelInputField('Property Name')}
-        />
-        <Field name='address1' render={labelInputField('Address')} />
+        <div className='property-info--fields'>
+          <Field
+            name='propertyName'
+            value={values.propertyName}
+            render={labelInputField('Property Name')}
+          />
+          <Field name='address1' render={labelInputField('Address')} />
 
-        <Field name='address2' render={labelInputField('Address (cont.)')} />
+          <Field name='address2' render={labelInputField('Address (cont.)')} />
 
-        <Field name='city' render={labelInputField('City')} />
+          <Field name='city' render={labelInputField('City')} />
 
-        <Field
-          name='state'
-          render={labelInputField('State · Province · Region')}
-        />
+          <Field
+            name='state'
+            render={labelInputField('State · Province · Region')}
+          />
 
-        <Field name='country' render={labelInputField('Country')} />
+          <Field name='country' render={labelInputField('Country')} />
 
-        <Field name='postCode' render={labelInputField('Post Code')} />
+          <Field name='postCode' render={labelInputField('Post Code')} />
+        </div>
       </div>
 
       <div className='property-photo'>
@@ -101,6 +103,8 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <div className='property-resources'>
         <h3>Resources</h3>
+        <label>Choose a default assistant.</label>
+        <br />
         {assistants ? (
           <Field name='defaultAst' component='select' placeholder='Assistant'>
             {assistants.map((ast) => (
@@ -112,6 +116,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
         ) : (
           <div>Loading</div>
         )}
+        <br />
         <br />
         <Uppy type='ast_guide' text='Upload Assistant Guide' />
         <br />

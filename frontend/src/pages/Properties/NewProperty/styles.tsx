@@ -6,7 +6,15 @@ import { TextField } from '@material-ui/core';
 // Types
 import { ComponentClass } from 'react';
 
-export const NewPropertyStyled = styled(Form)``;
+export const NewPropertyStyled = styled(Form)`
+  /* Box Model & Sizing */
+  margin: auto;
+  max-width: 700px;
+
+  button {
+    font-size: 1rem;
+  }
+`;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`
   /* -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
