@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { Formik, Field } from 'formik';
+import { Formik, Field, FormikActions } from 'formik';
 // Styles
 import { NewPropertyStyled, StyledTextField } from './styles';
 // Types
@@ -9,6 +9,8 @@ import { NewPropertySchema, NewPropertyInitialValues } from './types';
 import { AxiosRequestConfig } from 'axios';
 import { FieldProps, FormikProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
+// Etc
+import { EmptyPropertyValues } from './types';
 
 const labelInputField = (label: string) => {
   return ({ field, form }: FieldProps) => {
@@ -86,8 +88,86 @@ const NewPropertyView = (formProps: FormikProps<NewPropertyInitialValues>) => {
   );
 };
 
-const NewProperty = () => {
-  return 'hello';
+const NewProperty = (props: RouteComponentProps) => {
+  const onSubmit = async (
+    values: NewPropertyInitialValues,
+    actions: FormikActions<NewPropertyInitialValues>,
+  ) => {
+    const {
+      propertyName,
+      address1,
+      address2,
+      city,
+      state,
+      country,
+      postCode,
+      pricePerNight,
+      feePerGuest,
+      cleaningFee,
+      defaultAst,
+      astGuide,
+      guestGuide,
+    } = values;
+    try {
+      const url =
+        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+      const headers: AxiosRequestConfig = {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      };
+
+      const houseData = {
+        name: propertyName,
+        address: `${address1}\n${
+          address2 ? address2 + '\n' : ''
+        }${city}\n${state}\n${country}\n${postCode}`,
+        price: pricePerNight,
+        cleaning_fee: cleaningFee,
+        extra_guest_fee: feePerGuest,
+        default_ast: defaultAst,
+        guest_guide: guestGuide,
+        ast_guide: astGuide,
+      };
+
+      await axios.post(`${url}/houses`, houseData, headers);
+      await actions.setSubmitting(false);
+      await actions.setStatus('Submission successful. Thank you!');
+      props.history.push('/properties');
+    } catch (error) {
+      await actions.setSubmitting(false);
+      if (error.response) {
+        const { status, data } = error.response;
+        await actions.setErrors({
+          errorStatus: status,
+        });
+        await actions.setStatus({
+          msg: `${status}: ${data}`,
+        });
+      } else if (error.request) {
+        await actions.setStatus({
+          msg: 'Could not connect. Please try again later.',
+        });
+      } else {
+        await actions.setStatus({
+          msg: `Request could not be processed. Please refresh the page.\n\nError:\n${
+            error.message
+          }`,
+        });
+      }
+    }
+  };
+
+  return (
+    <Formik
+      initialValues={EmptyPropertyValues}
+      validationSchema={NewPropertySchema}
+      onSubmit={onSubmit}
+    >
+      {NewPropertyView}
+    </Formik>
+  );
 };
 
 export default NewProperty;

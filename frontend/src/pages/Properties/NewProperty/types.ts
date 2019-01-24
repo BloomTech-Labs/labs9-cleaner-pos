@@ -39,4 +39,21 @@ export interface NewPropertyInitialValues {
   defaultAst: number;
   astGuide: string;
   guestGuide: string;
+  errorStatus?: string;
 }
+
+export const EmptyPropertyValues = {
+  propertyName: '',
+  address1: '',
+  address2: '',
+  city: '',
+  state: '',
+  postCode: '',
+  country: '',
+  pricePerNight: 0,
+  feePerGuest: 0,
+  cleaningFee: 0,
+  defaultAst: 0,
+  astGuide: '',
+  guestGuide: '',
+};
