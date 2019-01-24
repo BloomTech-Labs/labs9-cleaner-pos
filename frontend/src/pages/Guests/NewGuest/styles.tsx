@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 // Components
-import { TextField } from 'material-ui';
+import { TextField } from '@material-ui/core';
 import { Form } from 'formik';
 // Types
 import { ComponentClass } from 'react';
