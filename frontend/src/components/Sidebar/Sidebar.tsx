@@ -13,12 +13,13 @@ import {
   StyledUL,
   StyledLink,
 } from './Sidebar.styling';
+import { ContentTextFormat } from 'material-ui/svg-icons';
 
 interface LinkProps {
   onClick?: () => MouseEvent;
 }
 
-const Sidebar = ({ onClick, history }: any) => {
+const Sidebar = (props: any) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (e: any) => {
@@ -31,10 +32,12 @@ const Sidebar = ({ onClick, history }: any) => {
 
   const logOut = () => {
     console.log('logout function called');
+    console.log(history);
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
-    history.push('/');
+    localStorage.removeItem('firebaseui::rememberedAccounts');
+    props.history.push('/');
   };
 
   const user = useContext(UserContext);
@@ -85,23 +88,15 @@ const Sidebar = ({ onClick, history }: any) => {
         </StyledUL>
       </NavWrapper>
       <SettingsWrapper>
-        <StyledUL>
-          <li>
-            <StyledLink to='/settings'>
-              <h4>Settings</h4>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/logout'>
-              {/* <Button onClick={} t='button' data-testid='signout'>Sign Out</Button> */}
-              <Button
-                onClick={() => logOut()}
-                className='button-sign-out'
-                text='Sign Out'
-              />
-            </StyledLink>
-          </li>
-        </StyledUL>
+        <StyledLink to='/settings'>
+          <h4>Settings</h4>
+        </StyledLink>
+
+        <Button
+          onClick={() => logOut()}
+          className='button-sign-out'
+          text='Sign Out'
+        />
       </SettingsWrapper>
     </Container>
   );
