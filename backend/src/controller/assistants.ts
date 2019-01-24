@@ -1,23 +1,14 @@
 import { findAssistants } from '../models/assistants';
-
 import { Request, Response, NextFunction } from 'express';
-import jwt, { Secret } from 'jsonwebtoken';
 
-declare global {
-    interface Token {
-        ext_it: string;
-        role: string;
+export const get = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        // Find assistants
+        let assistants: any;
+        assistants = await findAssistants();
+        res.status(200).json(assistants);
+    } catch (e) {
+    e.statusCode = 500;
+    next(e);
     }
-
-    namespace Express {
-        interface Request {
-            token: Token;
-        }
-    }
-
-    interface StatusError extends Error {
-        statusCode: number;
-    }
-}
-
-
+};
