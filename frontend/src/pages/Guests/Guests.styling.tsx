@@ -79,13 +79,6 @@ export const StyledGuestCard = styled(GuestCard)`
   border: 1px solid var(--colour-border);
   margin-bottom: ${pxToRem(36)}rem;
 
-  /* Grid */
-  display: grid;
-  align-items: end;
-  gap: ${pxToRem(30)}rem;
-  grid-gap: ${pxToRem(30)}rem;
-  grid-template-columns: repeat(4, 1fr);
-
   /* Color */
   color: var(--colour-main-black);
   background-color: var(--colour-accent-background);
@@ -95,17 +88,9 @@ export const StyledGuestCard = styled(GuestCard)`
     width: 100%;
     height: ${height}rem;
     object-fit: cover;
-
-    /* Grid */
-    grid-column: span 1;
-    grid-row: span 2;
   }
 
   .text-content {
-    /* Grid */
-    grid-column: 2 / 4;
-    grid-row: 1;
-
     /* Text */
     text-align: left;
   }
@@ -122,18 +107,6 @@ export const StyledGuestCard = styled(GuestCard)`
 
     /* Color */
     background-color: var(--colour-main-background);
-  }
-
-  .info-check-in {
-    /* Grid */
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .info-check-out {
-    /* Grid */
-    grid-column: 3;
-    grid-row: 2;
   }
 
   .info-progress {
@@ -164,6 +137,39 @@ export const StyledGuestCard = styled(GuestCard)`
 
     /* Text */
     font-size: ${pxToRem(16)}rem;
+  }
+
+  @media only screen and (min-width: 700px) {
+    /* Grid */
+    display: grid;
+    align-items: end;
+    gap: ${pxToRem(30)}rem;
+    grid-gap: ${pxToRem(30)}rem;
+    grid-template-columns: repeat(4, 1fr);
+
+    .user-image {
+      /* Grid */
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+
+    .text-content {
+      /* Grid */
+      grid-column: 2 / 4;
+      grid-row: 1;
+    }
+
+    .info-check-in {
+      /* Grid */
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .info-check-out {
+      /* Grid */
+      grid-column: 3;
+      grid-row: 2;
+    }
   }
 `;
 
