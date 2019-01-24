@@ -16,16 +16,17 @@ jest.mock('react-firebaseui/StyledFirebaseAuth', () => () => {
   );
 });
 
+const props: any = {
+  location: { search: 'code=34134123dsfasfdads' },
+  history: {},
+  match: {},
+};
+
 afterEach(cleanup);
 
 describe('Login component', () => {
   test('should render the login component displaying a button for every OAuth provider', () => {
-    // @ts-ignore
-    const { container } = renderWithRouter(
-      // @ts-ignore
-      <Login location={{ search: '' }} />,
-      {},
-    );
+    const { container } = renderWithRouter(<Login {...props} />, {});
     const buttons = container.querySelectorAll('button');
     const button = document.createElement('button');
     expect(buttons.length).toBe(5);
