@@ -6,6 +6,7 @@ import { GuestsProps } from './types';
 import { FilterArgs } from './types';
 // Components
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 // Styling & Styled Components
 import { GuestsDiv, StyledGuestCard } from './Guests.styling';
 
@@ -60,7 +61,9 @@ const Guests = () => {
     <GuestsDiv>
       <div className='guests-header'>
         <h2>Guests</h2>
-        <Button text='New Guest' colour='var(--colour-accent)' />
+        <Link to='/guests/new'>
+          <Button text='New Guest' colour='var(--colour-accent)' />
+        </Link>
       </div>
       <div className='guests-buttons-filter'>
         <Button
