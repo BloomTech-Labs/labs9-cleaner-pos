@@ -192,6 +192,7 @@ const NewGuest = (props: RouteComponentProps) => {
     actions: FormikActions<NewGuestInitialValues>,
   ) => {
     const {
+      fullName,
       email,
       phone,
       address1,
@@ -200,6 +201,10 @@ const NewGuest = (props: RouteComponentProps) => {
       state,
       country,
       postCode,
+      houseId,
+      extraGuests,
+      checkIn,
+      checkOut,
     } = values;
 
     try {
@@ -209,17 +214,31 @@ const NewGuest = (props: RouteComponentProps) => {
       }: { url: string; headers: AxiosRequestConfig } = setUpUrlAndHeaders();
 
       const userData = {
+        full_name: fullName,
         address: `${address1}\n${
           address2 ? address2 + '\n' : ''
         }${city}\n${state}\n${country}\n${postCode}`,
         email,
         phone,
+        ext_it: null,
+        role: 'guest',
       };
 
-      await axios.post(`${url}/users`, userData, headers);
+      const result = await axios.post(`${url}/guests/`, userData, headers);
+      console.log('axios result:', result);
+      const userId = result.data[0];
+
+      const stayData = {
+        guest_id: userId,
+        house_id: houseId,
+        extra_guests: extraGuests,
+        check_in: checkIn,
+        check_out: checkOut,
+      };
+      await axios.post(`${url}/stays/`, stayData, headers);
       await actions.setSubmitting(false);
       await actions.setStatus('Submission successful. Thank you!');
-      props.history.push('/dashboard');
+      props.history.push('/guests');
     } catch (error) {
       await actions.setSubmitting(false);
       if (error.response) {
