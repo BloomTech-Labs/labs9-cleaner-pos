@@ -84,6 +84,10 @@ const CheckList = styled('div')`
         margin: 0;
         font-weight: bold;
     }
+    @media only screen and (max-width: 600px) {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
     `;
 
 const Asst = styled('div')`
@@ -100,6 +104,10 @@ const Asst = styled('div')`
     p {
         margin: 0;
         font-weight: bold;
+    }
+    @media only screen and (max-width: 600px) {
+        margin-top: 1rem;
+        font-size: 1.2rem;
     }
 `;
 
