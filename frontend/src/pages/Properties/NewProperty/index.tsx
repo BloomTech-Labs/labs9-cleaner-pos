@@ -133,6 +133,13 @@ const NewPropertyView = (formProps: MyFormProps) => {
       >
         {isSubmitting ? 'Submitting' : 'Submit'}
       </button>
+      <button
+        className='back'
+        data-testid='button-back'
+        onClick={formProps.goBack}
+      >
+        Go Back ↩
+      </button>
       {status && status.msg && (
         <div className='status' data-testid='div-status'>
           {status.msg}
@@ -250,6 +257,8 @@ const NewProperty = (props: RouteComponentProps) => {
     }
   };
 
+  const goBack = () => props.history.push('/properties');
+
   return (
     <Formik
       initialValues={EmptyPropertyValues}
@@ -261,6 +270,7 @@ const NewProperty = (props: RouteComponentProps) => {
             {...formProps}
             Uppy={urlFileUpload}
             assistants={assistants}
+            goBack={goBack}
           />
         );
       }}
