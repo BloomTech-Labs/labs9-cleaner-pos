@@ -12,6 +12,10 @@ const HouseItem = styled('div')`
   display: flex;
   text-align: left;
   border: 0.5px solid black;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    height: 100%;
+  }
 `;
 
 const ButtonContainer = styled('div')`
