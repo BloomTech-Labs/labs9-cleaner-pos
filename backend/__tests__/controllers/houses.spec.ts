@@ -1,7 +1,7 @@
 import 'jest';
 import request from 'supertest';
 import app from '../../src/app';
-
+import data from '../../data/seeds/data/housesData';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
 
@@ -30,7 +30,7 @@ describe('/house routes', () => {
       .set('Accept', 'application/json')
       .expect(200)
       .then(({ body }) => {
-        expect(body.length).toBe(3);
+        expect(body.length).toBe(data.length);
         done();
       });
   });
@@ -81,7 +81,7 @@ describe('/house routes', () => {
       .expect(201)
       .then(() => {
         request(app)
-          .get('/houses/4')
+          .get(`/houses/${data.length + 1}`)
           .set('Accept', 'application/json')
           .expect(200)
           .then(({ body }) => {

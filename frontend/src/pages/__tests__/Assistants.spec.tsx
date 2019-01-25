@@ -14,8 +14,7 @@ jest.mock('axios', () => {
 });
 afterEach(cleanup);
 
-// these tests will only pass if the data on the pg sever never changes.
-// should prop use moke
+// modified these tests to use mock data
 describe('Houses dashboard', () => {
   test('should render an assistant card for every assistant received through axios call', async () => {
     const { getAllByTestId } = renderWithRouter(<Assistants />, {});

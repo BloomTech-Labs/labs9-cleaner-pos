@@ -2,6 +2,7 @@ import 'jest';
 import request from 'supertest';
 import app from '../../src/app';
 import * as email from '../../src/controller/email';
+import * as user from '../../src/models/users';
 import { send } from '../../src/controller/email';
 import { RequestMock, ResponseMock } from '../helpers';
 // Set up 'req' and 'res' mocks
@@ -35,9 +36,13 @@ describe('/test email routes', () => {
     jest
       .spyOn(email, 'sgSend')
       .mockImplementationOnce(() => Promise.resolve(undefined));
+    jest
+      .spyOn(user, 'getRoleId')
+      .mockImplementationOnce(() => Promise.resolve(5));
 
     await send(req, res, next);
     const { statusValue, jsonValue } = res;
+
     expect(statusValue).toBe(200);
   });
   test('receive 403 if missing token', (done) => {
