@@ -27,7 +27,7 @@ const PropertyDetails = (props: any) => {
   const [inputItem, setInputItem] = useState(false);
 
   const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
 
   async function fetchHouse(id: number) {
     try {
@@ -43,7 +43,7 @@ const PropertyDetails = (props: any) => {
       const headers: AxiosRequestConfig = {
         headers: { Authorization: token },
       };
-      const res = await axios.get(`${url}/houses/${id}`, headers);
+      const res = await axios.get(`${url}houses/${id}`, headers);
       setProperty(res.data);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -52,7 +52,7 @@ const PropertyDetails = (props: any) => {
 
   async function fetchLists(id: number) {
     try {
-      const res = await axios.get(`${url}/lists/${id}`);
+      const res = await axios.get(`${url}lists/${id}`);
       setLists(res.data);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -61,7 +61,7 @@ const PropertyDetails = (props: any) => {
 
   async function submitNew(newTaks: any) {
     try {
-      await axios.post(`${url}/items/`, newTaks);
+      await axios.post(`${url}items/`, newTaks);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -70,7 +70,7 @@ const PropertyDetails = (props: any) => {
 
   async function deleteTasks(id: number) {
     try {
-      await axios.delete(`${url}/items/${id}`);
+      await axios.delete(`${url}items/${id}`);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -78,7 +78,7 @@ const PropertyDetails = (props: any) => {
   }
   async function deleteList(id: number) {
     try {
-      await axios.delete(`${url}/lists/${id}`);
+      await axios.delete(`${url}lists/${id}`);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -97,7 +97,7 @@ const PropertyDetails = (props: any) => {
         house_id: property.id,
         hours_after: newItem,
       };
-      await axios.post(`${url}/lists/`, postList);
+      await axios.post(`${url}lists/`, postList);
       toggleText();
       setNewItem('');
       fetchLists(props.match.params.id);

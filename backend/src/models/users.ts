@@ -80,3 +80,16 @@ export function deleteUser(id: number): QueryBuilder {
     .where({ id })
     .del();
 }
+
+export async function getRoleId(id: number): Promise<QueryBuilder> {
+  return db('user')
+    .select('user.role')
+    .where({ id })
+    .first()
+    .then((result) => {
+      return db(result.role)
+        .select('id')
+        .where({ user_id: id })
+        .first();
+    });
+}
