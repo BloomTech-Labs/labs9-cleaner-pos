@@ -4,6 +4,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Mark from '@material-ui/core/Button';
 import { Link, withRouter } from 'react-router-dom';
+// Types
+import { RouteComponentProps } from 'react-router-dom';
 
 import { Button } from '../index';
 import {
@@ -15,11 +17,11 @@ import {
 } from './Sidebar.styling';
 import { ContentTextFormat } from 'material-ui/svg-icons';
 
-interface LinkProps {
+interface LinkProps extends RouteComponentProps {
   onClick?: () => MouseEvent;
 }
 
-const Sidebar = (props: any) => {
+const Sidebar = (props: LinkProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (e: any) => {
@@ -31,8 +33,6 @@ const Sidebar = (props: any) => {
   };
 
   const logOut = () => {
-    console.log('logout function called');
-    console.log(history);
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
@@ -41,8 +41,10 @@ const Sidebar = (props: any) => {
   };
 
   const user = useContext(UserContext);
+
+  console.log('props.location.pathname', props.location.pathname === '/');
   return (
-    <Container>
+    <Container {...props}>
       <div className='menu'>
         <Mark
           aria-owns={anchorEl ? 'simple-menu' : undefined}
