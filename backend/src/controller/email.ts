@@ -2,6 +2,7 @@ import sgMail from '@sendgrid/mail';
 import { Token } from '../interface';
 import { Request, Response, NextFunction } from 'express';
 import { RequestMock, ResponseMock } from '../../__tests__/helpers';
+import { getRoleId } from '../models/users';
 type NextFunctionMock = (a: any) => any;
 const sgKey: any = process.env.SENDGRID_API_KEY;
 sgMail.setApiKey(sgKey);
@@ -41,7 +42,10 @@ export const send = async (req: Requests, res: Responses, next: Nexts) => {
     const { ast_name, manager_name, to } = req.body;
     const subject: string = `${manager_name} invites you to do work`;
     const { id, email } = req.token;
-    const linkAddress: string = `https://cleanerpos.netlify.com/login?manager=${id}&ast=true`;
+    const roleId = await getRoleId(id);
+    const linkAddress: string = `https://cleanerpos.netlify.com/login?manager=${
+      roleId.id
+    }&ast=true`;
     if (
       !ast_name ||
       !manager_name ||

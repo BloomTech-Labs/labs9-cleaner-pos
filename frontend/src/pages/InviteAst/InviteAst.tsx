@@ -25,7 +25,7 @@ const InviteAst = (props: RouteComponentProps) => {
   const [error, setError] = useState({ msg: '', error: false });
   const [emailData, setEmailData] = useState(input);
   const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
   const headers: AxiosRequestConfig = {
     headers: {
       Authorization: localStorage.getItem('token'),
@@ -33,7 +33,7 @@ const InviteAst = (props: RouteComponentProps) => {
   };
   async function fetchUser() {
     try {
-      const user = await axios.get(`${url}/users`, headers);
+      const user = await axios.get(`${url}users`, headers);
       setEmailData((input.manager_name = user.data.full_name));
     } catch (e) {
       axiosErrorHandler(setError);
@@ -52,7 +52,7 @@ const InviteAst = (props: RouteComponentProps) => {
           validateOnChange={false}
           onSubmit={async (values, actions) => {
             try {
-              await axios.post(`${url}/email/`, values, headers);
+              await axios.post(`${url}email/`, values, headers);
               await actions.setSubmitting(false);
               await actions.setStatus('Submission successful. Thank you!');
               props.history.push('/');

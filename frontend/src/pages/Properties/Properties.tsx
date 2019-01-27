@@ -18,11 +18,12 @@ import { Link } from 'react-router-dom';
 const Properties = () => {
   const [houses, setHouses] = useState<HousesEnum>([]);
   const shouldFetch = useRef(true);
-
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
   /* Axios calls to fetch / update properties */
   async function fetchHouses() {
     try {
-      const res = await axios.get('https://cleaner-pos.herokuapp.com/houses');
+      const res = await axios.get(`${url}houses`);
       setHouses(res.data);
     } catch (e) {
       throw e;
@@ -44,10 +45,13 @@ const Properties = () => {
     }
   }
   // Axios call to display list of properties
-  useEffect(() => {
-    fetchHouses();
-    shouldFetch.current = false;
-  }, [shouldFetch]);
+  useEffect(
+    () => {
+      fetchHouses();
+      shouldFetch.current = false;
+    },
+    [shouldFetch],
+  );
 
   // Presentational layer
   return (

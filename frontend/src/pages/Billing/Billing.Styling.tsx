@@ -19,11 +19,11 @@ const ConfUL = styled('ul')`
 	list-style-type: none;
 	text-decoration: none;
 	text-align: left;
-`
+`;
 
 export {
-	SubBox,
-	AccUL,
-	Confirmation,
-	ConfUL,
+SubBox,
+AccUL,
+Confirmation,
+ConfUL,
 };
