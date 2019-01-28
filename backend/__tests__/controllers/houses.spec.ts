@@ -39,6 +39,46 @@ describe('/house routes', () => {
     }
   });
 
+  test('GET request is denied with no token', (done) => {
+    request(app)
+      .get('/houses')
+      .expect(403, done);
+  });
+
+  test('POST test request is denied with no token', (done) => {
+    const newHouse = {
+      address: 'See my test, see my test, made from real gorilla chest',
+      cleaning_fee: 65,
+      extra_guest_fee: 30,
+      name: 'house name 55',
+      price: 959.55,
+    };
+    request(app)
+      .post('/houses?test=true')
+      .send(newHouse)
+      .expect(403, done);
+  });
+
+  test('PUT request is denied with no token', (done) => {
+    const newHouse = {
+      address: 'See my test, see my test, made from real gorilla chest',
+      cleaning_fee: 65,
+      extra_guest_fee: 30,
+      name: 'house name 55',
+      price: 959.55,
+    };
+    request(app)
+      .put('/houses/1')
+      .send(newHouse)
+      .expect(403, done);
+  });
+
+  test('DELETE request is denied with no token', (done) => {
+    request(app)
+      .delete('/houses/2')
+      .expect(403, done);
+  });
+
   test('GET request with no id returns all houses', (done) => {
     request(app)
       .get('/houses')
@@ -110,7 +150,7 @@ describe('/house routes', () => {
 
   // TODO: Write more POST tests
 
-  test('put request is successful', (done) => {
+  test('PUT request is successful', (done) => {
     const newHouse = {
       address: 'See my test, see my test, made from real gorilla chest',
       cleaning_fee: 65,
