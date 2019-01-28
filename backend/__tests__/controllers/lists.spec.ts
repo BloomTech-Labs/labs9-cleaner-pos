@@ -5,6 +5,8 @@ import app from '../../src/app';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
 
+import jwt from 'jsonwebtoken';
+
 // Mock db in users model functions
 jest.mock('../../data/dbConfig');
 import db from '../../data/dbConfig';
@@ -12,6 +14,20 @@ import db from '../../data/dbConfig';
 const testDb = knex(knexConfig.test);
 // @ts-ignore
 db.mockImplementation((table: string) => testDb(table));
+
+// Temporary access token to test authentication
+const token: string = jwt.sign(
+  {
+    exp: Math.floor(Date.now() / 1000) + 60 * 2,
+    ext_it: '1',
+    full_name: 'Harald Junke',
+    id: 1,
+  },
+  process.env.JWT_SECRET || '',
+);
+
+// Headers to send with 'set' with supertest
+const headers = { Authorization: token, Accept: 'application/json' };
 
 describe('/list routes', () => {
   beforeAll(async () => {
@@ -23,16 +39,18 @@ describe('/list routes', () => {
       throw err;
     }
   });
+
   test('asking for lists on house that isnt reall returns 404', (done) => {
     request(app)
       .get('/lists/111')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(404, done);
   });
+
   test('when given a valid house, should return all lists and 200', (done) => {
     request(app)
       .get('/lists/1')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(200)
       .then(({ body }) => {
         expect(typeof body).toBe('object');
@@ -41,10 +59,11 @@ describe('/list routes', () => {
         done();
       });
   });
+
   test('when given a valid stay, should return all lists and 200', (done) => {
     request(app)
       .get('/lists/1?stay=true')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(200)
       .then(({ body }) => {
         expect(typeof body).toBe('object');
@@ -62,14 +81,14 @@ describe('/list routes', () => {
     request(app)
       .post('/lists/')
       .send(newList)
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(400, done);
   });
 
   test('able to delete list', (done) => {
     request(app)
       .delete('/lists/1')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(200, done);
   });
 
@@ -81,7 +100,7 @@ describe('/list routes', () => {
     request(app)
       .post('/lists/')
       .send(newList)
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(201, done);
   });
 });
