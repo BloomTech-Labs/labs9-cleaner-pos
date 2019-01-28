@@ -12,6 +12,9 @@
   --colour-button-background-alt: white;
   --colour-button-background-action: #0aa047;
   --colour-button-text-action: white;
+  /* Header Font Sizes */
+  --header-font-size-primary: 1.5rem;
+  --header-font-size-secondary: 1rem;
 }
 
 body {
@@ -29,4 +32,16 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1 {
+  /* Text */
+  font-size: var(--header-font-size-primary);
+  font-family: 'Roboto Medium', Arial, sans-serif;
+}
+
+h2 {
+  /* Text */
+  font-size: var(--header-font-size-secondary);
+  font-family: 'Roboto Medium', Arial, sans-serif;
 }
