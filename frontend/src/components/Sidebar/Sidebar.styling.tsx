@@ -13,7 +13,7 @@ const Container = styled('div')`
   margin: auto;
   width: 100%;
   max-width: 1000px;
-  border-bottom: 1px solid gray;
+  border: 1px solid gray;
 
   /* Flex */
   display: flex;
@@ -43,7 +43,7 @@ const Container = styled('div')`
 
 const NavWrapper = styled('div')`
   display: none;
-
+  /* border: 1px solid red; */
   @media only screen and (min-width: ${bp}) {
     display: flex;
     justify-content: space-between;
@@ -52,9 +52,12 @@ const NavWrapper = styled('div')`
 `;
 
 const SettingsWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  float: right;
+  display: none;
+  @media only screen and (min-width: ${bp}) {
+    display: flex;
+    justify-content: space-between;
+    float: right;
+  }
 `;
 
 const StyledUL = styled('ul')`
