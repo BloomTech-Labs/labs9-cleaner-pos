@@ -40,6 +40,29 @@ describe('/list routes', () => {
     }
   });
 
+  test('get request fails if there is no token', (done) => {
+    request(app)
+      .get('/lists/1')
+      .expect(403, done);
+  });
+
+  test('post request fails if there is no token', (done) => {
+    const newList = {
+      house_id: 1,
+      type: 'before',
+    };
+    request(app)
+      .post('/lists/')
+      .send(newList)
+      .expect(403, done);
+  });
+
+  test('delete request fails if there is no token', (done) => {
+    request(app)
+      .delete('/lists/1')
+      .expect(403, done);
+  });
+
   test('asking for lists on house that isnt reall returns 404', (done) => {
     request(app)
       .get('/lists/111')
