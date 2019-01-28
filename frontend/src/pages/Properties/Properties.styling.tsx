@@ -17,6 +17,7 @@ const HouseItem = styled('div')`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
+	padding: 10px 0 10px 0;
  }
 `;
 
@@ -25,6 +26,8 @@ const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media only screen and (max-width: 600px) {
+	padding: 10px 0 10px 0;
 `;
 
 const ThumbNail = styled('img')`
@@ -47,7 +50,7 @@ const CardHeading = styled('div')`
     margin-block-start: 0;
     margin-block-end: 0;
   }
-  media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
  	h4 {
 		text-align: center;
 	}
@@ -60,7 +63,7 @@ const CardContent = styled('div')`
   display: flex;
   flex-direction: column;
   width: 100%;
-  media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
 	justify-content: center;
 	align-items: center;
 `;
@@ -97,19 +100,18 @@ const Cleaner = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media only screen and (max-width: 600px) {
+	padding: 20px 0 20px 0;
 `;
 
 const HouseHeader = styled('span')`
   font-size: 36px;
-  top: 0;
-  left: 0;
+  margin: 20px;  
   text-align: left;
-  margin-bottom: 10px;
   border-bottom: 1px solid #b8003f;
   max-width: 290px;
-  media only screen and (max-width: 600px) {
-  	justify-content: center;
-	align-items: center;
+  @media only screen and (max-width: 600px) {
+	text-align: center;
   }
 `;
 
