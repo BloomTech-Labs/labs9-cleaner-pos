@@ -20,7 +20,11 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
       e.statusCode = 403;
     }
     e.statusCode = e.statusCode || 500;
-    next(e);
+    // If token is invaild, we must either end the request right here
+    // Or we must modify all controller functions to pass the error to
+    // the error handler
+    // Otherwise, controller functions will mess up
+    res.status(e.statusCode).send(e.message);
   }
 };
 
