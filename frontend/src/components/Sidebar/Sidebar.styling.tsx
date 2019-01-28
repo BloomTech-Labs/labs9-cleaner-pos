@@ -1,9 +1,14 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-
+// Types
+import { RouteComponentProps } from 'react-router-dom';
 const bp = '700px';
 
 const Container = styled('div')`
+  /* Conditional Display */
+  display: ${(props: RouteComponentProps) =>
+    props.location.pathname === '/' ? 'none' : 'block'};
+
   /* Box Model & Sizing */
   margin: auto;
   width: 100%;
@@ -24,7 +29,12 @@ const Container = styled('div')`
     display: flex;
     align-items: center;
   }
+
   @media only screen and (min-width: ${bp}) {
+    /* Conditional Display */
+    display: ${(props: RouteComponentProps) =>
+      props.location.pathname === '/' ? 'none' : 'block'};
+
     .menu {
       display: none;
     }

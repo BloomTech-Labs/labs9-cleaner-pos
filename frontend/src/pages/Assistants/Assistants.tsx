@@ -22,6 +22,8 @@ interface Assistant {
   openAst: any;
   house_id: any;
 }
+const url =
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
 
 const AssistantCard = (assistant: any) => {
   const [data, error, loading] = useFetch(
@@ -74,6 +76,8 @@ const Assistants = () => {
         <AssistantHeader>Turnover Assistants</AssistantHeader>
         <Button text='+ New Assistant' />
       </HeaderWrapper>
+      {loading ? '...Loading' : null}
+      {error.error ? 'Whoops! Something went wrong! :(' : null}
       {data ? data.map(AssistantCard) : null}
     </Container>
   );

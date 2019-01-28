@@ -16,7 +16,7 @@ const Landing = (props: RouteComponentProps) => {
   return (
     <Container>
       <AppHeader>Cleaner POS</AppHeader>
-      <h2>A POS that helps you keep things clean</h2>
+      {/* <h2>A POS that helps you keep things clean</h2> */}
       <Nav>
         <a href='/'>Home</a>
         <a href='/'>About</a>
@@ -26,7 +26,7 @@ const Landing = (props: RouteComponentProps) => {
         </Link>
       </Nav>
       <Wrapper>
-        <SideHeader>
+        {/* <SideHeader>
           <h2>Lorem Ipsum</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper
@@ -34,11 +34,11 @@ const Landing = (props: RouteComponentProps) => {
             placerat in elit in mattis. Integer suscipit nulla tempor, tempus
             eros at, congue lectus.
           </p>
-        </SideHeader>
+        </SideHeader> */}
 
         <CenterImg src={house} alt='Beautiful house with a pool' />
 
-        <SideHeader>
+        {/* <SideHeader>
           <h2>Lorem Ipsum</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper
@@ -46,7 +46,7 @@ const Landing = (props: RouteComponentProps) => {
             placerat in elit in mattis. Integer suscipit nulla tempor, tempus
             eros at, congue lectus.
           </p>
-        </SideHeader>
+        </SideHeader> */}
       </Wrapper>
       <h2>Simplify managing your rental properties.</h2>
       <Button
