@@ -3,12 +3,7 @@ import { Guests } from '../index';
 import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
 import 'jest-dom';
-import {
-  cleanup,
-  waitForElement,
-  wait,
-  fireEvent,
-} from 'react-testing-library';
+import { cleanup, waitForElement } from 'react-testing-library';
 
 // Mock data for mock axios to return
 const mockdata = [
@@ -52,16 +47,8 @@ jest.mock('axios', () => {
   };
 });
 
-// Mock local storage
-// https://stackoverflow.com/a/54239779
-const getItemSpy = jest.spyOn(
-  Object.getPrototypeOf(window.localStorage),
-  'getItem',
-);
-
-getItemSpy.mockImplementation(() => 'whatever');
-
 afterEach(cleanup);
+localStorage.setItem('token', 'testToken!');
 
 describe('Guests dashboard', () => {
   test('should render a guest card for every guest received through axios', async () => {

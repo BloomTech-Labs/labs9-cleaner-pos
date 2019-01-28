@@ -2,7 +2,8 @@ import React from 'react';
 import { Assistants } from '../index';
 import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
-import { waitForElement, cleanup } from 'react-testing-library';
+import { waitForElement, cleanup, flushEffects } from 'react-testing-library';
+
 jest.mock('axios', () => {
   return {
     get: jest.fn(() =>
@@ -12,12 +13,16 @@ jest.mock('axios', () => {
     ),
   };
 });
+
+localStorage.setItem('token', 'testToken!');
+
 afterEach(cleanup);
 
 // modified these tests to use mock data
 describe('Houses dashboard', () => {
   test('should render an assistant card for every assistant received through axios call', async () => {
     const { getAllByTestId } = renderWithRouter(<Assistants />, {});
+
     const assistantCards = await waitForElement(() =>
       getAllByTestId('assistant-item'),
     );
@@ -25,8 +30,9 @@ describe('Houses dashboard', () => {
   });
 
   test('should include 1 button for every assistant card,', async () => {
-    const { getAllByTestId } = renderWithRouter(<Assistants />, {});
+    const { getAllByTestId, rerender } = renderWithRouter(<Assistants />, {});
 
+    rerender(<Assistants />);
     const buttons = await waitForElement(() =>
       getAllByTestId('assistant-button'),
     );
