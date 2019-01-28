@@ -41,6 +41,7 @@ const CenterImg = styled('img')`
   /* border-radius: 100px; */
 
   /* Clip */
+  /* Thank you, https://css-tricks.com/clipping-masking-css/ */
   -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 `;
