@@ -17,7 +17,7 @@ import {
 import { RouteComponentProps } from 'react-router';
 
 const url =
-  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const clientId = process.env.REACT_APP_clientid;
@@ -48,7 +48,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     };
 
     axios
-      .put(`${url}users`, settings, headers)
+      .put(`${url}/users`, settings, headers)
       .then(() => {
         setInfo({ msg: 'Settings successfully saved.', error: false });
       })

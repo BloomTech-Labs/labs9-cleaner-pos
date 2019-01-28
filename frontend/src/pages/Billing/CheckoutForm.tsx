@@ -8,7 +8,7 @@ import { Button } from '../../components/index';
 import axios from 'axios';
 
 const url =
-  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   const handleSubmit = async (ev: FormEvent) => {

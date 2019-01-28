@@ -75,7 +75,7 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
 
     // URL. If backendURL is not defined, defaults to deployed backend
     const url =
-      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
     // Request
     axios

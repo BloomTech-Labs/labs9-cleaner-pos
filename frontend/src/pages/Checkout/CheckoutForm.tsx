@@ -10,7 +10,7 @@ import { Button } from '../../components/index';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 const url =
-  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const CheckoutForm = (props: any) => {
   const { sum } = useContext(PaymentContext);

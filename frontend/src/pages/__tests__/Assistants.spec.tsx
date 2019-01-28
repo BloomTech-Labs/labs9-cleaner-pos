@@ -2,7 +2,7 @@ import React from 'react';
 import { Assistants } from '../index';
 import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
-import { waitForElement, cleanup, flushEffects } from 'react-testing-library';
+import { waitForElement, cleanup } from 'react-testing-library';
 
 jest.mock('axios', () => {
   return {

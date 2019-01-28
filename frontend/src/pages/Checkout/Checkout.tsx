@@ -19,11 +19,11 @@ const Checkout = (props: CheckoutProps) => {
   // const [error, setError] = useState<any>({ msg: '', error: false });
   // TODO: change state to include no default values
   const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
   const { id } = props.match.params;
   // const [stays, setStays] = useState([]);
   const [show, setShow] = useState(false);
-  const [stays, staysError, staysLoading] = useFetch(`${url}stays?test=true`);
+  const [stays, staysError, staysLoading] = useFetch(`${url}/stays?test=true`);
   const [stay, stayError, stayLoading] = useFetch(`${url}/stays/${id}`);
   const key = process.env.REACT_APP_stripe_API || '';
 

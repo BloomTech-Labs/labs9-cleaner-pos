@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { Button, Container } from '../../components/index';
 import { useFetch } from '../../helpers/';
 import {
@@ -23,11 +23,11 @@ interface Assistant {
   house_id: any;
 }
 const url =
-  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const AssistantCard = (assistant: any) => {
   const [data, error, loading] = useFetch(
-    `https://cleaner-pos.herokuapp.com/houses/${assistant.ast_id}?user=true`,
+    `${url}/${assistant.ast_id}?user=true`,
   );
 
   let checkList = 0;

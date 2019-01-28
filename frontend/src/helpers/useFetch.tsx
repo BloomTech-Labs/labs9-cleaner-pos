@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { useState, useEffect } from 'react';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const useFetch = (url: string) => {
   const [error, setError] = useState<any>({ msg: '', error: false });
