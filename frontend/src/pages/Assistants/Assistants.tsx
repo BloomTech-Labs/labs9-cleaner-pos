@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Container } from '../../components/index';
 import { useFetch } from '../../helpers/';
+import { Link } from 'react-router-dom';
 import {
   AssistantItem,
   CardBody,
@@ -42,27 +43,37 @@ const AssistantCard = (assistant: any) => {
   }
 
   return (
-    <AssistantItem key={assistant.ast_id} data-testid='assistant-item'>
-      <CardContent>
-        <CardHeading>
-          <div>{assistant.full_name}</div>
-        </CardHeading>
-        <CardBody>
-          <ThumbNail src='../assets/ronald.jpg' alt='' />
-          <CheckList>
-            <h3>Checklist Items</h3>
-            <div>{checkList ? checkList : null}</div>
-          </CheckList>
-          <Asst>
-            <h3>Available Houses</h3>
-            <div>{assistant.openAst.length}</div>
-          </Asst>
-          <ButtonContainer>
-            <Button text='House Availability' datatestid='assistant-button' />
-          </ButtonContainer>
-        </CardBody>
-      </CardContent>
-    </AssistantItem>
+    <>
+      {loading ? '...Loading' : null}
+      {assistant ? (
+        <AssistantItem key={assistant.user_id} data-testid='assistant-item'>
+          <Link to={`/assistants/${assistant.ast_id}`}>
+            <CardContent>
+              <CardHeading>
+                <div>{assistant.full_name}</div>
+              </CardHeading>
+              <CardBody>
+                <ThumbNail src='../assets/ronald.jpg' alt='' />
+                <CheckList>
+                  <h3>Checklist Items</h3>
+                  <div>{checkList ? checkList : null}</div>
+                </CheckList>
+                <Asst>
+                  <h3>Available Houses</h3>
+                  <div>{assistant.openAst.length}</div>
+                </Asst>
+                <ButtonContainer>
+                  <Button
+                    text='House Availability'
+                    datatestid='assistant-button'
+                  />
+                </ButtonContainer>
+              </CardBody>
+            </CardContent>
+          </Link>
+        </AssistantItem>
+      ) : null}
+    </>
   );
 };
 

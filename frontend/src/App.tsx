@@ -13,7 +13,7 @@ import {
   NewGuest,
   Checkout,
   Assistants,
-  AssistantsDetails,
+  AssistantDetails,
   InviteAst,
 } from './pages/index';
 import { Sidebar } from './components/index';
@@ -51,6 +51,7 @@ const App = () => {
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/updateinfo' component={PostRegister} />
           <Route exact path='/assistants' component={Assistants} />
+          <Route exact path='/assistants/:id' component={AssistantDetails} />
           <Route exact path='/guests' component={Guests} />
           <Route exact path='/guests/new' component={NewGuest} />
           <Route exact path='/guests/:id' component={GuestDetail} />

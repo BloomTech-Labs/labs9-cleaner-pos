@@ -32,7 +32,6 @@ describe('Houses dashboard', () => {
   test('should include 1 button for every assistant card,', async () => {
     const { getAllByTestId, rerender } = renderWithRouter(<Assistants />, {});
 
-    rerender(<Assistants />);
     const buttons = await waitForElement(() =>
       getAllByTestId('assistant-button'),
     );
