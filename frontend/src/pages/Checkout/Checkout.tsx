@@ -33,8 +33,6 @@ const Checkout = (props: CheckoutProps) => {
       +stay.cleaning_fee
     : null;
 
-  console.log(stay, stayLoading);
-
   return (
     <Container>
       {stayLoading ? '...Loading data' : null}
