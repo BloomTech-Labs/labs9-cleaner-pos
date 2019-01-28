@@ -10,8 +10,7 @@ jest.mock('../../data/dbConfig');
 import db from '../../data/dbConfig';
 import data from '../../data/seeds/data/usersData';
 // Use testDb instead of DB defined in env
-// TODO: Find way to define type for mockImplementation
-// spyon is a lead, but only works on a particular method?
+// TODO: Remove since webpack might be already doing this automatically
 const testDb = knex(knexConfig.test);
 // @ts-ignore
 db.mockImplementation((table: string) => testDb(table));
