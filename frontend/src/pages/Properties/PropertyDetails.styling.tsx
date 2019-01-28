@@ -10,6 +10,10 @@ export const BackButton = styled(Button)`
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
   font-size: ${pxToRem(20)}rem;
+  border: solid 0.25px black;
+  @media only screen and (max-width: 600px) {
+	margin-left: 0;
+  }
 `;
 
 export const WhiteButton = styled(Button)`
@@ -31,9 +35,10 @@ export const PropertyContainer = styled(Container)`
 
 export const Top = styled(PropertyContainer)`
   margin: 0 ${pxToRem(22)}rem;
-  width: 40%;
+  width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   /* Text */
   text-align: left;
   @media only screen and (max-width: 600px) {
@@ -52,12 +57,9 @@ export const ThumbNail = styled('img')`
   }
 `;
 export const MainText = styled.div`
-  width: 75%;
+  width: 100%;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
-  @media only screen and (max-width: 600px) {
-	width: 100%;
-  }
 `;
 
 export const SecondaryText = styled.div`
@@ -129,6 +131,12 @@ export const AfterListDiv = styled(ListDiv)`
   align-items: top;
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
+  @media only screen and (max-width: 600px) {
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }	
 `;
 
 export const AfterListDiv2 = styled(ListDiv)`
