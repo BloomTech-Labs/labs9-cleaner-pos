@@ -18,6 +18,7 @@ db.mockImplementation((table: string) => testDb(table));
 // Temporary access token to test authentication
 const token: string = jwt.sign(
   {
+    // Token expires in 2 minutes
     exp: Math.floor(Date.now() / 1000) + 60 * 2,
     ext_it: '1',
     full_name: 'Harald Junke',
