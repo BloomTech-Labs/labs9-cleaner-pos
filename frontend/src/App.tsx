@@ -19,23 +19,21 @@ import {
 import { Sidebar } from './components/index';
 import './App.css';
 import Billing from './pages/Billing/Billing';
+
 interface UserData {
-  id: number;
   loggedIn: boolean;
   role: string;
 }
 const token = localStorage.getItem('token');
 const role = localStorage.getItem('role') || '';
-const id = Number(localStorage.getItem('id')) || -1;
 
 const defaultValue = {
-  id,
   loggedIn: token ? true : false,
   role,
 };
 export const UserContext = createContext<UserData>(defaultValue);
 
-const App = (props: any) => {
+const App = () => {
   return (
     <div className='App'>
       <UserContext.Provider value={defaultValue}>

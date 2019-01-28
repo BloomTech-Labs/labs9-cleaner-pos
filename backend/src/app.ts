@@ -54,8 +54,8 @@ server
 
 server
   .route('/connect')
-  .post(connect.post)
-  .delete(connect.deleteL);
+  .post(verifyToken, connect.post)
+  .delete(verifyToken, connect.deleteL);
 
 server.route('/connect/createpayment').post(connect.createPayment);
 

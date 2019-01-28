@@ -34,7 +34,6 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     setting_text: false,
   });
   const [info, setInfo] = useState({ msg: '', error: false });
-  const { id } = useContext(UserContext);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
@@ -115,7 +114,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       };
       const authorizationCode = params[1];
       axios
-        .post(`${url}connect`, { authorizationCode, id }, headers)
+        .post(`${url}connect`, { authorizationCode }, headers)
         .then((res) => {
           props.history.replace('/settings');
         })
