@@ -26,7 +26,7 @@ export const PropertyContainer = styled(Container)`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: 1080px;
+  max-width: 100%;
 `;
 
 export const Top = styled(PropertyContainer)`
@@ -36,16 +36,28 @@ export const Top = styled(PropertyContainer)`
   align-items: flex-start;
   /* Text */
   text-align: left;
+  @media only screen and (max-width: 600px) {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 100%;
 `;
 export const ThumbNail = styled('img')`
   width: ${cardWeidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
+  @media only screen and (max-width: 600px) {
+  	margin: 0 auto;
+	padding: 10px;
+  }
 `;
 export const MainText = styled.div`
   width: 75%;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
+  @media only screen and (max-width: 600px) {
+	width: 100%;
+  }
 `;
 
 export const SecondaryText = styled.div`
@@ -53,6 +65,11 @@ export const SecondaryText = styled.div`
   text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
+  @media only screen and (max-width: 600px) {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 20px;
+  }
 `;
 
 export const Header = styled('div')`
@@ -71,6 +88,11 @@ export const ListContainer = styled('div')`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
+  @media only screen and (max-width: 600px) {
+  	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }
 `;
 export const ListDiv = styled('div')`
   width: 45%;
@@ -104,7 +126,7 @@ export const TaskDiv = styled('div')`
 export const AfterListDiv = styled(ListDiv)`
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: top;
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
 `;
