@@ -12,8 +12,10 @@ export const errorHandler = (
   res: Response,
   next: NextFunction,
 ) => {
-  /* tslint:disable */
-  console.log('error handler', err);
+  // Make errorHandler a little more quiet during tests
+  if (process.env.NODE_ENV !== 'test') {
+    console.error('Error', err);
+  }
   // @ts-ignore
   switch (err.statusCode) {
     case 404:

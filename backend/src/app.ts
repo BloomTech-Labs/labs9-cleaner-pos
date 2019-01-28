@@ -28,6 +28,9 @@ server
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
+// Authentication Middleware for *all* routes after this line
+server.use(verifyToken);
+
 server
   .route('/users/:id')
   .get(users.get)
