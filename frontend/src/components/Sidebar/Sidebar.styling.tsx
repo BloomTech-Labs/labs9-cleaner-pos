@@ -13,7 +13,7 @@ const Container = styled('div')`
   margin: auto;
   width: 100%;
   max-width: 1000px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 
   /* Flex */
   display: flex;
@@ -38,6 +38,14 @@ const Container = styled('div')`
     .menu {
       display: none;
     }
+  }
+`;
+
+const NavBar = styled('nav')`
+  display: none;
+  @media only screen and (min-width: ${bp}) {
+    display: flex;
+    border-bottom: 3px solid black;
   }
 `;
 
@@ -80,4 +88,4 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-export { Container, NavWrapper, SettingsWrapper, StyledUL, StyledLink };
+export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink };

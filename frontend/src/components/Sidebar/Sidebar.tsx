@@ -10,6 +10,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Button } from '../index';
 import {
   Container,
+  NavBar,
   NavWrapper,
   SettingsWrapper,
   StyledUL,
@@ -75,36 +76,38 @@ const Sidebar = (props: LinkProps) => {
           </MenuItem>
         </Menu>
       </div>
-      <NavWrapper>
-        <StyledUL>
-          <li>
-            <StyledLink to='/properties'>
-              <h4>Properties</h4>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/guests'>
-              <h4>Guests</h4>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/assistants'>
-              <h4>Assistants</h4>
-            </StyledLink>
-          </li>
-        </StyledUL>
-      </NavWrapper>
-      <SettingsWrapper>
-        <StyledLink to='/settings'>
-          <h4>Settings</h4>
-        </StyledLink>
+      <NavBar>
+        <NavWrapper>
+          <StyledUL>
+            <li>
+              <StyledLink to='/properties'>
+                <h4>Properties</h4>
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink to='/guests'>
+                <h4>Guests</h4>
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink to='/assistants'>
+                <h4>Assistants</h4>
+              </StyledLink>
+            </li>
+          </StyledUL>
+        </NavWrapper>
+        <SettingsWrapper>
+          <StyledLink to='/settings'>
+            <h4>Settings</h4>
+          </StyledLink>
 
-        <Button
-          onClick={() => logOut()}
-          className='button-sign-out'
-          text='Sign Out'
-        />
-      </SettingsWrapper>
+          <Button
+            onClick={() => logOut()}
+            className='button-sign-out'
+            text='Sign Out'
+          />
+        </SettingsWrapper>
+      </NavBar>
     </Container>
   );
 };
