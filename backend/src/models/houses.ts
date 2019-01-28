@@ -35,6 +35,7 @@ export const findHouses = () => {
 };
 
 // TODO: Combine with original findHouses by gating where clause
+// This only returns houses that an ast is the default on
 export const findAllHousesByAstId = (astId: number) => {
   return db('house')
     .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })
