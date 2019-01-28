@@ -36,7 +36,7 @@ const Checkout = (props: CheckoutProps) => {
   return (
     <Container>
       {stayLoading ? '...Loading data' : null}
-      {stayError ? 'Error fetching your Guest' : null}
+      {stayError.error ? 'Error fetching your Guest' : null}
       {stay ? (
         <div
           style={{
@@ -61,7 +61,7 @@ const Checkout = (props: CheckoutProps) => {
             <div>
               Extra Guests:{' '}
               <input
-                value={stay.extra_guests || ''}
+                value={stay.extra_guests || 0}
                 onChange={(e) =>
                   // @ts-ignore
                   setStay({ ...stay, extra_guests: e.target.value })
