@@ -42,7 +42,6 @@ const Sidebar = (props: LinkProps) => {
 
   const user = useContext(UserContext);
 
-  console.log('props.location.pathname', props.location.pathname === '/');
   return (
     <Container {...props}>
       <div className='menu'>
