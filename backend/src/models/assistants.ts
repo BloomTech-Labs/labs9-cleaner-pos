@@ -51,3 +51,36 @@ export function addAstToAllManHouse(astId: number, manId: number) {
       return db('house_ast').insert({ ast_id: astId, house_id: e.id });
     });
 }
+
+export function findOneAssistant(astId: number) {
+  return db('assistant')
+    .join('user', 'user.id', '=', 'assistant.user_id')
+    .select(
+      'user.id as user_id',
+      'assistant.id as ast_id',
+      'user.full_name as full_name',
+      'user.address as address',
+      'user.photoUrl as photo_url',
+    )
+    .where({ 'assistant.id': astId })
+    .first()
+    .then(async (e: any) => {
+      const defA: any = [];
+      const defHouse = await db('house')
+        .select('house.id as house_id', 'house.name as house_name')
+        .where({ 'house.default_ast': astId })
+        .map((h: any) => {
+          defA.push(h.house_id);
+          return h;
+        });
+      const avlHouses = await db('house_ast')
+        .leftJoin('house', {
+          'house_ast.house_id': 'house.id',
+        })
+        .select('house.id as house_id', 'house.name as house_name')
+        .where({ 'house_ast.ast_id': astId })
+        // filters out the houses that a ast is already default
+        .whereNotIn('house_ast.house_id', defA);
+      return { ...e, default_house: defHouse, avl_houses: avlHouses };
+    });
+}

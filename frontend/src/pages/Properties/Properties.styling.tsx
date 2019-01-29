@@ -14,8 +14,11 @@ const HouseItem = styled('div')`
   border: 0.5px solid black;
   @media only screen and (max-width: 600px) {
     flex-direction: column;
-    height: 100%;
-  }
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 0 10px 0;
+ }
 `;
 
 const ButtonContainer = styled('div')`
@@ -23,6 +26,8 @@ const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media only screen and (max-width: 600px) {
+	padding: 10px 0 10px 0;
 `;
 
 const ThumbNail = styled('img')`
@@ -45,18 +50,31 @@ const CardHeading = styled('div')`
     margin-block-start: 0;
     margin-block-end: 0;
   }
+  @media only screen and (max-width: 600px) {
+ 	h4 {
+		text-align: center;
+	}
+	p {
+		text-align: center;
+	}
 `;
 const CardContent = styled('div')`
   padding: 0 15px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media only screen and (max-width: 600px) {
+	justify-content: center;
+	align-items: center;
 `;
 
 const CardBody = styled('div')`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media only screen and (max-width: 600px) {
+	flex-direction: column;
+	flex: 1;
 `;
 
 const CheckList = styled('div')`
@@ -82,16 +100,19 @@ const Cleaner = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media only screen and (max-width: 600px) {
+	padding: 20px 0 20px 0;
 `;
 
 const HouseHeader = styled('span')`
   font-size: 36px;
-  top: 0;
-  left: 0;
+  margin: 20px;  
   text-align: left;
   border-bottom: 1px solid #b8003f;
-  align-items: flex-start;
   max-width: 290px;
+  @media only screen and (max-width: 600px) {
+	text-align: center;
+  }
 `;
 
 export {
