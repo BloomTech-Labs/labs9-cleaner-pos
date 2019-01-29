@@ -65,9 +65,14 @@ export function findOneAssistant(astId: number) {
     .where({ 'assistant.id': astId })
     .first()
     .then(async (e: any) => {
+      const defA: any = [];
       const defHouse = await db('house')
         .select('house.id as house_id', 'house.name as house_name')
-        .where({ 'house.default_ast': astId });
+        .where({ 'house.default_ast': astId })
+        .map((h: any) => {
+          defA.push(h.house_id);
+          return h;
+        });
       const avlHouses = await db('house_ast')
         .leftJoin('house', {
           'house_ast.house_id': 'house.id',
@@ -78,7 +83,9 @@ export function findOneAssistant(astId: number) {
           // will need this id to remove ast from house
           'house_ast.id',
         )
-        .where({ 'house_ast.ast_id': astId });
+        .where({ 'house_ast.ast_id': astId })
+        // filters out the houses that a ast is already default
+        .whereNotIn('house_ast.house_id', defA);
       return { ...e, default_house: defHouse, avl_houses: avlHouses };
     });
 }
