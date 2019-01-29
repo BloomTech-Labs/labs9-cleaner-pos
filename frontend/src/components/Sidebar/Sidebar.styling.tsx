@@ -25,6 +25,7 @@ const Container = styled('div')`
 
   .menu {
     height: 100%;
+    margin-top: 2rem;
     display: flex;
     align-items: center;
   }

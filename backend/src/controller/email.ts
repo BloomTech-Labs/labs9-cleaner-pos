@@ -25,7 +25,7 @@ Hello James,
 
 You have been invited to clean for Steve
 
-Please visit this link to signup and accept Cleaner POS
+Please visit this link to signup and accept Lodgel
 ```
 */
 interface ReqToken extends Request {

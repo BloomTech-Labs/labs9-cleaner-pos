@@ -15,7 +15,7 @@ import {
 const Landing = (props: RouteComponentProps) => {
   return (
     <Container>
-      <AppHeader>Cleaner POS</AppHeader>
+      <AppHeader>Lodgel</AppHeader>
       {/* <h2>A POS that helps you keep things clean</h2> */}
       <Nav>
         <a href='/'>Home</a>
