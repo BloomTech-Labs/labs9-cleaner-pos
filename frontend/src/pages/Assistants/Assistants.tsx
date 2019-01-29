@@ -68,7 +68,9 @@ const Assistants = () => {
       <>
         <HeaderWrapper>
           <AssistantHeader>Turnover Assistants</AssistantHeader>
-          <Button text='+ New Assistant' />
+          <Link to='/invite'>
+            <Button text='+ New Assistant' />
+          </Link>
         </HeaderWrapper>
         {data
           ? data.map((assistant: Assistant) => (

@@ -19,9 +19,9 @@ exports.up = function(knex, Promise) {
       .foreign('manager')
       .references('manager.id')
       .onDelete('CASCADE');
-    table.json('photo_url');
-    table.json('guest_guide');
-    table.json('ast_guide');
+    table.string('photo_url');
+    table.string('guest_guide');
+    table.string('ast_guide');
     table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 };

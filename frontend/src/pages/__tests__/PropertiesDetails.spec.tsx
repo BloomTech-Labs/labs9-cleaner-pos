@@ -13,6 +13,7 @@ jest.mock('axios', () => {
   };
 });
 afterEach(cleanup);
+localStorage.setItem('token', 'testToken!');
 
 describe('Houses detail', () => {
   test('should render passed in data', async () => {
