@@ -2,11 +2,11 @@ import React from 'react';
 import { Button, Container } from '../../components/index';
 import { useFetch } from '../../helpers/';
 import { Link } from 'react-router-dom';
+import img from '../assets/ronald.jpg';
 import {
   AssistantItem,
   CardBody,
   ThumbNail,
-  CardContent,
   ButtonContainer,
   CardHeading,
   Asst,
@@ -18,60 +18,63 @@ import {
 interface AssistantsEnum extends Array<Assistant> {}
 
 interface Assistant {
-  id?: number;
-  user_id: string;
-  openAst: any;
-  house_id: any;
+  user_id: number;
+  ast_id: number;
+  itemCount: number;
+  houseCount: number;
+  house_id: number;
+  full_name: string;
 }
-const url =
-  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-const AssistantCard = (assistant: any) => {
+const AssistantCard = (assistant: Assistant) => {
   return (
     <>
-      <AssistantItem key={assistant.user_id} data-testid='assistant-item'>
-        <Link to={`/assistants/${assistant.ast_id}`}>
-          <CardContent>
-            <CardHeading>
-              <div>{assistant.full_name}</div>
-            </CardHeading>
-            <CardBody>
-              <ThumbNail src='../assets/ronald.jpg' alt='' />
-              <CheckList>
-                <h3>Checklist Items</h3>
-                <div>{assistant.itemCount}</div>
-              </CheckList>
-              <Asst>
-                <h3>Available Houses</h3>
-                <div>{assistant.houseCount}</div>
-              </Asst>
-              <ButtonContainer>
-                <Button
-                  text='House Availability'
-                  datatestid='assistant-button'
-                />
-              </ButtonContainer>
-            </CardBody>
-          </CardContent>
-        </Link>
-      </AssistantItem>
+      <Link to={`/assistants/${assistant.ast_id}`}>
+        <AssistantItem data-testid='assistant-item'>
+          <ThumbNail src={img} alt={assistant.full_name} />
+          <CardHeading>
+            <h1>{assistant.full_name}</h1>
+          </CardHeading>
+          <CardBody>
+            <CheckList>
+              <h3>Checklist Items</h3>
+              <div>{assistant.itemCount}</div>
+            </CheckList>
+            <Asst>
+              <h3>Available Houses</h3>
+              <div>{assistant.houseCount}</div>
+            </Asst>
+            <ButtonContainer>
+              <Button text='House Availability' datatestid='assistant-button' />
+            </ButtonContainer>
+          </CardBody>
+        </AssistantItem>
+      </Link>
     </>
   );
 };
 
 const Assistants = () => {
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
   const [data, error, loading] = useFetch(
     'https://cleaner-pos.herokuapp.com/assistants',
   );
   return (
     <Container>
-      <HeaderWrapper>
-        <AssistantHeader>Turnover Assistants</AssistantHeader>
-        <Button text='+ New Assistant' />
-      </HeaderWrapper>
       {loading ? '...Loading' : null}
       {error.error ? 'Whoops! Something went wrong! :(' : null}
-      {data ? data.map(AssistantCard) : null}
+      <>
+        <HeaderWrapper>
+          <AssistantHeader>Turnover Assistants</AssistantHeader>
+          <Button text='+ New Assistant' />
+        </HeaderWrapper>
+        {data
+          ? data.map((assistant: Assistant) => (
+              <AssistantCard key={assistant.ast_id} {...assistant} />
+            ))
+          : null}
+      </>
     </Container>
   );
 };

@@ -14,7 +14,7 @@
   --colour-button-text-action: white;
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
-  --header-font-size-secondary: 1rem;
+  --header-font-size-secondary: 1.25rem;
 }
 
 body {
@@ -40,8 +40,16 @@ h1 {
   font-family: 'Roboto Medium', Arial, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 h2 {
   /* Text */
   font-size: var(--header-font-size-secondary);
   font-family: 'Roboto Medium', Arial, sans-serif;
+}
+
+h3 {
+  font-size: 1rem;
 }
