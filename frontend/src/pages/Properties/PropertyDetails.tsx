@@ -96,8 +96,6 @@ const PropertyDetails = (props: any) => {
     fetchLists(props.match.params.id);
   }, []);
 
-  console.log(!property || !property);
-  console.log(lists);
   return (
     <>
       <div>{errors.msg}</div>
