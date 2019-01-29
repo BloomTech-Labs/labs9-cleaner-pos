@@ -45,14 +45,15 @@ const NavBar = styled('nav')`
   display: none;
   @media only screen and (min-width: ${bp}) {
     display: flex;
+    justify-content: space-between;
     border-bottom: 3px solid black;
   }
 `;
 
 const NavWrapper = styled('div')`
   display: none;
-  /* border: 1px solid red; */
   @media only screen and (min-width: ${bp}) {
+    border: 1px solid red;
     display: flex;
     justify-content: space-between;
     float: left;
@@ -62,6 +63,7 @@ const NavWrapper = styled('div')`
 const SettingsWrapper = styled('div')`
   display: none;
   @media only screen and (min-width: ${bp}) {
+  border: 1px solid blue;
     display: flex;
     justify-content: space-between;
     float: right;
