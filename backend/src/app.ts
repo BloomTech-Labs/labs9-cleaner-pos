@@ -77,7 +77,10 @@ server
   .get(items.get)
   .put(items.put)
   .delete(items.deleteL);
+
 server.route('/assistants').get(assistants.get);
+
+server.route('/assistants/:id').get(assistants.getId);
 
 server.route('/itemComplete').post(items.itemComplete);
 

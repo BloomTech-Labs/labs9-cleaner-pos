@@ -51,3 +51,7 @@ export function addAstToAllManHouse(astId: number, manId: number) {
       return db('house_ast').insert({ ast_id: astId, house_id: e.id });
     });
 }
+
+export function findOneAssistant(astId: number) {
+  console.log(astId);
+}
