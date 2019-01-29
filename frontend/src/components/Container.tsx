@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 const StyledContainer = styled('div')`
   font-family: Roboto;
   position: relative;
-  width: 70%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
