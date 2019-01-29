@@ -90,7 +90,6 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = await findUserByExt_it(extIt);
     const house: House = { ...req.body, manager: id };
     const newHouse = await makeHouse(house);
-    console.log(newHouse);
     await postList({ type: 'before', house_id: newHouse[0] });
     await postList({ type: 'during', house_id: newHouse[0] });
     res.status(201).json(newHouse);
