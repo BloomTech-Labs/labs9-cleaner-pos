@@ -15,44 +15,30 @@ import {
 import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
+import { useFetch } from '../../helpers';
 import { Lists } from './types';
 
 // TODO: fix types
 const PropertyDetails = (props: any) => {
-  const [property, setProperty] = useState(props.location.state);
-  const [lists, setLists] = useState({} as Lists);
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+  const [property, propertyError, loading] = useFetch(
+    `${url}/houses/${props.match.params.id}`,
+  );
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [shouldFetch, setShouldFetch] = useState(true);
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
+  const [lists, setLists] = useState({} as Lists);
 
-  const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-
-  async function fetchHouse(id: number) {
-    try {
-      const token = localStorage.getItem('token');
-
-      // if (!token) {
-      //   setErrors({
-      //     msg: 'Authentication error. Please try logging in again.',
-      //     error: true,
-      //   });
-      //   return;
-      // }
-      const headers: AxiosRequestConfig = {
-        headers: { Authorization: token },
-      };
-      const res = await axios.get(`${url}/houses/${id}`, headers);
-      setProperty(res.data);
-    } catch (e) {
-      axiosErrorHandler(setErrors);
-    }
-  }
+  const headers: AxiosRequestConfig = {
+    headers: { Authorization: localStorage.getItem('token') },
+  };
 
   async function fetchLists(id: number) {
     try {
-      const res = await axios.get(`${url}lists/${id}`);
+      const res = await axios.get(`${url}/lists/${id}`, headers);
       setLists(res.data);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -61,7 +47,7 @@ const PropertyDetails = (props: any) => {
 
   async function submitNew(newTaks: any) {
     try {
-      await axios.post(`${url}items/`, newTaks);
+      await axios.post(`${url}/items/`, newTaks, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -70,7 +56,7 @@ const PropertyDetails = (props: any) => {
 
   async function deleteTasks(id: number) {
     try {
-      await axios.delete(`${url}items/${id}`);
+      await axios.delete(`${url}/items/${id}`, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -78,7 +64,7 @@ const PropertyDetails = (props: any) => {
   }
   async function deleteList(id: number) {
     try {
-      await axios.delete(`${url}lists/${id}`);
+      await axios.delete(`${url}/lists/${id}`, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -97,7 +83,7 @@ const PropertyDetails = (props: any) => {
         house_id: property.id,
         hours_after: newItem,
       };
-      await axios.post(`${url}lists/`, postList);
+      await axios.post(`${url}/lists/`, postList, headers);
       toggleText();
       setNewItem('');
       fetchLists(props.match.params.id);
@@ -105,19 +91,17 @@ const PropertyDetails = (props: any) => {
       axiosErrorHandler(setErrors);
     }
   }
-  useEffect(() => {
-    fetchHouse(props.match.params.id);
-  }, []);
 
   useEffect(() => {
     fetchLists(props.match.params.id);
-    setShouldFetch(false);
-  }, [shouldFetch]);
+  }, []);
 
+  console.log(!property || !property);
+  console.log(lists);
   return (
     <>
       <div>{errors.msg}</div>
-      {!lists.before || shouldFetch ? (
+      {!property ? (
         <div>Loading.....</div>
       ) : (
         <PropertyContainer>
@@ -128,44 +112,54 @@ const PropertyDetails = (props: any) => {
           <Top>
             <MainText data-testid='house-detail'>{property.name}</MainText>
             <SecondaryText>{property.address}</SecondaryText>
-		  <BackButton text='Edit Property' colour='var(--colour-accent)' />
-		  <BackButton
-			text='Go Back'
-			colour='var(--colour-accent)'
-			onClick={() => props.history.push('/properties')}
-		  />
-		  </Top>
+            <BackButton text='Edit Property' colour='var(--colour-accent)' />
+            <BackButton
+              text='Go Back'
+              colour='var(--colour-accent)'
+              onClick={() => props.history.push('/properties')}
+            />
+          </Top>
           <ListContainer>
-            <PropertyLists
-              list={lists.before}
-              list_id={lists.before_id}
-              type='Before'
-              submitNew={submitNew}
-              deleteTasks={deleteTasks}
-            />
-            <PropertyLists
-              list={lists.during}
-              list_id={lists.during_id}
-              type='During'
-              submitNew={submitNew}
-              deleteTasks={deleteTasks}
-            />
+            {lists.before ? (
+              <PropertyLists
+                list={lists.before}
+                list_id={lists.before_id}
+                type='Before'
+                submitNew={submitNew}
+                deleteTasks={deleteTasks}
+              />
+            ) : (
+              '...Loading'
+            )}
+            {lists.after ? (
+              <PropertyLists
+                list={lists.during}
+                list_id={lists.during_id}
+                type='During'
+                submitNew={submitNew}
+                deleteTasks={deleteTasks}
+              />
+            ) : (
+              '...Loading'
+            )}
           </ListContainer>
           <AfterListDiv>
             <Header>After Stay</Header>
-            {lists.after.map((aList: any) => {
-              return (
-                <AfterPropertyLists
-                  key={aList.time}
-                  list={aList.afterLists}
-                  list_id={aList.after_id}
-                  type={aList.time}
-                  submitNew={submitNew}
-                  deleteTasks={deleteTasks}
-                  deleteList={deleteList}
-                />
-              );
-            })}
+            {lists.after
+              ? lists.after.map((aList: any) => {
+                  return (
+                    <AfterPropertyLists
+                      key={aList.time}
+                      list={aList.afterLists}
+                      list_id={aList.after_id}
+                      type={aList.time}
+                      submitNew={submitNew}
+                      deleteTasks={deleteTasks}
+                      deleteList={deleteList}
+                    />
+                  );
+                })
+              : null}
             {inputItem ? (
               <>
                 <TextField
