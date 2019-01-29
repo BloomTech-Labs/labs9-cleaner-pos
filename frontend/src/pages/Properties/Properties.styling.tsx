@@ -12,10 +12,10 @@ const HouseItem = styled('div')`
   display: flex;
   text-align: left;
   border: 0.5px solid black;
-  -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
-    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
-    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    height: 100%;
+  }
 `;
 
 const ButtonContainer = styled('div')`

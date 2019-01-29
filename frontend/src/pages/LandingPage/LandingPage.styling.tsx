@@ -38,7 +38,12 @@ const ButtonWrapper = styled('div')`
 const CenterImg = styled('img')`
   max-height: 500px;
   max-width: 800px;
-  border-radius: 100px;
+  /* border-radius: 100px; */
+
+  /* Clip */
+  /* Thank you, https://css-tricks.com/clipping-masking-css/ */
+  -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 `;
 
 const AppHeader = styled('h1')`

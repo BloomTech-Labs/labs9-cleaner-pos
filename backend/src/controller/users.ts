@@ -6,6 +6,7 @@ import {
   updateUser,
   deleteUser,
 } from '../models/users';
+import { addAstMan, addAstToAllManHouse } from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 
@@ -27,6 +28,7 @@ declare global {
   interface Token {
     ext_it: string;
     role: string;
+    id: number;
   }
 
   namespace Express {
@@ -62,10 +64,14 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export const getByExtIt = async (req: Request, res: Response, next: NextFunction) => {
+export const getByExtIt = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     if (!req.token) {
-      const e = {...new Error('Authentication required.'), statusCode: 403};
+      const e = { error: Error('Authentication required.'), statusCode: 403 };
       throw e;
     }
     const { ext_it } = req.token;
@@ -88,28 +94,58 @@ export const getByExtIt = async (req: Request, res: Response, next: NextFunction
 
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { ext_it, full_name, email, phone, address, role } = req.body;
+    //  manager only be passed in when an ast is signing up. the value = manager.id
+    const {
+      ext_it,
+      full_name,
+      email,
+      phone,
+      address,
+      role,
+      managerID,
+    } = req.body;
+
     const user = await findUserByExt_it(ext_it).catch((e) => {
       throw e;
     });
     const { JWT_SECRET } = process.env;
     if (!user) {
       // If user does NOT yet exist, create a user in our db & send a token to the client
-      const userData: User = { ext_it, full_name, email, phone, address, role };
+      const userData: User = {
+        address,
+        email,
+        ext_it,
+        full_name,
+        phone,
+        role,
+      };
 
       // should we save output to a variable? I don't think the client should be sent that info.
-      await makeUser(userData);
-      const token = await jwt.sign(userData, JWT_SECRET || '');
+      const newUser = await makeUser(userData);
 
-      res.status(201).json({ token, first: true });
+      const token = await jwt.sign(
+        { ...userData, id: newUser[0] },
+        JWT_SECRET || '',
+      );
+
+      // if the user signing up is an assistant, needs to be linked to manager
+      if (role === 'assistant') {
+        await addAstMan(newUser[0].id, managerID);
+        await addAstToAllManHouse(newUser[0].id, managerID);
+      }
+      res
+        .status(201)
+        .json({ token, first: true, id: newUser.id, role: newUser.role });
     } else {
       // If user does exist within db, sign a new JWT & send it to the client
+
+      // TODO: do we still need this logic?
       if (user.role !== 'manager' && user.role !== 'assistant') {
         throw Error('Role must be User or Manager');
       }
       const token = await jwt.sign(user, JWT_SECRET || '');
 
-      res.status(200).json({ token });
+      res.status(200).json({ token, id: user.id, role: user.role });
     }
   } catch (e) {
     e.statusCode = 400;
@@ -127,7 +163,7 @@ export const put = async (req: Request, res: Response, next: NextFunction) => {
       user.role !== 'assistant' &&
       user.role !== undefined
     ) {
-      throw Error('Role must be User or Manager');
+      throw Error('Role must be Assistant or Manager');
     }
     const putUser = await updateUser(id, user);
     res.status(201).json(putUser);

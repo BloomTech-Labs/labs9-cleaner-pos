@@ -1,8 +1,10 @@
-import React from 'react';
-import { RouteComponentProps } from 'react-router';
+
+import React, { FunctionComponent } from 'react';
+import { RouteProps, RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { Button } from '../components/shared_components/index';
+
+import { Button, SpecialButton } from '../components/shared_components/index';
 import house from '../assets/house.jpg';
 
 const Container = styled('div')`
@@ -31,6 +33,7 @@ const Wrapper = styled('div')`
   justify-content: space-evenly;
   align-items: center;
 `;
+
 const ButtonWrapper = styled('div')`
   /* border: 1px solid green; */
   padding-top: 60px;

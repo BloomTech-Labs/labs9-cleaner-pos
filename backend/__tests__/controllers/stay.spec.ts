@@ -1,44 +1,18 @@
 import 'jest';
-import { get, post, put, deleteStay } from '../../src/controller/stays';
+import { get, getAll, post, put, deleteStay } from '../../src/controller/stays';
 // Mocks
 jest.mock('../../src/models/stays');
 import * as stayModels from '../../src/models/stays';
 import * as itemsModels from '../../src/models/items';
-export interface RequestMock {
-  params?: any;
-  body?: any;
-}
+import { RequestMock, ResponseMock } from '../helpers';
 
-export class ResponseMock {
-  public jsonValue: any;
-  public sendValue: string | undefined;
-  public statusValue: number | undefined;
-  constructor() {
-    this.jsonValue = undefined;
-    this.sendValue = undefined;
-    this.statusValue = undefined;
-  }
-
-  public json(json: any) {
-    this.jsonValue = json;
-    return json;
-  }
-
-  public send(msg: string) {
-    this.sendValue = msg;
-    return MSGesture;
-  }
-
-  public status(status: number) {
-    this.statusValue = status;
-    return this;
-  }
-}
-
+// Set up 'req' and 'res' mocks
 let req: RequestMock;
 let res = new ResponseMock();
-let nextResult: any;
 
+// Next mock captures error and stores it into this var
+let nextResult: any;
+// Next mock
 const next = (e: Error) => {
   nextResult = e;
   return e;
@@ -54,10 +28,75 @@ describe('Stay Route Handler Functions:', () => {
     nextResult = undefined;
   });
 
+  test('GET all sends 200 upon success', async () => {
+    jest
+      .spyOn(stayModels, 'findAllStays')
+      .mockImplementation((extit: string, filter: string) =>
+        Promise.resolve({ extit, filter }),
+      );
+    // TODO: modify test for req.token.ext_it once complete
+    req.token = { ext_it: '2' };
+    // Act
+    await getAll(req, res, next);
+    // Assert
+    const { statusValue, jsonValue } = res;
+    expect(statusValue).toBe(200);
+    expect(jsonValue.extit).toBe(req.token.ext_it);
+  });
+
+  test('GET accepts filter query', async () => {
+    jest
+      .spyOn(stayModels, 'findAllStays')
+      .mockImplementation((extit: string, filter: string) =>
+        Promise.resolve({ extit, filter }),
+      );
+    // TODO: modify test for req.token.ext_it once complete
+    req.token = { ext_it: '2' };
+    req.query = { filter: 'upcoming' };
+    // Act
+    await getAll(req, res, next);
+    // Assert
+    const { statusValue, jsonValue } = res;
+    expect(statusValue).toBe(200);
+    expect(jsonValue.extit).toBe(req.token.ext_it);
+    expect(jsonValue.filter).toBe('upcoming');
+  });
+
+  test('GET all test functionality works', async () => {
+    jest
+      .spyOn(stayModels, 'findAllStays')
+      .mockImplementation((extit: string, filter: string) =>
+        Promise.resolve({ extit, filter }),
+      );
+    // TODO: modify test for req.token.ext_it once complete
+    req.query = { test: 'true' };
+    // Act
+    await getAll(req, res, next);
+    // Assert
+    const { statusValue, jsonValue } = res;
+    expect(statusValue).toBe(200);
+    expect(jsonValue.extit).toBe('1');
+    expect(jsonValue.filter).toBe('all');
+  });
+
+  test('GET all properly sends error reponse', async () => {
+    jest
+      .spyOn(stayModels, 'findAllStays')
+      .mockImplementation(() => Promise.reject(new Error('test')));
+    // TODO: modify test for req.token.ext_it once complete
+    req.query = { extit: 1 };
+    // Act
+    await getAll(req, res, next);
+    // Assert
+    const { statusCode, message } = nextResult;
+    expect(statusCode).toBe(400);
+    expect(message).toBe('test');
+  });
+
   test('GET by id retrieves stay summary', async () => {
     // Arrange
     jest
-      .spyOn(stayModels, 'findStaySummary')
+      .spyOn(stayModels, 'findStaySummaryStandardized')
       .mockImplementationOnce(() => Promise.resolve(true));
     req.params = { id: 1 };
     // Act

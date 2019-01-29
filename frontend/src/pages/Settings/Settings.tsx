@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
+
+// adding this for testing
+import { FileUpload } from '../../components/index';
 
 import { Container, Button } from '../../components/';
-import { Card, Positioner, Header, ButtonText, Checkbox } from './Settings.styling';
+import {
+  Card,
+  Positioner,
+  Header,
+  ButtonText,
+  Checkbox,
+} from './Settings.styling';
+import { RouteComponentProps } from 'react-router';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-const Settings = () => {
+const Settings: React.SFC<RouteComponentProps> = (props) => {
+  const clientId = process.env.REACT_APP_clientid;
   // useState returns an array. first element is the value, second element is a setState function
   const [contact, setContact] = useState({
     address: '',
@@ -69,9 +81,8 @@ const Settings = () => {
         Authorization: localStorage.getItem('token'),
       },
     };
-
     axios
-      .get(`${url}/users`, headers)
+      .get(`${url}users`, headers)
       .then(({ data }) => {
         const {
           address,
@@ -91,12 +102,39 @@ const Settings = () => {
       .catch(errorHandler);
   }, []);
 
+  useEffect(() => {
+    const { search } = props.location;
+    const params = search.match(/code=(.*)/);
+
+    if (params !== null && params.length === 2) {
+      const headers: AxiosRequestConfig = {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      };
+      const authorizationCode = params[1];
+      axios
+        .post(`${url}connect`, { authorizationCode }, headers)
+        .then((res) => {
+          props.history.replace('/settings');
+        })
+        .catch((e) => e);
+    }
+    return () => 'hello';
+  }, []);
+
   return (
     <Container>
       <Header>
         <h2>Account Settings</h2>
         <Card>
           <Positioner>
+            <a
+              /* tslint:disable-next-line */
+              href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
+            >
+              <span>Connect with stripe</span>
+            </a>
             <h3>Notification Settings</h3>
             <ButtonText>
               <Checkbox
@@ -105,7 +143,7 @@ const Settings = () => {
                 checked={settings.setting_email}
                 onChange={handleInputChange}
                 data-testid={'checkbox'}
-                />{' '}
+              />{' '}
               I would like to receive updates via email.
               <br />
             </ButtonText>
@@ -128,6 +166,9 @@ const Settings = () => {
               <Button text='Update Contact Info' />
             </Link>
             {info.msg && <div className='settings-status'>{info.msg}</div>}
+          </Positioner>
+          <Positioner>
+            <FileUpload text='upload a file' />
           </Positioner>
         </Card>
       </Header>

@@ -1,5 +1,9 @@
 import sgMail from '@sendgrid/mail';
+import { Token } from '../interface';
 import { Request, Response, NextFunction } from 'express';
+import { RequestMock, ResponseMock } from '../../__tests__/helpers';
+import { getRoleId } from '../models/users';
+type NextFunctionMock = (a: any) => any;
 const sgKey: any = process.env.SENDGRID_API_KEY;
 sgMail.setApiKey(sgKey);
 
@@ -24,25 +28,30 @@ You have been invited to clean for Steve
 Please visit this link to signup and accept Cleaner POS
 ```
 */
+interface ReqToken extends Request {
+  token: Token;
+}
+type Requests = ReqToken | RequestMock;
+type Responses = Response | ResponseMock;
+type Nexts = NextFunction | NextFunctionMock;
 export const sgSend = (msg: any) => {
   return sgMail.send(msg);
 };
-export const send = async (req: Request, res: Response, next: NextFunction) => {
+export const send = async (req: Requests, res: Responses, next: Nexts) => {
   try {
-    const {
-      ast_name,
-      manager_name,
-      subject,
-      link_address,
-      from,
-      to,
-    } = req.body;
+    const { ast_name, manager_name, to } = req.body;
+    const subject: string = `${manager_name} invites you to do work`;
+    const { id, email } = req.token;
+    const roleId = await getRoleId(id);
+    const linkAddress: string = `https://cleanerpos.netlify.com/login?manager=${
+      roleId.id
+    }&ast=true`;
     if (
       !ast_name ||
       !manager_name ||
       !subject ||
-      !link_address ||
-      !from ||
+      !linkAddress ||
+      !email ||
       !to
     ) {
       throw Error('ast, manager, subject, link, from, and to are all required');
@@ -50,11 +59,11 @@ export const send = async (req: Request, res: Response, next: NextFunction) => {
     const msg = {
       dynamic_template_data: {
         astName: ast_name,
-        linkAddress: link_address,
+        linkAddress,
         managerName: manager_name,
         subject,
       },
-      from,
+      from: email,
       templateId: 'd-5eb00ba7abad4637bf24a96ec83281d8',
       to,
     };

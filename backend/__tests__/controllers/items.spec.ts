@@ -13,6 +13,22 @@ const testDb = knex(knexConfig.test);
 // @ts-ignore
 db.mockImplementation((table: string) => testDb(table));
 
+// Temporary access token to test authentication
+import jwt from 'jsonwebtoken';
+
+const token: string = jwt.sign(
+  {
+    exp: Math.floor(Date.now() / 1000) + 60 * 2,
+    ext_it: '1',
+    full_name: 'Harald Junke',
+    id: 1,
+  },
+  process.env.JWT_SECRET || '',
+);
+
+// Headers to send with 'set' with supertest
+const headers = { Authorization: token, Accept: 'application/json' };
+
 describe('/item routes', () => {
   beforeAll(async () => {
     try {
@@ -24,10 +40,50 @@ describe('/item routes', () => {
     }
   });
 
+  test('Unable to get all lists without token', (done) => {
+    request(app)
+      .get('/items')
+      .expect(403, done);
+  });
+
+  test('Unable to get single lists without token', (done) => {
+    request(app)
+      .get('/items/1')
+      .expect(403, done);
+  });
+
+  test('Unable to post without token', (done) => {
+    const newItem = {
+      list_id: 258,
+      task: 'lions tigers and snakes',
+    };
+    request(app)
+      .post('/items/')
+      .send(newItem)
+      .expect(403, done);
+  });
+
+  test('Unable to delete item without token', (done) => {
+    request(app)
+      .delete('/items/5')
+      .expect(403, done);
+  });
+
+  test('Unable to put item without token', (done) => {
+    const newItem = {
+      list_id: 299,
+      task: 'lions tigers and snakes',
+    };
+    request(app)
+      .put('/items/599')
+      .send(newItem)
+      .expect(403, done);
+  });
+
   test('Able to get all lists', (done) => {
     request(app)
       .get('/items')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(200)
       .then(({ body }) => {
         expect(typeof body).toBe('object');
@@ -39,7 +95,7 @@ describe('/item routes', () => {
   test('Able to get single lists', (done) => {
     request(app)
       .get('/items/1')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(200)
       .then(({ body }) => {
         expect(typeof body).toBe('object');
@@ -51,7 +107,7 @@ describe('/item routes', () => {
   test('Unable to get single lists of unreal item', (done) => {
     request(app)
       .get('/items/199')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(404, done);
   });
 
@@ -63,14 +119,14 @@ describe('/item routes', () => {
     request(app)
       .post('/items/')
       .send(newItem)
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(400, done);
   });
 
   test('able to delete item', (done) => {
     request(app)
       .delete('/items/5')
-      .set('Accept', 'application/json')
+      .set(headers)
       .expect(200, done);
   });
 
@@ -81,7 +137,7 @@ describe('/item routes', () => {
     };
     request(app)
       .put('/items/599')
-      .set('Accept', 'application/json')
+      .set(headers)
       .send(newItem)
       .expect(400, done);
   });

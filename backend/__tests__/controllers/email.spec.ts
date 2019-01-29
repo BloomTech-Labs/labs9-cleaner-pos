@@ -2,27 +2,51 @@ import 'jest';
 import request from 'supertest';
 import app from '../../src/app';
 import * as email from '../../src/controller/email';
+import * as user from '../../src/models/users';
+import { send } from '../../src/controller/email';
+import { RequestMock, ResponseMock } from '../helpers';
+// Set up 'req' and 'res' mocks
+let req: RequestMock;
+let res = new ResponseMock();
+
+// Next mock captures error and stores it into this var
+let nextResult: any;
+// Next mock
+const next = (e: Error) => {
+  nextResult = e;
+  return e;
+};
 
 describe('/test email routes', () => {
-  test('able send email using post', (done) => {
-    const send = {
-      ast_name: 'James',
-      from: 'william.vandolah@gmail.com',
-      link_address: 'www.google.com',
-      manager_name: 'Steve',
-      subject: 'This is because someone is testing',
-      to: 'william.vandolah@gmail.com',
+  beforeEach(() => {
+    req = {
+      body: {
+        ast_name: 'James',
+        manager_name: 'Steve',
+        to: 'william.vandolah@gmail.com',
+      },
+      params: undefined,
+      token: { id: 3, email: 'william.vandolah@gmail.com' },
     };
-    jest
-      .spyOn(email, 'sgSend')
-      .mockImplementationOnce(() => Promise.resolve(undefined));
-    request(app)
-      .post('/email/')
-      .send(send)
-      .expect(200, done);
+    res = new ResponseMock();
+    nextResult = undefined;
   });
-  test('receive 400 if missing a var', (done) => {
-    const send = {
+
+  test('able send email using post', async () => {
+    jest
+      .spyOn(email, 'sgSend')
+      .mockImplementationOnce(() => Promise.resolve(undefined));
+    jest
+      .spyOn(user, 'getRoleId')
+      .mockImplementationOnce(() => Promise.resolve(5));
+
+    await send(req, res, next);
+    const { statusValue, jsonValue } = res;
+
+    expect(statusValue).toBe(200);
+  });
+  test('receive 403 if missing token', (done) => {
+    const sends = {
       ast_name: 'James',
       link_address: 'www.google.com',
       manager_name: 'Steve',
@@ -34,7 +58,7 @@ describe('/test email routes', () => {
       .mockImplementationOnce(() => Promise.resolve(undefined));
     request(app)
       .post('/email/')
-      .send(send)
-      .expect(400, done);
+      .send(sends)
+      .expect(403, done);
   });
 });

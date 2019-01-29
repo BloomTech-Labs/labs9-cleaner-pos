@@ -1,16 +1,47 @@
+:root {
+  /* General Colours */
+  --colour-main-black: #393534;
+  --colour-main-background: #eeeff5;
+  --colour-accent: #4593b6;
+  --colour-accent-background: white;
+  --colour-border: rgba(22, 21, 20, 0.12);
+  /* Buttons */
+  --colour-button-text: white;
+  --colour-button-background: #4593b6;
+  --colour-button-text-alt: #4593b6;
+  --colour-button-background-alt: white;
+  --colour-button-background-action: #0aa047;
+  --colour-button-text-action: white;
+  /* Header Font Sizes */
+  --header-font-size-primary: 1.5rem;
+  --header-font-size-secondary: 1rem;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #eeeff5;
+  background-color: var(--colour-main-background);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #eeeff5;
+  background: var(--colour-main-background);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1 {
+  /* Text */
+  font-size: var(--header-font-size-primary);
+  font-family: 'Roboto Medium', Arial, sans-serif;
+}
+
+h2 {
+  /* Text */
+  font-size: var(--header-font-size-secondary);
+  font-family: 'Roboto Medium', Arial, sans-serif;
 }
