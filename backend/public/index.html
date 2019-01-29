@@ -60,6 +60,9 @@
 					<a href="#gethousebyID">Get House by ID</a>
 				</li>
 				<li>
+					<a href="#getallhousesbyuserID">Get List of Houses by Ast User ID</a>
+				</li>
+				<li>
 					<a href="#postnewhouse">Post New House</a>
 				</li>
 				<li>
@@ -97,6 +100,9 @@
 				</li>
 				<li>
 					<a href="#getstaybyID">Get Stay by ID</a>
+				</li>
+				<li>
+					<a href="#getassistants">Get Assistants</a>
 				</li>
 				<li>
 					<a href="#oauth">oAuth</a>
@@ -219,6 +225,50 @@
 "guest_guide": "yeah",
 "ast_guide": "not sure what to call this"
 }</code></pre>
+	</section>
+		<section id="getallhousesbyuserID" class="row">
+		<h4>Get All Houses by Assistant User ID</h4>
+			<p><span>Endpoint URL: </span><code>/houses/:id?stay=true</code> <span>Method: </span><code>GET</code></p>
+				<strong>Example Output</strong>
+					<pre><code>[
+{
+	"id": 1,
+	"name": "house name 1",
+	"address": "123 go duck yourself ave",
+	"default_ast": 1,
+	"default_ast_name": "Big Stevo",
+	"manager": 1,
+	"guest_guide": null,
+	"ast_guide": null,
+	"openAst": [
+		{
+			"full_name": "Big Stevo",
+			"ast_id": 1,
+			"house_id": 1
+		},
+		{
+			"full_name": "Gary Lower",
+			"ast_id": 2,
+			"house_id": 1
+		},
+		{
+			"full_name": "Bill Fauch",
+			"ast_id": 3,
+			"house_id": 1
+		},
+		{
+			"full_name": "John David",
+			"ast_id": 4,
+			"house_id": 1
+		}
+	],
+	"checkList": [
+		{
+			"count": "9"
+		}
+	]
+}
+]</code></pre>
 	</section>
 	<hr />
 	<section id="postnewhouse" class="row">
@@ -394,6 +444,31 @@
 "ast_guide": null,
 "check_in": "1/27/2018",
 "check_out": "1/30/2018"
+}</code></pre>
+	</section>
+	<hr />
+	<section id="getassistants" class="row">
+		<h4>Get Assistants</h4>
+			<p><span>Endpoint URL: </span><code>/assistants</code> <span>Method: </span><code>GET</code></p>
+				<strong>Expected Output</strong>
+					<pre><code>{
+"user_id": 4,
+"ast_id": 1,
+"full_name": "Big Stevo",
+"address": null,
+"photo_url": null,
+"openAst": [
+	{
+		"full_name": "Big Stevo",
+		"ast_id": 1,
+		"house_id": 1
+	},
+	{
+		"full_name": "Big Stevo",
+		"ast_id": 1,
+		"house_id": 2
+	}
+]
 }</code></pre>
 	</section>
 	<hr />

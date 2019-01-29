@@ -8,27 +8,33 @@ export const findLists = async (houseId: number) => {
     const before = await db('list')
       .where({ house_id: houseId, type: 'before' })
       .leftJoin('items', { 'list.id': 'items.list_id' })
-      .select('items.task', 'items.id as items_id');
+      .select('list.id as list_id', 'items.task', 'items.id as items_id')
+      .then((e) => {
+        return { before: e, before_id: e[0].list_id };
+      });
     const during = await db('list')
       .where({ house_id: houseId, type: 'during' })
       .leftJoin('items', { 'list.id': 'items.list_id' })
-      .select('items.task', 'items.id as items_id');
+      .select('list.id as list_id', 'items.task', 'items.id as items_id')
+      .then((e) => {
+        return { during: e, during_id: e[0].list_id };
+      });
     const after = await db('list')
       .where({ house_id: houseId, type: 'after' })
       .leftOuterJoin('after_list', { 'list.id': 'after_list.list_id' })
       .select('list.id', 'after_list.hours_after')
       .map(async (row: any) => {
-        const hours: string = `hours after ${row.hours_after}`;
+        const hours: string = `${row.hours_after} Hours After Stay`;
         const afterLists = await db('items')
           .where({ 'items.list_id': row.id })
           .select('items.task', 'items.id as items_id');
 
-        return { [hours]: afterLists };
+        return { after_id: row.id, time: hours, afterLists };
       })
       .catch((e) => {
         console.error(e);
       });
-    return { before, during, after };
+    return { ...before, ...during, after };
   } catch (e) {
     throw console.error(e);
   }
@@ -93,6 +99,15 @@ export const getList = (id: number): QueryBuilder => {
 export const postList = (list: List): QueryBuilder => {
   return db('list')
     .insert(list)
+    .returning('id');
+};
+
+export const postAfterList = (
+  listId: number,
+  hoursAfter: number,
+): QueryBuilder => {
+  return db('after_list')
+    .insert({ list_id: listId, hours_after: hoursAfter })
     .returning('id');
 };
 

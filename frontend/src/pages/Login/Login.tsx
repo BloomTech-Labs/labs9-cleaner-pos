@@ -13,11 +13,17 @@ import app from '../../firebase.setup';
 // Styles
 import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
+import queryString from 'query-string';
 
-const Login: FunctionComponent<RouteComponentProps> = (props) => {
+interface LoginProps extends RouteComponentProps {
+  onUser: any;
+}
+
+const Login: FunctionComponent<LoginProps> = (props) => {
   const [user, setUser] = useState<User | null>(null);
   // const justMounted = useRef(true);
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
+  const { ast, manager } = queryString.parse(props.location.search);
 
   const uiConfig = {
     callbacks: {
@@ -62,13 +68,17 @@ const Login: FunctionComponent<RouteComponentProps> = (props) => {
         ext_it: uid,
         full_name: displayName,
         photoURL,
-        role: 'manager',
+        role: ast ? 'assistant' : 'manager',
+        managerID: manager,
       };
       const url =
-        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+        process.env.REACT_APP_backendURL ||
+        'https://cleaner-pos.herokuapp.com/';
       try {
-        const { data } = await axios.post(`${url}/users/`, nUser);
+        const { data } = await axios.post(`${url}users/`, nUser);
         localStorage.setItem('token', data.token);
+        localStorage.setItem('id', data.id);
+        localStorage.setItem('role', data.role);
         if (data.first) {
           props.history.push('/updateinfo');
         } else {
