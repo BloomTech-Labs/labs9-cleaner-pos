@@ -16,7 +16,10 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     // ⬆️ https://stackoverflow.com/questions/47045185/jsonwebtoken-typescript-compiling-issue
     next();
   } catch (e) {
-    if (e.message === 'Token required to access protected route') {
+    if (
+      e.message === 'Token required to access protected route' ||
+      e.message === 'invalid token'
+    ) {
       e.statusCode = 403;
     }
     e.statusCode = e.statusCode || 500;
