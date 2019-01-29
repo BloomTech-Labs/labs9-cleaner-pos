@@ -10,10 +10,9 @@ import { Button } from '../../components/index';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 const url =
-  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const CheckoutForm = (props: any) => {
-  const { id } = useContext(UserContext);
   const { sum } = useContext(PaymentContext);
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
@@ -29,22 +28,17 @@ const CheckoutForm = (props: any) => {
       try {
         // @ts-ignore
         const { token } = await props.stripe.createToken({});
-        console.log(token);
-        console.log(props);
         const body = {
-          id,
           token: token.id,
           amount: sum,
         };
-        console.log(body);
         const { data }: AxiosResponse = await axios.post(
           `${url}/connect/createpayment`,
           body,
           headers,
         );
-        console.log(data);
       } catch (e) {
-        console.log(e);
+        return e;
       }
     }
     triggerPayment();

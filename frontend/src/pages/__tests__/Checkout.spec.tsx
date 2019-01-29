@@ -5,7 +5,6 @@ import {
   waitForElement,
   render,
   flushEffects,
-  wait,
 } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';
@@ -49,6 +48,8 @@ jest.mock('axios', () => {
     ),
   };
 });
+
+localStorage.setItem('token', 'testToken!');
 
 describe('Checkout Page UI', () => {
   test('should be rendering the Container component', () => {

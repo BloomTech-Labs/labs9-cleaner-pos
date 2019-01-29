@@ -8,7 +8,8 @@ const deleteL = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const post = async (req: Request, res: Response, next: NextFunction) => {
-  const { authorizationCode, id } = req.body;
+  const { authorizationCode } = req.body;
+  const { id } = req.token;
   if (!authorizationCode) {
     res.status(400).send({ message: 'Please include a valid token!' });
     return;
@@ -45,8 +46,9 @@ const createPayment = async (
   next: NextFunction,
 ) => {
   try {
-    const { id, amount } = req.body;
+    const { amount } = req.body;
     const stripeToken = req.body.token;
+    const { id } = req.token;
 
     const user = await findUser(id);
     if (user.stripeUID === '') {

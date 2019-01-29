@@ -3,12 +3,7 @@ import { Guests } from '../index';
 import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
 import 'jest-dom';
-import {
-  cleanup,
-  waitForElement,
-  wait,
-  fireEvent,
-} from 'react-testing-library';
+import { cleanup, waitForElement } from 'react-testing-library';
 
 // Mock data for mock axios to return
 const mockdata = [
@@ -52,32 +47,28 @@ jest.mock('axios', () => {
   };
 });
 
-// Mock local storage
-// https://stackoverflow.com/a/54239779
-const getItemSpy = jest.spyOn(
-  Object.getPrototypeOf(window.localStorage),
-  'getItem',
-);
-
-getItemSpy.mockImplementation(() => 'whatever');
+localStorage.setItem('token', 'testToken!');
 
 afterEach(cleanup);
 
 describe('Guests dashboard', () => {
   test('should render a guest card for every guest received through axios', async () => {
     const { getAllByTestId } = renderWithRouter(<Guests />, {});
+
     const guestCards = await waitForElement(() => getAllByTestId('guest-card'));
     expect(guestCards.length).toBe(mockdata.length);
   });
 
   test('should include 3 info cards for every guest card', async () => {
     const { getAllByTestId } = renderWithRouter(<Guests />, {});
+
     const infoBoxes = await waitForElement(() => getAllByTestId('info-box'));
     expect(infoBoxes.length).toBe(mockdata.length * 3);
   });
 
   test('upcoming button should be active', () => {
     const { getByTestId } = renderWithRouter(<Guests />, {});
+
     const upcomingButton = getByTestId('button-upcoming');
     expect(upcomingButton.classList.contains('active')).toBe(true);
   });

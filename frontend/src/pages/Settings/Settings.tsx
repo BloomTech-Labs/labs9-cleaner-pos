@@ -17,7 +17,7 @@ import {
 import { RouteComponentProps } from 'react-router';
 
 const url =
-  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+  process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const clientId = process.env.REACT_APP_clientid;
@@ -34,7 +34,6 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     setting_text: false,
   });
   const [info, setInfo] = useState({ msg: '', error: false });
-  const { id } = useContext(UserContext);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
@@ -49,7 +48,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     };
 
     axios
-      .put(`${url}users`, settings, headers)
+      .put(`${url}/users`, settings, headers)
       .then(() => {
         setInfo({ msg: 'Settings successfully saved.', error: false });
       })
@@ -115,7 +114,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       };
       const authorizationCode = params[1];
       axios
-        .post(`${url}connect`, { authorizationCode, id }, headers)
+        .post(`${url}connect`, { authorizationCode }, headers)
         .then((res) => {
           props.history.replace('/settings');
         })
