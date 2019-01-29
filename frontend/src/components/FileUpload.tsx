@@ -24,7 +24,7 @@ interface UploadProps {
 
 const FileUpLoad = (props: UploadProps) => {
   const [open, setOpen] = useState(false);
-
+  const token = localStorage.getItem('token');
   const uppy = Uppy({
     restrictions: {
       maxNumberOfFiles: 1,
@@ -37,7 +37,10 @@ const FileUpLoad = (props: UploadProps) => {
   });
   useEffect(() => {
     uppy
-      .use(AwsS3, { serverUrl: 'https://cleaner-pos.herokuapp.com/' })
+      .use(AwsS3, {
+        serverUrl: 'https://cleaner-pos.herokuapp.com/',
+        serverHeaders: { Authorization: token },
+      })
       .on('complete', (result: any) => {
         const url = result.successful[0].response.uploadURL;
         // TODO: this is where we are going to want to make an axios post request
@@ -72,7 +75,7 @@ const FileUpLoad = (props: UploadProps) => {
 export const FileUploadHOF = (cb?: (url: string, type?: string) => void) => {
   return (props: UploadProps) => {
     const [open, setOpen] = useState(false);
-
+    const token = localStorage.getItem('token');
     const uppy = Uppy({
       restrictions: {
         maxNumberOfFiles: 1,
@@ -85,7 +88,10 @@ export const FileUploadHOF = (cb?: (url: string, type?: string) => void) => {
     });
     useEffect(() => {
       uppy
-        .use(AwsS3, { serverUrl: 'https://cleaner-pos.herokuapp.com/' })
+        .use(AwsS3, {
+          serverUrl: 'https://cleaner-pos.herokuapp.com/',
+          serverHeaders: { Authorization: token },
+        })
         .on('complete', (result: any) => {
           const url = result.successful[0].response.uploadURL;
           // Whatever you put in the CB is going to be called here
