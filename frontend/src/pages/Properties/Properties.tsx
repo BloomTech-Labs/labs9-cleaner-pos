@@ -43,6 +43,10 @@ const Properties = () => {
       <Link to='/properties/new'>
         <Button text='New Property' />
       </Link>
+      {loading ? '...Loading' : null}
+      {error
+        ? 'Whoops! There was an error loading this content for you ☹️'
+        : null}
       {houses
         ? houses.map((house: House) => {
             return (
