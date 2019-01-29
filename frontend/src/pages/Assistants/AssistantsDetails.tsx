@@ -15,7 +15,7 @@ import { hostname } from 'os';
 
 const AssistantCard = (assistant: any) => {
   return (
-    <AssistantBar key={assistant.user_id}>
+    <AssistantBar>
       <AsstDetail>
         <ThumbNail
           src={img}
@@ -28,26 +28,23 @@ const AssistantCard = (assistant: any) => {
         </div>
       </AsstDetail>
       <AsstProperty>
-        <PropertyHeading
-          style={{ borderBottom: '1px solid var(--colour-border)' }}
-        >
-          Default Properties
-        </PropertyHeading>
         <PropertyContainer>
+          <PropertyHeading>
+            <h2>Default Properties</h2>
+          </PropertyHeading>
           {assistant.default_house.map((house: any) => (
-            <p>{house.house_name}</p>
+            <p key={house.house_id}>{house.house_name}</p>
           ))}
           <Button text='+ Add New Item' />
         </PropertyContainer>
-      </AsstProperty>
-      <AsstProperty>
-        <PropertyHeading
-          style={{ borderBottom: '1px solid var(--colour-border)' }}
-        >
-          Available Properties
-        </PropertyHeading>
+
         <PropertyContainer>
-          {assistant.avl_houses.map((house: any) => house.house_name)}
+          <PropertyHeading>
+            <h2>Available Properties</h2>
+          </PropertyHeading>
+          {assistant.avl_houses.map((house: any) => (
+            <div key={house.house_id}>house.house_name</div>
+          ))}
           <Button text='+ Add New Item' />
         </PropertyContainer>
       </AsstProperty>

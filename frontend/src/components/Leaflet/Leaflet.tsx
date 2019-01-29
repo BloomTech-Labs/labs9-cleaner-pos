@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import MapDiv from './Leaflet.styling';
 import 'leaflet/dist/leaflet.css';
 
 const LeafletMap = () => {
@@ -16,7 +15,7 @@ const LeafletMap = () => {
   return (
     <>
       <Map
-        style={{ heigh: '300px', width: '70%' }}
+        style={{ width: '70%' }}
         className='container-map'
         center={position}
         zoom={coordinates.zoom}

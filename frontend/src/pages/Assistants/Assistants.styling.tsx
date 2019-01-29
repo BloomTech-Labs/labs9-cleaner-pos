@@ -52,20 +52,18 @@ const ThumbNail = styled('img')`
 `;
 
 const CardHeading = styled('div')`
-  margin: 0 0 0 0.75rem;
-  p {
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
+  width: 100%;
   @media only screen and (max-width: 600px) {
     text-align: center;
   }
 `;
 
 const CardBody = styled('div')`
+  padding: 0 2.25rem;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  flex-direction: column;
+  width: 100%;
   @media only screen and (max-width: 600px) {
     margin: 0;
     align-items: flex-start;
@@ -74,7 +72,6 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-  margin: 0 0 0 0.75rem;
   padding: 10px 15px 45px;
   text-align: center;
   height: 6.25rem;
@@ -145,27 +142,29 @@ const AsstDetail = styled('div')`
   background: var(--colour-accent);
   display: flex;
   flex-direction: row;
-  border: 1px dotted red;
+  border: 1px solid var(--colour-border);
 `;
 
 const AsstProperty = styled('div')`
   display: flex;
   flex-direction: column;
-  height: 19.5rem;
-  width: 18rem;
   margin: 0 auto;
-  border: 1px dashed green;
+  border: 1px solid var(--colour-border);
 `;
 
 const PropertyContainer = styled('div')`
+  border: 0.5px solid var(--colour-border);
   background: white;
-  height: 100%;
+  height: 300px;
+  width: 18rem;
 `;
 
-const PropertyHeading = styled('h2')`
+const PropertyHeading = styled('div')`
   color: var(--colour-accent);
-  margin-block-end: 0;
-  padding-bottom: 0.83rem;
+  background: #eeeff5;
+  height: 3.75rem;
+  border-bottom: 1px solid var(--colour-border);
+  padding: 0.3rem 0;
 `;
 
 export {

@@ -24,21 +24,32 @@ const AssistantCard = (assistant: Assistant) => {
       <Link to={`/assistants/${assistant.ast_id}`}>
         <AssistantItem data-testid='assistant-item'>
           <ThumbNail src={img} alt={assistant.full_name} />
-          <CardHeading>
-            <h1>{assistant.full_name}</h1>
-          </CardHeading>
           <CardBody>
-            <CheckList>
-              <h3>Checklist Items</h3>
-              <div>{assistant.itemCount}</div>
-            </CheckList>
-            <Asst>
-              <h3>Available Houses</h3>
-              <div>{assistant.houseCount}</div>
-            </Asst>
-            <ButtonContainer>
-              <Button text='House Availability' datatestid='assistant-button' />
-            </ButtonContainer>
+            <CardHeading>
+              <h1>{assistant.full_name}</h1>
+            </CardHeading>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+              }}
+            >
+              <CheckList>
+                <h3>Checklist Items</h3>
+                <div>{assistant.itemCount}</div>
+              </CheckList>
+              <Asst>
+                <h3>Available Houses</h3>
+                <div>{assistant.houseCount}</div>
+              </Asst>
+              <ButtonContainer>
+                <Button
+                  text='House Availability'
+                  datatestid='assistant-button'
+                />
+              </ButtonContainer>
+            </div>
           </CardBody>
         </AssistantItem>
       </Link>
