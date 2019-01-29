@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Container } from '../../components/';
 
 const pxToRem = (px: number): string => `${px / 16}rem`;
-const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 // Some size constants
 const cardHeight = 216;
 const boxWidth: string = `30%`;
@@ -13,7 +12,7 @@ const AssistantItem = styled('div')`
   color: var(--colour-main-black);
 
   /* Sizing */
-  height: ${cardHeight / 16}rem;
+  height: ${pxToRem(188)};
   margin-bottom: 2.25rem;
   border: 0.5px solid var(--colour-border);
 
@@ -68,8 +67,9 @@ const ButtonContainer = styled('div')`
 `;
 
 const ThumbNail = styled('img')`
-  width: ${(cardHeight - 5) / 16}rem;
-  height: ${(cardHeight - 5) / 16}rem;
+  width: auto;
+  height: auto;
+  object-fit: cover;
   @media only screen and (max-width: 600px) {
     width: 100%;
     object-fit: cover;
