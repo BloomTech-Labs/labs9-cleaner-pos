@@ -25,14 +25,14 @@ const PropertyDetails = (props: any) => {
   const [shouldFetch, setShouldFetch] = useState(true);
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
-
+  const token = localStorage.getItem('token');
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-
+  const headers: AxiosRequestConfig = {
+    headers: { Authorization: token },
+  };
   async function fetchHouse(id: number) {
     try {
-      const token = localStorage.getItem('token');
-
       // if (!token) {
       //   setErrors({
       //     msg: 'Authentication error. Please try logging in again.',
@@ -40,9 +40,6 @@ const PropertyDetails = (props: any) => {
       //   });
       //   return;
       // }
-      const headers: AxiosRequestConfig = {
-        headers: { Authorization: token },
-      };
       const res = await axios.get(`${url}/houses/${id}`, headers);
       setProperty(res.data);
     } catch (e) {
@@ -52,7 +49,7 @@ const PropertyDetails = (props: any) => {
 
   async function fetchLists(id: number) {
     try {
-      const res = await axios.get(`${url}lists/${id}`);
+      const res = await axios.get(`${url}/lists/${id}`, headers);
       setLists(res.data);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -109,11 +106,13 @@ const PropertyDetails = (props: any) => {
     fetchHouse(props.match.params.id);
   }, []);
 
-  useEffect(() => {
-    fetchLists(props.match.params.id);
-    setShouldFetch(false);
-  }, [shouldFetch]);
-
+  useEffect(
+    () => {
+      fetchLists(props.match.params.id);
+      setShouldFetch(false);
+    },
+    [shouldFetch],
+  );
   return (
     <>
       <div>{errors.msg}</div>
@@ -128,13 +127,13 @@ const PropertyDetails = (props: any) => {
           <Top>
             <MainText data-testid='house-detail'>{property.name}</MainText>
             <SecondaryText>{property.address}</SecondaryText>
-		  <BackButton text='Edit Property' colour='var(--colour-accent)' />
-		  <BackButton
-			text='Go Back'
-			colour='var(--colour-accent)'
-			onClick={() => props.history.push('/properties')}
-		  />
-		  </Top>
+            <BackButton text='Edit Property' colour='var(--colour-accent)' />
+            <BackButton
+              text='Go Back'
+              colour='var(--colour-accent)'
+              onClick={() => props.history.push('/properties')}
+            />
+          </Top>
           <ListContainer>
             <PropertyLists
               list={lists.before}
