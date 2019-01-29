@@ -29,6 +29,7 @@ const SpecialButton = ({
     /* border-radius: 50%; */
     width: 150px;
     height: 50px;
+    color: #e4e4e4;
   `;
   return (
     <>

@@ -9,7 +9,7 @@ interface ButtonProps {
   onClick?: (ev: React.FormEvent) => Promise<any> | void;
   text?: string;
   datatestid?: string;
-  color?: string;
+  colour?: string;
   className?: string;
   type?: string;
   disabled?: boolean;
@@ -19,11 +19,11 @@ const Button = ({
   onClick,
   text,
   datatestid,
-  color,
+  colour,
   className,
   disabled,
 }: ButtonProps) => {
-  const buttonColour = color || 'var(--colour-main-black)';
+  const buttonColour = colour || 'var(--colour-main-black)';
   const StyledButton = styled('button')`
     background: ${buttonColour};
     width: 200px;
