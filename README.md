@@ -1,4 +1,4 @@
-# Labs 9 - Cleaner POS
+# Labs 9 - Lodgel
 
 
 ### Contributors:
