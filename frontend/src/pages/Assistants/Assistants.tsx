@@ -4,82 +4,82 @@ import { useFetch } from '../../helpers/';
 import { Link } from 'react-router-dom';
 import img from '../assets/ronald.jpg';
 import {
-  AssistantItem,
-  CardBody,
-  ThumbNail,
-  ButtonContainer,
-  CardHeading,
-  Asst,
-  CheckList,
-  AssistantHeader,
-  HeaderWrapper,
+    AssistantItem,
+    CardBody,
+    ThumbNail,
+    ButtonContainer,
+    CardHeading,
+    Asst,
+    CheckList,
+    AssistantHeader,
+    HeaderWrapper,
 } from './Assistants.styling';
 import { Assistant } from './types';
 
 interface AssistantsEnum extends Array<Assistant> {}
 
 const AssistantCard = (assistant: Assistant) => {
-  return (
-    <>
-      <Link to={`/assistants/${assistant.ast_id}`}>
-        <AssistantItem data-testid='assistant-item'>
-          <ThumbNail src={img} alt={assistant.full_name} />
-          <CardBody>
-            <CardHeading>
-              <h1>{assistant.full_name}</h1>
-            </CardHeading>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <CheckList>
-                <h3>Checklist Items</h3>
-                <div>{assistant.itemCount}</div>
-              </CheckList>
-              <Asst>
-                <h3>Available Houses</h3>
-                <div>{assistant.houseCount}</div>
-              </Asst>
-              <ButtonContainer>
-                <Button
-                  text='House Availability'
-                  datatestid='assistant-button'
-                />
-              </ButtonContainer>
-            </div>
-          </CardBody>
-        </AssistantItem>
-      </Link>
-    </>
-  );
+    return (
+        <>
+        <Link to={`/assistants/${assistant.ast_id}`}>
+            <AssistantItem data-testid='assistant-item'>
+            <ThumbNail src={img} alt={assistant.full_name} />
+            <CardBody>
+                <CardHeading>
+                <h1>{assistant.full_name}</h1>
+                </CardHeading>
+                <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                }}
+                >
+                <CheckList>
+                    <h3>Checklist Items</h3>
+                    <div>{assistant.itemCount}</div>
+                </CheckList>
+                <Asst>
+                    <h3>Available Houses</h3>
+                    <div>{assistant.houseCount}</div>
+                </Asst>
+                <ButtonContainer>
+                    <Button
+                    text='House Availability'
+                    datatestid='assistant-button'
+                    />
+                </ButtonContainer>
+                </div>
+            </CardBody>
+            </AssistantItem>
+        </Link>
+        </>
+    );
 };
 
 const Assistants = () => {
-  const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-  const [data, error, loading] = useFetch(`${url}/assistants`);
-  return (
-    <Container>
-      {loading ? '...Loading' : null}
-      {error.error ? 'Whoops! Something went wrong! :(' : null}
-      <>
-        <HeaderWrapper>
-          <AssistantHeader>Turnover Assistants</AssistantHeader>
-          <Link to='/invite'>
-            <Button text='+ New Assistant' />
-          </Link>
-        </HeaderWrapper>
-        {data
-          ? data.map((assistant: Assistant) => (
-              <AssistantCard key={assistant.ast_id} {...assistant} />
-            ))
-          : null}
-      </>
-    </Container>
-  );
+    const url =
+        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+    const [data, error, loading] = useFetch(`${url}/assistants`);
+    return (
+        <Container>
+            {loading ? '...Loading' : null}
+            {error.error ? 'Whoops! Something went wrong! :(' : null}
+            <>
+                <HeaderWrapper>
+                <AssistantHeader>Turnover Assistants</AssistantHeader>
+                <Link to='/invite'>
+                    <Button text='+ New Assistant' />
+                </Link>
+                </HeaderWrapper>
+                {data
+                ? data.map((assistant: Assistant) => (
+                    <AssistantCard key={assistant.ast_id} {...assistant} />
+                    ))
+                : null}
+            </>
+        </Container>
+    );
 };
 
 export default Assistants;
