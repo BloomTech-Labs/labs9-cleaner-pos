@@ -26,12 +26,15 @@ const Button = ({
   const buttonColour = colour || 'var(--colour-button-background)';
   const StyledButton = styled('button')`
     background: ${buttonColour};
-    width: 200px;
-    height: 50px;
+    max-width: 200px;
+    max-height: 64px;
+    width: 100%;
+    height: auto;
+    padding: 0.5rem;
     color: var(--colour-button-text);
     border: 0;
     font-weight: condensed;
-    font-size: 24px;
+    font-size: 1.5rem;
     /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   `;

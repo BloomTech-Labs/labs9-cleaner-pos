@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import { Container } from '../../components/';
 
 const pxToRem = (px: number): string => `${px / 16}rem`;
+const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 // Some size constants
-const cardHeight = 216;
+const boxHeight = '5rem';
 const boxWidth: string = `30%`;
+const bp = `650px`;
 
 const AssistantItem = styled('div')`
   /* Color */
@@ -22,13 +24,7 @@ const AssistantItem = styled('div')`
   /* Text */
   text-align: left;
 
-  button {
-    padding: 1rem 0;
-    width: 100%;
-    height: auto;
-  }
-
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     width: 100%;
     height: 100%;
@@ -44,7 +40,7 @@ const HeaderWrapper = styled('div')`
   /* Sizing */
   margin-bottom: 2.25rem;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     align-items: center;
     button {
@@ -57,7 +53,7 @@ const ButtonContainer = styled('div')`
   /* Sizing */
   margin: 0 0 0 0.75rem;
   width: ${boxWidth};
-  height: auto;
+  height: ${pxToRem(42)};
   /* Flex */
   display: flex;
   flex-direction: column;
@@ -67,10 +63,10 @@ const ButtonContainer = styled('div')`
 `;
 
 const ThumbNail = styled('img')`
-  width: auto;
+  width: ${pxToVw(254 * 0.8)};
   height: auto;
   object-fit: cover;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${bp}) {
     width: 100%;
     object-fit: cover;
     margin: 0 auto;
@@ -79,7 +75,9 @@ const ThumbNail = styled('img')`
 
 const CardHeading = styled('div')`
   width: 100%;
-  @media only screen and (max-width: 600px) {
+  line-height: 0.5;
+  margin-bottom: 1rem;
+  @media only screen and (max-width: ${bp}) {
     text-align: center;
   }
 `;
@@ -90,7 +88,7 @@ const CardBody = styled('div')`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${bp}) {
     margin: 0;
     align-items: flex-start;
     flex-direction: column;
@@ -99,8 +97,7 @@ const CardBody = styled('div')`
 
 const CheckList = styled('div')`
   /* Sizing */
-  padding: 10px 15px 45px;
-  height: 6.25rem;
+  height: ${boxHeight};
   width: ${boxWidth};
   border: 0.5px solid var(--colour-border);
   /* Text */
@@ -111,7 +108,7 @@ const CheckList = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: space-around;
   p {
     margin: 0;
     font-weight: bold;
@@ -119,7 +116,7 @@ const CheckList = styled('div')`
   .secondary {
     color: var(--colour-accent);
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${bp}) {
     margin-bottom: 1rem;
     font-size: 1.2rem;
   }
@@ -128,9 +125,8 @@ const CheckList = styled('div')`
 const Asst = styled('div')`
   /* Sizing */
   margin: 0 0 0 0.75rem;
-  padding: 10px 15px 45px;
   width: ${boxWidth};
-  height: 6.25rem;
+  height: ${boxHeight};
   border: var(--border);
   /* Text */
   text-align: center;
@@ -148,7 +144,7 @@ const Asst = styled('div')`
     margin: 0;
     font-weight: bold;
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${bp}) {
     margin-top: 1rem;
     font-size: 1.2rem;
   }

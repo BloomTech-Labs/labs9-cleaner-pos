@@ -27,12 +27,13 @@ const AssistantCard = (assistant: Assistant) => {
           <CardBody>
             <CardHeading>
               <h1>{assistant.full_name}</h1>
-              <h3>Test Address</h3>
+              <p>Test Address</p>
             </CardHeading>
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 width: '100%',
               }}
             >
