@@ -119,7 +119,9 @@ export const findHouse = async (id: number) => {
 };
 
 export const makeHouse = (house: House): QueryBuilder => {
-  return db('house').insert(house);
+  return db('house')
+    .insert(house)
+    .returning('id');
 };
 
 export const updateHouse = (updatedHouse: House): QueryBuilder => {
