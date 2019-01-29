@@ -6,10 +6,15 @@ const cardHeight = pxToRem(84);
 const cardWeidth = pxToRem(120);
 
 export const BackButton = styled(Button)`
-  margin-left: auto;
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
   font-size: ${pxToRem(20)}rem;
+	border: 0.25px solid black;
+	@media only screen and (max-width: 900px) {
+	}
+`;
+
+export const PropertyButtons = styled('div')`
 `;
 
 export const WhiteButton = styled(Button)`
@@ -31,42 +36,46 @@ export const PropertyContainer = styled(Container)`
 
 export const Top = styled(PropertyContainer)`
   margin: 0 ${pxToRem(22)}rem;
-  width: 40%;
+  width: 100%;
   display: flex;
-  align-items: flex-start;
+  flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
   /* Text */
   text-align: left;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
 		justify-content: center;
 		align-items: center;
 		text-align: center;
 		width: 100%;
   }
 `;
+
+export const HouseInfo = styled('div')`
+`;
+
 export const ThumbNail = styled('img')`
   width: ${cardWeidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
   	margin: 0 auto;
 	  padding: 10px;
   }
 `;
 export const MainText = styled.div`
-  width: 75%;
+  width: 100%;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
 	  width: 100%;
   }
 `;
 
 export const SecondaryText = styled.div`
-  display: inline-block;
-  text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
 		width: 100%;
 		text-align: center;
 		padding-bottom: 20px;
@@ -89,7 +98,7 @@ export const ListContainer = styled('div')`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
   	flex-direction: column;
 		justify-content: center;
 		align-items: center;
