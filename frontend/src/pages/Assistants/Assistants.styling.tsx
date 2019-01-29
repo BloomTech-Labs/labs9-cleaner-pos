@@ -1,17 +1,34 @@
 import styled from '@emotion/styled';
 import { Container } from '../../components/';
 
+const pxToRem = (px: number): string => `${px / 16}rem`;
+const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
+// Some size constants
 const cardHeight = 216;
+const boxWidth: string = `30%`;
 
 const AssistantItem = styled('div')`
+  /* Color */
   background: white;
-  max-width: ${(1136 * 0.9) / 16}rem;
+  color: var(--colour-main-black);
+
+  /* Sizing */
   height: ${cardHeight / 16}rem;
   margin-bottom: 2.25rem;
-  display: flex;
-  text-align: left;
   border: 0.5px solid var(--colour-border);
-  color: var(--colour-main-black);
+
+  /* Flex */
+  display: flex;
+
+  /* Text */
+  text-align: left;
+
+  button {
+    padding: 1rem 0;
+    width: 100%;
+    height: auto;
+  }
+
   @media only screen and (max-width: 600px) {
     flex-direction: column;
     width: 100%;
@@ -21,9 +38,13 @@ const AssistantItem = styled('div')`
 `;
 
 const HeaderWrapper = styled('div')`
+  /* Flex */
   display: flex;
   justify-content: space-between;
+
+  /* Sizing */
   margin-bottom: 2.25rem;
+
   @media only screen and (max-width: 600px) {
     flex-direction: column;
     align-items: center;
@@ -34,11 +55,16 @@ const HeaderWrapper = styled('div')`
 `;
 
 const ButtonContainer = styled('div')`
+  /* Sizing */
   margin: 0 0 0 0.75rem;
-  height: 7.75rem;
+  width: ${boxWidth};
+  height: auto;
+  /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  /* Text */
+  font-size: ${pxToRem(20)};
 `;
 
 const ThumbNail = styled('img')`
@@ -72,12 +98,16 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
+  /* Sizing */
   padding: 10px 15px 45px;
-  text-align: center;
   height: 6.25rem;
-  border: 0.5px solid #393534;
+  width: ${boxWidth};
+  border: 0.5px solid var(--colour-border);
+  /* Text */
+  text-align: center;
   font-size: 1.5rem;
   font-weight: light;
+  /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,6 +116,9 @@ const CheckList = styled('div')`
     margin: 0;
     font-weight: bold;
   }
+  .secondary {
+    color: var(--colour-accent);
+  }
   @media only screen and (max-width: 600px) {
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -93,17 +126,24 @@ const CheckList = styled('div')`
 `;
 
 const Asst = styled('div')`
+  /* Sizing */
   margin: 0 0 0 0.75rem;
   padding: 10px 15px 45px;
-  text-align: center;
+  width: ${boxWidth};
   height: 6.25rem;
-  border: 0.5px solid #393534;
+  border: var(--border);
+  /* Text */
+  text-align: center;
   font-size: 1.5rem;
   font-weight: light;
+  /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .secondary {
+    color: var(--colour-accent);
+  }
   p {
     margin: 0;
     font-weight: bold;
