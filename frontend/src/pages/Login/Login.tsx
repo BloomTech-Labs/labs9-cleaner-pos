@@ -53,12 +53,9 @@ const Login: FunctionComponent<LoginProps> = (props) => {
     };
   }, []);
 
-  useEffect(
-    () => {
-      submitUser();
-    },
-    [user],
-  );
+  useEffect(() => {
+    submitUser();
+  }, [user]);
 
   async function submitUser() {
     if (user !== null) {
@@ -72,10 +69,9 @@ const Login: FunctionComponent<LoginProps> = (props) => {
         managerID: manager,
       };
       const url =
-        process.env.REACT_APP_backendURL ||
-        'https://cleaner-pos.herokuapp.com/';
+        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
       try {
-        const { data } = await axios.post(`${url}users/`, nUser);
+        const { data } = await axios.post(`${url}/users/`, nUser);
         localStorage.setItem('token', data.token);
         localStorage.setItem('id', data.id);
         localStorage.setItem('role', data.role);

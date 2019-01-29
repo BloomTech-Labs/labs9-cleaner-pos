@@ -3,7 +3,7 @@ import { Guests } from '../index';
 import { renderWithRouter } from '../../helpers/functions';
 import 'jest';
 import 'jest-dom';
-import { cleanup, waitForElement } from 'react-testing-library';
+import { cleanup, waitForElement, wait } from 'react-testing-library';
 
 // Mock data for mock axios to return
 const mockdata = [
@@ -56,20 +56,26 @@ describe('Guests dashboard', () => {
     const { getAllByTestId } = renderWithRouter(<Guests />, {});
 
     const guestCards = await waitForElement(() => getAllByTestId('guest-card'));
-    expect(guestCards.length).toBe(mockdata.length);
+    await wait(() => {
+      expect(guestCards.length).toBe(mockdata.length);
+    });
   });
 
   test('should include 3 info cards for every guest card', async () => {
     const { getAllByTestId } = renderWithRouter(<Guests />, {});
 
     const infoBoxes = await waitForElement(() => getAllByTestId('info-box'));
-    expect(infoBoxes.length).toBe(mockdata.length * 3);
+    await wait(() => {
+      expect(infoBoxes.length).toBe(mockdata.length * 3);
+    });
   });
 
-  test('upcoming button should be active', () => {
+  test('upcoming button should be active', async () => {
     const { getByTestId } = renderWithRouter(<Guests />, {});
 
     const upcomingButton = getByTestId('button-upcoming');
-    expect(upcomingButton.classList.contains('active')).toBe(true);
+    await wait(() => {
+      expect(upcomingButton.classList.contains('active')).toBe(true);
+    });
   });
 });
