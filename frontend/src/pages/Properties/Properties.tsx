@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { Button, Container } from '../../components/index';
 import axios from 'axios';
 import {
@@ -12,8 +12,9 @@ import {
   CheckList,
   HouseHeader,
 } from './Properties.styling';
+import { AxiosRequestConfig } from 'axios';
 import { useFetch } from '../../helpers/';
-import { HousesEnum, House } from './types';
+import { House } from './types';
 import { Link } from 'react-router-dom';
 
 const Properties = () => {
@@ -27,11 +28,18 @@ const Properties = () => {
     id: number | undefined,
   ) {
     const token = localStorage.getItem('token');
+    const headers: AxiosRequestConfig = {
+      headers: { Authorization: token },
+    };
     try {
       const [astId, fullName] = event.currentTarget.value.split(':');
-      const res = await axios.put(`http://localhost:4500/houses/${id}`, {
-        default_ast: Number(astId),
-      });
+      const res = await axios.put(
+        `http://localhost:4500/houses/${id}`,
+        {
+          default_ast: Number(astId),
+        },
+        headers,
+      );
     } catch (e) {
       throw e;
     }
@@ -44,7 +52,7 @@ const Properties = () => {
         <Button text='New Property' />
       </Link>
       {loading ? '...Loading' : null}
-      {error
+      {error.error
         ? 'Whoops! There was an error loading this content for you ☹️'
         : null}
       {houses
