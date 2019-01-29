@@ -84,9 +84,22 @@ describe('/user routes', () => {
   });
 
   test('GET request with invalid id returns a 404', (done) => {
+    const faultyToken: string = jwt.sign(
+      {
+        exp: Math.floor(Date.now() / 1000) + 60 * 2,
+        ext_it: '1',
+        full_name: 'Harald Junke',
+        id: 5123513,
+      },
+      process.env.JWT_SECRET || '',
+    );
+    const wrongHeaders = {
+      Accept: 'application/json',
+      Authorization: faultyToken,
+    };
     request(app)
       .get('/users/99')
-      .set(headers)
+      .set(wrongHeaders)
       .expect(404, done);
   });
 
