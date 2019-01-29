@@ -10,6 +10,10 @@ export const BackButton = styled(Button)`
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
   font-size: ${pxToRem(20)}rem;
+  border: solid 0.25px black;
+  @media only screen and (max-width: 600px) {
+	margin-left: 0;
+  }
 `;
 
 export const WhiteButton = styled(Button)`
@@ -26,24 +30,34 @@ export const PropertyContainer = styled(Container)`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: 1080px;
+  max-width: 100%;
 `;
 
 export const Top = styled(PropertyContainer)`
   margin: 0 ${pxToRem(22)}rem;
-  width: 40%;
+  width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   /* Text */
   text-align: left;
+  @media only screen and (max-width: 600px) {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 100%;
 `;
 export const ThumbNail = styled('img')`
   width: ${cardWeidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
+  @media only screen and (max-width: 600px) {
+  	margin: 0 auto;
+	padding: 10px;
+  }
 `;
 export const MainText = styled.div`
-  width: 75%;
+  width: 100%;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
 `;
@@ -53,6 +67,11 @@ export const SecondaryText = styled.div`
   text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
+  @media only screen and (max-width: 600px) {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 20px;
+  }
 `;
 
 export const Header = styled('div')`
@@ -71,6 +90,11 @@ export const ListContainer = styled('div')`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
+  @media only screen and (max-width: 600px) {
+  	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }
 `;
 export const ListDiv = styled('div')`
   width: 45%;
@@ -104,9 +128,15 @@ export const TaskDiv = styled('div')`
 export const AfterListDiv = styled(ListDiv)`
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: top;
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
+  @media only screen and (max-width: 600px) {
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }	
 `;
 
 export const AfterListDiv2 = styled(ListDiv)`
