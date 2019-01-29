@@ -63,7 +63,9 @@ export const GuestDetailView = ({
       </div>
       <div className='guest-info'>
         <div className='guest-info--top'>
-          <div className='top-text'>Stay Information and Checklists</div>
+          <div className='top-text'>
+            <h2>Stay Information and Checklists</h2>
+          </div>
         </div>
         <div className='guest-info--bottom'>
           <div className='guest-info--bottom-left'>
