@@ -26,10 +26,13 @@ const SpecialButton = ({
 }: SpecialButtonProps) => {
   const buttonColor = color;
   const StyledButton = styled('button')`
-    /* border-radius: 50%; */
+    border: 1px solid black;
+    /* border-radius: 10px; */
     width: 150px;
     height: 50px;
-    color: #e4e4e4;
+    color: black;
+    background-color: white;
+    font-size: 1.25rem;
   `;
   return (
     <>
