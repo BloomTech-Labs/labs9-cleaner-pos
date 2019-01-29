@@ -103,6 +103,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 export const put = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const house: House = { ...req.body, id: req.params.id };
+    console.log(req.token);
     const putHouse = await updateHouse(house);
     if (!putHouse) {
       throw Error('No house with that id');

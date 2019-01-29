@@ -89,12 +89,18 @@ export function deleteUser(id: number): QueryBuilder {
     .del();
 }
 
-export async function getRoleId(id: number): Promise<QueryBuilder> {
+export async function getRoleId(
+  id: number,
+  other?: boolean,
+): Promise<QueryBuilder> {
   return db('user')
     .select('user.role')
     .where({ id })
     .first()
     .then((result) => {
+      if (other === true) {
+        result.role = 'assistant';
+      }
       return db(result.role)
         .select('id')
         .where({ user_id: id })
