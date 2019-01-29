@@ -2,9 +2,10 @@ import styled from '@emotion/styled';
 import { Container } from '../../components/';
 
 const pxToRem = (px: number): string => `${px / 16}rem`;
+const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 // Some size constants
 const cardHeight = 216;
-const boxWidth: string = pxToRem(206);
+const boxWidth: string = `30%`;
 
 const AssistantItem = styled('div')`
   /* Color */
@@ -12,7 +13,6 @@ const AssistantItem = styled('div')`
   color: var(--colour-main-black);
 
   /* Sizing */
-  max-width: ${(1136 * 0.9) / 16}rem;
   height: ${cardHeight / 16}rem;
   margin-bottom: 2.25rem;
   border: 0.5px solid var(--colour-border);
@@ -22,6 +22,12 @@ const AssistantItem = styled('div')`
 
   /* Text */
   text-align: left;
+
+  button {
+    padding: 1rem 0;
+    width: 100%;
+    height: auto;
+  }
 
   @media only screen and (max-width: 600px) {
     flex-direction: column;
@@ -51,8 +57,8 @@ const HeaderWrapper = styled('div')`
 const ButtonContainer = styled('div')`
   /* Sizing */
   margin: 0 0 0 0.75rem;
-  height: auto;
   width: ${boxWidth};
+  height: auto;
   /* Flex */
   display: flex;
   flex-direction: column;
@@ -110,6 +116,9 @@ const CheckList = styled('div')`
     margin: 0;
     font-weight: bold;
   }
+  .secondary {
+    color: var(--colour-accent);
+  }
   @media only screen and (max-width: 600px) {
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -122,7 +131,7 @@ const Asst = styled('div')`
   padding: 10px 15px 45px;
   width: ${boxWidth};
   height: 6.25rem;
-  border: 0.5px solid #393534;
+  border: var(--border);
   /* Text */
   text-align: center;
   font-size: 1.5rem;
@@ -132,6 +141,9 @@ const Asst = styled('div')`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .secondary {
+    color: var(--colour-accent);
+  }
   p {
     margin: 0;
     font-weight: bold;

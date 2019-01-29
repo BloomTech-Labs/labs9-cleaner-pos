@@ -23,12 +23,12 @@ const Button = ({
   className,
   disabled,
 }: ButtonProps) => {
-  const buttonColour = colour || 'var(--colour-main-black)';
+  const buttonColour = colour || 'var(--colour-button-background)';
   const StyledButton = styled('button')`
     background: ${buttonColour};
     width: 200px;
     height: 50px;
-    color: #e4e4e4;
+    color: var(--colour-button-text);
     border: 0;
     font-weight: condensed;
     font-size: 24px;
