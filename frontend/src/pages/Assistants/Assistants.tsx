@@ -27,6 +27,7 @@ const AssistantCard = (assistant: Assistant) => {
           <CardBody>
             <CardHeading>
               <h1>{assistant.full_name}</h1>
+              <h3>Test Address</h3>
             </CardHeading>
             <div
               style={{
@@ -44,10 +45,7 @@ const AssistantCard = (assistant: Assistant) => {
                 <div>{assistant.houseCount}</div>
               </Asst>
               <ButtonContainer>
-                <Button
-                  text='House Availability'
-                  datatestid='assistant-button'
-                />
+                <Button text='See More' datatestid='assistant-button' />
               </ButtonContainer>
             </div>
           </CardBody>
