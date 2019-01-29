@@ -15,37 +15,26 @@ import {
 import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
+import { useFetch } from '../../helpers';
 import { Lists } from './types';
 
 // TODO: fix types
 const PropertyDetails = (props: any) => {
-  const [property, setProperty] = useState(props.location.state);
-  const [lists, setLists] = useState({} as Lists);
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+  const [property, propertyError, loading] = useFetch(
+    `${url}/houses/${props.match.params.id}`,
+  );
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [shouldFetch, setShouldFetch] = useState(true);
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
-  const token = localStorage.getItem('token');
-  const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+  const [lists, setLists] = useState({} as Lists);
+
   const headers: AxiosRequestConfig = {
-    headers: { Authorization: token },
+    headers: { Authorization: localStorage.getItem('token') },
   };
-  async function fetchHouse(id: number) {
-    try {
-      // if (!token) {
-      //   setErrors({
-      //     msg: 'Authentication error. Please try logging in again.',
-      //     error: true,
-      //   });
-      //   return;
-      // }
-      const res = await axios.get(`${url}/houses/${id}`, headers);
-      setProperty(res.data);
-    } catch (e) {
-      axiosErrorHandler(setErrors);
-    }
-  }
 
   async function fetchLists(id: number) {
     try {
@@ -102,21 +91,15 @@ const PropertyDetails = (props: any) => {
       axiosErrorHandler(setErrors);
     }
   }
+
   useEffect(() => {
-    fetchHouse(props.match.params.id);
+    fetchLists(props.match.params.id);
   }, []);
 
-  useEffect(
-    () => {
-      fetchLists(props.match.params.id);
-      setShouldFetch(false);
-    },
-    [shouldFetch],
-  );
   return (
     <>
       <div>{errors.msg}</div>
-      {!lists.before || shouldFetch ? (
+      {!property ? (
         <div>Loading.....</div>
       ) : (
         <PropertyContainer>
@@ -135,36 +118,46 @@ const PropertyDetails = (props: any) => {
             />
           </Top>
           <ListContainer>
-            <PropertyLists
-              list={lists.before}
-              list_id={lists.before_id}
-              type='Before'
-              submitNew={submitNew}
-              deleteTasks={deleteTasks}
-            />
-            <PropertyLists
-              list={lists.during}
-              list_id={lists.during_id}
-              type='During'
-              submitNew={submitNew}
-              deleteTasks={deleteTasks}
-            />
+            {lists.before ? (
+              <PropertyLists
+                list={lists.before}
+                list_id={lists.before_id}
+                type='Before'
+                submitNew={submitNew}
+                deleteTasks={deleteTasks}
+              />
+            ) : (
+              '...Loading'
+            )}
+            {lists.after ? (
+              <PropertyLists
+                list={lists.during}
+                list_id={lists.during_id}
+                type='During'
+                submitNew={submitNew}
+                deleteTasks={deleteTasks}
+              />
+            ) : (
+              '...Loading'
+            )}
           </ListContainer>
           <AfterListDiv>
             <Header>After Stay</Header>
-            {lists.after.map((aList: any) => {
-              return (
-                <AfterPropertyLists
-                  key={aList.time}
-                  list={aList.afterLists}
-                  list_id={aList.after_id}
-                  type={aList.time}
-                  submitNew={submitNew}
-                  deleteTasks={deleteTasks}
-                  deleteList={deleteList}
-                />
-              );
-            })}
+            {lists.after
+              ? lists.after.map((aList: any) => {
+                  return (
+                    <AfterPropertyLists
+                      key={aList.time}
+                      list={aList.afterLists}
+                      list_id={aList.after_id}
+                      type={aList.time}
+                      submitNew={submitNew}
+                      deleteTasks={deleteTasks}
+                      deleteList={deleteList}
+                    />
+                  );
+                })
+              : null}
             {inputItem ? (
               <>
                 <TextField
