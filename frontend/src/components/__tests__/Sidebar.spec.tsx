@@ -10,13 +10,13 @@ afterEach(cleanup);
 describe('Sidebar page', () => {
   test('should render an unordered list', () => {
     const { container } = renderWithRouter(<Sidebar />, {});
-    const ul = container.querySelectorAll('ul');
-    expect(ul.length).toBeGreaterThanOrEqual(1);
+    const nav = container.querySelectorAll('nav');
+    expect(nav.length).toBeGreaterThanOrEqual(1);
   });
 
-  test('should render seven list items', () => {
+  test('should render five list items', () => {
     const { container } = renderWithRouter(<Sidebar />, {});
-    const li = container.querySelectorAll('li');
-    expect(li.length).toBeGreaterThanOrEqual(3);
+    const links = container.querySelectorAll('div');
+    expect(links.length).toBeGreaterThanOrEqual(5);
   });
 });

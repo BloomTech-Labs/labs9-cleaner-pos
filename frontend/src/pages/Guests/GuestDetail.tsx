@@ -14,6 +14,7 @@ import { GuestsDiv } from './Guests.styling';
 import { GuestDetailStyle } from './GuestDetail.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
+import { useFetch } from '../../helpers/';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
@@ -137,40 +138,14 @@ export const GuestDetailView = ({
 };
 
 const GuestDetail = (props: RouteComponentProps) => {
-  const [stay, setStay] = useState({} as GuestProps);
-  const [errors, setErrors] = useState({ msg: '', error: false });
+  // @ts-ignore
+  const id = props.match.params.id;
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-  useEffect(() => {
-    // TODO: Figure out how to extend RouteComponentPros with params.id
-    // @ts-ignore
-    const id = props.match.params.id;
-    const token = localStorage.getItem('token');
+  const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
 
-    if (!token) {
-      setErrors({
-        msg: 'Authentication error. Please try logging in again.',
-        error: true,
-      });
-      return;
-    }
-
-    const headers: AxiosRequestConfig = {
-      headers: { Authorization: token },
-    };
-
-    const url =
-      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-
-    axios
-      .get(`${url}/stays/${id}`, headers)
-      .then((response) => {
-        const { data } = response;
-        setStay({ ...data, stay_id: id });
-      })
-      .catch(axiosErrorHandler(setErrors));
-  }, []);
-
-  return <GuestDetailView {...stay} errors={errors} />;
+  return <GuestDetailView {...stay} errors={error} />;
 };
 
 export default GuestDetail;

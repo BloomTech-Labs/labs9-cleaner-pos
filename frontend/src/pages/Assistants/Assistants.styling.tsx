@@ -1,29 +1,40 @@
 import styled from '@emotion/styled';
+import { Container } from '../../components/';
 
 const cardHeight = 216;
 
 const AssistantItem = styled('div')`
+  background: white;
   max-width: ${(1136 * 0.9) / 16}rem;
   height: ${cardHeight / 16}rem;
-  width: 100%;
-  border-radius: 0px;
-  padding-left: 1px;
-  margin-top: 1.5rem;
+  margin-bottom: 2.25rem;
   display: flex;
   text-align: left;
-  border: 0.5px solid blue;
+  border: 0.5px solid var(--colour-border);
+  color: var(--colour-main-black);
   @media only screen and (max-width: 600px) {
-    width: 50%;
+    flex-direction: column;
+    width: 100%;
     height: 100%;
+    align-items: flex-start;
   }
 `;
 
 const HeaderWrapper = styled('div')`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2.25rem;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    button {
+      margin-top: 1.125rem;
+    }
+  }
 `;
 
 const ButtonContainer = styled('div')`
+  margin: 0 0 0 0.75rem;
   height: 7.75rem;
   display: flex;
   flex-direction: column;
@@ -33,38 +44,29 @@ const ButtonContainer = styled('div')`
 const ThumbNail = styled('img')`
   width: ${(cardHeight - 5) / 16}rem;
   height: ${(cardHeight - 5) / 16}rem;
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
 `;
 
 const CardHeading = styled('div')`
-  /* margin-top: 12px; */
-  height: 4.75rem;
-  h4 {
-    margin: 0;
-    font-family: Roboto;
-    font-weight: bold;
-    font-size: 1.8rem;
-  }
-  p {
-    font-weight: light;
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
-`;
-
-const CardContent = styled('div')`
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  padding: 0 15px;
+  @media only screen and (max-width: 600px) {
+    text-align: center;
+  }
 `;
 
 const CardBody = styled('div')`
+  padding: 0 2.25rem;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  border: 1px solid red;
+  flex-direction: column;
+  width: 100%;
   @media only screen and (max-width: 600px) {
+    margin: 0;
+    align-items: flex-start;
     flex-direction: column;
   }
 `;
@@ -91,6 +93,7 @@ const CheckList = styled('div')`
 `;
 
 const Asst = styled('div')`
+  margin: 0 0 0 0.75rem;
   padding: 10px 15px 45px;
   text-align: center;
   height: 6.25rem;
@@ -121,30 +124,55 @@ const AssistantHeader = styled('span')`
   max-width: 18.125rem;
 `;
 
+const AssistantDetailContainer = styled(Container)`
+  flex-direction: row;
+`;
+
 const AssistantBar = styled('div')`
+  height: 54rem;
+  width: 21rem;
   display: flex;
-  justify-content: space-around;
-  border: 1px solid black;
+  flex-direction: column;
+  border: 1px solid var(--colour-border);
 `;
 
 const AsstDetail = styled('div')`
+  height: 6rem;
+  color: white;
+  background: var(--colour-accent);
   display: flex;
-  flex-direction: column;
-  border: 1px dotted red;
+  flex-direction: row;
+  border: 1px solid var(--colour-border);
 `;
 
 const AsstProperty = styled('div')`
   display: flex;
   flex-direction: column;
-  border: 1px dashed green;
+  margin: 0 auto;
+  border: 1px solid var(--colour-border);
+`;
+
+const PropertyContainer = styled('div')`
+  border: 0.5px solid var(--colour-border);
+  background: white;
+  height: 300px;
+  width: 18rem;
+`;
+
+const PropertyHeading = styled('div')`
+  color: var(--colour-accent);
+  background: #eeeff5;
+  height: 3.75rem;
+  border-bottom: 1px solid var(--colour-border);
+  padding: 0.3rem 0;
 `;
 
 export {
   AssistantItem,
+  AssistantDetailContainer,
   ButtonContainer,
   ThumbNail,
   CardHeading,
-  CardContent,
   CardBody,
   CheckList,
   Asst,
@@ -153,4 +181,6 @@ export {
   AssistantBar,
   AsstDetail,
   AsstProperty,
+  PropertyContainer,
+  PropertyHeading,
 };
