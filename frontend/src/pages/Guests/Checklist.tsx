@@ -128,38 +128,41 @@ export const Checklist = (props: { stayId: number; className?: string }) => {
     setListFilter(listType);
   };
 
-  useEffect(() => {
-    // Get token from local storage
-    const token = localStorage.getItem('token');
+  useEffect(
+    () => {
+      // Get token from local storage
+      const token = localStorage.getItem('token');
 
-    // Ask user to login if token is not available
-    if (!token) {
-      setErrors({
-        msg: 'Authentication error. Please try logging in again.',
-        error: true,
-      });
-      return;
-    }
+      // Ask user to login if token is not available
+      if (!token) {
+        setErrors({
+          msg: 'Authentication error. Please try logging in again.',
+          error: true,
+        });
+        return;
+      }
 
-    // Prepare token to be sent in headers of request
-    const headers: AxiosRequestConfig = {
-      headers: { Authorization: token },
-    };
+      // Prepare token to be sent in headers of request
+      const headers: AxiosRequestConfig = {
+        headers: { Authorization: token },
+      };
 
-    // URL. If backendURL is not defined, defaults to deployed backend
-    const url =
-      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+      // URL. If backendURL is not defined, defaults to deployed backend
+      const url =
+        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-    // Request
-    axios
-      .get(`${url}/lists/${props.stayId}?stay=true`, headers)
-      .then((response) => {
-        const { data } = response;
-        setLists(data);
-        setErrors((prev) => ({ ...prev, error: false }));
-      })
-      .catch(axiosErrorHandler(setErrors));
-  }, [props.stayId]);
+      // Request
+      axios
+        .get(`${url}/lists/${props.stayId}?stay=true`, headers)
+        .then((response) => {
+          const { data } = response;
+          setLists(data);
+          setErrors((prev) => ({ ...prev, error: false }));
+        })
+        .catch(axiosErrorHandler(setErrors));
+    },
+    [props.stayId],
+  );
 
   return (
     <ChecklistView
