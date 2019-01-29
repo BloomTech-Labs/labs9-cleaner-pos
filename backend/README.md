@@ -1,4 +1,4 @@
-# Labs9 Cleaner POS -- Backend
+# Labs9 Lodgel -- Backend
 
 ## Project Summary:
 This project is the culmination of 5 weeks of combined effort by the contributors above, as well as countless designers, instructors, project managers, and supporters. This application stores the server for the Cleaner Point of Sale (POS) application, and also contains endpoints that handle user requests to databases, provides authentication via Firebase for role-based security, and allows users to navigate between components through routing.
