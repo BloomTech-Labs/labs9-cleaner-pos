@@ -7,9 +7,10 @@ import { Link, withRouter } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
 
-import { Button } from '../index';
+import { Button, SpecialButton } from '../index';
 import {
   Container,
+  NavBar,
   NavWrapper,
   SettingsWrapper,
   StyledUL,
@@ -67,38 +68,52 @@ const Sidebar = (props: LinkProps) => {
           <MenuItem onClick={handleClose}>
             <Link to='/assistants'>Assistants</Link>
           </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to='/settings'>Settings</Link>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to='/signout'>Signout</Link>
+          </MenuItem>
         </Menu>
       </div>
-      <NavWrapper>
-        <StyledUL>
-          <li>
-            <StyledLink to='/properties'>
-              <h4>Properties</h4>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/guests'>
-              <h4>Guests</h4>
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to='/assistants'>
-              <h4>Assistants</h4>
-            </StyledLink>
-          </li>
-        </StyledUL>
-      </NavWrapper>
-      <SettingsWrapper>
-        <StyledLink to='/settings'>
-          <h4>Settings</h4>
-        </StyledLink>
+      <NavBar>
+        <NavWrapper>
+          <StyledUL>
+            {/* Uncomment this section when reports page is complete */}
+            {/* <div>
+              <StyledLink to='/reports'>
+                <h4>Reports</h4>
+              </StyledLink>
+            </div> */}
+            <div>
+              <StyledLink to='/properties'>
+                <h4>Properties</h4>
+              </StyledLink>
+            </div>
+            <div>
+              <StyledLink to='/guests'>
+                <h4>Guests</h4>
+              </StyledLink>
+            </div>
+            <div>
+              <StyledLink to='/assistants'>
+                <h4>Assistants</h4>
+              </StyledLink>
+            </div>
+          </StyledUL>
+        </NavWrapper>
+        <SettingsWrapper>
+          <StyledLink to='/settings'>
+            <h4>Settings</h4>
+          </StyledLink>
 
-        <Button
-          onClick={() => logOut()}
-          className='button-sign-out'
-          text='Sign Out'
-        />
-      </SettingsWrapper>
+          <SpecialButton
+            onClick={() => logOut()}
+            className='button-sign-out'
+            text='Sign Out'
+          />
+        </SettingsWrapper>
+      </NavBar>
     </Container>
   );
 };

@@ -10,10 +10,9 @@ const Container = styled('div')`
     props.location.pathname === '/' ? 'none' : 'block'};
 
   /* Box Model & Sizing */
-  margin: auto;
+  margin: 0 auto;
   width: 100%;
   max-width: 1000px;
-  border-bottom: 1px solid gray;
 
   /* Flex */
   display: flex;
@@ -41,35 +40,49 @@ const Container = styled('div')`
   }
 `;
 
-const NavWrapper = styled('div')`
+const NavBar = styled('nav')`
   display: none;
-
   @media only screen and (min-width: ${bp}) {
     display: flex;
     justify-content: space-between;
-    float: left;
+    align-items: center;
+    border-bottom: 3px solid black;
+    margin-bottom: 1.5rem;
+  }
+`;
+
+const NavWrapper = styled('div')`
+  display: none;
+  @media only screen and (min-width: ${bp}) {
+    display: flex;
+    padding-right: 1rem;
   }
 `;
 
 const SettingsWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  float: right;
+  display: none;
+  @media only screen and (min-width: ${bp}) {
+    display: flex;
+    padding-left: 1rem;
+    align-items: baseline;
+  }
 `;
 
-const StyledUL = styled('ul')`
+const StyledUL = styled('div')`
   list-style-type: none;
 
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
 `;
 
 const StyledLink = styled(NavLink)`
   float: left;
-  padding: 0 20px;
+  padding-right: 2.5rem;
   text-decoration: none;
   color: black;
+  &:active{
+    text-decoration: underline;
+  }
   h4 {
     font-family: 'Roboto';
     font-weight: condensed;
@@ -77,4 +90,4 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-export { Container, NavWrapper, SettingsWrapper, StyledUL, StyledLink };
+export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink };
