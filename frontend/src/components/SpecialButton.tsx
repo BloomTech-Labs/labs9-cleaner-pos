@@ -5,24 +5,40 @@ import styled from '@emotion/styled';
 // text is different
 // data-testid
 
-const StyledButton = styled('button')`
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  background-color: #5d9abc;
-  border: none;
-`;
-
-interface ButtonProps {
-  onClick?: () => void;
+interface SpecialButtonProps {
+  onClick?: (ev: React.FormEvent) => Promise<any> | void;
   text?: string;
   datatestid?: string;
+  color?: string;
+  className?: string;
+  type?: string;
+  disabled?: boolean;
 }
 
-const SpecialButton = ({ onClick, text, datatestid }: ButtonProps) => {
+
+const SpecialButton = ({
+  onClick,
+  text,
+  datatestid,
+  color,
+  className,
+  disabled,
+}: SpecialButtonProps) => {
+  const buttonColor = color;
+  const StyledButton = styled('button')`
+    /* border-radius: 50%; */
+    width: 150px;
+    height: 50px;
+  `;
   return (
     <>
-      <StyledButton onClick={onClick} type='button' data-testid={datatestid}>
+      <StyledButton
+        onClick={onClick}
+        type='button'
+        data-testid={datatestid}
+        className={className}
+        disabled={disabled}
+        >
         {text}
       </StyledButton>
     </>
