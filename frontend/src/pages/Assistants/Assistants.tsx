@@ -27,52 +27,34 @@ const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const AssistantCard = (assistant: any) => {
-  const [data, error, loading] = useFetch(
-    `${url}/${assistant.ast_id}?user=true`,
-  );
-
-  let checkList = 0;
-  if (data) {
-    checkList = data.reduce((acc: number, obj: any) => {
-      const checkLists = obj.checkList;
-      const count = checkLists.reduce((acc2: number, inObj: any) => {
-        return acc2 + inObj.count;
-      }, 0);
-      return acc + count;
-    }, 0);
-  }
-
   return (
     <>
-      {loading ? '...Loading' : null}
-      {assistant ? (
-        <AssistantItem key={assistant.user_id} data-testid='assistant-item'>
-          <Link to={`/assistants/${assistant.ast_id}`}>
-            <CardContent>
-              <CardHeading>
-                <div>{assistant.full_name}</div>
-              </CardHeading>
-              <CardBody>
-                <ThumbNail src='../assets/ronald.jpg' alt='' />
-                <CheckList>
-                  <h3>Checklist Items</h3>
-                  <div>{checkList ? checkList : null}</div>
-                </CheckList>
-                <Asst>
-                  <h3>Available Houses</h3>
-                  <div>{assistant.openAst.length}</div>
-                </Asst>
-                <ButtonContainer>
-                  <Button
-                    text='House Availability'
-                    datatestid='assistant-button'
-                  />
-                </ButtonContainer>
-              </CardBody>
-            </CardContent>
-          </Link>
-        </AssistantItem>
-      ) : null}
+      <AssistantItem key={assistant.user_id} data-testid='assistant-item'>
+        <Link to={`/assistants/${assistant.ast_id}`}>
+          <CardContent>
+            <CardHeading>
+              <div>{assistant.full_name}</div>
+            </CardHeading>
+            <CardBody>
+              <ThumbNail src='../assets/ronald.jpg' alt='' />
+              <CheckList>
+                <h3>Checklist Items</h3>
+                <div>{assistant.itemCount}</div>
+              </CheckList>
+              <Asst>
+                <h3>Available Houses</h3>
+                <div>{assistant.houseCount}</div>
+              </Asst>
+              <ButtonContainer>
+                <Button
+                  text='House Availability'
+                  datatestid='assistant-button'
+                />
+              </ButtonContainer>
+            </CardBody>
+          </CardContent>
+        </Link>
+      </AssistantItem>
     </>
   );
 };
