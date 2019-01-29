@@ -79,21 +79,27 @@ const Sidebar = (props: LinkProps) => {
       <NavBar>
         <NavWrapper>
           <StyledUL>
-            <li>
+            {/* Uncomment this section when reports page is complete */}
+            {/* <div>
+              <StyledLink to='/reports'>
+                <h4>Reports</h4>
+              </StyledLink>
+            </div> */}
+            <div>
               <StyledLink to='/properties'>
                 <h4>Properties</h4>
               </StyledLink>
-            </li>
-            <li>
+            </div>
+            <div>
               <StyledLink to='/guests'>
                 <h4>Guests</h4>
               </StyledLink>
-            </li>
-            <li>
+            </div>
+            <div>
               <StyledLink to='/assistants'>
                 <h4>Assistants</h4>
               </StyledLink>
-            </li>
+            </div>
           </StyledUL>
         </NavWrapper>
         <SettingsWrapper>

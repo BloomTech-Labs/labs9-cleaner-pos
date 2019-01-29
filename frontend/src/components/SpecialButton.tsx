@@ -28,11 +28,11 @@ const SpecialButton = ({
   const StyledButton = styled('button')`
     border: 1px solid black;
     /* border-radius: 10px; */
-    width: 150px;
-    height: 50px;
+    width: 125px;
+    height: 40px;
     color: black;
     background-color: white;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
   `;
   return (
     <>
