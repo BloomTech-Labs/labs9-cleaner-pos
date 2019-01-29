@@ -5,26 +5,51 @@ import {
   AsstDetail,
   AssistantDetailContainer,
   AsstProperty,
+  PropertyContainer,
+  PropertyHeading,
   ThumbNail,
 } from './Assistants.styling';
 import { useFetch } from '../../helpers/';
 import img from '../assets/ronald.jpg';
+import { hostname } from 'os';
 
 const AssistantCard = (assistant: any) => {
   return (
     <AssistantBar key={assistant.user_id}>
-      <ThumbNail src={img} alt={assistant.full_name} />
       <AsstDetail>
-        <h2>{assistant.full_name}</h2>
-        <h3>{assistant.address}</h3>
+        <ThumbNail
+          src={img}
+          style={{ width: '96px', height: '96px' }}
+          alt={assistant.full_name}
+        />
+        <div style={{ marginLeft: '1rem' }}>
+          <h2>{assistant.full_name}</h2>
+          <h3>{assistant.address}</h3>
+        </div>
       </AsstDetail>
       <AsstProperty>
-        <h2>Default Properties</h2>
-        <Button text='+ Add New Item' />
+        <PropertyHeading
+          style={{ borderBottom: '1px solid var(--colour-border)' }}
+        >
+          Default Properties
+        </PropertyHeading>
+        <PropertyContainer>
+          {assistant.default_house.map((house: any) => (
+            <p>{house.house_name}</p>
+          ))}
+          <Button text='+ Add New Item' />
+        </PropertyContainer>
       </AsstProperty>
       <AsstProperty>
-        <h2>Available Properties</h2>
-        <Button text='+ Add New Item' />
+        <PropertyHeading
+          style={{ borderBottom: '1px solid var(--colour-border)' }}
+        >
+          Available Properties
+        </PropertyHeading>
+        <PropertyContainer>
+          {assistant.avl_houses.map((house: any) => house.house_name)}
+          <Button text='+ Add New Item' />
+        </PropertyContainer>
       </AsstProperty>
     </AssistantBar>
   );

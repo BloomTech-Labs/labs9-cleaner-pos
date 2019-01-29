@@ -132,22 +132,40 @@ const AssistantDetailContainer = styled(Container)`
 `;
 
 const AssistantBar = styled('div')`
+  height: 54rem;
+  width: 21rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   border: 1px solid var(--colour-border);
 `;
 
 const AsstDetail = styled('div')`
+  height: 6rem;
+  color: white;
+  background: var(--colour-accent);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border: 1px dotted red;
 `;
 
 const AsstProperty = styled('div')`
   display: flex;
   flex-direction: column;
+  height: 19.5rem;
+  width: 18rem;
+  margin: 0 auto;
   border: 1px dashed green;
+`;
+
+const PropertyContainer = styled('div')`
+  background: white;
+  height: 100%;
+`;
+
+const PropertyHeading = styled('h2')`
+  color: var(--colour-accent);
+  margin-block-end: 0;
+  padding-bottom: 0.83rem;
 `;
 
 export {
@@ -164,4 +182,6 @@ export {
   AssistantBar,
   AsstDetail,
   AsstProperty,
+  PropertyContainer,
+  PropertyHeading,
 };
