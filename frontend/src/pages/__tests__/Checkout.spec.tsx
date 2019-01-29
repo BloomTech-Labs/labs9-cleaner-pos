@@ -1,11 +1,6 @@
 import React from 'react';
 import { Checkout } from '../index';
-import {
-  cleanup,
-  waitForElement,
-  render,
-  flushEffects,
-} from 'react-testing-library';
+import { cleanup, waitForElement, render, wait } from 'react-testing-library';
 import 'jest';
 import 'jest-dom/extend-expect';
 
@@ -52,16 +47,20 @@ jest.mock('axios', () => {
 localStorage.setItem('token', 'testToken!');
 
 describe('Checkout Page UI', () => {
-  test('should be rendering the Container component', () => {
+  test('should be rendering the Container component', async () => {
     const { getByTestId } = render(<Checkout {...props} />);
     const container = getByTestId('container-component');
-    expect(container).toBeTruthy();
+    await wait(() => {
+      expect(container).toBeTruthy();
+    });
   });
 
   test('should render a name from stay', async () => {
     const { getByTestId } = render(<Checkout {...props} />);
     const header = await waitForElement(() => getByTestId('guest-name'));
-    expect(header).toHaveTextContent(mockData.guest_name);
+    await wait(() => {
+      expect(header).toHaveTextContent(mockData.guest_name);
+    });
   });
 
   test('should render a payment button, displaying "Pay $total amount"', async () => {
@@ -69,9 +68,10 @@ describe('Checkout Page UI', () => {
     const { diff, price, cleaning_fee } = mockData;
     const total = diff * +price + +cleaning_fee;
     const payButton = await waitForElement(() => getByText(`Pay $${total}`));
-    flushEffects();
 
-    expect(payButton).toHaveTextContent(`Pay $${total}`);
+    await wait(() => {
+      expect(payButton).toHaveTextContent(`Pay $${total}`);
+    });
   });
 
   test('should display the correct total amount of the stay', async () => {
@@ -81,13 +81,17 @@ describe('Checkout Page UI', () => {
     const totalDisplay = await waitForElement(() =>
       getByText(`Total: $${total}`),
     );
-    expect(totalDisplay).toHaveTextContent(`Total: $${total}`);
+    await wait(() => {
+      expect(totalDisplay).toHaveTextContent(`Total: $${total}`);
+    });
   });
 
   test('should not display the Extra Guest invoice box when there are 0 extra guests', async () => {
     const { queryByTestId } = render(<Checkout {...props} />);
     await waitForElement(() => setTimeout(() => null, 2000));
 
-    expect(queryByTestId('extra-guests')).toBeNull();
+    await wait(() => {
+      expect(queryByTestId('extra-guests')).toBeNull();
+    });
   });
 });

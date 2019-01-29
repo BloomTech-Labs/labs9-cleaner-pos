@@ -53,12 +53,9 @@ const Login: FunctionComponent<LoginProps> = (props) => {
     };
   }, []);
 
-  useEffect(
-    () => {
-      submitUser();
-    },
-    [user],
-  );
+  useEffect(() => {
+    submitUser();
+  }, [user]);
 
   async function submitUser() {
     if (user !== null) {

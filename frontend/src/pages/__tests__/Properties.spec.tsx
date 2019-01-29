@@ -15,6 +15,8 @@ jest.mock('axios', () => {
   };
 });
 
+localStorage.setItem('token', 'testToken!');
+
 afterEach(cleanup);
 
 describe('Houses dashboard', () => {

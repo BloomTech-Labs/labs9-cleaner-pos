@@ -15,6 +15,7 @@ const useFetch = (url: string) => {
           msg: 'Authentication error. Please try logging in again.',
           error: true,
         });
+        setLoading(false);
         return [error, loading, data];
       }
 
@@ -27,6 +28,7 @@ const useFetch = (url: string) => {
         setData(response.data);
         setLoading(false);
       } catch (e) {
+        setLoading(false);
         setError({ msg: 'Error fetching!', error: true });
       }
     })();
