@@ -58,7 +58,7 @@ const PropertyDetails = (props: any) => {
 
   async function submitNew(newTaks: any) {
     try {
-      await axios.post(`${url}items/`, newTaks);
+      await axios.post(`${url}/items/`, newTaks, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -67,7 +67,7 @@ const PropertyDetails = (props: any) => {
 
   async function deleteTasks(id: number) {
     try {
-      await axios.delete(`${url}items/${id}`);
+      await axios.delete(`${url}/items/${id}`, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -75,7 +75,7 @@ const PropertyDetails = (props: any) => {
   }
   async function deleteList(id: number) {
     try {
-      await axios.delete(`${url}lists/${id}`);
+      await axios.delete(`${url}/lists/${id}`, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -94,7 +94,7 @@ const PropertyDetails = (props: any) => {
         house_id: property.id,
         hours_after: newItem,
       };
-      await axios.post(`${url}lists/`, postList);
+      await axios.post(`${url}/lists/`, postList, headers);
       toggleText();
       setNewItem('');
       fetchLists(props.match.params.id);

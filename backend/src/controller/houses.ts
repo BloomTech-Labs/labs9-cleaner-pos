@@ -7,6 +7,7 @@ import {
   findAllHousesByAstId,
   findAllHousesByManagerId,
 } from '../models/houses';
+import { postList } from '../models/lists';
 import { findUserByExt_it, findUser } from '../models/users';
 import { Request, Response, NextFunction } from 'express';
 import { House } from '../interface';
@@ -89,6 +90,9 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = await findUserByExt_it(extIt);
     const house: House = { ...req.body, manager: id };
     const newHouse = await makeHouse(house);
+    console.log(newHouse);
+    await postList({ type: 'before', house_id: newHouse[0] });
+    await postList({ type: 'during', house_id: newHouse[0] });
     res.status(201).json(newHouse);
   } catch (e) {
     console.error(e);
