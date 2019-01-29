@@ -46,6 +46,7 @@ const NavBar = styled('nav')`
   @media only screen and (min-width: ${bp}) {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 3px solid black;
   }
 `;
@@ -53,7 +54,7 @@ const NavBar = styled('nav')`
 const NavWrapper = styled('div')`
   display: none;
   @media only screen and (min-width: ${bp}) {
-    border: 1px solid red;
+  /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
     float: left;
@@ -63,9 +64,9 @@ const NavWrapper = styled('div')`
 const SettingsWrapper = styled('div')`
   display: none;
   @media only screen and (min-width: ${bp}) {
-  border: 1px solid blue;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: baseline;
     float: right;
   }
 `;
