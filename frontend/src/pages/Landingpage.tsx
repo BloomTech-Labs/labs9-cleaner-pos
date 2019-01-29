@@ -3,8 +3,8 @@ import { RouteProps, RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { Button, SpecialButton } from '../components/shared_components/index';
-import house from '../assets/house.jpg';
+// import { Button, SpecialButton } from '../components/shared_components/index';
+// import house from '../assets/house.jpg';
 
 const Container = styled('div')`
   /* background-color: gray; */
@@ -93,7 +93,7 @@ const Landing = (props: RouteComponentProps) => {
           <a href='/'>About</a>
           <a href='/'>Contact</a>
           <Link to='/Login'>
-            <Button text='Sign In' />
+            {/* <Button text='Sign In' /> */}
           </Link>
         </Nav>
         <Wrapper>
@@ -107,7 +107,7 @@ const Landing = (props: RouteComponentProps) => {
             </p>
           </SideHeader>
 
-          <CenterImg src={house} alt='Beautiful house with a pool' />
+          {/* <CenterImg src={house} alt='Beautiful house with a pool' /> */}
 
           <SideHeader>
             <h2>Lorem Ipsum</h2>
@@ -120,12 +120,12 @@ const Landing = (props: RouteComponentProps) => {
           </SideHeader>
         </Wrapper>
         <ButtonWrapper>
-          <Button
+          {/* <Button
             text='Get started'
             onClick={() => {
               props.history.push('/Login');
             }}
-          />
+          /> */}
           <h2>Simplify managing your rental properties.</h2>
         </ButtonWrapper>
         <Footer>
