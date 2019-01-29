@@ -24,7 +24,7 @@ interface UploadProps {
 
 const FileUpLoad = (props: UploadProps) => {
   const [open, setOpen] = useState(false);
-
+  const token = localStorage.getItem('token');
   const uppy = Uppy({
     restrictions: {
       maxNumberOfFiles: 1,
