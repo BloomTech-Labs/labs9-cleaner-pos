@@ -37,10 +37,11 @@ export const Top = styled(PropertyContainer)`
   /* Text */
   text-align: left;
   @media only screen and (max-width: 600px) {
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	width: 100%;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+  }
 `;
 export const ThumbNail = styled('img')`
   width: ${cardWeidth}rem;
@@ -48,7 +49,7 @@ export const ThumbNail = styled('img')`
   object-fit: cover;
   @media only screen and (max-width: 600px) {
   	margin: 0 auto;
-	padding: 10px;
+	  padding: 10px;
   }
 `;
 export const MainText = styled.div`
@@ -56,7 +57,7 @@ export const MainText = styled.div`
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
   @media only screen and (max-width: 600px) {
-	width: 100%;
+	  width: 100%;
   }
 `;
 
@@ -66,9 +67,9 @@ export const SecondaryText = styled.div`
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
   @media only screen and (max-width: 600px) {
-	width: 100%;
-	text-align: center;
-	padding-bottom: 20px;
+		width: 100%;
+		text-align: center;
+		padding-bottom: 20px;
   }
 `;
 
@@ -90,8 +91,8 @@ export const ListContainer = styled('div')`
   flex-flow: row wrap;
   @media only screen and (max-width: 600px) {
   	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+		justify-content: center;
+		align-items: center;
   }
 `;
 export const ListDiv = styled('div')`
