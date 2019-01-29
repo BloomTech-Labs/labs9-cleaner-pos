@@ -10,7 +10,7 @@ const Container = styled('div')`
     props.location.pathname === '/' ? 'none' : 'block'};
 
   /* Box Model & Sizing */
-  margin: auto;
+  margin: 0 auto;
   width: 100%;
   max-width: 1000px;
   /* border: 1px solid gray; */
@@ -56,8 +56,9 @@ const NavWrapper = styled('div')`
   @media only screen and (min-width: ${bp}) {
   /* border: 1px solid red; */
     display: flex;
-    justify-content: space-between;
-    float: left;
+    padding-right: 1rem;
+    /* justify-content: space-between; */
+    /* float: left; */
   }
 `;
 
@@ -65,9 +66,10 @@ const SettingsWrapper = styled('div')`
   display: none;
   @media only screen and (min-width: ${bp}) {
     display: flex;
-    justify-content: space-around;
+    padding-left: 1rem;
+    /* justify-content: space-around; */
     align-items: baseline;
-    float: right;
+    /* float: right; */
   }
 `;
 
@@ -75,7 +77,7 @@ const StyledUL = styled('ul')`
   list-style-type: none;
 
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: baseline;
 `;
 
@@ -84,6 +86,12 @@ const StyledLink = styled(NavLink)`
   padding: 0 20px;
   text-decoration: none;
   color: black;
+  NavLink:first-child {
+    padding-left: 0;
+  }
+  NavLink:last-child {
+    padding-right: 0;
+  }
   h4 {
     font-family: 'Roboto';
     font-weight: condensed;

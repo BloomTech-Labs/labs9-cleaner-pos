@@ -7,7 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
 
-import { Button } from '../index';
+import { Button, SpecialButton } from '../index';
 import {
   Container,
   NavBar,
@@ -101,7 +101,7 @@ const Sidebar = (props: LinkProps) => {
             <h4>Settings</h4>
           </StyledLink>
 
-          <Button
+          <SpecialButton
             onClick={() => logOut()}
             className='button-sign-out'
             text='Sign Out'
