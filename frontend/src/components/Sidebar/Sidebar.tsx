@@ -107,7 +107,7 @@ const Sidebar = (props: LinkProps) => {
         </NavWrapper>
         <SettingsWrapper>
           <StyledLink to='/settings'>
-            <h4>Settings</h4>
+            <i className='fas fa-cog'></i>
           </StyledLink>
 
           <SpecialButton
