@@ -49,6 +49,9 @@ export const Top = styled(PropertyContainer)`
 		text-align: center;
 		width: 100%;
   }
+	@media only screen and (max-width: 400px) {
+		flex-direction: column;
+  }
 `;
 
 export const HouseInfo = styled('div')`
