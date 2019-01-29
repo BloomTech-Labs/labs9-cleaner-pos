@@ -12,20 +12,26 @@ export function findAssistants() {
       'user.photoUrl as photo_url',
     )
     .map(async (e: any) => {
+      let itemCount: number = 0;
       const openAst = await db('house_ast')
         .where({ 'house_ast.ast_id': e.ast_id })
         .leftJoin('assistant', { 'house_ast.ast_id': 'assistant.id' })
         .leftJoin('user', { 'assistant.user_id': 'user.id' })
-        .select(
-          'user.full_name',
-          'assistant.id as ast_id',
-          'house_ast.house_id',
-        );
+        .select('house_ast.house_id')
+        .map(async (h: any) => {
+          const checkList = await db('list')
+            .where({ 'list.house_id': h.house_id })
+            .leftJoin('items', { 'list.id': 'items.list_id' })
+            .count('items.task');
+          itemCount += parseInt(checkList[0].count, 10);
+          return { ...h };
+        });
       // const checkList = await db('list')
       //   .where({ 'list.house_id': e.id })
       //   .leftJoin('items', { 'list.id': 'items.list_id' })
       //   .count('items.task');
-      return { ...e, openAst };
+      // return { ...e, avlHouses: openAst.length };
+      return { ...e, houseCount: openAst.length, itemCount, openAst };
     });
 }
 
@@ -43,5 +49,38 @@ export function addAstToAllManHouse(astId: number, manId: number) {
     .select('house.id')
     .map((e: any) => {
       return db('house_ast').insert({ ast_id: astId, house_id: e.id });
+    });
+}
+
+export function findOneAssistant(astId: number) {
+  return db('assistant')
+    .join('user', 'user.id', '=', 'assistant.user_id')
+    .select(
+      'user.id as user_id',
+      'assistant.id as ast_id',
+      'user.full_name as full_name',
+      'user.address as address',
+      'user.photoUrl as photo_url',
+    )
+    .where({ 'assistant.id': astId })
+    .first()
+    .then(async (e: any) => {
+      const defA: any = [];
+      const defHouse = await db('house')
+        .select('house.id as house_id', 'house.name as house_name')
+        .where({ 'house.default_ast': astId })
+        .map((h: any) => {
+          defA.push(h.house_id);
+          return h;
+        });
+      const avlHouses = await db('house_ast')
+        .leftJoin('house', {
+          'house_ast.house_id': 'house.id',
+        })
+        .select('house.id as house_id', 'house.name as house_name')
+        .where({ 'house_ast.ast_id': astId })
+        // filters out the houses that a ast is already default
+        .whereNotIn('house_ast.house_id', defA);
+      return { ...e, default_house: defHouse, avl_houses: avlHouses };
     });
 }

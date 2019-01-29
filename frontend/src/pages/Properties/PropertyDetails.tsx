@@ -27,7 +27,7 @@ const PropertyDetails = (props: any) => {
   const [inputItem, setInputItem] = useState(false);
 
   const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
   async function fetchHouse(id: number) {
     try {
@@ -43,7 +43,7 @@ const PropertyDetails = (props: any) => {
       const headers: AxiosRequestConfig = {
         headers: { Authorization: token },
       };
-      const res = await axios.get(`${url}houses/${id}`, headers);
+      const res = await axios.get(`${url}/houses/${id}`, headers);
       setProperty(res.data);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -109,13 +109,10 @@ const PropertyDetails = (props: any) => {
     fetchHouse(props.match.params.id);
   }, []);
 
-  useEffect(
-    () => {
-      fetchLists(props.match.params.id);
-      setShouldFetch(false);
-    },
-    [shouldFetch],
-  );
+  useEffect(() => {
+    fetchLists(props.match.params.id);
+    setShouldFetch(false);
+  }, [shouldFetch]);
 
   return (
     <>

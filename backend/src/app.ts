@@ -28,6 +28,9 @@ server
   .post(users.post)
   .put(verifyToken, users.putByExtId);
 
+// Authentication Middleware for *all* routes after this line
+server.use(verifyToken);
+
 server
   .route('/users/:id')
   .get(users.get)
@@ -54,8 +57,8 @@ server
 
 server
   .route('/connect')
-  .post(connect.post)
-  .delete(connect.deleteL);
+  .post(verifyToken, connect.post)
+  .delete(verifyToken, connect.deleteL);
 
 server.route('/connect/createpayment').post(connect.createPayment);
 
@@ -77,7 +80,10 @@ server
   .get(items.get)
   .put(items.put)
   .delete(items.deleteL);
+
 server.route('/assistants').get(assistants.get);
+
+server.route('/assistants/:id').get(assistants.getId);
 
 server.route('/itemComplete').post(items.itemComplete);
 

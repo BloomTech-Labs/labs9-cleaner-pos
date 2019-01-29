@@ -159,7 +159,7 @@ const GuestDetail = (props: RouteComponentProps) => {
     };
 
     const url =
-      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com/';
+      process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
     axios
       .get(`${url}/stays/${id}`, headers)
