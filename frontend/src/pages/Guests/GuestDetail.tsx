@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
-import { axiosErrorHandler } from '../utils';
+import React from 'react';
 // Types
 import { RouteComponentProps } from 'react-router';
 import { GuestProps } from './types';
@@ -15,6 +13,7 @@ import { GuestDetailStyle } from './GuestDetail.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
 import { useFetch } from '../../helpers/';
+import { Link } from 'react-router-dom';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
@@ -126,7 +125,9 @@ export const GuestDetailView = ({
               <div className='guest-info--checkout-bottom'>
                 <div className='buttons'>
                   <Button className='button-invoice' text='Invoice' />
-                  <Button className='button-checkout' text='Checkout' />
+                  <Link to={`/checkout/${stay_id}`}>
+                    <Button className='button-checkout' text='Checkout' />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -145,7 +146,7 @@ const GuestDetail = (props: RouteComponentProps) => {
 
   const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
 
-  return <GuestDetailView {...stay} errors={error} />;
+  return <>{stay ? <GuestDetailView {...stay} errors={error} /> : null}</>;
 };
 
 export default GuestDetail;
