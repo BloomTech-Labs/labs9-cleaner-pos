@@ -127,12 +127,19 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
         { ...userData, id: newUser[0] },
         JWT_SECRET || '',
       );
-
+      const astCreate = async (userId: number, manId: number) => {
+        await addAstMan(userId, manId);
+        await addAstToAllManHouse(userId, manId);
+      };
       // if the user signing up is an assistant, needs to be linked to manager
       if (role === 'assistant') {
-        await addAstMan(newUser[0].id, managerID);
-        await addAstToAllManHouse(newUser[0].id, managerID);
+        astCreate(newUser.id[0], managerID);
+        // await addAstMan(newUser[0].id, managerID);
+        // await addAstToAllManHouse(newUser[0].id, managerID);
+      } else if (role === 'manager') {
+        astCreate(newUser.astId[0], newUser.id[0]);
       }
+
       res
         .status(201)
         .json({ token, first: true, id: newUser.id, role: newUser.role });
