@@ -14,17 +14,9 @@ import {
   AssistantHeader,
   HeaderWrapper,
 } from './Assistants.styling';
+import { Assistant } from './types';
 
 interface AssistantsEnum extends Array<Assistant> {}
-
-interface Assistant {
-  user_id: number;
-  ast_id: number;
-  itemCount: number;
-  houseCount: number;
-  house_id: number;
-  full_name: string;
-}
 
 const AssistantCard = (assistant: Assistant) => {
   return (

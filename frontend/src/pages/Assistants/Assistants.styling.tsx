@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Container } from '../../components/';
 
 const cardHeight = 216;
 
@@ -126,10 +127,15 @@ const AssistantHeader = styled('span')`
   max-width: 18.125rem;
 `;
 
+const AssistantDetailContainer = styled(Container)`
+  flex-direction: row;
+`;
+
 const AssistantBar = styled('div')`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  border: 1px solid black;
+  border: 1px solid var(--colour-border);
 `;
 
 const AsstDetail = styled('div')`
@@ -146,6 +152,7 @@ const AsstProperty = styled('div')`
 
 export {
   AssistantItem,
+  AssistantDetailContainer,
   ButtonContainer,
   ThumbNail,
   CardHeading,

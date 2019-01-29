@@ -3,29 +3,17 @@ import { Container, Button, LeafletMap } from '../../components/index';
 import {
   AssistantBar,
   AsstDetail,
+  AssistantDetailContainer,
   AsstProperty,
   ThumbNail,
 } from './Assistants.styling';
-import axios, { AxiosRequestConfig } from 'axios';
-
-interface AssistantsEnum extends Array<Assistant> {}
-
-interface Assistant {
-  id?: number;
-  user_id: string;
-  address: any;
-}
-
-const token = localStorage.getItem('token');
-
-const header: AxiosRequestConfig = {
-  headers: { Authorization: token },
-};
+import { useFetch } from '../../helpers/';
+import img from '../assets/ronald.jpg';
 
 const AssistantCard = (assistant: any) => {
   return (
-    <AssistantBar key={assistant.id}>
-      <ThumbNail src='../assets/ronald.jpg' alt='Ronald' />
+    <AssistantBar key={assistant.user_id}>
+      <ThumbNail src={img} alt={assistant.full_name} />
       <AsstDetail>
         <h2>{assistant.full_name}</h2>
         <h3>{assistant.address}</h3>
@@ -42,35 +30,44 @@ const AssistantCard = (assistant: any) => {
   );
 };
 
-const AssistantsDetails = (assistant: any) => {
-  const [assistants, setAssistants] = useState<AssistantsEnum>([]);
-  const shouldFetch = useRef(true);
-  async function fetchAssistants() {
-    try {
+const AssistantDetails = (props: any) => {
+  const { id } = props.match.params;
+  // console.log('id', id);
+  // const [assistant, error, loading] = useFetch(
+  //   `https://cleaner-pos.herokuapp.com/assistants/${id}`,
+  // );
+  const assistant = {
+    user_id: 10,
+    ast_id: 7,
+    full_name: 'Big Stevo 7',
+    address: null,
+    photo_url: null,
+    default_house: [
       {
-        /* May need to make another endpoint to pull assistants by ID */
-      }
-      const res = await axios.get(
-        'https://cleaner-pos.herokuapp.com/assistants',
-        header,
-      );
-      setAssistants(res.data);
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  useEffect(() => {
-    fetchAssistants();
-    shouldFetch.current = false;
-  }, [shouldFetch]);
+        house_id: 4,
+        house_name: 'house name 4',
+      },
+      {
+        house_id: 5,
+        house_name: 'house name 5',
+      },
+    ],
+    avl_houses: [
+      {
+        house_id: 6,
+        house_name: 'house name 6',
+      },
+    ],
+  };
 
   return (
-    <Container>
-      <AssistantCard />
+    <AssistantDetailContainer>
+      {/* {loading ? '...Loading' : null}
+      {error.error ? 'Whoops! Something went wrong ☹️' : null} */}
+      {assistant ? <AssistantCard {...assistant} /> : null}
       <LeafletMap />
-    </Container>
+    </AssistantDetailContainer>
   );
 };
 
-export default AssistantsDetails;
+export default AssistantDetails;
