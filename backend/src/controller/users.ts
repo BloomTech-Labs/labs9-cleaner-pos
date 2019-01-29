@@ -28,6 +28,7 @@ declare global {
   interface Token {
     ext_it: string;
     role: string;
+    id: number;
   }
 
   namespace Express {
@@ -103,22 +104,34 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       role,
       managerID,
     } = req.body;
+
     const user = await findUserByExt_it(ext_it).catch((e) => {
       throw e;
     });
     const { JWT_SECRET } = process.env;
     if (!user) {
       // If user does NOT yet exist, create a user in our db & send a token to the client
-      const userData: User = { ext_it, full_name, email, phone, address, role };
+      const userData: User = {
+        address,
+        email,
+        ext_it,
+        full_name,
+        phone,
+        role,
+      };
 
       // should we save output to a variable? I don't think the client should be sent that info.
       const newUser = await makeUser(userData);
-      const token = await jwt.sign(userData, JWT_SECRET || '');
+
+      const token = await jwt.sign(
+        { ...userData, id: newUser[0] },
+        JWT_SECRET || '',
+      );
 
       // if the user signing up is an assistant, needs to be linked to manager
       if (role === 'assistant') {
-        const ass = await addAstMan(newUser[0].id, managerID);
-        const ass2 = await addAstToAllManHouse(newUser[0].id, managerID);
+        await addAstMan(newUser[0].id, managerID);
+        await addAstToAllManHouse(newUser[0].id, managerID);
       }
       res
         .status(201)

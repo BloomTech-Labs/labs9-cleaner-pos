@@ -13,29 +13,27 @@ import {
   NewGuest,
   Checkout,
   Assistants,
-  AssistantsDetails,
+  AssistantDetails,
   InviteAst,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
 import Billing from './pages/Billing/Billing';
+
 interface UserData {
-  id: number;
   loggedIn: boolean;
   role: string;
 }
 const token = localStorage.getItem('token');
 const role = localStorage.getItem('role') || '';
-const id = Number(localStorage.getItem('id')) || -1;
 
 const defaultValue = {
-  id,
   loggedIn: token ? true : false,
   role,
 };
 export const UserContext = createContext<UserData>(defaultValue);
 
-const App = (props: any) => {
+const App = () => {
   return (
     <div className='App'>
       <UserContext.Provider value={defaultValue}>
@@ -53,6 +51,7 @@ const App = (props: any) => {
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/updateinfo' component={PostRegister} />
           <Route exact path='/assistants' component={Assistants} />
+          <Route exact path='/assistants/:id' component={AssistantDetails} />
           <Route exact path='/guests' component={Guests} />
           <Route exact path='/guests/new' component={NewGuest} />
           <Route exact path='/guests/:id' component={GuestDetail} />
