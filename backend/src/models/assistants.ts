@@ -77,12 +77,7 @@ export function findOneAssistant(astId: number) {
         .leftJoin('house', {
           'house_ast.house_id': 'house.id',
         })
-        .select(
-          'house.id as house_id',
-          'house.name as house_name',
-          // will need this id to remove ast from house
-          'house_ast.id',
-        )
+        .select('house.id as house_id', 'house.name as house_name')
         .where({ 'house_ast.ast_id': astId })
         // filters out the houses that a ast is already default
         .whereNotIn('house_ast.house_id', defA);
