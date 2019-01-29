@@ -69,7 +69,9 @@ export const GuestDetailView = ({
           <div className='guest-info--bottom-left'>
             <div className='guest-info--checklist'>
               <div className='guest-info--checklist-top'>
-                <div className='top-text'>Checklists</div>
+                <div className='top-text'>
+                  <h2>Checklists</h2>
+                </div>
               </div>
               <Checklist
                 className='guest-info--checklist-bottom'
@@ -80,7 +82,9 @@ export const GuestDetailView = ({
           <div className='guest-info--bottom-right'>
             <div className='guest-info--resources'>
               <div className='guest-info--resources-top'>
-                <div className='top-text'>Assistants and Resources</div>
+                <div className='top-text'>
+                  <h2>Assistants and Resources</h2>
+                </div>
               </div>
               <div className='guest-info--resources-bottom'>
                 <AstDropdown className='left' houseId={house_id} />
@@ -120,7 +124,9 @@ export const GuestDetailView = ({
             </div>
             <div className='guest-info--checkout'>
               <div className='guest-info--checkout-top'>
-                <div className='top-text'>Checkout and Invoice</div>
+                <div className='top-text'>
+                  <h2>Checkout and Invoice</h2>
+                </div>
               </div>
               <div className='guest-info--checkout-bottom'>
                 <div className='buttons'>
