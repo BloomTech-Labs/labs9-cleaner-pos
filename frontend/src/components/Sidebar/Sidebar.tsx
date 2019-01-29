@@ -69,15 +69,16 @@ const Sidebar = (props: LinkProps) => {
             <Link to='/assistants'>Assistants</Link>
           </MenuItem>
         </Menu>
-        <StyledLink to='/settings'>
-            <h4>Settings</h4>
+        <SettingsWrapper>
+          <StyledLink to='/settings'>
+              <h4>Settings</h4>
           </StyledLink>
-
           <SpecialButton
             onClick={() => logOut()}
             className='button-sign-out'
             text='Sign Out'
           />
+        </SettingsWrapper>
       </div>
       <NavBar>
         <NavWrapper>

@@ -64,7 +64,7 @@ const NavWrapper = styled('div')`
 `;
 
 const SettingsWrapper = styled('div')`
-  display: none;
+  display: flex;
   @media only screen and (min-width: ${bp}) {
     display: flex;
     padding-left: 1rem;
