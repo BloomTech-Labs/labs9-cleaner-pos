@@ -75,6 +75,7 @@ export function findOneAssistant(astId: number) {
         .select(
           'house.id as house_id',
           'house.name as house_name',
+          // will need this id to remove ast from house
           'house_ast.id',
         )
         .where({ 'house_ast.ast_id': astId });
