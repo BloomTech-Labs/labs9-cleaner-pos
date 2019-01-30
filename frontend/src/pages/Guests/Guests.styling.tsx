@@ -82,7 +82,7 @@ export const GuestsDiv = styled(Container)`
     background-color: var(--colour-button-background);
   }
 
-  @media screen and (min-width: 720px) {
+  @media only screen and (min-width: 720px) {
     /* Flexbox */
     display: flex;
     flex-flow: row wrap;
@@ -101,16 +101,68 @@ export const GuestsDiv = styled(Container)`
 `;
 
 export const StyledGuestCard = styled(GuestCard)`
+  /* Sizing and Box Model */
+  width: 95vw;
+  margin: 2rem 0.5rem;
+  padding: 1rem;
+
+  /* Grid */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3rem 1fr 1fr;
+  gap: ${pxToRem(24)}rem;
+  column-gap: ${pxToRem(36)}rem;
+  grid-gap: ${pxToRem(24)}rem;
+  grid-column-gap: ${pxToRem(36)}rem;
+
+  /* Color */
+  color: var(--colour-main-black);
+  background-color: var(--colour-accent-background);
+
+  /* Hover Effects */
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.025);
+  }
+
+  .user-image {
+    border-radius: 100%;
+    height: ${pxToRem(72)}rem;
+    width: ${pxToRem(72)}rem;
+    /* Grid */
+    grid-column: span 2;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .text-content {
+    /* Grid */
+    grid-column: span 2;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .info-progress {
+    /* Grid */
+    grid-column: span 2;
+  }
+
+  div[class^='info-'] {
+    /*
+      Above fancy selector courtesy of:
+      https://stackoverflow.com/a/8588532
+      */
+    /* Color */
+    background-color: var(--colour-main-background);
+  }
+
   @media only screen and (min-width: 720px) {
     /* Sizing and Box Model */
     width: 100%;
+    padding: 0;
     height: ${height}rem;
     border: 1px solid var(--colour-border);
-    margin-bottom: ${pxToRem(36)}rem;
-
-    /* Color */
-    color: var(--colour-main-black);
-    background-color: var(--colour-accent-background);
+    margin: 0 0 ${pxToRem(36)}rem 0;
 
     /* Grid */
     display: grid;
@@ -118,15 +170,11 @@ export const StyledGuestCard = styled(GuestCard)`
     gap: ${pxToRem(30)}rem;
     grid-gap: ${pxToRem(30)}rem;
     grid-template-columns: repeat(4, 1fr);
-
-    /* Hover Effects */
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      transform: scale(1.025);
-    }
+    grid-template-rows: auto;
 
     .user-image {
       /* Sizing & Box Model*/
+      border-radius: 0%;
       width: 100%;
       height: ${height - pxToRem(2)}rem;
       object-fit: cover;
@@ -154,9 +202,6 @@ export const StyledGuestCard = styled(GuestCard)`
       width: ${pxToRem(206)}rem;
       height: 100%;
       margin-bottom: 1rem;
-
-      /* Color */
-      background-color: var(--colour-main-background);
     }
 
     .info-check-in {
@@ -237,6 +282,7 @@ export const MainText = styled.div`
   display: block;
   text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
+  font-weight: bolder;
   font-size: ${pxToRem(20)}rem;
 `;
 
