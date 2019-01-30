@@ -19,8 +19,6 @@ const Guests = () => {
     `${url}/stays?filter=${active}&test=true`,
   );
 
-  // TODO: Add loading animation
-
   const activeClass = (filter: FilterArgs) =>
     active === filter ? 'active' : '';
 
