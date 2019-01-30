@@ -3,7 +3,7 @@ import { Container, Button } from '../../components/index';
 
 const pxToRem = (px: number) => px / 16;
 const cardHeight = pxToRem(84);
-const cardWeidth = pxToRem(120);
+const cardWidth = pxToRem(120);
 
 export const BackButton = styled(Button)`
   margin-left: auto;
@@ -12,7 +12,7 @@ export const BackButton = styled(Button)`
   font-size: ${pxToRem(20)}rem;
   border: solid 0.25px black;
   @media only screen and (max-width: 600px) {
-	margin-left: 0;
+    margin-left: 0;
   }
 `;
 
@@ -48,12 +48,12 @@ export const Top = styled(PropertyContainer)`
 	width: 100%;
 `;
 export const ThumbNail = styled('img')`
-  width: ${cardWeidth}rem;
+  width: ${cardWidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
   @media only screen and (max-width: 600px) {
-  	margin: 0 auto;
-	padding: 10px;
+    margin: 0 auto;
+    padding: 10px;
   }
 `;
 export const MainText = styled.div`
@@ -68,9 +68,9 @@ export const SecondaryText = styled.div`
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
   @media only screen and (max-width: 600px) {
-	width: 100%;
-	text-align: center;
-	padding-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
   }
 `;
 
@@ -91,9 +91,9 @@ export const ListContainer = styled('div')`
   justify-content: space-between;
   flex-flow: row wrap;
   @media only screen and (max-width: 600px) {
-  	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 export const ListDiv = styled('div')`
@@ -132,11 +132,11 @@ export const AfterListDiv = styled(ListDiv)`
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
   @media only screen and (max-width: 600px) {
-	flex-wrap: nowrap;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-  }	
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const AfterListDiv2 = styled(ListDiv)`
