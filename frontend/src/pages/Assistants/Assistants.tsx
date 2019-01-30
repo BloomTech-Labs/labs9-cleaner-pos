@@ -27,7 +27,7 @@ const AssistantCard = (assistant: Assistant) => {
         to={`/assistants/${assistant.ast_id}`}
       >
         <AssistantItem data-testid='assistant-item'>
-          <ThumbNail src={img} alt={assistant.full_name} />
+          <ThumbNail className='list-img' src={img} alt={assistant.full_name} />
           <CardBody>
             <CardHeading>
               <h1>{assistant.full_name}</h1>
