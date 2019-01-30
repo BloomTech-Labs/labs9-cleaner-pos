@@ -4,10 +4,12 @@ import {
   PropertyContainer,
   ThumbNail,
   Top,
+  HouseInfo,
   MainText,
   SecondaryText,
   ListContainer,
   BackButton,
+  PropertyButtons,
   Header,
   AfterListDiv,
   WhiteButton,
@@ -104,19 +106,23 @@ const PropertyDetails = (props: any) => {
         <div>Loading.....</div>
       ) : (
         <PropertyContainer>
-          <ThumbNail
-            src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
-            alt='house'
-          />
           <Top>
-            <MainText data-testid='house-detail'>{property.name}</MainText>
-            <SecondaryText>{property.address}</SecondaryText>
-            <BackButton text='Edit Property' colour='var(--colour-accent)' />
-            <BackButton
-              text='Go Back'
-              colour='var(--colour-accent)'
-              onClick={() => props.history.push('/properties')}
-            />
+            <HouseInfo>
+              <ThumbNail
+                src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
+                alt='house'
+              />
+              <MainText data-testid='house-detail'>{property.name}</MainText>
+              <SecondaryText>{property.address}</SecondaryText>
+            </HouseInfo>
+            <PropertyButtons>
+              <BackButton text='Edit Property' colour='var(--colour-accent)' />
+              <BackButton
+                text='Go Back'
+                colour='var(--colour-accent)'
+                onClick={() => props.history.push('/properties')}
+              />
+            </PropertyButtons>
           </Top>
           <ListContainer>
             {lists.before ? (
