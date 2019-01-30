@@ -7,7 +7,9 @@ import {
   AsstProperty,
   PropertyContainer,
   PropertyHeading,
+  PropertyList,
   ThumbNail,
+  HouseItem,
 } from './Assistants.styling';
 import { useFetch } from '../../helpers/';
 import img from '../assets/ronald.jpg';
@@ -15,37 +17,51 @@ import { hostname } from 'os';
 
 const AssistantCard = (assistant: any) => {
   return (
-    <AssistantBar>
+    <AssistantBar className={assistant.className}>
       <AsstDetail>
-        <ThumbNail
-          src={img}
-          style={{ width: '96px', height: '96px' }}
-          alt={assistant.full_name}
-        />
-        <div style={{ marginLeft: '1rem' }}>
+        <ThumbNail className='detail-img' src={img} alt={assistant.full_name} />
+        <div className='detail-txt'>
           <h2>{assistant.full_name}</h2>
           <h3>{assistant.address}</h3>
         </div>
       </AsstDetail>
       <AsstProperty>
+        <div className='button-group'>
+          <Button text='Edit Assistant' />
+          <Button text='Go Back' />
+        </div>
         <PropertyContainer>
           <PropertyHeading>
             <h2>Default Properties</h2>
+            <Button className='button-new' text='+ New' />
           </PropertyHeading>
-          {assistant.default_house.map((house: any) => (
-            <p key={house.house_id}>{house.house_name}</p>
-          ))}
-          <Button text='+ Add New Item' />
+          <PropertyList>
+            {assistant.default_house.map((house: any) => (
+              <HouseItem key={house.house_id}>
+                {house.house_name}
+                <span className='hide'>
+                  <i className='fas fa-trash-alt' />
+                </span>
+              </HouseItem>
+            ))}
+          </PropertyList>
         </PropertyContainer>
 
         <PropertyContainer>
           <PropertyHeading>
             <h2>Available Properties</h2>
+            <Button className='button-new' text='+ New' />
           </PropertyHeading>
-          {assistant.avl_houses.map((house: any) => (
-            <div key={house.house_id}>house.house_name</div>
-          ))}
-          <Button text='+ Add New Item' />
+          <PropertyList>
+            {assistant.avl_houses.map((house: any) => (
+              <HouseItem key={house.house_id}>
+                {house.house_name}
+                <span className='hide'>
+                  <i className='fas fa-backspace' />
+                </span>
+              </HouseItem>
+            ))}
+          </PropertyList>
         </PropertyContainer>
       </AsstProperty>
     </AssistantBar>
@@ -62,7 +78,7 @@ const AssistantDetails = (props: any) => {
     user_id: 10,
     ast_id: 7,
     full_name: 'Big Stevo 7',
-    address: null,
+    address: '123 Test St',
     photo_url: null,
     default_house: [
       {
@@ -86,7 +102,9 @@ const AssistantDetails = (props: any) => {
     <AssistantDetailContainer>
       {/* {loading ? '...Loading' : null}
       {error.error ? 'Whoops! Something went wrong ☹️' : null} */}
-      {assistant ? <AssistantCard {...assistant} /> : null}
+      {assistant ? (
+        <AssistantCard className='assistant-card' {...assistant} />
+      ) : null}
       <LeafletMap />
     </AssistantDetailContainer>
   );
