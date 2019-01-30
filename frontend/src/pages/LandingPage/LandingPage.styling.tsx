@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 const Nav = styled('nav')`
   margin: 0 auto;
+  margin-bottom: 2rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -50,24 +51,24 @@ const AppHeader = styled('h1')`
   font-family: 'Staatliches', 'sans-serif';
 `;
 
-const SideHeader = styled('div')`
-  font-family: 'Roboto';
-  margin: 0 auto;
-  padding: 15px;
-  max-width: 20%;
+const CTA = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
 `;
 
 const Footer = styled('div')`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: gray;
-  padding: 10px 50px 0 50px;
-  position: fixed;
-  margin: auto;
-  left: 0px;
-  bottom: 0px;
-  height: 10%;
+  border-top: 2px solid #393534;
+  padding: 20px 50px 20px;
+  /* position: fixed; */
+  margin: 0 auto;
+  /* left: 0px;
+  bottom: 0px; */
+  height: 20%;
   width: 100%;
   a {
     font-family: 'Roboto';
@@ -79,10 +80,10 @@ const Footer = styled('div')`
 
 export {
   Footer,
-  SideHeader,
   AppHeader,
   CenterImg,
   ButtonWrapper,
   Wrapper,
   Nav,
+  CTA,
 };
