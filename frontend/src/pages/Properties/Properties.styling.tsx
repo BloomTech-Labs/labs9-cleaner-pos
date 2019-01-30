@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 const cardHeight = 216;
 
 const PropContainer = styled('div')`
-	display: flex;
+  display: flex;
   flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const HouseItem = styled('div')`
@@ -19,13 +19,15 @@ const HouseItem = styled('div')`
   display: flex;
   text-align: left;
   border: 0.5px solid black;
+  background-color: white;
   @media only screen and (max-width: 900px) {
     flex-direction: column;
-		flex: 1;
-		justify-content: center;
-		align-items: center;
-		padding: 10px 0 10px 0;
- 	}
+    flex: 1;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 10px 0;
+  }
 `;
 
 const ButtonContainer = styled('div')`
@@ -34,7 +36,7 @@ const ButtonContainer = styled('div')`
   flex-direction: column;
   justify-content: space-around;
   @media only screen and (max-width: 900px) {
-		padding: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
   }
 `;
 
@@ -81,8 +83,8 @@ const CardBody = styled('div')`
   justify-content: space-around;
   align-items: center;
   @media only screen and (max-width: 900px) {
-		flex-direction: column;
-		flex: 1;
+    flex-direction: column;
+    flex: 1;
   }
 `;
 
@@ -110,23 +112,23 @@ const Cleaner = styled('div')`
   flex-direction: column;
   justify-content: center;
   @media only screen and (max-width: 900px) {
-	  padding: 20px 0 20px 0;
+    padding: 20px 0 20px 0;
   }
 `;
 
 const HouseHeader = styled('span')`
   font-size: 36px;
-  margin: 20px;  
+  margin: 20px;
   text-align: left;
   border-bottom: 1px solid #b8003f;
   max-width: 290px;
   @media only screen and (max-width: 900px) {
-	  text-align: center;
+    text-align: center;
   }
 `;
 
 export {
-	PropContainer,
+  PropContainer,
   HouseHeader,
   HouseItem,
   CardBody,
