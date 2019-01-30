@@ -23,7 +23,7 @@ output email is formatted
 ```
 Hello James,
 
-You have been invited to clean for Steve
+You have been invited to join Lodgel by Steve
 
 Please visit this link to signup and accept Lodgel
 ```
