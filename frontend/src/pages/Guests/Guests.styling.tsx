@@ -64,18 +64,22 @@ export const GuestsDiv = styled(Container)`
     /* Sizing & Box Model */
     height: ${pxToRem(36)}rem;
     width: ${pxToRem(120)}rem;
-    border: 1px solid rgba(238, 239, 245, 0.5);
+    border: var(--border);
 
     /* Text */
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 1rem;
+
+    /* Color */
+    color: var(--colour-text-dark);
+    background-color: var(--colour-button-background-alt);
   }
 
   .guests-buttons-filter button.button-filter:hover,
   .guests-buttons-filter .active {
     /* Color */
-    color: var(--colour-button-text-alt);
-    background-color: var(--colour-button-background-alt);
+    color: var(--colour-button-text);
+    background-color: var(--colour-button-background);
   }
 
   @media screen and (min-width: 720px) {
@@ -91,7 +95,7 @@ export const GuestsDiv = styled(Container)`
     }
 
     .guests-buttons-filter {
-      margin-bottom: ${pxToRem(36)}rem;
+      margin: auto auto ${pxToRem(36)}rem 0;
     }
   }
 `;
