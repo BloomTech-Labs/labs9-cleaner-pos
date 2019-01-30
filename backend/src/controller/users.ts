@@ -44,20 +44,15 @@ declare global {
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
+    const { id } = req.token;
     // Find users
-    let users: any;
-    if (id) {
-      users = await findUser(id);
-    } else {
-      users = await findUsers();
-    }
+    const user = await findUser(id);
     // Return status 404 if individual user is not found
-    if (users === undefined) {
+    if (user === undefined) {
       return res.status(404).json({ msg: '404: User cannot be found.' });
     }
     // Send 200 OK and user data
-    res.status(200).json(users);
+    res.status(200).json(user);
   } catch (e) {
     e.statusCode = 400;
     next(e);
@@ -162,8 +157,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 export const put = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    const { ext_it, full_name, email, phone, address, role } = req.body;
-    const user: User = { id, ext_it, full_name, email, phone, address, role };
+    const user = req.body;
     if (
       user.role !== 'manager' &&
       user.role !== 'assistant' &&

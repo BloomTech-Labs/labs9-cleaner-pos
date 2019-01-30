@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 // Styling & Styled Components
 import { GuestsDiv, StyledGuestCard } from './Guests.styling';
 import { useFetch } from '../../helpers';
+import loadingIndicator from '../utils/loading.svg';
 
 const Guests = () => {
   const url =
@@ -55,7 +56,9 @@ const Guests = () => {
         />
       </div>
       {error.error ? error.msg : null}
-      {loading ? '...Loading' : null}
+      {loading ? (
+        <img src={loadingIndicator} alt='animated loading indicator' />
+      ) : null}
       {stays ? (
         <>
           <div className='guests-errors'>{errors.msg}</div>

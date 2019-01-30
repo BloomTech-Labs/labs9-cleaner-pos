@@ -25,8 +25,12 @@ const Container = styled('div')`
 
   .menu {
     height: 100%;
+    width: 100%;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 2rem 0;
+    border-bottom: 1px solid black;
   }
 
   @media only screen and (min-width: ${bp}) {
@@ -60,7 +64,7 @@ const NavWrapper = styled('div')`
 `;
 
 const SettingsWrapper = styled('div')`
-  display: none;
+  display: flex;
   @media only screen and (min-width: ${bp}) {
     display: flex;
     padding-left: 1rem;
@@ -76,8 +80,13 @@ const StyledUL = styled('div')`
 `;
 
 const StyledLink = styled(NavLink)`
+  text-decoration: none;
+  padding: 0 4rem;
+
+
+  @media only screen and (min-width: ${bp}) {
   float: left;
-  padding-right: 2.5rem;
+  /* padding-right: 2.5rem; */
   text-decoration: none;
   color: black;
   &:active{
@@ -87,6 +96,7 @@ const StyledLink = styled(NavLink)`
     font-family: 'Roboto';
     font-weight: condensed;
     font-size: 24px;
+  }
   }
 `;
 
