@@ -47,9 +47,9 @@ const PropertyDetails = (props: any) => {
     }
   }
 
-  async function submitNew(newTaks: any) {
+  async function submitNew(newTasks: any) {
     try {
-      await axios.post(`${url}/items/`, newTaks, headers);
+      await axios.post(`${url}/items/`, newTasks, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -64,9 +64,21 @@ const PropertyDetails = (props: any) => {
       axiosErrorHandler(setErrors);
     }
   }
+
+  async function putTasks(id: number, updatedTask: any) {
+    try {
+      console.log(id, updatedTask);
+      // await axios.put(`${url}/items/`, updatedTask, headers);
+      fetchLists(props.match.params.id);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  }
+
   async function deleteList(id: number) {
     try {
       await axios.delete(`${url}/lists/${id}`, headers);
+      setShouldFetch(true);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -98,7 +110,6 @@ const PropertyDetails = (props: any) => {
   useEffect(() => {
     fetchLists(props.match.params.id);
   }, []);
-  console.log(property);
   return (
     <>
       <div>{errors.msg}</div>
@@ -125,17 +136,19 @@ const PropertyDetails = (props: any) => {
                 type='Before'
                 submitNew={submitNew}
                 deleteTasks={deleteTasks}
+                putTasks={putTasks}
               />
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />
             )}
-            {lists.after ? (
+            {lists.during ? (
               <PropertyLists
                 list={lists.during}
                 list_id={lists.during_id}
                 type='During'
                 submitNew={submitNew}
                 deleteTasks={deleteTasks}
+                putTasks={putTasks}
               />
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />

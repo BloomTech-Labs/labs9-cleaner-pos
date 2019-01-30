@@ -42,10 +42,11 @@ export const Top = styled(PropertyContainer)`
   /* Text */
   text-align: left;
   @media only screen and (max-width: 600px) {
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
 `;
 export const ThumbNail = styled('img')`
   width: ${cardWidth}rem;

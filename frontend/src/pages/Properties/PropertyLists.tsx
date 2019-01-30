@@ -11,6 +11,7 @@ import {
   AfterHeader,
   AfterItemDiv,
   AfterListDiv2,
+  SecondaryText,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';
 import styled from '@emotion/styled';
@@ -18,6 +19,7 @@ import styled from '@emotion/styled';
 export const PropertyLists = (props: ListProps) => {
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
+  const [edit, setEdit] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem(event.target.value);
   };
@@ -29,12 +31,14 @@ export const PropertyLists = (props: ListProps) => {
   const handleDelete = (id: number) => {
     props.deleteTasks(id);
   };
+
   const handleNew = () => {
     const createTask: any = { list_id: props.list_id, task: newItem };
     props.submitNew(createTask);
     setNewItem('');
     setInputItem(false);
   };
+  console.log(edit);
   return (
     <ListDiv>
       <Header>{props.type}</Header>
@@ -43,19 +47,40 @@ export const PropertyLists = (props: ListProps) => {
           {props.list.map((task) => {
             return (
               <div key={task.items_id}>
-                <input
-                  type='checkbox'
-                  name={task.task}
-                  checked={false}
-                  readOnly
-                  data-testid={'checkbox'}
-                />
-                <label
-                  htmlFor={task.task}
-                  onClick={() => handleDelete(task.items_id)}
-                >
-                  {task.task}
-                </label>
+                {edit === task.items_id ? (
+                  <TaskDiv>
+                    <TextField value={newItem} onChange={handleChange} />
+                    <WhiteButton
+                      text='Submit'
+                      onClick={() => {
+                        props.putTasks(task.items_id, newItem);
+                        setNewItem('');
+                      }}
+                    />
+                    <WhiteButton
+                      text='Cancel'
+                      onClick={() => {
+                        setEdit(0);
+                        setNewItem('');
+                      }}
+                    />
+                  </TaskDiv>
+                ) : (
+                  <>
+                    <SecondaryText
+                      onClick={() => {
+                        setEdit(task.items_id);
+                        setNewItem(task.task);
+                      }}
+                    >
+                      {task.task}
+                    </SecondaryText>
+                    <span onClick={() => props.deleteTasks(task.items_id)}>
+                      {' '}
+                      X
+                    </span>
+                  </>
+                )}
               </div>
             );
           })}
@@ -66,6 +91,7 @@ export const PropertyLists = (props: ListProps) => {
               placeholder='Add New Item'
               value={newItem}
               onChange={handleChange}
+              onSubmit={handleNew}
             />
             <WhiteButton text='Submit' onClick={handleNew} />
             <WhiteButton text='Cancel' onClick={toggleText} />

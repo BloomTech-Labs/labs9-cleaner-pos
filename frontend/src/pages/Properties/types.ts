@@ -8,6 +8,7 @@ export interface ListProps {
   submitNew: any;
   deleteTasks: any;
   deleteList?: any;
+  putTasks?: any;
 }
 
 export interface House {
