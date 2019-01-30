@@ -90,38 +90,36 @@ export const GuestDetailView = ({
               </div>
               <div className='guest-info--resources-bottom'>
                 <AstDropdown className='left' houseId={house_id} />
-                <div className='right'>
-                  {ast_guide ? (
-                    <div className='ast-guide'>
-                      <a href={ast_guide} target='_blank'>
-                        <i className='fas fa-file' />
-                      </a>
-                      <br />
-                      <label>Assistant Guide</label>
-                    </div>
-                  ) : (
-                    <div className='ast-guide'>
-                      <i className='fas fa-question' />
-                      <br />
-                      <label>No Assistant Guide</label>
-                    </div>
-                  )}
-                  {guest_guide ? (
-                    <div className='guest-guide'>
-                      <a href={guest_guide} target='_blank'>
-                        <i className='fas fa-file' />
-                      </a>
-                      <br />
-                      <label>Guest Guide</label>
-                    </div>
-                  ) : (
-                    <div className='guest-guide'>
-                      <i className='fas fa-question' />
-                      <br />
-                      <label>No Guest Guide</label>
-                    </div>
-                  )}
-                </div>
+                {ast_guide ? (
+                  <div className='guide'>
+                    <a href={ast_guide} target='_blank'>
+                      <i className='fas fa-file' />
+                    </a>
+                    <br />
+                    <label>Assistant Guide</label>
+                  </div>
+                ) : (
+                  <div className='guide'>
+                    <i className='fas fa-question' />
+                    <br />
+                    <label>No Assistant Guide</label>
+                  </div>
+                )}
+                {guest_guide ? (
+                  <div className='guide'>
+                    <a href={guest_guide} target='_blank'>
+                      <i className='fas fa-file' />
+                    </a>
+                    <br />
+                    <label>Guest Guide</label>
+                  </div>
+                ) : (
+                  <div className='guide'>
+                    <i className='fas fa-question' />
+                    <br />
+                    <label>No Guest Guide</label>
+                  </div>
+                )}
               </div>
             </div>
             <div className='guest-info--checkout'>

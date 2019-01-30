@@ -28,7 +28,7 @@ const AstDropdownView = (props: {
   // Good working code
   return (
     <div className='ast-dropdown'>
-      Default Cleaner
+      Reassign Cleaner
       <br />
       <select data-testid='assistant-select' onChange={(event) => event}>
         <option defaultValue={house.default_ast_name}>
@@ -36,11 +36,7 @@ const AstDropdownView = (props: {
         </option>
         {house.openAst.map((ast: any) => {
           if (ast.ast_id !== house.default_ast) {
-            return (
-              <option key={ast.ast_id}>
-                {ast.ast_id}: {ast.full_name}
-              </option>
-            );
+            return <option key={ast.ast_id}>{ast.full_name}</option>;
           }
         })}
       </select>

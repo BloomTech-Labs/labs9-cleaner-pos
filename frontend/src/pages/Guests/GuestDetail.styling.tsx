@@ -169,7 +169,7 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--resources-top,
   .guest-info--checkout-top {
     /* Box Model & Sizing */
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     border: 0.5px solid var(--colour-border);
     color: var(--colour-accent);
   }
@@ -194,6 +194,25 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--checkout {
     /* Box Model & Sizing */
     margin: 1rem;
+  }
+
+  .guest-info--resources-bottom {
+    /* Grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.25rem;
+    grid-gap: 1.25rem;
+    align-items: center;
+  }
+
+  .ast-dropdown {
+    grid-row: span 2;
+    grid-column: 1;
+  }
+
+  .guide {
+    text-align: center;
   }
 
   @media only screen and (min-width: 700px) {
