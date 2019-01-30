@@ -15,7 +15,6 @@ const AssistantItem = styled('div')`
 
   /* Sizing */
   height: ${pxToRem(188)};
-  margin-bottom: 2.25rem;
   border: 0.5px solid var(--colour-border);
 
   /* Flex */
@@ -24,11 +23,25 @@ const AssistantItem = styled('div')`
   /* Text */
   text-align: left;
 
-  @media only screen and (max-width: ${bp}) {
-    flex-direction: column;
+  .check-boxes {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  @media screen and (max-width: ${bp}) {
     width: 100%;
     height: 100%;
+    /* Flex */
+    flex-direction: column;
     align-items: flex-start;
+
+    .check-boxes {
+      flex-flow: row wrap;
+      margin-bottom: 1rem;
+    }
   }
 `;
 
@@ -60,16 +73,30 @@ const ButtonContainer = styled('div')`
   justify-content: space-around;
   /* Text */
   font-size: ${pxToRem(20)};
+
+  @media screen and (max-width: 550px) {
+    margin: auto;
+    margin: 1rem 0;
+    flex-basis: 100%;
+    width: 100%;
+
+    button {
+      width: 100%;
+      max-width: 550px;
+    }
+  }
 `;
 
 const ThumbNail = styled('img')`
-  width: ${pxToVw(254 * 0.8)};
+  width: ${pxToVw(254 * 0.9)};
   height: auto;
   object-fit: cover;
+
   @media only screen and (max-width: ${bp}) {
-    width: 100%;
+    margin: 1rem auto 0 auto;
+    width: 4.5rem;
+    border-radius: 100%;
     object-fit: cover;
-    margin: 0 auto;
   }
 `;
 
@@ -116,15 +143,13 @@ const CheckList = styled('div')`
   .secondary {
     color: var(--colour-accent);
   }
-  @media only screen and (max-width: ${bp}) {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+  @media screen and (max-width: 550px) {
+    width: 45%;
   }
 `;
 
 const Asst = styled('div')`
   /* Sizing */
-  margin: 0 0 0 0.75rem;
   width: ${boxWidth};
   height: ${boxHeight};
   border: var(--border);
@@ -144,9 +169,8 @@ const Asst = styled('div')`
     margin: 0;
     font-weight: bold;
   }
-  @media only screen and (max-width: ${bp}) {
-    margin-top: 1rem;
-    font-size: 1.2rem;
+  @media screen and (max-width: 550px) {
+    width: 45%;
   }
 `;
 
@@ -155,7 +179,6 @@ const AssistantHeader = styled('span')`
   top: 0;
   left: 0;
   text-align: left;
-  border-bottom: 1px solid #b8003f;
   align-items: flex-start;
   max-width: 18.125rem;
 `;

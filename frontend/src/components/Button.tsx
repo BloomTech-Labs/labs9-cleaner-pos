@@ -34,7 +34,7 @@ const Button = ({
     color: var(--colour-button-text);
     border: 0;
     font-weight: condensed;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   `;
