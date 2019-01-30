@@ -5,9 +5,9 @@ import 'leaflet/dist/leaflet.css';
 const LeafletMap = (props: { className?: string }) => {
   // Set state for map coordinates
   const [coordinates, setCoordinates] = useState({
-    lat: 51.505,
-    lng: -0.09,
-    zoom: 13,
+    lat: 38.695394,
+    lng: -121.013766,
+    zoom: 15,
   });
 
   const position: [number, number] = [coordinates.lat, coordinates.lng];
