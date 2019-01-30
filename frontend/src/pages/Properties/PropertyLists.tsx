@@ -46,7 +46,6 @@ export const PropertyLists = (props: ListProps) => {
     },
     [props],
   );
-  console.log('taskLoad', taskLoad);
   return (
     <ListDiv>
       <Header>{props.type}</Header>

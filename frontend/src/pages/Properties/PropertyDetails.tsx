@@ -67,7 +67,6 @@ const PropertyDetails = (props: any) => {
 
   async function putTasks(item: List, updatedTask: any) {
     try {
-      console.log(item);
       const task = { task: updatedTask, list_id: item.list_id };
       await axios.put(`${url}/items/${item.items_id}`, task, headers);
       fetchLists(props.match.params.id);
