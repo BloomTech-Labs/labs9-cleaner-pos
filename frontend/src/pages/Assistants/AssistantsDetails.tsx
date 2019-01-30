@@ -17,7 +17,7 @@ import { hostname } from 'os';
 
 const AssistantCard = (assistant: any) => {
   return (
-    <AssistantBar>
+    <AssistantBar className={assistant.className}>
       <AsstDetail>
         <ThumbNail
           src={img}
@@ -106,7 +106,9 @@ const AssistantDetails = (props: any) => {
     <AssistantDetailContainer>
       {/* {loading ? '...Loading' : null}
       {error.error ? 'Whoops! Something went wrong ☹️' : null} */}
-      {assistant ? <AssistantCard {...assistant} /> : null}
+      {assistant ? (
+        <AssistantCard className='assistant-card' {...assistant} />
+      ) : null}
       <LeafletMap />
     </AssistantDetailContainer>
   );
