@@ -43,6 +43,7 @@ const ChecklistView = (props: {
           type='checkbox'
           name={task}
           checked={complete}
+          readOnly
           data-testid={'checkbox'}
         />
         <div className='state p-primary-o'>

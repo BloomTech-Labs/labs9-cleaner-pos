@@ -10,6 +10,7 @@ import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
 import { GuestDetailStyle } from './GuestDetail.styling';
+import { MainText, SecondaryText } from './Guests.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
 import { useFetch } from '../../helpers/';
@@ -129,12 +130,14 @@ export const GuestDetailView = ({
                 </div>
               </div>
               <div className='guest-info--checkout-bottom'>
-                <div className='buttons'>
-                  <Button className='button-invoice' text='Invoice' />
-                  <Link to={`/checkout/${stay_id}`}>
-                    <Button className='button-checkout' text='Checkout' />
-                  </Link>
+                <div className='stay-code'>
+                  <MainText>47CLY</MainText>
+                  <SecondaryText>Guest Login Code</SecondaryText>
                 </div>
+                <Button className='button-invoice' text='Invoice' />
+                <Link className='link-checkout' to={`/checkout/${stay_id}`}>
+                  <Button className='button-checkout' text='Checkout' />
+                </Link>
               </div>
             </div>
           </div>

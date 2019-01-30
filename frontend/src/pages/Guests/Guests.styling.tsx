@@ -269,12 +269,12 @@ export const InfoDiv = styled.div`
 `;
 
 export const MainText = styled.div`
-  padding-top: 0.5rem;
-  display: block;
+  /* display: block; */
   text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-weight: bolder;
   font-size: ${pxToRem(20)}rem;
+  color: var(--colour-text-accent);
 `;
 
 export const SecondaryText = styled.div`
@@ -282,4 +282,5 @@ export const SecondaryText = styled.div`
   text-align: left;
   font-family: 'Roboto Light', Arial, sans-serif;
   font-size: ${pxToRem(16)}rem;
+  color: var(--colour-text-dark);
 `;

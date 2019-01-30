@@ -196,7 +196,9 @@ export const GuestDetailStyle = styled('div')`
     margin: 1rem;
   }
 
-  .guest-info--resources-bottom {
+  /* Grid for Assistants and Resources */
+  .guest-info--resources-bottom,
+  .guest-info--checkout-bottom {
     /* Grid */
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -204,6 +206,7 @@ export const GuestDetailStyle = styled('div')`
     gap: 1.25rem;
     grid-gap: 1.25rem;
     align-items: center;
+    justify-content: center;
   }
 
   .ast-dropdown {
@@ -213,6 +216,27 @@ export const GuestDetailStyle = styled('div')`
 
   .guide {
     text-align: center;
+  }
+
+  /* Grid for Checkout and Invoice */
+  .stay-code {
+    border: var(--border);
+    padding: 0.75rem 0;
+    /* Grid */
+    grid-row: span 2;
+    grid-column: 1;
+
+    div {
+      text-align: center;
+    }
+  }
+
+  .button-invoice {
+    width: 100%;
+    justify-self: center;
+  }
+  .button-checkout {
+    width: 100%;
   }
 
   @media only screen and (min-width: 700px) {
