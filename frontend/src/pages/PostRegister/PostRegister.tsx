@@ -42,15 +42,64 @@ interface InitialValueProps {
 
 interface PostFormProps extends RouteComponentProps {
   initialValues?: InitialValueProps;
+  id?: number;
+  address?: string | null;
+  created_at: string;
+  email: string;
+  ext_it: string;
+  full_name: string;
+  phone: null | string;
+  photoUrl: null | string;
+  role: 'manager' | 'assistant';
+  setting_email: boolean;
+  setting_text: boolean;
+  stripeUID: null | string;
 }
 
 const PostForm = (props: PostFormProps) => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
+  const emptyValues = {
+    email: '',
+    phone: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    country: '',
+    postCode: '',
+    errorStatus: '',
+  };
+
+  let startValues: InitialValueProps = {};
+  let location: string = '';
+
+  if (props.location && props.id) {
+    const { address, email, ext_it, full_name, phone } = props;
+
+    const addressArray = address ? address.split('\n') : '';
+    if (addressArray && addressArray.length < 6) {
+      addressArray.splice(1, 0, '');
+    }
+    startValues = {
+      address1: addressArray[0] || '',
+      address2: addressArray[1] || '',
+      city: addressArray[2] || '',
+      state: addressArray[3] || '',
+      country: addressArray[4] || '',
+      postCode: addressArray[5] || '',
+      full_name,
+      email,
+      phone: phone || '',
+    };
+
+    location = props.location.pathname;
+  }
+
   const labelInputField = (label: string) => {
     return ({ field, form }: FieldProps) => {
-      const { name, value } = field;
+      const { name } = field;
       const { touched, errors } = form;
       const errorState = Boolean(errors[name] && touched[name]);
       return (
@@ -68,56 +117,10 @@ const PostForm = (props: PostFormProps) => {
       );
     };
   };
-
-  const emptyValues = {
-    email: '',
-    phone: '',
-    address1: '',
-    address2: '',
-    city: '',
-    state: '',
-    country: '',
-    postCode: '',
-    errorStatus: '',
-  };
-
-  let startValues: InitialValueProps = {};
-  let location: string = '';
-
-  if (props.location && props.location.state) {
-    const { address, email, ext_it, full_name, phone } = props.location.state;
-    if (!address) {
-      startValues = emptyValues;
-    } else {
-      const addressArray = address.split('\n');
-      if (addressArray.length < 6) {
-        addressArray.splice(1, 0, '');
-      }
-      const address1 = addressArray[0];
-      const address2 = addressArray[1];
-      const city = addressArray[2];
-      const state = addressArray[3];
-      const country = addressArray[4];
-      const postCode = addressArray[5];
-      location = props.location.pathname;
-      startValues = {
-        address1,
-        address2,
-        city,
-        state,
-        country,
-        postCode,
-        full_name,
-        email,
-        phone,
-      };
-    }
-  }
-
   return (
     <StyledDiv>
       <Formik
-        initialValues={location === '/updateinfo' ? startValues : emptyValues}
+        initialValues={location === '/settings' ? startValues : emptyValues}
         validationSchema={SignupSchema}
         onSubmit={async (values, actions) => {
           const {
@@ -146,11 +149,6 @@ const PostForm = (props: PostFormProps) => {
             await axios.put(`${url}/users/`, userData, headers);
             await actions.setSubmitting(false);
             await actions.setStatus('Submission successful. Thank you!');
-            if (props.location.pathname === '/updateinfo') {
-              props.history.push('/settings');
-            } else {
-              props.history.push('/properties');
-            }
           } catch (error) {
             await actions.setSubmitting(false);
             if (error.response) {
