@@ -4,7 +4,7 @@ import { GuestCard } from './GuestCard';
 // Styles
 import styled from '@emotion/styled';
 
-const height = 216 / 16;
+const height = 168 / 16;
 const pxToRem = (px: number) => px / 16;
 // In design file, image was 216px high
 // For responsiveness, we want to use rems.
@@ -128,7 +128,7 @@ export const StyledGuestCard = styled(GuestCard)`
     .user-image {
       /* Sizing & Box Model*/
       width: 100%;
-      height: ${height}rem;
+      height: ${height - pxToRem(2)}rem;
       object-fit: cover;
 
       /* Grid */
@@ -174,7 +174,7 @@ export const StyledGuestCard = styled(GuestCard)`
     .info-progress {
       /* Sizing & Box Model */
       width: ${pxToRem(206)}rem;
-      height: ${pxToRem(165)}rem;
+      height: 80%;
       margin: 0 1rem 1rem 0;
 
       /* Grid */
@@ -221,13 +221,13 @@ export const InfoDiv = styled.div`
 
   .text-main {
     font-family: 'Roboto Medium', Arial, sans-serif;
-    font-size: ${36 / 16}rem;
+    font-size: ${24 / 16}rem;
     color: var(--colour-accent);
   }
 
   .text-secondary {
     font-family: 'Roboto Light', Arial, sans-serif;
-    font-size: ${20 / 16}rem;
+    font-size: ${16 / 16}rem;
     color: var(--colour-main-black);
   }
 `;
@@ -237,7 +237,7 @@ export const MainText = styled.div`
   display: block;
   text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
-  font-size: ${pxToRem(30)}rem;
+  font-size: ${pxToRem(20)}rem;
 `;
 
 export const SecondaryText = styled.div`
