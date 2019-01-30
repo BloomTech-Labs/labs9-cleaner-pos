@@ -17,6 +17,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { useFetch } from '../../helpers';
 import { Lists } from './types';
+import loadingIndicator from '../utils/loading.svg';
 
 // TODO: fix types
 const PropertyDetails = (props: any) => {
@@ -127,7 +128,7 @@ const PropertyDetails = (props: any) => {
                 deleteTasks={deleteTasks}
               />
             ) : (
-              '...Loading'
+              <img src={loadingIndicator} alt='animated loading indicator' />
             )}
             {lists.after ? (
               <PropertyLists
@@ -138,7 +139,7 @@ const PropertyDetails = (props: any) => {
                 deleteTasks={deleteTasks}
               />
             ) : (
-              '...Loading'
+              <img src={loadingIndicator} alt='animated loading indicator' />
             )}
           </ListContainer>
           <AfterListDiv>
