@@ -6,8 +6,8 @@ import styled from '@emotion/styled';
 const pxRem = (px: number) => `${px / 16}rem`;
 const pxToVUnitMaker = (maxSizeInPx: number) => (px: number) =>
   `${(px / maxSizeInPx) * 100}vh`;
-const pxVw = pxToVUnitMaker(1920);
-const pxVh = pxToVUnitMaker(1080);
+const pxVw = pxToVUnitMaker(1080);
+const pxVh = pxToVUnitMaker(1920);
 
 const headerHeight = pxRem(144);
 
@@ -62,9 +62,6 @@ export const GuestDetailStyle = styled('div')`
   }
 
   .guest-header--buttons {
-    /* Box Model & Sizing */
-    /* margin: auto; */
-
     /* Flex */
     display: flex;
     flex-flow: row wrap;
@@ -96,9 +93,17 @@ export const GuestDetailStyle = styled('div')`
     border: 1px solid gray;
   }
 
+  /* Checklists */
   /* Guest Checklist Buttons */
+  .guest-info--checklist-bottom .guests-buttons-filter {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
   .guests-buttons-filter .button-filter {
     /* Box Model */
+    width: 33%;
+    padding: 0 0.5rem;
     border: var(--border);
     /* Text */
     font-size: 1rem;
@@ -111,9 +116,27 @@ export const GuestDetailStyle = styled('div')`
     color: var(--colour-button-text);
     background-color: var(--colour-button-background);
   }
+
+  /* Checklist Boxes */
+  .list-checkbox {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Checklist Sublist */
+  .sublist {
+    /* Sizing */
+    /* Text */
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+  }
+
   /* Sub Container Sizes */
 
-  .guest-info--checklist {
+  /* Commenting this for now
+     It's ok for elements to over/under hang
+  */
+  /* .guest-info--checklist {
     height: 516px;
 
     .guest-info--checklist-bottom {
@@ -132,14 +155,14 @@ export const GuestDetailStyle = styled('div')`
     .guest-info--checkout-bottom {
       height: 182px;
     }
-  }
+  } */
 
   .guest-info--top,
   .guest-info--checklist-top,
   .guest-info--resources-top,
   .guest-info--checkout-top {
     /* Box Model & Sizing */
-    padding: 0.25rem;
+    padding: 0 1rem;
     border: 0.5px solid var(--colour-border);
     color: var(--colour-accent);
   }
@@ -147,6 +170,10 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--checklist-bottom,
   .guest-info--resources-bottom,
   .guest-info--checkout-bottom {
+    /* Box Model & Sizing */
+    padding: 1.5rem 1rem;
+    width: 100%;
+    /* Color */
     background: white;
   }
 
@@ -154,6 +181,7 @@ export const GuestDetailStyle = styled('div')`
     background: var(--colour-accent);
     color: white;
   }
+
   .guest-info--checklist,
   .guest-info--resources,
   .guest-info--checkout {
