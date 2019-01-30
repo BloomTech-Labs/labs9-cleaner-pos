@@ -8,7 +8,7 @@ import {
   findAllHousesByManagerId,
 } from '../models/houses';
 import { postList } from '../models/lists';
-import { findUserByExt_it, findUser } from '../models/users';
+import { findUserByExt_it, findUser, getRoleId } from '../models/users';
 import { Request, Response, NextFunction } from 'express';
 import { House } from '../interface';
 
@@ -104,6 +104,12 @@ export const put = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const house: House = { ...req.body, id: req.params.id };
     console.log(req.token);
+    if (house.default_ast === null) {
+      const manAst = await getRoleId(req.token.id, true);
+      console.log(manAst);
+      house.default_ast = manAst.id;
+    }
+    console.log(house);
     const putHouse = await updateHouse(house);
     if (!putHouse) {
       throw Error('No house with that id');

@@ -98,9 +98,10 @@ export async function getRoleId(
     .where({ id })
     .first()
     .then((result) => {
-      if (other === true) {
+      if (other) {
         result.role = 'assistant';
       }
+      console.log('model', result);
       return db(result.role)
         .select('id')
         .where({ user_id: id })

@@ -122,9 +122,8 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
       // should we save output to a variable? I don't think the client should be sent that info.
       const newUser = await makeUser(userData);
-
       const token = await jwt.sign(
-        { ...userData, id: newUser[0] },
+        { ...userData, id: newUser.user_id },
         JWT_SECRET || '',
       );
       const astCreate = async (userId: number, manId: number) => {
