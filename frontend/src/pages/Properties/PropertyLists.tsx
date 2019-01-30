@@ -53,14 +53,10 @@ export const PropertyLists = (props: ListProps) => {
         <TaskDiv>
           {props.list.map((task) => {
             return (
-              <div key={task.items_id}>
+              <div key={task.items_id} className='listMap'>
                 {edit === task.items_id ? (
                   <TaskDiv>
-                    <TextField
-                      value={newItem}
-                      onChange={handleChange}
-                      className='text'
-                    />
+                    <TextField value={newItem} onChange={handleChange} />
                     <WhiteButton
                       text='Submit'
                       onClick={() => {

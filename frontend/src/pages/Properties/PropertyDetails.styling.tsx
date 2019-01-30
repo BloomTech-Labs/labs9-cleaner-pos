@@ -139,10 +139,6 @@ export const TaskDiv = styled('div')`
     flex-direction: row;
     justify-content: space-between;
   }
-  .text {
-    font-family: 'Roboto Bold', Arial, sans-serif;
-    font-size: ${pxToRem(50)}rem;
-  }
 `;
 
 // after List
