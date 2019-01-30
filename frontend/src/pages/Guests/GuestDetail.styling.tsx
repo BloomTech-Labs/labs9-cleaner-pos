@@ -96,16 +96,49 @@ export const GuestDetailStyle = styled('div')`
     border: 1px solid gray;
   }
 
+  /* Sub Container Sizes */
+
+  .guest-info--checklist {
+    height: 516px;
+
+    .guest-info--checklist-bottom {
+      height: 448px;
+    }
+  }
+  .guest-info--resources {
+    height: 250px;
+    .guest-info--resources-bottom {
+      height: 182px;
+    }
+  }
+
+  .guest-info--checkout {
+    height: 250px;
+    .guest-info--checkout-bottom {
+      height: 182px;
+    }
+  }
+
   .guest-info--top,
   .guest-info--checklist-top,
   .guest-info--resources-top,
   .guest-info--checkout-top {
     /* Box Model & Sizing */
     padding: 0.25rem;
-    margin-bottom: 0.5rem;
-    border: 2px solid black;
+    border: 0.5px solid var(--colour-border);
+    color: var(--colour-accent);
   }
 
+  .guest-info--checklist-bottom,
+  .guest-info--resources-bottom,
+  .guest-info--checkout-bottom {
+    background: white;
+  }
+
+  .guest-info--top {
+    background: var(--colour-accent);
+    color: white;
+  }
   .guest-info--checklist,
   .guest-info--resources,
   .guest-info--checkout {

@@ -17,6 +17,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useFetch } from '../../helpers/';
 import { House } from './types';
 import { Link } from 'react-router-dom';
+import loadingIndicator from '../utils/loading.svg';
 
 const Properties = () => {
   const url =

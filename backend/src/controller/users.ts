@@ -44,20 +44,15 @@ declare global {
 
 export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
+    const { id } = req.token;
     // Find users
-    let users: any;
-    if (id) {
-      users = await findUser(id);
-    } else {
-      users = await findUsers();
-    }
+    const user = await findUser(id);
     // Return status 404 if individual user is not found
-    if (users === undefined) {
+    if (user === undefined) {
       return res.status(404).json({ msg: '404: User cannot be found.' });
     }
     // Send 200 OK and user data
-    res.status(200).json(users);
+    res.status(200).json(user);
   } catch (e) {
     e.statusCode = 400;
     next(e);
@@ -122,17 +117,23 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
       // should we save output to a variable? I don't think the client should be sent that info.
       const newUser = await makeUser(userData);
-
       const token = await jwt.sign(
-        { ...userData, id: newUser[0] },
+        { ...userData, id: newUser.user_id },
         JWT_SECRET || '',
       );
-
+      const astCreate = async (userId: number, manId: number) => {
+        await addAstMan(userId, manId);
+        await addAstToAllManHouse(userId, manId);
+      };
       // if the user signing up is an assistant, needs to be linked to manager
       if (role === 'assistant') {
-        await addAstMan(newUser[0].id, managerID);
-        await addAstToAllManHouse(newUser[0].id, managerID);
+        astCreate(newUser.id[0], managerID);
+        // await addAstMan(newUser[0].id, managerID);
+        // await addAstToAllManHouse(newUser[0].id, managerID);
+      } else if (role === 'manager') {
+        astCreate(newUser.astId[0], newUser.id[0]);
       }
+
       res
         .status(201)
         .json({ token, first: true, id: newUser.id, role: newUser.role });
@@ -156,8 +157,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 export const put = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    const { ext_it, full_name, email, phone, address, role } = req.body;
-    const user: User = { id, ext_it, full_name, email, phone, address, role };
+    const user = req.body;
     if (
       user.role !== 'manager' &&
       user.role !== 'assistant' &&

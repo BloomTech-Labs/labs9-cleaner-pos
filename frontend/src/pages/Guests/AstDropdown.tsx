@@ -4,6 +4,7 @@ import { axiosErrorHandler } from '../utils';
 // Components
 // Types
 import { House } from './types';
+import loadingIndicator from '../utils/loading.svg';
 
 const AstDropdownView = (props: {
   formState: { ast_id: number; full_name: string };
@@ -16,7 +17,12 @@ const AstDropdownView = (props: {
   const { formState, onChangeFunc, house, loading, className } = props;
 
   if (loading || props.house.openAst === undefined) {
-    return <div>⌛</div>;
+    return (
+      <div>
+        {' '}
+        <img src={loadingIndicator} alt='animated loading indicator' />
+      </div>
+    );
   }
 
   // Good working code

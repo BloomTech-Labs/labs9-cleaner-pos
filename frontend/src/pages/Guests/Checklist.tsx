@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
-import { axiosErrorHandler } from '../utils';
+import React, { useState } from 'react';
 // Components
 import Button from '../../components/Button';
 // Types
 import { ChecklistsData, ListTypes } from './types';
-import { listenerCount } from 'cluster';
-import { RouteComponentProps } from 'react-router';
-import { List } from 'material-ui';
+import { useFetch } from '../../helpers';
+
+// Styling & Assets
+import loadingIndicator from '../utils/loading.svg';
 
 const ChecklistView = (props: {
   lists: ChecklistsData;
@@ -16,8 +15,12 @@ const ChecklistView = (props: {
   setListFilter: (listType: ListTypes) => void;
   className?: string;
 }) => {
-  if (!props.lists.before) {
-    return <div>⌛</div>;
+  if (!props.lists) {
+    return (
+      <div>
+        <img src={loadingIndicator} alt='animated loading indicator' />
+      </div>
+    );
   }
 
   // TODO: Refine error message
@@ -57,7 +60,7 @@ const ChecklistView = (props: {
       completed++;
     }
   }
-  const percentage: number = (completed / total) * 100;
+  const percentage: number = (completed / total) * 100 || 0;
 
   const activeClass = (filter: ListTypes) =>
     listFilter === filter ? 'active' : '';
@@ -120,49 +123,15 @@ const ChecklistView = (props: {
 };
 
 export const Checklist = (props: { stayId: number; className?: string }) => {
-  const [lists, setLists] = useState({} as ChecklistsData);
-  const [errors, setErrors] = useState({ msg: '', error: false });
   const [listFilter, setListFilter] = useState('before' as ListTypes);
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+  const [lists, error] = useFetch(`${url}/lists/${props.stayId}?stay=true`);
 
   const setFilterForList = (listType: ListTypes) => {
     setListFilter(listType);
   };
-
-  useEffect(
-    () => {
-      // Get token from local storage
-      const token = localStorage.getItem('token');
-
-      // Ask user to login if token is not available
-      if (!token) {
-        setErrors({
-          msg: 'Authentication error. Please try logging in again.',
-          error: true,
-        });
-        return;
-      }
-
-      // Prepare token to be sent in headers of request
-      const headers: AxiosRequestConfig = {
-        headers: { Authorization: token },
-      };
-
-      // URL. If backendURL is not defined, defaults to deployed backend
-      const url =
-        process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-
-      // Request
-      axios
-        .get(`${url}/lists/${props.stayId}?stay=true`, headers)
-        .then((response) => {
-          const { data } = response;
-          setLists(data);
-          setErrors((prev) => ({ ...prev, error: false }));
-        })
-        .catch(axiosErrorHandler(setErrors));
-    },
-    [props.stayId],
-  );
 
   return (
     <ChecklistView
@@ -170,7 +139,7 @@ export const Checklist = (props: { stayId: number; className?: string }) => {
       lists={lists}
       listFilter={listFilter}
       setListFilter={setFilterForList}
-      errors={errors}
+      errors={error}
     />
   );
 };

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
-import { axiosErrorHandler } from '../utils';
+import React from 'react';
 // Types
 import { RouteComponentProps } from 'react-router';
 import { GuestProps } from './types';
@@ -15,6 +13,7 @@ import { GuestDetailStyle } from './GuestDetail.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
 import { useFetch } from '../../helpers/';
+import { Link } from 'react-router-dom';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
 
@@ -64,13 +63,17 @@ export const GuestDetailView = ({
       </div>
       <div className='guest-info'>
         <div className='guest-info--top'>
-          <div className='top-text'>Stay Information and Checklists</div>
+          <div className='top-text'>
+            <h2>Stay Information and Checklists</h2>
+          </div>
         </div>
         <div className='guest-info--bottom'>
           <div className='guest-info--bottom-left'>
             <div className='guest-info--checklist'>
               <div className='guest-info--checklist-top'>
-                <div className='top-text'>Checklists</div>
+                <div className='top-text'>
+                  <h2>Checklists</h2>
+                </div>
               </div>
               <Checklist
                 className='guest-info--checklist-bottom'
@@ -81,7 +84,9 @@ export const GuestDetailView = ({
           <div className='guest-info--bottom-right'>
             <div className='guest-info--resources'>
               <div className='guest-info--resources-top'>
-                <div className='top-text'>Assistants and Resources</div>
+                <div className='top-text'>
+                  <h2>Assistants and Resources</h2>
+                </div>
               </div>
               <div className='guest-info--resources-bottom'>
                 <AstDropdown className='left' houseId={house_id} />
@@ -121,12 +126,16 @@ export const GuestDetailView = ({
             </div>
             <div className='guest-info--checkout'>
               <div className='guest-info--checkout-top'>
-                <div className='top-text'>Checkout and Invoice</div>
+                <div className='top-text'>
+                  <h2>Checkout and Invoice</h2>
+                </div>
               </div>
               <div className='guest-info--checkout-bottom'>
                 <div className='buttons'>
                   <Button className='button-invoice' text='Invoice' />
-                  <Button className='button-checkout' text='Checkout' />
+                  <Link to={`/checkout/${stay_id}`}>
+                    <Button className='button-checkout' text='Checkout' />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -145,7 +154,7 @@ const GuestDetail = (props: RouteComponentProps) => {
 
   const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
 
-  return <GuestDetailView {...stay} errors={error} />;
+  return <>{stay ? <GuestDetailView {...stay} errors={error} /> : null}</>;
 };
 
 export default GuestDetail;

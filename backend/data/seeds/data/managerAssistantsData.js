@@ -11,4 +11,10 @@ module.exports = [
   { manager_id: 5, ast_id: 10 },
   { manager_id: 6, ast_id: 11 },
   { manager_id: 6, ast_id: 12 },
+  { manager_id: 1, ast_id: 13 },
+  { manager_id: 2, ast_id: 14 },
+  { manager_id: 3, ast_id: 15 },
+  { manager_id: 4, ast_id: 16 },
+  { manager_id: 5, ast_id: 17 },
+  { manager_id: 6, ast_id: 18 },
 ];

@@ -1,30 +1,59 @@
 import styled from '@emotion/styled';
 import { Container } from '../../components/';
 
-const cardHeight = 216;
+const pxToRem = (px: number): string => `${px / 16}rem`;
+const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
+// Some size constants
+const boxHeight = '5rem';
+const boxWidth: string = `30%`;
+const bp = `650px`;
 
 const AssistantItem = styled('div')`
+  /* Color */
   background: white;
-  max-width: ${(1136 * 0.9) / 16}rem;
-  height: ${cardHeight / 16}rem;
-  margin-bottom: 2.25rem;
-  display: flex;
-  text-align: left;
-  border: 0.5px solid var(--colour-border);
   color: var(--colour-main-black);
-  @media only screen and (max-width: 600px) {
-    flex-direction: column;
+
+  /* Sizing */
+  height: ${pxToRem(188)};
+  border: 0.5px solid var(--colour-border);
+
+  /* Flex */
+  display: flex;
+
+  /* Text */
+  text-align: left;
+
+  .check-boxes {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  @media screen and (max-width: ${bp}) {
     width: 100%;
     height: 100%;
+    /* Flex */
+    flex-direction: column;
     align-items: flex-start;
+
+    .check-boxes {
+      flex-flow: row wrap;
+      margin-bottom: 1rem;
+    }
   }
 `;
 
 const HeaderWrapper = styled('div')`
+  /* Flex */
   display: flex;
   justify-content: space-between;
+
+  /* Sizing */
   margin-bottom: 2.25rem;
-  @media only screen and (max-width: 600px) {
+
+  @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     align-items: center;
     button {
@@ -34,26 +63,48 @@ const HeaderWrapper = styled('div')`
 `;
 
 const ButtonContainer = styled('div')`
+  /* Sizing */
   margin: 0 0 0 0.75rem;
-  height: 7.75rem;
+  width: ${boxWidth};
+  height: ${pxToRem(42)};
+  /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  /* Text */
+  font-size: ${pxToRem(20)};
+
+  @media screen and (max-width: 550px) {
+    margin: auto;
+    margin: 1rem 0;
+    flex-basis: 100%;
+    width: 100%;
+
+    button {
+      width: 100%;
+      max-width: 550px;
+    }
+  }
 `;
 
 const ThumbNail = styled('img')`
-  width: ${(cardHeight - 5) / 16}rem;
-  height: ${(cardHeight - 5) / 16}rem;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
+  width: ${pxToVw(254 * 0.9)};
+  height: auto;
+  object-fit: cover;
+
+  @media only screen and (max-width: ${bp}) {
+    margin: 1rem auto 0 auto;
+    width: 4.5rem;
+    border-radius: 100%;
     object-fit: cover;
-    margin: 0 auto;
   }
 `;
 
 const CardHeading = styled('div')`
   width: 100%;
-  @media only screen and (max-width: 600px) {
+  line-height: 0.5;
+  margin-bottom: 1rem;
+  @media only screen and (max-width: ${bp}) {
     text-align: center;
   }
 `;
@@ -64,7 +115,7 @@ const CardBody = styled('div')`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${bp}) {
     margin: 0;
     align-items: flex-start;
     flex-direction: column;
@@ -72,45 +123,54 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-  padding: 10px 15px 45px;
+  /* Sizing */
+  height: ${boxHeight};
+  width: ${boxWidth};
+  border: 0.5px solid var(--colour-border);
+  /* Text */
   text-align: center;
-  height: 6.25rem;
-  border: 0.5px solid #393534;
   font-size: 1.5rem;
   font-weight: light;
+  /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: space-around;
   p {
     margin: 0;
     font-weight: bold;
   }
-  @media only screen and (max-width: 600px) {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+  .secondary {
+    color: var(--colour-accent);
+  }
+  @media screen and (max-width: 550px) {
+    width: 45%;
   }
 `;
 
 const Asst = styled('div')`
-  margin: 0 0 0 0.75rem;
-  padding: 10px 15px 45px;
+  /* Sizing */
+  width: ${boxWidth};
+  height: ${boxHeight};
+  border: var(--border);
+  /* Text */
   text-align: center;
-  height: 6.25rem;
-  border: 0.5px solid #393534;
   font-size: 1.5rem;
   font-weight: light;
+  /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .secondary {
+    color: var(--colour-accent);
+  }
   p {
     margin: 0;
     font-weight: bold;
   }
-  @media only screen and (max-width: 600px) {
-    margin-top: 1rem;
-    font-size: 1.2rem;
+  @media screen and (max-width: 550px) {
+    width: 45%;
   }
 `;
 
@@ -119,7 +179,6 @@ const AssistantHeader = styled('span')`
   top: 0;
   left: 0;
   text-align: left;
-  border-bottom: 1px solid #b8003f;
   align-items: flex-start;
   max-width: 18.125rem;
 `;

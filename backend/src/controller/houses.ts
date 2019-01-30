@@ -7,7 +7,8 @@ import {
   findAllHousesByAstId,
   findAllHousesByManagerId,
 } from '../models/houses';
-import { findUserByExt_it, findUser } from '../models/users';
+import { postList } from '../models/lists';
+import { findUserByExt_it, findUser, getRoleId } from '../models/users';
 import { Request, Response, NextFunction } from 'express';
 import { House } from '../interface';
 
@@ -89,6 +90,8 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = await findUserByExt_it(extIt);
     const house: House = { ...req.body, manager: id };
     const newHouse = await makeHouse(house);
+    await postList({ type: 'before', house_id: newHouse[0] });
+    await postList({ type: 'during', house_id: newHouse[0] });
     res.status(201).json(newHouse);
   } catch (e) {
     console.error(e);
@@ -100,6 +103,10 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 export const put = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const house: House = { ...req.body, id: req.params.id };
+    if (house.default_ast === null) {
+      const manAst = await getRoleId(req.token.id, true);
+      house.default_ast = manAst.id;
+    }
     const putHouse = await updateHouse(house);
     if (!putHouse) {
       throw Error('No house with that id');

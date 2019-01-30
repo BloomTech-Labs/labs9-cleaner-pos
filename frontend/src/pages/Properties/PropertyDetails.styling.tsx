@@ -3,7 +3,7 @@ import { Container, Button } from '../../components/index';
 
 const pxToRem = (px: number) => px / 16;
 const cardHeight = pxToRem(84);
-const cardWeidth = pxToRem(120);
+const cardWidth = pxToRem(120);
 
 export const BackButton = styled(Button)`
   width: ${pxToRem(156)}rem;
@@ -59,7 +59,7 @@ export const HouseInfo = styled('div')`
 `;
 
 export const ThumbNail = styled('img')`
-  width: ${cardWeidth}rem;
+  width: ${cardWidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
   @media only screen and (max-width: 900px) {
@@ -142,9 +142,7 @@ export const AfterListDiv = styled(ListDiv)`
   align-items: top;
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
-  @media only screen and (max-width: 400px) {
-    display: flex;
-    width: 100%;
+  @media only screen and (max-width: 600px) {
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
