@@ -43,6 +43,15 @@ const AssistantItem = styled('div')`
       margin-bottom: 1rem;
     }
   }
+
+  @media only screen and (max-width: ${bp}) {
+    .list-img {
+      margin: 1rem auto 0 auto;
+      width: 4.5rem;
+      border-radius: 100%;
+      object-fit: cover;
+    }
+  }
 `;
 
 const HeaderWrapper = styled('div')`
@@ -91,13 +100,6 @@ const ThumbNail = styled('img')`
   width: ${pxToVw(254 * 0.9)};
   height: auto;
   object-fit: cover;
-
-  @media only screen and (max-width: ${bp}) {
-    margin: 1rem auto 0 auto;
-    width: 4.5rem;
-    border-radius: 100%;
-    object-fit: cover;
-  }
 `;
 
 const CardHeading = styled('div')`
@@ -184,7 +186,81 @@ const AssistantHeader = styled('span')`
 `;
 
 const AssistantDetailContainer = styled(Container)`
+  display: flex;
   flex-direction: row;
+
+  .container-map {
+    width: 70%;
+  }
+
+  .detail-img {
+    width: 96px;
+    height: 96px;
+  }
+
+  .detail-txt {
+    /* Sizing */
+    padding-left: 1rem;
+    /* Text */
+    text-align: left;
+    line-height: 0.5;
+  }
+
+  .detail-txt h3 {
+    font-family: 'Roboto Light', Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+  }
+
+  .button-group {
+    /* Sizing */
+    margin: 1rem 0;
+    /* Flex */
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button-group button {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 700px) {
+    /* In smaller screens, make page columnar.
+       Have map and AsstDetail swap places */
+    flex-direction: column;
+
+    .container-map {
+      /* Flex */
+      order: 1;
+      /* Sizing */
+      width: 100%;
+      height: 40vh;
+      /* Sticky */
+      /* Note to self:
+         TEST THIS, as support is shaky across browsers
+         !important used to override position: relative
+         in Leaflet's own CSS
+      */
+      position: -webkit-sticky !important; /* Safari */
+      position: sticky !important;
+      top: 0 !important;
+    }
+
+    .assistant-card {
+      /* Flex */
+      order: 2;
+      /* Sizing */
+      width: 100%;
+    }
+
+    .detail-img {
+      width: 72px;
+      height: 72px;
+    }
+
+    .button-group {
+      margin: 0;
+    }
+  }
 `;
 
 const AssistantBar = styled('div')`
@@ -212,24 +288,11 @@ const AsstProperty = styled('div')`
   /* Flex */
   display: flex;
   flex-direction: column;
-
-  .button-group {
-    /* Sizing */
-    margin: 1rem 0;
-    /* Flex */
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .button-group button {
-    font-size: 1rem;
-  }
 `;
 
 const PropertyContainer = styled('div')`
   /* Size */
   border: 0.5px solid var(--colour-border);
-  padding-bottom: 1.5rem;
   margin: 1rem 0;
   /* Flex */
   display: flex;
@@ -272,7 +335,7 @@ const PropertyHeading = styled('div')`
 
 const PropertyList = styled.div`
   /* Sizing */
-  padding-left: 1rem;
+  padding: 0.75rem 0 0.75rem 0.75rem;
   /* Text */
   text-align: left;
 `;

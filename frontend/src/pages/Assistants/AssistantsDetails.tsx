@@ -19,12 +19,8 @@ const AssistantCard = (assistant: any) => {
   return (
     <AssistantBar className={assistant.className}>
       <AsstDetail>
-        <ThumbNail
-          src={img}
-          style={{ width: '96px', height: '96px' }}
-          alt={assistant.full_name}
-        />
-        <div style={{ marginLeft: '1rem' }}>
+        <ThumbNail className='detail-img' src={img} alt={assistant.full_name} />
+        <div className='detail-txt'>
           <h2>{assistant.full_name}</h2>
           <h3>{assistant.address}</h3>
         </div>
@@ -82,7 +78,7 @@ const AssistantDetails = (props: any) => {
     user_id: 10,
     ast_id: 7,
     full_name: 'Big Stevo 7',
-    address: null,
+    address: '123 Test St',
     photo_url: null,
     default_house: [
       {
