@@ -102,6 +102,8 @@ export const ListDiv = styled('div')`
   min-width: ${pxToRem(254)}rem;
   border: solid #707070 1px;
   margin: ${pxToRem(36)}rem 0;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ItemDiv = styled('div')`
@@ -110,13 +112,13 @@ export const ItemDiv = styled('div')`
   display: flex;
   flex-direction: column;
   background-color: var(--colour-button-background-alt);
+  flex-grow: 1;
 `;
 
 export const TaskDiv = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
   div {
     margin: ${pxToRem(8)}rem 0;
     font-size: ${pxToRem(20)}rem;
