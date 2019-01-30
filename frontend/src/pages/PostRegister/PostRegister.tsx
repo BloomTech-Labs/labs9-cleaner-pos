@@ -195,11 +195,11 @@ const PostForm = (props: PostFormProps) => {
           } = formProps;
           return (
             <StyledForm>
-              <h2 className='title'>
-                {location === '/postreg'
-                  ? 'Just a few more things!'
-                  : `Let's update your contact info!`}
-              </h2>
+              <div>
+                <h2 className='title'>
+                  {location === '/postreg' ? 'Just a few more things!' : null}
+                </h2>
+              </div>
               <Field
                 name='email'
                 value={values.email}
