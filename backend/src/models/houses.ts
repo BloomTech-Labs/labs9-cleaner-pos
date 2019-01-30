@@ -15,6 +15,7 @@ export const findHouses = () => {
       'house.manager',
       'house.guest_guide',
       'house.ast_guide',
+      'house.photo_url',
     )
     .map(async (e: any) => {
       const openAst = await db('house_ast')
@@ -96,6 +97,7 @@ export const findHouse = async (id: number) => {
       'house.manager',
       'house.guest_guide',
       'house.ast_guide',
+      'house.photo_url',
     )
     .where({ 'house.id': id })
     .map(async (e: any) => {

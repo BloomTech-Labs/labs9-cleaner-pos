@@ -41,6 +41,7 @@ const PropertyDetails = (props: any) => {
     try {
       const res = await axios.get(`${url}/lists/${id}`, headers);
       setLists(res.data);
+      setShouldFetch(false);
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
@@ -87,6 +88,7 @@ const PropertyDetails = (props: any) => {
       await axios.post(`${url}/lists/`, postList, headers);
       toggleText();
       setNewItem('');
+      setShouldFetch(true);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -96,7 +98,7 @@ const PropertyDetails = (props: any) => {
   useEffect(() => {
     fetchLists(props.match.params.id);
   }, []);
-
+  console.log(property);
   return (
     <>
       <div>{errors.msg}</div>
@@ -104,10 +106,7 @@ const PropertyDetails = (props: any) => {
         <div>Loading.....</div>
       ) : (
         <PropertyContainer>
-          <ThumbNail
-            src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
-            alt='house'
-          />
+          <ThumbNail src={property.photo_url} alt='house' />
           <Top>
             <MainText data-testid='house-detail'>{property.name}</MainText>
             <SecondaryText>{property.address}</SecondaryText>
@@ -144,21 +143,23 @@ const PropertyDetails = (props: any) => {
           </ListContainer>
           <AfterListDiv>
             <Header>After Stay</Header>
-            {lists.after
-              ? lists.after.map((aList: any) => {
-                  return (
-                    <AfterPropertyLists
-                      key={aList.time}
-                      list={aList.afterLists}
-                      list_id={aList.after_id}
-                      type={aList.time}
-                      submitNew={submitNew}
-                      deleteTasks={deleteTasks}
-                      deleteList={deleteList}
-                    />
-                  );
-                })
-              : null}
+            {lists.after ? (
+              lists.after.map((aList: any) => {
+                return (
+                  <AfterPropertyLists
+                    key={aList.after_id}
+                    list={aList.afterLists}
+                    list_id={aList.after_id}
+                    type={aList.time}
+                    submitNew={submitNew}
+                    deleteTasks={deleteTasks}
+                    deleteList={deleteList}
+                  />
+                );
+              })
+            ) : (
+              <img src={loadingIndicator} alt='animated loading indicator' />
+            )}
             {inputItem ? (
               <>
                 <TextField
@@ -171,7 +172,16 @@ const PropertyDetails = (props: any) => {
                 <WhiteButton text='Cancel' onClick={toggleText} />
               </>
             ) : (
-              <WhiteButton text='+ New Stay List' onClick={toggleText} />
+              <>
+                {shouldFetch ? (
+                  <img
+                    src={loadingIndicator}
+                    alt='animated loading indicator'
+                  />
+                ) : (
+                  <WhiteButton text='+ New Stay List' onClick={toggleText} />
+                )}
+              </>
             )}
           </AfterListDiv>
         </PropertyContainer>
