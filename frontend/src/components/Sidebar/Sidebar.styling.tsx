@@ -20,7 +20,8 @@ const Container = styled('div')`
   align-items: flex-end;
 
   .button-sign-out {
-    margin-bottom: 1.5rem;
+      margin-bottom: 0;
+      margin-right: 1rem;
   }
 
   .menu {
@@ -31,6 +32,7 @@ const Container = styled('div')`
     justify-content: space-between;
     align-items: baseline;
     margin: 2rem 0;
+    padding-bottom: 1rem;
     border-bottom: 1px solid black;
   }
 
@@ -53,6 +55,7 @@ const NavBar = styled('nav')`
     align-items: center;
     border-bottom: 3px solid black;
     margin-bottom: 1.5rem;
+    padding-bottom: .75rem;
   }
 `;
 
@@ -66,10 +69,12 @@ const NavWrapper = styled('div')`
 
 const SettingsWrapper = styled('div')`
   display: flex;
+  align-items: center;
+  margin-right: 1rem;
   @media only screen and (min-width: ${bp}) {
     display: flex;
     padding-left: 1rem;
-    align-items: baseline;
+    align-items: center;
   }
 `;
 
@@ -77,27 +82,25 @@ const StyledUL = styled('div')`
   list-style-type: none;
 
   display: flex;
-  align-items: baseline;
+  align-items: center;
 `;
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   padding: 0 4rem;
-
-
   @media only screen and (min-width: ${bp}) {
-  float: left;
-  /* padding-right: 2.5rem; */
-  text-decoration: none;
-  color: black;
-  &:active{
-    text-decoration: underline;
-  }
-  h4 {
-    font-family: 'Roboto';
-    font-weight: condensed;
-    font-size: 24px;
-  }
+    padding: 0 1.75rem;
+    float: left;
+    text-decoration: none;
+    color: black;
+    &:active{
+      text-decoration: underline;
+    }
+    h4 {
+      font-family: 'Roboto';
+      font-weight: condensed;
+      font-size: 24px;
+    }
   }
 `;
 
