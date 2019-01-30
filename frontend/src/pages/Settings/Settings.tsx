@@ -35,31 +35,32 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     }
   }, []);
 
+  console.log(user);
+
   return (
     <Container>
       <Header>
         <h2>Account Settings</h2>
         <Card>
           {loading ? <img src={img} alt='animated loader' /> : null}
-          {user ? (
-            <>
-              <Positioner>
+          <Positioner>
+            {user ? (
+              <>
                 <h3>{user ? user.full_name : null}</h3>
-                <p>Connect your stripe account:</p>
-
-                <a
-                  /* tslint:disable-next-line */
-                  href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
-                >
-                  <Button text='Connect' />
-                </a>
-              </Positioner>
-              <Positioner>
-                <p>Update your profile:</p>
-                <Button text='Update' />
-              </Positioner>
-            </>
-          ) : null}
+              </>
+            ) : null}
+            <p>Connect your stripe account:</p>
+            <a
+              /* tslint:disable-next-line */
+              href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
+            >
+              <Button text='Connect' />
+            </a>
+          </Positioner>
+          <Positioner>
+            <p>Update your profile:</p>
+            <Button text='Update' />
+          </Positioner>
         </Card>
       </Header>
     </Container>
