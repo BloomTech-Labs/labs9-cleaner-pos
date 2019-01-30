@@ -44,6 +44,7 @@ export const Top = styled(PropertyContainer)`
   /* Text */
   text-align: left;
   @media only screen and (max-width: 900px) {
+    flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		text-align: center;
@@ -135,18 +136,28 @@ export const TaskDiv = styled('div')`
 `;
 
 // after List
-
 export const AfterListDiv = styled(ListDiv)`
   display: flex;
   flex-flow: row wrap;
   align-items: top;
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
+  @media only screen and (max-width: 400px) {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const AfterListDiv2 = styled(ListDiv)`
   margin: ${pxToRem(36)}rem ${pxToRem(28)}rem;
-  width: ${pxToRem(254)}rem;
+  width: ${pxToRem(255)}rem;
+  @media only screen and (max-width: 400px) {
+    border: none;
+  }    
 `;
 
 export const AfterHeader = styled(Header)`
@@ -154,6 +165,9 @@ export const AfterHeader = styled(Header)`
   background: var(--colour-main-background);
   color: var(--colour-button-text-alt);
   border: solid #707070 1px;
+  @media only screen and (max-width: 400px) {
+    border: none;
+  }  
 `;
 
 export const AfterItemDiv = styled(ItemDiv)`
