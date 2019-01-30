@@ -57,7 +57,7 @@ const AssistantCard = (assistant: any) => {
             <Button className='button-new' text='+ New' />
           </PropertyHeading>
           <PropertyList>
-            {assistant.default_house.map((house: any) => (
+            {assistant.avl_houses.map((house: any) => (
               <HouseItem key={house.house_id}>
                 {house.house_name}
                 <span className='hide'>
