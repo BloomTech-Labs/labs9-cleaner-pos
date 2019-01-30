@@ -16,6 +16,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useFetch } from '../../helpers/';
 import { House } from './types';
 import { Link } from 'react-router-dom';
+import loadingIndicator from '../utils/loading.svg';
 
 const Properties = () => {
   const url =
@@ -51,7 +52,9 @@ const Properties = () => {
       <Link to='/properties/new'>
         <Button text='New Property' />
       </Link>
-      {loading ? '...Loading' : null}
+      {loading ? (
+        <img src={loadingIndicator} alt='animated loading indicator' />
+      ) : null}
       {error.error
         ? 'Whoops! There was an error loading this content for you ☹️'
         : null}
