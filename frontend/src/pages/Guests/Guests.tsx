@@ -56,21 +56,20 @@ const Guests = () => {
         />
       </div>
       {error.error ? error.msg : null}
-      {loading ? (
-        <img src={loadingIndicator} alt='animated loading indicator' />
-      ) : null}
-      {stays ? (
-        <>
-          <div className='guests-errors'>{errors.msg}</div>
-          <div className='guests-cards'>
-            {stays.map((stay: any) => (
+      <div className='guests-errors'>{errors.msg}</div>
+      <div className='guests-cards'>
+        {loading ? (
+          <img src={loadingIndicator} alt='animated loading indicator' />
+        ) : null}
+        {stays
+          ? stays.map((stay: any) => (
               <Link key={stay.stay_id} to={`/guests/${stay.stay_id}`}>
                 <StyledGuestCard {...stay} />
               </Link>
-            ))}
-          </div>
-        </>
-      ) : null}
+            ))
+          : null}
+        <div />
+      </div>
     </GuestsDiv>
   );
 };

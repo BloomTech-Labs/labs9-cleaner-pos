@@ -14,7 +14,6 @@ const url =
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const clientId = process.env.REACT_APP_clientid;
   const [user, error, loading] = useFetch(`${url}/users`);
-  console.log(user);
 
   useEffect(() => {
     const { search } = props.location;
@@ -41,9 +40,8 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       <Header>
         <h2>Account Settings</h2>
         <Card>
-          {loading ? (
-            <img src={img} alt='animated loader' />
-          ) : (
+          {loading ? <img src={img} alt='animated loader' /> : null}
+          {user ? (
             <>
               <Positioner>
                 <h3>{user ? user.full_name : null}</h3>
@@ -61,7 +59,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
                 <Button text='Update' />
               </Positioner>
             </>
-          )}
+          ) : null}
         </Card>
       </Header>
     </Container>
