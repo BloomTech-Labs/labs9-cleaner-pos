@@ -19,9 +19,11 @@ const HouseItem = styled('div')`
   display: flex;
   text-align: left;
   border: 0.5px solid black;
+  background-color: white;
   @media only screen and (max-width: 900px) {
     flex-direction: column;
 		flex: 1;
+    width: 70%;
 		justify-content: center;
 		align-items: center;
 		padding: 10px 0 10px 0;

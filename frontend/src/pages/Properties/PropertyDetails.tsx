@@ -12,6 +12,7 @@ import {
   PropertyButtons,
   Header,
   AfterListDiv,
+  AfterStay,
   WhiteButton,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';
@@ -148,38 +149,40 @@ const PropertyDetails = (props: any) => {
               <img src={loadingIndicator} alt='animated loading indicator' />
             )}
           </ListContainer>
-          <AfterListDiv>
-            <Header>After Stay</Header>
-            {lists.after
-              ? lists.after.map((aList: any) => {
-                  return (
-                    <AfterPropertyLists
-                      key={aList.time}
-                      list={aList.afterLists}
-                      list_id={aList.after_id}
-                      type={aList.time}
-                      submitNew={submitNew}
-                      deleteTasks={deleteTasks}
-                      deleteList={deleteList}
-                    />
-                  );
-                })
-              : null}
-            {inputItem ? (
-              <>
-                <TextField
-                  placeholder='Number of hours'
-                  type='number'
-                  value={newItem}
-                  onChange={handleChange}
-                />
-                <WhiteButton text='Submit' onClick={newList} />
-                <WhiteButton text='Cancel' onClick={toggleText} />
-              </>
-            ) : (
-              <WhiteButton text='+ New Stay List' onClick={toggleText} />
-            )}
-          </AfterListDiv>
+          <AfterStay>
+            <AfterListDiv>
+              <Header>After Stay</Header>
+              {lists.after
+                ? lists.after.map((aList: any) => {
+                    return (
+                      <AfterPropertyLists
+                        key={aList.time}
+                        list={aList.afterLists}
+                        list_id={aList.after_id}
+                        type={aList.time}
+                        submitNew={submitNew}
+                        deleteTasks={deleteTasks}
+                        deleteList={deleteList}
+                      />
+                    );
+                  })
+                : null}
+              {inputItem ? (
+                <>
+                  <TextField
+                    placeholder='Number of hours'
+                    type='number'
+                    value={newItem}
+                    onChange={handleChange}
+                  />
+                  <WhiteButton text='Submit' onClick={newList} />
+                  <WhiteButton text='Cancel' onClick={toggleText} />
+                </>
+              ) : (
+                <WhiteButton text='+ New Stay List' onClick={toggleText} />
+              )}
+            </AfterListDiv>
+          </AfterStay>
         </PropertyContainer>
       )}
     </>
