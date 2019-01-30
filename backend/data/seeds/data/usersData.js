@@ -22,17 +22,20 @@ module.exports = [
     full_name: 'Nando Theeßen',
     ext_it: 'd7DXFYsNwTUKFAz3acyeUkMmtYQ2',
     role: 'manager',
+    email: 'test@test.com',
   },
   // manager ID will be 5, userID 17, houses 7-9, ast 9 10, ast ID 17
   {
     full_name: 'William VanDolah',
     ext_it: 'c39ON4WdKHPSHTD0eIOeMethSK52',
     role: 'manager',
+    email: 'test@test.com',
   },
   // manager ID will be 6, userID 18, houses 10-12, ast 11 12, ast ID 18
   {
     full_name: 'Ronald Libago',
     ext_it: '6EtfOqJ8r1dmFSlFiEw0YhU1ol13',
     role: 'manager',
+    email: 'test@test.com',
   },
 ];
