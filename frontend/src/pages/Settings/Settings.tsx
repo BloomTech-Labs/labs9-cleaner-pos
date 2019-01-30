@@ -59,7 +59,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
             <Positioner>
               <p>Connect your stripe account:</p>
               <a href={stripeOauthUrl}>
-                <Button text='Connect' />
+                <Button className='fancy-button' text='Connect' />
               </a>
             </Positioner>
             <Positioner>
@@ -71,7 +71,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
           </LeftContainer>
           <RightContainer>
             {show ? (
-              <PostRegister {...userProps} />
+              <PostRegister {...userProps} setShow={setShow} />
             ) : (
               <>
                 <UserCard>

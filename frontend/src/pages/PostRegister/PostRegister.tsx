@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
 // Styled Components
-import { Container } from '../../components/';
 import { StyledDiv, StyledForm, StyledTextField } from './styles';
 // Type Definitions
 import { AxiosRequestConfig } from 'axios';
 import { Formik, Field, FieldProps, FormikProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
+import { Button } from '../../components/';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -54,6 +54,7 @@ interface PostFormProps extends RouteComponentProps {
   setting_email: boolean;
   setting_text: boolean;
   stripeUID: null | string;
+  setShow: any;
 }
 
 const PostForm = (props: PostFormProps) => {
@@ -74,6 +75,7 @@ const PostForm = (props: PostFormProps) => {
 
   let startValues: InitialValueProps = {};
   let location: string = '';
+  const { setShow } = props;
 
   if (props.location && props.id) {
     const { address, email, ext_it, full_name, phone } = props;
@@ -149,6 +151,7 @@ const PostForm = (props: PostFormProps) => {
             await axios.put(`${url}/users/`, userData, headers);
             await actions.setSubmitting(false);
             await actions.setStatus('Submission successful. Thank you!');
+            setShow(false);
           } catch (error) {
             await actions.setSubmitting(false);
             if (error.response) {
@@ -254,17 +257,13 @@ const PostForm = (props: PostFormProps) => {
 
               <br />
               {/* // TODO: mess with button component to accept optional props} */}
-              <button
+              <Button
                 className='submit'
                 type='submit'
-                data-testid='button-submit'
+                datatestid='button-submit'
                 disabled={isSubmitting || !dirty}
-              >
-                {isSubmitting ? 'Submitted' : 'Submit'}
-              </button>
-              <button className='clear' type='button' onClick={handleReset}>
-                Clear
-              </button>
+                text={isSubmitting ? 'Submitted' : 'Submit'}
+              />
               {status && status.msg && (
                 <div className='status' data-testid='div-status'>
                   {status.msg}

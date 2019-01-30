@@ -32,6 +32,9 @@ const Positioner = styled('div')`
   flex-direction: column;
   align-items: space-evenly;
   justify-content: space-around;
+  .fancy-button {
+    width: 100%;
+  }
   /* border: 1px solid red; */
 `;
 const LeftContainer = styled('div')`
@@ -52,34 +55,28 @@ const RightContainer = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   border: 1px solid var(--colour-border);
   border-left: 0;
   background: var(--colour-accent-background);
-`;
-
-const ButtonText = styled('div')`
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 20px;
-  /* border: 1px solid orange; */
 `;
 
 const Checkbox = styled('input')`
   color: #393534;
 `;
 
-const UserCard = styled('div')``;
+const UserCard = styled('div')`
+  border: 1px solid var(--colour-border);
+`;
 
 const ThumbNail = styled('img')`
   width: ${pxToVw(125 * 0.9)};
-  margin: 0 50px;
+  margin: 0 auto;
   height: auto;
   object-fit: cover;
 `;
 
 export {
-  ButtonText,
   Card,
   Checkbox,
   Header,
