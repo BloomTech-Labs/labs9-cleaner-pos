@@ -6,15 +6,15 @@ const cardHeight = pxToRem(84);
 const cardWidth = pxToRem(120);
 
 export const BackButton = styled(Button)`
-  margin-left: auto;
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
   font-size: ${pxToRem(20)}rem;
-  border: solid 0.25px black;
-  @media only screen and (max-width: 600px) {
-    margin-left: 0;
+  border: 0.25px solid black;
+  @media only screen and (max-width: 900px) {
   }
 `;
+
+export const PropertyButtons = styled('div')``;
 
 export const WhiteButton = styled(Button)`
   color: var(--colour-button-text-alt);
@@ -37,22 +37,30 @@ export const Top = styled(PropertyContainer)`
   margin: 0 ${pxToRem(22)}rem;
   width: 100%;
   display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   /* Text */
   text-align: left;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     width: 100%;
   }
+  @media only screen and (max-width: 400px) {
+    flex-direction: column;
+  }
 `;
+
+export const HouseInfo = styled('div')``;
+
 export const ThumbNail = styled('img')`
   width: ${cardWidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
     margin: 0 auto;
     padding: 10px;
   }
@@ -61,14 +69,15 @@ export const MainText = styled.div`
   width: 100%;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const SecondaryText = styled.div`
-  display: inline-block;
-  text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
     width: 100%;
     text-align: center;
     padding-bottom: 20px;
@@ -91,7 +100,7 @@ export const ListContainer = styled('div')`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -127,6 +136,13 @@ export const TaskDiv = styled('div')`
 `;
 
 // after List
+export const AfterStay = styled('div')`
+  width: 100%;
+  @media only screen and (max-width: 900px) {
+    width: 70%;
+    margin: 0 auto;
+  }
+`;
 
 export const AfterListDiv = styled(ListDiv)`
   display: flex;
@@ -144,7 +160,10 @@ export const AfterListDiv = styled(ListDiv)`
 
 export const AfterListDiv2 = styled(ListDiv)`
   margin: ${pxToRem(36)}rem ${pxToRem(28)}rem;
-  width: ${pxToRem(254)}rem;
+  width: ${pxToRem(255)}rem;
+  @media only screen and (max-width: 400px) {
+    border: none;
+  }
 `;
 
 export const AfterHeader = styled(Header)`
@@ -152,9 +171,24 @@ export const AfterHeader = styled(Header)`
   background: var(--colour-main-background);
   color: var(--colour-button-text-alt);
   border: solid #707070 1px;
+  @media only screen and (max-width: 400px) {
+    max-width: 90%;
+    align-self: centered;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
 `;
 
 export const AfterItemDiv = styled(ItemDiv)`
   padding: ${pxToRem(24)}rem ${pxToRem(28)}rem;
   margin: 0;
+  @media only screen and (max-width: 400px) {
+    max-width: 90%;
+    align-self: centered;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: solid #707070 1px;
+  }
 `;

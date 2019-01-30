@@ -4,12 +4,15 @@ import {
   PropertyContainer,
   ThumbNail,
   Top,
+  HouseInfo,
   MainText,
   SecondaryText,
   ListContainer,
   BackButton,
+  PropertyButtons,
   Header,
   AfterListDiv,
+  AfterStay,
   WhiteButton,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';
@@ -117,11 +120,20 @@ const PropertyDetails = (props: any) => {
         <div>Loading.....</div>
       ) : (
         <PropertyContainer>
-          <ThumbNail src={property.photo_url} alt='house' />
           <Top>
-            <MainText data-testid='house-detail'>{property.name}</MainText>
-            <SecondaryText>{property.address}</SecondaryText>
-            <BackButton text='Edit Property' colour='var(--colour-accent)' />
+            <HouseInfo>
+              <ThumbNail src={property.photo_url} alt='house' />
+              <MainText data-testid='house-detail'>{property.name}</MainText>
+              <SecondaryText>{property.address}</SecondaryText>
+            </HouseInfo>
+            <PropertyButtons>
+              <BackButton text='Edit Property' colour='var(--colour-accent)' />
+              <BackButton
+                text='Go Back'
+                colour='var(--colour-accent)'
+                onClick={() => props.history.push('/properties')}
+              />
+            </PropertyButtons>
           </Top>
           <ListContainer>
             {lists.before ? (
