@@ -16,20 +16,20 @@ const props: any = {
 describe('Settings dashboard', () => {
   test('should indluce a button with the text Save Settings', async () => {
     const { getAllByText } = renderWithRouter(<Settings {...props} />, {});
-    const buttons = await waitForElement(() =>
-      getAllByText(/connect with stripe/i),
+    const label = await waitForElement(() =>
+      getAllByText(/connect your stripe account/i),
     );
     await wait(() => {
-      expect(buttons.length).toBe(1);
+      expect(label.length).toBe(1);
     });
   });
   test('should include a button with the text Update Contact Info', async () => {
     const { getAllByText } = renderWithRouter(<Settings {...props} />, {});
-    const buttons = await waitForElement(() =>
-      getAllByText(/Update Contact Info/i),
+    const label = await waitForElement(() =>
+      getAllByText(/Update your profile/i),
     );
     await wait(() => {
-      expect(buttons.length).toBe(1);
+      expect(label.length).toBe(1);
     });
   });
 });

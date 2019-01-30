@@ -6,6 +6,7 @@ import { useFetch } from '../../helpers';
 import { Container, Button } from '../../components/';
 import { Card, Positioner, Header } from './Settings.styling';
 import { RouteComponentProps } from 'react-router';
+import img from '../utils/loading.svg';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -13,6 +14,7 @@ const url =
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const clientId = process.env.REACT_APP_clientid;
   const [user, error, loading] = useFetch(`${url}/users`);
+  console.log(user);
 
   useEffect(() => {
     const { search } = props.location;
@@ -26,7 +28,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       };
       const authorizationCode = params[1];
       axios
-        .post(`${url}connect`, { authorizationCode }, headers)
+        .post(`${url}/connect`, { authorizationCode }, headers)
         .then((res) => {
           props.history.replace('/settings');
         })
@@ -39,18 +41,27 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       <Header>
         <h2>Account Settings</h2>
         <Card>
-          <Positioner>
-            <a
-              /* tslint:disable-next-line */
-              href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
-            >
-              <Button text='Connect with stripe' />
-            </a>
-          </Positioner>
-          <Positioner>
-            <h3>Contact Information</h3>
-            <Button text='Update Contact Info' />
-          </Positioner>
+          {loading ? (
+            <img src={img} alt='animated loader' />
+          ) : (
+            <>
+              <Positioner>
+                <h3>{user ? user.full_name : null}</h3>
+                <p>Connect your stripe account:</p>
+
+                <a
+                  /* tslint:disable-next-line */
+                  href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
+                >
+                  <Button text='Connect' />
+                </a>
+              </Positioner>
+              <Positioner>
+                <p>Update your profile:</p>
+                <Button text='Update' />
+              </Positioner>
+            </>
+          )}
         </Card>
       </Header>
     </Container>
