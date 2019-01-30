@@ -18,7 +18,7 @@ export const PropertyButtons = styled('div')``;
 
 export const WhiteButton = styled(Button)`
   color: var(--colour-button-text-alt);
-  background-color: var(--colour-button-background-alt);
+  background-color: var(--colour-button-text-action);
   border: solid #707070 1px;
   width: ${pxToRem(161)}rem;
   height: ${pxToRem(36)}rem;
@@ -76,7 +76,7 @@ export const MainText = styled.div`
 
 export const SecondaryText = styled.div`
   font-family: 'Roboto Bold', Arial, sans-serif;
-  font-size: ${pxToRem(24)}rem;
+  font-size: ${pxToRem(20)}rem;
   @media only screen and (max-width: 900px) {
     width: 100%;
     text-align: center;
@@ -120,7 +120,8 @@ export const ItemDiv = styled('div')`
   margin: ${pxToRem(24)}rem ${pxToRem(28)}rem;
   display: flex;
   flex-direction: column;
-  background-color: var(--colour-button-background-alt);
+  justify-content: space-between;
+  background-color: var(--colour-accent-background);
   flex-grow: 1;
 `;
 
@@ -128,10 +129,19 @@ export const TaskDiv = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  div {
-    margin: ${pxToRem(8)}rem 0;
-    font-size: ${pxToRem(20)}rem;
-    font-family: 'Roboto Light', Arial, sans-serif;
+
+  .listMap {
+    width: 100%;
+  }
+
+  .task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .text {
+    font-family: 'Roboto Bold', Arial, sans-serif;
+    font-size: ${pxToRem(50)}rem;
   }
 `;
 
@@ -170,7 +180,8 @@ export const AfterHeader = styled(Header)`
   font-size: ${pxToRem(20)}rem;
   background: var(--colour-main-background);
   color: var(--colour-button-text-alt);
-  border: solid #707070 1px;
+  border-bottom: solid #707070 1px;
+  justify-content: flex-start;
   @media only screen and (max-width: 400px) {
     max-width: 90%;
     align-self: centered;

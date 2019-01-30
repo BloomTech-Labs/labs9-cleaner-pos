@@ -56,7 +56,11 @@ export const PropertyLists = (props: ListProps) => {
               <div key={task.items_id}>
                 {edit === task.items_id ? (
                   <TaskDiv>
-                    <TextField value={newItem} onChange={handleChange} />
+                    <TextField
+                      value={newItem}
+                      onChange={handleChange}
+                      className='text'
+                    />
                     <WhiteButton
                       text='Submit'
                       onClick={() => {
@@ -75,7 +79,7 @@ export const PropertyLists = (props: ListProps) => {
                     />
                   </TaskDiv>
                 ) : (
-                  <>
+                  <div className='task'>
                     <SecondaryText
                       onClick={() => {
                         setEdit(task.items_id);
@@ -100,7 +104,7 @@ export const PropertyLists = (props: ListProps) => {
                       {' '}
                       <i className='fas fa-times' />
                     </span>
-                  </>
+                  </div>
                 )}
               </div>
             );
@@ -166,7 +170,7 @@ export const AfterPropertyLists = (props: ListProps) => {
         <TaskDiv>
           {props.list.map((task) => {
             return (
-              <div key={task.items_id}>
+              <div key={task.items_id} className='listMap'>
                 {edit === task.items_id ? (
                   <TaskDiv>
                     <TextField value={newItem} onChange={handleChange} />
@@ -188,7 +192,7 @@ export const AfterPropertyLists = (props: ListProps) => {
                     />
                   </TaskDiv>
                 ) : (
-                  <>
+                  <div className='task'>
                     <SecondaryText
                       onClick={() => {
                         setEdit(task.items_id);
@@ -213,14 +217,14 @@ export const AfterPropertyLists = (props: ListProps) => {
                       {' '}
                       <i className='fas fa-times' />
                     </span>
-                  </>
+                  </div>
                 )}
               </div>
             );
           })}
         </TaskDiv>
         {inputItem ? (
-          <>
+          <div>
             <TextField
               placeholder='Add New Item'
               required={true}
@@ -229,12 +233,12 @@ export const AfterPropertyLists = (props: ListProps) => {
             />
             <WhiteButton text='Submit' onClick={handleNew} />
             <WhiteButton text='Cancel' onClick={toggleText} />
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <WhiteButton text='+ Add New Item' onClick={toggleText} />
             <WhiteButton text='Delete List' onClick={handleListDelete} />
-          </>
+          </div>
         )}
       </AfterItemDiv>
     </AfterListDiv2>
