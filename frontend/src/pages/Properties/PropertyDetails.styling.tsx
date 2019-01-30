@@ -136,6 +136,14 @@ export const TaskDiv = styled('div')`
 `;
 
 // after List
+export const AfterStay = styled('div')`
+  width: 100%;
+  @media only screen and (max-width: 900px) {
+    width: 70%;
+    margin: 0 auto;
+  }
+`;
+
 export const AfterListDiv = styled(ListDiv)`
   display: flex;
   flex-flow: row wrap;
@@ -164,11 +172,23 @@ export const AfterHeader = styled(Header)`
   color: var(--colour-button-text-alt);
   border: solid #707070 1px;
   @media only screen and (max-width: 400px) {
-    border: none;
+    max-width: 90%;
+    align-self: centered;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
   }  
 `;
 
 export const AfterItemDiv = styled(ItemDiv)`
   padding: ${pxToRem(24)}rem ${pxToRem(28)}rem;
   margin: 0;
+  @media only screen and (max-width: 400px) {
+    max-width: 90%;
+    align-self: centered;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: solid #707070 1px;
+  }
 `;
