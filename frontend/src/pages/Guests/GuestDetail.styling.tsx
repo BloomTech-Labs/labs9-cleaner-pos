@@ -125,10 +125,17 @@ export const GuestDetailStyle = styled('div')`
 
   /* Checklist Sublist */
   .sublist {
-    /* Sizing */
     /* Text */
     font-weight: bolder;
     margin-bottom: 0.5rem;
+  }
+
+  .progress-no {
+    margin-bottom: 1rem;
+  }
+  .progress-no span {
+    color: var(--colour-text-accent);
+    font-weight: bolder;
   }
 
   /* Sub Container Sizes */

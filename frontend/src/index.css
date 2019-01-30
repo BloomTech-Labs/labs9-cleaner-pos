@@ -18,6 +18,7 @@
   /* Text Colors */
   --colour-text-dark: #393534;
   --colour-text-light: #eeeff5;
+  --colour-text-accent: #4593b6;
   /* Border */
   --border: 1px solid var(--colour-border);
 }
