@@ -28,6 +28,10 @@ const AssistantCard = (assistant: any) => {
         </div>
       </AsstDetail>
       <AsstProperty>
+        <div className='button-group'>
+          <Button text='Edit Assistant' />
+          <Button text='Go Back' />
+        </div>
         <PropertyContainer>
           <PropertyHeading>
             <h2>Default Properties</h2>
@@ -35,7 +39,7 @@ const AssistantCard = (assistant: any) => {
           {assistant.default_house.map((house: any) => (
             <p key={house.house_id}>{house.house_name}</p>
           ))}
-          <Button text='+ Add New Item' />
+          <Button text='+ Add New Property' />
         </PropertyContainer>
 
         <PropertyContainer>
@@ -45,7 +49,7 @@ const AssistantCard = (assistant: any) => {
           {assistant.avl_houses.map((house: any) => (
             <div key={house.house_id}>house.house_name</div>
           ))}
-          <Button text='+ Add New Item' />
+          <Button text='+ Add New Property' />
         </PropertyContainer>
       </AsstProperty>
     </AssistantBar>

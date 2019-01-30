@@ -205,9 +205,11 @@ const AsstDetail = styled('div')`
 `;
 
 const AsstProperty = styled('div')`
+  /* Flex */
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  /* Size */
+  width: 100%;
   border: 1px solid var(--colour-border);
 `;
 
@@ -215,15 +217,19 @@ const PropertyContainer = styled('div')`
   border: 0.5px solid var(--colour-border);
   background: white;
   height: 300px;
-  width: 18rem;
+  margin: 1rem 0.5rem;
 `;
 
 const PropertyHeading = styled('div')`
-  color: var(--colour-accent);
-  background: #eeeff5;
+  /* Color */
+  color: var(--colour-text-light);
+  background: var(--colour-accent);
+  /* Size */
   height: 3.75rem;
   border-bottom: 1px solid var(--colour-border);
-  padding: 0.3rem 0;
+  padding: 0.3rem 0 0.3rem 1rem;
+  /* Text */
+  text-align: left;
 `;
 
 export {
