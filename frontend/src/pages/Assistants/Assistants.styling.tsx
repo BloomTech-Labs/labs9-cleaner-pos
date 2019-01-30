@@ -184,7 +184,11 @@ const AssistantHeader = styled('span')`
 `;
 
 const AssistantDetailContainer = styled(Container)`
+  display: flex;
   flex-direction: row;
+  @media only screen and (max-width: ${bp}) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const AssistantBar = styled('div')`
@@ -193,6 +197,9 @@ const AssistantBar = styled('div')`
   display: flex;
   flex-direction: column;
   border: 1px solid var(--colour-border);
+  @media only screen and (max-width: ${bp}) {
+    width: 100%;
+  }
 `;
 
 const AsstDetail = styled('div')`
@@ -209,6 +216,9 @@ const AsstProperty = styled('div')`
   flex-direction: column;
   margin: 0 auto;
   border: 1px solid var(--colour-border);
+  @media only screen and (max-width: ${bp}) {
+    width: 100%;
+  }
 `;
 
 const PropertyContainer = styled('div')`
@@ -216,6 +226,9 @@ const PropertyContainer = styled('div')`
   background: white;
   height: 300px;
   width: 18rem;
+  @media only screen and (max-width: ${bp}) {
+    width: 100%;
+  }
 `;
 
 const PropertyHeading = styled('div')`
