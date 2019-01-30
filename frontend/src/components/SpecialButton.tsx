@@ -15,7 +15,6 @@ interface SpecialButtonProps {
   disabled?: boolean;
 }
 
-
 const SpecialButton = ({
   onClick,
   text,
@@ -26,13 +25,17 @@ const SpecialButton = ({
 }: SpecialButtonProps) => {
   const buttonColor = color;
   const StyledButton = styled('button')`
-    border: 1px solid black;
-    /* border-radius: 10px; */
-    width: 125px;
-    height: 40px;
-    color: black;
-    background-color: white;
-    font-size: 1.35rem;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    @media only screen and (min-width: 700px) {
+      border: 1px solid black;
+      width: 125px;
+      height: 40px;
+      color: black;
+      background-color: white;
+      font-size: 1.35rem;
+    }
   `;
   return (
     <>
