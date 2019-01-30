@@ -227,10 +227,23 @@ const AsstProperty = styled('div')`
 `;
 
 const PropertyContainer = styled('div')`
+  /* Size */
   border: 0.5px solid var(--colour-border);
-  background: white;
   padding-bottom: 1.5rem;
   margin: 1rem 0;
+  /* Flex */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  /* Color */
+  background: white;
+
+  button {
+    /* Sizing */
+    margin-left: 1rem;
+    /* Text */
+    font-size: 1rem;
+  }
 `;
 
 const PropertyHeading = styled('div')`
@@ -239,9 +252,13 @@ const PropertyHeading = styled('div')`
   background: var(--colour-accent);
   /* Size */
   border-bottom: 1px solid var(--colour-border);
-  padding: 0.3rem 0 0.3rem 1rem;
+  padding-left: 1rem;
   /* Text */
   text-align: left;
+
+  h2 {
+    font-size: 1rem;
+  }
 `;
 
 const PropertyList = styled.div`

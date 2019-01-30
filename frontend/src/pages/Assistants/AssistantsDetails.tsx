@@ -42,7 +42,7 @@ const AssistantCard = (assistant: any) => {
               <p key={house.house_id}>{house.house_name}</p>
             ))}
           </PropertyList>
-          <Button text='+ Add New Property' />
+          <Button text='+ New Property' />
         </PropertyContainer>
 
         <PropertyContainer>
@@ -51,10 +51,10 @@ const AssistantCard = (assistant: any) => {
           </PropertyHeading>
           <PropertyList>
             {assistant.avl_houses.map((house: any) => (
-              <div key={house.house_id}>house.house_name</div>
+              <p key={house.house_id}>{house.house_name}</p>
             ))}
           </PropertyList>
-          <Button text='+ Add New Property' />
+          <Button text='+ New Property' />
         </PropertyContainer>
       </AsstProperty>
     </AssistantBar>
