@@ -21,28 +21,25 @@ interface AssistantsEnum extends Array<Assistant> {}
 const AssistantCard = (assistant: Assistant) => {
   return (
     <>
-      <Link to={`/assistants/${assistant.ast_id}`}>
+      <Link
+        style={{ marginBottom: `2rem` }}
+        to={`/assistants/${assistant.ast_id}`}
+      >
         <AssistantItem data-testid='assistant-item'>
           <ThumbNail src={img} alt={assistant.full_name} />
           <CardBody>
             <CardHeading>
               <h1>{assistant.full_name}</h1>
-              <h3>Test Address</h3>
+              <p>Test Address</p>
             </CardHeading>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
+            <div className='check-boxes'>
               <CheckList>
                 <h3>Checklist Items</h3>
-                <div>{assistant.itemCount}</div>
+                <div className='secondary'>{assistant.itemCount}</div>
               </CheckList>
               <Asst>
                 <h3>Available Houses</h3>
-                <div>{assistant.houseCount}</div>
+                <div className='secondary'>{assistant.houseCount}</div>
               </Asst>
               <ButtonContainer>
                 <Button text='See More' datatestid='assistant-button' />
