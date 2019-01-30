@@ -270,7 +270,6 @@ export const InfoDiv = styled.div`
 
 export const MainText = styled.div`
   /* display: block; */
-  text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-weight: bolder;
   font-size: ${pxToRem(20)}rem;
@@ -279,7 +278,6 @@ export const MainText = styled.div`
 
 export const SecondaryText = styled.div`
   display: inline-block;
-  text-align: left;
   font-family: 'Roboto Light', Arial, sans-serif;
   font-size: ${pxToRem(16)}rem;
   color: var(--colour-text-dark);

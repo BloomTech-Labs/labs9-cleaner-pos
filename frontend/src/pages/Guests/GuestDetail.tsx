@@ -132,7 +132,7 @@ export const GuestDetailView = ({
               <div className='guest-info--checkout-bottom'>
                 <div className='stay-code'>
                   <MainText>47CLY</MainText>
-                  <SecondaryText>Guest Login Code</SecondaryText>
+                  <div style={{ margin: 'auto' }}>Guest Login Code</div>
                 </div>
                 <Button className='button-invoice' text='Invoice' />
                 <Link className='link-checkout' to={`/checkout/${stay_id}`}>

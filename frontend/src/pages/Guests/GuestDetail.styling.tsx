@@ -18,10 +18,18 @@ export const GuestDetailStyle = styled('div')`
   margin: auto;
 
   /* Header CSS */
-  .guest-header,
-  .guest-info {
+  .guest-header {
     /* Sizing & Box Model */
     margin: 1rem 1rem 1.5rem 1rem;
+  }
+
+  .top-text h2 {
+    margin: 0.5rem;
+    text-align: left;
+  }
+
+  .guest-info--top {
+    display: none;
   }
 
   .guest-header--img {
@@ -86,7 +94,9 @@ export const GuestDetailStyle = styled('div')`
   }
 
   /* Guest-Info CSS */
-  .guest-info,
+  .guest-info {
+    border: none;
+  }
   .guest-info--checklist,
   .guest-info--resources,
   .guest-info--checkout {
@@ -121,6 +131,7 @@ export const GuestDetailStyle = styled('div')`
   .list-checkbox {
     display: block;
     margin-bottom: 0.5rem;
+    text-align: left;
   }
 
   /* Checklist Sublist */
@@ -132,7 +143,9 @@ export const GuestDetailStyle = styled('div')`
 
   .progress-no {
     margin-bottom: 1rem;
+    text-align: center;
   }
+
   .progress-no span {
     color: var(--colour-text-accent);
     font-weight: bolder;
@@ -225,10 +238,10 @@ export const GuestDetailStyle = styled('div')`
     /* Grid */
     grid-row: span 2;
     grid-column: 1;
+  }
 
-    div {
-      text-align: center;
-    }
+  .guest-info--checkout-bottom .stay-code div {
+    text-align: center;
   }
 
   .button-invoice {
@@ -240,6 +253,13 @@ export const GuestDetailStyle = styled('div')`
   }
 
   @media only screen and (min-width: 700px) {
+    .guest-info--top {
+      display: block;
+    }
+
+    .guest-info {
+      border: var(--border);
+    }
     .guest-header,
     .guest-info {
       /* Sizing & Box Model */
@@ -307,6 +327,11 @@ export const GuestDetailStyle = styled('div')`
 
     .guest-info--bottom-right {
       grid-column: 2;
+    }
+
+    .stay-code div {
+      text-align: center;
+      justify-self: center;
     }
   }
 `;
