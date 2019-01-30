@@ -3,17 +3,18 @@ import { Container, Button } from '../../components/index';
 
 const pxToRem = (px: number) => px / 16;
 const cardHeight = pxToRem(84);
-const cardWeidth = pxToRem(120);
+const cardWidth = pxToRem(120);
 
 export const BackButton = styled(Button)`
-  margin-left: auto;
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
   font-size: ${pxToRem(20)}rem;
-  border: solid 0.25px black;
-  @media only screen and (max-width: 600px) {
-	margin-left: 0;
-  }
+	border: 0.25px solid black;
+	@media only screen and (max-width: 900px) {
+	}
+`;
+
+export const PropertyButtons = styled('div')`
 `;
 
 export const WhiteButton = styled(Button)`
@@ -37,40 +38,51 @@ export const Top = styled(PropertyContainer)`
   margin: 0 ${pxToRem(22)}rem;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
   /* Text */
   text-align: left;
-  @media only screen and (max-width: 600px) {
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	width: 100%;
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+  }
+	@media only screen and (max-width: 400px) {
+		flex-direction: column;
+  }
 `;
+
+export const HouseInfo = styled('div')`
+`;
+
 export const ThumbNail = styled('img')`
-  width: ${cardWeidth}rem;
+  width: ${cardWidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
   	margin: 0 auto;
-	padding: 10px;
+	  padding: 10px;
   }
 `;
 export const MainText = styled.div`
   width: 100%;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
+  @media only screen and (max-width: 900px) {
+	  width: 100%;
+  }
 `;
 
 export const SecondaryText = styled.div`
-  display: inline-block;
-  text-align: left;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
-  @media only screen and (max-width: 600px) {
-	width: 100%;
-	text-align: center;
-	padding-bottom: 20px;
+  @media only screen and (max-width: 900px) {
+		width: 100%;
+		text-align: center;
+		padding-bottom: 20px;
   }
 `;
 
@@ -90,10 +102,10 @@ export const ListContainer = styled('div')`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
   	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+		justify-content: center;
+		align-items: center;
   }
 `;
 export const ListDiv = styled('div')`
@@ -124,7 +136,6 @@ export const TaskDiv = styled('div')`
 `;
 
 // after List
-
 export const AfterListDiv = styled(ListDiv)`
   display: flex;
   flex-flow: row wrap;
@@ -132,16 +143,19 @@ export const AfterListDiv = styled(ListDiv)`
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
   @media only screen and (max-width: 600px) {
-	flex-wrap: nowrap;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-  }	
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const AfterListDiv2 = styled(ListDiv)`
   margin: ${pxToRem(36)}rem ${pxToRem(28)}rem;
-  width: ${pxToRem(254)}rem;
+  width: ${pxToRem(255)}rem;
+  @media only screen and (max-width: 400px) {
+    border: none;
+  }    
 `;
 
 export const AfterHeader = styled(Header)`
@@ -149,6 +163,9 @@ export const AfterHeader = styled(Header)`
   background: var(--colour-main-background);
   color: var(--colour-button-text-alt);
   border: solid #707070 1px;
+  @media only screen and (max-width: 400px) {
+    border: none;
+  }  
 `;
 
 export const AfterItemDiv = styled(ItemDiv)`

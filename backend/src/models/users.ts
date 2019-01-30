@@ -30,7 +30,7 @@ export function findUsers(): QueryBuilder {
 }
 
 // TODO: Test please.
-export async function makeUser(user: User): Promise<QueryBuilder> {
+export async function makeUser(user: User) {
   const role = user.role;
   const query: QueryBuilder = db('user')
     .insert(user)
@@ -44,9 +44,17 @@ export async function makeUser(user: User): Promise<QueryBuilder> {
     // Otherwise, proceed as normal
     const userIds = await query;
     const userId = userIds[0];
-    return db(role)
+    const roleId = await db(role)
       .insert({ user_id: userId })
-      .returning(['user_id', 'id']);
+      .returning('id');
+    if (user.role === 'assistant') {
+      return { id: roleId, user_id: userId };
+    }
+    const manAst = await db('assistant')
+      .insert({ user_id: userId })
+      .returning('id');
+
+    return { id: roleId, user_id: userId, astId: manAst };
   }
   // TODO: Figure out how to make this transactional
   // return db.transaction(async (trx) => {
@@ -81,12 +89,18 @@ export function deleteUser(id: number): QueryBuilder {
     .del();
 }
 
-export async function getRoleId(id: number): Promise<QueryBuilder> {
+export async function getRoleId(
+  id: number,
+  other?: boolean,
+): Promise<QueryBuilder> {
   return db('user')
     .select('user.role')
     .where({ id })
     .first()
     .then((result) => {
+      if (other) {
+        result.role = 'assistant';
+      }
       return db(result.role)
         .select('id')
         .where({ user_id: id })
