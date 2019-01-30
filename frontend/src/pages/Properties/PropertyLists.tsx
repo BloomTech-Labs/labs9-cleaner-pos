@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Lists, List, ListProps } from './types';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
@@ -14,12 +14,13 @@ import {
   SecondaryText,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';
-import styled from '@emotion/styled';
+import loadingIndicator from '../utils/loading.svg';
 
 export const PropertyLists = (props: ListProps) => {
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
   const [edit, setEdit] = useState(0);
+  const [taskLoad, setTaskLoad] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem(event.target.value);
   };
@@ -38,7 +39,14 @@ export const PropertyLists = (props: ListProps) => {
     setNewItem('');
     setInputItem(false);
   };
-  console.log(edit);
+
+  useEffect(
+    () => {
+      setTaskLoad(0);
+    },
+    [props],
+  );
+  console.log('taskLoad', taskLoad);
   return (
     <ListDiv>
       <Header>{props.type}</Header>
@@ -55,6 +63,7 @@ export const PropertyLists = (props: ListProps) => {
                       onClick={() => {
                         props.putTasks(task, newItem);
                         setNewItem('');
+                        setTaskLoad(task.items_id);
                         setEdit(0);
                       }}
                     />
@@ -74,7 +83,14 @@ export const PropertyLists = (props: ListProps) => {
                         setNewItem(task.task);
                       }}
                     >
-                      {task.task}
+                      {task.items_id === taskLoad ? (
+                        <img
+                          src={loadingIndicator}
+                          alt='animated loading indicator'
+                        />
+                      ) : (
+                        task.task
+                      )}
                     </SecondaryText>
                     <span onClick={() => props.deleteTasks(task.items_id)}>
                       {' '}
