@@ -188,11 +188,13 @@ const AssistantDetailContainer = styled(Container)`
 `;
 
 const AssistantBar = styled('div')`
+  /* Size */
+  padding-right: 0.5rem;
   height: 54rem;
   width: 21rem;
+  /* Flex */
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--colour-border);
 `;
 
 const AsstDetail = styled('div')`
@@ -201,23 +203,34 @@ const AsstDetail = styled('div')`
   background: var(--colour-main-background);
   display: flex;
   flex-direction: row;
-  border: var(--border);
 `;
 
 const AsstProperty = styled('div')`
+  /* Sizing */
+  width: 100%;
+
   /* Flex */
   display: flex;
   flex-direction: column;
-  /* Size */
-  width: 100%;
-  border: 1px solid var(--colour-border);
+
+  .button-group {
+    /* Sizing */
+    margin: 1rem 0;
+    /* Flex */
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button-group button {
+    font-size: 1rem;
+  }
 `;
 
 const PropertyContainer = styled('div')`
   border: 0.5px solid var(--colour-border);
   background: white;
-  height: 300px;
-  margin: 1rem 0.5rem;
+  padding-bottom: 1.5rem;
+  margin: 1rem 0;
 `;
 
 const PropertyHeading = styled('div')`
@@ -225,9 +238,15 @@ const PropertyHeading = styled('div')`
   color: var(--colour-text-light);
   background: var(--colour-accent);
   /* Size */
-  height: 3.75rem;
   border-bottom: 1px solid var(--colour-border);
   padding: 0.3rem 0 0.3rem 1rem;
+  /* Text */
+  text-align: left;
+`;
+
+const PropertyList = styled.div`
+  /* Sizing */
+  padding-left: 1rem;
   /* Text */
   text-align: left;
 `;
@@ -248,4 +267,5 @@ export {
   AsstProperty,
   PropertyContainer,
   PropertyHeading,
+  PropertyList,
 };

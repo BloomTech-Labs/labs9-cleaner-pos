@@ -7,6 +7,7 @@ import {
   AsstProperty,
   PropertyContainer,
   PropertyHeading,
+  PropertyList,
   ThumbNail,
 } from './Assistants.styling';
 import { useFetch } from '../../helpers/';
@@ -36,9 +37,11 @@ const AssistantCard = (assistant: any) => {
           <PropertyHeading>
             <h2>Default Properties</h2>
           </PropertyHeading>
-          {assistant.default_house.map((house: any) => (
-            <p key={house.house_id}>{house.house_name}</p>
-          ))}
+          <PropertyList>
+            {assistant.default_house.map((house: any) => (
+              <p key={house.house_id}>{house.house_name}</p>
+            ))}
+          </PropertyList>
           <Button text='+ Add New Property' />
         </PropertyContainer>
 
@@ -46,9 +49,11 @@ const AssistantCard = (assistant: any) => {
           <PropertyHeading>
             <h2>Available Properties</h2>
           </PropertyHeading>
-          {assistant.avl_houses.map((house: any) => (
-            <div key={house.house_id}>house.house_name</div>
-          ))}
+          <PropertyList>
+            {assistant.avl_houses.map((house: any) => (
+              <div key={house.house_id}>house.house_name</div>
+            ))}
+          </PropertyList>
           <Button text='+ Add New Property' />
         </PropertyContainer>
       </AsstProperty>

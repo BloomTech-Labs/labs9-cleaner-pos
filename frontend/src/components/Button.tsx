@@ -28,9 +28,8 @@ const Button = ({
     background: ${buttonColour};
     max-width: 200px;
     max-height: 64px;
-    width: 100%;
     height: auto;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     color: var(--colour-button-text);
     border: 0;
     font-weight: condensed;
