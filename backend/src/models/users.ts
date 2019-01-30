@@ -101,7 +101,6 @@ export async function getRoleId(
       if (other) {
         result.role = 'assistant';
       }
-      console.log('model', result);
       return db(result.role)
         .select('id')
         .where({ user_id: id })
