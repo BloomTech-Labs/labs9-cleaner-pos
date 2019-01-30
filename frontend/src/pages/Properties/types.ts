@@ -45,4 +45,5 @@ interface AfterLists {
 export interface List {
   task: string;
   items_id: number;
+  list_id: number;
 }

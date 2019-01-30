@@ -53,8 +53,9 @@ export const PropertyLists = (props: ListProps) => {
                     <WhiteButton
                       text='Submit'
                       onClick={() => {
-                        props.putTasks(task.items_id, newItem);
+                        props.putTasks(task, newItem);
                         setNewItem('');
+                        setEdit(0);
                       }}
                     />
                     <WhiteButton

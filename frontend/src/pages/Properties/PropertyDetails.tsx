@@ -16,7 +16,7 @@ import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { useFetch } from '../../helpers';
-import { Lists } from './types';
+import { Lists, List } from './types';
 import loadingIndicator from '../utils/loading.svg';
 
 // TODO: fix types
@@ -65,10 +65,11 @@ const PropertyDetails = (props: any) => {
     }
   }
 
-  async function putTasks(id: number, updatedTask: any) {
+  async function putTasks(item: List, updatedTask: any) {
     try {
-      console.log(id, updatedTask);
-      // await axios.put(`${url}/items/`, updatedTask, headers);
+      console.log(item);
+      const task = { task: updatedTask, list_id: item.list_id };
+      await axios.put(`${url}/items/${item.items_id}`, task, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
