@@ -2,15 +2,15 @@ import React from 'react';
 import Stripe from './index';
 import { Container } from '../../components/index';
 import Accordion from '../../components/Accordion';
-import { SubBox, AccUL, Confirmation, ConfUL } from './Billing.Styling';
+import { SubBox, AccUL, Confirmation, ConfUL, Header } from './Billing.Styling';
 
 const Billing = () => {
   return (
     <Container>
-      <h2>Billing</h2>
+      <Header>Billing</Header>
       <SubBox>
         <Accordion
-          title='Subscribe Here'
+          title='Click here to subscribe'
           onToggle={(show) => {
             console.log('sub', show);
           }}
@@ -23,16 +23,7 @@ const Billing = () => {
         </Accordion>
       </SubBox>
       <Confirmation>
-        <Accordion
-          title='Confirmation'
-          onToggle={(show) => {
-            console.log('conf', show);
-          }}
-        >
-          <ConfUL>
-            <li>Child of Confirmation</li>
-          </ConfUL>
-        </Accordion>
+        <h3>Confirmation:</h3>
       </Confirmation>
     </Container>
   );

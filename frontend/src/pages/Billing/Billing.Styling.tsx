@@ -12,7 +12,6 @@ const AccUL = styled('ul')`
 
 const Confirmation = styled('div')`
 	border: 1px solid black;
-	padding: 20px;
 `;
 
 const ConfUL = styled('ul')`
@@ -21,9 +20,16 @@ const ConfUL = styled('ul')`
 	text-align: left;
 `;
 
+const Header = styled('h2')`
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 150%;
+`;
+
 export {
 SubBox,
 AccUL,
 Confirmation,
 ConfUL,
+Header,
 };
