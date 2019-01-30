@@ -5,6 +5,9 @@ import Button from '../../components/Button';
 import { ChecklistsData, ListTypes } from './types';
 import { useFetch } from '../../helpers';
 
+// Styling & Assets
+import loadingIndicator from '../utils/loading.svg';
+
 const ChecklistView = (props: {
   lists: ChecklistsData;
   errors: { msg: string; error: boolean };
@@ -13,7 +16,11 @@ const ChecklistView = (props: {
   className?: string;
 }) => {
   if (!props.lists) {
-    return <div>⌛</div>;
+    return (
+      <div>
+        <img src={loadingIndicator} alt='animated loading indicator' />
+      </div>
+    );
   }
 
   // TODO: Refine error message
