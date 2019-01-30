@@ -96,6 +96,17 @@ export const GuestDetailStyle = styled('div')`
     border: 1px solid gray;
   }
 
+  /* Guest Checklist Buttons */
+  .guest-info--checklist-bottom .button-filter {
+    color: var(--colour-text-dark);
+    background-color: var(--colour-button-background-alt);
+    border: var(--border);
+  }
+
+  .guest-info--checklist-bottom .active {
+    color: var(--colour-button-text);
+    background-color: var(--colour-button-background);
+  }
   /* Sub Container Sizes */
 
   .guest-info--checklist {

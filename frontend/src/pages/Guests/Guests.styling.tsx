@@ -12,15 +12,6 @@ const pxToRem = (px: number) => px / 16;
 // ASSUMPTION: A rem is set to 16px in high level css.
 
 export const GuestsDiv = styled(Container)`
-  /* Sizing & Box Model */
-
-  a:active {
-    text-decoration: underline wavy gray;
-  }
-
-  max-width: 1000px;
-  width: 100%;
-
   .guests-header {
     /* Sizing & Box Model */
     height: ${pxToRem(48)}rem;
@@ -120,7 +111,7 @@ export const StyledGuestCard = styled(GuestCard)`
   background-color: var(--colour-accent-background);
 
   /* Hover Effects */
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   &:hover {
     transform: scale(1.025);
   }

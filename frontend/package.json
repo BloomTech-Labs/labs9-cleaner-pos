@@ -27,6 +27,7 @@
     "formik": "^1.4.2",
     "jest-dom": "^3.0.0",
     "leaflet": "^1.4.0",
+    "pretty-checkbox": "^3.0.3",
     "query-string": "^6.2.0",
     "react": "16.7.0-alpha.2",
     "react-datepicker": "^2.0.0",
