@@ -9,12 +9,15 @@
   --colour-button-text: white;
   --colour-button-background: #4593b6;
   --colour-button-text-alt: #4593b6;
-  --colour-button-background-alt: white;
+  --colour-button-background-alt: #eeeff5;
   --colour-button-background-action: #0aa047;
   --colour-button-text-action: white;
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
   --header-font-size-secondary: 1.25rem;
+  /* Text Colors */
+  --colour-text-dark: #393534;
+  --colour-text-light: #eeeff5;
   /* Border */
   --border: 1px solid var(--colour-border);
 }
