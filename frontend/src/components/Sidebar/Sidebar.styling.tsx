@@ -68,7 +68,7 @@ const SettingsWrapper = styled('div')`
   @media only screen and (min-width: ${bp}) {
     display: flex;
     padding-left: 1rem;
-    align-items: baseline;
+    align-items: center;
   }
 `;
 
@@ -82,21 +82,19 @@ const StyledUL = styled('div')`
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   padding: 0 4rem;
-
-
   @media only screen and (min-width: ${bp}) {
-  float: left;
-  /* padding-right: 2.5rem; */
-  text-decoration: none;
-  color: black;
-  &:active{
-    text-decoration: underline;
-  }
-  h4 {
-    font-family: 'Roboto';
-    font-weight: condensed;
-    font-size: 24px;
-  }
+    padding: 0 1.75rem;
+    float: left;
+    text-decoration: none;
+    color: black;
+    &:active{
+      text-decoration: underline;
+    }
+    h4 {
+      font-family: 'Roboto';
+      font-weight: condensed;
+      font-size: 24px;
+    }
   }
 `;
 
