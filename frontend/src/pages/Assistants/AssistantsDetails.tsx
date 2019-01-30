@@ -57,7 +57,7 @@ const AssistantCard = (assistant: any) => {
               <HouseItem key={house.house_id}>
                 {house.house_name}
                 <span className='hide'>
-                  <i className='fas fa-trash-alt' />
+                  <i className='fas fa-backspace' />
                 </span>
               </HouseItem>
             ))}
