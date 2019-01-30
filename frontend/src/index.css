@@ -15,10 +15,14 @@
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
   --header-font-size-secondary: 1.25rem;
+  /* Border */
+  --border: 1px solid var(--colour-border);
 }
 
 body {
-  margin: 0;
+  max-width: 1000px;
+  width: 100%;
+  margin: auto;
   padding: 0;
   background-color: var(--colour-main-background);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

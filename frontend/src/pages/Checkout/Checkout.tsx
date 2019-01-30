@@ -4,8 +4,8 @@ import { RouteComponentProps } from 'react-router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { CheckoutForm, Invoice, InvoiceBox } from './Checkout.styles';
-import { UserContext } from '../../App';
 import { StripeProvider } from 'react-stripe-elements';
+import loadingIndicator from '../utils/loading.svg';
 
 import MyStoreCheckout from './Checkout.1';
 import { useFetch } from '../../helpers';
@@ -35,7 +35,9 @@ const Checkout = (props: CheckoutProps) => {
 
   return (
     <Container>
-      {stayLoading ? '...Loading data' : null}
+      {stayLoading ? (
+        <img src={loadingIndicator} alt='animated loading indicator' />
+      ) : null}
       {stayError.error ? 'Error fetching your Guest' : null}
       {stay ? (
         <div
