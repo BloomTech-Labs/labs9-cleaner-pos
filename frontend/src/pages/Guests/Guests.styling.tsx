@@ -13,17 +13,6 @@ const pxToRem = (px: number) => px / 16;
 
 export const GuestsDiv = styled(Container)`
   /* Sizing & Box Model */
-  a:link {
-    text-decoration: none;
-  }
-
-  a:visited {
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline wavy gray;
-  }
 
   a:active {
     text-decoration: underline wavy gray;
@@ -63,7 +52,7 @@ export const GuestsDiv = styled(Container)`
 
   .guests-buttons-filter {
     display: block;
-    margin: auto;
+    margin: auto auto auto 0;
   }
 
   .guests-cards {
@@ -89,7 +78,7 @@ export const GuestsDiv = styled(Container)`
     background-color: var(--colour-button-background-alt);
   }
 
-  @media only screen and (min-width: 720px) {
+  @media screen and (min-width: 720px) {
     /* Flexbox */
     display: flex;
     flex-flow: row wrap;
@@ -125,6 +114,12 @@ export const StyledGuestCard = styled(GuestCard)`
     gap: ${pxToRem(30)}rem;
     grid-gap: ${pxToRem(30)}rem;
     grid-template-columns: repeat(4, 1fr);
+
+    /* Hover Effects */
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.025);
+    }
 
     .user-image {
       /* Sizing & Box Model*/
