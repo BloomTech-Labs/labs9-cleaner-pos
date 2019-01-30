@@ -238,21 +238,30 @@ const PropertyContainer = styled('div')`
   /* Color */
   background: white;
 
-  button {
+  .button-new {
     /* Sizing */
-    margin-left: 1rem;
+    padding: 0.25rem 0.5rem;
+    margin-right: 1rem;
     /* Text */
     font-size: 1rem;
+    /* Color */
+    color: var(--colour-button-text-alt);
+    background-color: var(--colour-button-background-alt);
   }
 `;
 
 const PropertyHeading = styled('div')`
-  /* Color */
-  color: var(--colour-text-light);
-  background: var(--colour-accent);
   /* Size */
   border-bottom: 1px solid var(--colour-border);
   padding-left: 1rem;
+  /* Flex */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  /* Color */
+  color: var(--colour-text-light);
+  background: var(--colour-accent);
   /* Text */
   text-align: left;
 
