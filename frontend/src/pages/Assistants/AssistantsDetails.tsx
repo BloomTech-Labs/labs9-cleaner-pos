@@ -9,6 +9,7 @@ import {
   PropertyHeading,
   PropertyList,
   ThumbNail,
+  HouseItem,
 } from './Assistants.styling';
 import { useFetch } from '../../helpers/';
 import img from '../assets/ronald.jpg';
@@ -40,7 +41,12 @@ const AssistantCard = (assistant: any) => {
           </PropertyHeading>
           <PropertyList>
             {assistant.default_house.map((house: any) => (
-              <p key={house.house_id}>{house.house_name}</p>
+              <HouseItem key={house.house_id}>
+                {house.house_name}
+                <span className='hide'>
+                  <i className='fas fa-trash-alt' />
+                </span>
+              </HouseItem>
             ))}
           </PropertyList>
         </PropertyContainer>
@@ -51,8 +57,13 @@ const AssistantCard = (assistant: any) => {
             <Button className='button-new' text='+ New' />
           </PropertyHeading>
           <PropertyList>
-            {assistant.avl_houses.map((house: any) => (
-              <p key={house.house_id}>{house.house_name}</p>
+            {assistant.default_house.map((house: any) => (
+              <HouseItem key={house.house_id}>
+                {house.house_name}
+                <span className='hide'>
+                  <i className='fas fa-trash-alt' />
+                </span>
+              </HouseItem>
             ))}
           </PropertyList>
         </PropertyContainer>

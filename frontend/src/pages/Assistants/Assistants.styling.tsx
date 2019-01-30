@@ -277,6 +277,17 @@ const PropertyList = styled.div`
   text-align: left;
 `;
 
+const HouseItem = styled.p`
+  .hide {
+    display: none;
+  }
+
+  &:hover .hide {
+    display: inline-block;
+    margin-left: 1rem;
+  }
+`;
+
 export {
   AssistantItem,
   AssistantDetailContainer,
@@ -294,4 +305,5 @@ export {
   PropertyContainer,
   PropertyHeading,
   PropertyList,
+  HouseItem,
 };
