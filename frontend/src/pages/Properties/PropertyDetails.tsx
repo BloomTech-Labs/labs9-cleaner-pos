@@ -122,11 +122,6 @@ const PropertyDetails = (props: any) => {
             <MainText data-testid='house-detail'>{property.name}</MainText>
             <SecondaryText>{property.address}</SecondaryText>
             <BackButton text='Edit Property' colour='var(--colour-accent)' />
-            <BackButton
-              text='Go Back'
-              colour='var(--colour-accent)'
-              onClick={() => props.history.push('/properties')}
-            />
           </Top>
           <ListContainer>
             {lists.before ? (
