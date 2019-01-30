@@ -92,9 +92,14 @@ export const PropertyLists = (props: ListProps) => {
                         task.task
                       )}
                     </SecondaryText>
-                    <span onClick={() => props.deleteTasks(task.items_id)}>
+                    <span
+                      onClick={() => {
+                        props.deleteTasks(task.items_id);
+                        setTaskLoad(task.items_id);
+                      }}
+                    >
                       {' '}
-                      X
+                      <i className='fas fa-times' />
                     </span>
                   </>
                 )}
@@ -124,6 +129,8 @@ export const PropertyLists = (props: ListProps) => {
 export const AfterPropertyLists = (props: ListProps) => {
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
+  const [edit, setEdit] = useState(0);
+  const [taskLoad, setTaskLoad] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem(event.target.value);
   };
@@ -146,6 +153,13 @@ export const AfterPropertyLists = (props: ListProps) => {
   const handleListDelete = () => {
     props.deleteList(props.list_id);
   };
+
+  useEffect(
+    () => {
+      setTaskLoad(0);
+    },
+    [props],
+  );
   return (
     <AfterListDiv2 data-testid='after-list'>
       <AfterHeader>{props.type}</AfterHeader>
@@ -154,19 +168,54 @@ export const AfterPropertyLists = (props: ListProps) => {
           {props.list.map((task) => {
             return (
               <div key={task.items_id}>
-                <input
-                  type='checkbox'
-                  name={task.task}
-                  checked={false}
-                  readOnly
-                  data-testid={'checkbox'}
-                />
-                <label
-                  htmlFor={task.task}
-                  onClick={() => handleDelete(task.items_id)}
-                >
-                  {task.task}
-                </label>
+                {edit === task.items_id ? (
+                  <TaskDiv>
+                    <TextField value={newItem} onChange={handleChange} />
+                    <WhiteButton
+                      text='Submit'
+                      onClick={() => {
+                        props.putTasks(task, newItem);
+                        setNewItem('');
+                        setTaskLoad(task.items_id);
+                        setEdit(0);
+                      }}
+                    />
+                    <WhiteButton
+                      text='Cancel'
+                      onClick={() => {
+                        setEdit(0);
+                        setNewItem('');
+                      }}
+                    />
+                  </TaskDiv>
+                ) : (
+                  <>
+                    <SecondaryText
+                      onClick={() => {
+                        setEdit(task.items_id);
+                        setNewItem(task.task);
+                      }}
+                    >
+                      {task.items_id === taskLoad ? (
+                        <img
+                          src={loadingIndicator}
+                          alt='animated loading indicator'
+                        />
+                      ) : (
+                        task.task
+                      )}
+                    </SecondaryText>
+                    <span
+                      onClick={() => {
+                        props.deleteTasks(task.items_id);
+                        setTaskLoad(task.items_id);
+                      }}
+                    >
+                      {' '}
+                      <i className='fas fa-times' />
+                    </span>
+                  </>
+                )}
               </div>
             );
           })}

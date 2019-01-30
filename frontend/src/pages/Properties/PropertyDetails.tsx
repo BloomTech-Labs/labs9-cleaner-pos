@@ -168,6 +168,7 @@ const PropertyDetails = (props: any) => {
                     submitNew={submitNew}
                     deleteTasks={deleteTasks}
                     deleteList={deleteList}
+                    putTasks={putTasks}
                   />
                 );
               })
