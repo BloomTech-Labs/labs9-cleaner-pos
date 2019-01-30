@@ -197,11 +197,11 @@ const AssistantBar = styled('div')`
 
 const AsstDetail = styled('div')`
   height: 6rem;
-  color: white;
-  background: var(--colour-accent);
+  color: var(--colour-text-dark);
+  background: var(--colour-main-background);
   display: flex;
   flex-direction: row;
-  border: 1px solid var(--colour-border);
+  border: var(--border);
 `;
 
 const AsstProperty = styled('div')`
