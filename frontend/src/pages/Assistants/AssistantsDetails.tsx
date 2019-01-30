@@ -28,7 +28,7 @@ const AssistantCard = (assistant: any) => {
       <AsstProperty>
         <div className='button-group'>
           <Button text='Edit Assistant' />
-          <Button text='Go Back' />
+          <Button text=' Go Back' className='fas fa-arrow-left' />
         </div>
         <PropertyContainer>
           <PropertyHeading>
