@@ -97,10 +97,14 @@ export const GuestDetailStyle = styled('div')`
   }
 
   /* Guest Checklist Buttons */
-  .guest-info--checklist-bottom .button-filter {
+  .guests-buttons-filter .button-filter {
+    /* Box Model */
+    border: var(--border);
+    /* Text */
+    font-size: 1rem;
+    /* Color */
     color: var(--colour-text-dark);
     background-color: var(--colour-button-background-alt);
-    border: var(--border);
   }
 
   .guest-info--checklist-bottom .active {
@@ -210,10 +214,13 @@ export const GuestDetailStyle = styled('div')`
     }
 
     .guest-info--bottom {
+      /* Grid */
       display: grid;
       gap: 1.5rem;
       grid-gap: 1.5rem;
       grid-template-columns: 1fr 1fr;
+      /* Text */
+      text-align: left;
     }
 
     .guest-info--bottom-left {

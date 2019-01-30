@@ -35,17 +35,21 @@ const ChecklistView = (props: {
   }) => {
     const { task, complete, items_id } = itemProps;
     return (
-      <div key={items_id}>
+      <div
+        className='list-checkbox pretty p-default p-round p-smooth'
+        key={items_id}
+      >
         <input
           type='checkbox'
           name={task}
           checked={complete}
-          readOnly
           data-testid={'checkbox'}
         />
-        <label htmlFor={task} onClick={() => 'hello'}>
-          {task}
-        </label>
+        <div className='state p-primary-o'>
+          <label htmlFor={task} onClick={() => 'hello'}>
+            {task}
+          </label>
+        </div>
       </div>
     );
   };
@@ -109,10 +113,9 @@ const ChecklistView = (props: {
             datatestid='button-after'
           />
         </div>
-        <div className='top-left'>{listFilter} Checklist</div>
-        <div className='top-right'>{percentage}%</div>
         <br />
       </div>
+      <p className='progress-no'>Progress: {percentage}%</p>
       {listFilter === 'before' || listFilter === 'during'
         ? lists[listFilter].map((item) => (
             <CheckItem key={item.items_id} {...item} />
