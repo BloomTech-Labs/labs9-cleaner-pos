@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
-import { Button, SpecialButton, SpecialButton2 } from '../index';
 
 const bp = '700px';
 
@@ -73,6 +72,10 @@ const SettingsWrapper = styled('div')`
   display: flex;
   align-items: center;
   margin-right: 1rem;
+  .signout {
+    border: none;
+    background-color: #eeeff5;
+  }
   @media only screen and (min-width: ${bp}) {
     display: flex;
     padding-left: 1rem;
@@ -82,7 +85,6 @@ const SettingsWrapper = styled('div')`
 
 const StyledUL = styled('div')`
   list-style-type: none;
-
   display: flex;
   align-items: center;
 `;
@@ -106,19 +108,4 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const SubButton = styled(Button)`
-`;
-
-const SignOutButton = styled(SpecialButton2)`
-`;
-
-export {
-  Container,
-  NavBar,
-  NavWrapper,
-  SettingsWrapper,
-  StyledUL,
-  StyledLink,
-  SubButton,
-  SignOutButton,
-};
+export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink };
