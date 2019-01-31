@@ -21,9 +21,9 @@ const ConfUL = styled('ul')`
 `;
 
 const Header = styled('h2')`
-  font-family: Roboto;
-  font-weight: bold;
-  font-size: 150%;
+	font-family: Roboto;
+	font-weight: bold;
+	font-size: 150%;
 `;
 
 export {
