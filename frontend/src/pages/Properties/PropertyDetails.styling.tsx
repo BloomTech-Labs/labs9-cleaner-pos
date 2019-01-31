@@ -17,8 +17,8 @@ export const BackButton = styled(Button)`
 export const PropertyButtons = styled('div')``;
 
 export const WhiteButton = styled(Button)`
-  color: var(--colour-button-text-alt);
-  background-color: var(--colour-button-text-action);
+  color: var(--color-button-text-alt);
+  background-color: var(--color-button-text-action);
   border: solid #707070 1px;
   width: ${pxToRem(161)}rem;
   height: ${pxToRem(36)}rem;
@@ -88,7 +88,7 @@ export const Header = styled('div')`
   width: 100%;
   padding: ${pxToRem(16)}rem ${pxToRem(28)}rem;
   height: ${pxToRem(60)}rem;
-  background: var(--colour-accent);
+  background: var(--color-accent);
   text-align: left;
   color: white;
   font-family: 'Roboto', Arial, sans-serif;
@@ -121,7 +121,7 @@ export const ItemDiv = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--colour-accent-background);
+  background-color: var(--color-accent-background);
   flex-grow: 1;
 `;
 
@@ -174,8 +174,8 @@ export const AfterListDiv2 = styled(ListDiv)`
 
 export const AfterHeader = styled(Header)`
   font-size: ${pxToRem(20)}rem;
-  background: var(--colour-main-background);
-  color: var(--colour-button-text-alt);
+  background: var(--color-main-background);
+  color: var(--color-button-text-alt);
   border-bottom: solid #707070 1px;
   justify-content: flex-start;
   @media only screen and (max-width: 400px) {

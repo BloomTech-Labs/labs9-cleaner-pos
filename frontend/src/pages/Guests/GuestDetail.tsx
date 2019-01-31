@@ -10,6 +10,7 @@ import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
 import { GuestDetailStyle } from './GuestDetail.styling';
+import { MainText, SecondaryText } from './Guests.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
 import { useFetch } from '../../helpers/';
@@ -56,7 +57,7 @@ export const GuestDetailView = ({
           <Button
             className='back'
             text='Go Back ↩'
-            colour='var(--colour-accent)'
+            color='var(--color-accent)'
             datatestid='button-back'
           />
         </div>
@@ -90,38 +91,36 @@ export const GuestDetailView = ({
               </div>
               <div className='guest-info--resources-bottom'>
                 <AstDropdown className='left' houseId={house_id} />
-                <div className='right'>
-                  {ast_guide ? (
-                    <div className='ast-guide'>
-                      <a href={ast_guide} target='_blank'>
-                        <i className='fas fa-file' />
-                      </a>
-                      <br />
-                      <label>Assistant Guide</label>
-                    </div>
-                  ) : (
-                    <div className='ast-guide'>
-                      <i className='fas fa-question' />
-                      <br />
-                      <label>No Assistant Guide</label>
-                    </div>
-                  )}
-                  {guest_guide ? (
-                    <div className='guest-guide'>
-                      <a href={guest_guide} target='_blank'>
-                        <i className='fas fa-file' />
-                      </a>
-                      <br />
-                      <label>Guest Guide</label>
-                    </div>
-                  ) : (
-                    <div className='guest-guide'>
-                      <i className='fas fa-question' />
-                      <br />
-                      <label>No Guest Guide</label>
-                    </div>
-                  )}
-                </div>
+                {ast_guide ? (
+                  <div className='guide'>
+                    <a href={ast_guide} target='_blank'>
+                      <i className='fas fa-file' />
+                    </a>
+                    <br />
+                    <label>Assistant Guide</label>
+                  </div>
+                ) : (
+                  <div className='guide'>
+                    <i className='fas fa-question' />
+                    <br />
+                    <label>No Assistant Guide</label>
+                  </div>
+                )}
+                {guest_guide ? (
+                  <div className='guide'>
+                    <a href={guest_guide} target='_blank'>
+                      <i className='fas fa-file' />
+                    </a>
+                    <br />
+                    <label>Guest Guide</label>
+                  </div>
+                ) : (
+                  <div className='guide'>
+                    <i className='fas fa-question' />
+                    <br />
+                    <label>No Guest Guide</label>
+                  </div>
+                )}
               </div>
             </div>
             <div className='guest-info--checkout'>
@@ -131,12 +130,14 @@ export const GuestDetailView = ({
                 </div>
               </div>
               <div className='guest-info--checkout-bottom'>
-                <div className='buttons'>
-                  <Button className='button-invoice' text='Invoice' />
-                  <Link to={`/checkout/${stay_id}`}>
-                    <Button className='button-checkout' text='Checkout' />
-                  </Link>
+                <div className='stay-code'>
+                  <MainText>47CLY</MainText>
+                  <div style={{ margin: 'auto' }}>Guest Login Code</div>
                 </div>
+                <Button className='button-invoice' text='Invoice' />
+                <Link className='link-checkout' to={`/checkout/${stay_id}`}>
+                  <Button className='button-checkout' text='Checkout' />
+                </Link>
               </div>
             </div>
           </div>

@@ -96,7 +96,7 @@ const Checkout = (props: CheckoutProps) => {
               )}
               <Button
                 text={`Pay $${total}`}
-                colour='#0aa047'
+                color='#0aa047'
                 onClick={() => {
                   setShow(true);
                 }}

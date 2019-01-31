@@ -28,7 +28,7 @@ export const StyledDiv = styled(Container)`
 */
 export const StyledForm = styled(Form)`
   /* Color */
-  background-color: var(--colour-accent-background);
+  background-color: var(--color-accent-background);
 
   /* Sizing & Box Model */
   padding: 1rem;

@@ -52,7 +52,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
           onClick={handleSubmit}
           text='Subscribe!'
           datatestid='confirm-payment'
-          colour='#0AA047'
+          color='#0AA047'
         />
       </form>
     </div>

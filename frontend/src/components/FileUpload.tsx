@@ -44,7 +44,13 @@ const FileUpLoad = (props: UploadProps) => {
       .on('complete', (result: any) => {
         const url = result.successful[0].response.uploadURL;
         // TODO: this is where we are going to want to make an axios post request
+
+        // For some reason, the class that disables the scrollbar while
+        // Uppy is open is not removed upon file upload.
+        // For now, we will forcibly remove it.
+        document.body.classList.remove('uppy-Dashboard-isFixed');
       });
+
     return () => {
       uppy.close();
     };
@@ -98,6 +104,10 @@ export const FileUploadHOF = (cb?: (url: string, type?: string) => void) => {
           if (cb) {
             cb(url, props.type);
           }
+          // For some reason, the class that disables the scrollbar while
+          // Uppy is open is not removed upon file upload.
+          // For now, we will forcibly remove it.
+          document.body.classList.remove('uppy-Dashboard-isFixed');
         });
       return () => {
         uppy.close();
