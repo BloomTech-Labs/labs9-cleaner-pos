@@ -41,8 +41,8 @@ describe('Houses DB functions', () => {
 
   test('Find All houses', async () => {
     try {
-      const find = await findHouses();
-      expect(find.length).toBe(data.length);
+      const find = await findHouses(1);
+      expect(find.length).toBe(3);
     } catch (e) {
       throw Error(e);
     }
