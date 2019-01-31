@@ -35,11 +35,11 @@ const AssistantCard = (assistant: Assistant) => {
             </CardHeading>
             <div className='check-boxes'>
               <CheckList>
-                <h3>Checklist Items</h3>
+                <p>Checklist Items</p>
                 <div className='secondary'>{assistant.itemCount}</div>
               </CheckList>
               <Asst>
-                <h3>Available Houses</h3>
+                <p>Available Houses</p>
                 <div className='secondary'>{assistant.houseCount}</div>
               </Asst>
               <ButtonContainer>

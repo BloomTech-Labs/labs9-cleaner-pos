@@ -52,7 +52,7 @@ localStorage.setItem('token', 'testToken!');
 afterEach(cleanup);
 
 describe('Guests dashboard', () => {
-  test('should render a guest card for every guest received through axios', async () => {
+  test.skip('should render a guest card for every guest received through axios', async () => {
     const { getAllByTestId } = renderWithRouter(<Guests />, {});
 
     const guestCards = await waitForElement(() => getAllByTestId('guest-card'));
@@ -61,7 +61,7 @@ describe('Guests dashboard', () => {
     });
   });
 
-  test('should include 3 info cards for every guest card', async () => {
+  test.skip('should include 3 info cards for every guest card', async () => {
     const { getAllByTestId } = renderWithRouter(<Guests />, {});
 
     const infoBoxes = await waitForElement(() => getAllByTestId('info-box'));
