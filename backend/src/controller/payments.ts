@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { stripe } from '../util/stripe.setup';
+import { addSub } from '../models/manager';
 
 const get = (req: Request, res: Response, next: NextFunction) => {
   res.status(200).send({ message: 'Payment gateway up and running!' });
@@ -23,6 +24,16 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
         },
       ],
     });
+    console.log('customer', customer);
+    console.log('sub', sub);
+    console.log('******* body', req.body);
+    console.log('*******token', req.token);
+    const subData = {
+      strip_cust: sub.customer,
+      strip_sub_id: sub.id,
+      strip_sub_plan: sub.plan.id,
+    };
+    await addSub(req.token.id, subData);
     res.status(201).send({ customer: customer.id, message: 'hooooorrayyyyy' });
   } catch (e) {
     e.statusCode = 500;
