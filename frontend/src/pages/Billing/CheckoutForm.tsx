@@ -29,7 +29,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       console.log(response.data);
       setConfirm({confirm: response.data});
     } catch (e) {
-      console.log(e);
+      console.log(e.response);
       return e;
     }
     /* tslint:disable-next-line */
@@ -55,7 +55,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
           onClick={handleSubmit}
           text='Subscribe!'
           datatestid='confirm-payment'
-          colour='#0AA047'
+          color='#0AA047'
         />
       </form>
     </div>

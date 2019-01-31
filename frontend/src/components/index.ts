@@ -6,4 +6,12 @@ import FileUpload from './FileUpload';
 import LeafletMap from './Leaflet/Leaflet';
 import RowContainer from './RowContainer';
 
-export { Button, SpecialButton, Container, Sidebar, LeafletMap, FileUpload, RowContainer };
+export {
+  Button,
+  SpecialButton,
+  Container,
+  Sidebar,
+  LeafletMap,
+  FileUpload,
+  RowContainer,
+};

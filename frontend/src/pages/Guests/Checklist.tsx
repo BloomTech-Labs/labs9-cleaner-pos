@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 // Components
 import Button from '../../components/Button';
 // Types
 import { ChecklistsData, ListTypes } from './types';
-import { useFetch } from '../../helpers';
+import { axiosFetch, useFetch } from '../../helpers';
 
 // Styling & Assets
 import loadingIndicator from '../utils/loading.svg';
+import { async } from 'q';
 
 const ChecklistView = (props: {
-  lists: ChecklistsData;
   errors: { msg: string; error: boolean };
+  loading: boolean;
+  lists: ChecklistsData;
   listFilter: ListTypes;
   setListFilter: (listType: ListTypes) => void;
+  setComplete: (
+    itemId: number,
+    stayId: number,
+  ) => (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => Promise<void>;
   className?: string;
 }) => {
-  if (!props.lists) {
+  if (props.lists === undefined) {
+    console.error('props', props);
     return (
       <div>
         <img src={loadingIndicator} alt='animated loading indicator' />
@@ -32,20 +40,28 @@ const ChecklistView = (props: {
     task: string;
     complete: boolean;
     items_id: number;
+    stay_id: number;
   }) => {
-    const { task, complete, items_id } = itemProps;
+    const { task, complete, items_id, stay_id } = itemProps;
     return (
-      <div key={items_id}>
+      <div
+        className='list-checkbox pretty p-default p-round p-smooth'
+        key={items_id}
+      >
         <input
           type='checkbox'
           name={task}
           checked={complete}
+          onClick={props.setComplete(items_id, stay_id)}
           readOnly
+          disabled={props.loading}
           data-testid={'checkbox'}
         />
-        <label htmlFor={task} onClick={() => 'hello'}>
-          {task}
-        </label>
+        <div className='state p-primary-o'>
+          <label htmlFor={task} onClick={() => 'hello'}>
+            {task}
+          </label>
+        </div>
       </div>
     );
   };
@@ -71,7 +87,11 @@ const ChecklistView = (props: {
     lists.after.map((obj, i) => {
       for (const list in obj) {
         if (obj.hasOwnProperty(list)) {
-          buffer.push(<div key={list}>{list}</div>);
+          buffer.push(
+            <div className='sublist' key={list}>
+              {`${list[0].toLocaleUpperCase()}${list.substring(1)}`}
+            </div>,
+          );
           obj[list].forEach((item) => {
             buffer.push(<CheckItem key={item.items_id} {...item} />);
           });
@@ -85,33 +105,32 @@ const ChecklistView = (props: {
 
   return (
     <div className={props.className || ''}>
-      <div className='top'>
-        <div className='guests-buttons-filter'>
-          <Button
-            className={`button-filter before ${activeClass('before')}`}
-            text='Before'
-            colour='var(--colour-accent)'
-            onClick={() => setListFilter('before')}
-            datatestid='button-before'
-          />
-          <Button
-            className={`button-filter during ${activeClass('during')}`}
-            text='During'
-            colour='var(--colour-accent)'
-            onClick={() => setListFilter('during')}
-            datatestid='button-during'
-          />
-          <Button
-            className={`button-filter after ${activeClass('after')}`}
-            text='After'
-            colour='var(--colour-accent)'
-            onClick={() => setListFilter('after')}
-            datatestid='button-after'
-          />
-        </div>
-        <div className='top-left'>{listFilter} Checklist</div>
-        <div className='top-right'>{percentage}%</div>
-        <br />
+      <div className='guests-buttons-filter'>
+        <Button
+          className={`button-filter before ${activeClass('before')}`}
+          text='Before'
+          color='var(--color-accent)'
+          onClick={() => setListFilter('before')}
+          datatestid='button-before'
+        />
+        <Button
+          className={`button-filter during ${activeClass('during')}`}
+          text='During'
+          color='var(--color-accent)'
+          onClick={() => setListFilter('during')}
+          datatestid='button-during'
+        />
+        <Button
+          className={`button-filter after ${activeClass('after')}`}
+          text='After'
+          color='var(--color-accent)'
+          onClick={() => setListFilter('after')}
+          datatestid='button-after'
+        />
+      </div>
+      <br />
+      <div className='progress-no'>
+        Completion Progress: <span>{percentage}%</span>
       </div>
       {listFilter === 'before' || listFilter === 'during'
         ? lists[listFilter].map((item) => (
@@ -124,22 +143,42 @@ const ChecklistView = (props: {
 
 export const Checklist = (props: { stayId: number; className?: string }) => {
   const [listFilter, setListFilter] = useState('before' as ListTypes);
+  const [fetch, setFetch] = useState(false);
+
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-  const [lists, error] = useFetch(`${url}/lists/${props.stayId}?stay=true`);
+  const [lists, error, loading] = useFetch(
+    `${url}/lists/${props.stayId}?stay=true`,
+    fetch,
+  );
 
   const setFilterForList = (listType: ListTypes) => {
     setListFilter(listType);
   };
 
-  return (
+  const setComplete = (itemId: number, stayId: number) => async () => {
+    const [receivedData, sendError] = await axiosFetch(
+      'post',
+      `${url}/itemComplete`,
+      {
+        item_id: itemId,
+        stay_id: stayId,
+      },
+    );
+
+    setFetch((prev) => !prev);
+  };
+
+  return lists ? (
     <ChecklistView
       className={props.className}
+      loading={loading}
       lists={lists}
       listFilter={listFilter}
       setListFilter={setFilterForList}
+      setComplete={setComplete}
       errors={error}
     />
-  );
+  ) : null;
 };

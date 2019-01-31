@@ -6,8 +6,8 @@ import styled from '@emotion/styled';
 const pxRem = (px: number) => `${px / 16}rem`;
 const pxToVUnitMaker = (maxSizeInPx: number) => (px: number) =>
   `${(px / maxSizeInPx) * 100}vh`;
-const pxVw = pxToVUnitMaker(1920);
-const pxVh = pxToVUnitMaker(1080);
+const pxVw = pxToVUnitMaker(1080);
+const pxVh = pxToVUnitMaker(1920);
 
 const headerHeight = pxRem(144);
 
@@ -18,39 +18,54 @@ export const GuestDetailStyle = styled('div')`
   margin: auto;
 
   /* Header CSS */
-  .guest-header,
-  .guest-info {
+  .guest-header {
     /* Sizing & Box Model */
     margin: 1rem 1rem 1.5rem 1rem;
   }
 
+  .top-text h2 {
+    margin: 0.5rem;
+    text-align: left;
+  }
+
+  .guest-info--top {
+    display: none;
+  }
+
   .guest-header--img {
     /* Sizing & Box Model */
-    height: ${headerHeight};
-    width: ${pxVw(213)};
+    width: ${pxRem(72)};
+    height: ${pxRem(72)};
+    border-radius: 100%;
+    margin: auto;
+    /* Fit and Aspect Ratio */
     object-fit: cover;
   }
 
   .guest-header--text {
     /* Box Model & Sizing */
-    height: ${pxRem(157)};
-    /* margin: auto; */
+    margin: 1rem 0;
 
     /* Flex */
     display: flex;
     flex-flow: column nowrap;
+
+    /* Text */
+    text-align: left;
   }
 
   .guest-header--text .main {
     display: block;
     margin-bottom: 0.5rem;
     /* Text */
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
   }
 
   .guest-header--text .sub-house,
   .guest-header--text .sub-address {
     /* Text */
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 1rem;
   }
 
@@ -61,20 +76,17 @@ export const GuestDetailStyle = styled('div')`
     justify-content: space-between;
   }
 
-  .guest-header--buttons {
-    /* Box Model & Sizing */
-    /* margin: auto; */
+  .checkin,
+  .checkout {
+    width: 45%;
+    text-align: center;
+  }
 
+  .guest-header--buttons {
     /* Flex */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-  }
-
-  .checkin,
-  .checkout {
-    width: ${pxRem(206)};
-    height: ${pxRem(64)};
   }
 
   .guest-header--checkdates .text-main {
@@ -88,35 +100,65 @@ export const GuestDetailStyle = styled('div')`
     font-size: 1rem;
   }
 
+  .back {
+    margin: 1rem 0 0 0;
+  }
   /* Guest-Info CSS */
-  .guest-info,
+  .guest-info {
+    border: none;
+  }
   .guest-info--checklist,
   .guest-info--resources,
   .guest-info--checkout {
     border: 1px solid gray;
   }
 
-  /* Sub Container Sizes */
-
-  .guest-info--checklist {
-    height: 516px;
-
-    .guest-info--checklist-bottom {
-      height: 448px;
-    }
+  /* Checklists */
+  /* Guest Checklist Buttons */
+  .guest-info--checklist-bottom .guests-buttons-filter {
+    margin: 0;
+    padding: 0;
+    width: 100%;
   }
-  .guest-info--resources {
-    height: 250px;
-    .guest-info--resources-bottom {
-      height: 182px;
-    }
+  .guests-buttons-filter .button-filter {
+    /* Box Model */
+    width: 33%;
+    padding: 0 0.5rem;
+    border: var(--border);
+    /* Text */
+    font-size: 1rem;
+    /* Color */
+    color: var(--color-text-dark);
+    background-color: var(--color-button-background-alt);
   }
 
-  .guest-info--checkout {
-    height: 250px;
-    .guest-info--checkout-bottom {
-      height: 182px;
-    }
+  .guest-info--checklist-bottom .active {
+    color: var(--color-button-text);
+    background-color: var(--color-button-background);
+  }
+
+  /* Checklist Boxes */
+  .list-checkbox {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  /* Checklist Sublist */
+  .sublist {
+    /* Text */
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-no {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .progress-no span {
+    color: var(--color-text-accent);
+    font-weight: bolder;
   }
 
   .guest-info--top,
@@ -124,21 +166,26 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--resources-top,
   .guest-info--checkout-top {
     /* Box Model & Sizing */
-    padding: 0.25rem;
-    border: 0.5px solid var(--colour-border);
-    color: var(--colour-accent);
+    padding: 0 0.5rem;
+    border: 0.5px solid var(--color-border);
+    color: var(--color-accent);
   }
 
   .guest-info--checklist-bottom,
   .guest-info--resources-bottom,
   .guest-info--checkout-bottom {
+    /* Box Model & Sizing */
+    padding: 1.5rem 1rem;
+    width: 100%;
+    /* Color */
     background: white;
   }
 
   .guest-info--top {
-    background: var(--colour-accent);
+    background: var(--color-accent);
     color: white;
   }
+
   .guest-info--checklist,
   .guest-info--resources,
   .guest-info--checkout {
@@ -146,7 +193,67 @@ export const GuestDetailStyle = styled('div')`
     margin: 1rem;
   }
 
+  /* Grid for Assistants and Resources */
+  .guest-info--resources-bottom,
+  .guest-info--checkout-bottom {
+    /* Grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.25rem;
+    grid-gap: 1.25rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ast-dropdown {
+    grid-row: span 2;
+    grid-column: 1;
+  }
+
+  .guide {
+    text-align: center;
+  }
+
+  .guide .fa-file {
+    font-size: 2.5rem;
+    color: var(--color-text-accent);
+  }
+
+  /* Grid for Checkout and Invoice */
+  .stay-code {
+    border: var(--border);
+    padding: 0.75rem 0;
+    /* Grid */
+    grid-row: span 2;
+    grid-column: 1;
+    /* Color */
+    background-color: var(--color-main-background);
+  }
+
+  .guest-info--checkout-bottom .stay-code div {
+    text-align: center;
+  }
+
+  .button-invoice {
+    width: 100%;
+    justify-self: center;
+  }
+
+  .button-checkout {
+    width: 100%;
+    background-color: #0aa047;
+  }
+
   @media only screen and (min-width: 700px) {
+    .guest-info--top {
+      display: block;
+    }
+
+    .guest-info {
+      border: var(--border);
+    }
+
     .guest-header,
     .guest-info {
       /* Sizing & Box Model */
@@ -167,12 +274,20 @@ export const GuestDetailStyle = styled('div')`
     }
 
     .guest-header--img {
+      /* Sizing & Box Model */
+      height: ${headerHeight};
+      width: ${pxVw(213)};
+      margin: 0;
+      border-radius: 0%;
       /* Grid */
       grid-column: 1;
       grid-row: span 2;
     }
 
     .guest-header--text {
+      /* Box Model & Sizing */
+      height: ${pxRem(157)};
+
       /* Grid */
       grid-column: 2 / 4;
       grid-row: span 2;
@@ -182,12 +297,21 @@ export const GuestDetailStyle = styled('div')`
     }
 
     .guest-header--checkdates {
+      /* Box Model & Sizing */
+      width: 100%;
+
       /* Flex */
       flex-flow: row nowrap;
 
       /* Grid */
       grid-column: 4 / -1;
       grid-row: 1;
+    }
+
+    .checkin,
+    .checkout {
+      width: 45%;
+      height: ${pxRem(64)};
     }
 
     .guest-header--buttons {
@@ -199,10 +323,13 @@ export const GuestDetailStyle = styled('div')`
     }
 
     .guest-info--bottom {
+      /* Grid */
       display: grid;
       gap: 1.5rem;
       grid-gap: 1.5rem;
       grid-template-columns: 1fr 1fr;
+      /* Text */
+      text-align: left;
     }
 
     .guest-info--bottom-left {
@@ -211,6 +338,11 @@ export const GuestDetailStyle = styled('div')`
 
     .guest-info--bottom-right {
       grid-column: 2;
+    }
+
+    .stay-code div {
+      text-align: center;
+      justify-self: center;
     }
   }
 `;
