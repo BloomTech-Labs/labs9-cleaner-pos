@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 const SubBox = styled('div')`
 	border: 1px solid black;
+	background: white;
 	padding: 20px;
 `;
 
@@ -12,6 +13,7 @@ const AccUL = styled('ul')`
 
 const Confirmation = styled('div')`
 	border: 1px solid black;
+	background: white;
 `;
 
 const ConfUL = styled('ul')`
