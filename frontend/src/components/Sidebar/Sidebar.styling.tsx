@@ -96,7 +96,7 @@ const StyledLink = styled(NavLink)`
     padding: 0 1.75rem;
     float: left;
     text-decoration: none;
-    color: black;
+    color: var(--color-text-dark);
     &:active {
       text-decoration: underline;
     }

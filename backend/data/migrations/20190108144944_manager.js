@@ -9,6 +9,9 @@ exports.up = function(knex, Promise) {
       .foreign('user_id')
       .references('user.id')
       .onDelete('CASCADE');
+    table.string('strip_cust');
+    table.string('strip_sub_id');
+    table.string('strip_sub_plan');
   });
 };
 

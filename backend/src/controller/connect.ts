@@ -71,6 +71,10 @@ const createPayment = async (
     });
     res.status(200).send({ msg: 'Payment succeeded!' });
   } catch (e) {
+    if (e.raw.param === 'destination[account]') {
+      e.statusCode = 401;
+      next(e);
+    }
     e.statusCode = 500;
     next(e);
   }

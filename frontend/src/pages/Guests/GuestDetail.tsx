@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // Types
 import { RouteComponentProps } from 'react-router';
-import { GuestProps } from './types';
+import { IncomingGuestProps, GuestProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
 import { Checklist } from './Checklist';
 import { AstDropdown } from './AstDropdown';
+import { FileUploadHOF } from '../../components/FileUpload';
 import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
@@ -13,10 +14,59 @@ import { GuestDetailStyle } from './GuestDetail.styling';
 import { MainText, SecondaryText } from './Guests.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
-import { useFetch } from '../../helpers/';
+import { axiosFetch, useFetch } from '../../helpers/';
 import { Link } from 'react-router-dom';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
+import loadingIndicator from '../utils/loading.svg';
+
+const GuestDetail = (props: RouteComponentProps) => {
+  // @ts-ignore
+  const id = props.match.params.id;
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+  const [fetch, setFetch] = useState(false);
+
+  const [stay, error, loading] = useFetch(`${url}/stays/${id}`, fetch);
+
+  const guideUpload = FileUploadHOF(
+    async (uploadedUrl: string, type?: string) => {
+      const { house_id } = stay;
+
+      const body = type ? { [type]: uploadedUrl } : {};
+
+      await axiosFetch('put', `${url}/houses/${house_id}`, body).catch(
+        (e: any) => {
+          console.error(e);
+        },
+      );
+
+      setFetch((prev) => !prev);
+    },
+  );
+
+  const goBack = () => props.history.push('/guests');
+
+  return (
+    <>
+      {stay ? (
+        <GuestDetailView
+          {...stay}
+          Uppy={guideUpload}
+          goBack={goBack}
+          errors={error}
+        />
+      ) : (
+        <img
+          style={{ margin: 'auto' }}
+          src={loadingIndicator}
+          alt='animated loading indicator'
+        />
+      )}
+    </>
+  );
+};
 
 export const GuestDetailView = ({
   stay_id,
@@ -30,6 +80,8 @@ export const GuestDetailView = ({
   check_in,
   check_out,
   errors,
+  Uppy,
+  goBack,
 }: GuestProps) => {
   return (
     <GuestDetailStyle>
@@ -59,6 +111,7 @@ export const GuestDetailView = ({
             text='Go Back ↩'
             color='var(--color-accent)'
             datatestid='button-back'
+            onClick={goBack}
           />
         </div>
       </div>
@@ -101,7 +154,8 @@ export const GuestDetailView = ({
                   </div>
                 ) : (
                   <div className='guide'>
-                    <i className='fas fa-question' />
+                    {/* <i className='fas fa-question' /> */}
+                    <Uppy type='ast_guide' text='Upload' />
                     <br />
                     <label>No Assistant Guide</label>
                   </div>
@@ -116,7 +170,8 @@ export const GuestDetailView = ({
                   </div>
                 ) : (
                   <div className='guide'>
-                    <i className='fas fa-question' />
+                    {/* <i className='fas fa-question' /> */}
+                    <Uppy type='guest_guide' text='Upload' />
                     <br />
                     <label>No Guest Guide</label>
                   </div>
@@ -145,17 +200,6 @@ export const GuestDetailView = ({
       </div>
     </GuestDetailStyle>
   );
-};
-
-const GuestDetail = (props: RouteComponentProps) => {
-  // @ts-ignore
-  const id = props.match.params.id;
-  const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-
-  const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
-
-  return <>{stay ? <GuestDetailView {...stay} errors={error} /> : null}</>;
 };
 
 export default GuestDetail;

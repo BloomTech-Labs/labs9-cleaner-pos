@@ -161,32 +161,6 @@ export const GuestDetailStyle = styled('div')`
     font-weight: bolder;
   }
 
-  /* Sub Container Sizes */
-
-  /* Commenting this for now
-     It's ok for elements to over/under hang
-  */
-  /* .guest-info--checklist {
-    height: 516px;
-
-    .guest-info--checklist-bottom {
-      height: 448px;
-    }
-  }
-  .guest-info--resources {
-    height: 250px;
-    .guest-info--resources-bottom {
-      height: 182px;
-    }
-  }
-
-  .guest-info--checkout {
-    height: 250px;
-    .guest-info--checkout-bottom {
-      height: 182px;
-    }
-  } */
-
   .guest-info--top,
   .guest-info--checklist-top,
   .guest-info--resources-top,
@@ -241,6 +215,11 @@ export const GuestDetailStyle = styled('div')`
     text-align: center;
   }
 
+  .guide .fa-file {
+    font-size: 2.5rem;
+    color: var(--color-text-accent);
+  }
+
   /* Grid for Checkout and Invoice */
   .stay-code {
     border: var(--border);
@@ -260,8 +239,10 @@ export const GuestDetailStyle = styled('div')`
     width: 100%;
     justify-self: center;
   }
+
   .button-checkout {
     width: 100%;
+    background-color: #0aa047;
   }
 
   @media only screen and (min-width: 700px) {

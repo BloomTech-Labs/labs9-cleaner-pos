@@ -50,10 +50,12 @@ const Properties = () => {
   return (
     <Container>
       <PropContainer>
-        <HouseHeader>Recent Properties</HouseHeader>
-        <Link to='/properties/new'>
-          <Button text='New Property' />
-        </Link>
+        <div className='properties-header'>
+          <HouseHeader>Recent Properties</HouseHeader>
+          <Link to='/properties/new'>
+            <Button text='New Property' />
+          </Link>
+        </div>
         {loading ? (
           <img src={loadingIndicator} alt='animated loading indicator' />
         ) : null}
@@ -87,12 +89,14 @@ const Properties = () => {
                           }}
                         >
                           <Button
+                            className='property-button'
                             text='Edit Checklists'
                             datatestid='house-button'
                           />
                         </Link>
                         <Link to={`/houses/${house.id}#resources`}>
                           <Button
+                            className='property-button'
                             text='Edit Resources'
                             datatestid='house-button'
                           />

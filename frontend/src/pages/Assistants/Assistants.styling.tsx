@@ -14,7 +14,7 @@ const AssistantItem = styled('div')`
   color: var(--color-main-black);
 
   /* Sizing */
-  height: ${pxToRem(188)};
+  height: ${pxToRem(168)};
   border: 0.5px solid var(--color-border);
 
   /* Flex */
@@ -105,7 +105,16 @@ const ThumbNail = styled('img')`
 const CardHeading = styled('div')`
   width: 100%;
   line-height: 0.5;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+
+  h1 {
+    font-size: 1.25rem;
+    color: var(--color-text-accent);
+  }
+
+  p {
+    font-size: 1rem;
+  }
   @media only screen and (max-width: ${bp}) {
     text-align: center;
   }
@@ -133,14 +142,18 @@ const CheckList = styled('div')`
   text-align: center;
   font-size: 1.5rem;
   font-weight: light;
+  line-height: 1.25;
   /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: space-around;
+  /* Color */
+  background-color: var(--color-main-background);
   p {
     margin: 0;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: normal;
   }
   .secondary {
     color: var(--color-accent);
@@ -159,17 +172,21 @@ const Asst = styled('div')`
   text-align: center;
   font-size: 1.5rem;
   font-weight: light;
+  line-height: 1.25;
   /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* Color */
+  background-color: var(--color-main-background);
   .secondary {
     color: var(--color-accent);
   }
   p {
     margin: 0;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: normal;
   }
   @media screen and (max-width: 550px) {
     width: 45%;

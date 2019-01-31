@@ -178,11 +178,9 @@ const NewProperty = (props: RouteComponentProps) => {
   // Invoke FileUploadHOF, passing a callback function which will update
   // state with URLs of uploaded files
   const urlFileUpload = FileUploadHOF((url: string, type?: string) => {
-    console.log('url', url);
     if (type) {
       setUrls((prev) => ({ ...prev, [type]: url }));
     }
-    console.log('urls', urls);
   });
 
   // Function Formik will call. POSTs to houses
