@@ -6,6 +6,7 @@ import {
   updateUser,
   deleteUser,
 } from '../models/users';
+import { getMan } from '../models/manager';
 import { addAstMan, addAstToAllManHouse } from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
@@ -144,9 +145,20 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       if (user.role !== 'manager' && user.role !== 'assistant') {
         throw Error('Role must be User or Manager');
       }
+      if (user.role === 'manager') {
+        const man = await getMan(user.id);
+        console.log(man);
+        user.stripPlan = man.strip_sub_plan;
+        user.stripCust = man.strip_cust;
+      }
       const token = await jwt.sign(user, JWT_SECRET || '');
-
-      res.status(200).json({ token, id: user.id, role: user.role });
+      console.log(user);
+      res.status(200).json({
+        id: user.id,
+        role: user.role,
+        stripPlan: user.stripPlan,
+        token,
+      });
     }
   } catch (e) {
     e.statusCode = 400;

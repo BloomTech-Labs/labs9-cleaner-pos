@@ -11,3 +11,9 @@ export function addSub(custId: number, subInfo: SubInfo) {
     .update(subInfo)
     .where({ 'manager.user_id': custId });
 }
+
+export function getMan(custId: number) {
+  return db('manager')
+    .where({ 'manager.user_id': custId })
+    .first();
+}

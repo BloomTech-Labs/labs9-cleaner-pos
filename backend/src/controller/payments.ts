@@ -24,10 +24,6 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
         },
       ],
     });
-    console.log('customer', customer);
-    console.log('sub', sub);
-    console.log('******* body', req.body);
-    console.log('*******token', req.token);
     const subData = {
       strip_cust: sub.customer,
       strip_sub_id: sub.id,
