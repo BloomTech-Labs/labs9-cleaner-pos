@@ -38,8 +38,9 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   return (
     <div>
       {/* !TODO: Build accordion component */}
-      <p>Baseplan: 9.99$ / house / month</p>
-      <p>Advanced: 50$ / month</p>
+      <input type='radio' name='plan' />Baseplan: 9.99$ / house / month
+      <br />
+      <input type='radio' name='plan' />Advanced: 50$ / month
       <form
         onSubmit={handleSubmit}
         style={{ maxWidth: '350px', margin: 'auto' }}
@@ -48,6 +49,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         <label>
           Card details
           <br />
+          <br />
           <CardElement />
         </label>
         <div style={{ marginBottom: '24px' }} />
@@ -55,7 +57,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
           onClick={handleSubmit}
           text='Subscribe!'
           datatestid='confirm-payment'
-          color='#0AA047'
+          // color='#0AA047'
         />
       </form>
     </div>
