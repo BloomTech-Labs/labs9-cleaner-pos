@@ -27,8 +27,8 @@ const SpecialButton = ({
   const StyledButton = styled('button')`
     width: 50px;
     height: 50px;
-		border: none;
-		background-color: #eeeff5
+    border: none;
+    background-color: #eeeff5;
   `;
   return (
     <>
@@ -38,7 +38,7 @@ const SpecialButton = ({
         data-testid={datatestid}
         className={className}
         disabled={disabled}
-        >
+      >
         {text}
       </StyledButton>
     </>

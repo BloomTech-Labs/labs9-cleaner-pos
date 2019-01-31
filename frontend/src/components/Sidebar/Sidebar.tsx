@@ -16,7 +16,7 @@ import {
   StyledUL,
   StyledLink,
   SubButton,
-	SignOutButton,
+  SignOutButton,
 } from './Sidebar.styling';
 import { ContentTextFormat } from 'material-ui/svg-icons';
 
@@ -115,11 +115,11 @@ const Sidebar = (props: LinkProps) => {
             <i className='fas fa-cog' />
           </StyledLink>
           <SignOutButton
-						type='button'
-						onClick={() => logOut()}
-          	className='fas fa-sign-out-alt fa-lg'
-					/>
-				</SettingsWrapper>
+            type='button'
+            onClick={() => logOut()}
+            className='fas fa-sign-out-alt fa-lg'
+          />
+        </SettingsWrapper>
       </NavBar>
     </Container>
   );
