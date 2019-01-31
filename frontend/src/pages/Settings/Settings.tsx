@@ -93,14 +93,16 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
                       <p>
                         Address:{' '}
                         {user.address
-                          .split('\n')
-                          .map((e: string, i: number) => {
-                            return (
-                              <span style={{ marginRight: '5px' }} key={i}>
-                                {e}
-                              </span>
-                            );
-                          })}
+                          ? user.address
+                              .split('\n')
+                              .map((e: string, i: number) => {
+                                return (
+                                  <span style={{ marginRight: '5px' }} key={i}>
+                                    {e}
+                                  </span>
+                                );
+                              })
+                          : null}
                       </p>
                     </>
                   ) : null}
