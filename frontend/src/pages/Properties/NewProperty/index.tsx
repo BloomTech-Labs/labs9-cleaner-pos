@@ -218,7 +218,7 @@ const NewProperty = (props: RouteComponentProps) => {
       const houseData = {
         name: propertyName,
         address: `${address1}\n${
-          address2 ? address2 + '\n' : ''
+          address2 ? address2 + '\n' : '\n'
         }${city}\n${state}\n${country}\n${postCode}`,
         photo_url,
         price: pricePerNight,
