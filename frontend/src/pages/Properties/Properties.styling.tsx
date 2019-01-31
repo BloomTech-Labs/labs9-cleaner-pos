@@ -183,12 +183,13 @@ const CheckList = styled('div')`
 `;
 
 const Assistant = styled('div')`
-  width: ${pxToRem(192)};
-  margin-right: 1rem;
+  width: ${pxToRem(184)};
+  margin-right: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   @media only screen and (max-width: ${bp}) {
+    width: ${pxToRem(160)};
     padding: 20px 0 20px 0;
     grid-row: 1;
     grid-column: 2;
@@ -199,11 +200,12 @@ const HouseHeader = styled('span')`
   font-size: 2rem;
   text-align: left;
   max-width: 290px;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 1.5rem; */
   @media only screen and (max-width: 500px) {
-    margin: 0;
+    margin: 0 0 1.5rem 0;
   }
   @media only screen and (max-width: ${bp}) {
+    margin: 0 0 1.5rem 0;
     text-align: center;
   }
 `;
