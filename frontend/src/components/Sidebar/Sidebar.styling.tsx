@@ -22,8 +22,8 @@ const Container = styled('div')`
   align-items: flex-end;
 
   .button-sign-out {
-      margin-bottom: 0;
-      margin-right: 1rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
   }
 
   .menu {
@@ -57,7 +57,7 @@ const NavBar = styled('nav')`
     align-items: center;
     border-bottom: 3px solid black;
     margin-bottom: 1.5rem;
-    padding-bottom: .75rem;
+    padding-bottom: 0.75rem;
   }
 `;
 
@@ -95,7 +95,7 @@ const StyledLink = styled(NavLink)`
     float: left;
     text-decoration: none;
     color: black;
-    &:active{
+    &:active {
       text-decoration: underline;
     }
     h4 {
@@ -106,7 +106,14 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const SubButton = styled(Button)`
-`;
+const SubButton = styled(Button)``;
 
-export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink, SubButton };
+export {
+  Container,
+  NavBar,
+  NavWrapper,
+  SettingsWrapper,
+  StyledUL,
+  StyledLink,
+  SubButton,
+};
