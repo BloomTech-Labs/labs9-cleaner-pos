@@ -51,8 +51,8 @@ const App = () => {
           <Route exact path='/Login' component={Login} />
           <Route exact path='/postreg' component={PostRegister} />
           <Route exact path='/properties' component={Properties} />
-          <Route exact path='/properties/:id' component={PropertyDetails} />
           <Route exact path='/properties/new' component={NewProperty} />
+          <Route exact path='/properties/:id' component={PropertyDetails} />
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/test' component={Billing} />
         </Switch>
