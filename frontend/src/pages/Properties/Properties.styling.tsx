@@ -39,6 +39,13 @@ const HouseItem = styled('div')`
   text-align: left;
   border: var(--border);
   background-color: white;
+
+  /* Hover Effects */
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.025);
+  }
+
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     flex: 1;
