@@ -8,6 +8,7 @@ export interface ListProps {
   submitNew: any;
   deleteTasks: any;
   deleteList?: any;
+  putTasks?: any;
 }
 
 export interface House {
@@ -44,4 +45,5 @@ interface AfterLists {
 export interface List {
   task: string;
   items_id: number;
+  list_id: number;
 }

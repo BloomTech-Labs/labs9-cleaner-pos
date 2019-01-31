@@ -28,25 +28,11 @@ export const StyledDiv = styled(Container)`
 */
 export const StyledForm = styled(Form)`
   /* Color */
-  background-color: var(--colour-accent-background);
+  background-color: var(--color-accent-background);
 
   /* Sizing & Box Model */
   padding: 1rem;
   max-width: 1000px;
-
-  button {
-    border: none;
-    padding: 6px;
-    background-color: #393534;
-    color: var(--colour-main-background);
-    font-family: 'Roboto Medium';
-    /*
-    -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-      0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-      0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-    */
-  }
 
   @media only screen and (min-width: 720px) {
     /* Grid */
@@ -61,7 +47,7 @@ export const StyledForm = styled(Form)`
       'address2 address2 address2 address2'
       'city     city     state    state'
       'country  country  postCode postCode'
-      '.        submit   clear    .'
+      '.        submit   submit    .'
       '.        status   status   .';
 
     .title {

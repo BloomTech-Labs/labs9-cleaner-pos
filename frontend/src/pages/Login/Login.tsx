@@ -64,7 +64,7 @@ const Login: FunctionComponent<LoginProps> = (props) => {
         email,
         ext_it: uid,
         full_name: displayName,
-        photoURL,
+        photoUrl: photoURL,
         role: ast ? 'assistant' : 'manager',
         managerID: manager,
       };
@@ -73,7 +73,6 @@ const Login: FunctionComponent<LoginProps> = (props) => {
       try {
         const { data } = await axios.post(`${url}/users/`, nUser);
         localStorage.setItem('token', data.token);
-        localStorage.setItem('id', data.id);
         localStorage.setItem('role', data.role);
         if (data.first) {
           props.history.push('/updateinfo');

@@ -17,9 +17,13 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
     // Within the context of `Elements`, this call to createToken knows which Element to
     // tokenize, since there's only one in this group.
     try {
+      const headers: any = {
+        headers: { Authorization: localStorage.getItem('token') },
+      };
       // @ts-ignore
       const { token } = await props.stripe.createToken({});
-      const response = await axios.post(`${url}/payments`, token);
+      const response = await axios.post(`${url}/payments`, token, headers);
+      console.log(response.data);
     } catch (e) {
       return e;
     }
@@ -45,7 +49,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
           onClick={handleSubmit}
           text='Subscribe!'
           datatestid='confirm-payment'
-          colour='#0AA047'
+          color='#0AA047'
         />
       </form>
     </div>

@@ -28,19 +28,19 @@ const AssistantCard = (assistant: any) => {
       <AsstProperty>
         <div className='button-group'>
           <Button text='Edit Assistant' />
-          <Button text='Go Back' />
+          <Button text=' Go Back' className='fas fa-arrow-left' />
         </div>
         <PropertyContainer>
           <PropertyHeading>
             <h2>Default Properties</h2>
-            <Button className='button-new' text='+ New' />
+            {/* <Button className='button-new' text='+ New' /> */}
           </PropertyHeading>
           <PropertyList>
             {assistant.default_house.map((house: any) => (
               <HouseItem key={house.house_id}>
                 {house.house_name}
                 <span className='hide'>
-                  <i className='fas fa-trash-alt' />
+                  <i className='fas fa-times' />
                 </span>
               </HouseItem>
             ))}
@@ -57,7 +57,7 @@ const AssistantCard = (assistant: any) => {
               <HouseItem key={house.house_id}>
                 {house.house_name}
                 <span className='hide'>
-                  <i className='fas fa-backspace' />
+                  <i className='fas fa-times' />
                 </span>
               </HouseItem>
             ))}

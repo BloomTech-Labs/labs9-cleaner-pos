@@ -9,6 +9,7 @@ export const findLists = async (houseId: number) => {
       .where({ house_id: houseId, type: 'before' })
       .leftJoin('items', { 'list.id': 'items.list_id' })
       .select('list.id as list_id', 'items.task', 'items.id as items_id')
+      .orderBy('items.id')
       .then((e) => {
         return { before: e, before_id: e[0].list_id };
       });
@@ -16,6 +17,7 @@ export const findLists = async (houseId: number) => {
       .where({ house_id: houseId, type: 'during' })
       .leftJoin('items', { 'list.id': 'items.list_id' })
       .select('list.id as list_id', 'items.task', 'items.id as items_id')
+      .orderBy('items.id')
       .then((e) => {
         return { during: e, during_id: e[0].list_id };
       });
@@ -27,7 +29,12 @@ export const findLists = async (houseId: number) => {
         const hours: string = `${row.hours_after} Hours After Stay`;
         const afterLists = await db('items')
           .where({ 'items.list_id': row.id })
-          .select('items.task', 'items.id as items_id');
+          .select({
+            items_id: 'items.id',
+            list_id: row.id,
+            task: 'items.task',
+          })
+          .orderBy('items.id');
 
         return { after_id: row.id, time: hours, afterLists };
       })
