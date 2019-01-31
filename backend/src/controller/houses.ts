@@ -14,51 +14,52 @@ import { House } from '../interface';
 
 // TODO: Refactor GET
 export const get = async (req: Request, res: Response, next: NextFunction) => {
-  const user = req.query && req.query.user;
-  const manager = req.query && req.query.manager;
-  const test = req.query && req.query.test;
+  // const user = req.query && req.query.user;
+  // const manager = req.query && req.query.manager;
+  // const test = req.query && req.query.test;
 
-  if (user) {
-    try {
-      const { id } = req.params;
+  // if (user) {
+  //   try {
+  //     const { id } = req.params;
 
-      const result = await findAllHousesByAstId(Number(id));
+  //     const result = await findAllHousesByAstId(Number(id));
 
-      return res.status(200).json(result);
-    } catch (e) {
-      e.statusCode = e.statusCode || 500;
-      return next(e);
-    }
-  } else if (manager) {
-    try {
-      let extIt: string;
+  //     return res.status(200).json(result);
+  //   } catch (e) {
+  //     e.statusCode = e.statusCode || 500;
+  //     return next(e);
+  //   }
+  // } else if (manager) {
+  //   try {
+  //     let extIt: string;
 
-      if (test) {
-        extIt = '1';
-      } else {
-        const token = req.token;
-        if (!token) {
-          throw { ...new Error('Authentication required'), statusCode: 403 };
-        }
-        extIt = req.token.ext_it;
-      }
+  //     if (test) {
+  //       extIt = '1';
+  //     } else {
+  //       const token = req.token;
+  //       if (!token) {
+  //         throw { ...new Error('Authentication required'), statusCode: 403 };
+  //       }
+  //       extIt = req.token.ext_it;
+  //     }
 
-      const { id } = await findUserByExt_it(extIt);
-      const result = await findAllHousesByManagerId(id);
-      return res.status(200).json(result);
-    } catch (e) {
-      e.statusCode = e.statusCode || 500;
-      return next(e);
-    }
-  }
+  //     const { id } = await findUserByExt_it(extIt);
+  //     const result = await findAllHousesByManagerId(id);
+  //     return res.status(200).json(result);
+  //   } catch (e) {
+  //     e.statusCode = e.statusCode || 500;
+  //     return next(e);
+  //   }
+  // }
 
   try {
     const { id } = req.params;
+    const manager = await getRoleId(req.token.id);
     let house: any;
     if (id) {
       house = await findHouse(id);
     } else {
-      house = await findHouses();
+      house = await findHouses(manager.id);
     }
     if (house === undefined) {
       throw Error('no user');
@@ -73,21 +74,25 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.token;
-    let extIt: string;
 
-    if (req.query && req.query.test) {
-      // If req.query.test exists (i.e. ?test=true)
-      // set extIt to 1
-      extIt = '1';
-    } else {
-      // Else, get the extIt from the token itself
-      if (!token) {
-        throw { ...new Error('Not authenticated'), statusCode: 403 };
-      }
-      extIt = req.token.ext_it;
-    }
+    // TODO: I don't think we need any of this code anymore
+    // let extIt: string;
 
-    const { id } = await findUserByExt_it(extIt);
+    // if (req.query && req.query.test) {
+    //   // If req.query.test exists (i.e. ?test=true)
+    //   // set extIt to 1
+    //   extIt = '1';
+    // } else {
+    //   // Else, get the extIt from the token itself
+    //   if (!token) {
+    //     throw { ...new Error('Not authenticated'), statusCode: 403 };
+    //   }
+    //   extIt = req.token.ext_it;
+    // }
+
+    // const { id } = await findUserByExt_it(extIt);
+
+    const { id } = await getRoleId(token.id);
     const house: House = { ...req.body, manager: id };
     const newHouse = await makeHouse(house);
     await postList({ type: 'before', house_id: newHouse[0] });
