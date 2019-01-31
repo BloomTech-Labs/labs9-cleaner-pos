@@ -21,9 +21,15 @@ const axiosFetch = async (type: Crud, url: string, body: any = {}) => {
   };
 
   try {
-    const response = await axios({ method: type, url, data: body });
+    const response = await axios({
+      method: type,
+      headers: { Authorization: token },
+      url,
+      data: body,
+    });
     data = response.data;
   } catch (e) {
+    console.error(e);
     error = { msg: 'Error fetching!', error: true };
   }
 
