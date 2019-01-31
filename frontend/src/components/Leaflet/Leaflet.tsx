@@ -51,7 +51,6 @@ const LeafletMap = (props: { className?: string }) => {
   }
 
   return (
-    <MapDiv>
       <Map className='container-map' center={position} zoom={coordinates.zoom}>
         <TileLayer
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -69,7 +68,6 @@ const LeafletMap = (props: { className?: string }) => {
           );
         })}
       </Map>
-    </MapDiv>
   );
 };
 
