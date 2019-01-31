@@ -71,7 +71,7 @@ const Sidebar = (props: LinkProps) => {
         </Menu>
         <SettingsWrapper>
           <StyledLink to='/settings'>
-            <i className='fas fa-cog'></i>
+            <i className='fas fa-cog' />
           </StyledLink>
           <SpecialButton
             onClick={() => logOut()}
@@ -107,7 +107,7 @@ const Sidebar = (props: LinkProps) => {
         </NavWrapper>
         <SettingsWrapper>
           <StyledLink to='/settings'>
-            <i className='fas fa-cog'></i>
+            <i className='fas fa-cog' />
           </StyledLink>
 
           <SpecialButton
