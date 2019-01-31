@@ -9,7 +9,7 @@ import {
   CardContent,
   ButtonContainer,
   CardHeading,
-  Cleaner,
+  Assistant,
   CheckList,
   HouseHeader,
 } from './Properties.styling';
@@ -98,8 +98,8 @@ const Properties = () => {
                           />
                         </Link>
                       </ButtonContainer>
-                      <Cleaner>
-                        Default Cleaner
+                      <Assistant>
+                        Default Assistant
                         <select
                           data-testid='assistant-select'
                           onChange={(event) => postAst(event, house.id)}
@@ -117,7 +117,7 @@ const Properties = () => {
                             }
                           })}
                         </select>
-                      </Cleaner>
+                      </Assistant>
                     </CardBody>
                   </CardContent>
                 </HouseItem>

@@ -11,11 +11,11 @@ const bp = `650px`;
 const AssistantItem = styled('div')`
   /* Color */
   background: white;
-  color: var(--colour-main-black);
+  color: var(--color-main-black);
 
   /* Sizing */
   height: ${pxToRem(188)};
-  border: 0.5px solid var(--colour-border);
+  border: 0.5px solid var(--color-border);
 
   /* Flex */
   display: flex;
@@ -128,7 +128,7 @@ const CheckList = styled('div')`
   /* Sizing */
   height: ${boxHeight};
   width: ${boxWidth};
-  border: 0.5px solid var(--colour-border);
+  border: 0.5px solid var(--color-border);
   /* Text */
   text-align: center;
   font-size: 1.5rem;
@@ -143,7 +143,7 @@ const CheckList = styled('div')`
     font-weight: bold;
   }
   .secondary {
-    color: var(--colour-accent);
+    color: var(--color-accent);
   }
   @media screen and (max-width: 550px) {
     width: 45%;
@@ -165,7 +165,7 @@ const Asst = styled('div')`
   justify-content: center;
   align-items: center;
   .secondary {
-    color: var(--colour-accent);
+    color: var(--color-accent);
   }
   p {
     margin: 0;
@@ -275,8 +275,8 @@ const AssistantBar = styled('div')`
 
 const AsstDetail = styled('div')`
   height: 6rem;
-  color: var(--colour-text-dark);
-  background: var(--colour-main-background);
+  color: var(--color-text-dark);
+  background: var(--color-main-background);
   display: flex;
   flex-direction: row;
 `;
@@ -292,7 +292,7 @@ const AsstProperty = styled('div')`
 
 const PropertyContainer = styled('div')`
   /* Size */
-  border: 0.5px solid var(--colour-border);
+  border: 0.5px solid var(--color-border);
   margin: 1rem 0;
   /* Flex */
   display: flex;
@@ -308,14 +308,14 @@ const PropertyContainer = styled('div')`
     /* Text */
     font-size: 1rem;
     /* Color */
-    color: var(--colour-button-text-alt);
-    background-color: var(--colour-button-background-alt);
+    color: var(--color-button-text-alt);
+    background-color: var(--color-button-background-alt);
   }
 `;
 
 const PropertyHeading = styled('div')`
   /* Size */
-  border-bottom: 1px solid var(--colour-border);
+  border-bottom: 1px solid var(--color-border);
   padding-left: 1rem;
   /* Flex */
   display: flex;
@@ -323,8 +323,8 @@ const PropertyHeading = styled('div')`
   justify-content: space-between;
   align-items: center;
   /* Color */
-  color: var(--colour-text-light);
-  background: var(--colour-accent);
+  color: var(--color-text-light);
+  background: var(--color-accent);
   /* Text */
   text-align: left;
 

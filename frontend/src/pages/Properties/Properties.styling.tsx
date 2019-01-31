@@ -109,7 +109,7 @@ const CheckList = styled('div')`
   }
 `;
 
-const Cleaner = styled('div')`
+const Assistant = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,6 +138,6 @@ export {
   CardContent,
   ButtonContainer,
   CardHeading,
-  Cleaner,
+  Assistant,
   CheckList,
 };

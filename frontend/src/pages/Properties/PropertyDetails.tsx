@@ -127,10 +127,10 @@ const PropertyDetails = (props: any) => {
               <SecondaryText>{property.address}</SecondaryText>
             </HouseInfo>
             <PropertyButtons>
-              <BackButton text='Edit Property' colour='var(--colour-accent)' />
+              <BackButton text='Edit Property' color='var(--color-accent)' />
               <BackButton
                 text='Go Back'
-                colour='var(--colour-accent)'
+                color='var(--color-accent)'
                 onClick={() => props.history.push('/properties')}
               />
             </PropertyButtons>
