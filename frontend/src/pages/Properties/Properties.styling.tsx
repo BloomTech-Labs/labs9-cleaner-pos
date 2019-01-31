@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 const cardHeight = 168;
 const pxToRem = (px: number): string => `${px / 16}rem`;
+const bp = `816px`;
 
 const PropContainer = styled('div')`
   display: flex;
@@ -19,7 +20,7 @@ const PropContainer = styled('div')`
     align-items: flex-end;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: ${bp}) {
     .properties-header {
       flex-flow: column nowrap;
       align-items: flex-start;
@@ -38,7 +39,7 @@ const HouseItem = styled('div')`
   text-align: left;
   border: var(--border);
   background-color: white;
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     flex: 1;
     width: 70%;
@@ -60,14 +61,21 @@ const ButtonContainer = styled('div')`
     font-size: 1.25rem;
     padding: 0.25rem 1rem;
   }
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${bp}) {
     padding: 10px 0 10px 0;
   }
 `;
 
 const ThumbNail = styled('img')`
-  width: ${cardHeight - 1}px;
-  height: ${cardHeight - 1}px;
+  object-fit: cover;
+  width: 37%;
+  height: ${pxToRem(cardHeight - 1)};
+  margin-right: 1rem;
+
+  @media only screen and (max-width: ${bp}) {
+    width: ${cardHeight - 1}px;
+    height: ${cardHeight - 1}px;
+  }
 `;
 
 const CardHeading = styled('div')`
@@ -80,13 +88,15 @@ const CardHeading = styled('div')`
     font-weight: bold;
     font-size: 1.5rem;
   }
+
   p {
     font-weight: light;
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
   }
-  @media only screen and (max-width: 900px) {
+
+  @media only screen and (max-width: ${bp}) {
     h4 {
       text-align: center;
     }
@@ -110,7 +120,7 @@ const CardBody = styled('div')`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     flex: 1;
   }
@@ -136,10 +146,12 @@ const CheckList = styled('div')`
 `;
 
 const Assistant = styled('div')`
+  width: ${pxToRem(192)};
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${bp}) {
     padding: 20px 0 20px 0;
   }
 `;
@@ -148,10 +160,11 @@ const HouseHeader = styled('span')`
   font-size: 2rem;
   text-align: left;
   max-width: 290px;
+  margin-bottom: 0.5rem;
   @media only screen and (max-width: 500px) {
-    margin-bottom: 0.5rem;
+    margin: 0;
   }
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${bp}) {
     text-align: center;
   }
 `;
