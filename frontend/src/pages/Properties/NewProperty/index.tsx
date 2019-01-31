@@ -154,8 +154,10 @@ const NewPropertyView = (formProps: MyFormProps) => {
 const NewProperty = (props: RouteComponentProps) => {
   const [urls, setUrls] = useState({} as UrlObj);
   const [assistants, setAssistants] = useState([] as AstObj[]);
+  const [startValues, setStartValues] = useState(
+    {} as NewPropertyInitialValues,
+  );
   const [errors, setErrors] = useState({ msg: '', error: false });
-
   useEffect(() => {
     // Get list of assistants from backend
     const url =
@@ -167,12 +169,56 @@ const NewProperty = (props: RouteComponentProps) => {
       },
     };
 
-    axios
-      .get(`${url}/assistants`, headers)
-      .then((res) => {
-        setAssistants(res.data);
-      })
-      .catch(axiosErrorHandler(setErrors));
+    if (props.location.state === undefined) {
+      axios
+        .get(`${url}/assistants`, headers)
+        .then((res) => {
+          setAssistants(res.data);
+          setStartValues(EmptyPropertyValues);
+        })
+        .catch(axiosErrorHandler(setErrors));
+    } else {
+      setAssistants(props.location.state.openAst);
+      const {
+        address,
+        cleaning_fee,
+        default_ast,
+        extra_guest_fee,
+        price,
+        name,
+      }: {
+        address: string;
+        cleaning_fee: number;
+        default_ast: number;
+        extra_guest_fee: number;
+        price: number;
+        name: string;
+      } = props.location.state;
+      const addressSplit = address.split('\n');
+      const [
+        address1,
+        address2,
+        city,
+        state,
+        country,
+        postCode,
+      ]: string[] = addressSplit;
+      const loadValues = {
+        address1,
+        address2,
+        city,
+        state,
+        country,
+        postCode,
+        propertyName: name,
+        cleaningFee: cleaning_fee,
+        feePerGuest: extra_guest_fee,
+        defaultAst: default_ast,
+        pricePerNight: price,
+      };
+
+      setStartValues(loadValues);
+    }
   }, []);
 
   // Invoke FileUploadHOF, passing a callback function which will update

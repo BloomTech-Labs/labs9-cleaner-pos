@@ -36,13 +36,13 @@ export interface NewPropertyInitialValues {
   state: string;
   postCode: string;
   country: string;
-  photoUrl: string;
+  photoUrl?: string;
   pricePerNight: number;
   feePerGuest: number;
   cleaningFee: number;
   defaultAst: number;
-  astGuide: string;
-  guestGuide: string;
+  astGuide?: string;
+  guestGuide?: string;
   errorStatus?: string;
 }
 
