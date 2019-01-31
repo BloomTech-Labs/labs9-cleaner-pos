@@ -94,12 +94,10 @@ const CheckList = styled('div')`
   padding: 0 15px;
   text-align: center;
   height: 100px;
-  -moz-box-shadow: 0 0 3px #000;
-  -webkit-box-shadow: 0 0 3px #000;
-  box-shadow: 0 0 3px #000;
   font-size: 24px;
   font-weight: light;
-  display: flex;
+  border: 1px solid black;
+	display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
