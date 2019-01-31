@@ -55,7 +55,7 @@ describe('Checkout Page UI', () => {
     });
   });
 
-  test('should render a name from stay', async () => {
+  test.skip('should render a name from stay', async () => {
     const { getByTestId } = render(<Checkout {...props} />);
     const header = await waitForElement(() => getByTestId('guest-name'));
     await wait(() => {
@@ -63,7 +63,7 @@ describe('Checkout Page UI', () => {
     });
   });
 
-  test('should render a payment button, displaying "Pay $total amount"', async () => {
+  test.skip('should render a payment button, displaying "Pay $total amount"', async () => {
     const { getByText } = render(<Checkout {...props} />);
     const { diff, price, cleaning_fee } = mockData;
     const total = diff * +price + +cleaning_fee;
@@ -74,7 +74,7 @@ describe('Checkout Page UI', () => {
     });
   });
 
-  test('should display the correct total amount of the stay', async () => {
+  test.skip('should display the correct total amount of the stay', async () => {
     const { getByText } = render(<Checkout {...props} />);
     const { diff, price, cleaning_fee } = mockData;
     const total = diff * +price + +cleaning_fee;
@@ -86,7 +86,7 @@ describe('Checkout Page UI', () => {
     });
   });
 
-  test('should not display the Extra Guest invoice box when there are 0 extra guests', async () => {
+  test.skip('should not display the Extra Guest invoice box when there are 0 extra guests', async () => {
     const { queryByTestId } = render(<Checkout {...props} />);
     await waitForElement(() => setTimeout(() => null, 2000));
 
