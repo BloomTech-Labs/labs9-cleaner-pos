@@ -41,6 +41,6 @@ const LoginDiv = styled('div')`
 `;
 
 /*
-    background-color: var(--colour-main-background);
+    background-color: var(--color-main-background);
 */
 export default LoginDiv;

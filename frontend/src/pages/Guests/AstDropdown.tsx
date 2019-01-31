@@ -19,7 +19,6 @@ const AstDropdownView = (props: {
   if (loading || props.house.openAst === undefined) {
     return (
       <div>
-        {' '}
         <img src={loadingIndicator} alt='animated loading indicator' />
       </div>
     );
@@ -28,19 +27,15 @@ const AstDropdownView = (props: {
   // Good working code
   return (
     <div className='ast-dropdown'>
-      Default Cleaner
+      Reassign Assistant
       <br />
       <select data-testid='assistant-select' onChange={(event) => event}>
         <option defaultValue={house.default_ast_name}>
-          {house.default_ast}: {house.default_ast_name}
+          {house.default_ast_name}
         </option>
         {house.openAst.map((ast: any) => {
           if (ast.ast_id !== house.default_ast) {
-            return (
-              <option key={ast.ast_id}>
-                {ast.ast_id}: {ast.full_name}
-              </option>
-            );
+            return <option key={ast.ast_id}>{ast.full_name}</option>;
           }
         })}
       </select>

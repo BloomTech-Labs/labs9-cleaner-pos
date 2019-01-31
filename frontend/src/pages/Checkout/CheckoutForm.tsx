@@ -62,7 +62,7 @@ const CheckoutForm = (props: any) => {
           onClick={handleSubmit}
           text='Pay with Credit Card'
           datatestid='confirm-payment'
-          colour='#0AA047'
+          color='#0AA047'
         />
       </form>
     </div>

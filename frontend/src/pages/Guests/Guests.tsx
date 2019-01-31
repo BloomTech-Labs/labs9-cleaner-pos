@@ -19,8 +19,6 @@ const Guests = () => {
     `${url}/stays?filter=${active}&test=true`,
   );
 
-  // TODO: Add loading animation
-
   const activeClass = (filter: FilterArgs) =>
     active === filter ? 'active' : '';
 
@@ -29,48 +27,47 @@ const Guests = () => {
       <div className='guests-header'>
         <h2>Guests</h2>
         <Link to='/guests/new'>
-          <Button text='New Guest' colour='var(--colour-accent)' />
+          <Button text='New Guest' color='var(--color-accent)' />
         </Link>
       </div>
       <div className='guests-buttons-filter'>
         <Button
           className={`button-filter upcoming ${activeClass('upcoming')}`}
           text='Upcoming'
-          colour='var(--colour-accent)'
+          color='var(--color-accent)'
           onClick={() => setActive('upcoming')}
           datatestid='button-upcoming'
         />
         <Button
           className={`button-filter incomplete ${activeClass('incomplete')}`}
           text='Incomplete'
-          colour='var(--colour-accent)'
+          color='var(--color-accent)'
           onClick={() => setActive('incomplete')}
           datatestid='button-incomplete'
         />
         <Button
           className={`button-filter complete ${activeClass('complete')}`}
           text='Complete'
-          colour='var(--colour-accent)'
+          color='var(--color-accent)'
           onClick={() => setActive('complete')}
           datatestid='button-complete'
         />
       </div>
       {error.error ? error.msg : null}
-      {loading ? (
-        <img src={loadingIndicator} alt='animated loading indicator' />
-      ) : null}
-      {stays ? (
-        <>
-          <div className='guests-errors'>{errors.msg}</div>
-          <div className='guests-cards'>
-            {stays.map((stay: any) => (
+      <div className='guests-errors'>{errors.msg}</div>
+      <div className='guests-cards'>
+        {loading ? (
+          <img src={loadingIndicator} alt='animated loading indicator' />
+        ) : null}
+        {stays
+          ? stays.map((stay: any) => (
               <Link key={stay.stay_id} to={`/guests/${stay.stay_id}`}>
                 <StyledGuestCard {...stay} />
               </Link>
-            ))}
-          </div>
-        </>
-      ) : null}
+            ))
+          : null}
+        <div />
+      </div>
     </GuestsDiv>
   );
 };

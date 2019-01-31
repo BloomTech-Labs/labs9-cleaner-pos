@@ -4,7 +4,7 @@ import { GuestCard } from './GuestCard';
 // Styles
 import styled from '@emotion/styled';
 
-const height = 216 / 16;
+const height = 168 / 16;
 const pxToRem = (px: number) => px / 16;
 // In design file, image was 216px high
 // For responsiveness, we want to use rems.
@@ -12,26 +12,6 @@ const pxToRem = (px: number) => px / 16;
 // ASSUMPTION: A rem is set to 16px in high level css.
 
 export const GuestsDiv = styled(Container)`
-  /* Sizing & Box Model */
-  a:link {
-    text-decoration: none;
-  }
-
-  a:visited {
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline wavy gray;
-  }
-
-  a:active {
-    text-decoration: underline wavy gray;
-  }
-
-  max-width: 1000px;
-  width: 100%;
-
   .guests-header {
     /* Sizing & Box Model */
     height: ${pxToRem(48)}rem;
@@ -63,30 +43,37 @@ export const GuestsDiv = styled(Container)`
 
   .guests-buttons-filter {
     display: block;
-    margin: auto;
+    margin: auto auto auto 0;
   }
 
   .guests-cards {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin: auto;
+    min-height: 100px;
+    width: 100%;
   }
 
   .guests-buttons-filter .button-filter {
     /* Sizing & Box Model */
     height: ${pxToRem(36)}rem;
     width: ${pxToRem(120)}rem;
-    border: 1px solid rgba(238, 239, 245, 0.5);
+    border: var(--border);
 
     /* Text */
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 1rem;
+
+    /* Color */
+    color: var(--color-text-dark);
+    background-color: var(--color-button-background-alt);
   }
 
   .guests-buttons-filter button.button-filter:hover,
   .guests-buttons-filter .active {
     /* Color */
-    color: var(--colour-button-text-alt);
-    background-color: var(--colour-button-background-alt);
+    color: var(--color-button-text);
+    background-color: var(--color-button-background);
   }
 
   @media only screen and (min-width: 720px) {
@@ -102,22 +89,74 @@ export const GuestsDiv = styled(Container)`
     }
 
     .guests-buttons-filter {
-      margin-bottom: ${pxToRem(36)}rem;
+      margin: auto auto ${pxToRem(36)}rem 0;
     }
   }
 `;
 
 export const StyledGuestCard = styled(GuestCard)`
+  /* Sizing and Box Model */
+  width: 95vw;
+  margin: 2rem 0.5rem;
+  padding: 1rem;
+
+  /* Grid */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3rem 1fr 1fr;
+  gap: ${pxToRem(24)}rem;
+  column-gap: ${pxToRem(36)}rem;
+  grid-gap: ${pxToRem(24)}rem;
+  grid-column-gap: ${pxToRem(36)}rem;
+
+  /* Color */
+  color: var(--color-main-black);
+  background-color: var(--color-accent-background);
+
+  /* Hover Effects */
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.025);
+  }
+
+  .user-image {
+    border-radius: 100%;
+    height: ${pxToRem(72)}rem;
+    width: ${pxToRem(72)}rem;
+    /* Grid */
+    grid-column: span 2;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .text-content {
+    /* Grid */
+    grid-column: span 2;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .info-progress {
+    /* Grid */
+    grid-column: span 2;
+  }
+
+  div[class^='info-'] {
+    /*
+      Above fancy selector courtesy of:
+      https://stackoverflow.com/a/8588532
+      */
+    /* Color */
+    background-color: var(--color-main-background);
+  }
+
   @media only screen and (min-width: 720px) {
     /* Sizing and Box Model */
     width: 100%;
+    padding: 0;
     height: ${height}rem;
-    border: 1px solid var(--colour-border);
-    margin-bottom: ${pxToRem(36)}rem;
-
-    /* Color */
-    color: var(--colour-main-black);
-    background-color: var(--colour-accent-background);
+    border: 1px solid var(--color-border);
+    margin: 0 0 ${pxToRem(36)}rem 0;
 
     /* Grid */
     display: grid;
@@ -125,11 +164,13 @@ export const StyledGuestCard = styled(GuestCard)`
     gap: ${pxToRem(30)}rem;
     grid-gap: ${pxToRem(30)}rem;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
 
     .user-image {
       /* Sizing & Box Model*/
+      border-radius: 0%;
       width: 100%;
-      height: ${height}rem;
+      height: ${height - pxToRem(2)}rem;
       object-fit: cover;
 
       /* Grid */
@@ -155,9 +196,6 @@ export const StyledGuestCard = styled(GuestCard)`
       width: ${pxToRem(206)}rem;
       height: 100%;
       margin-bottom: 1rem;
-
-      /* Color */
-      background-color: var(--colour-main-background);
     }
 
     .info-check-in {
@@ -175,7 +213,7 @@ export const StyledGuestCard = styled(GuestCard)`
     .info-progress {
       /* Sizing & Box Model */
       width: ${pxToRem(206)}rem;
-      height: ${pxToRem(165)}rem;
+      height: 80%;
       margin: 0 1rem 1rem 0;
 
       /* Grid */
@@ -183,7 +221,7 @@ export const StyledGuestCard = styled(GuestCard)`
       grid-row: span 2;
 
       /* Color */
-      background-color: var(--colour-main-background);
+      background-color: var(--color-main-background);
     }
 
     .info-progress .text-main {
@@ -206,7 +244,7 @@ export const StyledGuestCard = styled(GuestCard)`
 
 export const InfoDiv = styled.div`
   /* Sizing & Box Model */
-  border: 1px solid var(--colour-border);
+  border: 1px solid var(--color-border);
 
   /* Flexbox */
   display: flex;
@@ -214,7 +252,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--colour-accent-background);
+  background-color: var(--color-accent-background);
 
   div[class^='text-'] {
     display: block;
@@ -222,28 +260,30 @@ export const InfoDiv = styled.div`
 
   .text-main {
     font-family: 'Roboto Medium', Arial, sans-serif;
-    font-size: ${36 / 16}rem;
-    color: var(--colour-accent);
+    font-size: ${24 / 16}rem;
+    color: var(--color-accent);
   }
 
   .text-secondary {
     font-family: 'Roboto Light', Arial, sans-serif;
-    font-size: ${20 / 16}rem;
-    color: var(--colour-main-black);
+    font-size: ${16 / 16}rem;
+    color: var(--color-main-black);
   }
 `;
 
 export const MainText = styled.div`
-  padding-top: 0.5rem;
-  display: block;
-  text-align: left;
+  /* display: block; */
   font-family: 'Roboto Bold', Arial, sans-serif;
-  font-size: ${pxToRem(30)}rem;
+  text-align: left;
+  font-weight: bolder;
+  font-size: ${pxToRem(20)}rem;
+  color: var(--color-text-accent);
 `;
 
 export const SecondaryText = styled.div`
-  display: inline-block;
+  /* display: inline-block; */
   text-align: left;
   font-family: 'Roboto Light', Arial, sans-serif;
   font-size: ${pxToRem(16)}rem;
+  color: var(--color-text-dark);
 `;
