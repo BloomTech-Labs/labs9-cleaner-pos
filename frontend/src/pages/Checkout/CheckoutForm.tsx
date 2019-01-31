@@ -1,10 +1,11 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import {
   ReactStripeElements,
   injectStripe,
   CardElement,
 } from 'react-stripe-elements';
 import { UserContext } from '../../App';
+import { Link } from 'react-router-dom';
 import { PaymentContext } from './Checkout';
 import { Button } from '../../components/index';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
@@ -14,6 +15,7 @@ const url =
 
 const CheckoutForm = (props: any) => {
   const { sum } = useContext(PaymentContext);
+  const [error, setError] = useState({ error: false, message: '' });
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -37,35 +39,56 @@ const CheckoutForm = (props: any) => {
           body,
           headers,
         );
-        console.log(data);
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          setError({
+            error: true,
+            message: e.response.data.message,
+          });
+        }
       }
     }
     triggerPayment();
   };
-
   return (
-    <div>
-      {/* !TODO: Build accordion component */}
-      <p>Pay Total</p>
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: '350px', margin: 'auto' }}
-        data-testid='checkout-form'
-      >
-        <label>
-          Card details
-          <CardElement />
-        </label>
-        <div style={{ marginBottom: '24px' }} />
-        <Button
-          onClick={handleSubmit}
-          text='Pay with Credit Card'
-          datatestid='confirm-payment'
-          color='#0AA047'
-        />
-      </form>
+    <div style={{ width: '250px', margin: '0 auto' }}>
+      {error && error.error ? (
+        <>
+          <p style={{ color: 'var(--color-error)', fontWeight: 'bold' }}>
+            {error.message}
+          </p>
+          <Link to='/settings'>
+            <Button
+              text='Connect now'
+              color='#0AA047'
+              className='connect-button'
+            />
+          </Link>
+        </>
+      ) : null}
+      {!error.error ? (
+        <>
+          <p>Pay Total</p>
+          <form
+            onSubmit={handleSubmit}
+            style={{ maxWidth: '350px', margin: 'auto' }}
+            data-testid='checkout-form'
+          >
+            <label>
+              Card details
+              <CardElement />
+            </label>
+            <div style={{ marginBottom: '24px' }} />
+            <Button
+              onClick={handleSubmit}
+              className='submit-payment'
+              text='Confirm Payment'
+              datatestid='confirm-payment'
+              color='#0AA047'
+            />
+          </form>
+        </>
+      ) : null}
     </div>
   );
 };
