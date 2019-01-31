@@ -65,15 +65,15 @@ export const GuestsDiv = styled(Container)`
     font-size: 1rem;
 
     /* Color */
-    color: var(--colour-text-dark);
-    background-color: var(--colour-button-background-alt);
+    color: var(--color-text-dark);
+    background-color: var(--color-button-background-alt);
   }
 
   .guests-buttons-filter button.button-filter:hover,
   .guests-buttons-filter .active {
     /* Color */
-    color: var(--colour-button-text);
-    background-color: var(--colour-button-background);
+    color: var(--color-button-text);
+    background-color: var(--color-button-background);
   }
 
   @media only screen and (min-width: 720px) {
@@ -110,8 +110,8 @@ export const StyledGuestCard = styled(GuestCard)`
   grid-column-gap: ${pxToRem(36)}rem;
 
   /* Color */
-  color: var(--colour-main-black);
-  background-color: var(--colour-accent-background);
+  color: var(--color-main-black);
+  background-color: var(--color-accent-background);
 
   /* Hover Effects */
   transition: all 0.1s ease-in-out;
@@ -147,7 +147,7 @@ export const StyledGuestCard = styled(GuestCard)`
       https://stackoverflow.com/a/8588532
       */
     /* Color */
-    background-color: var(--colour-main-background);
+    background-color: var(--color-main-background);
   }
 
   @media only screen and (min-width: 720px) {
@@ -155,7 +155,7 @@ export const StyledGuestCard = styled(GuestCard)`
     width: 100%;
     padding: 0;
     height: ${height}rem;
-    border: 1px solid var(--colour-border);
+    border: 1px solid var(--color-border);
     margin: 0 0 ${pxToRem(36)}rem 0;
 
     /* Grid */
@@ -221,7 +221,7 @@ export const StyledGuestCard = styled(GuestCard)`
       grid-row: span 2;
 
       /* Color */
-      background-color: var(--colour-main-background);
+      background-color: var(--color-main-background);
     }
 
     .info-progress .text-main {
@@ -244,7 +244,7 @@ export const StyledGuestCard = styled(GuestCard)`
 
 export const InfoDiv = styled.div`
   /* Sizing & Box Model */
-  border: 1px solid var(--colour-border);
+  border: 1px solid var(--color-border);
 
   /* Flexbox */
   display: flex;
@@ -252,7 +252,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--colour-accent-background);
+  background-color: var(--color-accent-background);
 
   div[class^='text-'] {
     display: block;
@@ -261,13 +261,13 @@ export const InfoDiv = styled.div`
   .text-main {
     font-family: 'Roboto Medium', Arial, sans-serif;
     font-size: ${24 / 16}rem;
-    color: var(--colour-accent);
+    color: var(--color-accent);
   }
 
   .text-secondary {
     font-family: 'Roboto Light', Arial, sans-serif;
     font-size: ${16 / 16}rem;
-    color: var(--colour-main-black);
+    color: var(--color-main-black);
   }
 `;
 
@@ -277,7 +277,7 @@ export const MainText = styled.div`
   text-align: left;
   font-weight: bolder;
   font-size: ${pxToRem(20)}rem;
-  color: var(--colour-text-accent);
+  color: var(--color-text-accent);
 `;
 
 export const SecondaryText = styled.div`
@@ -285,5 +285,5 @@ export const SecondaryText = styled.div`
   text-align: left;
   font-family: 'Roboto Light', Arial, sans-serif;
   font-size: ${pxToRem(16)}rem;
-  color: var(--colour-text-dark);
+  color: var(--color-text-dark);
 `;

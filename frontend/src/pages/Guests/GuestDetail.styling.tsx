@@ -128,13 +128,13 @@ export const GuestDetailStyle = styled('div')`
     /* Text */
     font-size: 1rem;
     /* Color */
-    color: var(--colour-text-dark);
-    background-color: var(--colour-button-background-alt);
+    color: var(--color-text-dark);
+    background-color: var(--color-button-background-alt);
   }
 
   .guest-info--checklist-bottom .active {
-    color: var(--colour-button-text);
-    background-color: var(--colour-button-background);
+    color: var(--color-button-text);
+    background-color: var(--color-button-background);
   }
 
   /* Checklist Boxes */
@@ -157,7 +157,7 @@ export const GuestDetailStyle = styled('div')`
   }
 
   .progress-no span {
-    color: var(--colour-text-accent);
+    color: var(--color-text-accent);
     font-weight: bolder;
   }
 
@@ -193,8 +193,8 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--checkout-top {
     /* Box Model & Sizing */
     padding: 0 0.5rem;
-    border: 0.5px solid var(--colour-border);
-    color: var(--colour-accent);
+    border: 0.5px solid var(--color-border);
+    color: var(--color-accent);
   }
 
   .guest-info--checklist-bottom,
@@ -208,7 +208,7 @@ export const GuestDetailStyle = styled('div')`
   }
 
   .guest-info--top {
-    background: var(--colour-accent);
+    background: var(--color-accent);
     color: white;
   }
 
@@ -249,7 +249,7 @@ export const GuestDetailStyle = styled('div')`
     grid-row: span 2;
     grid-column: 1;
     /* Color */
-    background-color: var(--colour-main-background);
+    background-color: var(--color-main-background);
   }
 
   .guest-info--checkout-bottom .stay-code div {
