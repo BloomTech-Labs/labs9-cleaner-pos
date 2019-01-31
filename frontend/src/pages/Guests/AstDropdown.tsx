@@ -19,7 +19,6 @@ const AstDropdownView = (props: {
   if (loading || props.house.openAst === undefined) {
     return (
       <div>
-        {' '}
         <img src={loadingIndicator} alt='animated loading indicator' />
       </div>
     );

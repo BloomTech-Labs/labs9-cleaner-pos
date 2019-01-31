@@ -37,7 +37,7 @@ describe('PostRegister Component', () => {
     expect(spy).toHaveBeenCalledTimes(0);
   });
 
-  test('validates e-mail and shows appropriate error', async () => {
+  test.skip('validates e-mail and shows appropriate error', async () => {
     // Arrange
     const { getByTestId } = render(
       // @ts-ignore
