@@ -13,9 +13,9 @@ export const errorHandler = (
   next: NextFunction,
 ) => {
   // Make errorHandler a little more quiet during tests
-  // if (process.env.NODE_ENV !== 'test') {
-  //   console.error('Error', err);
-  // }
+  if (process.env.NODE_ENV !== 'test') {
+    console.error('Error', err);
+  }
   // @ts-ignore
   switch (err.statusCode) {
     case 404:
@@ -27,7 +27,7 @@ export const errorHandler = (
       err.message =
         'Please connect your stripe account before processing payments!';
       res.status(401).json({
-        blablbab:
+        message:
           'Please connect your stripe account before processing payments!',
       });
       break;

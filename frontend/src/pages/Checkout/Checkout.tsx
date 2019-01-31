@@ -94,14 +94,17 @@ const Checkout = (props: CheckoutProps) => {
                   </StripeProvider>
                 </PaymentContext.Provider>
               )}
-              <Button
-                text={`Pay $${total}`}
-                color='#0aa047'
-                onClick={() => {
-                  setShow(true);
-                }}
-                datatestid='payment-button'
-              />
+              {show ? null : (
+                <Button
+                  text={`Pay $${total}`}
+                  color='#0aa047'
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                  datatestid='payment-button'
+                />
+              )}
+
               <InvoiceBox>
                 <span>
                   {stay.diff} Nights x ${stay.price}

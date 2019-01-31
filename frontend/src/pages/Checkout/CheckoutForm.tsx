@@ -15,7 +15,7 @@ const url =
 
 const CheckoutForm = (props: any) => {
   const { sum } = useContext(PaymentContext);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState({ error: false, message: '' });
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -50,28 +50,35 @@ const CheckoutForm = (props: any) => {
     }
     triggerPayment();
   };
-
   return (
-    <div>
-      {error && error.error ? <p>{error.message}</p> : null}
-      <p>Pay Total</p>
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: '350px', margin: 'auto' }}
-        data-testid='checkout-form'
-      >
-        <label>
-          Card details
-          <CardElement />
-        </label>
-        <div style={{ marginBottom: '24px' }} />
-        <Button
-          onClick={handleSubmit}
-          text='Pay with Credit Card'
-          datatestid='confirm-payment'
-          color='#0AA047'
-        />
-      </form>
+    <div style={{ width: '250px', margin: '0 auto' }}>
+      {error && error.error ? (
+        <p style={{ color: 'var(--color-error)', fontWeight: 'bold' }}>
+          {error.message}
+        </p>
+      ) : null}
+      {!error.error ? (
+        <>
+          <p>Pay Total</p>
+          <form
+            onSubmit={handleSubmit}
+            style={{ maxWidth: '350px', margin: 'auto' }}
+            data-testid='checkout-form'
+          >
+            <label>
+              Card details
+              <CardElement />
+            </label>
+            <div style={{ marginBottom: '24px' }} />
+            <Button
+              onClick={handleSubmit}
+              text='Confirm Payment'
+              datatestid='confirm-payment'
+              color='#0AA047'
+            />
+          </form>
+        </>
+      ) : null}
     </div>
   );
 };

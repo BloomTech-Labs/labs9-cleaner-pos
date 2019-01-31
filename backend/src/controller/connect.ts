@@ -72,7 +72,6 @@ const createPayment = async (
     res.status(200).send({ msg: 'Payment succeeded!' });
   } catch (e) {
     if (e.raw.param === 'destination[account]') {
-      e.message = 'You have not connected your stripe account yet!';
       e.statusCode = 401;
       next(e);
     }
