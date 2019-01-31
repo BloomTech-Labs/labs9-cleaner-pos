@@ -25,6 +25,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       const response = await axios.post(`${url}/payments`, token, headers);
       console.log(response.data);
     } catch (e) {
+      console.log(e.response);
       return e;
     }
     /* tslint:disable-next-line */
