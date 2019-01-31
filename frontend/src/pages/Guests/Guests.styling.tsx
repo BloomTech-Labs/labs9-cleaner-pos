@@ -271,13 +271,15 @@ export const InfoDiv = styled.div`
 export const MainText = styled.div`
   /* display: block; */
   font-family: 'Roboto Bold', Arial, sans-serif;
+  text-align: left;
   font-weight: bolder;
   font-size: ${pxToRem(20)}rem;
   color: var(--colour-text-accent);
 `;
 
 export const SecondaryText = styled.div`
-  display: inline-block;
+  /* display: inline-block; */
+  text-align: left;
   font-family: 'Roboto Light', Arial, sans-serif;
   font-size: ${pxToRem(16)}rem;
   color: var(--colour-text-dark);
