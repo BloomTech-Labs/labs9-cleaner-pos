@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
+
 const bp = '700px';
 
 const Container = styled('div')`
@@ -20,12 +21,13 @@ const Container = styled('div')`
   align-items: flex-end;
 
   .button-sign-out {
-      margin-bottom: 0;
-      margin-right: 1rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
   }
 
   .menu {
     height: 100%;
+    margin-top: 2rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -54,7 +56,7 @@ const NavBar = styled('nav')`
     align-items: center;
     border-bottom: 3px solid black;
     margin-bottom: 1.5rem;
-    padding-bottom: .75rem;
+    padding-bottom: 0.75rem;
   }
 `;
 
@@ -70,6 +72,10 @@ const SettingsWrapper = styled('div')`
   display: flex;
   align-items: center;
   margin-right: 1rem;
+  .signout {
+    border: none;
+    background-color: #eeeff5;
+  }
   @media only screen and (min-width: ${bp}) {
     display: flex;
     padding-left: 1rem;
@@ -79,7 +85,6 @@ const SettingsWrapper = styled('div')`
 
 const StyledUL = styled('div')`
   list-style-type: none;
-
   display: flex;
   align-items: center;
 `;
@@ -91,8 +96,8 @@ const StyledLink = styled(NavLink)`
     padding: 0 1.75rem;
     float: left;
     text-decoration: none;
-    color: black;
-    &:active{
+    color: var(--color-text-dark);
+    &:active {
       text-decoration: underline;
     }
     h4 {

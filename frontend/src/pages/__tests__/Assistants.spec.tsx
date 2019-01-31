@@ -20,7 +20,7 @@ afterEach(cleanup);
 
 // modified these tests to use mock data
 describe('Houses dashboard', () => {
-  test('should render an assistant card for every assistant received through axios call', async () => {
+  test.skip('should render an assistant card for every assistant received through axios call', async () => {
     const { getAllByTestId } = renderWithRouter(<Assistants />, {});
 
     const assistantCards = await waitForElement(() =>
@@ -31,7 +31,7 @@ describe('Houses dashboard', () => {
     });
   });
 
-  test('should include 1 button for every assistant card,', async () => {
+  test.skip('should include 1 button for every assistant card,', async () => {
     const { getAllByTestId, rerender } = renderWithRouter(<Assistants />, {});
 
     const buttons = await waitForElement(() =>

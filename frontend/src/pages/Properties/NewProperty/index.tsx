@@ -54,6 +54,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
     status,
     touched,
     values,
+    urls,
     Uppy,
     assistants,
   } = formProps;
@@ -88,6 +89,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <div className='property-photo'>
         <Uppy type='photo_url' text='Upload a Photo!' />
+        {/* {urls.photo_url ? <p>{urls.photo_url}</p> : null} */}
       </div>
 
       <div className='property-prices'>
@@ -270,6 +272,7 @@ const NewProperty = (props: RouteComponentProps) => {
             {...formProps}
             Uppy={urlFileUpload}
             assistants={assistants}
+            urls={urls}
             goBack={goBack}
           />
         );

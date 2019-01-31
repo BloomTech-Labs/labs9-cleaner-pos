@@ -25,6 +25,7 @@ ${clientId}&scope=read_write`;
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const [user, error, loading] = useFetch(`${url}/users`);
   const [show, setShow] = useState(false);
+  const [paymentError, setPaymentError] = useState({ err: false, message: '' });
 
   useEffect(() => {
     const { search } = props.location;
@@ -93,14 +94,16 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
                       <p>
                         Address:{' '}
                         {user.address
-                          .split('\n')
-                          .map((e: string, i: number) => {
-                            return (
-                              <span style={{ marginRight: '5px' }} key={i}>
-                                {e}
-                              </span>
-                            );
-                          })}
+                          ? user.address
+                              .split('\n')
+                              .map((e: string, i: number) => {
+                                return (
+                                  <span style={{ marginRight: '5px' }} key={i}>
+                                    {e}
+                                  </span>
+                                );
+                              })
+                          : null}
                       </p>
                     </>
                   ) : null}

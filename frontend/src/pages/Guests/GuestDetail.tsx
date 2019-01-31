@@ -1,21 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // Types
 import { RouteComponentProps } from 'react-router';
-import { GuestProps } from './types';
+import { IncomingGuestProps, GuestProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
 import { Checklist } from './Checklist';
 import { AstDropdown } from './AstDropdown';
+import { FileUploadHOF } from '../../components/FileUpload';
 import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
 import { GuestDetailStyle } from './GuestDetail.styling';
+import { MainText, SecondaryText } from './Guests.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
-import { useFetch } from '../../helpers/';
+import { axiosFetch, useFetch } from '../../helpers/';
 import { Link } from 'react-router-dom';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
+import loadingIndicator from '../utils/loading.svg';
+
+const GuestDetail = (props: RouteComponentProps) => {
+  // @ts-ignore
+  const id = props.match.params.id;
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+  const [fetch, setFetch] = useState(false);
+
+  const [stay, error, loading] = useFetch(`${url}/stays/${id}`, fetch);
+
+  const guideUpload = FileUploadHOF(
+    async (uploadedUrl: string, type?: string) => {
+      const { house_id } = stay;
+
+      const body = type ? { [type]: uploadedUrl } : {};
+
+      await axiosFetch('put', `${url}/houses/${house_id}`, body).catch(
+        (e: any) => {
+          console.error(e);
+        },
+      );
+
+      setFetch((prev) => !prev);
+    },
+  );
+
+  const goBack = () => props.history.push('/guests');
+
+  return (
+    <>
+      {stay ? (
+        <GuestDetailView
+          {...stay}
+          Uppy={guideUpload}
+          goBack={goBack}
+          errors={error}
+        />
+      ) : (
+        <img
+          style={{ margin: 'auto' }}
+          src={loadingIndicator}
+          alt='animated loading indicator'
+        />
+      )}
+    </>
+  );
+};
 
 export const GuestDetailView = ({
   stay_id,
@@ -29,6 +80,8 @@ export const GuestDetailView = ({
   check_in,
   check_out,
   errors,
+  Uppy,
+  goBack,
 }: GuestProps) => {
   return (
     <GuestDetailStyle>
@@ -56,8 +109,9 @@ export const GuestDetailView = ({
           <Button
             className='back'
             text='Go Back ↩'
-            colour='var(--colour-accent)'
+            color='var(--color-accent)'
             datatestid='button-back'
+            onClick={goBack}
           />
         </div>
       </div>
@@ -90,38 +144,38 @@ export const GuestDetailView = ({
               </div>
               <div className='guest-info--resources-bottom'>
                 <AstDropdown className='left' houseId={house_id} />
-                <div className='right'>
-                  {ast_guide ? (
-                    <div className='ast-guide'>
-                      <a href={ast_guide} target='_blank'>
-                        <i className='fas fa-file' />
-                      </a>
-                      <br />
-                      <label>Assistant Guide</label>
-                    </div>
-                  ) : (
-                    <div className='ast-guide'>
-                      <i className='fas fa-question' />
-                      <br />
-                      <label>No Assistant Guide</label>
-                    </div>
-                  )}
-                  {guest_guide ? (
-                    <div className='guest-guide'>
-                      <a href={guest_guide} target='_blank'>
-                        <i className='fas fa-file' />
-                      </a>
-                      <br />
-                      <label>Guest Guide</label>
-                    </div>
-                  ) : (
-                    <div className='guest-guide'>
-                      <i className='fas fa-question' />
-                      <br />
-                      <label>No Guest Guide</label>
-                    </div>
-                  )}
-                </div>
+                {ast_guide ? (
+                  <div className='guide'>
+                    <a href={ast_guide} target='_blank'>
+                      <i className='fas fa-file' />
+                    </a>
+                    <br />
+                    <label>Assistant Guide</label>
+                  </div>
+                ) : (
+                  <div className='guide'>
+                    {/* <i className='fas fa-question' /> */}
+                    <Uppy type='ast_guide' text='Upload' />
+                    <br />
+                    <label>No Assistant Guide</label>
+                  </div>
+                )}
+                {guest_guide ? (
+                  <div className='guide'>
+                    <a href={guest_guide} target='_blank'>
+                      <i className='fas fa-file' />
+                    </a>
+                    <br />
+                    <label>Guest Guide</label>
+                  </div>
+                ) : (
+                  <div className='guide'>
+                    {/* <i className='fas fa-question' /> */}
+                    <Uppy type='guest_guide' text='Upload' />
+                    <br />
+                    <label>No Guest Guide</label>
+                  </div>
+                )}
               </div>
             </div>
             <div className='guest-info--checkout'>
@@ -131,12 +185,14 @@ export const GuestDetailView = ({
                 </div>
               </div>
               <div className='guest-info--checkout-bottom'>
-                <div className='buttons'>
-                  <Button className='button-invoice' text='Invoice' />
-                  <Link to={`/checkout/${stay_id}`}>
-                    <Button className='button-checkout' text='Checkout' />
-                  </Link>
+                <div className='stay-code'>
+                  <MainText>47CLY</MainText>
+                  <div style={{ margin: 'auto' }}>Guest Login Code</div>
                 </div>
+                <Button className='button-invoice' text='Invoice' />
+                <Link className='link-checkout' to={`/checkout/${stay_id}`}>
+                  <Button className='button-checkout' text='Checkout' />
+                </Link>
               </div>
             </div>
           </div>
@@ -144,17 +200,6 @@ export const GuestDetailView = ({
       </div>
     </GuestDetailStyle>
   );
-};
-
-const GuestDetail = (props: RouteComponentProps) => {
-  // @ts-ignore
-  const id = props.match.params.id;
-  const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-
-  const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
-
-  return <>{stay ? <GuestDetailView {...stay} errors={error} /> : null}</>;
 };
 
 export default GuestDetail;
