@@ -7,6 +7,23 @@ const PropContainer = styled('div')`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .properties-header {
+    /* Box Model */
+    width: 100%;
+    /* Flex */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  @media only screen and (max-width: 500px) {
+    .properties-header {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+    }
+  }
 `;
 
 const HouseItem = styled('div')`
@@ -18,7 +35,7 @@ const HouseItem = styled('div')`
   margin-top: 24px;
   display: flex;
   text-align: left;
-  border: 0.5px solid black;
+  border: var(--border);
   background-color: white;
   @media only screen and (max-width: 900px) {
     flex-direction: column;
@@ -94,9 +111,7 @@ const CheckList = styled('div')`
   padding: 0 15px;
   text-align: center;
   height: 100px;
-  -moz-box-shadow: 0 0 3px #000;
-  -webkit-box-shadow: 0 0 3px #000;
-  box-shadow: 0 0 3px #000;
+  border: var(--border);
   font-size: 24px;
   font-weight: light;
   display: flex;
@@ -119,10 +134,12 @@ const Assistant = styled('div')`
 `;
 
 const HouseHeader = styled('span')`
-  font-size: 36px;
-  margin: 20px;
+  font-size: 2rem;
   text-align: left;
   max-width: 290px;
+  @media only screen and (max-width: 500px) {
+    margin-bottom: 0.5rem;
+  }
   @media only screen and (max-width: 900px) {
     text-align: center;
   }
