@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 // text is different
 // data-testid
 
-interface SpecialButtonProps {
+interface SpecialButton2Props {
   onClick?: (ev: React.FormEvent) => Promise<any> | void;
   text?: string;
   datatestid?: string;
@@ -15,24 +15,24 @@ interface SpecialButtonProps {
   disabled?: boolean;
 }
 
-const SpecialButton = ({
+const SpecialButton2 = ({
   onClick,
   text,
   datatestid,
   color,
   className,
   disabled,
-}: SpecialButtonProps) => {
+}: SpecialButton2Props) => {
   const buttonColor = color;
-  const StyledButton = styled('button')`
+  const StyledButton2 = styled('button')`
     width: 50px;
     height: 50px;
-		border: none;
-		background-color: #eeeff5;
+    border: none;
+    background-color: #eeeff5;
   `;
   return (
     <>
-      <StyledButton
+      <StyledButton2
         onClick={onClick}
         type='button'
         data-testid={datatestid}
@@ -40,7 +40,7 @@ const SpecialButton = ({
         disabled={disabled}
       >
         {text}
-      </StyledButton>
+      </StyledButton2>
     </>
   );
 };

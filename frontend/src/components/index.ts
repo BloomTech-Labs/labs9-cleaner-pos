@@ -1,6 +1,6 @@
 import Button from './Button';
 import SpecialButton from './SpecialButton';
-import SpecialButton from './SpecialButton2';
+import SpecialButton2 from './SpecialButton2';
 import Container from './Container';
 import Sidebar from './Sidebar/Sidebar';
 import FileUpload from './FileUpload';
