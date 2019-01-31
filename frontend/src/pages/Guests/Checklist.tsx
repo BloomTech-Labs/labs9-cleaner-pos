@@ -35,7 +35,10 @@ const ChecklistView = (props: {
   }) => {
     const { task, complete, items_id } = itemProps;
     return (
-      <div key={items_id}>
+      <div
+        className='list-checkbox pretty p-default p-round p-smooth'
+        key={items_id}
+      >
         <input
           type='checkbox'
           name={task}
@@ -43,9 +46,11 @@ const ChecklistView = (props: {
           readOnly
           data-testid={'checkbox'}
         />
-        <label htmlFor={task} onClick={() => 'hello'}>
-          {task}
-        </label>
+        <div className='state p-primary-o'>
+          <label htmlFor={task} onClick={() => 'hello'}>
+            {task}
+          </label>
+        </div>
       </div>
     );
   };
@@ -71,7 +76,11 @@ const ChecklistView = (props: {
     lists.after.map((obj, i) => {
       for (const list in obj) {
         if (obj.hasOwnProperty(list)) {
-          buffer.push(<div key={list}>{list}</div>);
+          buffer.push(
+            <div className='sublist' key={list}>
+              {`${list[0].toLocaleUpperCase()}${list.substring(1)}`}
+            </div>,
+          );
           obj[list].forEach((item) => {
             buffer.push(<CheckItem key={item.items_id} {...item} />);
           });
@@ -85,33 +94,32 @@ const ChecklistView = (props: {
 
   return (
     <div className={props.className || ''}>
-      <div className='top'>
-        <div className='guests-buttons-filter'>
-          <Button
-            className={`button-filter before ${activeClass('before')}`}
-            text='Before'
-            colour='var(--colour-accent)'
-            onClick={() => setListFilter('before')}
-            datatestid='button-before'
-          />
-          <Button
-            className={`button-filter during ${activeClass('during')}`}
-            text='During'
-            colour='var(--colour-accent)'
-            onClick={() => setListFilter('during')}
-            datatestid='button-during'
-          />
-          <Button
-            className={`button-filter after ${activeClass('after')}`}
-            text='After'
-            colour='var(--colour-accent)'
-            onClick={() => setListFilter('after')}
-            datatestid='button-after'
-          />
-        </div>
-        <div className='top-left'>{listFilter} Checklist</div>
-        <div className='top-right'>{percentage}%</div>
-        <br />
+      <div className='guests-buttons-filter'>
+        <Button
+          className={`button-filter before ${activeClass('before')}`}
+          text='Before'
+          color='var(--color-accent)'
+          onClick={() => setListFilter('before')}
+          datatestid='button-before'
+        />
+        <Button
+          className={`button-filter during ${activeClass('during')}`}
+          text='During'
+          color='var(--color-accent)'
+          onClick={() => setListFilter('during')}
+          datatestid='button-during'
+        />
+        <Button
+          className={`button-filter after ${activeClass('after')}`}
+          text='After'
+          color='var(--color-accent)'
+          onClick={() => setListFilter('after')}
+          datatestid='button-after'
+        />
+      </div>
+      <br />
+      <div className='progress-no'>
+        Completion Progress: <span>{percentage}%</span>
       </div>
       {listFilter === 'before' || listFilter === 'during'
         ? lists[listFilter].map((item) => (

@@ -61,12 +61,13 @@ const CardHeading = styled('div')`
     margin-block-end: 0;
   }
   @media only screen and (max-width: 900px) {
- 		h4 {
-			text-align: center;
-		}
-		p {
-			text-align: center;
-		}
+    h4 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+  }
 `;
 const CardContent = styled('div')`
   padding: 0 15px;
@@ -74,8 +75,9 @@ const CardContent = styled('div')`
   flex-direction: column;
   width: 100%;
   @media only screen and (max-width: 600px) {
-	justify-content: center;
-	align-items: center;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const CardBody = styled('div')`
@@ -107,7 +109,7 @@ const CheckList = styled('div')`
   }
 `;
 
-const Cleaner = styled('div')`
+const Assistant = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,6 +138,6 @@ export {
   CardContent,
   ButtonContainer,
   CardHeading,
-  Cleaner,
+  Assistant,
   CheckList,
 };

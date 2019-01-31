@@ -7,6 +7,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 1,
     manager: 1,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 2',
@@ -16,6 +18,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 3,
     manager: 1,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 3',
@@ -25,6 +29,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 5,
     manager: 1,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 4',
@@ -34,6 +40,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 7,
     manager: 4,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 5',
@@ -43,6 +51,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 7,
     manager: 4,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 6',
@@ -52,6 +62,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 8,
     manager: 4,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 7',
@@ -61,6 +73,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 9,
     manager: 5,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 8',
@@ -70,6 +84,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 10,
     manager: 5,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 9',
@@ -79,6 +95,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 10,
     manager: 5,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 10',
@@ -88,6 +106,8 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 11,
     manager: 6,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 11',
@@ -97,6 +117,8 @@ module.exports = [
     extra_guest_fee: 5,
     default_ast: 11,
     manager: 6,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
   {
     name: 'house name 12',
@@ -106,5 +128,7 @@ module.exports = [
     extra_guest_fee: 30,
     default_ast: 12,
     manager: 6,
+    photo_url:
+      'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
   },
 ];

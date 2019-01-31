@@ -26,6 +26,7 @@ const Container = styled('div')`
 
   .menu {
     height: 100%;
+    margin-top: 2rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
