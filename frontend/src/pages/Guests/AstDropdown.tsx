@@ -27,7 +27,7 @@ const AstDropdownView = (props: {
   // Good working code
   return (
     <div className='ast-dropdown'>
-      Reassign Cleaner
+      Reassign Assistant
       <br />
       <select data-testid='assistant-select' onChange={(event) => event}>
         <option defaultValue={house.default_ast_name}>
