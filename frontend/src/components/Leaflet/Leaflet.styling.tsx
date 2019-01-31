@@ -4,12 +4,12 @@ import styled from '@emotion/styled';
 
 const MapDiv = styled('div')`
     .container-map {
-        height: 500px;
-        width: 500px;
+        height: 1000px;
+        /* width: 1000px; */
     }
     .leaflet-container {
-        height: 400px;
-        width: 400px;
+        height: 800px;
+        width: 700px;
     }
 `;
 
