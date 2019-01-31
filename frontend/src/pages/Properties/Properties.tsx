@@ -50,10 +50,12 @@ const Properties = () => {
   return (
     <Container>
       <PropContainer>
-        <HouseHeader>Recent Properties</HouseHeader>
-        <Link to='/properties/new'>
-          <Button text='New Property' />
-        </Link>
+        <div className='properties-header'>
+          <HouseHeader>Recent Properties</HouseHeader>
+          <Link to='/properties/new'>
+            <Button text='New Property' />
+          </Link>
+        </div>
         {loading ? (
           <img src={loadingIndicator} alt='animated loading indicator' />
         ) : null}

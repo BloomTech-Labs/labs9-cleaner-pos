@@ -122,7 +122,6 @@ const HouseHeader = styled('span')`
   font-size: 36px;
   margin: 20px;
   text-align: left;
-  border-bottom: 1px solid #b8003f;
   max-width: 290px;
   @media only screen and (max-width: 900px) {
     text-align: center;
