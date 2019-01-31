@@ -40,7 +40,10 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       {/* !TODO: Build accordion component */}
       <input type='radio' name='plan' />Baseplan: 9.99$ / house / month
       <br />
+      <br />
       <input type='radio' name='plan' />Advanced: 50$ / month
+      <br />
+      <br />
       <form
         onSubmit={handleSubmit}
         style={{ maxWidth: '350px', margin: 'auto' }}

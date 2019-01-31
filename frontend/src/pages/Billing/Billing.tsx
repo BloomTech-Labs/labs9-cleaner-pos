@@ -31,8 +31,8 @@ const Billing = () => {
         </Accordion>
       </SubBox>
       <Confirmation>
-        <h3>Confirmation:</h3>
-        {confirm.confirm && <h3>You have successfully subscribed, thank you!</h3>}
+        <h3>Confirmation: </h3>
+        {confirm.confirm && <h3> You have successfully subscribed, thank you!</h3>}
       </Confirmation>
     </Container>
   );

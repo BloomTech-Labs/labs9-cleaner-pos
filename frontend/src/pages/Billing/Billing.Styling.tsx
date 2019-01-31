@@ -12,6 +12,10 @@ const AccUL = styled('ul')`
 `;
 
 const Confirmation = styled('div')`
+	display: flex;
+	flex-direction: column;
+	float: left;
+	padding-left: 1rem;
 	border: 1px solid black;
 	background: white;
 `;
