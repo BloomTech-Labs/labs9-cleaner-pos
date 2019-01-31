@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 const SubBox = styled('div')`
 	border: 1px solid black;
+	background: white;
 	padding: 20px;
 `;
 
@@ -11,8 +12,12 @@ const AccUL = styled('ul')`
 `;
 
 const Confirmation = styled('div')`
+	display: flex;
+	flex-direction: column;
+	float: left;
+	padding-left: 1rem;
 	border: 1px solid black;
-	padding: 20px;
+	background: white;
 `;
 
 const ConfUL = styled('ul')`
@@ -21,9 +26,16 @@ const ConfUL = styled('ul')`
 	text-align: left;
 `;
 
+const Header = styled('h2')`
+	font-family: Roboto;
+	font-weight: bold;
+	font-size: 150%;
+`;
+
 export {
 SubBox,
 AccUL,
 Confirmation,
 ConfUL,
+Header,
 };
