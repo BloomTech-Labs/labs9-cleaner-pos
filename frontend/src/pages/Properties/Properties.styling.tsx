@@ -42,10 +42,14 @@ const HouseItem = styled('div')`
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     flex: 1;
-    width: 70%;
+    width: 85%;
     justify-content: center;
     align-items: center;
-    padding: 10px 0 10px 0;
+    padding: 0;
+  }
+
+  @media only screen and (max-width: 625px) {
+    width: 95%;
   }
 `;
 
@@ -56,25 +60,34 @@ const ButtonContainer = styled('div')`
   justify-content: space-around;
   align-items: center;
 
-  button {
+  .property-button {
     width: ${pxToRem(166)};
     font-size: 1.25rem;
     padding: 0.25rem 1rem;
   }
   @media only screen and (max-width: ${bp}) {
-    padding: 10px 0 10px 0;
+    /* padding: 10px 0 10px 0; */
+    grid-row: 2;
+    grid-column: span 2;
+    margin: 0 auto 2rem auto;
+
+    .property-button {
+      width: 50vw;
+      max-width: ${bp};
+    }
   }
 `;
 
 const ThumbNail = styled('img')`
   object-fit: cover;
-  width: 37%;
+  width: 35%;
   height: ${pxToRem(cardHeight - 1)};
-  margin-right: 1rem;
+  margin-right: 2rem;
 
   @media only screen and (max-width: ${bp}) {
-    width: ${cardHeight - 1}px;
-    height: ${cardHeight - 1}px;
+    margin: 0;
+    width: 100%;
+    height: 6rem;
   }
 `;
 
@@ -97,22 +110,25 @@ const CardHeading = styled('div')`
   }
 
   @media only screen and (max-width: ${bp}) {
+    grid-column: span 2;
+    grid-row: 1;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
     h4 {
-      text-align: center;
+      text-align: left;
     }
     p {
-      text-align: center;
+      text-align: left;
     }
   }
 `;
 const CardContent = styled('div')`
-  padding: 0 15px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    align-items: center;
+  @media only screen and (max-width: ${bp}) {
+    justify-content: space-around;
+    align-items: flex-start;
   }
 `;
 
@@ -121,8 +137,15 @@ const CardBody = styled('div')`
   justify-content: space-between;
   align-items: center;
   @media only screen and (max-width: ${bp}) {
-    flex-direction: column;
-    flex: 1;
+    /* flex-direction: column;
+    flex: 1; */
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+    grid-gap: 1.5rem;
+    justify-items: center;
   }
 `;
 
@@ -143,6 +166,13 @@ const CheckList = styled('div')`
     font-size: 1rem;
     font-weight: light;
   }
+
+  @media only screen and (max-width: ${bp}) {
+    padding: 0.75rem;
+    margin: 0;
+    grid-column: 1;
+    grid-row: 1;
+  }
 `;
 
 const Assistant = styled('div')`
@@ -153,6 +183,8 @@ const Assistant = styled('div')`
   justify-content: center;
   @media only screen and (max-width: ${bp}) {
     padding: 20px 0 20px 0;
+    grid-row: 1;
+    grid-column: 2;
   }
 `;
 

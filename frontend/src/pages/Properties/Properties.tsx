@@ -89,12 +89,14 @@ const Properties = () => {
                           }}
                         >
                           <Button
+                            className='property-button'
                             text='Edit Checklists'
                             datatestid='house-button'
                           />
                         </Link>
                         <Link to={`/houses/${house.id}#resources`}>
                           <Button
+                            className='property-button'
                             text='Edit Resources'
                             datatestid='house-button'
                           />
