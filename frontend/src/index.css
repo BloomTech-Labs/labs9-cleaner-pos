@@ -1,26 +1,26 @@
 :root {
-  /* General Colours */
-  --colour-main-black: #393534;
-  --colour-main-background: #eeeff5;
-  --colour-accent: #4593b6;
-  --colour-accent-background: white;
-  --colour-border: rgba(22, 21, 20, 0.12);
+  /* General Colors */
+  --color-main-black: #393534;
+  --color-main-background: #eeeff5;
+  --color-accent: #4593b6;
+  --color-accent-background: white;
+  --color-border: rgba(22, 21, 20, 0.12);
   /* Buttons */
-  --colour-button-text: #eeeff5;
-  --colour-button-background: #4593b6;
-  --colour-button-text-alt: #4593b6;
-  --colour-button-background-alt: #eeeff5;
-  --colour-button-background-action: #0aa047;
-  --colour-button-text-action: white;
+  --color-button-text: #eeeff5;
+  --color-button-background: #4593b6;
+  --color-button-text-alt: #4593b6;
+  --color-button-background-alt: #eeeff5;
+  --color-button-background-action: #0aa047;
+  --color-button-text-action: white;
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
   --header-font-size-secondary: 1.25rem;
   /* Text Colors */
-  --colour-text-dark: #393534;
-  --colour-text-light: #eeeff5;
-  --colour-text-accent: #4593b6;
+  --color-text-dark: #393534;
+  --color-text-light: #eeeff5;
+  --color-text-accent: #4593b6;
   /* Border */
-  --border: 1px solid var(--colour-border);
+  --border: 1px solid var(--color-border);
 }
 
 body {
@@ -28,13 +28,13 @@ body {
   width: 100%;
   margin: auto;
   padding: 0;
-  background-color: var(--colour-main-background);
+  background-color: var(--color-main-background);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--colour-main-background);
+  background: var(--color-main-background);
 }
 
 code {

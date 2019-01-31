@@ -98,21 +98,21 @@ const ChecklistView = (props: {
         <Button
           className={`button-filter before ${activeClass('before')}`}
           text='Before'
-          colour='var(--colour-accent)'
+          color='var(--color-accent)'
           onClick={() => setListFilter('before')}
           datatestid='button-before'
         />
         <Button
           className={`button-filter during ${activeClass('during')}`}
           text='During'
-          colour='var(--colour-accent)'
+          color='var(--color-accent)'
           onClick={() => setListFilter('during')}
           datatestid='button-during'
         />
         <Button
           className={`button-filter after ${activeClass('after')}`}
           text='After'
-          colour='var(--colour-accent)'
+          color='var(--color-accent)'
           onClick={() => setListFilter('after')}
           datatestid='button-after'
         />
