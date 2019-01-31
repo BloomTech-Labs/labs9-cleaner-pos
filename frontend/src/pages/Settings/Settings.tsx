@@ -14,6 +14,7 @@ import {
 } from './Settings.styling';
 import { RouteComponentProps } from 'react-router';
 import loadingIndicator from '../utils/loading.svg';
+import defaultUser from '../../assets/default-user.jpg';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -80,12 +81,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
                     <img src={loadingIndicator} alt='animated loader' />
                   ) : null}
                   {user ? (
-                    <ThumbNail
-                      src={
-                        user.photoUrl ||
-                        'https://avatars0.githubusercontent.com/u/37676385?s=460&v=4'
-                      }
-                    />
+                    <ThumbNail src={user.photoUrl || defaultUser} />
                   ) : null}
                   {user ? (
                     <>
