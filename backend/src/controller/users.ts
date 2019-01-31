@@ -147,12 +147,9 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
       }
       if (user.role === 'manager') {
         const man = await getMan(user.id);
-        console.log(man);
         user.stripPlan = man.strip_sub_plan;
-        user.stripCust = man.strip_cust;
       }
       const token = await jwt.sign(user, JWT_SECRET || '');
-      console.log(user);
       res.status(200).json({
         id: user.id,
         role: user.role,
