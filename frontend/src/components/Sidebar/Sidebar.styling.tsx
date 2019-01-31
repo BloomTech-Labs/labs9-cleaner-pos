@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
+import { Button } from '../index';
+
 const bp = '700px';
 
 const Container = styled('div')`
@@ -104,4 +106,7 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink };
+const SubButton = styled(Button)`
+`;
+
+export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink, SubButton };

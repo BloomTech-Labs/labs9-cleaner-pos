@@ -15,6 +15,7 @@ import {
   SettingsWrapper,
   StyledUL,
   StyledLink,
+	SubButton,
 } from './Sidebar.styling';
 import { ContentTextFormat } from 'material-ui/svg-icons';
 
@@ -106,6 +107,12 @@ const Sidebar = (props: LinkProps) => {
           </StyledUL>
         </NavWrapper>
         <SettingsWrapper>
+					<Link to='/billing'>
+						<SubButton
+							type='button'
+							text='Subscribe'
+						/>
+          </Link>
           <StyledLink to='/settings'>
             <i className='fas fa-cog' />
           </StyledLink>
