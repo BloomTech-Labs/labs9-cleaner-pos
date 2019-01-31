@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import {
   ReactStripeElements,
   injectStripe,
@@ -8,12 +8,14 @@ import { UserContext } from '../../App';
 import { PaymentContext } from './Checkout';
 import { Button } from '../../components/index';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { string } from 'prop-types';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const CheckoutForm = (props: any) => {
   const { sum } = useContext(PaymentContext);
+  const [error, setError] = useState<any>(null);
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -37,9 +39,13 @@ const CheckoutForm = (props: any) => {
           body,
           headers,
         );
-        console.log(data);
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          setError({
+            error: true,
+            message: e.response.data.message,
+          });
+        }
       }
     }
     triggerPayment();
@@ -47,7 +53,7 @@ const CheckoutForm = (props: any) => {
 
   return (
     <div>
-      {/* !TODO: Build accordion component */}
+      {error && error.error ? <p>{error.message}</p> : null}
       <p>Pay Total</p>
       <form
         onSubmit={handleSubmit}

@@ -7,15 +7,15 @@ import express, {
 } from 'express';
 
 export const errorHandler = (
-  err: ErrorRequestHandler,
+  err: any,
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   // Make errorHandler a little more quiet during tests
-  if (process.env.NODE_ENV !== 'test') {
-    console.error('Error', err);
-  }
+  // if (process.env.NODE_ENV !== 'test') {
+  //   console.error('Error', err);
+  // }
   // @ts-ignore
   switch (err.statusCode) {
     case 404:
@@ -24,8 +24,10 @@ export const errorHandler = (
       });
       break;
     case 401:
+      err.message =
+        'Please connect your stripe account before processing payments!';
       res.status(401).json({
-        message:
+        blablbab:
           'Please connect your stripe account before processing payments!',
       });
       break;
