@@ -40,22 +40,21 @@ const App = () => {
         <Sidebar />
         <Switch>
           <Route exact path='/' component={LandingPage} />
-          <Route path='/Login' component={Login} />
-          <Route exact path='/checkout/:id' component={Checkout} />
-          <Route exact path='/test' component={Billing} />
-          <Route path='/billing' component={Billing} />
-          <Route exact path='/postreg' component={PostRegister} />
-          <Route exact path='/properties' component={Properties} />
-          <Route exact path='/properties/new' component={NewProperty} />
-          <Route exact path='/properties/:id' component={PropertyDetails} />
-          <Route exact path='/settings' component={Settings} />
-          <Route exact path='/updateinfo' component={PostRegister} />
           <Route exact path='/assistants' component={Assistants} />
           <Route exact path='/assistants/:id' component={AssistantDetails} />
+          <Route exact path='/billing' component={Billing} />
+          <Route exact path='/checkout/:id' component={Checkout} />
           <Route exact path='/guests' component={Guests} />
-          <Route exact path='/guests/new' component={NewGuest} />
           <Route exact path='/guests/:id' component={GuestDetail} />
+          <Route exact path='/guests/new' component={NewGuest} />
           <Route exact path='/invite' component={InviteAst} />
+          <Route exact path='/Login' component={Login} />
+          <Route exact path='/postreg' component={PostRegister} />
+          <Route exact path='/properties' component={Properties} />
+          <Route exact path='/properties/:id' component={PropertyDetails} />
+          <Route exact path='/properties/new' component={NewProperty} />
+          <Route exact path='/settings' component={Settings} />
+          <Route exact path='/test' component={Billing} />
         </Switch>
       </UserContext.Provider>
     </div>

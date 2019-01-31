@@ -67,8 +67,11 @@ export const GuestsDiv = styled(Container)`
   }
 
   .guests-cards {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin: auto;
+    min-height: 100px;
+    width: 100%;
   }
 
   .guests-buttons-filter .button-filter {
