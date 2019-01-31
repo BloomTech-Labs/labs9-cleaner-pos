@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
-const cardHeight = 216;
+const cardHeight = 168;
+const pxToRem = (px: number): string => `${px / 16}rem`;
 
 const PropContainer = styled('div')`
   display: flex;
@@ -48,10 +49,17 @@ const HouseItem = styled('div')`
 `;
 
 const ButtonContainer = styled('div')`
-  height: 124px;
+  height: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+
+  button {
+    width: ${pxToRem(166)};
+    font-size: 1.25rem;
+    padding: 0.25rem 1rem;
+  }
   @media only screen and (max-width: 900px) {
     padding: 10px 0 10px 0;
   }
@@ -64,16 +72,17 @@ const ThumbNail = styled('img')`
 
 const CardHeading = styled('div')`
   margin-top: 12px;
-  height: 76px;
+
   h4 {
     margin: 0;
+    color: var(--color-text-accent);
     font-family: Roboto;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.5rem;
   }
   p {
     font-weight: light;
-    font-size: 16px;
+    font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
   }
@@ -99,7 +108,7 @@ const CardContent = styled('div')`
 
 const CardBody = styled('div')`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   @media only screen and (max-width: 900px) {
     flex-direction: column;
@@ -108,19 +117,21 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-  padding: 0 15px;
+  background-color: var(--color-main-background);
+  padding: 0.5rem 1rem;
   text-align: center;
-  height: 100px;
   border: var(--border);
-  font-size: 24px;
-  font-weight: light;
+  font-size: 1.5rem;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   p {
     margin: 0;
-    font-weight: bold;
+    color: var(--color-text-accent);
+    font-size: 1rem;
+    font-weight: light;
   }
 `;
 
