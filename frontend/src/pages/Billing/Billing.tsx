@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Stripe from './index';
 import { Container } from '../../components/index';
 import Accordion from '../../components/Accordion';
 import { SubBox, AccUL, Confirmation, ConfUL, Header } from './Billing.Styling';
 
+export const BillingContext = React.createContext({
+  setConfirm: null as any,
+});
+
 const Billing = () => {
+  const [confirm, setConfirm] = useState<any>({});
+  console.log(confirm);
   return (
     <Container>
       <Header>Billing</Header>
@@ -17,13 +23,16 @@ const Billing = () => {
         >
           <AccUL>
             <li>
-              <Stripe />
+              <BillingContext.Provider value={{setConfirm}}>
+                <Stripe />
+              </BillingContext.Provider>
             </li>
           </AccUL>
         </Accordion>
       </SubBox>
       <Confirmation>
         <h3>Confirmation:</h3>
+        {confirm.confirm && confirm.confirm.message}
       </Confirmation>
     </Container>
   );

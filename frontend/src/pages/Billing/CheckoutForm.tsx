@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useContext } from 'react';
 import {
   ReactStripeElements,
   injectStripe,
@@ -6,6 +6,7 @@ import {
 } from 'react-stripe-elements';
 import { Button } from '../../components/index';
 import axios, { AxiosRequestConfig } from 'axios';
+import { BillingContext } from './Billing';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -15,6 +16,7 @@ const headers: AxiosRequestConfig = {
 };
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
+  const { setConfirm } = useContext(BillingContext);
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -25,6 +27,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       const { token } = await props.stripe.createToken({});
       const response = await axios.post(`${url}/payments`, token, headers);
       console.log(response.data);
+      setConfirm({confirm: response.data});
     } catch (e) {
       console.log(e);
       return e;
