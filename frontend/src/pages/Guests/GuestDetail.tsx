@@ -162,10 +162,7 @@ export const GuestDetailView = ({
                 {ast_guide ? (
                   <div className='guide'>
                     <a href={ast_guide} target='_blank'>
-                      <i
-                        style={{ fontSize: '2.5rem' }}
-                        className='fas fa-file'
-                      />
+                      <i className='fas fa-file' />
                     </a>
                     <br />
                     <label>Assistant Guide</label>
@@ -181,10 +178,7 @@ export const GuestDetailView = ({
                 {guest_guide ? (
                   <div className='guide'>
                     <a href={guest_guide} target='_blank'>
-                      <i
-                        style={{ fontSize: '2.5rem' }}
-                        className='fas fa-file'
-                      />
+                      <i className='fas fa-file' />
                     </a>
                     <br />
                     <label>Guest Guide</label>

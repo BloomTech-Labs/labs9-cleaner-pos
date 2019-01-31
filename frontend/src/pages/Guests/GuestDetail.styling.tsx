@@ -215,6 +215,11 @@ export const GuestDetailStyle = styled('div')`
     text-align: center;
   }
 
+  .guide .fa-file {
+    font-size: 2.5rem;
+    color: var(--color-text-accent);
+  }
+
   /* Grid for Checkout and Invoice */
   .stay-code {
     border: var(--border);
