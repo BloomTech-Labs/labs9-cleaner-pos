@@ -1,20 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
-import { Link } from 'react-router-dom';
 import { PostRegister } from '../../pages/';
 import { useFetch } from '../../helpers';
 import { Container, Button } from '../../components/';
-import { Card, Positioner, Header } from './Settings.styling';
+import {
+  Card,
+  Header,
+  LeftContainer,
+  Positioner,
+  RightContainer,
+  ThumbNail,
+  UserCard,
+} from './Settings.styling';
 import { RouteComponentProps } from 'react-router';
-import img from '../utils/loading.svg';
+import loadingIndicator from '../utils/loading.svg';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
+const clientId = process.env.REACT_APP_clientid;
+const stripeOauthUrl = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=
+${clientId}&scope=read_write`;
+
 const Settings: React.SFC<RouteComponentProps> = (props) => {
-  const clientId = process.env.REACT_APP_clientid;
   const [user, error, loading] = useFetch(`${url}/users`);
-  console.log(user);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const { search } = props.location;
@@ -36,32 +46,68 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
     }
   }, []);
 
+  const userProps = { ...props, ...user };
   return (
     <Container>
       <Header>
         <h2>Account Settings</h2>
         <Card>
-          {loading ? (
-            <img src={img} alt='animated loader' />
-          ) : (
-            <>
-              <Positioner>
-                <h3>{user ? user.full_name : null}</h3>
-                <p>Connect your stripe account:</p>
-
-                <a
-                  /* tslint:disable-next-line */
-                  href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${clientId}&scope=read_write`}
-                >
-                  <Button text='Connect' />
-                </a>
-              </Positioner>
-              <Positioner>
+          {error.msg ? (
+            <div>Something went wrong! Please refresh this page</div>
+          ) : null}
+          <LeftContainer>
+            <Positioner>
+              <p>Connect your stripe account:</p>
+              <a href={stripeOauthUrl}>
+                <Button className='fancy-button' text='Connect' />
+              </a>
+            </Positioner>
+            <Positioner>
+              <>
                 <p>Update your profile:</p>
-                <Button text='Update' />
-              </Positioner>
-            </>
-          )}
+                <Button text='Update' onClick={() => setShow(!show)} />
+              </>
+            </Positioner>
+          </LeftContainer>
+          <RightContainer>
+            {show ? (
+              <PostRegister {...userProps} setShow={setShow} />
+            ) : (
+              <>
+                <UserCard>
+                  {loading ? (
+                    <img src={loadingIndicator} alt='animated loader' />
+                  ) : null}
+                  {user ? (
+                    <ThumbNail
+                      src={
+                        user.photoUrl ||
+                        'https://avatars0.githubusercontent.com/u/37676385?s=460&v=4'
+                      }
+                    />
+                  ) : null}
+                  {user ? (
+                    <>
+                      <h3>{user ? user.full_name : null}</h3>
+                      <p>Email: {user.email}</p>
+                      <p>
+                        Address:{' '}
+                        {user.address
+                          .split('\n')
+                          .map((e: string, i: number) => {
+                            return (
+                              <span style={{ marginRight: '5px' }} key={i}>
+                                {e}
+                              </span>
+                            );
+                          })}
+                      </p>
+                    </>
+                  ) : null}
+                </UserCard>
+              </>
+            )}
+          </RightContainer>
         </Card>
       </Header>
     </Container>

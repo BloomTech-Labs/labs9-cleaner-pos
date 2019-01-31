@@ -12,13 +12,14 @@ import {
   PropertyButtons,
   Header,
   AfterListDiv,
+  AfterStay,
   WhiteButton,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { useFetch } from '../../helpers';
-import { Lists } from './types';
+import { Lists, List } from './types';
 import loadingIndicator from '../utils/loading.svg';
 
 // TODO: fix types
@@ -43,14 +44,15 @@ const PropertyDetails = (props: any) => {
     try {
       const res = await axios.get(`${url}/lists/${id}`, headers);
       setLists(res.data);
+      setShouldFetch(false);
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
   }
 
-  async function submitNew(newTaks: any) {
+  async function submitNew(newTasks: any) {
     try {
-      await axios.post(`${url}/items/`, newTaks, headers);
+      await axios.post(`${url}/items/`, newTasks, headers);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -65,9 +67,21 @@ const PropertyDetails = (props: any) => {
       axiosErrorHandler(setErrors);
     }
   }
+
+  async function putTasks(item: List, updatedTask: any) {
+    try {
+      const task = { task: updatedTask, list_id: item.list_id };
+      await axios.put(`${url}/items/${item.items_id}`, task, headers);
+      fetchLists(props.match.params.id);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  }
+
   async function deleteList(id: number) {
     try {
       await axios.delete(`${url}/lists/${id}`, headers);
+      setShouldFetch(true);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -89,6 +103,7 @@ const PropertyDetails = (props: any) => {
       await axios.post(`${url}/lists/`, postList, headers);
       toggleText();
       setNewItem('');
+      setShouldFetch(true);
       fetchLists(props.match.params.id);
     } catch (e) {
       axiosErrorHandler(setErrors);
@@ -98,7 +113,6 @@ const PropertyDetails = (props: any) => {
   useEffect(() => {
     fetchLists(props.match.params.id);
   }, []);
-
   return (
     <>
       <div>{errors.msg}</div>
@@ -108,10 +122,7 @@ const PropertyDetails = (props: any) => {
         <PropertyContainer>
           <Top>
             <HouseInfo>
-              <ThumbNail
-                src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
-                alt='house'
-              />
+              <ThumbNail src={property.photo_url} alt='house' />
               <MainText data-testid='house-detail'>{property.name}</MainText>
               <SecondaryText>{property.address}</SecondaryText>
             </HouseInfo>
@@ -132,17 +143,19 @@ const PropertyDetails = (props: any) => {
                 type='Before'
                 submitNew={submitNew}
                 deleteTasks={deleteTasks}
+                putTasks={putTasks}
               />
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />
             )}
-            {lists.after ? (
+            {lists.during ? (
               <PropertyLists
                 list={lists.during}
                 list_id={lists.during_id}
                 type='During'
                 submitNew={submitNew}
                 deleteTasks={deleteTasks}
+                putTasks={putTasks}
               />
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />
@@ -150,21 +163,24 @@ const PropertyDetails = (props: any) => {
           </ListContainer>
           <AfterListDiv>
             <Header>After Stay</Header>
-            {lists.after
-              ? lists.after.map((aList: any) => {
-                  return (
-                    <AfterPropertyLists
-                      key={aList.time}
-                      list={aList.afterLists}
-                      list_id={aList.after_id}
-                      type={aList.time}
-                      submitNew={submitNew}
-                      deleteTasks={deleteTasks}
-                      deleteList={deleteList}
-                    />
-                  );
-                })
-              : null}
+            {lists.after ? (
+              lists.after.map((aList: any) => {
+                return (
+                  <AfterPropertyLists
+                    key={aList.after_id}
+                    list={aList.afterLists}
+                    list_id={aList.after_id}
+                    type={aList.time}
+                    submitNew={submitNew}
+                    deleteTasks={deleteTasks}
+                    deleteList={deleteList}
+                    putTasks={putTasks}
+                  />
+                );
+              })
+            ) : (
+              <img src={loadingIndicator} alt='animated loading indicator' />
+            )}
             {inputItem ? (
               <>
                 <TextField
@@ -177,7 +193,16 @@ const PropertyDetails = (props: any) => {
                 <WhiteButton text='Cancel' onClick={toggleText} />
               </>
             ) : (
-              <WhiteButton text='+ New Stay List' onClick={toggleText} />
+              <>
+                {shouldFetch ? (
+                  <img
+                    src={loadingIndicator}
+                    alt='animated loading indicator'
+                  />
+                ) : (
+                  <WhiteButton text='+ New Stay List' onClick={toggleText} />
+                )}
+              </>
             )}
           </AfterListDiv>
         </PropertyContainer>

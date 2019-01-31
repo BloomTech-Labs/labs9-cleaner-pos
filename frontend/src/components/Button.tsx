@@ -22,6 +22,7 @@ const Button = ({
   colour,
   className,
   disabled,
+  type,
 }: ButtonProps) => {
   const buttonColour = colour || 'var(--colour-button-background)';
   const StyledButton = styled('button')`
@@ -45,7 +46,7 @@ const Button = ({
       <StyledButton
         className={className}
         onClick={onClick}
-        type='button'
+        type={type || 'button'}
         data-testid={datatestid}
         disabled={disabled}
       >
