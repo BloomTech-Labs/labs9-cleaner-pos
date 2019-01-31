@@ -30,6 +30,7 @@ export const GuestDetailView = ({
   check_in,
   check_out,
   errors,
+  goBack,
 }: GuestProps) => {
   return (
     <GuestDetailStyle>
@@ -59,6 +60,7 @@ export const GuestDetailView = ({
             text='Go Back ↩'
             color='var(--color-accent)'
             datatestid='button-back'
+            onClick={goBack}
           />
         </div>
       </div>
@@ -155,7 +157,15 @@ const GuestDetail = (props: RouteComponentProps) => {
 
   const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
 
-  return <>{stay ? <GuestDetailView {...stay} errors={error} /> : null}</>;
+  const goBack = () => props.history.push('/guests');
+
+  return (
+    <>
+      {stay ? (
+        <GuestDetailView {...stay} goBack={goBack} errors={error} />
+      ) : null}
+    </>
+  );
 };
 
 export default GuestDetail;

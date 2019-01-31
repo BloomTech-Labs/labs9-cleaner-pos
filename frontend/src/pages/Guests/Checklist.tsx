@@ -164,16 +164,13 @@ export const Checklist = (props: { stayId: number; className?: string }) => {
       );
 
       if (fetchError.error === true) {
+        console.error(fetchError);
         setError(fetchError);
       } else {
         setLists(data);
       }
     })();
   }, []);
-
-  if (error.error) {
-    console.error(error);
-  }
 
   const setFilterForList = (listType: ListTypes) => {
     setListFilter(listType);
@@ -190,6 +187,10 @@ export const Checklist = (props: { stayId: number; className?: string }) => {
         stay_id: stayId,
       },
     );
+
+    // It's possible to update the state directly with receivedData
+    // eliminating the need for the below axios call.
+    // Perhaps with sleep, I can figure it out.
 
     const [newLists, listError] = await axiosFetch(
       'get',

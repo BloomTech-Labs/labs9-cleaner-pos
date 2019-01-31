@@ -30,6 +30,7 @@ export interface GuestProps {
     msg: string;
     error: boolean;
   };
+  goBack: () => void;
 }
 
 // Checklists
