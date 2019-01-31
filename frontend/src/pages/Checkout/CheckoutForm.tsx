@@ -37,8 +37,9 @@ const CheckoutForm = (props: any) => {
           body,
           headers,
         );
+        console.log(data);
       } catch (e) {
-        return e;
+        console.log(e);
       }
     }
     triggerPayment();
