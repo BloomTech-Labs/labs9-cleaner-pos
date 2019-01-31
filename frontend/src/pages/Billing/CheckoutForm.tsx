@@ -5,10 +5,14 @@ import {
   CardElement,
 } from 'react-stripe-elements';
 import { Button } from '../../components/index';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+const headers: AxiosRequestConfig = {
+  headers: { Authorization: localStorage.getItem('token') },
+};
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   const handleSubmit = async (ev: FormEvent) => {
@@ -17,14 +21,12 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
     // Within the context of `Elements`, this call to createToken knows which Element to
     // tokenize, since there's only one in this group.
     try {
-      const headers: any = {
-        headers: { Authorization: localStorage.getItem('token') },
-      };
       // @ts-ignore
       const { token } = await props.stripe.createToken({});
       const response = await axios.post(`${url}/payments`, token, headers);
       console.log(response.data);
     } catch (e) {
+      console.log(e);
       return e;
     }
     /* tslint:disable-next-line */
@@ -42,6 +44,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       >
         <label>
           Card details
+          <br />
           <CardElement />
         </label>
         <div style={{ marginBottom: '24px' }} />
