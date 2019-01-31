@@ -96,7 +96,7 @@ const CheckList = styled('div')`
   font-size: 24px;
   font-weight: light;
   border: 1px solid black;
-	display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
