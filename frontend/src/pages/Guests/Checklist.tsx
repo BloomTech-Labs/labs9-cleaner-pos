@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 // Components
 import Button from '../../components/Button';
@@ -8,6 +8,7 @@ import { axiosFetch, useFetch } from '../../helpers';
 
 // Styling & Assets
 import loadingIndicator from '../utils/loading.svg';
+import { async } from 'q';
 
 const ChecklistView = (props: {
   errors: { msg: string; error: boolean };
@@ -21,7 +22,8 @@ const ChecklistView = (props: {
   ) => (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => Promise<void>;
   className?: string;
 }) => {
-  if (!props.lists) {
+  if (props.lists === undefined) {
+    console.error('props', props);
     return (
       <div>
         <img src={loadingIndicator} alt='animated loading indicator' />
@@ -142,15 +144,37 @@ const ChecklistView = (props: {
 export const Checklist = (props: { stayId: number; className?: string }) => {
   const [listFilter, setListFilter] = useState('before' as ListTypes);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({ msg: '', error: false });
+  const [lists, setLists] = useState({
+    before: [],
+    during: [],
+    after: [],
+  } as ChecklistsData);
 
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-  const [lists, error] = useFetch(`${url}/lists/${props.stayId}?stay=true`);
+  // const [data, error] = useFetch(`${url}/lists/${props.stayId}?stay=true`);
+
+  useEffect(() => {
+    (async () => {
+      const [data, fetchError] = await axiosFetch(
+        'get',
+        `${url}/lists/${props.stayId}?stay=true`,
+      );
+
+      if (fetchError.error === true) {
+        setError(fetchError);
+      } else {
+        setLists(data);
+      }
+    })();
+  }, []);
 
   if (error.error) {
     console.error(error);
   }
+
   const setFilterForList = (listType: ListTypes) => {
     setListFilter(listType);
   };
@@ -167,7 +191,12 @@ export const Checklist = (props: { stayId: number; className?: string }) => {
       },
     );
 
-    console.log('lists, errors', receivedData, sendError);
+    const [newLists, listError] = await axiosFetch(
+      'get',
+      `${url}/lists/${props.stayId}?stay=true`,
+    );
+
+    setLists(newLists);
     setLoading(false);
   };
 
