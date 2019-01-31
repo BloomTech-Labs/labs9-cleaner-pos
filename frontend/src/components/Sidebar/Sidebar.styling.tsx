@@ -20,8 +20,8 @@ const Container = styled('div')`
   align-items: flex-end;
 
   .button-sign-out {
-      margin-bottom: 0;
-      margin-right: 1rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
   }
 
   .menu {
@@ -55,7 +55,7 @@ const NavBar = styled('nav')`
     align-items: center;
     border-bottom: 3px solid black;
     margin-bottom: 1.5rem;
-    padding-bottom: .75rem;
+    padding-bottom: 0.75rem;
   }
 `;
 
@@ -92,8 +92,8 @@ const StyledLink = styled(NavLink)`
     padding: 0 1.75rem;
     float: left;
     text-decoration: none;
-    color: black;
-    &:active{
+    color: var(--color-text-dark);
+    &:active {
       text-decoration: underline;
     }
     h4 {
