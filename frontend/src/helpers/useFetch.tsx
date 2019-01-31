@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 
-const useFetch = (url: string) => {
+type Crud = 'get' | 'post' | 'put' | 'delete';
+
+const useFetch = (
+  url: string,
+  reload = false,
+  type = 'get' as Crud,
+  body = {},
+) => {
   const [error, setError] = useState<any>({ msg: '', error: false });
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<any>(null);
+
+  const options = reload !== null ? [url, reload] : [url];
 
   useEffect(() => {
     (async () => {
@@ -19,12 +28,13 @@ const useFetch = (url: string) => {
         return [error, loading, data];
       }
 
-      const headers: AxiosRequestConfig = {
-        headers: { Authorization: token },
-      };
-
       try {
-        const response = await axios.get(url, headers);
+        const response = await axios({
+          method: type,
+          headers: { Authorization: token },
+          url,
+          data: body,
+        });
         setData(response.data);
         setLoading(false);
       } catch (e) {
@@ -32,7 +42,7 @@ const useFetch = (url: string) => {
         setError({ msg: 'Error fetching!', error: true });
       }
     })();
-  }, [url]);
+  }, options);
 
   return [data, error, loading];
 };

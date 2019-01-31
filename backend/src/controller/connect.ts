@@ -69,8 +69,14 @@ const createPayment = async (
       },
       source: stripeToken,
     });
-    res.status(200).send({ msg: 'Payment succeeded!' });
+    res
+      .status(200)
+      .send({ msg: 'Payment succeeded!', receipt: charge.receipt_url });
   } catch (e) {
+    if (e.raw.param === 'destination[account]') {
+      e.statusCode = 401;
+      next(e);
+    }
     e.statusCode = 500;
     next(e);
   }

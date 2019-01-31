@@ -21,6 +21,7 @@ import { axiosErrorHandler } from '../utils';
 import { useFetch } from '../../helpers';
 import { Lists, List } from './types';
 import loadingIndicator from '../utils/loading.svg';
+import { Link } from 'react-router-dom';
 
 // TODO: fix types
 const PropertyDetails = (props: any) => {
@@ -127,7 +128,9 @@ const PropertyDetails = (props: any) => {
               <SecondaryText>{property.address}</SecondaryText>
             </HouseInfo>
             <PropertyButtons>
-              <BackButton text='Edit Property' color='var(--color-accent)' />
+              <Link to={{ pathname: '/properties/new', state: property }}>
+                <BackButton text='Edit Property' color='var(--color-accent)' />
+              </Link>
               <BackButton
                 text='Go Back'
                 color='var(--color-accent)'

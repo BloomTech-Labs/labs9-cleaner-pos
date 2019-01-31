@@ -25,6 +25,7 @@ ${clientId}&scope=read_write`;
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const [user, error, loading] = useFetch(`${url}/users`);
   const [show, setShow] = useState(false);
+  const [paymentError, setPaymentError] = useState({ err: false, message: '' });
 
   useEffect(() => {
     const { search } = props.location;

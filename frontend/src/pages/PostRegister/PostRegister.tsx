@@ -151,7 +151,9 @@ const PostForm = (props: PostFormProps) => {
             await axios.put(`${url}/users/`, userData, headers);
             await actions.setSubmitting(false);
             await actions.setStatus('Submission successful. Thank you!');
-            setShow(false);
+            if (setShow !== undefined) {
+              setShow(false);
+            }
           } catch (error) {
             await actions.setSubmitting(false);
             if (error.response) {
@@ -199,7 +201,7 @@ const PostForm = (props: PostFormProps) => {
           return (
             <StyledForm>
               <div>
-                <h2 className='title'>
+                <h2 style={{ color: 'black' }} className='title'>
                   {location === '/postreg' ? 'Just a few more things!' : null}
                 </h2>
               </div>

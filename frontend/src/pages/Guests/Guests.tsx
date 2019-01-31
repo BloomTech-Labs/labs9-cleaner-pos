@@ -13,7 +13,6 @@ import loadingIndicator from '../utils/loading.svg';
 const Guests = () => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-  const [errors, setErrors] = useState({ msg: '', error: false });
   const [active, setActive] = useState('upcoming' as FilterArgs);
   const [stays, error, loading] = useFetch(
     `${url}/stays?filter=${active}&test=true`,
@@ -54,7 +53,7 @@ const Guests = () => {
         />
       </div>
       {error.error ? error.msg : null}
-      <div className='guests-errors'>{errors.msg}</div>
+      <div className='guests-errors'>{error.msg}</div>
       <div className='guests-cards'>
         {loading ? (
           <img src={loadingIndicator} alt='animated loading indicator' />

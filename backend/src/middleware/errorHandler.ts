@@ -7,7 +7,7 @@ import express, {
 } from 'express';
 
 export const errorHandler = (
-  err: ErrorRequestHandler,
+  err: any,
   req: Request,
   res: Response,
   next: NextFunction,
@@ -21,6 +21,14 @@ export const errorHandler = (
     case 404:
       res.status(404).json({
         message: 'The requested information could not be found',
+      });
+      break;
+    case 401:
+      err.message =
+        'Please connect your stripe account before processing payments!';
+      res.status(401).json({
+        message:
+          'Please connect your stripe account before processing payments!',
       });
       break;
     case 400:

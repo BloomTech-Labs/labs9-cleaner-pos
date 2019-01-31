@@ -16,7 +16,7 @@ interface MySettings {
 }
 
 const Accordion = ({ title, children, onToggle }: MySettings) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   return (
     <div>
       <Label

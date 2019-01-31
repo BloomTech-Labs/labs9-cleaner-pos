@@ -45,7 +45,7 @@ const SpecialButton = ({
         data-testid={datatestid}
         className={className}
         disabled={disabled}
-        >
+      >
         {text}
       </StyledButton>
     </>
