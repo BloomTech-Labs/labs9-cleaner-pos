@@ -53,12 +53,9 @@ const Login: FunctionComponent<LoginProps> = (props) => {
     };
   }, []);
 
-  useEffect(
-    () => {
-      submitUser();
-    },
-    [user],
-  );
+  useEffect(() => {
+    submitUser();
+  }, [user]);
 
   async function submitUser() {
     if (user !== null) {
@@ -78,7 +75,7 @@ const Login: FunctionComponent<LoginProps> = (props) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.role);
         if (data.first) {
-          props.history.push('/updateinfo');
+          props.history.push('/postreg');
         } else {
           props.history.push('/properties');
         }

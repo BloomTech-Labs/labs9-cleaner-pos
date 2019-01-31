@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Container } from '../../components/index';
 import axios from 'axios';
 import {
@@ -18,12 +18,14 @@ import { useFetch } from '../../helpers/';
 import { House } from './types';
 import { Link } from 'react-router-dom';
 import loadingIndicator from '../utils/loading.svg';
+import { UserContext } from '../../App';
 
 const Properties = () => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
   /* Axios calls to fetch / update properties */
   const [houses, error, loading] = useFetch(`${url}/houses`);
+  const { subscription } = useContext(UserContext);
 
   async function postAst(
     event: React.FormEvent<HTMLSelectElement>,
@@ -52,7 +54,16 @@ const Properties = () => {
       <PropContainer>
         <div className='properties-header'>
           <HouseHeader>Recent Properties</HouseHeader>
-          <Link to='/properties/new'>
+          {}
+          <Link
+            to='/properties/new'
+            // @ts-ignore
+            onClick={
+              subscription === 0 && houses && houses.length >= 3
+                ? (e) => e.preventDefault()
+                : null
+            }
+          >
             <Button text='New Property' />
           </Link>
         </div>
@@ -62,6 +73,26 @@ const Properties = () => {
         {error.error
           ? 'Whoops! There was an error loading this content for you ☹️'
           : null}
+        {houses && subscription === 0 && houses.length >= 3 ? (
+          <div
+            style={{
+              marginTop: '24px',
+              marginBottom: '24px',
+              color: 'var(--color-accent)',
+              border: 'var(--border)',
+              padding: '20px',
+              background: 'var(--color-accent-background',
+            }}
+          >
+            <h2>
+              You've reached the maximum amount of properties, please subscribe
+              to add more
+            </h2>
+            <Link to='/billing'>
+              <Button text='Subscribe' />
+            </Link>
+          </div>
+        ) : null}
         {houses
           ? houses.map((house: House) => {
               return (

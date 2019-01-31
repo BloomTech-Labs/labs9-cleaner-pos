@@ -79,6 +79,7 @@ export const StyledForm = styled(Form)`
     }
     .submit {
       grid-area: submit;
+      margin: 0 auto;
     }
     .clear {
       grid-area: clear;

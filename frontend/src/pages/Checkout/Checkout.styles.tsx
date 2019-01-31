@@ -27,6 +27,10 @@ export const Invoice = styled('div')`
   .connect-button {
     margin-bottom: 24px;
   }
+  .receipt-button {
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
 `;
 
 export const InvoiceBox = styled('div')`
