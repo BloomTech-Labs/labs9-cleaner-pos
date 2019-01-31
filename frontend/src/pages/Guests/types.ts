@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 // Guests
@@ -15,7 +16,7 @@ export interface GuestsProps {
 export type FilterArgs = 'all' | 'upcoming' | 'complete' | 'incomplete';
 // Guest Detail
 
-export interface GuestProps {
+export interface IncomingGuestProps {
   stay_id: number;
   guest_name: string;
   house_id: number;
@@ -26,12 +27,15 @@ export interface GuestProps {
   ast_guide: string;
   check_in: string;
   check_out: string;
+}
+
+export interface GuestProps extends IncomingGuestProps {
   errors: {
     msg: string;
     error: boolean;
   };
   // tslint:disable-next-line
-  Uppy: Function;
+  Uppy: (props: { type?: string; id?: number; text?: string }) => JSX.Element;
   goBack: () => void;
 }
 

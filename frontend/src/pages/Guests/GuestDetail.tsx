@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // Types
 import { RouteComponentProps } from 'react-router';
-import { GuestProps } from './types';
+import { IncomingGuestProps, GuestProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
 import { Checklist } from './Checklist';
@@ -18,6 +18,7 @@ import { axiosFetch, useFetch } from '../../helpers/';
 import { Link } from 'react-router-dom';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
+import loadingIndicator from '../utils/loading.svg';
 
 const GuestDetail = (props: RouteComponentProps) => {
   // @ts-ignore
@@ -25,28 +26,38 @@ const GuestDetail = (props: RouteComponentProps) => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-  const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
+  // const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
+  const [stay, setStay] = useState((null as unknown) as IncomingGuestProps);
+  const [error, setError] = useState({ msg: '', error: false });
+
+  const fetchData = () => {
+    axiosFetch('get', `${url}/stays/${id}`).then(([data, exception]) => {
+      if (exception.error) {
+        setError(exception);
+      } else {
+        setStay(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const guideUpload = FileUploadHOF(
     async (uploadedUrl: string, type?: string) => {
-      console.log('stay', stay);
       const { house_id } = stay;
 
-      if (!type) {
-        console.error('Type was not defined for upload.');
-        return;
-      }
+      const body = type ? { [type]: uploadedUrl } : {};
 
-      const body = {
-        [type]: uploadedUrl,
-      };
-
-      console.log('url', `${url}/houses/${house_id}`);
       await axiosFetch('put', `${url}/houses/${house_id}`, body).catch(
         (e: any) => {
           console.error(e);
+          setError(e);
         },
       );
+
+      fetchData();
     },
   );
 
@@ -61,7 +72,13 @@ const GuestDetail = (props: RouteComponentProps) => {
           goBack={goBack}
           errors={error}
         />
-      ) : null}
+      ) : (
+        <img
+          style={{ margin: 'auto' }}
+          src={loadingIndicator}
+          alt='animated loading indicator'
+        />
+      )}
     </>
   );
 };
