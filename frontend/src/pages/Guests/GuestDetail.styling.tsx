@@ -34,31 +34,38 @@ export const GuestDetailStyle = styled('div')`
 
   .guest-header--img {
     /* Sizing & Box Model */
-    height: ${headerHeight};
-    width: ${pxVw(213)};
+    width: ${pxRem(72)};
+    height: ${pxRem(72)};
+    border-radius: 100%;
+    margin: auto;
+    /* Fit and Aspect Ratio */
     object-fit: cover;
   }
 
   .guest-header--text {
     /* Box Model & Sizing */
-    height: ${pxRem(157)};
-    /* margin: auto; */
+    margin: 1rem 0;
 
     /* Flex */
     display: flex;
     flex-flow: column nowrap;
+
+    /* Text */
+    text-align: left;
   }
 
   .guest-header--text .main {
     display: block;
     margin-bottom: 0.5rem;
     /* Text */
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
   }
 
   .guest-header--text .sub-house,
   .guest-header--text .sub-address {
     /* Text */
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 1rem;
   }
 
@@ -69,17 +76,17 @@ export const GuestDetailStyle = styled('div')`
     justify-content: space-between;
   }
 
+  .checkin,
+  .checkout {
+    width: 45%;
+    text-align: center;
+  }
+
   .guest-header--buttons {
     /* Flex */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-  }
-
-  .checkin,
-  .checkout {
-    width: ${pxRem(206)};
-    height: ${pxRem(64)};
   }
 
   .guest-header--checkdates .text-main {
@@ -93,6 +100,9 @@ export const GuestDetailStyle = styled('div')`
     font-size: 1rem;
   }
 
+  .back {
+    margin: 1rem 0 0 0;
+  }
   /* Guest-Info CSS */
   .guest-info {
     border: none;
@@ -238,6 +248,8 @@ export const GuestDetailStyle = styled('div')`
     /* Grid */
     grid-row: span 2;
     grid-column: 1;
+    /* Color */
+    background-color: var(--colour-main-background);
   }
 
   .guest-info--checkout-bottom .stay-code div {
@@ -260,6 +272,7 @@ export const GuestDetailStyle = styled('div')`
     .guest-info {
       border: var(--border);
     }
+
     .guest-header,
     .guest-info {
       /* Sizing & Box Model */
@@ -280,12 +293,20 @@ export const GuestDetailStyle = styled('div')`
     }
 
     .guest-header--img {
+      /* Sizing & Box Model */
+      height: ${headerHeight};
+      width: ${pxVw(213)};
+      margin: 0;
+      border-radius: 0%;
       /* Grid */
       grid-column: 1;
       grid-row: span 2;
     }
 
     .guest-header--text {
+      /* Box Model & Sizing */
+      height: ${pxRem(157)};
+
       /* Grid */
       grid-column: 2 / 4;
       grid-row: span 2;
@@ -295,12 +316,21 @@ export const GuestDetailStyle = styled('div')`
     }
 
     .guest-header--checkdates {
+      /* Box Model & Sizing */
+      width: 100%;
+
       /* Flex */
       flex-flow: row nowrap;
 
       /* Grid */
       grid-column: 4 / -1;
       grid-row: 1;
+    }
+
+    .checkin,
+    .checkout {
+      width: 45%;
+      height: ${pxRem(64)};
     }
 
     .guest-header--buttons {

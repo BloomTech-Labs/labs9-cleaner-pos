@@ -32,7 +32,7 @@ const AstDropdownView = (props: {
       <br />
       <select data-testid='assistant-select' onChange={(event) => event}>
         <option defaultValue={house.default_ast_name}>
-          {house.default_ast}: {house.default_ast_name}
+          {house.default_ast_name}
         </option>
         {house.openAst.map((ast: any) => {
           if (ast.ast_id !== house.default_ast) {
