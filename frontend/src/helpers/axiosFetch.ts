@@ -4,19 +4,16 @@ import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 type Crud = 'get' | 'post' | 'put' | 'delete';
 
 const axiosFetch = async (type: Crud, url: string, body: any = {}) => {
-  const [error, setError] = useState<any>({ msg: '', error: false });
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<any>(null);
+  let error = { msg: '', error: false };
+  let data = null;
 
-  setLoading(true);
   const token = localStorage.getItem('token');
   if (!token) {
-    setError({
+    error = {
       msg: 'Authentication error. Please try logging in again.',
       error: true,
-    });
-    setLoading(false);
-    return [error, loading, data];
+    };
+    return [data, error];
   }
 
   const headers: AxiosRequestConfig = {
@@ -25,14 +22,12 @@ const axiosFetch = async (type: Crud, url: string, body: any = {}) => {
 
   try {
     const response = await axios({ method: type, url, data: body });
-    setData(response.data);
-    setLoading(false);
+    data = response.data;
   } catch (e) {
-    setLoading(false);
-    setError({ msg: 'Error fetching!', error: true });
+    error = { msg: 'Error fetching!', error: true };
   }
 
-  return [data, error, loading];
+  return [data, error];
 };
 
 export default axiosFetch;
