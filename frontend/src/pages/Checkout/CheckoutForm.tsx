@@ -8,7 +8,6 @@ import { UserContext } from '../../App';
 import { PaymentContext } from './Checkout';
 import { Button } from '../../components/index';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { string } from 'prop-types';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
