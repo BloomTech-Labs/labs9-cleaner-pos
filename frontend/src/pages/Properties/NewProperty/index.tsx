@@ -54,6 +54,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
     status,
     touched,
     values,
+    urls,
     Uppy,
     assistants,
   } = formProps;
@@ -88,6 +89,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <div className='property-photo'>
         <Uppy type='photo_url' text='Upload a Photo!' />
+        {/* {urls.photo_url ? <p>{urls.photo_url}</p> : null} */}
       </div>
 
       <div className='property-prices'>
@@ -176,9 +178,11 @@ const NewProperty = (props: RouteComponentProps) => {
   // Invoke FileUploadHOF, passing a callback function which will update
   // state with URLs of uploaded files
   const urlFileUpload = FileUploadHOF((url: string, type?: string) => {
+    console.log('url', url);
     if (type) {
       setUrls((prev) => ({ ...prev, [type]: url }));
     }
+    console.log('urls', urls);
   });
 
   // Function Formik will call. POSTs to houses
@@ -270,6 +274,7 @@ const NewProperty = (props: RouteComponentProps) => {
             {...formProps}
             Uppy={urlFileUpload}
             assistants={assistants}
+            urls={urls}
             goBack={goBack}
           />
         );
