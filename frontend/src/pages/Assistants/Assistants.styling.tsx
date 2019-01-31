@@ -103,8 +103,8 @@ const ButtonContainer = styled('div')`
 `;
 
 const ThumbNail = styled('img')`
-  width: ${pxToVw(254 * 0.9)};
-  height: auto;
+  width: 18.75rem;
+  height: 100%;
   object-fit: cover;
 `;
 
