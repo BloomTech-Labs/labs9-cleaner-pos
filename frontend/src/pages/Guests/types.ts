@@ -30,6 +30,8 @@ export interface GuestProps {
     msg: string;
     error: boolean;
   };
+  // tslint:disable-next-line
+  Uppy: Function;
   goBack: () => void;
 }
 

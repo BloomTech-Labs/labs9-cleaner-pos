@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // Types
 import { RouteComponentProps } from 'react-router';
 import { GuestProps } from './types';
@@ -6,6 +6,7 @@ import { GuestProps } from './types';
 import { InfoBox } from './InfoBox';
 import { Checklist } from './Checklist';
 import { AstDropdown } from './AstDropdown';
+import { FileUploadHOF } from '../../components/FileUpload';
 import Button from '../../components/Button';
 // Styled and Styled Components
 import { GuestsDiv } from './Guests.styling';
@@ -13,10 +14,57 @@ import { GuestDetailStyle } from './GuestDetail.styling';
 import { MainText, SecondaryText } from './Guests.styling';
 // Utilities
 import { generateDisplayDate } from '../utils';
-import { useFetch } from '../../helpers/';
+import { axiosFetch, useFetch } from '../../helpers/';
 import { Link } from 'react-router-dom';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
+
+const GuestDetail = (props: RouteComponentProps) => {
+  // @ts-ignore
+  const id = props.match.params.id;
+  const url =
+    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
+
+  const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
+
+  const guideUpload = FileUploadHOF(
+    async (uploadedUrl: string, type?: string) => {
+      console.log('stay', stay);
+      const { house_id } = stay;
+
+      if (!type) {
+        console.error('Type was not defined for upload.');
+        return;
+      }
+
+      const body = {
+        [type]: uploadedUrl,
+      };
+
+      console.log('url', `${url}/houses/${house_id}`);
+      await axiosFetch('put', `${url}/houses/${house_id}`, body).catch(
+        (e: any) => {
+          console.error(e);
+        },
+      );
+    },
+  );
+
+  const goBack = () => props.history.push('/guests');
+
+  return (
+    <>
+      {stay ? (
+        <GuestDetailView
+          {...stay}
+          Uppy={guideUpload}
+          goBack={goBack}
+          errors={error}
+        />
+      ) : null}
+    </>
+  );
+};
 
 export const GuestDetailView = ({
   stay_id,
@@ -30,6 +78,7 @@ export const GuestDetailView = ({
   check_in,
   check_out,
   errors,
+  Uppy,
   goBack,
 }: GuestProps) => {
   return (
@@ -96,14 +145,18 @@ export const GuestDetailView = ({
                 {ast_guide ? (
                   <div className='guide'>
                     <a href={ast_guide} target='_blank'>
-                      <i className='fas fa-file' />
+                      <i
+                        style={{ fontSize: '2.5rem' }}
+                        className='fas fa-file'
+                      />
                     </a>
                     <br />
                     <label>Assistant Guide</label>
                   </div>
                 ) : (
                   <div className='guide'>
-                    <i className='fas fa-question' />
+                    {/* <i className='fas fa-question' /> */}
+                    <Uppy type='ast_guide' text='Upload' />
                     <br />
                     <label>No Assistant Guide</label>
                   </div>
@@ -111,14 +164,18 @@ export const GuestDetailView = ({
                 {guest_guide ? (
                   <div className='guide'>
                     <a href={guest_guide} target='_blank'>
-                      <i className='fas fa-file' />
+                      <i
+                        style={{ fontSize: '2.5rem' }}
+                        className='fas fa-file'
+                      />
                     </a>
                     <br />
                     <label>Guest Guide</label>
                   </div>
                 ) : (
                   <div className='guide'>
-                    <i className='fas fa-question' />
+                    {/* <i className='fas fa-question' /> */}
+                    <Uppy type='guest_guide' text='Upload' />
                     <br />
                     <label>No Guest Guide</label>
                   </div>
@@ -146,25 +203,6 @@ export const GuestDetailView = ({
         </div>
       </div>
     </GuestDetailStyle>
-  );
-};
-
-const GuestDetail = (props: RouteComponentProps) => {
-  // @ts-ignore
-  const id = props.match.params.id;
-  const url =
-    process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
-
-  const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
-
-  const goBack = () => props.history.push('/guests');
-
-  return (
-    <>
-      {stay ? (
-        <GuestDetailView {...stay} goBack={goBack} errors={error} />
-      ) : null}
-    </>
   );
 };
 
