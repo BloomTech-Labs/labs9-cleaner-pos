@@ -3,7 +3,12 @@ import { Container, Button } from '../../components/index';
 import { RouteComponentProps } from 'react-router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosErrorHandler } from '../utils';
-import { CheckoutForm, Invoice, InvoiceBox } from './Checkout.styles';
+import {
+  CheckoutContainer,
+  CheckoutForm,
+  Invoice,
+  InvoiceBox,
+} from './Checkout.styles';
 import { StripeProvider } from 'react-stripe-elements';
 import loadingIndicator from '../utils/loading.svg';
 
@@ -64,23 +69,17 @@ const Checkout = (props: CheckoutProps) => {
     : null;
 
   return (
-    <Container>
+    <CheckoutContainer>
       {stayLoading ? (
         <img src={loadingIndicator} alt='animated loading indicator' />
       ) : null}
       {stayError.error ? 'Error fetching your Guest' : null}
       {stay ? (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-around',
-          }}
-        >
-          <div>
+        <div className='checkout-body'>
+          <div className='checkout-left'>
             <h1 data-testid='guest-name'>{stay ? stay.guest_name : null}</h1>
-
-            <div>
-              Nights:{' '}
+            <div className='checkout-field'>
+              Nights:
               <input
                 value={stay.diff}
                 onChange={(e) =>
@@ -89,8 +88,10 @@ const Checkout = (props: CheckoutProps) => {
                 }
               />
             </div>
-            <div>Cleaning Fee: ${stay.cleaning_fee}</div>
-            <div>
+            <div className='checkout-field'>
+              Cleaning Fee: <span>${stay.cleaning_fee}</span>
+            </div>
+            <div className='checkout-field'>
               Extra Guests:{' '}
               <input
                 value={stay.extra_guests || 0}
@@ -158,7 +159,7 @@ const Checkout = (props: CheckoutProps) => {
           </div>
         </div>
       ) : null}
-    </Container>
+    </CheckoutContainer>
   );
 };
 
