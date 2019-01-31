@@ -157,7 +157,7 @@ const NewProperty = (props: RouteComponentProps) => {
   const [startValues, setStartValues] = useState(
     {} as NewPropertyInitialValues,
   );
-  console.log(props.location.state.id);
+
   const [errors, setErrors] = useState({ msg: '', error: false });
   useEffect(() => {
     // Get list of assistants from backend
@@ -227,7 +227,6 @@ const NewProperty = (props: RouteComponentProps) => {
       setStartValues(loadValues);
     }
   }, []);
-
   // Invoke FileUploadHOF, passing a callback function which will update
   // state with URLs of uploaded files
   const urlFileUpload = FileUploadHOF((url: string, type?: string) => {
@@ -322,26 +321,24 @@ const NewProperty = (props: RouteComponentProps) => {
   };
 
   const goBack = () => props.history.push('/properties');
-
-  return (
+  return startValues.address1 ? (
     <Formik
       initialValues={startValues}
       validationSchema={NewPropertySchema}
       onSubmit={onSubmit}
-      enableReinitialize={true}
       render={(formProps) => {
         return (
           <NewPropertyView
-            {...formProps}
             Uppy={urlFileUpload}
             assistants={assistants}
             urls={urls}
             goBack={goBack}
+            {...formProps}
           />
         );
       }}
     />
-  );
+  ) : null;
 };
 
 export default NewProperty;
