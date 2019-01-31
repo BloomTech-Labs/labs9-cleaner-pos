@@ -1,12 +1,31 @@
 import styled from '@emotion/styled';
 
-const cardHeight = 216;
+const cardHeight = 168;
+const pxToRem = (px: number): string => `${px / 16}rem`;
+const bp = `816px`;
 
 const PropContainer = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .properties-header {
+    /* Box Model */
+    width: 100%;
+    /* Flex */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  @media only screen and (max-width: ${bp}) {
+    .properties-header {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+    }
+  }
 `;
 
 const HouseItem = styled('div')`
@@ -18,113 +37,166 @@ const HouseItem = styled('div')`
   margin-top: 24px;
   display: flex;
   text-align: left;
-  border: 0.5px solid black;
+  border: var(--border);
   background-color: white;
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     flex: 1;
-    width: 70%;
+    width: 85%;
     justify-content: center;
     align-items: center;
-    padding: 10px 0 10px 0;
+    padding: 0;
+  }
+
+  @media only screen and (max-width: 625px) {
+    width: 95%;
   }
 `;
 
 const ButtonContainer = styled('div')`
-  height: 124px;
+  height: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  @media only screen and (max-width: 900px) {
-    padding: 10px 0 10px 0;
+  align-items: center;
+
+  .property-button {
+    width: ${pxToRem(166)};
+    font-size: 1.25rem;
+    padding: 0.25rem 1rem;
+  }
+  @media only screen and (max-width: ${bp}) {
+    /* padding: 10px 0 10px 0; */
+    grid-row: 2;
+    grid-column: span 2;
+    margin: 0 auto 2rem auto;
+
+    .property-button {
+      width: 50vw;
+      max-width: ${bp};
+    }
   }
 `;
 
 const ThumbNail = styled('img')`
-  width: ${cardHeight - 1}px;
-  height: ${cardHeight - 1}px;
+  object-fit: cover;
+  width: 35%;
+  height: ${pxToRem(cardHeight - 1)};
+  margin-right: 2rem;
+
+  @media only screen and (max-width: ${bp}) {
+    margin: 0;
+    width: 100%;
+    height: 6rem;
+  }
 `;
 
 const CardHeading = styled('div')`
   margin-top: 12px;
-  height: 76px;
+
   h4 {
     margin: 0;
+    color: var(--color-text-accent);
     font-family: Roboto;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.5rem;
   }
+
   p {
     font-weight: light;
-    font-size: 16px;
+    font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
   }
-  @media only screen and (max-width: 900px) {
+
+  @media only screen and (max-width: ${bp}) {
+    grid-column: span 2;
+    grid-row: 1;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
     h4 {
-      text-align: center;
+      text-align: left;
     }
     p {
-      text-align: center;
+      text-align: left;
     }
   }
 `;
 const CardContent = styled('div')`
-  padding: 0 15px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    align-items: center;
+  @media only screen and (max-width: ${bp}) {
+    justify-content: space-around;
+    align-items: flex-start;
   }
 `;
 
 const CardBody = styled('div')`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  @media only screen and (max-width: 900px) {
-    flex-direction: column;
-    flex: 1;
+  @media only screen and (max-width: ${bp}) {
+    /* flex-direction: column;
+    flex: 1; */
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+    grid-gap: 1.5rem;
+    justify-items: center;
   }
 `;
 
 const CheckList = styled('div')`
-  padding: 0 15px;
+  background-color: var(--color-main-background);
+  padding: 0.5rem 1rem;
   text-align: center;
-  height: 100px;
-  -moz-box-shadow: 0 0 3px #000;
-  -webkit-box-shadow: 0 0 3px #000;
-  box-shadow: 0 0 3px #000;
-  font-size: 24px;
-  font-weight: light;
+  border: var(--border);
+  font-size: 1.5rem;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   p {
     margin: 0;
-    font-weight: bold;
+    color: var(--color-text-accent);
+    font-size: 1rem;
+    font-weight: light;
+  }
+
+  @media only screen and (max-width: ${bp}) {
+    padding: 0.75rem;
+    margin: 0;
+    grid-column: 1;
+    grid-row: 1;
   }
 `;
 
 const Assistant = styled('div')`
+  width: ${pxToRem(192)};
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${bp}) {
     padding: 20px 0 20px 0;
+    grid-row: 1;
+    grid-column: 2;
   }
 `;
 
 const HouseHeader = styled('span')`
-  font-size: 36px;
-  margin: 20px;
+  font-size: 2rem;
   text-align: left;
-  border-bottom: 1px solid #b8003f;
   max-width: 290px;
-  @media only screen and (max-width: 900px) {
+  margin-bottom: 0.5rem;
+  @media only screen and (max-width: 500px) {
+    margin: 0;
+  }
+  @media only screen and (max-width: ${bp}) {
     text-align: center;
   }
 `;
