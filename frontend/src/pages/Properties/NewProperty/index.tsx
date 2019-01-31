@@ -157,6 +157,7 @@ const NewProperty = (props: RouteComponentProps) => {
   const [startValues, setStartValues] = useState(
     {} as NewPropertyInitialValues,
   );
+  console.log(props.location.state.id);
   const [errors, setErrors] = useState({ msg: '', error: false });
   useEffect(() => {
     // Get list of assistants from backend
@@ -178,11 +179,11 @@ const NewProperty = (props: RouteComponentProps) => {
         })
         .catch(axiosErrorHandler(setErrors));
     } else {
-      setAssistants(props.location.state.openAst);
       const {
         address,
         cleaning_fee,
         default_ast,
+        default_ast_name,
         extra_guest_fee,
         price,
         name,
@@ -193,6 +194,7 @@ const NewProperty = (props: RouteComponentProps) => {
         extra_guest_fee: number;
         price: number;
         name: string;
+        default_ast_name: string;
       } = props.location.state;
       const addressSplit = address.split('\n');
       const [
@@ -217,6 +219,11 @@ const NewProperty = (props: RouteComponentProps) => {
         pricePerNight: price,
       };
 
+      const addSelf = props.location.state.openAst.concat({
+        full_name: default_ast_name,
+        ast_id: default_ast,
+      });
+      setAssistants(addSelf);
       setStartValues(loadValues);
     }
   }, []);
@@ -278,8 +285,15 @@ const NewProperty = (props: RouteComponentProps) => {
         guest_guide,
         ast_guide,
       };
-
-      await axios.post(`${url}/houses?test=true`, houseData, headers);
+      if (props.location.state === undefined) {
+        await axios.post(`${url}/houses?test=true`, houseData, headers);
+      } else {
+        await axios.put(
+          `${url}/houses/${props.location.state.id}`,
+          houseData,
+          headers,
+        );
+      }
       await actions.setSubmitting(false);
       await actions.setStatus('Submission successful. Thank you!');
       props.history.push('/properties');
@@ -311,9 +325,10 @@ const NewProperty = (props: RouteComponentProps) => {
 
   return (
     <Formik
-      initialValues={EmptyPropertyValues}
+      initialValues={startValues}
       validationSchema={NewPropertySchema}
       onSubmit={onSubmit}
+      enableReinitialize={true}
       render={(formProps) => {
         return (
           <NewPropertyView
