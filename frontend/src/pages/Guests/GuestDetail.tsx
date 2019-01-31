@@ -26,23 +26,9 @@ const GuestDetail = (props: RouteComponentProps) => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-  // const [stay, error, loading] = useFetch(`${url}/stays/${id}`);
-  const [stay, setStay] = useState((null as unknown) as IncomingGuestProps);
-  const [error, setError] = useState({ msg: '', error: false });
+  const [fetch, setFetch] = useState(false);
 
-  const fetchData = () => {
-    axiosFetch('get', `${url}/stays/${id}`).then(([data, exception]) => {
-      if (exception.error) {
-        setError(exception);
-      } else {
-        setStay(data);
-      }
-    });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const [stay, error, loading] = useFetch(`${url}/stays/${id}`, fetch);
 
   const guideUpload = FileUploadHOF(
     async (uploadedUrl: string, type?: string) => {
@@ -53,11 +39,10 @@ const GuestDetail = (props: RouteComponentProps) => {
       await axiosFetch('put', `${url}/houses/${house_id}`, body).catch(
         (e: any) => {
           console.error(e);
-          setError(e);
         },
       );
 
-      fetchData();
+      setFetch((prev) => !prev);
     },
   );
 

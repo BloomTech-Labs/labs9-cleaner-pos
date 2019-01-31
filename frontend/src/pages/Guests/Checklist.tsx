@@ -143,42 +143,21 @@ const ChecklistView = (props: {
 
 export const Checklist = (props: { stayId: number; className?: string }) => {
   const [listFilter, setListFilter] = useState('before' as ListTypes);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState({ msg: '', error: false });
-  const [lists, setLists] = useState({
-    before: [],
-    during: [],
-    after: [],
-  } as ChecklistsData);
+  const [fetch, setFetch] = useState(false);
 
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
-  // const [data, error] = useFetch(`${url}/lists/${props.stayId}?stay=true`);
-
-  useEffect(() => {
-    (async () => {
-      const [data, fetchError] = await axiosFetch(
-        'get',
-        `${url}/lists/${props.stayId}?stay=true`,
-      );
-
-      if (fetchError.error === true) {
-        console.error(fetchError);
-        setError(fetchError);
-      } else {
-        setLists(data);
-      }
-    })();
-  }, []);
+  const [lists, error, loading] = useFetch(
+    `${url}/lists/${props.stayId}?stay=true`,
+    fetch,
+  );
 
   const setFilterForList = (listType: ListTypes) => {
     setListFilter(listType);
   };
 
   const setComplete = (itemId: number, stayId: number) => async () => {
-    setLoading(true);
-
     const [receivedData, sendError] = await axiosFetch(
       'post',
       `${url}/itemComplete`,
@@ -188,20 +167,10 @@ export const Checklist = (props: { stayId: number; className?: string }) => {
       },
     );
 
-    // It's possible to update the state directly with receivedData
-    // eliminating the need for the below axios call.
-    // Perhaps with sleep, I can figure it out.
-
-    const [newLists, listError] = await axiosFetch(
-      'get',
-      `${url}/lists/${props.stayId}?stay=true`,
-    );
-
-    setLists(newLists);
-    setLoading(false);
+    setFetch((prev) => !prev);
   };
 
-  return (
+  return lists ? (
     <ChecklistView
       className={props.className}
       loading={loading}
@@ -211,5 +180,5 @@ export const Checklist = (props: { stayId: number; className?: string }) => {
       setComplete={setComplete}
       errors={error}
     />
-  );
+  ) : null;
 };
