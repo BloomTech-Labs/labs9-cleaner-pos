@@ -14,7 +14,6 @@ const HouseItem = styled('div')`
   height: ${cardHeight}px;
   width: 100%;
   border-radius: 0px;
-  padding-left: 1px;
   margin-top: 24px;
   display: flex;
   text-align: left;
