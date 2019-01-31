@@ -25,17 +25,10 @@ const SpecialButton = ({
 }: SpecialButtonProps) => {
   const buttonColor = color;
   const StyledButton = styled('button')`
-    width: 40px;
-    height: 40px;
-
-    @media only screen and (min-width: 700px) {
-      border: 1px solid black;
-      width: 125px;
-      height: 40px;
-      color: black;
-      background-color: white;
-      font-size: 1.35rem;
-    }
+    width: 50px;
+    height: 50px;
+		border: none;
+		background-color: #eeeff5
   `;
   return (
     <>

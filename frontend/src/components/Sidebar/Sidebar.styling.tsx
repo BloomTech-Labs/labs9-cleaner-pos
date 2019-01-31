@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
-import { Button } from '../index';
+import { Button, SpecialButton } from '../index';
 
 const bp = '700px';
 
@@ -106,7 +106,13 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const SubButton = styled(Button)``;
+const SubButton = styled(Button)`
+`;
+
+const SignOutButton = styled(SpecialButton)`
+	border: none;
+	background-color: #eeeff5;
+`;
 
 export {
   Container,
@@ -116,4 +122,5 @@ export {
   StyledUL,
   StyledLink,
   SubButton,
+  SignOutButton,
 };
