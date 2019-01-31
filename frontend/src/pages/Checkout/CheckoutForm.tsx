@@ -5,6 +5,7 @@ import {
   CardElement,
 } from 'react-stripe-elements';
 import { UserContext } from '../../App';
+import { Link } from 'react-router-dom';
 import { PaymentContext } from './Checkout';
 import { Button } from '../../components/index';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
@@ -52,9 +53,18 @@ const CheckoutForm = (props: any) => {
   return (
     <div style={{ width: '250px', margin: '0 auto' }}>
       {error && error.error ? (
-        <p style={{ color: 'var(--color-error)', fontWeight: 'bold' }}>
-          {error.message}
-        </p>
+        <>
+          <p style={{ color: 'var(--color-error)', fontWeight: 'bold' }}>
+            {error.message}
+          </p>
+          <Link to='/settings'>
+            <Button
+              text='Connect now'
+              color='#0AA047'
+              className='connect-button'
+            />
+          </Link>
+        </>
       ) : null}
       {!error.error ? (
         <>

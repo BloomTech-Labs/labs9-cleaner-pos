@@ -24,6 +24,9 @@ export const Invoice = styled('div')`
   .payment-button {
     margin: 0 auto;
   }
+  .connect-button {
+    margin-bottom: 24px;
+  }
 `;
 
 export const InvoiceBox = styled('div')`
