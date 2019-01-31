@@ -56,7 +56,7 @@ const LeafletMap = (props: { className?: string }) => {
       />
       {Positions.map((latlng: any) => {
         return (
-          <Marker position={latlng} icon={iconPerson}>
+          <Marker key={latlng[0]} position={latlng} icon={iconPerson}>
             <Popup>
               A pretty CSS3 popup.
               <br />

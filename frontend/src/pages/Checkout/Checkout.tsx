@@ -45,7 +45,6 @@ const Checkout = (props: CheckoutProps) => {
     };
     try {
       const { data } = await axios.get(`${url}/stays/${id}`, headers);
-      console.log(data);
       setStay(data);
       setStayLoading(false);
     } catch (e) {
@@ -56,7 +55,6 @@ const Checkout = (props: CheckoutProps) => {
     fetchStay();
   }, []);
 
-  console.log(stay);
   const key = process.env.REACT_APP_stripe_API || '';
 
   const total = stay
