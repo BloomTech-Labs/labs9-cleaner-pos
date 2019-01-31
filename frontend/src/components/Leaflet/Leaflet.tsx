@@ -5,6 +5,16 @@ import 'leaflet/dist/leaflet.css';
 import L, { LatLngExpression } from 'leaflet';
 import Pointer from './33622.svg';
 
+// @ts-ignore
+const Geocode = require('react-geocode');
+
+Geocode.default.setApiKey(process.env.REACT_APP_GEO);
+console.log(Geocode);
+
+Geocode.default.enableDebug();
+
+
+
 const iconPerson: any = L.icon({
   iconUrl: Pointer,
   // iconRetinaUrl: null,
@@ -29,6 +39,16 @@ const LeafletMap = (props: { className?: string }) => {
 
   const Positions = [[38.6953, -121.0137], [38.695394, -121.013766]];
   const position: [number, number] = [coordinates.lat, coordinates.lng];
+  if (false) {
+    Geocode.default.fromAddress('1600 Ampitheatre Parkway, Mountain View, CA')
+    .then((response: any) => {
+      const { lat, lng } = response.results[0].geometry.location;
+      console.log(lat, lng);
+    })
+    .catch((error: any) => {
+      console.error(error);
+    });
+  }
 
   return (
     <MapDiv>
@@ -39,13 +59,13 @@ const LeafletMap = (props: { className?: string }) => {
         />
         {Positions.map((latlng: any) => {
           return (
-          <Marker position={latlng} icon={iconPerson}>
-            <Popup>
-              A pretty CSS3 popup.
-              <br />
-              Easily customizable.
-            </Popup>
-          </Marker>
+            <Marker position={latlng} icon={iconPerson}>
+              <Popup>
+                A pretty CSS3 popup.
+                <br />
+                Easily customizable.
+              </Popup>
+            </Marker>
           );
         })}
       </Map>
