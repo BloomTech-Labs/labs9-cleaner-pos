@@ -23,6 +23,12 @@ export const errorHandler = (
         message: 'The requested information could not be found',
       });
       break;
+    case 401:
+      res.status(401).json({
+        message:
+          'Please connect your stripe account before processing payments!',
+      });
+      break;
     case 400:
       res.status(400).json({
         message:
