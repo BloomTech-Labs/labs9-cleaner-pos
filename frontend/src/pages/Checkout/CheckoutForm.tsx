@@ -71,6 +71,7 @@ const CheckoutForm = (props: any) => {
             <div style={{ marginBottom: '24px' }} />
             <Button
               onClick={handleSubmit}
+              className='submit-payment'
               text='Confirm Payment'
               datatestid='confirm-payment'
               color='#0AA047'

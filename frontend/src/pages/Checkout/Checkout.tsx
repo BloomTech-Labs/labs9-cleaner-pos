@@ -21,10 +21,42 @@ const Checkout = (props: CheckoutProps) => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
   const { id } = props.match.params;
-  // const [stays, setStays] = useState([]);
+  const [stay, setStay] = useState<any>(null);
+  const [stayError, setStayError] = useState({ error: false, message: '' });
+  const [stayLoading, setStayLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [stays, staysError, staysLoading] = useFetch(`${url}/stays?test=true`);
-  const [stay, stayError, stayLoading] = useFetch(`${url}/stays/${id}`);
+  // @ts-ignore
+
+  async function fetchStay() {
+    setStayLoading(true);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setStayError({
+        message: 'Authentication error. Please try logging in again.',
+        error: true,
+      });
+      setStayLoading(false);
+      return;
+    }
+
+    const headers: AxiosRequestConfig = {
+      headers: { Authorization: token },
+    };
+    try {
+      const { data } = await axios.get(`${url}/stays/${id}`, headers);
+      console.log(data);
+      setStay(data);
+      setStayLoading(false);
+    } catch (e) {
+      setStayError({ error: true, message: e.response.data.message });
+    }
+  }
+  useEffect(() => {
+    fetchStay();
+  }, []);
+
+  console.log(stay);
   const key = process.env.REACT_APP_stripe_API || '';
 
   const total = stay
@@ -94,16 +126,6 @@ const Checkout = (props: CheckoutProps) => {
                   </StripeProvider>
                 </PaymentContext.Provider>
               )}
-              {show ? null : (
-                <Button
-                  text={`Pay $${total}`}
-                  color='#0aa047'
-                  onClick={() => {
-                    setShow(true);
-                  }}
-                  datatestid='payment-button'
-                />
-              )}
 
               <InvoiceBox>
                 <span>
@@ -123,7 +145,17 @@ const Checkout = (props: CheckoutProps) => {
                   <span>{stay.extra_fee * stay.extra_guests}</span>
                 </InvoiceBox>
               )}
-              <div data-testid='total-amount'>Total: ${total}</div>
+              {show ? null : (
+                <Button
+                  className='payment-button'
+                  text={`Pay $${total}`}
+                  color='#0aa047'
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                  datatestid='payment-button'
+                />
+              )}
             </Invoice>
           </div>
         </div>

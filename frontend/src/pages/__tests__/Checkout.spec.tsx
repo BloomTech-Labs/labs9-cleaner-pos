@@ -78,11 +78,9 @@ describe('Checkout Page UI', () => {
     const { getByText } = render(<Checkout {...props} />);
     const { diff, price, cleaning_fee } = mockData;
     const total = diff * +price + +cleaning_fee;
-    const totalDisplay = await waitForElement(() =>
-      getByText(`Total: $${total}`),
-    );
+    const totalDisplay = await waitForElement(() => getByText(`Pay $${total}`));
     await wait(() => {
-      expect(totalDisplay).toHaveTextContent(`Total: $${total}`);
+      expect(totalDisplay).toHaveTextContent(`Pay $${total}`);
     });
   });
 

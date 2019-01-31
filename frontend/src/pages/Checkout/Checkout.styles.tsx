@@ -18,6 +18,12 @@ export const Invoice = styled('div')`
   padding: 10px;
   background: var(--color-accent-background);
   border: 0.5px solid var(--color-border);
+  .submit-payment {
+    margin-bottom: 24px;
+  }
+  .payment-button {
+    margin: 0 auto;
+  }
 `;
 
 export const InvoiceBox = styled('div')`
