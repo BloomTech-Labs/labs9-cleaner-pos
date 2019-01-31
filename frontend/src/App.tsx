@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import { Route, Switch, withRouter } from 'react-router';
 import {
   LandingPage,
@@ -23,20 +23,32 @@ import Billing from './pages/Billing/Billing';
 interface UserData {
   loggedIn: boolean;
   role: string;
+  subscription: number;
+  setSub: any;
 }
 const token = localStorage.getItem('token');
 const role = localStorage.getItem('role') || '';
 
 const defaultValue = {
-  loggedIn: token ? true : false,
+  loggedIn: false,
   role,
+  subscription: 0,
+  setSub: '',
 };
+
 export const UserContext = createContext<UserData>(defaultValue);
 
 const App = () => {
+  const [subStatus, setSubStatus] = useState(0);
+  const contextValue = {
+    loggedIn: token ? true : false,
+    role,
+    subscription: subStatus || 0,
+    setSub: setSubStatus,
+  };
   return (
     <div className='App'>
-      <UserContext.Provider value={defaultValue}>
+      <UserContext.Provider value={contextValue}>
         <Sidebar />
         <Switch>
           <Route exact path='/' component={LandingPage} />

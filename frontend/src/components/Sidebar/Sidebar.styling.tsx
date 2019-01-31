@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
+
 const bp = '700px';
 
 const Container = styled('div')`
@@ -71,6 +72,10 @@ const SettingsWrapper = styled('div')`
   display: flex;
   align-items: center;
   margin-right: 1rem;
+  .signout {
+    border: none;
+    background-color: #eeeff5;
+  }
   @media only screen and (min-width: ${bp}) {
     display: flex;
     padding-left: 1rem;
@@ -80,7 +85,6 @@ const SettingsWrapper = styled('div')`
 
 const StyledUL = styled('div')`
   list-style-type: none;
-
   display: flex;
   align-items: center;
 `;
