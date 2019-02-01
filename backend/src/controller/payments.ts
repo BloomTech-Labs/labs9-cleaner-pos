@@ -12,6 +12,7 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
     res.status(400).send({ message: 'Please include a valid token!' });
     return;
   }
+  const plan = req.body.plan_id || '1';
   try {
     const customer = await stripe.customers.create({
       source: id,
@@ -20,7 +21,7 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
       customer: customer.id,
       items: [
         {
-          plan: '1',
+          plan,
         },
       ],
     });

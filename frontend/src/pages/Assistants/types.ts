@@ -18,6 +18,7 @@ export interface Assistant {
   house_id: number;
   full_name: string;
   address?: string;
+  photo_url: string;
 }
 
 export interface AssistantDetails {

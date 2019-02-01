@@ -23,6 +23,12 @@ const AssistantItem = styled('div')`
   /* Text */
   text-align: left;
 
+  /* Hover Effects */
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.025);
+  }
+
   .check-boxes {
     display: flex;
     flex-flow: row nowrap;
@@ -97,8 +103,8 @@ const ButtonContainer = styled('div')`
 `;
 
 const ThumbNail = styled('img')`
-  width: ${pxToVw(254 * 0.9)};
-  height: auto;
+  width: 18.75rem;
+  height: 100%;
   object-fit: cover;
 `;
 

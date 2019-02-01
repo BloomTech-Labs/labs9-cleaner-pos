@@ -36,13 +36,13 @@ export interface NewPropertyInitialValues {
   state: string;
   postCode: string;
   country: string;
-  photoUrl: string;
+  photoUrl?: string;
   pricePerNight: number;
   feePerGuest: number;
   cleaningFee: number;
   defaultAst: number;
-  astGuide: string;
-  guestGuide: string;
+  astGuide?: string;
+  guestGuide?: string;
   errorStatus?: string;
 }
 
@@ -86,12 +86,13 @@ export interface MyFormProps extends FormikProps<NewPropertyInitialValues> {
 
 // Dropdown
 export interface AstObj {
-  user_id: number;
+  user_id?: number;
   ast_id: number;
   full_name: string;
-  address: string;
-  photo_url: string;
-  openAst: Array<{
+  address?: string;
+  photo_url?: string;
+  house_id?: number;
+  openAst?: Array<{
     full_name: string;
     ast_id: number;
     house_id: number;

@@ -99,6 +99,9 @@ export const findHouse = async (id: number) => {
       'house.guest_guide',
       'house.ast_guide',
       'house.photo_url',
+      'house.price',
+      'house.cleaning_fee',
+      'house.extra_guest_fee',
     )
     .where({ 'house.id': id })
     .map(async (e: any) => {

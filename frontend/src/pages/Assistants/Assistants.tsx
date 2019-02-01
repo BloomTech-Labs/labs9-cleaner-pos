@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Container } from '../../components/index';
 import { useFetch } from '../../helpers/';
 import { Link } from 'react-router-dom';
-import img from '../assets/ronald.jpg';
 import loadingIndicator from '../utils/loading.svg';
 import {
   AssistantItem,
@@ -16,10 +15,15 @@ import {
   HeaderWrapper,
 } from './Assistants.styling';
 import { Assistant } from './types';
+// Assets
+import defaultUser from '../../assets/default-user.jpg';
+import img from '../assets/ronald.jpg';
 
 interface AssistantsEnum extends Array<Assistant> {}
 
 const AssistantCard = (assistant: Assistant) => {
+  const imgFile = assistant.photo_url || defaultUser;
+
   return (
     <>
       <Link
@@ -27,7 +31,11 @@ const AssistantCard = (assistant: Assistant) => {
         to={`/assistants/${assistant.ast_id}`}
       >
         <AssistantItem data-testid='assistant-item'>
-          <ThumbNail className='list-img' src={img} alt={assistant.full_name} />
+          <ThumbNail
+            className='list-img'
+            src={imgFile}
+            alt={assistant.full_name}
+          />
           <CardBody>
             <CardHeading>
               <h1>{assistant.full_name}</h1>
