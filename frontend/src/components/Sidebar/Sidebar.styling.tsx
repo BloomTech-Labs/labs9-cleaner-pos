@@ -5,10 +5,21 @@ import { RouteComponentProps } from 'react-router-dom';
 
 const bp = '700px';
 
+const hideSidebar = (props: RouteComponentProps) => {
+  /* Conditionally hides the sidebar when on certain paths in front end.
+     Paths are defined below:
+  */
+  const pathsToHideSidebar = ['/', '/Login'];
+
+  console.log('props.location.pathname', props.location.pathname);
+  return pathsToHideSidebar.includes(props.location.pathname)
+    ? 'none'
+    : 'block';
+};
+
 const Container = styled('div')`
   /* Conditional Display */
-  display: ${(props: RouteComponentProps) =>
-    props.location.pathname === '/' ? 'none' : 'block'};
+  display: ${hideSidebar};
 
   /* Box Model & Sizing */
   margin: 0 auto;
@@ -39,8 +50,7 @@ const Container = styled('div')`
 
   @media only screen and (min-width: ${bp}) {
     /* Conditional Display */
-    display: ${(props: RouteComponentProps) =>
-      props.location.pathname === '/' ? 'none' : 'block'};
+    display: ${hideSidebar};
 
     .menu {
       display: none;
