@@ -155,7 +155,7 @@ export const StyledGuestCard = styled(GuestCard)`
     width: 100%;
     padding: 0;
     height: ${height}rem;
-    border: 1px solid var(--color-border);
+    border: var(--border);
     margin: 0 0 ${pxToRem(36)}rem 0;
 
     /* Grid */
@@ -244,7 +244,7 @@ export const StyledGuestCard = styled(GuestCard)`
 
 export const InfoDiv = styled.div`
   /* Sizing & Box Model */
-  border: 1px solid var(--color-border);
+  border: var(--border);
 
   /* Flexbox */
   display: flex;

@@ -110,7 +110,8 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--checklist,
   .guest-info--resources,
   .guest-info--checkout {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
+    border: var(--border);
   }
 
   /* Checklists */
@@ -167,7 +168,7 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--checkout-top {
     /* Box Model & Sizing */
     padding: 0 0.5rem;
-    border: 0.5px solid var(--color-border);
+    border: var(--border);
     color: var(--color-accent);
   }
 

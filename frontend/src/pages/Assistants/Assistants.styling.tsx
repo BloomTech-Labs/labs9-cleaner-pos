@@ -15,7 +15,7 @@ const AssistantItem = styled('div')`
 
   /* Sizing */
   height: ${pxToRem(168)};
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
 
   /* Flex */
   display: flex;
@@ -143,7 +143,7 @@ const CheckList = styled('div')`
   /* Sizing */
   height: ${boxHeight};
   width: ${boxWidth};
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   /* Text */
   text-align: center;
   font-size: 1.5rem;
@@ -315,7 +315,7 @@ const AsstProperty = styled('div')`
 
 const PropertyContainer = styled('div')`
   /* Size */
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   margin: 1rem 0;
   /* Flex */
   display: flex;

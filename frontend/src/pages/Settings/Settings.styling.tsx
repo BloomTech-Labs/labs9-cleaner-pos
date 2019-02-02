@@ -17,7 +17,7 @@ const Card = styled('div')`
   background: var(--color-main-background);
   display: flex;
   padding: 20px;
-  border: 1px solid var(--color-border);
+  border: var(--border);
   h3 {
     font-family: 'Roboto';
     font-weight: condensed;
@@ -44,7 +44,7 @@ const LeftContainer = styled('div')`
   flex-direction: column;
   align-items: space-evenly;
   justify-content: center;
-  border: 1px solid var(--color-border);
+  border: var(--border);
   border-right: 0;
   background: var(--color-accent-background);
 `;
@@ -56,7 +56,7 @@ const RightContainer = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-border);
+  border: var(--border);
   border-left: 0;
   background: var(--color-accent-background);
 `;

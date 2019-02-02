@@ -9,7 +9,8 @@ export const BackButton = styled(Button)`
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
   font-size: ${pxToRem(20)}rem;
-  border: 0.25px solid black;
+  /* border: 0.25px solid black; */
+  border: var(--border);
   @media only screen and (max-width: 900px) {
   }
 `;
@@ -19,7 +20,8 @@ export const PropertyButtons = styled('div')``;
 export const WhiteButton = styled(Button)`
   color: var(--color-button-text-alt);
   background-color: var(--color-button-text-action);
-  border: solid #707070 1px;
+  /* border: solid #707070 1px; */
+  border: var(--border);
   width: ${pxToRem(161)}rem;
   height: ${pxToRem(36)}rem;
   font-size: ${pxToRem(16)}rem;
@@ -109,7 +111,8 @@ export const ListContainer = styled('div')`
 export const ListDiv = styled('div')`
   width: 45%;
   min-width: ${pxToRem(254)}rem;
-  border: solid #707070 1px;
+  /* border: solid #707070 1px; */
+  border: var(--border);
   margin: ${pxToRem(36)}rem 0;
   display: flex;
   flex-direction: column;
@@ -196,6 +199,7 @@ export const AfterItemDiv = styled(ItemDiv)`
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    border: solid #707070 1px;
+    /* border: solid #707070 1px; */
+    border: var(--border);
   }
 `;
