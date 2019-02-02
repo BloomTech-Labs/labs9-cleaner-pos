@@ -11,7 +11,7 @@ const bp = `650px`;
 const AssistantItem = styled('div')`
   /* Color */
   background: white;
-  color: var(--color-main-black);
+  color: var(--color-text-dark);
 
   /* Sizing */
   height: ${pxToRem(168)};
@@ -155,14 +155,14 @@ const CheckList = styled('div')`
   justify-content: center;
   align-items: space-around;
   /* Color */
-  background-color: var(--color-main-background);
+  background-color: var(--color-bg-gray);
   p {
     margin: 0;
     font-size: 1rem;
     font-weight: normal;
   }
   .secondary {
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
   @media screen and (max-width: 550px) {
     width: 45%;
@@ -185,9 +185,9 @@ const Asst = styled('div')`
   justify-content: center;
   align-items: center;
   /* Color */
-  background-color: var(--color-main-background);
+  background-color: var(--color-bg-gray);
   .secondary {
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
   p {
     margin: 0;
@@ -299,7 +299,7 @@ const AssistantBar = styled('div')`
 const AsstDetail = styled('div')`
   height: 6rem;
   color: var(--color-text-dark);
-  background: var(--color-main-background);
+  background: var(--color-bg-gray);
   display: flex;
   flex-direction: row;
 `;
@@ -347,7 +347,7 @@ const PropertyHeading = styled('div')`
   align-items: center;
   /* Color */
   color: var(--color-text-light);
-  background: var(--color-accent);
+  background: var(--color-bg-accent);
   /* Text */
   text-align: left;
 

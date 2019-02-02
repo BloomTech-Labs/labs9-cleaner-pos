@@ -90,7 +90,7 @@ export const Header = styled('div')`
   width: 100%;
   padding: ${pxToRem(16)}rem ${pxToRem(28)}rem;
   height: ${pxToRem(60)}rem;
-  background: var(--color-accent);
+  background: var(--color-text-accent);
   text-align: left;
   color: white;
   font-family: 'Roboto', Arial, sans-serif;
@@ -124,7 +124,7 @@ export const ItemDiv = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--color-accent-background);
+  background-color: var(--color-bg-light);
   flex-grow: 1;
 `;
 
@@ -177,7 +177,7 @@ export const AfterListDiv2 = styled(ListDiv)`
 
 export const AfterHeader = styled(Header)`
   font-size: ${pxToRem(20)}rem;
-  background: var(--color-main-background);
+  background: var(--color-bg-gray);
   color: var(--color-button-text-alt);
   border-bottom: solid #707070 1px;
   justify-content: flex-start;

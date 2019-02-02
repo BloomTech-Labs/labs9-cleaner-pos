@@ -110,8 +110,8 @@ export const StyledGuestCard = styled(GuestCard)`
   grid-column-gap: ${pxToRem(36)}rem;
 
   /* Color */
-  color: var(--color-main-black);
-  background-color: var(--color-accent-background);
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-light);
 
   /* Hover Effects */
   transition: all 0.1s ease-in-out;
@@ -147,7 +147,7 @@ export const StyledGuestCard = styled(GuestCard)`
       https://stackoverflow.com/a/8588532
       */
     /* Color */
-    background-color: var(--color-main-background);
+    background-color: var(--color-bg-gray);
   }
 
   @media only screen and (min-width: 720px) {
@@ -221,7 +221,7 @@ export const StyledGuestCard = styled(GuestCard)`
       grid-row: span 2;
 
       /* Color */
-      background-color: var(--color-main-background);
+      background-color: var(--color-bg-gray);
     }
 
     .info-progress .text-main {
@@ -252,7 +252,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--color-accent-background);
+  background-color: var(--color-bg-light);
 
   div[class^='text-'] {
     display: block;
@@ -261,13 +261,13 @@ export const InfoDiv = styled.div`
   .text-main {
     font-family: 'Roboto Medium', Arial, sans-serif;
     font-size: ${24 / 16}rem;
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
 
   .text-secondary {
     font-family: 'Roboto Light', Arial, sans-serif;
     font-size: ${16 / 16}rem;
-    color: var(--color-main-black);
+    color: var(--color-text-dark);
   }
 `;
 

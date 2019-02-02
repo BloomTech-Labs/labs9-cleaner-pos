@@ -169,7 +169,7 @@ export const GuestDetailStyle = styled('div')`
     /* Box Model & Sizing */
     padding: 0 0.5rem;
     border: var(--border);
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
 
   .guest-info--checklist-bottom,
@@ -183,7 +183,7 @@ export const GuestDetailStyle = styled('div')`
   }
 
   .guest-info--top {
-    background: var(--color-accent);
+    background: var(--color-bg-accent);
     color: white;
   }
 
@@ -229,7 +229,7 @@ export const GuestDetailStyle = styled('div')`
     grid-row: span 2;
     grid-column: 1;
     /* Color */
-    background-color: var(--color-main-background);
+    background-color: var(--color-bg-gray);
   }
 
   .guest-info--checkout-bottom .stay-code div {

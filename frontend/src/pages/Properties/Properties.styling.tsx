@@ -38,7 +38,7 @@ const HouseItem = styled('div')`
   display: flex;
   text-align: left;
   border: var(--border);
-  background-color: white;
+  background-color: var(--color-bg-light);
 
   /* Hover Effects */
   transition: all 0.1s ease-in-out;
@@ -157,7 +157,7 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-  background-color: var(--color-main-background);
+  background-color: var(--color-bg-gray);
   padding: 0.5rem 1rem;
   text-align: center;
   border: var(--border);

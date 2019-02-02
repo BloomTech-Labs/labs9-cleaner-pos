@@ -78,15 +78,15 @@ const Properties = () => {
             style={{
               marginTop: '24px',
               marginBottom: '24px',
-              color: 'var(--color-accent)',
+              color: 'var(--color--text-accent)',
               border: 'var(--border)',
               padding: '20px',
-              background: 'var(--color-accent-background',
+              backgroundColor: 'var(--color-bg-light)',
             }}
           >
             <h2>
-              You've reached the maximum amount of properties, please subscribe
-              to add more
+              You've reached the maximum amount of properties. Please subscribe
+              to add more.
             </h2>
             <Link to='/billing'>
               <Button text='Subscribe' />

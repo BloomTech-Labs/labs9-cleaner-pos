@@ -1,27 +1,34 @@
 :root {
   /* General Colors */
-  --color-main-black: #393534;
-  --color-main-background: #eeeff5;
-  --color-accent: #4593b6;
-  --color-accent-background: white;
-  --color-border: rgba(22, 21, 20, 0.12);
+  --color-main-dark: #2d2e2e;
+  --color-main-gray: #e3e6e4;
+  --color-main-light: #f1f2f1;
+  --color-accent: #47a8a7;
+  --color-accent-background: #f1f2f1;
+  --color-border: rgba(17, 18, 18, 0.12);
   --color-error: #b8003f;
-  /* Buttons */
-  --color-button-text: #eeeff5;
-  --color-button-background: #4593b6;
-  --color-button-text-alt: #4593b6;
-  --color-button-background-alt: #eeeff5;
-  --color-button-background-action: #0aa047;
-  --color-button-text-action: white;
+  /* Background Colors */
+  --color-bg-gray: var(--color-main-gray);
+  --color-bg-light: var(--color-main-light);
+  --color-bg-accent: var(--color-accent);
+  --color-bg-accent-light: #ddefef;
+  /* Button Colors */
+  --color-button-text: var(--color-accent-background);
+  --color-button-background: var(--color-accent);
+  --color-button-text-alt: var(--color-accent);
+  --color-button-background-alt: var(--color-accent-background);
+  --color-button-background-action: #7e8d66;
+  --color-button-text-action: var(--color-accent-background);
+  /* Text Colors */
+  --color-text-dark: var(--color-main-dark);
+  --color-text-light: var(--color-accent-background);
+  --color-text-accent: var(--color-accent);
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
   --header-font-size-secondary: 1.25rem;
-  /* Text Colors */
-  --color-text-dark: #393534;
-  --color-text-light: #eeeff5;
-  --color-text-accent: #4593b6;
   /* Border */
   --border: 1px solid var(--color-border);
+  --border-bottom: 1px solid var(--color-border);
 }
 
 body {
@@ -30,13 +37,13 @@ body {
   margin: auto;
   padding: 0;
   color: var(--color-text-dark);
-  background-color: var(--color-main-background);
+  background-color: var(--color-bg-gray);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--color-main-background);
+  background: var(--color-bg-gray);
 }
 
 code {
