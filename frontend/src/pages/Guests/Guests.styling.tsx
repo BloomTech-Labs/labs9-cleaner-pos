@@ -4,7 +4,7 @@ import { GuestCard } from './GuestCard';
 // Styles
 import styled from '@emotion/styled';
 
-const height = 168 / 16;
+const height = 168;
 const pxToRem = (px: number) => px / 16;
 // In design file, image was 216px high
 // For responsiveness, we want to use rems.
@@ -154,7 +154,7 @@ export const StyledGuestCard = styled(GuestCard)`
     /* Sizing and Box Model */
     width: 100%;
     padding: 0;
-    height: ${height}rem;
+    height: ${pxToRem(height)}rem;
     border: var(--border);
     margin: 0 0 ${pxToRem(36)}rem 0;
 
@@ -170,7 +170,7 @@ export const StyledGuestCard = styled(GuestCard)`
       /* Sizing & Box Model*/
       border-radius: 0%;
       width: 100%;
-      height: ${height - pxToRem(2)}rem;
+      height: ${pxToRem(height)}rem;
       object-fit: cover;
 
       /* Grid */
