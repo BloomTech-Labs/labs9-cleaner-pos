@@ -18,10 +18,8 @@
   --color-border-strong: rgba(2, 21, 22, 0.5);
   --color-error: #b8003f; */
   /* Background Colors */
-  /* --- Original Configuration */
   --color-bg-main: var(--color-main-medium);
   --color-bg-secondary: var(--color-main-light);
-  /* --- */
   --color-bg-accent: var(--color-accent);
   --color-bg-accent-light: var(--color-accent-light);
   /* Button Colors */
