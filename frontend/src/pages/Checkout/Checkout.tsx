@@ -71,6 +71,15 @@ const Checkout = (props: CheckoutProps) => {
       +stay.cleaning_fee
     : 0;
 
+  const numberHandler = (property: string) => (num: number) => {
+    /* Handler function to pass to NumberSelector components
+       Won't update value if new value is less than 0
+    */
+    if (num >= 0) {
+      setStay({ ...stay, [property]: num });
+    }
+  };
+
   const stringifyCost = (amt: number): string =>
     // Converts number into a currency string based on user's locale
     // Thanks to https://stackoverflow.com/a/31581206
@@ -89,22 +98,9 @@ const Checkout = (props: CheckoutProps) => {
             <h1 data-testid='guest-name'>{stay ? stay.guest_name : null}</h1>
             <div className='checkout-field'>
               Nights:
-              <input
-                value={stay.diff}
-                onChange={(e) =>
-                  // @ts-ignore
-                  setStay({ ...stay, diff: e.target.value })
-                }
-              />
               <NumberSelector
                 value={stay.diff}
-                onClick={(e) => {
-                  console.log(e.target.name);
-                  const newValue =
-                    e.target.name === 'add' ? stay.diff + 1 : stay.diff - 1;
-
-                  setStay({ ...stay, diff: newValue });
-                }}
+                onClick={numberHandler('diff')}
               />
             </div>
             <div className='checkout-field'>
@@ -112,12 +108,16 @@ const Checkout = (props: CheckoutProps) => {
             </div>
             <div className='checkout-field'>
               Extra Guests:{' '}
-              <input
+              {/* <input
                 value={stay.extra_guests || 0}
                 onChange={(e) =>
                   // @ts-ignore
                   setStay({ ...stay, extra_guests: e.target.value })
                 }
+              /> */}
+              <NumberSelector
+                value={stay.extra_guests || 0}
+                onClick={numberHandler('extra_guests')}
               />
             </div>
           </div>
