@@ -80,7 +80,7 @@ const Properties = () => {
             style={{
               marginTop: '24px',
               marginBottom: '24px',
-              color: 'var(--color--text-accent)',
+              color: 'var(--color-text-accent)',
               border: 'var(--border)',
               padding: '20px',
               backgroundColor: 'var(--color-bg-secondary)',

@@ -34,7 +34,7 @@ const HouseItem = styled('div')`
   width: 100%;
   border-radius: 0px;
   padding-left: 1px;
-  margin-top: 24px;
+  margin-top: 2rem;
   display: flex;
   text-align: left;
   border: var(--border-alt);
