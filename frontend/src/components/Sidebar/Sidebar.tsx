@@ -79,7 +79,7 @@ const Sidebar = (props: LinkProps) => {
           />
         </SettingsWrapper>
       </div>
-      <NavBar>
+      <NavBar {...props}>
         <NavWrapper>
           <StyledUL>
             {/* Uncomment this section when reports page is complete */}
