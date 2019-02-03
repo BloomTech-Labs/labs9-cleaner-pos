@@ -10,19 +10,17 @@
   --color-error: #b8003f; */
   /* --- Test Colors */
   --color-main-dark: #021516;
-  --color-main-gray: #f7f6f3;
+  --color-main-gray: #ebf0f1;
   --color-main-light: #ffffff;
   --color-accent: #167c80;
   --color-accent-light: #ebf8f8;
-  --color-border: rgba(45, 46, 46, 0.125);
+  --color-border: rgba(2, 21, 22, 0.125);
+  --color-border-strong: rgba(2, 21, 22, 0.5);
   --color-error: #b8003f;
   /* Background Colors */
   /* --- Original Configuration */
-  /* --color-bg-main: var(--color-main-gray);
-  --color-bg-secondary: var(--color-main-light); */
-  /* --- Test Configuration */
-  --color-bg-main: var(--color-main-light);
-  --color-bg-secondary: var(--color-main-gray);
+  --color-bg-main: var(--color-main-gray);
+  --color-bg-secondary: var(--color-main-light);
   /* --- */
   --color-bg-accent: var(--color-accent);
   --color-bg-accent-light: var(--color-accent-light);
