@@ -8,12 +8,15 @@ import {
   CheckoutForm,
   Invoice,
   InvoiceBox,
+  CheckoutRight,
 } from './Checkout.styles';
 import { StripeProvider } from 'react-stripe-elements';
 import loadingIndicator from '../utils/loading.svg';
 
 import MyStoreCheckout from './Checkout.1';
 import { useFetch } from '../../helpers';
+
+import { NumberSelector } from './NumberSelector';
 
 interface CheckoutProps extends RouteComponentProps {
   match: any;
@@ -93,6 +96,16 @@ const Checkout = (props: CheckoutProps) => {
                   setStay({ ...stay, diff: e.target.value })
                 }
               />
+              <NumberSelector
+                value={stay.diff}
+                onClick={(e) => {
+                  console.log(e.target.name);
+                  const newValue =
+                    e.target.name === 'add' ? stay.diff + 1 : stay.diff - 1;
+
+                  setStay({ ...stay, diff: newValue });
+                }}
+              />
             </div>
             <div className='checkout-field'>
               Cleaning Fee: <span>${stay.cleaning_fee}</span>
@@ -108,7 +121,7 @@ const Checkout = (props: CheckoutProps) => {
               />
             </div>
           </div>
-          <div>
+          <CheckoutRight>
             <CheckoutForm>
               {/* TODO: implement onChange to filter through stays */}
               <label htmlFor='stay-search' style={{ display: 'hidden' }}>
@@ -164,7 +177,7 @@ const Checkout = (props: CheckoutProps) => {
                 />
               )}
             </Invoice>
-          </div>
+          </CheckoutRight>
         </div>
       ) : null}
     </CheckoutContainer>

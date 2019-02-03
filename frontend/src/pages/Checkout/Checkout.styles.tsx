@@ -37,6 +37,8 @@ export const CheckoutContainer = styled(Container)`
   }
 `;
 
+export const CheckoutRight = styled.div``;
+
 export const CheckoutForm = styled('div')`
   border: 0.5px solid var(--color-border);
   display: flex;
