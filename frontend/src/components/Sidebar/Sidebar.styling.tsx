@@ -9,6 +9,8 @@ const conditionallyHideSidebar = (property: string) => (
   props: RouteComponentProps,
 ): string => {
   /* Conditionally hides the sidebar when on certain paths in front end.
+     Accepts a string argument being the display property you want it to have
+     when visible.
      Paths are defined below:
   */
   const pathsToHideSidebar = ['/', '/Login'];
