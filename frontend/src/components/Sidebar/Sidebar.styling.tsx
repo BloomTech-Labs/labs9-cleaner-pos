@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 const bp = '700px';
 
-const hideSidebar = (property: string) => (
+const conditionallyHideSidebar = (property: string) => (
   props: RouteComponentProps,
 ): string => {
   /* Conditionally hides the sidebar when on certain paths in front end.
@@ -21,7 +21,7 @@ const hideSidebar = (property: string) => (
 
 const Container = styled('div')`
   /* Conditional Display */
-  display: ${hideSidebar('block')};
+  display: ${conditionallyHideSidebar('block')};
 
   /* Box Model & Sizing */
   margin: 0 auto;
@@ -42,7 +42,7 @@ const Container = styled('div')`
     height: 100%;
     margin-top: 2rem;
     width: 100%;
-    display: ${hideSidebar('flex')};
+    display: ${conditionallyHideSidebar('flex')};
     justify-content: space-between;
     align-items: baseline;
     margin: 2rem 0;
@@ -52,7 +52,7 @@ const Container = styled('div')`
 
   @media only screen and (min-width: ${bp}) {
     /* Conditional Display */
-    display: ${hideSidebar('block')};
+    display: ${conditionallyHideSidebar('block')};
 
     .menu {
       display: none;
