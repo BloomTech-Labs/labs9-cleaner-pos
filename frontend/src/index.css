@@ -1,15 +1,15 @@
 :root {
   /* General Colors */
   --color-main-dark: #021516;
-  --color-main-gray: #d1e5e6;
-  --color-main-light: #ffffff;
-  --color-accent: #23bcb7;
+  --color-main-gray: #deddda;
+  --color-main-light: #fefdfd;
+  --color-accent: #1dabaf;
   --color-accent-light: #ebf8f8;
   --color-border: rgba(45, 46, 46, 0.125);
   --color-error: #b8003f;
   /* Background Colors */
   --color-bg-main: var(--color-main-light);
-  --color-bg-secondary: var(--color-main-gray);
+  --color-bg-secondary: #eaf7f7;
   --color-bg-accent: var(--color-accent);
   --color-bg-accent-light: var(--color-accent-light);
   /* Button Colors */
@@ -39,7 +39,7 @@ body {
   margin: auto;
   padding: 0;
   color: var(--color-text-dark);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-main);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

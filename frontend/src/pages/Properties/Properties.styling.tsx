@@ -37,7 +37,7 @@ const HouseItem = styled('div')`
   margin-top: 24px;
   display: flex;
   text-align: left;
-  border: var(--border);
+  border: var(--border-alt);
   background-color: var(--color-bg-secondary);
 
   /* Hover Effects */

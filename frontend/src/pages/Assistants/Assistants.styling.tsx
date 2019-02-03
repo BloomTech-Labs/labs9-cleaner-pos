@@ -10,12 +10,12 @@ const bp = `650px`;
 
 const AssistantItem = styled('div')`
   /* Color */
-  background: white;
+  background: var(--color-bg-secondary);
   color: var(--color-text-dark);
 
   /* Sizing */
   height: ${pxToRem(168)};
-  border: var(--border);
+  border: var(--border-alt);
 
   /* Flex */
   display: flex;
@@ -37,7 +37,7 @@ const AssistantItem = styled('div')`
     width: 100%;
   }
 
-  @media screen and (max-width: ${bp}) {
+  @media only screen and (max-width: ${bp}) {
     width: 100%;
     height: 100%;
     /* Flex */
@@ -48,9 +48,7 @@ const AssistantItem = styled('div')`
       flex-flow: row wrap;
       margin-bottom: 1rem;
     }
-  }
 
-  @media only screen and (max-width: ${bp}) {
     .list-img {
       margin: 1rem auto 0 auto;
       width: 4.5rem;
