@@ -137,7 +137,7 @@ const CardBody = styled('div')`
   }
 `;
 
-const CheckList = styled('div')`
+const InfoBox = styled('div')`
   /* Sizing */
   height: ${boxHeight};
   width: ${boxWidth};
@@ -153,7 +153,7 @@ const CheckList = styled('div')`
   justify-content: center;
   align-items: space-around;
   /* Color */
-  background-color: var(--color-bg-main);
+  background-color: var(--color-bg-tertiary);
   p {
     margin: 0;
     font-size: 1rem;
@@ -167,35 +167,35 @@ const CheckList = styled('div')`
   }
 `;
 
-const Asst = styled('div')`
-  /* Sizing */
-  width: ${boxWidth};
-  height: ${boxHeight};
-  border: var(--border);
-  /* Text */
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: light;
-  line-height: 1.25;
-  /* Flex */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* Color */
-  background-color: var(--color-bg-main);
-  .secondary {
-    color: var(--color-text-accent);
-  }
-  p {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: normal;
-  }
-  @media screen and (max-width: 550px) {
-    width: 45%;
-  }
-`;
+// const Asst = styled('div')`
+//   /* Sizing */
+//   width: ${boxWidth};
+//   height: ${boxHeight};
+//   border: var(--border);
+//   /* Text */
+//   text-align: center;
+//   font-size: 1.5rem;
+//   font-weight: light;
+//   line-height: 1.25;
+//   /* Flex */
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   /* Color */
+//   background-color: var(--color-bg-tertiary);
+//   .secondary {
+//     color: var(--color-text-accent);
+//   }
+//   p {
+//     margin: 0;
+//     font-size: 1rem;
+//     font-weight: normal;
+//   }
+//   @media screen and (max-width: 550px) {
+//     width: 45%;
+//   }
+// `;
 
 const AssistantHeader = styled('span')`
   font-size: 1.8rem;
@@ -379,8 +379,7 @@ export {
   ThumbNail,
   CardHeading,
   CardBody,
-  CheckList,
-  Asst,
+  InfoBox,
   AssistantHeader,
   HeaderWrapper,
   AssistantBar,

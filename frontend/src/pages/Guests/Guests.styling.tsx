@@ -141,15 +141,6 @@ export const StyledGuestCard = styled(GuestCard)`
     grid-column: span 2;
   }
 
-  div[class^='info-'] {
-    /*
-      Above fancy selector courtesy of:
-      https://stackoverflow.com/a/8588532
-      */
-    /* Color */
-    background-color: var(--color-bg-main);
-  }
-
   @media only screen and (min-width: 720px) {
     /* Sizing and Box Model */
     width: 100%;
@@ -219,9 +210,6 @@ export const StyledGuestCard = styled(GuestCard)`
       /* Grid */
       grid-column: 4;
       grid-row: span 2;
-
-      /* Color */
-      background-color: var(--color-bg-main);
     }
 
     .info-progress .text-main {
@@ -252,7 +240,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-tertiary);
 
   div[class^='text-'] {
     display: block;

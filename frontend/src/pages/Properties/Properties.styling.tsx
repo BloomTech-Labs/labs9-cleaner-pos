@@ -157,7 +157,7 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-  background-color: var(--color-bg-main);
+  background-color: var(--color-bg-tertiary);
   padding: 0.5rem 1rem;
   text-align: center;
   border: var(--border);
