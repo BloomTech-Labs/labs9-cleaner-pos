@@ -97,7 +97,7 @@ export const GuestsDiv = styled(Container)`
 export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
   width: 95vw;
-  margin: 2rem 0.5rem;
+  margin: 2.25rem 0.5rem;
   padding: 1rem;
 
   /* Grid */

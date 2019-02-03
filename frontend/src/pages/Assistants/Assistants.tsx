@@ -27,7 +27,7 @@ const AssistantCard = (assistant: Assistant) => {
   return (
     <>
       <Link
-        style={{ marginBottom: `2rem` }}
+        style={{ marginBottom: `2.25rem` }}
         to={`/assistants/${assistant.ast_id}`}
       >
         <AssistantItem data-testid='assistant-item'>
