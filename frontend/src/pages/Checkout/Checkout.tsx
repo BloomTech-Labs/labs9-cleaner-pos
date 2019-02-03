@@ -66,7 +66,15 @@ const Checkout = (props: CheckoutProps) => {
     ? +stay.extra_guests * +stay.extra_fee +
       stay.diff * stay.price +
       +stay.cleaning_fee
-    : null;
+    : 0;
+
+  const stringifyCost = (amt: number) =>
+    // Fixes number to 2 decimal places and adds thousands separators
+    // Thanks to https://stackoverflow.com/a/2901298
+    amt
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   return (
     <CheckoutContainer>
@@ -130,7 +138,7 @@ const Checkout = (props: CheckoutProps) => {
                 <span>
                   {stay.diff} Nights x ${stay.price}
                 </span>
-                <span>${stay.price * stay.diff}</span>
+                <span>${stringifyCost(stay.price * stay.diff)}</span>
               </InvoiceBox>
               <InvoiceBox>
                 <span>Cleaning Fee:</span>
@@ -141,13 +149,15 @@ const Checkout = (props: CheckoutProps) => {
                   <span>
                     {stay.extra_guests} Extra Guests x ${stay.extra_fee}
                   </span>
-                  <span>{stay.extra_fee * stay.extra_guests}</span>
+                  <span>
+                    {stringifyCost(stay.extra_fee * stay.extra_guests)}
+                  </span>
                 </InvoiceBox>
               )}
               {show ? null : (
                 <Button
                   className='payment-button'
-                  text={`Pay $${total}`}
+                  text={`Pay $ ${stringifyCost(total)}`}
                   color='#0aa047'
                   onClick={() => {
                     setShow(true);
