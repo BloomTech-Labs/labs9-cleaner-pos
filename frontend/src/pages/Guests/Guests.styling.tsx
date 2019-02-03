@@ -111,7 +111,7 @@ export const StyledGuestCard = styled(GuestCard)`
 
   /* Color */
   color: var(--color-text-dark);
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
   transition: all 0.1s ease-in-out;
@@ -147,7 +147,7 @@ export const StyledGuestCard = styled(GuestCard)`
       https://stackoverflow.com/a/8588532
       */
     /* Color */
-    background-color: var(--color-bg-gray);
+    background-color: var(--color-bg-main);
   }
 
   @media only screen and (min-width: 720px) {
@@ -221,7 +221,7 @@ export const StyledGuestCard = styled(GuestCard)`
       grid-row: span 2;
 
       /* Color */
-      background-color: var(--color-bg-gray);
+      background-color: var(--color-bg-main);
     }
 
     .info-progress .text-main {
@@ -252,7 +252,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-secondary);
 
   div[class^='text-'] {
     display: block;

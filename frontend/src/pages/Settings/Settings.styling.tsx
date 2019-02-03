@@ -14,7 +14,7 @@ const Header = styled('span')`
 
 const Card = styled('div')`
   width: 100%;
-  background: var(--color-bg-gray);
+  background: var(--color-bg-main);
   display: flex;
   padding: 20px;
   border: var(--border);
@@ -46,7 +46,7 @@ const LeftContainer = styled('div')`
   justify-content: center;
   border: var(--border);
   border-right: 0;
-  background: var(--color-bg-light);
+  background: var(--color-bg-secondary);
 `;
 
 const RightContainer = styled('div')`
@@ -58,7 +58,7 @@ const RightContainer = styled('div')`
   justify-content: center;
   border: var(--border);
   border-left: 0;
-  background: var(--color-bg-light);
+  background: var(--color-bg-secondary);
 `;
 
 const Checkbox = styled('input')`

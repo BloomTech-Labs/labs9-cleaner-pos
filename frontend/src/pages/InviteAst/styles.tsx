@@ -13,7 +13,7 @@ export const StyledDiv = styled('div')`
 
 export const StyledForm = styled(Form)`
   /* Color */
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-secondary);
 
   /* Sizing & Box Model */
   padding: 1rem;

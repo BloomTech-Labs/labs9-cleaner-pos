@@ -229,7 +229,7 @@ export const GuestDetailStyle = styled('div')`
     grid-row: span 2;
     grid-column: 1;
     /* Color */
-    background-color: var(--color-bg-gray);
+    background-color: var(--color-bg-main);
   }
 
   .guest-info--checkout-bottom .stay-code div {

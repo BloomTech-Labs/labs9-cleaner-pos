@@ -124,7 +124,7 @@ export const ItemDiv = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-secondary);
   flex-grow: 1;
 `;
 
@@ -177,7 +177,7 @@ export const AfterListDiv2 = styled(ListDiv)`
 
 export const AfterHeader = styled(Header)`
   font-size: ${pxToRem(20)}rem;
-  background: var(--color-bg-gray);
+  background: var(--color-bg-main);
   color: var(--color-button-text-alt);
   border-bottom: solid #707070 1px;
   justify-content: flex-start;

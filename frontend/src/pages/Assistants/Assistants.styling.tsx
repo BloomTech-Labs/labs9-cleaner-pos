@@ -155,7 +155,7 @@ const CheckList = styled('div')`
   justify-content: center;
   align-items: space-around;
   /* Color */
-  background-color: var(--color-bg-gray);
+  background-color: var(--color-bg-main);
   p {
     margin: 0;
     font-size: 1rem;
@@ -185,7 +185,7 @@ const Asst = styled('div')`
   justify-content: center;
   align-items: center;
   /* Color */
-  background-color: var(--color-bg-gray);
+  background-color: var(--color-bg-main);
   .secondary {
     color: var(--color-text-accent);
   }
@@ -299,7 +299,7 @@ const AssistantBar = styled('div')`
 const AsstDetail = styled('div')`
   height: 6rem;
   color: var(--color-text-dark);
-  background: var(--color-bg-gray);
+  background: var(--color-bg-main);
   display: flex;
   flex-direction: row;
 `;

@@ -26,7 +26,7 @@ export const CheckoutContainer = styled(Container)`
   .checkout-field input {
     border: 0px solid;
     border-bottom: var(--border-bottom);
-    background-color: var(--color-bg-gray);
+    background-color: var(--color-bg-main);
   }
 
   .checkout-field input,
@@ -55,7 +55,7 @@ export const Invoice = styled('div')`
   padding: 10px;
   border: var(--border);
   /* Color */
-  background-color: var(--color-bg-gray);
+  background-color: var(--color-bg-main);
   .submit-payment {
     margin-bottom: 24px;
   }
@@ -82,5 +82,5 @@ export const InvoiceBox = styled('div')`
   height: 3rem;
   /* Color */
   color: var(--color-text-accent);
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-secondary);
 `;

@@ -81,7 +81,7 @@ const Properties = () => {
               color: 'var(--color--text-accent)',
               border: 'var(--border)',
               padding: '20px',
-              backgroundColor: 'var(--color-bg-light)',
+              backgroundColor: 'var(--color-bg-secondary)',
             }}
           >
             <h2>
