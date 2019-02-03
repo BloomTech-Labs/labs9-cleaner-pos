@@ -13,7 +13,6 @@ const conditionallyHideSidebar = (property: string) => (
   */
   const pathsToHideSidebar = ['/', '/Login'];
 
-  console.log('props.location.pathname', props.location.pathname);
   return pathsToHideSidebar.includes(props.location.pathname)
     ? 'none'
     : property;
