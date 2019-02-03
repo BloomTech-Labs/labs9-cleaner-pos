@@ -68,13 +68,11 @@ const Checkout = (props: CheckoutProps) => {
       +stay.cleaning_fee
     : 0;
 
-  const stringifyCost = (amt: number) =>
-    // Fixes number to 2 decimal places and adds thousands separators
-    // Thanks to https://stackoverflow.com/a/2901298
-    amt
-      .toFixed(2)
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const stringifyCost = (amt: number): string =>
+    // Converts number into a currency string based on user's locale
+    // Thanks to https://stackoverflow.com/a/31581206
+    // & https://stackoverflow.com/a/31581206
+    amt.toLocaleString(undefined, { minimumFractionDigits: 2 });
 
   return (
     <CheckoutContainer>
