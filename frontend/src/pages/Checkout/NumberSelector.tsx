@@ -10,8 +10,6 @@ export const NumberSelector = ({
   onClick: (val: number) => void;
   min?: number;
 }) => {
-  const minimum = min || 0;
-
   const handler = (newVal: number) => () => {
     onClick(newVal);
   };
