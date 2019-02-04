@@ -53,9 +53,8 @@ const InviteAst = (props: RouteComponentProps) => {
           onSubmit={async (values, actions) => {
             try {
               await axios.post(`${url}/email/`, values, headers);
-              await actions.setSubmitting(false);
               await actions.setStatus('Submission successful. Thank you!');
-              props.history.push('/');
+              // props.history.push('/');
             } catch (error) {
               await actions.setSubmitting(false);
               if (error.response) {
@@ -121,9 +120,9 @@ const InviteAst = (props: RouteComponentProps) => {
                 text={isSubmitting ? 'Submitted' : 'Submit'}
               />
 
-              {status && status.msg && (
+              {status && (
                 <div className='status' data-testid='div-status'>
-                  {status.msg}
+                  {status}
                 </div>
               )}
             </StyledForm>
