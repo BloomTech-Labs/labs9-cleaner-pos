@@ -107,7 +107,6 @@ describe('/house routes', () => {
       .set(headers)
       .expect(200)
       .then(({ body }) => {
-        expect(typeof body).toBe('object');
         expect(body.default_ast).toBe(1);
         expect(body.name).toBe('house name 1');
         done();

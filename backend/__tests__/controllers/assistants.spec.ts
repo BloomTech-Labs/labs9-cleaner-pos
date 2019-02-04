@@ -82,7 +82,6 @@ describe('/assistant routes', () => {
       .set(headers)
       .expect(200)
       .then(({ body }) => {
-        console.log(body);
         expect(body.user_id).toBe(data[0].user_id);
         done();
       });
