@@ -9,7 +9,7 @@ import {
 } from '../models/houses';
 import { postList } from '../models/lists';
 import { findUserByExt_it, findUser, getRoleId } from '../models/users';
-import { findAstMan } from '../models/assistants';
+import { findAstMan, addAstToHouse } from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import { House } from '../interface';
 
@@ -111,6 +111,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
     const newHouse = await makeHouse(house);
     await postList({ type: 'before', house_id: newHouse[0] });
     await postList({ type: 'during', house_id: newHouse[0] });
+    await addAstToHouse(newHouse[0], req.body.default_ast);
     res.status(201).json(newHouse);
   } catch (e) {
     console.error(e);

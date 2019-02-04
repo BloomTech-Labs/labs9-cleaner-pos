@@ -98,3 +98,7 @@ export function findAstMan(id: number): any {
       return row.manager_id;
     });
 }
+
+export function addAstToHouse(houseId: number, astId: number) {
+  return db('house_ast').insert({ house_id: houseId, ast_id: astId });
+}
