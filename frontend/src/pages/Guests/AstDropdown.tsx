@@ -122,11 +122,6 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
     setLoading(false);
   }, [props.houseId]);
 
-  const onChangeFunc = (e: any) => {
-    console.log('event in astdropdown:', e.target);
-    console.log('event in astdropdown:', e.currentTarget);
-  };
-
   async function postAst(
     event: React.FormEvent<HTMLSelectElement>,
     id: number | undefined,

@@ -188,6 +188,22 @@ const Assistant = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  label {
+    color: var(--color-text-accent-dark);
+    font-size: 1rem;
+  }
+
+  select {
+    width: 100%;
+    margin-top: 0.5rem;
+    border: none;
+    border-bottom: 1px solid var(--color-border-strong);
+    /* Text */
+    font-family: 'Roboto Medium', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+  }
+
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};
     padding: 20px 0 20px 0;

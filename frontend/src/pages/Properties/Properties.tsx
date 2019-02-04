@@ -133,7 +133,7 @@ const Properties = () => {
                         </Link>
                       </ButtonContainer>
                       <Assistant>
-                        Default Assistant
+                        <label>Default Assistant</label>
                         <select
                           data-testid='assistant-select'
                           onChange={(event) => postAst(event, house.id)}

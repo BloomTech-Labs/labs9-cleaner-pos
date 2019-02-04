@@ -14,6 +14,23 @@ export const NewPropertyStyled = styled(Form)`
   button {
     font-size: 1rem;
   }
+
+  .ast-dropdown {
+    label {
+      color: var(--color-text-accent-dark);
+      font-size: 1rem;
+    }
+
+    select {
+      width: 100%;
+      margin-top: 0.5rem;
+      border: none;
+      border-bottom: 1px solid var(--color-border-strong);
+      /* Text */
+      font-family: 'Roboto Medium', Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`
