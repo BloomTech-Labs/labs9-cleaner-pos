@@ -38,10 +38,6 @@ const Properties = () => {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
   // Snackbar functions
-  function openSnackBar() {
-    setSnackbarOpen(true);
-  }
-
   function handleClose(event: any, reason: string) {
     if (reason === 'clickaway') {
       return;
@@ -67,7 +63,7 @@ const Properties = () => {
         },
         headers,
       );
-      openSnackBar();
+      setSnackbarOpen(true);
     } catch (e) {
       throw e;
     }

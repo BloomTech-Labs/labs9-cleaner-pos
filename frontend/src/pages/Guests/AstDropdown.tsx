@@ -3,6 +3,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import styled from '@emotion/styled';
 // Components
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
 // Types
 import { House } from './types';
 import loadingIndicator from '../utils/loading.svg';
@@ -14,6 +16,8 @@ const AstDropdownView = (props: {
   loading: boolean;
   errors: { msg: string; error: boolean };
   className?: string;
+  snackbarOpen: boolean;
+  snackbarClose: (event: any, reason: string) => void;
 }) => {
   const { formState, onChangeFunc, house, loading, className } = props;
 
@@ -28,6 +32,30 @@ const AstDropdownView = (props: {
   // Good working code
   return (
     <Wrapper className='ast-dropdown'>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={props.snackbarOpen}
+        autoHideDuration={3000}
+        onClose={props.snackbarClose}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id='message-id'>Assistant successfully updated.</span>}
+        action={[
+          <IconButton
+            key='close'
+            aria-label='Close'
+            color='inherit'
+            // @ts-ignore
+            onClick={props.snackbarClose}
+          >
+            <i className='fas fa-times' />
+          </IconButton>,
+        ]}
+      />
       <label>Reassign Assistant</label>
       <br />
       <select
@@ -80,6 +108,16 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
   const [house, setHouse] = useState({} as House);
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [loading, setLoading] = useState(false);
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  // Snackbar functions
+  function handleClose(event: any, reason: string) {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  }
 
   useEffect(() => {
     // Set loading flag
@@ -139,6 +177,7 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
         },
         headers,
       );
+      setSnackbarOpen(true);
     } catch (e) {
       setErrors({ msg: 'Could not update assistant.', error: true });
     }
@@ -151,6 +190,8 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
       house={house}
       loading={loading}
       errors={errors}
+      snackbarOpen={snackbarOpen}
+      snackbarClose={handleClose}
     />
   );
 };
