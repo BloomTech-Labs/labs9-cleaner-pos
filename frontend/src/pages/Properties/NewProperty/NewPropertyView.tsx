@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { MyFormProps } from './types';
 import { NewPropertyStyled, StyledTextField } from './styles';
 import { FieldProps } from 'formik';
@@ -78,14 +78,13 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <div className='property-prices'>
         <h3>Prices</h3>
+        $
         <Field
           name='pricePerNight'
           render={labelInputField('Price per Night')}
         />
-
-        <Field name='feePerGuest' render={labelInputField('Fee per Guest')} />
-
-        <Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
+        $<Field name='feePerGuest' render={labelInputField('Fee per Guest')} />
+        $<Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
       </div>
 
       <div className='property-resources'>
@@ -94,6 +93,9 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <br />
         {assistants ? (
           <Field name='defaultAst' component='select' placeholder='Assistant'>
+            <option value={-1} key={'default'}>
+              Choose an assistant
+            </option>
             {assistants.map((ast) => (
               <option key={ast.ast_id} value={ast.ast_id}>
                 {ast.full_name}
@@ -114,8 +116,8 @@ const NewPropertyView = (formProps: MyFormProps) => {
       <button
         className='submit'
         type='submit'
+        disabled={values.defaultAst === -1 || (isSubmitting || !dirty)}
         data-testid='button-submit'
-        disabled={isSubmitting || !dirty}
       >
         {isSubmitting ? 'Submitting' : 'Submit'}
       </button>
