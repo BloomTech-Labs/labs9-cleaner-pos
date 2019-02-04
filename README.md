@@ -21,7 +21,42 @@ This is a Lambda Labs Capstone Project designed for rental property management. 
 	* Automatically generate guest invoices
 	* Allow property managers to add new properties, assign properties to employees, and create and edit task checklists for employees
 	* Allow guests to view readiness of their assigned rental property and pay their invoice online
+
+## Tech Stack
+
+### Frontend built using:
+#### React
+
+With its vast eco-system and modular nature React is a great choice for developing the front-end of our project.
+
+	* The associated documentation, community and 3rd party packages are excellent
+	* It allows for reusability of already written components which reduces development time
+	* It is a tried and tested framework that will help us avoid sudden shifts in the technology causing major refactors
+
+#### React Hooks
+
+React Hooks simplify working with React due to use near exclusive use of functional components versus class components. Also, the use of React hooks results in smaller package sizes.
+
+#### Typescript
+
+	* Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
+	* Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
+  * TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
+
+
+### Backend built using:
+
+## Authentication
+
+## Testing
+
+## Installation Instructions
+
+### Environment Variables
+### Using the application
+
+## Documentation
 	
-See [Backend README]() for details, including technical specs, on the backend of our project.
+See [Backend Documentation](https://cleaner-pos.herokuapp.com/) for details on the backend of our project.
 See [Frontend README]() for details on the frontend.
 
