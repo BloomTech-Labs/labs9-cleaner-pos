@@ -60,7 +60,7 @@ const App = () => {
           <Route exact path='/guests/new' component={NewGuest} />
           <Route exact path='/guests/:id' component={GuestDetail} />
           <Route exact path='/invite' component={InviteAst} />
-          <Route exact path='/Login' component={Login} />
+          <Route exact path='/Login' render={(props) => <Login {...props} onUser={setSubStatus}/>} />
           <Route exact path='/postreg' component={PostRegister} />
           <Route exact path='/properties' component={Properties} />
           <Route exact path='/properties/new' component={NewProperty} />
