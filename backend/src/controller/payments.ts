@@ -26,9 +26,9 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
       ],
     });
     const subData = {
-      strip_cust: sub.customer,
-      strip_sub_id: sub.id,
-      strip_sub_plan: sub.plan.id,
+      stripe_cust: sub.customer,
+      stripe_sub_id: sub.id,
+      stripe_sub_plan: sub.plan.id,
     };
     await addSub(req.token.id, subData);
     res.status(201).send({ customer: customer.id, message: 'hooooorrayyyyy' });
