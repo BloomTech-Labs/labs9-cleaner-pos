@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
+import styled from '@emotion/styled';
 // Components
 // Types
 import { House } from './types';
@@ -26,8 +27,8 @@ const AstDropdownView = (props: {
 
   // Good working code
   return (
-    <div className='ast-dropdown'>
-      Reassign Assistant
+    <Wrapper className='ast-dropdown'>
+      <label>Reassign Assistant</label>
       <br />
       <select data-testid='assistant-select' onChange={(event) => event}>
         <option defaultValue={house.default_ast_name}>
@@ -39,9 +40,29 @@ const AstDropdownView = (props: {
           }
         })}
       </select>
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  margin: auto;
+  width: 100%;
+
+  label {
+    color: var(--color-text-accent-dark);
+    font-size: 1rem;
+  }
+
+  select {
+    width: 100%;
+    margin-top: 0.5rem;
+    border: none;
+    border-bottom: 1px solid var(--color-border-strong);
+    /* Text */
+    font-family: 'Roboto Medium', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+  }
+`;
 
 export const AstDropdown = (props: { houseId: number; className?: string }) => {
   const [formState, setFormState] = useState({
