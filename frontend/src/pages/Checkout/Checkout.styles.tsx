@@ -3,6 +3,7 @@ import Container from '../../components/Container';
 
 export const CheckoutContainer = styled(Container)`
   .checkout-body {
+    /* Flex */
     display: flex;
     justify-content: space-around;
   }
@@ -13,6 +14,25 @@ export const CheckoutContainer = styled(Container)`
     /* Text */
     text-align: left;
     line-height: 2;
+    /* Color */
+    background-color: white;
+
+    img {
+      /* Box Model */
+      width: 100%;
+      height: 8rem;
+      /* Image */
+      object-fit: cover;
+    }
+
+    hr {
+      border: var(--border);
+      margin: 2rem 0;
+    }
+  }
+
+  .checkout-left-inner {
+    padding: 0 1rem 1rem 1rem;
   }
 
   .checkout-field {
@@ -24,6 +44,24 @@ export const CheckoutContainer = styled(Container)`
   }
 `;
 
+export const HeaderGroup = styled.div`
+  /* Box Model */
+  margin: 1rem 0;
+  /* Text*/
+  line-height: 1.125;
+
+  h1,
+  p {
+    margin: 0;
+  }
+
+  h1 {
+    color: var(--color-text-accent);
+  }
+  p {
+    font-weight: lighter;
+  }
+`;
 export const CheckoutRight = styled.div``;
 
 export const CheckoutForm = styled('div')`

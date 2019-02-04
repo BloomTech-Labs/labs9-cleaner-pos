@@ -43,11 +43,21 @@ const Button = styled.button`
   height: 100%;
   width: 1.875rem;
   border: none;
+  /* Hover Effects */
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    /* TODO: Use a color variable for this */
+    border: 2px solid rgba(69, 147, 182, 0.5);
+  }
   /* Colors */
-  color: var(--color-button-text);
-  background-color: var(--color-button-background);
+  color: var(--color-button-text-alt);
+  background-color: var(--color-button-background-alt);
   /* Text */
   font-size: 0.75rem;
+  /* Cursor */
+  /* TODO: Remove this property and have this style extend
+     Button */
+  cursor: pointer;
 `;
 
 const Value = styled.div`

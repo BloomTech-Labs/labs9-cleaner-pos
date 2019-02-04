@@ -9,6 +9,7 @@ import {
   Invoice,
   InvoiceBox,
   CheckoutRight,
+  HeaderGroup,
 } from './Checkout.styles';
 import { StripeProvider } from 'react-stripe-elements';
 import loadingIndicator from '../utils/loading.svg';
@@ -72,8 +73,13 @@ const Checkout = (props: CheckoutProps) => {
 
   const numberHandler = (property: string) => (num: number) => {
     /* Handler function to pass to NumberSelector components.
-       Accepts a property string denoting which property in the stay object
+
+       In -> Accepts a property string denoting which property in the stay object
        you wish to update.
+       Out -> Returns a function to pass as a callback to NumberSelector
+       The callback function accepts a number, which is the new value NumberSelector
+       will supply as an argument.
+
        Won't update value if new value will be less than 0.
     */
     if (stay.hasOwnProperty(property)) {
@@ -102,23 +108,37 @@ const Checkout = (props: CheckoutProps) => {
       {stay ? (
         <div className='checkout-body'>
           <div className='checkout-left'>
-            <h1 data-testid='guest-name'>{stay ? stay.guest_name : null}</h1>
-            <div className='checkout-field'>
-              Nights:
-              <NumberSelector
-                value={stay.diff || 0}
-                onClick={numberHandler('diff')}
-              />
-            </div>
-            <div className='checkout-field'>
-              Cleaning Fee: <span>${stay.cleaning_fee}</span>
-            </div>
-            <div className='checkout-field'>
-              Extra Guests:{' '}
-              <NumberSelector
-                value={stay.extra_guests || 0}
-                onClick={numberHandler('extra_guests')}
-              />
+            {stay.photo_url ? (
+              <img src={stay.photo_url} alt='Property Image' />
+            ) : null}
+            <div className='checkout-left-inner'>
+              <HeaderGroup>
+                <h1 data-testid='guest-name'>{stay.guest_name}</h1>
+                <p>Guest</p>
+              </HeaderGroup>
+              <HeaderGroup>
+                <h1>{stay.house_name}</h1>
+                <p>Property</p>
+              </HeaderGroup>
+              <hr />
+              <h3>Please select and confirm:</h3>
+              <div className='checkout-field'>
+                Nights
+                <NumberSelector
+                  value={stay.diff || 0}
+                  onClick={numberHandler('diff')}
+                />
+              </div>
+              {/* <div className='checkout-field'>
+                Cleaning Fee <span>${stay.cleaning_fee}</span>
+              </div> */}
+              <div className='checkout-field'>
+                Extra Guests
+                <NumberSelector
+                  value={stay.extra_guests || 0}
+                  onClick={numberHandler('extra_guests')}
+                />
+              </div>
             </div>
           </div>
           <CheckoutRight>
