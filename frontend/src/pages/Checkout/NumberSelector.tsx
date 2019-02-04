@@ -3,10 +3,12 @@ import styled from '@emotion/styled';
 
 export const NumberSelector = ({
   value,
+  disabled,
   onClick,
   min,
 }: {
   value: number;
+  disabled: boolean;
   onClick: (val: number) => void;
   min?: number;
 }) => {
@@ -16,11 +18,11 @@ export const NumberSelector = ({
 
   return (
     <Wrapper>
-      <Button name='subtract' onClick={handler(value - 1)}>
+      <Button disabled={disabled} name='subtract' onClick={handler(value - 1)}>
         <i className='fas fa-minus' />
       </Button>
       <Value>{value}</Value>
-      <Button name='add' onClick={handler(value + 1)}>
+      <Button disabled={disabled} name='add' onClick={handler(value + 1)}>
         <i className='fas fa-plus' />
       </Button>
     </Wrapper>
@@ -39,6 +41,8 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
+  /* Conditional Display */
+  visibility: ${({ disabled }) => (disabled ? 'hidden' : 'visible')};
   /* Box Model */
   height: 100%;
   width: 1.875rem;

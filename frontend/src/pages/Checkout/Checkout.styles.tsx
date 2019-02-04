@@ -65,7 +65,10 @@ export const HeaderGroup = styled.div`
     font-weight: lighter;
   }
 `;
-export const CheckoutRight = styled.div``;
+
+export const CheckoutRight = styled.div`
+  width: 45%;
+`;
 
 export const CheckoutForm = styled('div')`
   /* Box Model */
@@ -90,7 +93,8 @@ export const CheckoutForm = styled('div')`
 `;
 
 export const Invoice = styled('div')`
-  width: 300px;
+  width: 100%;
+  /* Flex */
   display: flex;
   flex-direction: column;
   div {
@@ -99,7 +103,7 @@ export const Invoice = styled('div')`
   padding: 10px;
   border: 0.5px solid var(--color-border);
   /* Color */
-  background-color: var(--color-main-background);
+  background-color: white;
   .submit-payment {
     margin-bottom: 24px;
   }

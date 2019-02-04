@@ -38,6 +38,7 @@ const Sidebar = (props: LinkProps) => {
     localStorage.removeItem('id');
     localStorage.removeItem('role');
     localStorage.removeItem('firebaseui::rememberedAccounts');
+    // TODO: Use actual firebase signout function to sign out
     props.history.push('/');
   };
 

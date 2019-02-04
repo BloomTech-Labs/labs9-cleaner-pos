@@ -59,6 +59,7 @@ const Checkout = (props: CheckoutProps) => {
       setStayError({ error: true, message: e.response.data.message });
     }
   }
+
   useEffect(() => {
     fetchStay();
   }, []);
@@ -134,16 +135,15 @@ const Checkout = (props: CheckoutProps) => {
                 Nights
                 <NumberSelector
                   value={stay.diff || 0}
+                  disabled={show}
                   onClick={numberHandler('diff')}
                 />
               </div>
-              {/* <div className='checkout-field'>
-                Cleaning Fee <span>${stay.cleaning_fee}</span>
-              </div> */}
               <div className='checkout-field'>
                 Extra Guests
                 <NumberSelector
                   value={stay.extra_guests || 0}
+                  disabled={show}
                   onClick={numberHandler('extra_guests')}
                 />
               </div>
@@ -153,15 +153,6 @@ const Checkout = (props: CheckoutProps) => {
             <Invoice>
               <h3>Invoice</h3>
               {/* TODO: implement axios call to change stay to account for new inputs */}
-              {show && (
-                // @ts-ignore
-                <PaymentContext.Provider value={{ sum: total }}>
-                  <StripeProvider apiKey={key}>
-                    <MyStoreCheckout sum={stay.total} />
-                  </StripeProvider>
-                </PaymentContext.Provider>
-              )}
-
               <InvoiceBox>
                 <span>
                   {stay.diff} Nights x ${stay.price}
@@ -181,6 +172,14 @@ const Checkout = (props: CheckoutProps) => {
                     {stringifyCost(stay.extra_fee * stay.extra_guests)}
                   </span>
                 </InvoiceBox>
+              )}
+              {show && (
+                // @ts-ignore
+                <PaymentContext.Provider value={{ sum: total }}>
+                  <StripeProvider apiKey={key}>
+                    <MyStoreCheckout sum={stay.total} />
+                  </StripeProvider>
+                </PaymentContext.Provider>
               )}
               {show ? null : (
                 <Button
