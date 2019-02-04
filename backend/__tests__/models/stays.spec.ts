@@ -91,7 +91,7 @@ describe('Stay DB functions', () => {
 
   test('findAllStays finds all upcoming guests of a user', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const extIt = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
     const result = await findAllStays(extIt).catch(errorHandler);
@@ -108,7 +108,7 @@ describe('Stay DB functions', () => {
 
   test('findAllStays filters by current date', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const extIt = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
     const result = await findAllStays(extIt, 'upcoming').catch(errorHandler);
@@ -130,7 +130,7 @@ describe('Stay DB functions', () => {
 
   test('findAllStays filters by completion', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const extIt = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
     const result = await findAllStays(extIt, 'complete').catch(errorHandler);
@@ -141,7 +141,7 @@ describe('Stay DB functions', () => {
 
   test('findAllStays filters by incompletion', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const extIt = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
     const result = await findAllStays(extIt, 'incomplete').catch(errorHandler);
