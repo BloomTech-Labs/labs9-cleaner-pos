@@ -4,7 +4,7 @@ const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 
 const Header = styled('span')`
   width: 100%;
-  background: var(--color-accent);
+  background: var(--color-bg-accent);
   text-align: left;
   h2 {
     padding-left: 32px;
@@ -14,10 +14,10 @@ const Header = styled('span')`
 
 const Card = styled('div')`
   width: 100%;
-  background: var(--color-main-background);
+  background: var(--color-bg-main);
   display: flex;
   padding: 20px;
-  border: 1px solid var(--color-border);
+  border: var(--border);
   h3 {
     font-family: 'Roboto';
     font-weight: condensed;
@@ -44,9 +44,9 @@ const LeftContainer = styled('div')`
   flex-direction: column;
   align-items: space-evenly;
   justify-content: center;
-  border: 1px solid var(--color-border);
+  border: var(--border);
   border-right: 0;
-  background: var(--color-accent-background);
+  background: var(--color-bg-secondary);
 `;
 
 const RightContainer = styled('div')`
@@ -56,9 +56,9 @@ const RightContainer = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-border);
+  border: var(--border);
   border-left: 0;
-  background: var(--color-accent-background);
+  background: var(--color-bg-secondary);
 `;
 
 const Checkbox = styled('input')`

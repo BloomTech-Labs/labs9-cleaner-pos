@@ -77,7 +77,7 @@ const CheckoutForm = (props: any) => {
         <>
           <p
             style={{
-              color: 'var(--color-accent)',
+              color: 'var(--color-text-accent)',
               fontWeight: 'bold',
               marginBottom: '24px',
             }}

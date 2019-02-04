@@ -27,28 +27,28 @@ const Guests = () => {
       <div className='guests-header'>
         <h2>Guests</h2>
         <Link to='/guests/new'>
-          <Button text='New Guest' color='var(--color-accent)' />
+          <Button text='New Guest' color='var(--color-text-accent)' />
         </Link>
       </div>
       <div className='guests-buttons-filter'>
         <Button
           className={`button-filter upcoming ${activeClass('upcoming')}`}
           text='Upcoming'
-          color='var(--color-accent)'
+          color='var(--color-text-accent)'
           onClick={() => setActive('upcoming')}
           datatestid='button-upcoming'
         />
         <Button
           className={`button-filter incomplete ${activeClass('incomplete')}`}
           text='Incomplete'
-          color='var(--color-accent)'
+          color='var(--color-text-accent)'
           onClick={() => setActive('incomplete')}
           datatestid='button-incomplete'
         />
         <Button
           className={`button-filter complete ${activeClass('complete')}`}
           text='Complete'
-          color='var(--color-accent)'
+          color='var(--color-text-accent)'
           onClick={() => setActive('complete')}
           datatestid='button-complete'
         />

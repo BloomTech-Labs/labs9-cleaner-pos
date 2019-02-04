@@ -5,10 +5,24 @@ import { RouteComponentProps } from 'react-router-dom';
 
 const bp = '700px';
 
+const conditionallyHideSidebar = (property: string) => (
+  props: RouteComponentProps,
+): string => {
+  /* Conditionally hides the sidebar when on certain paths in front end.
+     Accepts a string argument being the display property you want it to have
+     when visible.
+     Paths are defined below:
+  */
+  const pathsToHideSidebar = ['/', '/Login'];
+
+  return pathsToHideSidebar.includes(props.location.pathname)
+    ? 'none'
+    : property;
+};
+
 const Container = styled('div')`
   /* Conditional Display */
-  display: ${(props: RouteComponentProps) =>
-    props.location.pathname === '/' ? 'none' : 'block'};
+  display: ${conditionallyHideSidebar('block')};
 
   /* Box Model & Sizing */
   margin: 0 auto;
@@ -29,18 +43,17 @@ const Container = styled('div')`
     height: 100%;
     margin-top: 2rem;
     width: 100%;
-    display: flex;
+    display: ${conditionallyHideSidebar('flex')};
     justify-content: space-between;
     align-items: baseline;
     margin: 2rem 0;
     padding-bottom: 1rem;
-    border-bottom: 1px solid black;
+    border-bottom: var(--border);
   }
 
   @media only screen and (min-width: ${bp}) {
     /* Conditional Display */
-    display: ${(props: RouteComponentProps) =>
-      props.location.pathname === '/' ? 'none' : 'block'};
+    display: ${conditionallyHideSidebar('block')};
 
     .menu {
       display: none;
