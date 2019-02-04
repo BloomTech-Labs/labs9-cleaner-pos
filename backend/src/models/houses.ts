@@ -2,7 +2,7 @@ import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
 import { House } from '../interface';
 
-export const findHouses = (manager: []) => {
+export const findHouses = (manager: number[]) => {
   return db('house')
     .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })
     .leftJoin('user', { 'assistant.user_id': 'user.id' })
