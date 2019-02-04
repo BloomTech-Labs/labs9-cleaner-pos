@@ -55,7 +55,6 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
 
   // TODO: limit the ablity to get a house by id if your are not the manager or ast of house
   try {
-    console.log(req.token);
     const { id } = req.params;
     let house: any;
     let ids;
@@ -67,7 +66,6 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
         const ast = await getRoleId(req.token.id, true);
         const astMan = await findAstMan(ast.id);
         ids = astMan;
-        console.log(ids);
       } else {
         const manager = await getRoleId(req.token.id);
         ids = [manager.id];

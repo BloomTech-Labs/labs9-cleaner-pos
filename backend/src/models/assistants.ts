@@ -50,7 +50,6 @@ export function addAstToAllManHouse(astId: number, manId: number) {
     .leftJoin('house', { 'manager_ast.manager_id': 'house.manager' })
     .select('house.id')
     .map((e: any) => {
-      console.log(e);
       return db('house_ast').insert({ ast_id: astId, house_id: e.id });
     });
 }

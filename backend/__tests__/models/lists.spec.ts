@@ -68,7 +68,6 @@ describe('List DB functions', () => {
     try {
       const delList: number[] = await deleteList(13);
       const findDel = await testDb('list').where({ id: 13 });
-      console.log('************', findDel);
       expect(delList).toBe(1);
       expect(findDel).toHaveLength(0);
     } catch (e) {
