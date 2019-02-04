@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Container } from '../../components/index';
 import house from '../../assets/house.jpg';
-import lodgel from '../../assets/lodgel.png';
+import lodgel from '../../assets/lodgel.jpg';
 import {
   Footer,
   AppHeader,
