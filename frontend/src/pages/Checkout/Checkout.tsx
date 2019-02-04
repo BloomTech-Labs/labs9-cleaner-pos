@@ -89,9 +89,9 @@ const Checkout = (props: CheckoutProps) => {
   };
 
   const stringifyCost = (amt: number): string =>
-    // Converts number into a currency string based on user's locale
-    // Thanks to https://stackoverflow.com/a/31581206
-    // & https://stackoverflow.com/a/31581206
+    /* Converts number into a currency string based on user's locale
+       Thanks to https://stackoverflow.com/a/31581206
+    */
     amt.toLocaleString(undefined, { minimumFractionDigits: 2 });
 
   return (
@@ -107,7 +107,7 @@ const Checkout = (props: CheckoutProps) => {
             <div className='checkout-field'>
               Nights:
               <NumberSelector
-                value={stay.diff}
+                value={stay.diff || 0}
                 onClick={numberHandler('diff')}
               />
             </div>
@@ -116,13 +116,6 @@ const Checkout = (props: CheckoutProps) => {
             </div>
             <div className='checkout-field'>
               Extra Guests:{' '}
-              {/* <input
-                value={stay.extra_guests || 0}
-                onChange={(e) =>
-                  // @ts-ignore
-                  setStay({ ...stay, extra_guests: e.target.value })
-                }
-              /> */}
               <NumberSelector
                 value={stay.extra_guests || 0}
                 onClick={numberHandler('extra_guests')}
