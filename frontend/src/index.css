@@ -1,22 +1,23 @@
 :root {
   /* General Colors */
   /* --- Original Colors */
-  /* --color-main-dark: #393534;
+  --color-main-dark: #393534;
   --color-main-medium: #eeeff5;
   --color-main-light: #ffffff;
   --color-accent: #4593b6;
   --color-accent-light: #ebf8f8;
   --color-border: rgba(57, 53, 52, 0.125);
-  --color-error: #b8003f; */
+  --color-border-strong: rgba(57, 53, 52, 0.5);
+  --color-error: #b8003f;
   /* --- Test Colors */
   --color-main-dark: #021516;
-  --color-main-medium: #ebf0f1;
+  /* --color-main-medium: #ebf0f1;
   --color-main-light: #ffffff;
   --color-accent: #167c80;
   --color-accent-light: #eaf7f7;
   --color-border: rgba(2, 21, 22, 0.125);
   --color-border-strong: rgba(2, 21, 22, 0.5);
-  --color-error: #b8003f;
+  --color-error: #b8003f; */
   /* Background Colors */
   --color-bg-main: var(--color-main-medium);
   --color-bg-secondary: var(--color-main-light);
