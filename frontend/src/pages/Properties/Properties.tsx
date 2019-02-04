@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
-import { Button, Container } from '../../components/index';
 import axios from 'axios';
+// Components
+import { Link } from 'react-router-dom';
+import { Button, Container } from '../../components/index';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+// Styled Components
 import {
   PropContainer,
   HouseItem,
@@ -13,16 +18,15 @@ import {
   CheckList,
   HouseHeader,
 } from './Properties.styling';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
+// Types
 import { AxiosRequestConfig } from 'axios';
-import { useFetch } from '../../helpers/';
 import { House } from './types';
-import { Link } from 'react-router-dom';
-import loadingIndicator from '../utils/loading.svg';
+// Utils
+import { useFetch } from '../../helpers/';
 import { UserContext } from '../../App';
+// Assets
+import loadingIndicator from '../utils/loading.svg';
 import defaultHouse from '../../assets/house_alt.jpg';
-// Original Url: https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg
 
 const Properties = () => {
   const url =
