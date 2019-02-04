@@ -43,16 +43,42 @@ React Hooks simplify working with React due to use near exclusive use of functio
 	* Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
   * TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
+* Deployed to Netlify
 
 ### Backend built using:
+
+#### Node.js, Express.js
+
+	* Node.js offers a unified language for both front-end and back-end, giving all team members flexibility to work on either when necessary.
+	* Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
+	* There is very detailed documentation available for each.
+	* There also widespread community support for Node and Express.
+
+#### PostgreSQL 
+
+	* Saves the necessary data in an efficient way
+	* Allows for easy queries through JOIN support
+	* Allows for very easy deployment
+	* Has a great community around it and is future proof / very independent of new trends
+
+* Deployed to Heroku
 
 ## Authentication
 
 ## Testing
 
+### Unit testing
+
+We implemented user testing on all pages using jest. These tests ensure that the app is working correctly and helps us to quickly identify issues.
+
+### Git Hooks
+
+We used Husky to automate unit testing and run Prettier linting on each commit. This ensured that we could continuously deploy to Netlify and Heroku without the risk of breaking our build. 
+
 ## Installation Instructions
 
 ### Environment Variables
+
 ### Using the application
 
 ## Documentation
