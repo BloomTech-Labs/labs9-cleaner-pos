@@ -152,7 +152,7 @@ export const InvoiceBox = styled('div')`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   border-right: 0;
   border-left: 0;
   padding: 0 0.5rem;

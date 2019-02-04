@@ -61,7 +61,7 @@ const Sidebar = (props: LinkProps) => {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>
-            <Link to='/property'>Property</Link>
+            <Link to='/properties'>Property</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <Link to='/guests'>Guests</Link>
@@ -80,7 +80,7 @@ const Sidebar = (props: LinkProps) => {
           />
         </SettingsWrapper>
       </div>
-      <NavBar>
+      <NavBar {...props}>
         <NavWrapper>
           <StyledUL>
             {/* Uncomment this section when reports page is complete */}
