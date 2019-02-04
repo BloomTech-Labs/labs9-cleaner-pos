@@ -10,12 +10,12 @@ const bp = `650px`;
 
 const AssistantItem = styled('div')`
   /* Color */
-  background: white;
-  color: var(--color-main-black);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-dark);
 
   /* Sizing */
   height: ${pxToRem(168)};
-  border: 0.5px solid var(--color-border);
+  border: var(--border-alt);
 
   /* Flex */
   display: flex;
@@ -37,7 +37,7 @@ const AssistantItem = styled('div')`
     width: 100%;
   }
 
-  @media screen and (max-width: ${bp}) {
+  @media only screen and (max-width: ${bp}) {
     width: 100%;
     height: 100%;
     /* Flex */
@@ -48,9 +48,7 @@ const AssistantItem = styled('div')`
       flex-flow: row wrap;
       margin-bottom: 1rem;
     }
-  }
 
-  @media only screen and (max-width: ${bp}) {
     .list-img {
       margin: 1rem auto 0 auto;
       width: 4.5rem;
@@ -139,11 +137,11 @@ const CardBody = styled('div')`
   }
 `;
 
-const CheckList = styled('div')`
+const InfoBox = styled('div')`
   /* Sizing */
   height: ${boxHeight};
   width: ${boxWidth};
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   /* Text */
   text-align: center;
   font-size: 1.5rem;
@@ -155,49 +153,49 @@ const CheckList = styled('div')`
   justify-content: center;
   align-items: space-around;
   /* Color */
-  background-color: var(--color-main-background);
+  background-color: var(--color-bg-tertiary);
   p {
     margin: 0;
     font-size: 1rem;
     font-weight: normal;
   }
   .secondary {
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
   @media screen and (max-width: 550px) {
     width: 45%;
   }
 `;
 
-const Asst = styled('div')`
-  /* Sizing */
-  width: ${boxWidth};
-  height: ${boxHeight};
-  border: var(--border);
-  /* Text */
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: light;
-  line-height: 1.25;
-  /* Flex */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* Color */
-  background-color: var(--color-main-background);
-  .secondary {
-    color: var(--color-accent);
-  }
-  p {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: normal;
-  }
-  @media screen and (max-width: 550px) {
-    width: 45%;
-  }
-`;
+// const Asst = styled('div')`
+//   /* Sizing */
+//   width: ${boxWidth};
+//   height: ${boxHeight};
+//   border: var(--border);
+//   /* Text */
+//   text-align: center;
+//   font-size: 1.5rem;
+//   font-weight: light;
+//   line-height: 1.25;
+//   /* Flex */
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   /* Color */
+//   background-color: var(--color-bg-tertiary);
+//   .secondary {
+//     color: var(--color-text-accent);
+//   }
+//   p {
+//     margin: 0;
+//     font-size: 1rem;
+//     font-weight: normal;
+//   }
+//   @media screen and (max-width: 550px) {
+//     width: 45%;
+//   }
+// `;
 
 const AssistantHeader = styled('span')`
   font-size: 1.8rem;
@@ -299,7 +297,7 @@ const AssistantBar = styled('div')`
 const AsstDetail = styled('div')`
   height: 6rem;
   color: var(--color-text-dark);
-  background: var(--color-main-background);
+  background: var(--color-bg-main);
   display: flex;
   flex-direction: row;
 `;
@@ -315,7 +313,7 @@ const AsstProperty = styled('div')`
 
 const PropertyContainer = styled('div')`
   /* Size */
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   margin: 1rem 0;
   /* Flex */
   display: flex;
@@ -347,7 +345,7 @@ const PropertyHeading = styled('div')`
   align-items: center;
   /* Color */
   color: var(--color-text-light);
-  background: var(--color-accent);
+  background: var(--color-bg-accent);
   /* Text */
   text-align: left;
 
@@ -381,8 +379,7 @@ export {
   ThumbNail,
   CardHeading,
   CardBody,
-  CheckList,
-  Asst,
+  InfoBox,
   AssistantHeader,
   HeaderWrapper,
   AssistantBar,

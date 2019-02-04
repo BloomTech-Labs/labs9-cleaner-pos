@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 
 const Nav = styled('nav')`
   margin: 0 auto;
-  margin-bottom: 2rem;
-  width: 100%;
+  width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   a {
     text-decoration: none;
     font-size: 2.1rem;
@@ -55,7 +55,8 @@ const CTA = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 5rem;
+  justify-content: space-between;
+  margin: 1.5rem auto;
 `;
 
 const Footer = styled('div')`
@@ -63,7 +64,7 @@ const Footer = styled('div')`
   justify-content: space-around;
   align-items: center;
   border-top: 2px solid #393534;
-  padding: 20px 50px 20px;
+  padding: .5rem 0;
   /* position: fixed; */
   margin: 0 auto;
   /* left: 0px;
@@ -78,6 +79,16 @@ const Footer = styled('div')`
   }
 `;
 
+const BigLogo = styled('img')`
+  height: 125px;
+  width: 125px;
+`;
+
+const Logo = styled('img')`
+  height: 100px;
+  width: 100px;
+`;
+
 export {
   Footer,
   AppHeader,
@@ -86,4 +97,6 @@ export {
   Wrapper,
   Nav,
   CTA,
+  BigLogo,
+  Logo,
 };

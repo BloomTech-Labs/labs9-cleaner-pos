@@ -129,11 +129,14 @@ const PropertyDetails = (props: any) => {
             </HouseInfo>
             <PropertyButtons>
               <Link to={{ pathname: '/properties/new', state: property }}>
-                <BackButton text='Edit Property' color='var(--color-accent)' />
+                <BackButton
+                  text='Edit Property'
+                  color='var(--color-text-accent)'
+                />
               </Link>
               <BackButton
                 text='Go Back'
-                color='var(--color-accent)'
+                color='var(--color-text-accent)'
                 onClick={() => props.history.push('/properties')}
               />
             </PropertyButtons>
