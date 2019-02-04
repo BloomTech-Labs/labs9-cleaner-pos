@@ -13,6 +13,8 @@ import {
   CheckList,
   HouseHeader,
 } from './Properties.styling';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
 import { AxiosRequestConfig } from 'axios';
 import { useFetch } from '../../helpers/';
 import { House } from './types';
@@ -28,6 +30,21 @@ const Properties = () => {
   /* Axios calls to fetch / update properties */
   const [houses, error, loading] = useFetch(`${url}/houses`);
   const { subscription } = useContext(UserContext);
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+  // Snackbar functions
+  function openSnackBar() {
+    setSnackbarOpen(true);
+  }
+
+  function handleClose(event: any, reason: string) {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  }
 
   async function postAst(
     event: React.FormEvent<HTMLSelectElement>,
@@ -46,6 +63,7 @@ const Properties = () => {
         },
         headers,
       );
+      openSnackBar();
     } catch (e) {
       throw e;
     }
@@ -55,6 +73,32 @@ const Properties = () => {
     <Container>
       <PropContainer>
         <div className='properties-header'>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={snackbarOpen}
+            autoHideDuration={3000}
+            onClose={handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={
+              <span id='message-id'>Assistant successfully updated.</span>
+            }
+            action={[
+              <IconButton
+                key='close'
+                aria-label='Close'
+                color='inherit'
+                // @ts-ignore
+                onClick={handleClose}
+              >
+                <i className='fas fa-times' />
+              </IconButton>,
+            ]}
+          />
           <HouseHeader>Recent Properties</HouseHeader>
           {}
           <Link
