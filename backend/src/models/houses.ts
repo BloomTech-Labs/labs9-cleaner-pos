@@ -2,7 +2,7 @@ import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
 import { House } from '../interface';
 
-export const findHouses = (manager: number) => {
+export const findHouses = (manager: []) => {
   return db('house')
     .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })
     .leftJoin('user', { 'assistant.user_id': 'user.id' })
@@ -17,7 +17,7 @@ export const findHouses = (manager: number) => {
       'house.ast_guide',
       'house.photo_url',
     )
-    .where({ manager })
+    .whereIn('house.manager', manager)
     .map(async (e: any) => {
       const openAst = await db('house_ast')
         .where({ 'house_ast.house_id': e.id })

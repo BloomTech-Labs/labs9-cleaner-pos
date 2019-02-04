@@ -9,6 +9,7 @@ import {
 } from '../models/houses';
 import { postList } from '../models/lists';
 import { findUserByExt_it, findUser, getRoleId } from '../models/users';
+import { findAstMan } from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import { House } from '../interface';
 
@@ -52,14 +53,27 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
   //   }
   // }
 
+  // TODO: limit the ablity to get a house by id if your are not the manager or ast of house
   try {
+    console.log(req.token);
     const { id } = req.params;
-    const manager = await getRoleId(req.token.id);
     let house: any;
+    let ids;
     if (id) {
       house = await findHouse(id);
     } else {
-      house = await findHouses(manager.id);
+      // check role. if ast, find all manager id's linked
+      if (req.token.role === 'assistant') {
+        const ast = await getRoleId(req.token.id, true);
+        const astMan = await findAstMan(ast.id);
+        ids = astMan;
+        console.log(ids);
+      } else {
+        const manager = await getRoleId(req.token.id);
+        ids = [manager.id];
+      }
+
+      house = await findHouses(ids);
     }
     if (house === undefined) {
       throw Error('no user');

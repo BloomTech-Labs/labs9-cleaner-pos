@@ -53,6 +53,7 @@ export function addAstToAllManHouse(astId: number, manId: number) {
     });
 }
 
+// Finds an ast by astId. gets user info and houses. used on ast detail FE page
 export function findOneAssistant(astId: number) {
   return db('assistant')
     .join('user', 'user.id', '=', 'assistant.user_id')
@@ -83,5 +84,15 @@ export function findOneAssistant(astId: number) {
         // filters out the houses that a ast is already default
         .whereNotIn('house_ast.house_id', defA);
       return { ...e, default_house: defHouse, avl_houses: avlHouses };
+    });
+}
+
+// takes ast id. finds all manager id's linked
+// TODO: filter out properties a mananger has not assigned ast to
+export function findAstMan(id: number): any {
+  return db('manager_ast')
+    .where({ 'manager_ast.ast_id': id })
+    .map((row: any) => {
+      return row.manager_id;
     });
 }
