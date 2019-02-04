@@ -43,7 +43,7 @@ React Hooks simplify working with React due to use near exclusive use of functio
 	* Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
   * TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
-* Deployed to Netlify
+### Frontend deployed to Netlify
 
 ### Backend built using:
 
@@ -61,28 +61,34 @@ React Hooks simplify working with React due to use near exclusive use of functio
 	* Allows for very easy deployment
 	* Has a great community around it and is future proof / very independent of new trends
 
-* Deployed to Heroku
+### Backend deployed to Heroku
 
 ## Authentication
 
+App users are authenticated using JSON web tokens (JWT).
+
 ## Testing
 
-### Unit testing
-
-We implemented user testing on all pages using jest. These tests ensure that the app is working correctly and helps us to quickly identify issues.
-
-### Git Hooks
-
-We used Husky to automate unit testing and run Prettier linting on each commit. This ensured that we could continuously deploy to Netlify and Heroku without the risk of breaking our build. 
+This application was tested at every stage of development by each contributor. We used Husky to automate unit testing and run Prettier linting on each commit. This ensured that we could continuously deploy to Netlify and Heroku without the risk of breaking our build. All pull requests were reviewed by at least one other team member and merged by a third party to ensure that we had as many eyes on the code as possible searching for potential bugs.
 
 ## Installation Instructions
 
-### Environment Variables
+To install this app, make sure you have node.js and npm installed. From the root directory, run npm install or yarn to install dependencies for frontend and backend.
 
-### Using the application
+Start the development server by running npm dev:server or yarn dev:server.
+
+### Other Scripts
+
+	* yarn typecheck - runs the TypeScript compiler
+	* yarn build - creates a build of the application
+	* yarn start - starts the production server after a build is created
+	* yarn test - runs tests in __tests__ directory
+
+## Stripe
+
+All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data.
 
 ## Documentation
 	
 See [Backend Documentation](https://cleaner-pos.herokuapp.com/) for details on the backend of our project.
-See [Frontend README]() for details on the frontend.
 
