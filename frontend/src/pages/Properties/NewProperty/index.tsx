@@ -87,10 +87,6 @@ const NewProperty = (props: RouteComponentProps) => {
         pricePerNight: +price,
       };
 
-      // const addSelf = props.location.state.openAst.concat({
-      //   full_name: default_ast_name,
-      //   ast_id: default_ast,
-      // });
       setAssistants(props.location.state.openAst);
       setStartValues(loadValues);
     }
