@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
 
-const bp = '700px';
+const bp = '800px';
 
 const conditionallyHideSidebar = (property: string) => (
   props: RouteComponentProps,
@@ -70,6 +70,7 @@ const NavBar = styled('nav')`
     border-bottom: 3px solid black;
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
+    max-width: 100%;
   }
 `;
 

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const Nav = styled('nav')`
   margin: 0 auto;
-  width: 80%;
+  width: 70%;
   display: flex;
   justify-content: space-around;
   align-items: center;

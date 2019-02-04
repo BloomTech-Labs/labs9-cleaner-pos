@@ -30,8 +30,8 @@ const SpecialButton = ({
 
     @media only screen and (min-width: 700px) {
       border: var(--border);
-      width: 125px;
-      height: 40px;
+      width: 60px;
+      height: 60px;
       color: black;
       background-color: white;
       font-size: 1.35rem;
