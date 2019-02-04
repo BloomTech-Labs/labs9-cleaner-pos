@@ -184,11 +184,12 @@ const Checkout = (props: CheckoutProps) => {
               {show ? null : (
                 <Button
                   className='payment-button'
-                  text={`Pay $ ${stringifyCost(total)}`}
-                  color='#0aa047'
+                  text={stay.diff ? `Pay $ ${stringifyCost(total)}` : `Pay`}
+                  color={stay.diff ? '#0aa047' : '#736f6c'}
                   onClick={() => {
                     setShow(true);
                   }}
+                  disabled={!stay.diff}
                   datatestid='payment-button'
                 />
               )}
