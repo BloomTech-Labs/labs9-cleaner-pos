@@ -72,11 +72,19 @@ const Checkout = (props: CheckoutProps) => {
     : 0;
 
   const numberHandler = (property: string) => (num: number) => {
-    /* Handler function to pass to NumberSelector components
-       Won't update value if new value is less than 0
+    /* Handler function to pass to NumberSelector components.
+       Accepts a property string denoting which property in the stay object
+       you wish to update.
+       Won't update value if new value will be less than 0.
     */
-    if (num >= 0) {
-      setStay({ ...stay, [property]: num });
+    if (stay.hasOwnProperty(property)) {
+      if (num >= 0) {
+        setStay({ ...stay, [property]: num });
+      }
+    } else {
+      console.error(
+        'Checkout -> numberHandler: Property does not exist in object',
+      );
     }
   };
 
