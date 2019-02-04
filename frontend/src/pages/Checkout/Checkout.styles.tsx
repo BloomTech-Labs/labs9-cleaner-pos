@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import Container from '../../components/Container';
 
-export const CheckoutContainer = styled(Container)`
-  transition: all 0.5s ease-in-out;
+const bp = '700px';
 
+export const CheckoutContainer = styled(Container)`
   .checkout-body {
     /* Box Model */
     margin-top: 1rem;
@@ -11,6 +11,17 @@ export const CheckoutContainer = styled(Container)`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+
+    @media only screen and (max-width: 1000px) {
+      margin: 0 1rem;
+    }
+
+    @media only screen and (max-width: ${bp}) {
+      margin: 0;
+      /* Flex */
+      flex-flow: column nowrap;
+      align-items: center;
+    }
   }
 
   .checkout-left {
@@ -21,6 +32,11 @@ export const CheckoutContainer = styled(Container)`
     line-height: 2;
     /* Color */
     background-color: white;
+
+    @media only screen and (max-width: ${bp}) {
+      width: 95%;
+      margin-bottom: 2rem;
+    }
 
     img {
       /* Box Model */
@@ -70,6 +86,10 @@ export const HeaderGroup = styled.div`
 
 export const CheckoutRight = styled.div`
   width: 45%;
+
+  @media only screen and (max-width: ${bp}) {
+    width: 95%;
+  }
 `;
 
 export const CheckoutForm = styled('div')`
@@ -141,7 +161,7 @@ export const InvoiceBox = styled('div')`
   color: var(--color-text-accent);
   background-color: var(--color-accent-background);
 
-  &:first-child {
+  span:first-of-type {
     color: var(--color-text-dark);
   }
 `;
