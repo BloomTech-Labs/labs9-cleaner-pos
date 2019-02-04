@@ -58,7 +58,7 @@ describe('/assistant routes', () => {
       .set(headers)
       .expect(200)
       .then(({ body }) => {
-        expect(body.length).toBe(data.length);
+        expect(body.length).toBe(3);
         done();
       });
   });
