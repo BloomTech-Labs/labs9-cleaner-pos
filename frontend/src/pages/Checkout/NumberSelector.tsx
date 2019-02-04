@@ -47,7 +47,7 @@ const Button = styled.button`
   transition: all 0.1s ease-in-out;
   &:hover {
     /* TODO: Use a color variable for this */
-    border: 2px solid rgba(69, 147, 182, 0.5);
+    border: 1px solid rgba(69, 147, 182, 0.25);
   }
   /* Colors */
   color: var(--color-button-text-alt);

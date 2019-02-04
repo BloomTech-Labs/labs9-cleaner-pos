@@ -5,7 +5,8 @@ export const CheckoutContainer = styled(Container)`
   .checkout-body {
     /* Flex */
     display: flex;
-    justify-content: space-around;
+    flex-flow: row wrap;
+    justify-content: space-between;
   }
 
   .checkout-left {
@@ -65,11 +66,24 @@ export const HeaderGroup = styled.div`
 export const CheckoutRight = styled.div``;
 
 export const CheckoutForm = styled('div')`
-  border: 0.5px solid var(--color-border);
+  margin-top: 0.67rem;
+  margin-bottom: 2rem;
+  border: 0px solid;
   display: flex;
+  flex: 0 0 100%;
   flex-direction: column;
-  width: 300px;
-  margin-top: 0.67em;
+
+  input {
+    /* Box Model */
+    border: 0px solid;
+    border-bottom: 1px solid var(--color-main-black);
+    /* Color */
+    background-color: var(--color-main-background);
+    color: var(--color-text-accent);
+    /* Text */
+    font-size: 1.25rem;
+    text-align: right;
+  }
 `;
 
 export const Invoice = styled('div')`

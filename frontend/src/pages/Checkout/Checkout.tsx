@@ -107,6 +107,14 @@ const Checkout = (props: CheckoutProps) => {
       {stayError.error ? 'Error fetching your Guest' : null}
       {stay ? (
         <div className='checkout-body'>
+          <CheckoutForm>
+            {/* TODO: implement onChange to filter through stays */}
+            <input
+              id='stay-search'
+              name='stay'
+              placeholder='Search for different stay'
+            />
+          </CheckoutForm>
           <div className='checkout-left'>
             {stay.photo_url ? (
               <img src={stay.photo_url} alt='Property Image' />
@@ -142,17 +150,6 @@ const Checkout = (props: CheckoutProps) => {
             </div>
           </div>
           <CheckoutRight>
-            <CheckoutForm>
-              {/* TODO: implement onChange to filter through stays */}
-              <label htmlFor='stay-search' style={{ display: 'hidden' }}>
-                Search for different Stay
-              </label>
-              <input
-                id='stay-search'
-                name='stay'
-                placeholder='Search for different stay'
-              />
-            </CheckoutForm>
             <Invoice>
               <h3>Invoice</h3>
               {/* TODO: implement axios call to change stay to account for new inputs */}
