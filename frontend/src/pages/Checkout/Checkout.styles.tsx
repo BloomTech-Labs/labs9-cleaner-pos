@@ -3,6 +3,8 @@ import Container from '../../components/Container';
 
 export const CheckoutContainer = styled(Container)`
   .checkout-body {
+    /* Box Model */
+    margin-top: 1rem;
     /* Flex */
     display: flex;
     flex-flow: row wrap;
@@ -66,10 +68,12 @@ export const HeaderGroup = styled.div`
 export const CheckoutRight = styled.div``;
 
 export const CheckoutForm = styled('div')`
+  /* Box Model */
   margin-top: 0.67rem;
-  margin-bottom: 2rem;
   border: 0px solid;
-  display: flex;
+  /* Flex */
+  /* Hide this component for now until functionality has been implemented */
+  display: none;
   flex: 0 0 100%;
   flex-direction: column;
 
@@ -79,7 +83,6 @@ export const CheckoutForm = styled('div')`
     border-bottom: 1px solid var(--color-main-black);
     /* Color */
     background-color: var(--color-main-background);
-    color: var(--color-text-accent);
     /* Text */
     font-size: 1.25rem;
     text-align: right;
