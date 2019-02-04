@@ -9,7 +9,7 @@ import loadingIndicator from '../utils/loading.svg';
 
 const AstDropdownView = (props: {
   formState: { ast_id: number; full_name: string };
-  onChangeFunc: (e: any) => void;
+  onChangeFunc: (e: any, id: number) => void;
   house: House;
   loading: boolean;
   errors: { msg: string; error: boolean };
@@ -30,13 +30,20 @@ const AstDropdownView = (props: {
     <Wrapper className='ast-dropdown'>
       <label>Reassign Assistant</label>
       <br />
-      <select data-testid='assistant-select' onChange={(event) => event}>
+      <select
+        data-testid='assistant-select'
+        onChange={(e) => onChangeFunc(e, house.id)}
+      >
         <option defaultValue={house.default_ast_name}>
           {house.default_ast_name}
         </option>
         {house.openAst.map((ast: any) => {
           if (ast.ast_id !== house.default_ast) {
-            return <option key={ast.ast_id}>{ast.full_name}</option>;
+            return (
+              <option key={ast.ast_id} value={ast.ast_id}>
+                {ast.full_name}
+              </option>
+            );
           }
         })}
       </select>
@@ -116,14 +123,36 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
   }, [props.houseId]);
 
   const onChangeFunc = (e: any) => {
-    setFormState((prev) => ({ ...prev }));
+    console.log('event in astdropdown:', e.target);
+    console.log('event in astdropdown:', e.currentTarget);
   };
 
+  async function postAst(
+    event: React.FormEvent<HTMLSelectElement>,
+    id: number | undefined,
+  ) {
+    const token = localStorage.getItem('token');
+    const headers: AxiosRequestConfig = {
+      headers: { Authorization: token },
+    };
+    try {
+      const astId: string = event.currentTarget.value;
+      const res = await axios.put(
+        `http://localhost:4500/houses/${id}`,
+        {
+          default_ast: Number(astId),
+        },
+        headers,
+      );
+    } catch (e) {
+      setErrors({ msg: 'Could not update assistant.', error: true });
+    }
+  }
   return (
     <AstDropdownView
       className={props.className || ''}
       formState={formState}
-      onChangeFunc={onChangeFunc}
+      onChangeFunc={postAst}
       house={house}
       loading={loading}
       errors={errors}
