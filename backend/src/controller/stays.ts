@@ -57,7 +57,9 @@ export async function getAll(
   }
 
   try {
-    const stays = await findAllStays(String(extit), filter);
+    const { id } = req.token;
+    // const stays = await findAllStays(String(extit), filter);
+    const stays = await findAllStays(id, filter);
     res.status(200).json(stays);
   } catch (e) {
     e.statusCode = e.statusCode || 400;
