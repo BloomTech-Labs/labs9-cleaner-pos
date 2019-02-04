@@ -19,6 +19,8 @@ import { House } from './types';
 import { Link } from 'react-router-dom';
 import loadingIndicator from '../utils/loading.svg';
 import { UserContext } from '../../App';
+import defaultHouse from '../../assets/house_alt.jpg';
+// Original Url: https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg
 
 const Properties = () => {
   const url =
@@ -78,15 +80,15 @@ const Properties = () => {
             style={{
               marginTop: '24px',
               marginBottom: '24px',
-              color: 'var(--color-accent)',
+              color: 'var(--color-text-accent)',
               border: 'var(--border)',
               padding: '20px',
-              background: 'var(--color-accent-background',
+              backgroundColor: 'var(--color-bg-secondary)',
             }}
           >
             <h2>
-              You've reached the maximum amount of properties, please subscribe
-              to add more
+              You've reached the maximum amount of properties. Please subscribe
+              to add more.
             </h2>
             <Link to='/billing'>
               <Button text='Subscribe' />
@@ -97,10 +99,7 @@ const Properties = () => {
           ? houses.map((house: House) => {
               return (
                 <HouseItem key={house.id} data-testid='house-item'>
-                  <ThumbNail
-                    src='https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg'
-                    alt='house'
-                  />
+                  <ThumbNail src={defaultHouse} alt='house' />
                   <CardContent>
                     <CardHeading>
                       <h4>{house.name}</h4>

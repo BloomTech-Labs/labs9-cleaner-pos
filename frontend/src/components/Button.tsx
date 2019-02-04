@@ -38,8 +38,8 @@ const Button = ({
     /* Color */
     background: ${buttonColor};
     color: var(--color-button-text);
-    /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
-      0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    /* Cursor */
+    cursor: pointer;
   `;
   return (
     <>

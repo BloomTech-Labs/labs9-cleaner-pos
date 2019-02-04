@@ -109,7 +109,7 @@ export const GuestDetailView = ({
           <Button
             className='back'
             text='Go Back ↩'
-            color='var(--color-accent)'
+            color='var(--color-text-accent)'
             datatestid='button-back'
             onClick={goBack}
           />

@@ -4,7 +4,7 @@ import { GuestCard } from './GuestCard';
 // Styles
 import styled from '@emotion/styled';
 
-const height = 168 / 16;
+const height = 168;
 const pxToRem = (px: number) => px / 16;
 // In design file, image was 216px high
 // For responsiveness, we want to use rems.
@@ -97,7 +97,7 @@ export const GuestsDiv = styled(Container)`
 export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
   width: 95vw;
-  margin: 2rem 0.5rem;
+  margin: 2.25rem 0.5rem;
   padding: 1rem;
 
   /* Grid */
@@ -110,8 +110,8 @@ export const StyledGuestCard = styled(GuestCard)`
   grid-column-gap: ${pxToRem(36)}rem;
 
   /* Color */
-  color: var(--color-main-black);
-  background-color: var(--color-accent-background);
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
   transition: all 0.1s ease-in-out;
@@ -141,21 +141,12 @@ export const StyledGuestCard = styled(GuestCard)`
     grid-column: span 2;
   }
 
-  div[class^='info-'] {
-    /*
-      Above fancy selector courtesy of:
-      https://stackoverflow.com/a/8588532
-      */
-    /* Color */
-    background-color: var(--color-main-background);
-  }
-
   @media only screen and (min-width: 720px) {
     /* Sizing and Box Model */
     width: 100%;
     padding: 0;
-    height: ${height}rem;
-    border: 1px solid var(--color-border);
+    height: ${pxToRem(height)}rem;
+    border: var(--border-alt);
     margin: 0 0 ${pxToRem(36)}rem 0;
 
     /* Grid */
@@ -170,7 +161,7 @@ export const StyledGuestCard = styled(GuestCard)`
       /* Sizing & Box Model*/
       border-radius: 0%;
       width: 100%;
-      height: ${height - pxToRem(2)}rem;
+      height: ${pxToRem(height)}rem;
       object-fit: cover;
 
       /* Grid */
@@ -219,9 +210,6 @@ export const StyledGuestCard = styled(GuestCard)`
       /* Grid */
       grid-column: 4;
       grid-row: span 2;
-
-      /* Color */
-      background-color: var(--color-main-background);
     }
 
     .info-progress .text-main {
@@ -244,7 +232,7 @@ export const StyledGuestCard = styled(GuestCard)`
 
 export const InfoDiv = styled.div`
   /* Sizing & Box Model */
-  border: 1px solid var(--color-border);
+  border: var(--border);
 
   /* Flexbox */
   display: flex;
@@ -252,7 +240,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--color-accent-background);
+  background-color: var(--color-bg-tertiary);
 
   div[class^='text-'] {
     display: block;
@@ -261,13 +249,13 @@ export const InfoDiv = styled.div`
   .text-main {
     font-family: 'Roboto Medium', Arial, sans-serif;
     font-size: ${24 / 16}rem;
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
 
   .text-secondary {
     font-family: 'Roboto Light', Arial, sans-serif;
     font-size: ${16 / 16}rem;
-    color: var(--color-main-black);
+    color: var(--color-text-dark);
   }
 `;
 
