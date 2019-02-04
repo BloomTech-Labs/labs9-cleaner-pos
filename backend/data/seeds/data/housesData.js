@@ -9,6 +9,7 @@ module.exports = [
     manager: 1,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '420 Throckmorton St\n\nFort Worth\nTX - Texas\nUSA\n76102',
   },
   {
     name: 'house name 2',
@@ -20,6 +21,7 @@ module.exports = [
     manager: 1,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '3624 Dexter Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 3',
@@ -31,6 +33,7 @@ module.exports = [
     manager: 1,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '3632 Dexter Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 4',
@@ -42,6 +45,7 @@ module.exports = [
     manager: 4,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '2225 Western Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 5',
@@ -53,6 +57,7 @@ module.exports = [
     manager: 4,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '2304 Hillcrest St\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 6',
@@ -64,6 +69,7 @@ module.exports = [
     manager: 4,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '2318 Thomas Pl\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 7',
@@ -75,6 +81,7 @@ module.exports = [
     manager: 5,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '4036 Linden Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 8',
@@ -86,6 +93,7 @@ module.exports = [
     manager: 5,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '3812 Linden Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 9',
@@ -97,6 +105,7 @@ module.exports = [
     manager: 5,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '3713 Bryce Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 10',
@@ -108,6 +117,7 @@ module.exports = [
     manager: 6,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '3806 Lafayette Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 11',
@@ -119,6 +129,7 @@ module.exports = [
     manager: 6,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '3709 Lafayette Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
   {
     name: 'house name 12',
@@ -130,5 +141,6 @@ module.exports = [
     manager: 6,
     photo_url:
       'https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg',
+    address: '3632 Lafayette Ave\n\nFort Worth\nTX\nUSA\n76107',
   },
 ];

@@ -1,9 +1,10 @@
 import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
 
-export function findAssistants() {
+export function findAssistants(manId: number) {
   return db('assistant')
     .join('user', 'user.id', '=', 'assistant.user_id')
+    .join('manager_ast', 'assistant.id', '=', 'manager_ast.ast_id')
     .select(
       'user.id as user_id',
       'assistant.id as ast_id',
@@ -11,6 +12,7 @@ export function findAssistants() {
       'user.address as address',
       'user.photoUrl as photo_url',
     )
+    .where({ 'manager_ast.manager_id': manId })
     .map(async (e: any) => {
       let itemCount: number = 0;
       const openAst = await db('house_ast')
@@ -52,6 +54,7 @@ export function addAstToAllManHouse(astId: number, manId: number) {
     });
 }
 
+// Finds an ast by astId. gets user info and houses. used on ast detail FE page
 export function findOneAssistant(astId: number) {
   return db('assistant')
     .join('user', 'user.id', '=', 'assistant.user_id')
@@ -83,4 +86,18 @@ export function findOneAssistant(astId: number) {
         .whereNotIn('house_ast.house_id', defA);
       return { ...e, default_house: defHouse, avl_houses: avlHouses };
     });
+}
+
+// takes ast id. finds all manager id's linked
+// TODO: filter out properties a mananger has not assigned ast to
+export function findAstMan(id: number): any {
+  return db('manager_ast')
+    .where({ 'manager_ast.ast_id': id })
+    .map((row: any) => {
+      return row.manager_id;
+    });
+}
+
+export function addAstToHouse(houseId: number, astId: number) {
+  return db('house_ast').insert({ house_id: houseId, ast_id: astId });
 }
