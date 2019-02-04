@@ -132,7 +132,7 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
         // await addAstMan(newUser[0].id, managerID);
         // await addAstToAllManHouse(newUser[0].id, managerID);
       } else if (role === 'manager') {
-        astCreate(newUser.astId[0], newUser.id[0]);
+        await addAstMan(newUser.astId[0], newUser.id[0]);
       }
 
       res

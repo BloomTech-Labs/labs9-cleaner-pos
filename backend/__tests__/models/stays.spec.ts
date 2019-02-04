@@ -91,10 +91,10 @@ describe('Stay DB functions', () => {
 
   test('findAllStays finds all upcoming guests of a user', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const userId = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
-    const result = await findAllStays(extIt).catch(errorHandler);
+    const result = await findAllStays(userId).catch(errorHandler);
     // Assert
     expect(result.length).toBe(3);
     const sampleObj = result[0];
@@ -108,10 +108,10 @@ describe('Stay DB functions', () => {
 
   test('findAllStays filters by current date', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const userId = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
-    const result = await findAllStays(extIt, 'upcoming').catch(errorHandler);
+    const result = await findAllStays(userId, 'upcoming').catch(errorHandler);
     // Assert
     // TODO: Supply custom seed data within test.
     // As is, this will break after 2/27/2019
@@ -130,10 +130,10 @@ describe('Stay DB functions', () => {
 
   test('findAllStays filters by completion', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const userId = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
-    const result = await findAllStays(extIt, 'complete').catch(errorHandler);
+    const result = await findAllStays(userId, 'complete').catch(errorHandler);
     // Assert
     // TODO: Supply custom seed data within test.
     expect(result.length).toBe(0);
@@ -141,10 +141,10 @@ describe('Stay DB functions', () => {
 
   test('findAllStays filters by incompletion', async () => {
     // Arrange
-    const extIt = '1'; // Harald Junke
+    const userId = 1; // Harald Junke
     // Seed data has three upcoming guests for this user
     // Act
-    const result = await findAllStays(extIt, 'incomplete').catch(errorHandler);
+    const result = await findAllStays(userId, 'incomplete').catch(errorHandler);
     // Assert
     // TODO: Supply custom seed data within test.
     expect(result.length).toBe(3);
