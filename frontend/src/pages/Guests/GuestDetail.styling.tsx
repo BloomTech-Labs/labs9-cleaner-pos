@@ -110,7 +110,8 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--checklist,
   .guest-info--resources,
   .guest-info--checkout {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
+    border: var(--border);
   }
 
   /* Checklists */
@@ -167,8 +168,8 @@ export const GuestDetailStyle = styled('div')`
   .guest-info--checkout-top {
     /* Box Model & Sizing */
     padding: 0 0.5rem;
-    border: 0.5px solid var(--color-border);
-    color: var(--color-accent);
+    border: var(--border);
+    color: var(--color-text-accent);
   }
 
   .guest-info--checklist-bottom,
@@ -182,7 +183,7 @@ export const GuestDetailStyle = styled('div')`
   }
 
   .guest-info--top {
-    background: var(--color-accent);
+    background: var(--color-bg-accent);
     color: white;
   }
 
@@ -228,7 +229,7 @@ export const GuestDetailStyle = styled('div')`
     grid-row: span 2;
     grid-column: 1;
     /* Color */
-    background-color: var(--color-main-background);
+    background-color: var(--color-bg-main);
   }
 
   .guest-info--checkout-bottom .stay-code div {

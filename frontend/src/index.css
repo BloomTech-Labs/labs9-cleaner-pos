@@ -1,27 +1,48 @@
 :root {
   /* General Colors */
-  --color-main-black: #393534;
-  --color-main-background: #eeeff5;
+  /* --- Original Colors */
+  --color-main-dark: #393534;
+  --color-main-medium: #eeeff5;
+  --color-main-light: #ffffff;
   --color-accent: #4593b6;
-  --color-accent-background: white;
-  --color-border: rgba(22, 21, 20, 0.12);
+  --color-accent-light: #ebf8f8;
+  --color-border: rgba(57, 53, 52, 0.125);
+  --color-border-strong: rgba(57, 53, 52, 0.5);
   --color-error: #b8003f;
-  /* Buttons */
-  --color-button-text: #eeeff5;
-  --color-button-background: #4593b6;
-  --color-button-text-alt: #4593b6;
-  --color-button-background-alt: #eeeff5;
-  --color-button-background-action: #0aa047;
-  --color-button-text-action: white;
+  /* --- Test Colors */
+  --color-main-dark: #021516;
+  /* --color-main-medium: #ebf0f1;
+  --color-main-light: #ffffff;
+  --color-accent: #167c80;
+  --color-accent-light: #eaf7f7;
+  --color-border: rgba(2, 21, 22, 0.125);
+  --color-border-strong: rgba(2, 21, 22, 0.5);
+  --color-error: #b8003f; */
+  /* Background Colors */
+  --color-bg-main: var(--color-main-medium);
+  --color-bg-secondary: var(--color-main-light);
+  --color-bg-tertiary: var(--color-accent-light);
+  --color-bg-accent: var(--color-accent);
+  --color-bg-accent-light: var(--color-accent-light);
+  /* Button Colors */
+  --color-button-text: var(--color-main-light);
+  --color-button-background: var(--color-accent);
+  --color-button-text-alt: var(--color-accent);
+  --color-button-background-alt: var(--color-main-light);
+  --color-button-background-action: #7e8d66;
+  --color-button-text-action: var(--color-main-light);
+  /* Text Colors */
+  --color-text-dark: var(--color-main-dark);
+  --color-text-light: var(--color-main-light);
+  --color-text-accent: var(--color-accent);
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
   --header-font-size-secondary: 1.25rem;
-  /* Text Colors */
-  --color-text-dark: #393534;
-  --color-text-light: #eeeff5;
-  --color-text-accent: #4593b6;
   /* Border */
+  /* --border: 1px solid var(--color-border); */
   --border: 1px solid var(--color-border);
+  --border-alt: sub;
+  --border-bottom: 1px solid var(--color-border);
 }
 
 body {
@@ -30,13 +51,12 @@ body {
   margin: auto;
   padding: 0;
   color: var(--color-text-dark);
-  background-color: var(--color-main-background);
+  background-color: var(--color-bg-main);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--color-main-background);
 }
 
 code {

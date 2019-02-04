@@ -25,8 +25,8 @@ export const CheckoutContainer = styled(Container)`
 
   .checkout-field input {
     border: 0px solid;
-    border-bottom: 1px solid var(--color-main-black);
-    background-color: var(--color-main-background);
+    border-bottom: var(--border-bottom);
+    background-color: var(--color-bg-main);
   }
 
   .checkout-field input,
@@ -38,7 +38,7 @@ export const CheckoutContainer = styled(Container)`
 `;
 
 export const CheckoutForm = styled('div')`
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -53,9 +53,9 @@ export const Invoice = styled('div')`
     margin-bottom: 24px;
   }
   padding: 10px;
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   /* Color */
-  background-color: var(--color-main-background);
+  background-color: var(--color-bg-main);
   .submit-payment {
     margin-bottom: 24px;
   }
@@ -75,12 +75,12 @@ export const InvoiceBox = styled('div')`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 0.5px solid var(--color-border);
+  border: var(--border);
   border-right: 0;
   border-left: 0;
   padding: 0 0.5rem;
   height: 3rem;
   /* Color */
   color: var(--color-text-accent);
-  background-color: var(--color-accent-background);
+  background-color: var(--color-bg-secondary);
 `;

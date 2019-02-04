@@ -40,7 +40,4 @@ const LoginDiv = styled('div')`
   }
 `;
 
-/*
-    background-color: var(--color-main-background);
-*/
 export default LoginDiv;

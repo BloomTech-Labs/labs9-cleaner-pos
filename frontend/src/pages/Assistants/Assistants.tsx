@@ -9,8 +9,7 @@ import {
   ThumbNail,
   ButtonContainer,
   CardHeading,
-  Asst,
-  CheckList,
+  InfoBox,
   AssistantHeader,
   HeaderWrapper,
 } from './Assistants.styling';
@@ -27,7 +26,7 @@ const AssistantCard = (assistant: Assistant) => {
   return (
     <>
       <Link
-        style={{ marginBottom: `2rem` }}
+        style={{ marginBottom: `2.25rem` }}
         to={`/assistants/${assistant.ast_id}`}
       >
         <AssistantItem data-testid='assistant-item'>
@@ -42,14 +41,14 @@ const AssistantCard = (assistant: Assistant) => {
               <p>Test Address</p>
             </CardHeading>
             <div className='check-boxes'>
-              <CheckList>
+              <InfoBox>
                 <p>Checklist Items</p>
                 <div className='secondary'>{assistant.itemCount}</div>
-              </CheckList>
-              <Asst>
+              </InfoBox>
+              <InfoBox>
                 <p>Available Houses</p>
                 <div className='secondary'>{assistant.houseCount}</div>
-              </Asst>
+              </InfoBox>
               <ButtonContainer>
                 <Button text='See More' datatestid='assistant-button' />
               </ButtonContainer>
