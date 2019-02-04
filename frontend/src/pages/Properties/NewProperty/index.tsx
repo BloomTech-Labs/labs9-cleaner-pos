@@ -81,17 +81,17 @@ const NewProperty = (props: RouteComponentProps) => {
         country,
         postCode,
         propertyName: name,
-        cleaningFee: cleaning_fee,
-        feePerGuest: extra_guest_fee,
+        cleaningFee: +cleaning_fee,
+        feePerGuest: +extra_guest_fee,
         defaultAst: default_ast,
-        pricePerNight: price,
+        pricePerNight: +price,
       };
 
-      const addSelf = props.location.state.openAst.concat({
-        full_name: default_ast_name,
-        ast_id: default_ast,
-      });
-      setAssistants(addSelf);
+      // const addSelf = props.location.state.openAst.concat({
+      //   full_name: default_ast_name,
+      //   ast_id: default_ast,
+      // });
+      setAssistants(props.location.state.openAst);
       setStartValues(loadValues);
     }
   }, []);

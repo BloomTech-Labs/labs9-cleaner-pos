@@ -118,7 +118,7 @@ const PropertyDetails = (props: any) => {
     <>
       <div>{errors.msg}</div>
       {!property ? (
-        <div>Loading.....</div>
+        <img src={loadingIndicator} alt='animated loading indicator' />
       ) : (
         <PropertyContainer>
           <Top>
