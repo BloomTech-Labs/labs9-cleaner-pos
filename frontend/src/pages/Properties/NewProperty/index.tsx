@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import * as Yup from 'yup';
 import axios from 'axios';
 import { Formik, Field } from 'formik';
+import loadingIndicator from '../../utils/loading.svg';
 // Components
 import { FileUploadHOF } from '../../../components/FileUpload';
 // Styles
@@ -117,7 +117,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
             ))}
           </Field>
         ) : (
-          <div>Loading</div>
+          <img src={loadingIndicator} alt='animated loading indicator' />
         )}
         <br />
         <br />
@@ -161,6 +161,7 @@ const NewProperty = (props: RouteComponentProps) => {
   const [errors, setErrors] = useState({ msg: '', error: false });
   useEffect(() => {
     // Get list of assistants from backend
+    console.log('I`m here!');
     const url =
       process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
@@ -319,7 +320,8 @@ const NewProperty = (props: RouteComponentProps) => {
   };
 
   const goBack = () => props.history.push('/properties');
-  return startValues.address1 ? (
+  console.log(startValues, NewPropertySchema);
+  return startValues.address1 !== undefined ? (
     <Formik
       initialValues={startValues}
       validationSchema={NewPropertySchema}
@@ -336,7 +338,9 @@ const NewProperty = (props: RouteComponentProps) => {
         );
       }}
     />
-  ) : null;
+  ) : (
+    <img src={loadingIndicator} alt='animated loading indicator' />
+  );
 };
 
 export default NewProperty;

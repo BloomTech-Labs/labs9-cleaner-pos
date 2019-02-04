@@ -17,7 +17,6 @@ import {
 import { Assistant } from './types';
 // Assets
 import defaultUser from '../../assets/default-user.jpg';
-import img from '../assets/ronald.jpg';
 
 interface AssistantsEnum extends Array<Assistant> {}
 
