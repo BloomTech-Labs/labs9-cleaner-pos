@@ -22,19 +22,6 @@ export const CheckoutContainer = styled(Container)`
     display: flex;
     justify-content: space-between;
   }
-
-  .checkout-field input {
-    border: 0px solid;
-    border-bottom: 1px solid var(--color-main-black);
-    background-color: var(--color-main-background);
-  }
-
-  .checkout-field input,
-  .checkout-field span {
-    font-size: 1.25rem;
-    color: var(--color-text-accent);
-    text-align: right;
-  }
 `;
 
 export const CheckoutRight = styled.div``;

@@ -34,7 +34,6 @@ const Checkout = (props: CheckoutProps) => {
   const [stayLoading, setStayLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [stays, staysError, staysLoading] = useFetch(`${url}/stays?test=true`);
-  // @ts-ignore
 
   async function fetchStay() {
     setStayLoading(true);
