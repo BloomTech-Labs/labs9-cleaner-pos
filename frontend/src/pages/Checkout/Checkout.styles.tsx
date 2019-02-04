@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import Container from '../../components/Container';
 
 export const CheckoutContainer = styled(Container)`
+  transition: all 0.5s ease-in-out;
+
   .checkout-body {
     /* Box Model */
     margin-top: 1rem;
@@ -94,16 +96,23 @@ export const CheckoutForm = styled('div')`
 
 export const Invoice = styled('div')`
   width: 100%;
+  border: 0.5px solid var(--color-border);
+  padding: 1rem 1rem 2rem 1rem;
   /* Flex */
   display: flex;
   flex-direction: column;
+  /* Color */
+  background-color: white;
+  /* Text */
+  text-align: left;
+
   div {
     margin-bottom: 24px;
   }
-  padding: 10px;
-  border: 0.5px solid var(--color-border);
-  /* Color */
-  background-color: white;
+
+  h1 {
+    color: var(--color-text-accent);
+  }
   .submit-payment {
     margin-bottom: 24px;
   }
@@ -131,4 +140,8 @@ export const InvoiceBox = styled('div')`
   /* Color */
   color: var(--color-text-accent);
   background-color: var(--color-accent-background);
+
+  &:first-child {
+    color: var(--color-text-dark);
+  }
 `;

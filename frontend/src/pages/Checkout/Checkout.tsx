@@ -151,7 +151,7 @@ const Checkout = (props: CheckoutProps) => {
           </div>
           <CheckoutRight>
             <Invoice>
-              <h3>Invoice</h3>
+              <h1>Invoice</h1>
               {/* TODO: implement axios call to change stay to account for new inputs */}
               <InvoiceBox>
                 <span>
@@ -163,7 +163,7 @@ const Checkout = (props: CheckoutProps) => {
                 <span>Cleaning Fee:</span>
                 <span>${stay.cleaning_fee}</span>
               </InvoiceBox>
-              {stay.extra_guests && (
+              {stay.extra_guests ? (
                 <InvoiceBox data-testid='extra-guests'>
                   <span>
                     {stay.extra_guests} Extra Guests x ${stay.extra_fee}
@@ -172,7 +172,7 @@ const Checkout = (props: CheckoutProps) => {
                     {stringifyCost(stay.extra_fee * stay.extra_guests)}
                   </span>
                 </InvoiceBox>
-              )}
+              ) : null}
               {show && (
                 // @ts-ignore
                 <PaymentContext.Provider value={{ sum: total }}>

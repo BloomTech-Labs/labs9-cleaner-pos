@@ -5,12 +5,10 @@ export const NumberSelector = ({
   value,
   disabled,
   onClick,
-  min,
 }: {
   value: number;
   disabled: boolean;
   onClick: (val: number) => void;
-  min?: number;
 }) => {
   const handler = (newVal: number) => () => {
     onClick(newVal);
