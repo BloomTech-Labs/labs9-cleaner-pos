@@ -4,12 +4,14 @@ import React, {
   useEffect,
   useState,
   useRef,
+  useContext,
   FunctionComponent,
   MutableRefObject,
 } from 'react';
 import { RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../../firebase.setup';
+import { UserContext } from '../../App';
 // Styles
 import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
@@ -30,6 +32,8 @@ const Login: FunctionComponent<LoginProps> = ({
   // throughout it's lifecycle
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
   const { ast, manager } = queryString.parse(location.search);
+
+  const { setSub } = useContext(UserContext);
 
   // Configuration for the firebase OAuth component
   const uiConfig = {
@@ -91,7 +95,7 @@ const Login: FunctionComponent<LoginProps> = ({
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.role);
 
-        onUser(data.stripePlan);
+        setSub(data.stripePlan);
 
         if (data.first) {
           history.push('/postreg');
