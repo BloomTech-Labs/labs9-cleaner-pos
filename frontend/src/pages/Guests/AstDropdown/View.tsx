@@ -1,7 +1,6 @@
 import React from 'react';
 // Components
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '../../../components/Snackbar';
 // Styled Components
 import { Wrapper } from './Styles';
 // Types
@@ -9,7 +8,6 @@ import { House } from '../types';
 import loadingIndicator from '../../utils/loading.svg';
 
 export const AstDropdownView = (props: {
-  formState: { ast_id: number; full_name: string };
   onChangeFunc: (e: any, id: number) => void;
   house: House;
   loading: boolean;
@@ -18,7 +16,7 @@ export const AstDropdownView = (props: {
   snackbarOpen: boolean;
   snackbarClose: (event: any, reason: string) => void;
 }) => {
-  const { formState, onChangeFunc, house, loading, className } = props;
+  const { onChangeFunc, house, loading, className } = props;
 
   if (loading || props.house.openAst === undefined) {
     return (
@@ -32,28 +30,9 @@ export const AstDropdownView = (props: {
   return (
     <Wrapper className='ast-dropdown'>
       <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={props.snackbarOpen}
-        autoHideDuration={3000}
-        onClose={props.snackbarClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id='message-id'>Assistant successfully updated.</span>}
-        action={[
-          <IconButton
-            key='close'
-            aria-label='Close'
-            color='inherit'
-            // @ts-ignore
-            onClick={props.snackbarClose}
-          >
-            <i className='fas fa-times' />
-          </IconButton>,
-        ]}
+        snackbarOpen={props.snackbarOpen}
+        snackbarClose={props.snackbarClose}
+        message='Assistant successfully updated.'
       />
       <label>Reassign Assistant</label>
       <br />

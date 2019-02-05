@@ -7,11 +7,6 @@ import { AstDropdownView } from './View';
 import { House } from '../types';
 
 export const AstDropdown = (props: { houseId: number; className?: string }) => {
-  const [formState, setFormState] = useState({
-    // TODO: Research more about this unknown business
-    ast_id: (null as unknown) as number,
-    full_name: (null as unknown) as string,
-  });
   const [house, setHouse] = useState({} as House);
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [loading, setLoading] = useState(false);
@@ -58,7 +53,6 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
         const { data } = response;
         setHouse(data);
         const { default_ast, default_ast_name } = data;
-        setFormState({ ast_id: default_ast, full_name: default_ast_name });
         setErrors({ msg: '', error: false });
       })
       .catch(axiosErrorHandler(setErrors));
@@ -92,7 +86,6 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
   return (
     <AstDropdownView
       className={props.className || ''}
-      formState={formState}
       onChangeFunc={postAst}
       house={house}
       loading={loading}
