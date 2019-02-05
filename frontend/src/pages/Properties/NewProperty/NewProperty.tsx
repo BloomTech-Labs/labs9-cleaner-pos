@@ -112,13 +112,10 @@ const NewProperty = (props: RouteComponentProps) => {
       state,
       country,
       postCode,
-      photoUrl,
       pricePerNight,
       feePerGuest,
       cleaningFee,
       defaultAst,
-      astGuide,
-      guestGuide,
     } = values;
 
     const { photo_url, ast_guide, guest_guide } = urls;
@@ -159,6 +156,7 @@ const NewProperty = (props: RouteComponentProps) => {
       await actions.setStatus('Submission successful. Thank you!');
       props.history.push('/properties');
     } catch (error) {
+      console.error(error);
       await actions.setSubmitting(false);
       if (error.response) {
         const { status, data } = error.response;
