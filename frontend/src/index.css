@@ -6,6 +6,7 @@
   --color-main-light: #ffffff;
   --color-accent: #4593b6;
   --color-accent-light: #ebf8f8;
+  --color-accent-dark: #2c5e74;
   --color-border: rgba(57, 53, 52, 0.125);
   --color-border-strong: rgba(57, 53, 52, 0.5);
   --color-error: #b8003f;
@@ -34,7 +35,9 @@
   /* Text Colors */
   --color-text-dark: var(--color-main-dark);
   --color-text-light: var(--color-main-light);
+  --color-text-accent-light: var(--color-accent-light);
   --color-text-accent: var(--color-accent);
+  --color-text-accent-dark: var(--color-accent-dark);
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
   --header-font-size-secondary: 1.25rem;
@@ -52,9 +55,10 @@ body {
   padding: 0;
   color: var(--color-text-dark);
   background-color: var(--color-bg-main);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

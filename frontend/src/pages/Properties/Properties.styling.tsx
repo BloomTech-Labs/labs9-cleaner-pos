@@ -191,6 +191,31 @@ const Assistant = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: var(--border);
+  padding: 1rem;
+  /* Color */
+  background-color: var(--color-bg-accent-light);
+  /* Text */
+  font-weight: bolder;
+
+  label {
+    /* Color */
+    color: var(--color-text-accent-dark);
+    /* Text */
+    font-size: 1rem;
+  }
+
+  select {
+    width: 100%;
+    margin-top: 0.5rem;
+    border: none;
+    border-bottom: 1px solid var(--color-border-strong);
+    /* Color */
+    background-color: var(--color-bg-accent-light);
+    /* Text */
+    font-size: 1rem;
+  }
+
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};
     padding: 20px 0 20px 0;

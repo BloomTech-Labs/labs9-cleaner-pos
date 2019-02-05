@@ -5,7 +5,7 @@ import { IncomingGuestProps, GuestProps } from './types';
 // Components
 import { InfoBox } from './InfoBox';
 import { Checklist } from './Checklist';
-import { AstDropdown } from './AstDropdown';
+import { AstDropdown } from './AstDropdown/AstDropdown';
 import { FileUploadHOF } from '../../components/FileUpload';
 import Button from '../../components/Button';
 // Styled and Styled Components
