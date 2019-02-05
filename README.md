@@ -35,7 +35,7 @@ With its vast eco-system and modular nature React is a great choice for developi
 
 #### React Hooks
 
-React Hooks simplify working with React due to use near exclusive use of functional components versus class components. Also, the use of React hooks results in smaller package sizes.
+React Hooks simplify working with React due to use near exclusive use of functional components versus class components. Also, because logic can be shared, using React hooks results in smaller package sizes, which maximizes efficiency.
 
 #### Typescript
 
@@ -49,7 +49,7 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 #### Node.js, Express.js
 
-	* Node.js offers a unified language for both front-end and back-end, giving all team members flexibility to work on either when necessary.
+	* Node.js offers a single free codebase that is fast, easy to learn, and offers multiple modules. Collaborators can quickly get up to speed and easily modify and maintain the code for longterm stability.
 	* Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
 	* There is very detailed documentation available for each.
 	* There also widespread community support for Node and Express.
@@ -86,7 +86,7 @@ Start the development server by running npm dev:server or yarn dev:server.
 
 ## Stripe
 
-All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data.
+All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the business.
 
 ## Documentation
 	
