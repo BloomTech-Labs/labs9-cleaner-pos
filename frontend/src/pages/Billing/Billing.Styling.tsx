@@ -4,6 +4,14 @@ const SubBox = styled('div')`
   border: 1px solid black;
   background: white;
   padding: 20px;
+  .box {
+    transition: all 2s linear;
+    display: block;
+  }
+  .hidden {
+    display: none;
+    opacity: 0;
+  }
 `;
 
 const AccUL = styled('ul')`
