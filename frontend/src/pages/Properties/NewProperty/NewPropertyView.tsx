@@ -138,7 +138,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
           {urls.photo_url ? (
             <img src={urls.photo_url} alt='Uploaded Image' />
           ) : (
-            <i className='far fa-image' />
+            <i className='fas fa-home' />
           )}
         </div>
         <Uppy type='photo_url' text='Upload a Photo!' />
