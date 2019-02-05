@@ -8,10 +8,10 @@ export const AccordionItemHeader = styled('dt')`
 `;
 export const AccordionItemBody = styled('dd')`
   text-align: left;
-  padding: 0.5rem;
   background: var(--color-main-light);
   margin: 0;
-  height: calc(100% - 126px);
+  padding: 2rem;
+  height: calc(100% - 124px);
 `;
 export const AccordionContainer = styled('dl')`
   border: var(--border);
