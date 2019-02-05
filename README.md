@@ -38,9 +38,9 @@ This is a Lambda Labs Capstone Project designed for rental property management. 
 
 With its vast eco-system and modular nature React is a great choice for developing the front-end of our project.
 
-	- The associated documentation, community and 3rd party packages are excellent
-	- It allows for reusability of already written components which reduces development time
-	- It is a tried and tested framework that will help us avoid sudden shifts in the technology causing major refactors
+	* The associated documentation, community and 3rd party packages are excellent
+	* It allows for reusability of already written components which reduces development time
+	* It is a tried and tested framework that will help us avoid sudden shifts in the technology causing major refactors
 
 #### React Hooks
 
@@ -48,9 +48,9 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 #### Typescript
 
-	- Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
-	- Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
-  - TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
+	* Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
+	* Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
+  * TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
 ### Frontend deployed to Netlify
 
@@ -58,23 +58,62 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 #### Node.js, Express.js
 
-	- Node.js offers a single free codebase that is fast, easy to learn, and offers multiple modules. Collaborators can quickly get up to speed and easily modify and maintain the code for longterm stability.
-	- Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
-	- There is very detailed documentation available for each.
-	- There also widespread community support for Node and Express.
+	* Node.js offers a single free codebase that is fast, easy to learn, and offers multiple modules. Collaborators can quickly get up to speed and easily modify and maintain the code for longterm stability.
+	* Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
+	* There is very detailed documentation available for each.
+	* There also widespread community support for Node and Express.
 
 #### PostgreSQL 
 
-	- Saves the necessary data in an efficient way
-	- Allows for easy queries through JOIN support
-	- Allows for very easy deployment
-	- Has a great community around it and is future proof / very independent of new trends
+	* Saves the necessary data in an efficient way
+	* Allows for easy queries through JOIN support
+	* Allows for very easy deployment
+	* Has a great community around it and is future proof / very independent of new trends
+
+#### Data Model
+
+<div align="center"><img src="./assets/logelsql.png"></div>
 
 ### Backend deployed to Heroku
 
+## Firebase
+
+This app uses Firebase to allow users to login using Google, Facebook, Twitter, Github, email, and phone. This is a feature that many users demand as they might not wish to have a separate login for every website. We use Firebase in conjunction with JSON web tokens (JWT) to authenticate users and ensure that all information in the app is handled securely.
+
+## Sendgrid
+
+We have designed this app to use Sendgrid for managing email campaigns. This relieves us of the responsibility of handling email addresses and campaigns through the app. This keeps the project slim while still allowing room for further development.
+
+## Stripe
+
+All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the project.
+
+## Environment Variables
+
+In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file in the frontend folder containing the following:
+
+	* REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
+	* REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
+	* REACT_APP_databaseURL - in the Firebase dashboard
+	* REACT_APP_projectID - in the Firebase dashboard
+	* REACT_APP_storageBucket - in the Firebase dashboard
+	* REACT_APP_messagingSenderId - in the Firebase dashboard
+	* REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
+	* REACT_APP_backendURL - optional for your local development server
+	* REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
+	* REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+
+In your backend, create a .env file that includes the following:
+	* STAGING_DB - optional development db for using functionality not available in SQLite
+	* NODE_ENV - set to "development" until ready for "production"
+	* JWT_SECRET - you can generate this by using a python shell and running import random
+''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50)])
+	* SENDGRID_API_KEY - this is generated in your Sendgrid account
+	* stripe_secret - this is generated in the Stripe dashboard
+
 ## Authentication
 
-App users are authenticated using JSON web tokens (JWT).
+This app uses Firebase to allow users to login with Google, Facebook, Twitter, Github, email, or phone.Uusers are authenticated using JSON web tokens (JWT).
 
 ## Testing
 
@@ -84,36 +123,35 @@ This application was tested at every stage of development by each contributor. W
 
 To install this app, make sure you have node.js and npm installed. From the root directory, run npm install or yarn to install dependencies for frontend and backend.
 
+If you are using Windows and this installation method fails, run npm install from the backend directory and then again from the frontend directory.
+
 Start the development server by running npm dev:server or yarn dev:server.
 
 ### Other Scripts
 
-	* yarn typecheck - runs the TypeScript compiler
-	* yarn build - creates a build of the application
-	* yarn start - starts the production server after a build is created
-	* yarn test - runs tests in __tests__ directory
-
-## Stripe
-
-All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the business.
+	* typecheck - runs the TypeScript compiler
+	* build - creates a build of the application
+ 	* start - starts the production server after a build is created
+	* test - runs tests in __tests__ directory
+	* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-Please note we have a [code of conduct]("./CODE_OF_CONDUCT.md"). Please follow it in all your interactions with the project.
+Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ### Issue/Bug Request
 
 If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
-	- Check first to see if your issue has already been reported.
-	- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
-	- Create a live example of the problem.
-	- Submit a detailed bug report including the following information:
-		- your environment & browser
-		- steps to reproduce the issue
-		- actual and expected outcomes
-		- Where you believe the issue is originating from and any potential solutions you have considered
+	* Check first to see if your issue has already been reported.
+	* Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+	* Create a live example of the problem.
+	* Submit a detailed bug report including the following information:
+		* your environment & browser
+		* steps to reproduce the issue
+		* actual and expected outcomes
+		* Where you believe the issue is originating from and any potential solutions you have considered
 
 ### Feature Requests
 
@@ -127,11 +165,11 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 #### Pull Request Guidelines
 
-	1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-	2. Update the README.md with details of changes to the interface, including new environment variables, exposed ports, useful file locations and container parameters.
-	3. Ensure that your code conforms to our existing code conventions and test coverage.
-	4. Include the relevant issue number, if applicable.
-	5. You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
+	* Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+	* Update the README.md with details of changes to the interface, including new environment variables, exposed ports, useful file locations and container parameters.
+	* Ensure that your code conforms to our existing code conventions and test coverage.
+	* Include the relevant issue number, if applicable.
+	* You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
  
 ### Attribution
 
