@@ -15,7 +15,6 @@ import {
   Assistants,
   AssistantDetails,
   InviteAst,
-  Stepper,
 } from './pages/index';
 import { Sidebar } from './components/index';
 import './App.css';
@@ -68,7 +67,6 @@ const App = () => {
           <Route exact path='/properties/new' component={NewProperty} />
           <Route exact path='/properties/:id' component={PropertyDetails} />
           <Route exact path='/settings' component={Settings} />
-          <Route exact path='/test' component={Stepper} />
         </Switch>
       </UserContext.Provider>
     </div>
