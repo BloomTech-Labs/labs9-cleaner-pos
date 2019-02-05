@@ -5,6 +5,21 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import WebFont from 'webfontloader';
+// JSS
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create, JSS } from 'jss';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+
+const generateClassName = createGenerateClassName();
+const insertionPoint = document.getElementById('jss-insertion-point');
+let jss: JSS | undefined;
+
+if (insertionPoint) {
+  jss = create({
+    ...jssPreset(),
+    insertionPoint,
+  });
+}
 
 WebFont.load({
   google: {
@@ -13,9 +28,11 @@ WebFont.load({
 });
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <JssProvider jss={jss} generateClassName={generateClassName}>
+    <Router>
+      <App />
+    </Router>
+  </JssProvider>,
   document.getElementById('root'),
 );
 
