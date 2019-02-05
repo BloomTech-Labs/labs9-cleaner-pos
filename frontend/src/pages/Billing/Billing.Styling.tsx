@@ -19,10 +19,8 @@ const AccordionItemBody = styled('dd')`
 const Confirmation = styled('div')`
   display: flex;
   flex-direction: column;
-  float: left;
+  align-items: center;
   padding-left: 1rem;
-  border: var(--border);
-  background: white;
 `;
 
 const ConfUL = styled('ul')`

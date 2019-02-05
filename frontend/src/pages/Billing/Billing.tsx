@@ -1,14 +1,11 @@
-import React, { useState, useContext, Dispatch } from 'react';
+import React, { useState } from 'react';
 import Stripe from './index';
-import { Container } from '../../components/index';
-import {
-  SubBox,
+import { Button, Container } from '../../components/index';
+import Accordion, {
   AccordionItemBody,
-  Confirmation,
-  ConfUL,
-  Header,
-} from './Billing.Styling';
-import Accordion from '../../components/Accordion/Accordion';
+} from '../../components/Accordion/Accordion';
+import { Link } from 'react-router-dom';
+import { SubBox, Confirmation, ConfUL, Header } from './Billing.Styling';
 
 export const BillingContext = React.createContext({
   setConfirm: null as any,
@@ -25,7 +22,7 @@ const Billing = () => {
       <SubBox>
         <BillingContext.Provider value={{ setConfirm, setShownIndex }}>
           <Accordion index={shownIndex} setIndex={setShownIndex}>
-            <title>Subscribe here! 💰</title>
+            <title>Choose your plan!! 💰</title>
             <AccordionItemBody>
               <Stripe />
             </AccordionItemBody>
@@ -33,7 +30,14 @@ const Billing = () => {
             <title>All the confirmations 😇</title>
             <AccordionItemBody>
               {!!(confirm.confirm && confirm.confirm.plan) ? (
-                <h3>Welcome to Lodgel Professional!</h3>
+                <>
+                  <h3>Thank you for subscribing to Lodgel Professional!</h3>
+                  <Confirmation>
+                    <Link to='/properties'>
+                      <Button text='Take me to my properties!' />
+                    </Link>
+                  </Confirmation>
+                </>
               ) : null}
             </AccordionItemBody>
           </Accordion>
