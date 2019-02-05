@@ -131,22 +131,23 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <FormBlock className='property-resources'>
         <h2>Resources</h2>
-        <label>Choose a default assistant.</label>
-        <br />
-        {assistants ? (
-          <Field name='defaultAst' component='select' placeholder='Assistant'>
-            <option value={-1} key={'default'}>
-              Choose an assistant
-            </option>
-            {assistants.map((ast) => (
-              <option key={ast.ast_id} value={ast.ast_id}>
-                {ast.full_name}
+        <div className='ast-dropdown'>
+          <label>Choose a default assistant.</label>
+          {assistants ? (
+            <Field name='defaultAst' component='select' placeholder='Assistant'>
+              <option value={-1} key={'default'}>
+                Choose an assistant
               </option>
-            ))}
-          </Field>
-        ) : (
-          <img src={loadingIndicator} alt='animated loading indicator' />
-        )}
+              {assistants.map((ast) => (
+                <option key={ast.ast_id} value={ast.ast_id}>
+                  {ast.full_name}
+                </option>
+              ))}
+            </Field>
+          ) : (
+            <img src={loadingIndicator} alt='animated loading indicator' />
+          )}
+        </div>
         <br />
         <br />
         <div className='property-resources--guides'>
