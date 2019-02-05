@@ -155,8 +155,17 @@ const Billing = () => {
                     <i className='fas fa-percentage' />
                   </Avatar>
                   <ListItemText
-                    primary='Charge 1.5% of Earnings'
+                    primary='Charge 1% of Earnings'
                     secondary='Once you’re happy and making money, we charge 1% of booking earnings.'
+                  />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <i className='fas fa-hashtag' />
+                  </Avatar>
+                  <ListItemText
+                    primary='Unlimited amount of properties'
+                    secondary='Scale your business effortlessly with Lodgel!'
                   />
                 </ListItem>
               </List>
