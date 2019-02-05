@@ -1,6 +1,6 @@
 # Labs 9 - Lodgel
 
-<div style="text-align:center"><img src="./frontend/public/lodgel.png"></div>
+<div align="center"><img src="./frontend/public/lodgel.png" alt="logo"></div>
 
 ### Contributors:
 
@@ -10,7 +10,8 @@
 | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kelfro)  |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)  | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)  
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kelly-frohwein-30404116a/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ichirohonda/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ronald-libago-96487815b/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nandotheessen/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-vandolah-89717477/) | 
 
-
+<br>
+<br>
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
