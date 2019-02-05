@@ -87,7 +87,20 @@ const Logo = styled('img')`
 
 const HeroContainer = styled('div')`
   display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
   width: 100%;
+`;
+
+const Description = styled('div')`
+  display: flex;
+  flex-direction: column;
+
+`;
+
+const Screenshot = styled('img')`
+  max-height: 400px;
+  max-width: 400px;
 `;
 
 export {
@@ -100,4 +113,6 @@ export {
   BigLogo,
   Logo,
   HeroContainer,
+  Description,
+  Screenshot,
 };
