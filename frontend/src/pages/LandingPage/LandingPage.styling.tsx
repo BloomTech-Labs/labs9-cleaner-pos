@@ -87,20 +87,29 @@ const Logo = styled('img')`
 
 const HeroContainer = styled('div')`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid black;
   width: 100%;
+  background-color: white;
 `;
 
 const Description = styled('div')`
   display: flex;
   flex-direction: column;
-
+  text-align: left;
+  padding: 0 1rem;
 `;
 
 const Screenshot = styled('img')`
   max-height: 400px;
   max-width: 400px;
+`;
+
+const DescHeader = styled('div')`
+  color: #4593B6;
+  font-size: 1.5rem;
 `;
 
 export {
@@ -115,4 +124,5 @@ export {
   HeroContainer,
   Description,
   Screenshot,
+  DescHeader,
 };

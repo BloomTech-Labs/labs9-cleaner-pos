@@ -15,12 +15,13 @@ import {
   HeroContainer,
   Description,
   Screenshot,
+  DescHeader,
 } from './LandingPage.styling';
 
 const Landing = (props: RouteComponentProps) => {
   return (
     <Container>
-      {/* <h2>A POS that helps you keep things clean</h2> */}
+      {/* <DescHeader>A POS that helps you keep things clean</DescHeader> */}
       <Nav>
         <BigLogo src={lodgel} alt='Lodgel logo' />
         <Link to='/Login'>
@@ -41,28 +42,45 @@ const Landing = (props: RouteComponentProps) => {
         <h2>Simplify managing your rental properties.</h2>
       </CTA>
       <HeroContainer>
-        <h2>Properties</h2>
+        <DescHeader>Properties</DescHeader>
         <Description>
-          <h2>Manage your Properties</h2>
+          <DescHeader>Manage your Properties</DescHeader>
+          <p>
+            This is one awesome description here! If you look at this, you will
+            love the product right away. In fact, you want to invest in our
+            company right way because of how awesome it is!
+          </p>
         </Description>
-        <Screenshot src={house} alt='house'/>
+        <Screenshot src={house} alt='house' />
       </HeroContainer>
       <HeroContainer>
-        <h2>Guests</h2>
+        <DescHeader>Guests</DescHeader>
         <Description>
-          <h2>Keep Tabs on you Guests</h2>
+          <DescHeader>Keep Tabs on you Guests</DescHeader>
+          <p>
+            This is one awesome description here! If you look at this, you will
+            love the product right away. In fact, you want to invest in our
+            company right way because of how awesome it is!
+          </p>
         </Description>
-        <Screenshot src={house} alt='house'/>
+        <Screenshot src={house} alt='house' />
       </HeroContainer>
       <HeroContainer>
-        <h2>Assistants</h2>
+        <DescHeader>Assistants</DescHeader>
         <Description>
-          <h2>Coordinate your Assistants</h2>
+          <DescHeader>Coordinate your Assistants</DescHeader>
+          <p>
+            This is one awesome description here! If you look at this, you will
+            love the product right away. In fact, you want to invest in our
+            company right way because of how awesome it is!
+          </p>
         </Description>
-        <Screenshot src={house} alt='house'/>
+        <Screenshot src={house} alt='house' />
       </HeroContainer>
       <Footer>
-        <a href='/'><Logo src={lodgel} alt='Lodgel logo' /></a>
+        <a href='/'>
+          <Logo src={lodgel} alt='Lodgel logo' />
+        </a>
         <a href='https://example.com'>Email</a>
         <a href='https://twitter.com'>Twitter</a>
         <a href='https://github.com/Lambda-School-Labs/labs9-cleaner-pos'>
