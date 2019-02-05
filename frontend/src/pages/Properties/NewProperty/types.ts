@@ -13,16 +13,13 @@ export const NewPropertySchema = Yup.object().shape({
   photoUrl: Yup.string().url(),
   pricePerNight: Yup.number()
     .required('Price per night is required')
-    .positive('Must be greater than 0')
-    .integer('Has to be a number'),
+    .positive('Must be greater than 0'),
   feePerGuest: Yup.number()
     .required('Fee per guest is required')
-    .positive('Must be greater than 0')
-    .integer('Has to be a number'),
+    .positive('Must be greater than 0'),
   cleaningFee: Yup.number()
     .required('Cleaning fee is required')
-    .positive('Must be greater than 0')
-    .integer('Has to be a number'),
+    .positive('Must be greater than 0'),
   defaultAst: Yup.number(),
   astGuide: Yup.string().url(),
   guestGuide: Yup.string().url(),
