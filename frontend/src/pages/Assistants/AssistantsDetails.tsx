@@ -38,7 +38,6 @@ const AssistantCard = (props: any) => {
   const [taskLoad, setTaskLoad] = useState(0);
   const [modalStatus, setModalStatus] = useState(false);
   const assistant = props.assistant;
-  console.log(assistant);
 
   function handleModal() {
     setModalStatus(!modalStatus);
@@ -97,7 +96,13 @@ const AssistantCard = (props: any) => {
         <PropertyContainer>
           <PropertyHeading>
             <h2>Available Properties</h2>
-            <Button onClick={handleModal} className='button-new' text='+ New' />
+            {assistant.avl_add_houses.length === 0 ? null : (
+              <Button
+                onClick={handleModal}
+                className='button-new'
+                text='+ New'
+              />
+            )}
           </PropertyHeading>
           <PropertyList>
             {assistant.avl_houses.map((house: any) =>
@@ -178,7 +183,6 @@ const AssistantCard = (props: any) => {
 const AssistantDetails = (props: any) => {
   const { id } = props.match.params;
   const [fetch, setFetch] = useState(false);
-  console.log('id', id);
   const [assistant, error, loading] = useFetch(
     `${url}/assistants/${id}`,
     fetch,
