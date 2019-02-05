@@ -21,6 +21,11 @@ export const NewPropertyStyled = styled(Form)`
       'country postCode';
   }
 
+  .image-preview i {
+    margin-bottom: 1rem;
+    font-size: 5rem;
+  }
+
   .property-prices--fields {
     display: flex;
     flex-flow: row nowrap;
@@ -81,6 +86,10 @@ export const FormBlock = styled.div`
   /* Resource: http://cssdeck.com/labs/16-box-shadows-to-save-your-time */
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+
+  h2 {
+    color: var(--color-text-accent);
+  }
 `;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`

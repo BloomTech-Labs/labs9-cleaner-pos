@@ -2,6 +2,7 @@ import React, { FormEvent } from 'react';
 // Components
 import { Field } from 'formik';
 import { Button } from './../../../components';
+import InputAdornment from '@material-ui/core/InputAdornment';
 // Styled Components
 import {
   FormBlock,
@@ -14,8 +15,19 @@ import { FieldProps } from 'formik';
 // Assets
 import loadingIndicator from '../../utils/loading.svg';
 
-const labelInputField = (label: string) => {
+const labelInputField = (label: string, currency?: 'dollar') => {
   // Material UI Textfield made to interface with Formik
+  const startAdornment =
+    currency === 'dollar'
+      ? {
+          startAdornment: (
+            <InputAdornment position='start'>
+              <i className='fas fa-dollar-sign' />
+            </InputAdornment>
+          ),
+        }
+      : {};
+
   return ({ field, form }: FieldProps) => {
     const { name, value, onChange } = field;
     const { touched, errors } = form;
@@ -26,7 +38,11 @@ const labelInputField = (label: string) => {
         name={name}
         value={value}
         onChange={onChange}
-        inputProps={{ ...field, 'data-testid': `input-${name}` }}
+        InputProps={{
+          ...field,
+          ...startAdornment,
+          'data-testid': `input-${name}`,
+        }}
         InputLabelProps={{ 'data-testid': `label-${name}` }}
         className={`field field-${name}`}
         data-testid={`field-${name}`}
@@ -82,8 +98,14 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <FormBlock className='property-photo'>
         <h2>Property Photo</h2>
+        <div className='image-preview'>
+          {urls.photo_url ? (
+            <img src={urls.photo_url} alt='Uploaded Image' />
+          ) : (
+            <i className='far fa-image' />
+          )}
+        </div>
         <Uppy type='photo_url' text='Upload a Photo!' />
-        {/* {urls.photo_url ? <p>{urls.photo_url}</p> : null} */}
       </FormBlock>
 
       <FormBlock className='property-prices'>
@@ -91,10 +113,16 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <div className='property-prices--fields'>
           <Field
             name='pricePerNight'
-            render={labelInputField('Price per Night')}
+            render={labelInputField('Price per Night', 'dollar')}
           />
-          <Field name='feePerGuest' render={labelInputField('Fee per Guest')} />
-          <Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
+          <Field
+            name='feePerGuest'
+            render={labelInputField('Fee per Guest', 'dollar')}
+          />
+          <Field
+            name='cleaningFee'
+            render={labelInputField('Cleaning Fee', 'dollar')}
+          />
         </div>
       </FormBlock>
 
@@ -118,19 +146,14 @@ const NewPropertyView = (formProps: MyFormProps) => {
         )}
         <br />
         <br />
-        <Uppy type='ast_guide' text='Upload Assistant Guide' />
-        <br />
-        <Uppy type='guest_guide' text='Upload Guest Guide' />
+        <div className='property-resources--guides'>
+          <Uppy type='ast_guide' text='Upload Assistant Guide' />
+
+          <Uppy type='guest_guide' text='Upload Guest Guide' />
+        </div>
       </FormBlock>
       <br />
       <div className='primary-buttons'>
-        <Button
-          className='button submit'
-          type='submit'
-          disabled={values.defaultAst === -1 || (isSubmitting || !dirty)}
-          data-testid='button-submit'
-          text={isSubmitting ? 'Submitting' : 'Submit'}
-        />
         <Button
           className='button back'
           data-testid='button-back'
@@ -138,6 +161,13 @@ const NewPropertyView = (formProps: MyFormProps) => {
         >
           Go Back <i className='fas fa-long-arrow-alt-left' />
         </Button>
+        <Button
+          className='button submit'
+          type='submit'
+          disabled={values.defaultAst === -1 || (isSubmitting || !dirty)}
+          data-testid='button-submit'
+          text={isSubmitting ? 'Submitting' : 'Submit'}
+        />
       </div>
 
       {status && status.msg && (
