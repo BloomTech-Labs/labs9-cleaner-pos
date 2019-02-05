@@ -42,9 +42,10 @@ export const GuestCard = (props: GuestsProps) => {
         main={generateDisplayDate(check_out)}
         secondary='Check-Out'
       />
+
       <InfoBox
         className='info-progress'
-        main={`${progress}%`}
+        main={`${progress || 0}%`}
         secondary='Preparation Progress'
       />
     </div>
