@@ -50,14 +50,16 @@ export async function getAll(
   const test = req.query && req.query.test;
   const filter = req.query && req.query.filter ? req.query.filter : 'all';
   // If test query is true, set extit to '1'
-  const extit = test !== 'true' ? req.token && req.token.ext_it : '1';
+  const extit = test !== 'true' ? req.token && req.token.id : '1';
 
   if (!extit) {
     next({ ...new Error('Authentication Required'), statusCode: 403 });
   }
 
   try {
-    const stays = await findAllStays(String(extit), filter);
+    const { id } = req.token;
+    // const stays = await findAllStays(String(extit), filter);
+    const stays = await findAllStays(id, filter);
     res.status(200).json(stays);
   } catch (e) {
     e.statusCode = e.statusCode || 400;

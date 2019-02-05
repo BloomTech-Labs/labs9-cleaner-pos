@@ -319,7 +319,7 @@ const NewProperty = (props: RouteComponentProps) => {
   };
 
   const goBack = () => props.history.push('/properties');
-  return startValues.address1 ? (
+  return startValues.address1 !== undefined ? (
     <Formik
       initialValues={startValues}
       validationSchema={NewPropertySchema}

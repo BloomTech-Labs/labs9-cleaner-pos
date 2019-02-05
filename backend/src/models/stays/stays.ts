@@ -1,6 +1,6 @@
 import knex, { QueryBuilder } from 'knex';
 import db from '../../../data/dbConfig';
-import { findUserByExt_it } from '../users';
+import { findUserByExt_it, getRoleId } from '../users';
 import { getPreparationProgress } from './helpers';
 
 interface Stay {
@@ -68,14 +68,15 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
 }
 
 export async function findAllStays(
-  userExtIt: string,
+  userId: number,
   filter?: 'all' | 'upcoming' | 'incomplete' | 'complete',
 ): Promise<any> {
   const filterValue = filter || 'all';
 
   try {
     // Find manager id
-    const { id } = await findUserByExt_it(userExtIt);
+    // const { id } = await findUserByExt_it(userExtIt);
+    const { id } = await getRoleId(userId);
 
     // Find all house ids related to properties manager owns
     const houses = await db('house')
