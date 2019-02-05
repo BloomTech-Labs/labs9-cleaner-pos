@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import {
   ReactStripeElements,
   injectStripe,
@@ -17,6 +17,7 @@ const headers: AxiosRequestConfig = {
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   const { setConfirm, setShowItem } = useContext(BillingContext);
+  const [plan, setPlan] = useState<any>(0);
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -28,7 +29,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       const response = await axios.post(
         `${url}/payments`,
         // @ts-ignore
-        { token: token.id },
+        { token: token.id, plan_id: plan },
         headers,
       );
       localStorage.setItem('subscription', response.data.plan);
@@ -43,11 +44,15 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   return (
     <div>
       {/* !TODO: Build accordion component */}
-      <input type='radio' name='plan' />
+      <input type='radio' name='plan' onChange={(e) => setPlan(1)} />
       Baseplan: 9.99$ / house / month
       <br />
       <br />
-      <input type='radio' name='plan' />
+      <input
+        type='radio'
+        name='plan'
+        onChange={(e) => setPlan(process.env.REACT_APP_stripe_plan)}
+      />
       Advanced: 50$ / month
       <br />
       <br />

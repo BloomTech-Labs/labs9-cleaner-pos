@@ -34,7 +34,7 @@ const Billing = () => {
               <Stripe />
             </BillingContext.Provider>
           </AccordionItemBody>
-          <AccordionItemHeader>Billing</AccordionItemHeader>
+          <AccordionItemHeader aria-level={3}>Confirmation</AccordionItemHeader>
           <AccordionItemBody
             className={
               showItem ? 'accordion__item hidden' : 'accordion__item box'
