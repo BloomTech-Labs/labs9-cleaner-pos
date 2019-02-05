@@ -3,6 +3,7 @@ import {
   findOneAssistant,
   addAstToHouse,
   removeAstHouse,
+  deleteAst,
 } from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import { getRoleId } from '../models/users';
@@ -63,6 +64,21 @@ export const postAst = async (
     if (e.message === 'Must pass a param to postAst route') {
       e.statusCode = 404;
     }
+    e.statusCode = e.statusCode || 500;
+    next(e);
+  }
+};
+
+export const delAst = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.params;
+    await deleteAst(id);
+    res.status(200).json({ message: 'assistant deleted' });
+  } catch (e) {
     e.statusCode = e.statusCode || 500;
     next(e);
   }

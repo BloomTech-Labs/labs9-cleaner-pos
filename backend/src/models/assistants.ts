@@ -120,3 +120,19 @@ export function removeAstHouse(houseId: number, astId: number) {
     .where({ ast_id: astId, house_id: houseId })
     .del();
 }
+
+export async function deleteAst(astId: number) {
+  try {
+    await db('house_ast')
+      .where({ ast_id: astId })
+      .del();
+    await db('manager_ast')
+      .where({ ast_id: astId })
+      .del();
+    await db('house')
+      .where({ default_ast: astId })
+      .update({ default_ast: null });
+  } catch (e) {
+    console.error(e);
+  }
+}

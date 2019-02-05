@@ -86,7 +86,8 @@ server.route('/assistants').get(assistants.get);
 server
   .route('/assistants/:id')
   .get(assistants.getId)
-  .post(assistants.postAst);
+  .post(assistants.postAst)
+  .delete(assistants.delAst);
 
 server.route('/itemComplete').post(items.itemComplete);
 
