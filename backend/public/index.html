@@ -121,8 +121,8 @@
 					<pre><code>{
 "id": 4,
 "ext_id": "55",
-"full_name": "Snidely Whiplash",
-"email": "snwh@whatever.com",
+"full_name": "John Doe",
+"email": "jd@whatever.com",
 "phone": "123-456-7890",
 "address": "1 Dudley Lane, Somewhere, ST 98765",
 "role": "assistant"
@@ -136,8 +136,8 @@
 					<pre><code>{
 "id": 55,
 "ext_id": 12,
-"full_name": "Bullwinkle J. Moose",
-"email": "bumo@whatever.com",
+"full_name": "Jane Doe",
+"email": "jd2@whatever.com",
 "phone": "098-765-4321",
 "role": "manager"
 }</code></pre>
@@ -149,7 +149,7 @@
 				<strong>Expected Input</strong>
 					<pre><code>{
 "ext_id": 12,
-"full_name": "Bullwinkle J. Moose",
+"full_name": "John Doe",
 "role": "manager"
 }</code></pre>
 				<strong>Example Output</strong>
@@ -167,7 +167,7 @@
 			<p>Only fields that are going to be updated need to be sent. Requires being logged in as Manager.</p>
 				<strong>Expected Input</strong>
 					<pre><code>{
-"full_name": "Bullwinkle J. Moose",
+"full_name": "John Doe",
 "role": "manager"
 }</code></pre>
 				<strong>Example Output</strong>
@@ -196,16 +196,16 @@
 	{
 		"name": "Our House,
 		"address": "1313 Mockingbird Lane",
-		"default_ast": "I.P. Freely",
-		"manager": "Amanda Hugginkiss",
+		"default_ast": 2,
+		"manager": "John Q. Public",
 		"guest_guide": "guide",
 		"ast_guide": "checklist"
 	},
 	{
 		"name": "whatever",
-		"address": 308 Negra Arroyo Lane",
-		"default_ast": "Oliver Klozoff",
-		"manager": "Seymour Butz",
+		"address": "123 Main Street",
+		"default_ast": 2,
+		"manager": "Ada Lovelace",
 		"guest_guide": "another guide",
 		"ast_guide": "checklist"
 	}
@@ -219,9 +219,9 @@
 					<pre><code>{
 "id": 2,
 "name": "whatever",
-"address": "308 Negra Arroyo Lane",
-"default_ast": "Oliver Klozoff",
-"manager": "Seymour Butz",
+"address": "123 Main Street",
+"default_ast": 2,
+"manager": "John Q. Public",
 "guest_guide": "another guide",
 "ast_guide": "checklist"
 }</code></pre>
@@ -277,8 +277,8 @@
 				<strong>Expected Input</strong>
 					<pre><code>{
 "address": "704 Hauser Street",
-"default_ast": "Anita Bath",
-"manager": "Seymour Butz"
+"default_ast": 3,
+"manager": "Ada Lovelace"
 }</code></pre>
 				<strong>Example Output</strong>
 					<pre><code>{
@@ -295,7 +295,7 @@
 				<strong>Expected Input</strong>
 					<pre><code>{
 "address": "704 Hauser Street",
-"default_ast": "Yuri Nator"
+"default_ast": 2
 }</code></pre>
 				<strong>Example Output</strong>
 					<pre><code>{
@@ -342,7 +342,7 @@
 				<strong>Example Output</strong>
 					<pre><code>{
 "list_id": 4,
-"items":
+"items": "item 1", "item 2",
 }</code></pre>
 	</section>
 	<hr />
@@ -353,7 +353,7 @@
 					<pre><code>{
 "item:id": 1,
 "list_id": 6,
-"items:"
+"items": "item 1",
 }</code></pre>
 	</section>
 	<hr />
@@ -364,7 +364,7 @@
 					<pre><code>{
 "list_id": 3,
 "house_id": 3,
-"items:"
+"items": "item 1", "item 2", "item 3",
 }</code></pre>
 				<strong>Example Output</strong>
 					<pre><code>{
@@ -380,7 +380,7 @@
 					<pre><code>{
 "item_id": 1,
 "list_id": 6,
-"items:"
+"items": "item 1", "item 2",
 }</code></pre>
 				<strong>Expected Output</strong>
 					<pre><code>{
