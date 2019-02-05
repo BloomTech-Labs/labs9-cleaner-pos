@@ -47,10 +47,6 @@ const CenterImg = styled('img')`
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 `;
 
-const AppHeader = styled('h1')`
-  font-family: 'Staatliches', 'sans-serif';
-`;
-
 const CTA = styled('div')`
   display: flex;
   flex-direction: column;
@@ -89,9 +85,13 @@ const Logo = styled('img')`
   width: 100px;
 `;
 
+const HeroContainer = styled('div')`
+  display: flex;
+  width: 100%;
+`;
+
 export {
   Footer,
-  AppHeader,
   CenterImg,
   ButtonWrapper,
   Wrapper,
@@ -99,4 +99,5 @@ export {
   CTA,
   BigLogo,
   Logo,
+  HeroContainer,
 };

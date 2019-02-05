@@ -6,13 +6,13 @@ import house from '../../assets/house.jpg';
 import lodgel from '../../assets/lodgel.jpg';
 import {
   Footer,
-  AppHeader,
   CenterImg,
   Wrapper,
   Nav,
   CTA,
   BigLogo,
   Logo,
+  HeroContainer,
 } from './LandingPage.styling';
 
 const Landing = (props: RouteComponentProps) => {
