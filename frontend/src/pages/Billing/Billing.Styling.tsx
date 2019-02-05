@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 const SubBox = styled('div')`
-  border: var(--border);
   padding: 20px;
   display: flex;
   height: 60vh;

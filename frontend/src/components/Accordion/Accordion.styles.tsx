@@ -11,7 +11,7 @@ export const AccordionItemBody = styled('dd')`
   background: var(--color-main-light);
   margin: 0;
   padding: 2rem;
-  height: calc(100% - 124px);
+  height: 100%;
 `;
 export const AccordionContainer = styled('dl')`
   border: var(--border);
