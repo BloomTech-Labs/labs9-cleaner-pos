@@ -55,7 +55,7 @@ const Properties = () => {
       headers: { Authorization: token },
     };
     try {
-      const [astId, fullName] = event.currentTarget.value.split(':');
+      const astId = event.currentTarget.value;
       const res = await axios.put(
         `http://localhost:4500/houses/${id}`,
         {
@@ -182,14 +182,14 @@ const Properties = () => {
                           data-testid='assistant-select'
                           onChange={(event) => postAst(event, house.id)}
                         >
-                          <option defaultValue={house.default_ast_name}>
-                            {house.default_ast}: {house.default_ast_name}
+                          <option defaultValue={house.default_ast}>
+                            {house.default_ast_name}
                           </option>
                           {house.openAst.map((ast: any) => {
                             if (ast.ast_id !== house.default_ast) {
                               return (
-                                <option key={ast.ast_id}>
-                                  {ast.ast_id}: {ast.full_name}
+                                <option key={ast.ast_id} value={ast.ast_id}>
+                                  {ast.full_name}
                                 </option>
                               );
                             }

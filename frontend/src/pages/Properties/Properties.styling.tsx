@@ -188,9 +188,17 @@ const Assistant = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: var(--border);
+  padding: 1rem;
+  /* Color */
+  background-color: var(--color-bg-accent-light);
+  /* Text */
+  font-weight: bolder;
 
   label {
+    /* Color */
     color: var(--color-text-accent-dark);
+    /* Text */
     font-size: 1rem;
   }
 
@@ -199,8 +207,9 @@ const Assistant = styled('div')`
     margin-top: 0.5rem;
     border: none;
     border-bottom: 1px solid var(--color-border-strong);
+    /* Color */
+    background-color: var(--color-bg-accent-light);
     /* Text */
-    font-family: 'Roboto Medium', Arial, Helvetica, sans-serif;
     font-size: 1rem;
   }
 

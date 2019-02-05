@@ -2,15 +2,18 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   margin: auto;
+  padding: 1rem;
   width: 100%;
-
-  .snackbar-component {
-    background-color: var(--color-bg-accent-light) !important;
-    color: var(--color-text-accent) !important;
-  }
+  border: var(--border);
+  /* Color */
+  background-color: var(--color-bg-accent-light);
+  /* Text */
+  font-weight: bolder;
 
   label {
+    /* Color */
     color: var(--color-text-accent-dark);
+    /* Text */
     font-size: 1rem;
   }
 
@@ -19,8 +22,9 @@ export const Wrapper = styled.div`
     margin-top: 0.5rem;
     border: none;
     border-bottom: 1px solid var(--color-border-strong);
+    /* Color */
+    background-color: var(--color-bg-accent-light);
     /* Text */
-    font-family: 'Roboto Medium', Arial, Helvetica, sans-serif;
     font-size: 1rem;
   }
 `;
