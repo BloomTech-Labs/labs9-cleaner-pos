@@ -44,8 +44,12 @@ export const GuestCard = (props: GuestsProps) => {
       />
       <InfoBox
         className='info-progress'
-        main={`${progress}%`}
-        secondary='Preparation Progress'
+        main={
+          progress !== null ? `${progress}%` : <i className='fas fa-question' />
+        }
+        secondary={
+          progress !== null ? 'Preparation Progress' : 'No lists found'
+        }
       />
     </div>
   );

@@ -5,7 +5,7 @@ import { InfoDiv } from './Guests.styling';
 import styled from '@emotion/styled';
 
 export const InfoBox = (props: {
-  main: string;
+  main: string | JSX.Element;
   secondary: string;
   className?: string;
 }) => {
