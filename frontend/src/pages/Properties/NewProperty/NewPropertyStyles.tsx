@@ -142,6 +142,7 @@ export const NewPropertyStyled = styled(Form)`
 export const FormBlock = styled.div`
   padding: 2rem;
   margin: 2rem 0;
+  border-radius: 5px;
   /* Color */
   background-color: white;
   /* Shadow */
