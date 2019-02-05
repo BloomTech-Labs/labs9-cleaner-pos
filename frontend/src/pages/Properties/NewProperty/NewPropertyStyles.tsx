@@ -80,6 +80,10 @@ export const NewPropertyStyled = styled(Form)`
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
+
+    @media only screen and (max-width: 700px) {
+      flex-flow: row wrap;
+    }
   }
 
   .guide {
@@ -87,6 +91,10 @@ export const NewPropertyStyled = styled(Form)`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: 700px) {
+      margin: 1rem 0;
+    }
 
     i {
       font-size: 2.5rem;
