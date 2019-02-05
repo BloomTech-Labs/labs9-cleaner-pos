@@ -8,12 +8,16 @@ import {
   CheckoutForm,
   Invoice,
   InvoiceBox,
+  CheckoutRight,
+  HeaderGroup,
 } from './Checkout.styles';
 import { StripeProvider } from 'react-stripe-elements';
 import loadingIndicator from '../utils/loading.svg';
 
 import MyStoreCheckout from './Checkout.1';
 import { useFetch } from '../../helpers';
+
+import { NumberSelector } from './NumberSelector';
 
 interface CheckoutProps extends RouteComponentProps {
   match: any;
@@ -31,7 +35,6 @@ const Checkout = (props: CheckoutProps) => {
   const [stayLoading, setStayLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [stays, staysError, staysLoading] = useFetch(`${url}/stays?test=true`);
-  // @ts-ignore
 
   async function fetchStay() {
     setStayLoading(true);
@@ -56,6 +59,7 @@ const Checkout = (props: CheckoutProps) => {
       setStayError({ error: true, message: e.response.data.message });
     }
   }
+
   useEffect(() => {
     fetchStay();
   }, []);
@@ -66,7 +70,35 @@ const Checkout = (props: CheckoutProps) => {
     ? +stay.extra_guests * +stay.extra_fee +
       stay.diff * stay.price +
       +stay.cleaning_fee
-    : null;
+    : 0;
+
+  const numberHandler = (property: string) => (num: number) => {
+    /* Handler function to pass to NumberSelector components.
+
+       In -> Accepts a property string denoting which property in the stay object
+       you wish to update.
+       Out -> Returns a function to pass as a callback to NumberSelector
+       The callback function accepts a number, which is the new value NumberSelector
+       will supply as an argument.
+
+       Won't update value if new value will be less than 0.
+    */
+    if (stay.hasOwnProperty(property)) {
+      if (num >= 0) {
+        setStay({ ...stay, [property]: num });
+      }
+    } else {
+      console.error(
+        'Checkout -> numberHandler: Property does not exist in object',
+      );
+    }
+  };
+
+  const stringifyCost = (amt: number): string =>
+    /* Converts number into a currency string based on user's locale
+       Thanks to https://stackoverflow.com/a/31581206
+    */
+    amt.toLocaleString(undefined, { minimumFractionDigits: 2 });
 
   return (
     <CheckoutContainer>
@@ -76,47 +108,71 @@ const Checkout = (props: CheckoutProps) => {
       {stayError.error ? 'Error fetching your Guest' : null}
       {stay ? (
         <div className='checkout-body'>
+          <CheckoutForm>
+            {/* TODO: implement onChange to filter through stays */}
+            <input
+              id='stay-search'
+              name='stay'
+              placeholder='Search for different stay'
+            />
+          </CheckoutForm>
           <div className='checkout-left'>
-            <h1 data-testid='guest-name'>{stay ? stay.guest_name : null}</h1>
-            <div className='checkout-field'>
-              Nights:
-              <input
-                value={stay.diff}
-                onChange={(e) =>
-                  // @ts-ignore
-                  setStay({ ...stay, diff: e.target.value })
-                }
-              />
-            </div>
-            <div className='checkout-field'>
-              Cleaning Fee: <span>${stay.cleaning_fee}</span>
-            </div>
-            <div className='checkout-field'>
-              Extra Guests:{' '}
-              <input
-                value={stay.extra_guests || 0}
-                onChange={(e) =>
-                  // @ts-ignore
-                  setStay({ ...stay, extra_guests: e.target.value })
-                }
-              />
+            {stay.photo_url ? (
+              <img src={stay.photo_url} alt='Property Image' />
+            ) : null}
+            <div className='checkout-left-inner'>
+              <HeaderGroup>
+                <h1 data-testid='guest-name'>{stay.guest_name}</h1>
+                <p>Guest</p>
+              </HeaderGroup>
+              <HeaderGroup>
+                <h1>{stay.house_name}</h1>
+                <p>Property</p>
+              </HeaderGroup>
+              <hr />
+              <h3>Please select and confirm:</h3>
+              <div className='checkout-field'>
+                Nights
+                <NumberSelector
+                  value={stay.diff || 0}
+                  disabled={show}
+                  onClick={numberHandler('diff')}
+                />
+              </div>
+              <div className='checkout-field'>
+                Extra Guests
+                <NumberSelector
+                  value={stay.extra_guests || 0}
+                  disabled={show}
+                  onClick={numberHandler('extra_guests')}
+                />
+              </div>
             </div>
           </div>
-          <div>
-            <CheckoutForm>
-              {/* TODO: implement onChange to filter through stays */}
-              <label htmlFor='stay-search' style={{ display: 'hidden' }}>
-                Search for different Stay
-              </label>
-              <input
-                id='stay-search'
-                name='stay'
-                placeholder='Search for different stay'
-              />
-            </CheckoutForm>
+          <CheckoutRight>
             <Invoice>
-              <h3>Invoice</h3>
+              <h1>Invoice</h1>
               {/* TODO: implement axios call to change stay to account for new inputs */}
+              <InvoiceBox>
+                <span>
+                  {stay.diff} Nights x ${stay.price}
+                </span>
+                <span>${stringifyCost(stay.price * stay.diff)}</span>
+              </InvoiceBox>
+              <InvoiceBox>
+                <span>Cleaning Fee:</span>
+                <span>${stay.cleaning_fee}</span>
+              </InvoiceBox>
+              {stay.extra_guests ? (
+                <InvoiceBox data-testid='extra-guests'>
+                  <span>
+                    {stay.extra_guests} Extra Guests x ${stay.extra_fee}
+                  </span>
+                  <span>
+                    {stringifyCost(stay.extra_fee * stay.extra_guests)}
+                  </span>
+                </InvoiceBox>
+              ) : null}
               {show && (
                 // @ts-ignore
                 <PaymentContext.Provider value={{ sum: total }}>
@@ -125,38 +181,20 @@ const Checkout = (props: CheckoutProps) => {
                   </StripeProvider>
                 </PaymentContext.Provider>
               )}
-
-              <InvoiceBox>
-                <span>
-                  {stay.diff} Nights x ${stay.price}
-                </span>
-                <span>${stay.price * stay.diff}</span>
-              </InvoiceBox>
-              <InvoiceBox>
-                <span>Cleaning Fee:</span>
-                <span>${stay.cleaning_fee}</span>
-              </InvoiceBox>
-              {stay.extra_guests && (
-                <InvoiceBox data-testid='extra-guests'>
-                  <span>
-                    {stay.extra_guests} Extra Guests x ${stay.extra_fee}
-                  </span>
-                  <span>{stay.extra_fee * stay.extra_guests}</span>
-                </InvoiceBox>
-              )}
               {show ? null : (
                 <Button
                   className='payment-button'
-                  text={`Pay $${total}`}
-                  color='#0aa047'
+                  text={stay.diff ? `Pay $ ${stringifyCost(total)}` : `Pay`}
+                  color={stay.diff ? '#0aa047' : '#736f6c'}
                   onClick={() => {
                     setShow(true);
                   }}
+                  disabled={!stay.diff}
                   datatestid='payment-button'
                 />
               )}
             </Invoice>
-          </div>
+          </CheckoutRight>
         </div>
       ) : null}
     </CheckoutContainer>

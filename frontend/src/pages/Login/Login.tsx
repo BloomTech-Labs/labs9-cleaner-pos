@@ -4,12 +4,14 @@ import React, {
   useEffect,
   useState,
   useRef,
+  useContext,
   FunctionComponent,
   MutableRefObject,
 } from 'react';
 import { RouteComponentProps } from 'react-router';
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import app from '../../firebase.setup';
+import { UserContext } from '../../App';
 // Styles
 import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
@@ -19,12 +21,17 @@ interface LoginProps extends RouteComponentProps {
   onUser: any;
 }
 
-const Login: FunctionComponent<LoginProps> = (props) => {
+const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
+  // set's up user state
   const [user, setUser] = useState<User | null>(null);
-  // const justMounted = useRef(true);
+  // creates a ref that will be used as component wide variable and exists
+  // throughout it's lifecycle
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
-  const { ast, manager } = queryString.parse(props.location.search);
+  const { ast, manager } = queryString.parse(location.search);
 
+  const { setSub } = useContext(UserContext);
+
+  // Configuration for the firebase OAuth component
   const uiConfig = {
     callbacks: {
       // Avoid redirects after sign-in.
@@ -43,6 +50,8 @@ const Login: FunctionComponent<LoginProps> = (props) => {
   };
 
   useEffect(() => {
+    // Set's up & removes listener to react to AuthStateChanges produced
+    // by firebase
     observer.current = app
       .auth()
       .onAuthStateChanged((newUser) => setUser(newUser));
@@ -53,11 +62,18 @@ const Login: FunctionComponent<LoginProps> = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    submitUser();
-  }, [user]);
+  useEffect(
+    () => {
+      // Listens to changes in userState and submits them
+      // to our backend
+      submitUser();
+    },
+    [user],
+  );
 
   async function submitUser() {
+    /* Commits user to the backend and redirects new users to
+    either a page gathering additional information or their dashboard*/
     if (user !== null) {
       const { email, uid, displayName, photoURL } = user;
       const nUser = {
@@ -74,16 +90,21 @@ const Login: FunctionComponent<LoginProps> = (props) => {
         const { data } = await axios.post(`${url}/users/`, nUser);
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.role);
+        localStorage.setItem('subscription', data.stripePlan);
+
+        setSub(data.stripePlan);
+
         if (data.first) {
-          props.history.push('/postreg');
+          history.push('/postreg');
         } else {
-          props.history.push('/properties');
+          history.push('/properties');
         }
       } catch (e) {
         throw e;
       }
     }
   }
+
   return (
     <Container>
       <LoginDiv>

@@ -7,15 +7,15 @@ const get = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const post = async (req: Request, res: Response, next: NextFunction) => {
-  const { id } = req.body;
-  if (!id) {
+  const { token } = req.body;
+  if (!token) {
     res.status(400).send({ message: 'Please include a valid token!' });
     return;
   }
   const plan = req.body.plan_id || '1';
   try {
     const customer = await stripe.customers.create({
-      source: id,
+      source: token,
     });
     const sub = await stripe.subscriptions.create({
       customer: customer.id,
@@ -26,12 +26,12 @@ const post = async (req: Request, res: Response, next: NextFunction) => {
       ],
     });
     const subData = {
-      strip_cust: sub.customer,
-      strip_sub_id: sub.id,
-      strip_sub_plan: sub.plan.id,
+      stripe_cust: sub.customer,
+      stripe_sub_id: sub.id,
+      stripe_sub_plan: sub.plan.id,
     };
     await addSub(req.token.id, subData);
-    res.status(201).send({ customer: customer.id, message: 'hooooorrayyyyy' });
+    res.status(201).send({ customer: customer.id, plan: sub.plan.id });
   } catch (e) {
     e.statusCode = 500;
     next(e);

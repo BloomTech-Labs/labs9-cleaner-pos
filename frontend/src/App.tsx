@@ -28,12 +28,13 @@ interface UserData {
 }
 const token = localStorage.getItem('token');
 const role = localStorage.getItem('role') || '';
+const subscription = localStorage.getItem('subscription');
 
 const defaultValue = {
   loggedIn: false,
   role,
   subscription: 0,
-  setSub: '',
+  setSub: null,
 };
 
 export const UserContext = createContext<UserData>(defaultValue);
@@ -43,7 +44,7 @@ const App = () => {
   const contextValue = {
     loggedIn: token ? true : false,
     role,
-    subscription: subStatus || 0,
+    subscription: Number(subscription),
     setSub: setSubStatus,
   };
   return (

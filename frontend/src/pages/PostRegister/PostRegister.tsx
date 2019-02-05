@@ -153,6 +153,8 @@ const PostForm = (props: PostFormProps) => {
             await actions.setStatus('Submission successful. Thank you!');
             if (setShow !== undefined) {
               setShow(false);
+            } else {
+              props.history.push('properties');
             }
           } catch (error) {
             await actions.setSubmitting(false);

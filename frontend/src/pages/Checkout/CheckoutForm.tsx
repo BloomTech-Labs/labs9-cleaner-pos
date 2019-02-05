@@ -82,7 +82,7 @@ const CheckoutForm = (props: any) => {
               marginBottom: '24px',
             }}
           >
-            Payment done succesfully!
+            Payment done successfully!
             <a href={success.receipt} rel='noopen noreferer' target='_blank'>
               <Button
                 text='Receipt'
