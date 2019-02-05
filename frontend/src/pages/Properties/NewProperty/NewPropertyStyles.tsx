@@ -61,8 +61,14 @@ export const NewPropertyStyled = styled(Form)`
     grid-area: postCode;
   }
 
-  button {
-    font-size: 1rem;
+  .primary-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .button {
+      margin: 0 0.5rem 2rem 0.5rem;
+    }
   }
 `;
 

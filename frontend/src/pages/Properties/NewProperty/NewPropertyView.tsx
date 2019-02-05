@@ -123,22 +123,23 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <Uppy type='guest_guide' text='Upload Guest Guide' />
       </FormBlock>
       <br />
+      <div className='primary-buttons'>
+        <Button
+          className='button submit'
+          type='submit'
+          disabled={values.defaultAst === -1 || (isSubmitting || !dirty)}
+          data-testid='button-submit'
+          text={isSubmitting ? 'Submitting' : 'Submit'}
+        />
+        <Button
+          className='button back'
+          data-testid='button-back'
+          onClick={formProps.goBack}
+        >
+          Go Back <i className='fas fa-long-arrow-alt-left' />
+        </Button>
+      </div>
 
-      <Button
-        className='submit'
-        type='submit'
-        disabled={values.defaultAst === -1 || (isSubmitting || !dirty)}
-        data-testid='button-submit'
-      >
-        {isSubmitting ? 'Submitting' : 'Submit'}
-      </Button>
-      <Button
-        className='back'
-        data-testid='button-back'
-        onClick={formProps.goBack}
-      >
-        Go Back ↩
-      </Button>
       {status && status.msg && (
         <div className='status' data-testid='div-status'>
           {status.msg}
