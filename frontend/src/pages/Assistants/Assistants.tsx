@@ -24,37 +24,38 @@ const AssistantCard = (assistant: Assistant) => {
 
   return (
     <>
-      <Link
-        style={{ marginBottom: `2.25rem` }}
-        to={`/assistants/${assistant.ast_id}`}
-      >
-        <AssistantItem data-testid='assistant-item'>
-          <ThumbNail
-            className='list-img'
-            src={imgFile}
-            alt={assistant.full_name}
-          />
-          <CardBody>
-            <CardHeading>
-              <h1>{assistant.full_name}</h1>
-              <p>Test Address</p>
-            </CardHeading>
-            <div className='check-boxes'>
-              <InfoBox>
-                <p>Checklist Items</p>
-                <div className='secondary'>{assistant.itemCount}</div>
-              </InfoBox>
-              <InfoBox>
-                <p>Available Houses</p>
-                <div className='secondary'>{assistant.houseCount}</div>
-              </InfoBox>
-              <ButtonContainer>
-                <Button text='See More' datatestid='assistant-button' />
-              </ButtonContainer>
-            </div>
-          </CardBody>
-        </AssistantItem>
-      </Link>
+      <AssistantItem data-testid='assistant-item'>
+        <ThumbNail
+          className='list-img'
+          src={imgFile}
+          alt={assistant.full_name}
+        />
+        <CardBody>
+          <CardHeading>
+            <h1>{assistant.full_name}</h1>
+            <p>Test Address</p>
+          </CardHeading>
+          <div className='check-boxes'>
+            <InfoBox>
+              <p>Checklist Items</p>
+              <div className='secondary'>{assistant.itemCount}</div>
+            </InfoBox>
+            <InfoBox>
+              <p>Available Houses</p>
+              <div className='secondary'>{assistant.houseCount}</div>
+            </InfoBox>
+            <ButtonContainer>
+              <Link to={`/assistants/${assistant.ast_id}`}>
+                <Button
+                  className='button__see-more'
+                  text='See More'
+                  datatestid='assistant-button'
+                />
+              </Link>
+            </ButtonContainer>
+          </div>
+        </CardBody>
+      </AssistantItem>
     </>
   );
 };
