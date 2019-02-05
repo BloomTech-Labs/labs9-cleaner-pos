@@ -10,7 +10,7 @@ import {
   StyledTextField,
 } from './NewPropertyStyles';
 // Types
-import { MyFormProps } from './types';
+import { MyFormProps, UrlObj } from './types';
 import { FieldProps } from 'formik';
 // Assets
 import loadingIndicator from '../../utils/loading.svg';
@@ -71,6 +71,28 @@ const NewPropertyView = (formProps: MyFormProps) => {
     assistants,
   } = formProps;
 
+  const initialUrls = { ...urls };
+
+  function didUrlChange(a: UrlObj, b: UrlObj) {
+    for (const url in a) {
+      if (a[url] !== b[url]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  console.log(
+    'new property view:',
+    'dirty',
+    dirty,
+    'errors',
+    errors,
+    'isSubmitting',
+    isSubmitting,
+    'defaultAst',
+    values.defaultAst,
+  );
   return (
     <NewPropertyStyled>
       <h1>Properties</h1>
@@ -185,7 +207,10 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <Button
           className='button submit'
           type='submit'
-          disabled={values.defaultAst === -1 || (isSubmitting || !dirty)}
+          disabled={
+            values.defaultAst === -1 ||
+            (isSubmitting || !dirty || !didUrlChange(initialUrls, urls))
+          }
           data-testid='button-submit'
           text={isSubmitting ? 'Submitting' : 'Submit'}
         />

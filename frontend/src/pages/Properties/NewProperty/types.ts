@@ -65,6 +65,7 @@ export const EmptyPropertyValues = {
 
 // URL related
 export interface UrlObj {
+  [key: string]: string;
   photo_url: string;
   ast_guide: string;
   guest_guide: string;
@@ -80,7 +81,7 @@ interface UploadProps {
 export interface MyFormProps extends FormikProps<NewPropertyInitialValues> {
   assistants: AstObj[];
   Uppy: (props: UploadProps) => JSX.Element;
-  urls: any;
+  urls: UrlObj;
   goBack: () => void;
 }
 
