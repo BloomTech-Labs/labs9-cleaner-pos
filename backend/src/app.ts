@@ -83,7 +83,10 @@ server
 
 server.route('/assistants').get(assistants.get);
 
-server.route('/assistants/:id').get(assistants.getId);
+server
+  .route('/assistants/:id')
+  .get(assistants.getId)
+  .post(assistants.postAst);
 
 server.route('/itemComplete').post(items.itemComplete);
 

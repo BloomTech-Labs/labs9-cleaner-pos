@@ -101,3 +101,9 @@ export function findAstMan(id: number): any {
 export function addAstToHouse(houseId: number, astId: number) {
   return db('house_ast').insert({ house_id: houseId, ast_id: astId });
 }
+
+export function removeAstHouse(houseId: number, astId: number) {
+  return db('house_ast')
+    .where({ ast_id: astId, house_id: houseId })
+    .del();
+}

@@ -1,4 +1,9 @@
-import { findAssistants, findOneAssistant } from '../models/assistants';
+import {
+  findAssistants,
+  findOneAssistant,
+  addAstToHouse,
+  removeAstHouse,
+} from '../models/assistants';
 import { Request, Response, NextFunction } from 'express';
 import { getRoleId } from '../models/users';
 
@@ -27,6 +32,37 @@ export const getId = async (
     res.status(200).json(assistant);
   } catch (e) {
     e.statusCode = 500;
+    next(e);
+  }
+};
+
+export const postAst = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { type } = req.query;
+  const { houseId } = req.body;
+  const { id } = req.params;
+  let houseAst: any;
+  try {
+    if (!type) {
+      throw Error('Must pass a param to postAst route');
+    }
+    // figure out what we are doing
+    if (type === 'removeHouse') {
+      // remove house from house_ast
+      houseAst = await removeAstHouse(houseId, id);
+    } else if (type === 'addHouse') {
+      // add house_id and ast_id to house_ast table
+      houseAst = await addAstToHouse(houseId, id);
+    }
+    res.status(200).json(houseAst);
+  } catch (e) {
+    if (e.message === 'Must pass a param to postAst route') {
+      e.statusCode = 404;
+    }
+    e.statusCode = e.statusCode || 500;
     next(e);
   }
 };
