@@ -7,6 +7,7 @@ import {
 import { Button } from '../../components/index';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BillingContext } from './Billing';
+import loadingIndicator from '../utils/loading.svg';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -17,10 +18,12 @@ const headers: AxiosRequestConfig = {
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   const { setConfirm, setShowItem } = useContext(BillingContext);
+  const [loading, setLoading] = useState(false);
   const [plan, setPlan] = useState<any>(0);
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
+    setLoading(true);
     // Within the context of `Elements`, this call to createToken knows which Element to
     // tokenize, since there's only one in this group.
     try {
@@ -34,6 +37,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       );
       localStorage.setItem('subscription', response.data.plan);
       setConfirm({ confirm: response.data });
+      setLoading(false);
       setShowItem(false);
     } catch (e) {
       return e;
@@ -70,10 +74,21 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         <div style={{ marginBottom: '24px' }} />
         <Button
           onClick={handleSubmit}
-          text='Subscribe!'
+          text={loading ? '' : 'Subscribe!'}
           datatestid='confirm-payment'
           // color='#0AA047'
-        />
+        >
+          <div
+            role='alert'
+            aria-live='assertive'
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            {loading ? (
+              <img src={loadingIndicator} alt='animated loading indicator' />
+            ) : null}
+            <p style={{ display: 'none' }}>Content is loading...</p>
+          </div>
+        </Button>
       </form>
     </div>
   );
