@@ -56,7 +56,8 @@ const Button = ({
         data-testid={datatestid}
         disabled={disabled}
       >
-        {text || children}
+        {text}
+        {children}
       </StyledButton>
     </>
   );

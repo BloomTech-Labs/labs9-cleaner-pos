@@ -99,6 +99,8 @@ export const StyledGuestCard = styled(GuestCard)`
   width: 95vw;
   margin: 2.25rem 0.5rem;
   padding: 1rem;
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: 5px;
 
   /* Grid */
   display: grid;
@@ -120,7 +122,7 @@ export const StyledGuestCard = styled(GuestCard)`
   }
 
   .user-image {
-    border-radius: 100%;
+    border-radius: 5px 0 0 5px;
     height: ${pxToRem(72)}rem;
     width: ${pxToRem(72)}rem;
     /* Grid */

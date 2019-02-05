@@ -1,43 +1,48 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Stripe from './index';
-import { Container } from '../../components/index';
-import Accordion from '../../components/Accordion';
-import { SubBox, AccUL, Confirmation, ConfUL, Header } from './Billing.Styling';
-import { UserContext } from '../../App';
+import { Button, Container } from '../../components/index';
+import Accordion, {
+  AccordionItemBody,
+} from '../../components/Accordion/Accordion';
+import { Link } from 'react-router-dom';
+import { SubBox, Confirmation, ConfUL, Header } from './Billing.Styling';
 
 export const BillingContext = React.createContext({
   setConfirm: null as any,
-  setSub: null as any,
+  setShownIndex: null as any,
 });
 
 const Billing = () => {
   const [confirm, setConfirm] = useState<any>({});
-  const { setSub } = useContext(UserContext);
+  const [shownIndex, setShownIndex] = useState(1);
+
   return (
     <Container>
       <Header>Billing</Header>
       <SubBox>
-        <Accordion
-          title='Click here to subscribe'
-          // onToggle={(show) => {
-          //   console.log('sub', show);
-          // }}
-        >
-          <AccUL>
-            <li>
-              <BillingContext.Provider value={{ setConfirm, setSub }}>
-                <Stripe />
-              </BillingContext.Provider>
-            </li>
-          </AccUL>
-        </Accordion>
+        <BillingContext.Provider value={{ setConfirm, setShownIndex }}>
+          <Accordion index={shownIndex} setIndex={setShownIndex}>
+            <title>Choose your plan!! 💰</title>
+            <AccordionItemBody>
+              <Stripe />
+            </AccordionItemBody>
+
+            <title>All the confirmations 😇</title>
+            <AccordionItemBody>
+              {!!(confirm.confirm && confirm.confirm.plan) ? (
+                <>
+                  <h3>Thank you for subscribing to Lodgel Professional!</h3>
+                  <Confirmation>
+                    <Link to='/properties'>
+                      <Button text='Take me to my properties!' />
+                    </Link>
+                  </Confirmation>
+                </>
+              ) : null}
+            </AccordionItemBody>
+          </Accordion>
+        </BillingContext.Provider>
       </SubBox>
-      <Confirmation>
-        <h3>Confirmation: </h3>
-        {confirm.confirm && (
-          <h3> You have successfully subscribed, thank you!</h3>
-        )}
-      </Confirmation>
     </Container>
   );
 };

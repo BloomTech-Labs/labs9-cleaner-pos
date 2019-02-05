@@ -12,6 +12,9 @@ const AssistantItem = styled('div')`
   /* Color */
   background: var(--color-bg-secondary);
   color: var(--color-text-dark);
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: 5px;
+  margin-bottom: 2.25rem;
 
   /* Sizing */
   height: ${pxToRem(168)};
@@ -27,6 +30,9 @@ const AssistantItem = styled('div')`
   transition: all 0.1s ease-in-out;
   &:hover {
     transform: scale(1.025);
+  }
+  .button__see-more {
+    width: 100%;
   }
 
   h1 {
@@ -107,6 +113,7 @@ const ThumbNail = styled('img')`
   width: 18.75rem;
   height: 100%;
   object-fit: cover;
+  border-radius: 5px 0 0 5px;
 `;
 
 const CardHeading = styled('div')`
