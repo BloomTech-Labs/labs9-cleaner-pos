@@ -62,7 +62,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         />
         <div className='state p-primary-o'>
           <label htmlFor='plan2' onClick={() => 'hello'}>
-            Lodgel Basic: 9.99$ / house / month
+            Lodgel Basic: FREE*
           </label>
         </div>
       </div>
@@ -78,7 +78,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         />
         <div className='state p-primary-o'>
           <label htmlFor='plan2' onClick={() => 'hello'}>
-            Lodgel Professional: 50$ / month
+            Lodgel Professional: 99$ / Month
           </label>
         </div>
       </div>
