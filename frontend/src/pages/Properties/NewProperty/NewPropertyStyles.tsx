@@ -28,6 +28,13 @@ export const NewPropertyStyled = styled(Form)`
     font-size: 5rem;
   }
 
+  .image-preview img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+  }
+
   .property-prices--fields {
     display: flex;
     flex-flow: row nowrap;

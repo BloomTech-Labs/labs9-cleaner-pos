@@ -98,8 +98,6 @@ const NewPropertyView = (formProps: MyFormProps) => {
     return false;
   }
 
-  console.log('defaultAst:', values.defaultAst);
-
   const dirtyConditional = (editing: boolean) => {
     return editing
       ? !dirty && !didUrlChange(initialUrls.current, urls)
