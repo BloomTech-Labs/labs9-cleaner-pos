@@ -1,58 +1,43 @@
-import React, { useState, useContext, ChangeEvent } from 'react';
+import React, { useState, useContext, Dispatch } from 'react';
 import Stripe from './index';
 import { Container } from '../../components/index';
 import { SubBox, AccUL, Confirmation, ConfUL, Header } from './Billing.Styling';
 import styled from '@emotion/styled';
-
-// const {
-//   Accordion,
-//   AccordionItem,
-//   AccordionItemTitle,
-//   AccordionItemBody,
-// } = accordion;
+import Accordion from './Accordion';
 
 export const BillingContext = React.createContext({
   setConfirm: null as any,
-  setShowItem: null as any,
+  setShownIndex: null as any,
 });
 
 const Billing = () => {
   const [confirm, setConfirm] = useState<any>({});
-  const [showItem, setShowItem] = useState(true);
+  const [shownIndex, setShownIndex] = useState(1);
 
   return (
     <Container>
       <Header>Billing</Header>
       <SubBox>
-        <Accordion>
-          <AccordionItemHeader aria-level={3}>Billing</AccordionItemHeader>
-          <AccordionItemBody
-            className={
-              showItem ? 'accordion__item box' : 'accordion__item hidden'
-            }
-          >
-            <BillingContext.Provider value={{ setConfirm, setShowItem }}>
+        <BillingContext.Provider value={{ setConfirm, setShownIndex }}>
+          <Accordion index={shownIndex} setIndex={setShownIndex}>
+            <title>
+              <h3>Subscribe here! :)</h3>
+            </title>
+            <div>
               <Stripe />
-            </BillingContext.Provider>
-          </AccordionItemBody>
-          <AccordionItemHeader aria-level={3}>Confirmation</AccordionItemHeader>
-          <AccordionItemBody
-            className={
-              showItem ? 'accordion__item hidden' : 'accordion__item box'
-            }
-          >
-            Confirm dis awesome subscription!!
-          </AccordionItemBody>
-        </Accordion>
+            </div>
+
+            <title>All the confirmations 🙉</title>
+            <div>
+              {!!(confirm.confirm && confirm.confirm.plan) ? (
+                <h3>Welcome to Lodgel Professional!</h3>
+              ) : null}
+            </div>
+          </Accordion>
+        </BillingContext.Provider>
       </SubBox>
     </Container>
   );
 };
 
 export default Billing;
-
-const Accordion = styled('dl')``;
-const AccordionItemHeader = styled('dt')`
-  background: var(--color-bg-main);
-`;
-const AccordionItemBody = styled('dd')``;

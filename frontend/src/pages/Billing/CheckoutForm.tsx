@@ -17,7 +17,8 @@ const headers: AxiosRequestConfig = {
 };
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
-  const { setConfirm, setShowItem } = useContext(BillingContext);
+  // @ts-ignore
+  const { setConfirm, setShownIndex } = useContext(BillingContext);
   const [loading, setLoading] = useState(false);
   const [plan, setPlan] = useState<any>(0);
   const handleSubmit = async (ev: FormEvent) => {
@@ -36,11 +37,11 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         headers,
       );
       localStorage.setItem('subscription', response.data.plan);
-      setConfirm({ confirm: response.data });
       setLoading(false);
-      setShowItem(false);
+      setConfirm({ confirm: response.data });
+      setShownIndex(3);
     } catch (e) {
-      return e;
+      console.log(e);
     }
     /* tslint:disable-next-line */
   };
