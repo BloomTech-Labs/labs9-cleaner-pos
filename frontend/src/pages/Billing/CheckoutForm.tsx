@@ -25,11 +25,15 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
     try {
       // @ts-ignore
       const { token } = await props.stripe.createToken({});
-      const response = await axios.post(`${url}/payments`, token, headers);
-      console.log(response.data);
-      setConfirm({confirm: response.data});
+      const response = await axios.post(
+        `${url}/payments`,
+        // @ts-ignore
+        { token: token.id },
+        headers,
+      );
+      localStorage.setItem('subscription', response.data.plan);
+      setConfirm({ confirm: response.data });
     } catch (e) {
-      console.log(e.response);
       return e;
     }
     /* tslint:disable-next-line */
@@ -38,10 +42,12 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   return (
     <div>
       {/* !TODO: Build accordion component */}
-      <input type='radio' name='plan' />Baseplan: 9.99$ / house / month
+      <input type='radio' name='plan' />
+      Baseplan: 9.99$ / house / month
       <br />
       <br />
-      <input type='radio' name='plan' />Advanced: 50$ / month
+      <input type='radio' name='plan' />
+      Advanced: 50$ / month
       <br />
       <br />
       <form
