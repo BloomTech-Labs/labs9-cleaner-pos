@@ -29,6 +29,9 @@ const AssistantItem = styled('div')`
     transform: scale(1.025);
   }
 
+  h1 {
+    margin: 1rem 0;
+  }
   .check-boxes {
     display: flex;
     flex-flow: row nowrap;
