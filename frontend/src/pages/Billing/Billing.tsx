@@ -19,7 +19,7 @@ export const BillingContext = React.createContext({
 
 const Billing = () => {
   const [confirm, setConfirm] = useState<any>({});
-  const [shownIndex, setShownIndex] = useState(1);
+  const [shownIndex, setShownIndex] = useState(0);
 
   return (
     <Container>
@@ -27,12 +27,10 @@ const Billing = () => {
       <SubBox>
         <BillingContext.Provider value={{ setConfirm, setShownIndex }}>
           <Accordion index={shownIndex} setIndex={setShownIndex}>
-            <title>Choose your plan!! 💰</title>
             <AccordionItemBody>
               <Stripe />
             </AccordionItemBody>
 
-            <title>All the confirmations 😇</title>
             <AccordionItemBody>
               {!!(confirm.confirm && confirm.confirm.plan) ? (
                 <>
