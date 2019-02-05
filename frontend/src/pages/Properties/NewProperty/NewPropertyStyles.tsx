@@ -14,6 +14,8 @@ export const NewPropertyStyled = styled(Form)`
 
   .property-info--fields {
     display: grid;
+    column-gap: 1rem;
+    grid-column-gap: 1.5rem;
     grid-template-areas:
       'propertyName propertyName'
       'address1 address2'
@@ -31,7 +33,7 @@ export const NewPropertyStyled = styled(Form)`
     flex-flow: row nowrap;
 
     .field {
-      flex-basis: 100%;
+      flex-basis: 30%;
     }
   }
 
@@ -47,6 +49,35 @@ export const NewPropertyStyled = styled(Form)`
     }
   }
 
+  .property-resources--guides {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .guide {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+  .primary-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .button {
+      margin: 0 0.5rem 2rem 0.5rem;
+    }
+  }
+
+  /* Grid Declarations */
   .field-propertyName {
     grid-area: propertyName;
   }
@@ -64,16 +95,6 @@ export const NewPropertyStyled = styled(Form)`
   }
   .field-postCode {
     grid-area: postCode;
-  }
-
-  .primary-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .button {
-      margin: 0 0.5rem 2rem 0.5rem;
-    }
   }
 `;
 

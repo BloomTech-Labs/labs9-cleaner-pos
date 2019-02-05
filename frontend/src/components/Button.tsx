@@ -43,6 +43,9 @@ const Button = ({
     color: var(--color-button-text);
     /* Cursor */
     cursor: pointer;
+    i {
+      color: var(--color-button-text);
+    }
   `;
   return (
     <>

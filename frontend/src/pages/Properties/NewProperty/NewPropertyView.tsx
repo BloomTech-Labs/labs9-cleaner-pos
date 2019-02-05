@@ -17,6 +17,9 @@ import loadingIndicator from '../../utils/loading.svg';
 
 const labelInputField = (label: string, currency?: 'dollar') => {
   // Material UI Textfield made to interface with Formik
+  // Give it a name and whether you want it to bling,
+  // And it will give you back a Component for Field to render
+  // Text adornment: https://github.com/mui-org/material-ui/pull/10899/files
   const startAdornment =
     currency === 'dollar'
       ? {
@@ -147,9 +150,26 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <br />
         <br />
         <div className='property-resources--guides'>
-          <Uppy type='ast_guide' text='Upload Assistant Guide' />
-
-          <Uppy type='guest_guide' text='Upload Guest Guide' />
+          <div className='guide left'>
+            {urls.ast_guide ? (
+              <a href={urls.ast_guide} target='_blank'>
+                <i className='fas fa-file' />
+              </a>
+            ) : (
+              <i className='fas fa-question' />
+            )}
+            <Uppy type='ast_guide' text='Upload Assistant Guide' />
+          </div>
+          <div className='guide right'>
+            {urls.guest_guide ? (
+              <a href={urls.guest_guide} target='_blank'>
+                <i className='fas fa-file' />
+              </a>
+            ) : (
+              <i className='fas fa-question' />
+            )}
+            <Uppy type='guest_guide' text='Upload Guest Guide' />
+          </div>
         </div>
       </FormBlock>
       <br />

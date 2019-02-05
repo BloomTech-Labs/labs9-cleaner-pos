@@ -9,15 +9,6 @@
   --color-border: rgba(57, 53, 52, 0.125);
   --color-border-strong: rgba(57, 53, 52, 0.5);
   --color-error: #b8003f;
-  /* --- Test Colors */
-  --color-main-dark: #021516;
-  /* --color-main-medium: #ebf0f1;
-  --color-main-light: #ffffff;
-  --color-accent: #167c80;
-  --color-accent-light: #eaf7f7;
-  --color-border: rgba(2, 21, 22, 0.125);
-  --color-border-strong: rgba(2, 21, 22, 0.5);
-  --color-error: #b8003f; */
   /* Background Colors */
   --color-bg-main: var(--color-main-medium);
   --color-bg-secondary: var(--color-main-light);
@@ -87,4 +78,8 @@ h3 {
   margin: 0 0 1rem 0;
   /* Text */
   font-size: 1rem;
+}
+
+i {
+  color: var(--color-main-dark);
 }
