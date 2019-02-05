@@ -84,7 +84,10 @@ const NewGuestView = (formProps: MyGuestProps) => {
             render={labelInputField('Address')}
           />
 
-          <Field name='address2' render={labelInputField('Address (cont.)')} />
+          <Field
+            name='address2'
+            render={labelInputField('Address (continued)')}
+          />
 
           <Field
             name='city'

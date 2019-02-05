@@ -6,11 +6,51 @@ import { Form } from 'formik';
 import { ComponentClass } from 'react';
 
 export const StyledForm = styled(Form)`
-  max-width: 700px;
-  margin: auto;
+  margin-left: 1rem;
+  text-align: left;
 
   label {
     margin-right: 0.5rem;
+  }
+
+  .guest-info--fields {
+    margin-bottom: 2rem;
+    /* Grid */
+    display: grid;
+    grid-template-areas: 'fullName fullName' 'email phone' 'address1 address2' 'city state' 'country postCode';
+    column-gap: 1.5rem;
+    row-gap: 0.5rem;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 0.5rem;
+
+    /* CSS Grid Declarations */
+    .field-fullName {
+      grid-area: fullName;
+    }
+    .field-email {
+      grid-area: email;
+    }
+    .field-phone {
+      grid-area: phone;
+    }
+    .field-address1 {
+      grid-area: address1;
+    }
+    .field-address2 {
+      grid-area: address2;
+    }
+    .field-city {
+      grid-area: city;
+    }
+    .field-state {
+      grid-area: state;
+    }
+    .field-country {
+      grid-area: country;
+    }
+    .field-postCode {
+      grid-area: postCode;
+    }
   }
 `;
 
