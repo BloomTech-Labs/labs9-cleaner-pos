@@ -99,11 +99,11 @@ All user payments are processed using Stripe via the react-stripe-elements plugi
 
 ## Contributing
 
-We appreciate your interest in our project and encourage your participation in its development. All contributors should read and abide by our [Code of Conduct]("./CODE_OF_CONDUCT.md"). 
+When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-The following guidelines should help everyone to effectively communicate and organize responses to issues and bugs:
+Please note we have a [code of conduct]("./CODE_OF_CONDUCT.md"). Please follow it in all your interactions with the project.
 
-### Bug Reports
+### Issue/Bug Request
 
 If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
 	- Check first to see if your issue has already been reported.
@@ -114,7 +114,7 @@ If you are having an issue with the existing project code, please submit a bug r
 		- steps to reproduce the issue
 		- actual and expected outcomes
 		- Where you believe the issue is originating from and any potential solutions you have considered
-		
+
 ### Feature Requests
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
@@ -123,9 +123,20 @@ We would love to hear from you about new features which would improve this app a
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
 
-Please ensure that your code conforms to our existing code conventions and test coverage before submitting your request. Include meaningful and descriptive messages with your commits, and label your request with a clear title and description indicating what your work will contribute to the project.
-
 Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too. 
+
+#### Pull Request Guidelines
+
+	1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+	2. Update the README.md with details of changes to the interface, including new environment variables, exposed ports, useful file locations and container parameters.
+	3. Ensure that your code conforms to our existing code conventions and test coverage.
+	4. Include the relevant issue number, if applicable.
+	5. You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
+ 
+### Attribution
+
+These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
+		
 
 ## Documentation
 	
