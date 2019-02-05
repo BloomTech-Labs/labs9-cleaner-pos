@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import {
   ReactStripeElements,
   injectStripe,
@@ -7,6 +7,7 @@ import {
 import { Button } from '../../components/index';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BillingContext } from './Billing';
+import loadingIndicator from '../utils/loading.svg';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -16,10 +17,14 @@ const headers: AxiosRequestConfig = {
 };
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
-  const { setConfirm } = useContext(BillingContext);
+  // @ts-ignore
+  const { setConfirm, setShownIndex } = useContext(BillingContext);
+  const [loading, setLoading] = useState(false);
+  const [plan, setPlan] = useState<any>(0);
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
+    setLoading(true);
     // Within the context of `Elements`, this call to createToken knows which Element to
     // tokenize, since there's only one in this group.
     try {
@@ -28,13 +33,15 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       const response = await axios.post(
         `${url}/payments`,
         // @ts-ignore
-        { token: token.id },
+        { token: token.id, plan_id: plan },
         headers,
       );
       localStorage.setItem('subscription', response.data.plan);
+      setLoading(false);
       setConfirm({ confirm: response.data });
+      setShownIndex(3);
     } catch (e) {
-      return e;
+      console.log(e);
     }
     /* tslint:disable-next-line */
   };
@@ -42,11 +49,15 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   return (
     <div>
       {/* !TODO: Build accordion component */}
-      <input type='radio' name='plan' />
+      <input type='radio' name='plan' onChange={(e) => setPlan(1)} />
       Baseplan: 9.99$ / house / month
       <br />
       <br />
-      <input type='radio' name='plan' />
+      <input
+        type='radio'
+        name='plan'
+        onChange={(e) => setPlan(process.env.REACT_APP_stripe_plan)}
+      />
       Advanced: 50$ / month
       <br />
       <br />
@@ -64,10 +75,21 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         <div style={{ marginBottom: '24px' }} />
         <Button
           onClick={handleSubmit}
-          text='Subscribe!'
+          text={loading ? '' : 'Subscribe!'}
           datatestid='confirm-payment'
           // color='#0AA047'
-        />
+        >
+          <div
+            role='alert'
+            aria-live='assertive'
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            {loading ? (
+              <img src={loadingIndicator} alt='animated loading indicator' />
+            ) : null}
+            <p style={{ display: 'none' }}>Content is loading...</p>
+          </div>
+        </Button>
       </form>
     </div>
   );

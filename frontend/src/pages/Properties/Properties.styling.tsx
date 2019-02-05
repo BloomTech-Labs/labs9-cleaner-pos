@@ -37,7 +37,9 @@ const HouseItem = styled('div')`
   margin-top: 2.25rem;
   display: flex;
   text-align: left;
-  border: var(--border-alt);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: 5px;
   background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
@@ -90,6 +92,7 @@ const ThumbNail = styled('img')`
   width: 35%;
   height: ${pxToRem(cardHeight - 1)};
   margin-right: 2rem;
+  border-radius: 5px 0 0 5px;
 
   @media only screen and (max-width: ${bp}) {
     margin: 0;

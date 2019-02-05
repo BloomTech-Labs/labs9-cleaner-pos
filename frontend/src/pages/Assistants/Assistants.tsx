@@ -24,37 +24,38 @@ const AssistantCard = (assistant: Assistant) => {
 
   return (
     <>
-      <Link
-        style={{ marginBottom: `2.25rem` }}
-        to={`/assistants/${assistant.ast_id}`}
-      >
-        <AssistantItem data-testid='assistant-item'>
-          <ThumbNail
-            className='list-img'
-            src={imgFile}
-            alt={assistant.full_name}
-          />
-          <CardBody>
-            <CardHeading>
-              <h1>{assistant.full_name}</h1>
-              <p>Test Address</p>
-            </CardHeading>
-            <div className='check-boxes'>
-              <InfoBox>
-                <p>Checklist Items</p>
-                <div className='secondary'>{assistant.itemCount}</div>
-              </InfoBox>
-              <InfoBox>
-                <p>Available Houses</p>
-                <div className='secondary'>{assistant.houseCount}</div>
-              </InfoBox>
-              <ButtonContainer>
-                <Button text='See More' datatestid='assistant-button' />
-              </ButtonContainer>
-            </div>
-          </CardBody>
-        </AssistantItem>
-      </Link>
+      <AssistantItem data-testid='assistant-item'>
+        <ThumbNail
+          className='list-img'
+          src={imgFile}
+          alt={assistant.full_name}
+        />
+        <CardBody>
+          <CardHeading>
+            <h1>{assistant.full_name}</h1>
+            <p>Test Address</p>
+          </CardHeading>
+          <div className='check-boxes'>
+            <InfoBox>
+              <p>Checklist Items</p>
+              <div className='secondary'>{assistant.itemCount}</div>
+            </InfoBox>
+            <InfoBox>
+              <p>Available Houses</p>
+              <div className='secondary'>{assistant.houseCount}</div>
+            </InfoBox>
+            <ButtonContainer>
+              <Link to={`/assistants/${assistant.ast_id}`}>
+                <Button
+                  className='button__see-more'
+                  text='See More'
+                  datatestid='assistant-button'
+                />
+              </Link>
+            </ButtonContainer>
+          </div>
+        </CardBody>
+      </AssistantItem>
     </>
   );
 };
@@ -65,9 +66,6 @@ const Assistants = () => {
   const [data, error, loading] = useFetch(`${url}/assistants`);
   return (
     <Container>
-      {loading ? (
-        <img src={loadingIndicator} alt='animated loading indicator' />
-      ) : null}
       {error.error ? 'Whoops! Something went wrong! :(' : null}
       <>
         <HeaderWrapper>
@@ -76,11 +74,20 @@ const Assistants = () => {
             <Button text='+ New Assistant' />
           </Link>
         </HeaderWrapper>
-        {data
-          ? data.map((assistant: Assistant) => (
+        <div
+          role='alert'
+          aria-live='assertive'
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          {loading ? (
+            <img src={loadingIndicator} alt='animated loading indicator' />
+          ) : data ? (
+            data.map((assistant: Assistant) => (
               <AssistantCard key={assistant.ast_id} {...assistant} />
             ))
-          : null}
+          ) : null}
+          <p style={{ display: 'none' }}>Content is loading...</p>
+        </div>
       </>
     </Container>
   );
