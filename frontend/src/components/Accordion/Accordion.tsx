@@ -4,6 +4,12 @@ import {
   AccordionItemHeader,
   AccordionContainer,
 } from './Accordion.styles';
+/* This accordion can render an unlimited amount of sections
+It takes in a <title> section for the headings you'd like displayed
+& a AccordionItemBody for each section.
+It renders with the first section open & supports opening on click as
+well on changing props
+Right now it only renders one open section */
 
 const Accordion = (props: any) => {
   const children = props.children;
