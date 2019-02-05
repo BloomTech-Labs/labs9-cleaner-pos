@@ -23,7 +23,7 @@ const Accordion = (props: any) => {
               key={index}
               aria-expanded='true'
               aria-level={3}
-              onClick={() => props.setIndex(index + 1)}
+              onClick={props.onClick}
             >
               <h3>{child.props.children}</h3>
             </AccordionItemHeader>
@@ -50,3 +50,4 @@ const Accordion = (props: any) => {
 };
 
 export default Accordion;
+export { AccordionItemBody, AccordionItemHeader, AccordionContainer };
