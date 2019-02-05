@@ -21,11 +21,7 @@ interface LoginProps extends RouteComponentProps {
   onUser: any;
 }
 
-const Login: FunctionComponent<LoginProps> = ({
-  history,
-  location,
-  onUser,
-}) => {
+const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
   // set's up user state
   const [user, setUser] = useState<User | null>(null);
   // creates a ref that will be used as component wide variable and exists
@@ -94,6 +90,7 @@ const Login: FunctionComponent<LoginProps> = ({
         const { data } = await axios.post(`${url}/users/`, nUser);
         localStorage.setItem('token', data.token);
         localStorage.setItem('role', data.role);
+        localStorage.setItem('subscription', data.stripePlan);
 
         setSub(data.stripePlan);
 

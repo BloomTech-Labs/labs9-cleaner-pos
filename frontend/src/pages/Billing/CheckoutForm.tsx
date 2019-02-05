@@ -16,7 +16,7 @@ const headers: AxiosRequestConfig = {
 };
 
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
-  const { setConfirm, setSub } = useContext(BillingContext);
+  const { setConfirm } = useContext(BillingContext);
   const handleSubmit = async (ev: FormEvent) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -31,7 +31,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         { token: token.id },
         headers,
       );
-      setSub(response.data.plan);
+      localStorage.setItem('subscription', response.data.plan);
       setConfirm({ confirm: response.data });
     } catch (e) {
       return e;
