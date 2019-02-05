@@ -65,9 +65,6 @@ const Assistants = () => {
   const [data, error, loading] = useFetch(`${url}/assistants`);
   return (
     <Container>
-      {loading ? (
-        <img src={loadingIndicator} alt='animated loading indicator' />
-      ) : null}
       {error.error ? 'Whoops! Something went wrong! :(' : null}
       <>
         <HeaderWrapper>
@@ -76,11 +73,20 @@ const Assistants = () => {
             <Button text='+ New Assistant' />
           </Link>
         </HeaderWrapper>
-        {data
-          ? data.map((assistant: Assistant) => (
+        <div
+          role='alert'
+          aria-live='assertive'
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          {loading ? (
+            <img src={loadingIndicator} alt='animated loading indicator' />
+          ) : data ? (
+            data.map((assistant: Assistant) => (
               <AssistantCard key={assistant.ast_id} {...assistant} />
             ))
-          : null}
+          ) : null}
+          <p style={{ display: 'none' }}>Content is loading...</p>
+        </div>
       </>
     </Container>
   );
