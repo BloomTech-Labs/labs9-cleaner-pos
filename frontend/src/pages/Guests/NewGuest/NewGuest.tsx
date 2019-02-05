@@ -258,7 +258,7 @@ const NewGuest = (props: RouteComponentProps) => {
       const stayData = {
         guest_id: userId,
         house_id: houseId,
-        extra_guests: extraGuests,
+        extra_guests: +extraGuests,
         check_in: checkIn,
         check_out: checkOut,
       };
