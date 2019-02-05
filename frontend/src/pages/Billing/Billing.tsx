@@ -11,7 +11,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
-import CheckCircleOutline from '@material-ui/core/Icon/';
 
 export const BillingContext = React.createContext({
   setConfirm: null as any,
@@ -54,6 +53,7 @@ const Billing = () => {
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
+              borderLeft: '0',
             }}
           >
             <div
@@ -65,13 +65,15 @@ const Billing = () => {
             >
               <List style={{ padding: '0' }}>
                 <ListSubheader
+                  classes={{}}
                   style={{
                     background: 'var(--color-bg-main)',
-                    height: '63px',
-                    verticalAlign: 'center',
+                    borderBottom: 'var(--border)',
+                    height: '62px',
+                    padding: '0.5rem',
                   }}
                 >
-                  Lodgel Basic
+                  <h3 style={{ margin: '0' }}>Lodgel Basic</h3>
                 </ListSubheader>
                 <ListItem>
                   <Avatar>
@@ -83,10 +85,31 @@ const Billing = () => {
                   />
                 </ListItem>
                 <ListItem>
-                  <ListItemText>We help you make money</ListItemText>
+                  <Avatar>
+                    <i className='fas fa-dollar-sign' />
+                  </Avatar>
+                  <ListItemText
+                    primary='We help you make money'
+                    secondary='Our users save an average of 20% of their time invested managing their properties!'
+                  />
                 </ListItem>
                 <ListItem>
-                  <ListItemText>Charge 1% of Earning</ListItemText>
+                  <Avatar>
+                    <i className='fas fa-percentage' />
+                  </Avatar>
+                  <ListItemText
+                    primary='Charge 1.5% of Earnings'
+                    secondary='Once you’re happy and making money, we charge 1% of booking earnings.'
+                  />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <i className='fas fa-hashtag' />
+                  </Avatar>
+                  <ListItemText
+                    primary='Up to 5 properties'
+                    secondary='Scale up your rental business without risks and as convenient as possible'
+                  />
                 </ListItem>
               </List>
             </div>
@@ -99,21 +122,42 @@ const Billing = () => {
               }}
             >
               <List style={{ padding: '0' }}>
-                <ListSubheader style={{ background: 'var(--color-bg-main)' }}>
-                  Lodgel Professional
+                <ListSubheader
+                  style={{
+                    background: 'var(--color-bg-main)',
+                    borderBottom: 'var(--border)',
+                    height: '62px',
+                    padding: '0.5rem',
+                  }}
+                >
+                  <h3 style={{ margin: '0' }}>Lodgel Professional</h3>
                 </ListSubheader>
                 <ListItem>
-                  <ListItemText>
-                    <i className='fa fa-check-square checkmark' />
-                    {'  '}
-                    14 Days Free Trial
-                  </ListItemText>
+                  <Avatar>
+                    <i className='fas fa-check-square' />
+                  </Avatar>
+                  <ListItemText
+                    primary='One Month Free Trial'
+                    secondary='Risk free trial'
+                  />
                 </ListItem>
                 <ListItem>
-                  <ListItemText>Up to 5 Houses</ListItemText>
+                  <Avatar>
+                    <i className='fas fa-dollar-sign' />
+                  </Avatar>
+                  <ListItemText
+                    primary='We help you make money'
+                    secondary='Our users save an average of 20% of their time invested managing their properties!'
+                  />
                 </ListItem>
                 <ListItem>
-                  <ListItemText>14 Days Free Trial</ListItemText>
+                  <Avatar>
+                    <i className='fas fa-percentage' />
+                  </Avatar>
+                  <ListItemText
+                    primary='Charge 1.5% of Earnings'
+                    secondary='Once you’re happy and making money, we charge 1% of booking earnings.'
+                  />
                 </ListItem>
               </List>
             </div>
