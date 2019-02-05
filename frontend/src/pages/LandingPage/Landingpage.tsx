@@ -49,9 +49,10 @@ const Landing = (props: RouteComponentProps) => {
           <Description>
             <DescHeader>Manage your Properties</DescHeader>
             <p>
-              This is one awesome description here! If you look at this, you will
-              love the product right away. In fact, you want to invest in our
-              company right way because of how awesome it is!
+              A detailed view for each of your properties is at your fingertips.
+              You have the freedom to add and remove properties as your
+              portfolio changes over time, which keeps complete control of
+              how your properties are managed in your hands.
             </p>
           </Description>
         </DescContainer>
@@ -62,9 +63,9 @@ const Landing = (props: RouteComponentProps) => {
         <Description>
           <DescHeader>Keep Tabs on you Guests</DescHeader>
           <p>
-            This is one awesome description here! If you look at this, you will
-            love the product right away. In fact, you want to invest in our
-            company right way because of how awesome it is!
+            Your guests are the heart of your business. To help you deliver
+            high-quality service that your guests deserve, we have created customizable
+            checklists that ensures all of your guests' needs are met.
           </p>
         </Description>
         <Screenshot src={house} alt='house' />
@@ -74,9 +75,10 @@ const Landing = (props: RouteComponentProps) => {
         <Description>
           <DescHeader>Coordinate your Assistants</DescHeader>
           <p>
-            This is one awesome description here! If you look at this, you will
-            love the product right away. In fact, you want to invest in our
-            company right way because of how awesome it is!
+            Your time is valuable, and managing multiple properties can be stressful.
+            Assistants can be invaluable in exceeding guest expectations, and can be your
+            hands when you are needed elsewhere. Assign an assistant to take care of
+            a property by default, and watch in real time as they complete their tasks.
           </p>
         </Description>
         <Screenshot src={house} alt='house' />
