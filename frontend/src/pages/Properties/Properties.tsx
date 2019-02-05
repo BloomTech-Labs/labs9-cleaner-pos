@@ -99,7 +99,10 @@ const Properties = () => {
           ? houses.map((house: House) => {
               return (
                 <HouseItem key={house.id} data-testid='house-item'>
-                  <ThumbNail src={defaultHouse} alt='house' />
+                  <ThumbNail
+                    src={house.photo_url || defaultHouse}
+                    alt='house'
+                  />
                   <CardContent>
                     <CardHeading>
                       <h4>{house.name}</h4>
