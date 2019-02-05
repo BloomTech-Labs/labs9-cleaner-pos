@@ -39,10 +39,10 @@ const Button = ({
     font-weight: normal;
     font-size: 1rem;
     /* Color */
-    background: ${buttonColor};
+    background: ${!disabled ? buttonColor : '#66615e'};
     color: var(--color-button-text);
     /* Cursor */
-    cursor: pointer;
+    cursor: ${!disabled ? 'pointer' : 'initial'};
     i {
       color: var(--color-button-text);
     }
