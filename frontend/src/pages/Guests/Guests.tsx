@@ -14,10 +14,7 @@ const Guests = () => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
   const [active, setActive] = useState('upcoming' as FilterArgs);
-  const [stays, error, loading] = useFetch(
-    // `${url}/stays?filter=${active}&test=true`,
-    `${url}/stays?filter=${active}`,
-  );
+  const [stays, error, loading] = useFetch(`${url}/stays?filter=${active}`);
 
   const activeClass = (filter: FilterArgs) =>
     active === filter ? 'active' : '';

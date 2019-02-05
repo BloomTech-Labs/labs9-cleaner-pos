@@ -1,57 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
-import { axiosErrorHandler } from '../utils';
+import { axiosErrorHandler } from '../../utils';
 // Components
+import { AstDropdownView } from './View';
 // Types
-import { House } from './types';
-import loadingIndicator from '../utils/loading.svg';
-
-const AstDropdownView = (props: {
-  formState: { ast_id: number; full_name: string };
-  onChangeFunc: (e: any) => void;
-  house: House;
-  loading: boolean;
-  errors: { msg: string; error: boolean };
-  className?: string;
-}) => {
-  const { formState, onChangeFunc, house, loading, className } = props;
-
-  if (loading || props.house.openAst === undefined) {
-    return (
-      <div>
-        <img src={loadingIndicator} alt='animated loading indicator' />
-      </div>
-    );
-  }
-
-  // Good working code
-  return (
-    <div className='ast-dropdown'>
-      Reassign Assistant
-      <br />
-      <select data-testid='assistant-select' onChange={(event) => event}>
-        <option defaultValue={house.default_ast_name}>
-          {house.default_ast_name}
-        </option>
-        {house.openAst.map((ast: any) => {
-          if (ast.ast_id !== house.default_ast) {
-            return <option key={ast.ast_id}>{ast.full_name}</option>;
-          }
-        })}
-      </select>
-    </div>
-  );
-};
+import { House } from '../types';
 
 export const AstDropdown = (props: { houseId: number; className?: string }) => {
-  const [formState, setFormState] = useState({
-    // TODO: Research more about this unknown business
-    ast_id: (null as unknown) as number,
-    full_name: (null as unknown) as string,
-  });
   const [house, setHouse] = useState({} as House);
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [loading, setLoading] = useState(false);
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  // Snackbar functions
+  function handleClose(event: any, reason: string) {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  }
 
   useEffect(() => {
     // Set loading flag
@@ -85,7 +53,6 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
         const { data } = response;
         setHouse(data);
         const { default_ast, default_ast_name } = data;
-        setFormState({ ast_id: default_ast, full_name: default_ast_name });
         setErrors({ msg: '', error: false });
       })
       .catch(axiosErrorHandler(setErrors));
@@ -94,18 +61,37 @@ export const AstDropdown = (props: { houseId: number; className?: string }) => {
     setLoading(false);
   }, [props.houseId]);
 
-  const onChangeFunc = (e: any) => {
-    setFormState((prev) => ({ ...prev }));
-  };
-
+  async function postAst(
+    event: React.FormEvent<HTMLSelectElement>,
+    id: number | undefined,
+  ) {
+    const token = localStorage.getItem('token');
+    const headers: AxiosRequestConfig = {
+      headers: { Authorization: token },
+    };
+    try {
+      const astId: string = event.currentTarget.value;
+      const res = await axios.put(
+        `http://localhost:4500/houses/${id}`,
+        {
+          default_ast: Number(astId),
+        },
+        headers,
+      );
+      setSnackbarOpen(true);
+    } catch (e) {
+      setErrors({ msg: 'Could not update assistant.', error: true });
+    }
+  }
   return (
     <AstDropdownView
       className={props.className || ''}
-      formState={formState}
-      onChangeFunc={onChangeFunc}
+      onChangeFunc={postAst}
       house={house}
       loading={loading}
       errors={errors}
+      snackbarOpen={snackbarOpen}
+      snackbarClose={handleClose}
     />
   );
 };

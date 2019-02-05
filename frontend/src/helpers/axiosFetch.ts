@@ -27,6 +27,8 @@ const axiosFetch = async (type: Crud, url: string, body: any = {}) => {
       url,
       data: body,
     });
+
+    data = response;
   } catch (e) {
     console.error(e);
     error = { msg: 'Error fetching!', error: true };

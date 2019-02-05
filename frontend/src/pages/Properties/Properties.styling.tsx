@@ -37,7 +37,9 @@ const HouseItem = styled('div')`
   margin-top: 2.25rem;
   display: flex;
   text-align: left;
-  border: var(--border-alt);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: 5px;
   background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
@@ -90,6 +92,7 @@ const ThumbNail = styled('img')`
   width: 35%;
   height: ${pxToRem(cardHeight - 1)};
   margin-right: 2rem;
+  border-radius: 5px 0 0 5px;
 
   @media only screen and (max-width: ${bp}) {
     margin: 0;
@@ -188,6 +191,31 @@ const Assistant = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: var(--border);
+  padding: 1rem;
+  /* Color */
+  background-color: var(--color-bg-accent-light);
+  /* Text */
+  font-weight: bolder;
+
+  label {
+    /* Color */
+    color: var(--color-text-accent-dark);
+    /* Text */
+    font-size: 1rem;
+  }
+
+  select {
+    width: 100%;
+    margin-top: 0.5rem;
+    border: none;
+    border-bottom: 1px solid var(--color-border-strong);
+    /* Color */
+    background-color: var(--color-bg-accent-light);
+    /* Text */
+    font-size: 1rem;
+  }
+
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};
     padding: 20px 0 20px 0;
