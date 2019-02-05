@@ -26,7 +26,6 @@ const AssistantCard = (props: any) => {
   const [taskLoad, setTaskLoad] = useState(0);
   const [modalStatus, setModalStatus] = useState(false);
   const assistant = props.assistant;
-  console.log(props);
   function handleModal() {
     setModalStatus(!modalStatus);
   }
