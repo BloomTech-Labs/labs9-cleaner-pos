@@ -38,9 +38,9 @@ This is a Lambda Labs Capstone Project designed for rental property management. 
 
 With its vast eco-system and modular nature React is a great choice for developing the front-end of our project.
 
-	* The associated documentation, community and 3rd party packages are excellent
-	* It allows for reusability of already written components which reduces development time
-	* It is a tried and tested framework that will help us avoid sudden shifts in the technology causing major refactors
+	- The associated documentation, community and 3rd party packages are excellent
+	- It allows for reusability of already written components which reduces development time
+	- It is a tried and tested framework that will help us avoid sudden shifts in the technology causing major refactors
 
 #### React Hooks
 
@@ -48,9 +48,9 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 #### Typescript
 
-	* Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
-	* Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
-  * TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
+	- Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
+	- Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
+  - TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
 ### Frontend deployed to Netlify
 
@@ -58,17 +58,17 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 #### Node.js, Express.js
 
-	* Node.js offers a single free codebase that is fast, easy to learn, and offers multiple modules. Collaborators can quickly get up to speed and easily modify and maintain the code for longterm stability.
-	* Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
-	* There is very detailed documentation available for each.
-	* There also widespread community support for Node and Express.
+	- Node.js offers a single free codebase that is fast, easy to learn, and offers multiple modules. Collaborators can quickly get up to speed and easily modify and maintain the code for longterm stability.
+	- Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
+	- There is very detailed documentation available for each.
+	- There also widespread community support for Node and Express.
 
 #### PostgreSQL 
 
-	* Saves the necessary data in an efficient way
-	* Allows for easy queries through JOIN support
-	* Allows for very easy deployment
-	* Has a great community around it and is future proof / very independent of new trends
+	- Saves the necessary data in an efficient way
+	- Allows for easy queries through JOIN support
+	- Allows for very easy deployment
+	- Has a great community around it and is future proof / very independent of new trends
 
 ### Backend deployed to Heroku
 
@@ -96,6 +96,36 @@ Start the development server by running npm dev:server or yarn dev:server.
 ## Stripe
 
 All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the business.
+
+## Contributing
+
+We appreciate your interest in our project and encourage your participation in its development. All contributors should read and abide by our [Code of Conduct]("./CODE_OF_CONDUCT.md"). 
+
+The following guidelines should help everyone to effectively communicate and organize responses to issues and bugs:
+
+### Bug Reports
+
+If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
+	- Check first to see if your issue has already been reported.
+	- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+	- Create a live example of the problem.
+	- Submit a detailed bug report including the following information:
+		- your environment & browser
+		- steps to reproduce the issue
+		- actual and expected outcomes
+		- Where you believe the issue is originating from and any potential solutions you have considered
+		
+### Feature Requests
+
+We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
+
+### Pull Requests
+
+If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
+
+Please ensure that your code conforms to our existing code conventions and test coverage before submitting your request. Include meaningful and descriptive messages with your commits, and label your request with a clear title and description indicating what your work will contribute to the project.
+
+Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too. 
 
 ## Documentation
 	
