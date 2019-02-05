@@ -370,6 +370,28 @@ const HouseItem = styled.p`
     display: inline-block;
     margin-left: 1rem;
   }
+  &:hover .pointer {
+    cursor: pointer;
+  }
+`;
+
+const ModalStyle = styled('div')`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+  outline: 'none';
+  padding: 0 0 2rem 0;
+
+  .modalButton {
+    position: absolute;
+    bottom: 5%;
+    right: 10%;
+  }
 `;
 
 export {
@@ -389,4 +411,5 @@ export {
   PropertyHeading,
   PropertyList,
   HouseItem,
+  ModalStyle,
 };
