@@ -1,6 +1,7 @@
 import React, { FormEvent } from 'react';
 // Components
 import { Field } from 'formik';
+import { Button } from './../../../components';
 // Styled Components
 import {
   FormBlock,
@@ -27,7 +28,7 @@ const labelInputField = (label: string) => {
         onChange={onChange}
         inputProps={{ ...field, 'data-testid': `input-${name}` }}
         InputLabelProps={{ 'data-testid': `label-${name}` }}
-        className={`field-${name}`}
+        className={`field field-${name}`}
         data-testid={`field-${name}`}
         label={errorState ? errors[name] : label}
         margin='normal'
@@ -80,18 +81,21 @@ const NewPropertyView = (formProps: MyFormProps) => {
       </FormBlock>
 
       <FormBlock className='property-photo'>
+        <h2>Property Photo</h2>
         <Uppy type='photo_url' text='Upload a Photo!' />
         {/* {urls.photo_url ? <p>{urls.photo_url}</p> : null} */}
       </FormBlock>
 
       <FormBlock className='property-prices'>
         <h2>Prices</h2>
-        <Field
-          name='pricePerNight'
-          render={labelInputField('Price per Night')}
-        />
-        <Field name='feePerGuest' render={labelInputField('Fee per Guest')} />
-        <Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
+        <div className='property-prices--fields'>
+          <Field
+            name='pricePerNight'
+            render={labelInputField('Price per Night')}
+          />
+          <Field name='feePerGuest' render={labelInputField('Fee per Guest')} />
+          <Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
+        </div>
       </FormBlock>
 
       <FormBlock className='property-resources'>
@@ -120,21 +124,21 @@ const NewPropertyView = (formProps: MyFormProps) => {
       </FormBlock>
       <br />
 
-      <button
+      <Button
         className='submit'
         type='submit'
         disabled={values.defaultAst === -1 || (isSubmitting || !dirty)}
         data-testid='button-submit'
       >
         {isSubmitting ? 'Submitting' : 'Submit'}
-      </button>
-      <button
+      </Button>
+      <Button
         className='back'
         data-testid='button-back'
         onClick={formProps.goBack}
       >
         Go Back ↩
-      </button>
+      </Button>
       {status && status.msg && (
         <div className='status' data-testid='div-status'>
           {status.msg}

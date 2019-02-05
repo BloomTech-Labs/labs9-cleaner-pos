@@ -12,14 +12,69 @@ export const NewPropertyStyled = styled(Form)`
   /* Text */
   text-align: left;
 
+  .property-info--fields {
+    display: grid;
+    grid-template-areas:
+      'propertyName propertyName'
+      'address1 address2'
+      'city state'
+      'country postCode';
+  }
+
+  .property-prices--fields {
+    display: flex;
+    flex-flow: row nowrap;
+
+    .field {
+      flex-basis: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .property-info--fields,
+    .property-prices--fields {
+      display: flex;
+      flex-flow: column nowrap;
+
+      .field {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  .field-propertyName {
+    grid-area: propertyName;
+  }
+  .field-address1 {
+    grid-area: address1;
+  }
+  .field-address2 {
+    grid-area: address2;
+  }
+  .field-city {
+    grid-area: city;
+  }
+  .field-country {
+    grid-area: country;
+  }
+  .field-postCode {
+    grid-area: postCode;
+  }
+
   button {
     font-size: 1rem;
   }
 `;
 
 export const FormBlock = styled.div`
+  padding: 2rem;
+  margin: 2rem 0;
   /* Color */
   background-color: white;
+  /* Shadow */
+  /* Resource: http://cssdeck.com/labs/16-box-shadows-to-save-your-time */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 `;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`
