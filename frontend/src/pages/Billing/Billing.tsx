@@ -1,9 +1,14 @@
 import React, { useState, useContext, Dispatch } from 'react';
 import Stripe from './index';
 import { Container } from '../../components/index';
-import { SubBox, AccUL, Confirmation, ConfUL, Header } from './Billing.Styling';
-import styled from '@emotion/styled';
-import Accordion from './Accordion';
+import {
+  SubBox,
+  AccordionItemBody,
+  Confirmation,
+  ConfUL,
+  Header,
+} from './Billing.Styling';
+import Accordion from '../../components/Accordion/Accordion';
 
 export const BillingContext = React.createContext({
   setConfirm: null as any,
@@ -20,19 +25,17 @@ const Billing = () => {
       <SubBox>
         <BillingContext.Provider value={{ setConfirm, setShownIndex }}>
           <Accordion index={shownIndex} setIndex={setShownIndex}>
-            <title>
-              <h3>Subscribe here! :)</h3>
-            </title>
-            <div>
+            <title>Subscribe here! 💰</title>
+            <AccordionItemBody>
               <Stripe />
-            </div>
+            </AccordionItemBody>
 
-            <title>All the confirmations 🙉</title>
-            <div>
+            <title>All the confirmations 😇</title>
+            <AccordionItemBody>
               {!!(confirm.confirm && confirm.confirm.plan) ? (
                 <h3>Welcome to Lodgel Professional!</h3>
               ) : null}
-            </div>
+            </AccordionItemBody>
           </Accordion>
         </BillingContext.Provider>
       </SubBox>

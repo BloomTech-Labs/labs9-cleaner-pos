@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 const SubBox = styled('div')`
-  border: 1px solid black;
-  background: white;
+  border: var(--border);
   padding: 20px;
   .box {
     transition: all 2s linear;
@@ -13,10 +12,8 @@ const SubBox = styled('div')`
     opacity: 0;
   }
 `;
-
-const AccUL = styled('ul')`
-  list-style-type: none;
-  text-decoration: none;
+const AccordionItemBody = styled('dd')`
+  border: var(--border);
 `;
 
 const Confirmation = styled('div')`
@@ -40,4 +37,4 @@ const Header = styled('h2')`
   font-size: 150%;
 `;
 
-export { SubBox, AccUL, Confirmation, ConfUL, Header };
+export { SubBox, AccordionItemBody, Confirmation, ConfUL, Header };
