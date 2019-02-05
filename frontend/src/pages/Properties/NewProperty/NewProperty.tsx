@@ -26,6 +26,7 @@ const NewProperty = (props: RouteComponentProps) => {
   const [startValues, setStartValues] = useState(
     {} as NewPropertyInitialValues,
   );
+  const [edit, setEdit] = useState(false);
 
   const [errors, setErrors] = useState({ msg: '', error: false });
   useEffect(() => {
@@ -89,6 +90,7 @@ const NewProperty = (props: RouteComponentProps) => {
 
       setAssistants(props.location.state.openAst);
       setStartValues(loadValues);
+      setEdit(true);
     }
   }, []);
   // Invoke FileUploadHOF, passing a callback function which will update
@@ -193,6 +195,7 @@ const NewProperty = (props: RouteComponentProps) => {
             assistants={assistants}
             urls={urls}
             goBack={goBack}
+            edit={edit}
             {...formProps}
           />
         );

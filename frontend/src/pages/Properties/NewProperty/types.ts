@@ -55,7 +55,7 @@ export const EmptyPropertyValues = {
   pricePerNight: 0,
   feePerGuest: 0,
   cleaningFee: 0,
-  defaultAst: 0,
+  defaultAst: -1,
   astGuide: '',
   guestGuide: '',
 };
@@ -80,6 +80,7 @@ export interface MyFormProps extends FormikProps<NewPropertyInitialValues> {
   Uppy: (props: UploadProps) => JSX.Element;
   urls: UrlObj;
   goBack: () => void;
+  edit: boolean;
 }
 
 // Dropdown

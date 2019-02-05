@@ -69,6 +69,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
     urls,
     Uppy,
     assistants,
+    edit,
   } = formProps;
 
   const initialUrls = useRef(urls as UrlObj);
@@ -78,7 +79,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
     Checks if uploaded urls were changed.
     This is used in conjunction with Formiks "dirty" to determine whether the
     submit button should be disabled.
-    Resource: 
+    Resource:
     http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
     */
     const aProps = Object.getOwnPropertyNames(a);
@@ -96,6 +97,14 @@ const NewPropertyView = (formProps: MyFormProps) => {
     }
     return false;
   }
+
+  console.log('defaultAst:', values.defaultAst);
+
+  const dirtyConditional = (editing: boolean) => {
+    return editing
+      ? !dirty && !didUrlChange(initialUrls.current, urls)
+      : !dirty;
+  };
 
   return (
     <NewPropertyStyled>
@@ -212,9 +221,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
           className='button submit'
           type='submit'
           disabled={
-            values.defaultAst === -1 ||
-            isSubmitting ||
-            (!dirty && !didUrlChange(initialUrls.current, urls))
+            values.defaultAst === -1 || isSubmitting || dirtyConditional(edit)
           }
           data-testid='button-submit'
           text={isSubmitting ? 'Submitting' : 'Submit'}
