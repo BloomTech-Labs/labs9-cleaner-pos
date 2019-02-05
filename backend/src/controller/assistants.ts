@@ -28,7 +28,8 @@ export const getId = async (
   try {
     // Find assistants
     const { id } = req.params;
-    const assistant = await findOneAssistant(id);
+    const manager = await getRoleId(req.token.id);
+    const assistant = await findOneAssistant(id, manager.id);
     res.status(200).json(assistant);
   } catch (e) {
     e.statusCode = 500;
