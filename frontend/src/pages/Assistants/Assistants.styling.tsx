@@ -309,6 +309,10 @@ const AsstProperty = styled('div')`
   /* Flex */
   display: flex;
   flex-direction: column;
+
+  .deleteButton {
+    background-color: red;
+  }
 `;
 
 const PropertyContainer = styled('div')`

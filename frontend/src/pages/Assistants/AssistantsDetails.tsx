@@ -47,7 +47,11 @@ const AssistantCard = (props: any) => {
       </AsstDetail>
       <AsstProperty>
         <div className='button-group'>
-          <Button text='Edit Assistant' />
+          <Button
+            onClick={() => props.deleteAst()}
+            text='Delete Assistant'
+            className='deleteButton'
+          />
           <Button
             onClick={() => props.goBack()}
             text=' Go Back'
@@ -237,8 +241,14 @@ const AssistantDetails = (props: any) => {
     });
     setFetch((prev) => !prev);
   }
+
+  async function deleteAst() {
+    await axiosFetch('delete', `${url}/assistants/${id}`).catch((e: any) => {
+      console.error(e);
+    });
+    goBack();
+  }
   function goBack() {
-    console.log('test');
     props.history.push('/assistants');
   }
   return (
@@ -251,6 +261,7 @@ const AssistantDetails = (props: any) => {
           removeDefault={removeDefault}
           addRemoveHouse={addRemoveHouse}
           goBack={goBack}
+          deleteAst={deleteAst}
         />
       ) : null}
       <LeafletMap />
