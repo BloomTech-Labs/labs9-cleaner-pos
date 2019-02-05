@@ -32,8 +32,12 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       const { token } = await props.stripe.createToken({});
       const response = await axios.post(
         `${url}/payments`,
-        // @ts-ignore
-        { token: token.id, plan_id: plan },
+
+        {
+          // @ts-ignore
+          token: token.id,
+          plan_id: plan === 1 ? 1 : process.env.REACT_APP_stripe_plan,
+        },
         headers,
       );
       localStorage.setItem('subscription', response.data.plan);
@@ -48,17 +52,36 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
 
   return (
     <div>
-      {/* !TODO: Build accordion component */}
-      <input type='radio' name='plan' onChange={(e) => setPlan(1)} />
-      Baseplan: 9.99$ / house / month
+      <div className='list-checkbox pretty p-default p-round p-smooth'>
+        <input
+          type='checkbox'
+          name='plan1'
+          onClick={(e) => setPlan(1)}
+          checked={plan === 1 ? true : false}
+          readOnly
+        />
+        <div className='state p-primary-o'>
+          <label htmlFor='plan2' onClick={() => 'hello'}>
+            Lodgel Basic: 9.99$ / house / month
+          </label>
+        </div>
+      </div>
       <br />
       <br />
-      <input
-        type='radio'
-        name='plan'
-        onChange={(e) => setPlan(process.env.REACT_APP_stripe_plan)}
-      />
-      Advanced: 50$ / month
+      <div className='list-checkbox pretty p-default p-round p-smooth'>
+        <input
+          type='checkbox'
+          name='plan2'
+          onClick={(e) => setPlan(2)}
+          checked={plan === 2 ? true : false}
+          readOnly
+        />
+        <div className='state p-primary-o'>
+          <label htmlFor='plan2' onClick={() => 'hello'}>
+            Lodgel Professional: 50$ / month
+          </label>
+        </div>
+      </div>
       <br />
       <br />
       <form
@@ -77,7 +100,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
           onClick={handleSubmit}
           text={loading ? '' : 'Subscribe!'}
           datatestid='confirm-payment'
-          // color='#0AA047'
+          disabled={plan === 0 ? true : false}
         >
           <div
             role='alert'
