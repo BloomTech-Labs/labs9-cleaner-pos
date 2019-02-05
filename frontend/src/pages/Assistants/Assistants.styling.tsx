@@ -224,7 +224,7 @@ const AssistantDetailContainer = styled(Container)`
     padding-left: 1rem;
     /* Text */
     text-align: left;
-    line-height: 0.5;
+    /* line-height: 1; */
   }
 
   .detail-txt h3 {
