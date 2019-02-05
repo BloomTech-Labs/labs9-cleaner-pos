@@ -49,6 +49,7 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
       'user.full_name AS guest_name',
       'house.id AS house_id',
       'house.name AS house_name',
+      'house.photo_url AS photo_url',
       'house.address AS house_address',
       'house.default_ast AS default_ast',
       'house.guest_guide AS guest_guide',

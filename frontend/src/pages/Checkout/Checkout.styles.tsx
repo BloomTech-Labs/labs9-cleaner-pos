@@ -1,10 +1,27 @@
 import styled from '@emotion/styled';
 import Container from '../../components/Container';
 
+const bp = '700px';
+
 export const CheckoutContainer = styled(Container)`
   .checkout-body {
+    /* Box Model */
+    margin-top: 1rem;
+    /* Flex */
     display: flex;
-    justify-content: space-around;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    @media only screen and (max-width: 1000px) {
+      margin: 0 1rem;
+    }
+
+    @media only screen and (max-width: ${bp}) {
+      margin: 0;
+      /* Flex */
+      flex-flow: column nowrap;
+      align-items: center;
+    }
   }
 
   .checkout-left {
@@ -13,6 +30,30 @@ export const CheckoutContainer = styled(Container)`
     /* Text */
     text-align: left;
     line-height: 2;
+    /* Color */
+    background-color: white;
+
+    @media only screen and (max-width: ${bp}) {
+      width: 95%;
+      margin-bottom: 2rem;
+    }
+
+    img {
+      /* Box Model */
+      width: 100%;
+      height: 8rem;
+      /* Image */
+      object-fit: cover;
+    }
+
+    hr {
+      border: var(--border);
+      margin: 2rem 0;
+    }
+  }
+
+  .checkout-left-inner {
+    padding: 0 1rem 1rem 1rem;
   }
 
   .checkout-field {
@@ -22,40 +63,76 @@ export const CheckoutContainer = styled(Container)`
     display: flex;
     justify-content: space-between;
   }
+`;
 
-  .checkout-field input {
-    border: 0px solid;
-    border-bottom: var(--border-bottom);
-    background-color: var(--color-bg-main);
+export const HeaderGroup = styled.div`
+  /* Box Model */
+  margin: 1rem 0;
+  /* Text*/
+  line-height: 1.125;
+
+  h1,
+  p {
+    margin: 0;
   }
 
-  .checkout-field input,
-  .checkout-field span {
-    font-size: 1.25rem;
+  h1 {
     color: var(--color-text-accent);
-    text-align: right;
+  }
+  p {
+    font-weight: lighter;
+  }
+`;
+
+export const CheckoutRight = styled.div`
+  width: 45%;
+
+  @media only screen and (max-width: ${bp}) {
+    width: 95%;
   }
 `;
 
 export const CheckoutForm = styled('div')`
-  border: var(--border);
-  display: flex;
+  /* Box Model */
+  margin-top: 0.67rem;
+  border: 0px solid;
+  /* Flex */
+  /* Hide this component for now until functionality has been implemented */
+  display: none;
+  flex: 0 0 100%;
   flex-direction: column;
-  width: 300px;
-  margin-top: 0.67em;
+
+  input {
+    /* Box Model */
+    border: 0px solid;
+    border-bottom: 1px solid var(--color-main-black);
+    /* Color */
+    background-color: var(--color-main-background);
+    /* Text */
+    font-size: 1.25rem;
+    text-align: right;
+  }
 `;
 
 export const Invoice = styled('div')`
-  width: 300px;
+  width: 100%;
+  border: 0.5px solid var(--color-border);
+  padding: 1rem 1rem 2rem 1rem;
+  /* Flex */
   display: flex;
   flex-direction: column;
+  /* Color */
+  background-color: white;
+  /* Text */
+  text-align: left;
+
   div {
     margin-bottom: 24px;
   }
-  padding: 10px;
-  border: var(--border);
-  /* Color */
-  background-color: var(--color-bg-main);
+
+  h1 {
+    color: var(--color-text-accent);
+  }
   .submit-payment {
     margin-bottom: 24px;
   }
@@ -82,5 +159,9 @@ export const InvoiceBox = styled('div')`
   height: 3rem;
   /* Color */
   color: var(--color-text-accent);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-accent-background);
+
+  span:first-of-type {
+    color: var(--color-text-dark);
+  }
 `;
