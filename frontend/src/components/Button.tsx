@@ -13,6 +13,7 @@ interface ButtonProps {
   className?: string;
   type?: string;
   disabled?: boolean;
+  children?: any;
 }
 
 const Button = ({
@@ -23,6 +24,7 @@ const Button = ({
   className,
   disabled,
   type,
+  children,
 }: ButtonProps) => {
   const buttonColor = color || 'var(--color-button-background)';
   const StyledButton = styled('button')`
@@ -34,8 +36,8 @@ const Button = ({
     border: 0;
     border-radius: 0.25rem;
     /* Text */
-    font-weight: condensed;
-    font-size: 1.25rem;
+    font-weight: normal;
+    font-size: 1rem;
     /* Color */
     background: ${buttonColor};
     color: var(--color-button-text);
@@ -51,7 +53,7 @@ const Button = ({
         data-testid={datatestid}
         disabled={disabled}
       >
-        {text}
+        {text || children}
       </StyledButton>
     </>
   );
