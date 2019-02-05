@@ -24,7 +24,8 @@ export const NewPropertyStyled = styled(Form)`
   }
 
   .image-preview i {
-    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
     font-size: 5rem;
   }
 
@@ -38,6 +39,7 @@ export const NewPropertyStyled = styled(Form)`
   .property-prices--fields {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-evenly;
 
     .field {
       flex-basis: 30%;
