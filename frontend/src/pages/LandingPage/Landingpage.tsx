@@ -15,7 +15,9 @@ import {
   HeroContainer,
   Description,
   Screenshot,
+  SectionHeader,
   DescHeader,
+  DescContainer,
 } from './LandingPage.styling';
 
 const Landing = (props: RouteComponentProps) => {
@@ -42,19 +44,21 @@ const Landing = (props: RouteComponentProps) => {
         <h2>Simplify managing your rental properties.</h2>
       </CTA>
       <HeroContainer>
-        <DescHeader>Properties</DescHeader>
-        <Description>
-          <DescHeader>Manage your Properties</DescHeader>
-          <p>
-            This is one awesome description here! If you look at this, you will
-            love the product right away. In fact, you want to invest in our
-            company right way because of how awesome it is!
-          </p>
-        </Description>
+        <DescContainer>
+          <SectionHeader>Properties</SectionHeader>
+          <Description>
+            <DescHeader>Manage your Properties</DescHeader>
+            <p>
+              This is one awesome description here! If you look at this, you will
+              love the product right away. In fact, you want to invest in our
+              company right way because of how awesome it is!
+            </p>
+          </Description>
+        </DescContainer>
         <Screenshot src={house} alt='house' />
       </HeroContainer>
       <HeroContainer>
-        <DescHeader>Guests</DescHeader>
+        <SectionHeader>Guests</SectionHeader>
         <Description>
           <DescHeader>Keep Tabs on you Guests</DescHeader>
           <p>
@@ -66,7 +70,7 @@ const Landing = (props: RouteComponentProps) => {
         <Screenshot src={house} alt='house' />
       </HeroContainer>
       <HeroContainer>
-        <DescHeader>Assistants</DescHeader>
+        <SectionHeader>Assistants</SectionHeader>
         <Description>
           <DescHeader>Coordinate your Assistants</DescHeader>
           <p>

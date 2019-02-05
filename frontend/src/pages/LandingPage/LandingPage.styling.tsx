@@ -88,8 +88,6 @@ const Logo = styled('img')`
 const HeroContainer = styled('div')`
   display: flex;
   justify-content: space-evenly;
-  margin: 1rem 0;
-  padding: 1rem;
   border: 1px solid black;
   width: 100%;
   background-color: white;
@@ -99,7 +97,8 @@ const Description = styled('div')`
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 0 1rem;
+  margin-left: 1rem;
+  padding: 1rem;
 `;
 
 const Screenshot = styled('img')`
@@ -107,9 +106,19 @@ const Screenshot = styled('img')`
   max-width: 400px;
 `;
 
+const SectionHeader = styled('div')`
+  color: #4593B6;
+  font-size: 1.25rem;
+  padding: 1rem;
+`;
+
 const DescHeader = styled('div')`
   color: #4593B6;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+`;
+
+const DescContainer = styled('div')`
+  display: flex;
 `;
 
 export {
@@ -124,5 +133,7 @@ export {
   HeroContainer,
   Description,
   Screenshot,
+  SectionHeader,
   DescHeader,
+  DescContainer,
 };
