@@ -9,11 +9,17 @@ import { ComponentClass } from 'react';
 export const NewPropertyStyled = styled(Form)`
   /* Box Model & Sizing */
   margin: auto;
-  max-width: 700px;
+  /* Text */
+  text-align: left;
 
   button {
     font-size: 1rem;
   }
+`;
+
+export const FormBlock = styled.div`
+  /* Color */
+  background-color: white;
 `;
 
 export const StyledTextField = styled(TextField as ComponentClass<any>)`

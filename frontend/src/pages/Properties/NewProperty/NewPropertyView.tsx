@@ -1,8 +1,16 @@
 import React, { FormEvent } from 'react';
-import { MyFormProps } from './types';
-import { NewPropertyStyled, StyledTextField } from './styles';
-import { FieldProps } from 'formik';
+// Components
 import { Field } from 'formik';
+// Styled Components
+import {
+  FormBlock,
+  NewPropertyStyled,
+  StyledTextField,
+} from './NewPropertyStyles';
+// Types
+import { MyFormProps } from './types';
+import { FieldProps } from 'formik';
+// Assets
 import loadingIndicator from '../../utils/loading.svg';
 
 const labelInputField = (label: string) => {
@@ -45,9 +53,9 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
   return (
     <NewPropertyStyled>
-      <h2>Properties</h2>
-      <div className='property-info'>
-        <h3>Information</h3>
+      <h1>Properties</h1>
+      <FormBlock className='property-info'>
+        <h2>Information</h2>
         <div className='property-info--fields'>
           <Field
             name='propertyName'
@@ -69,26 +77,25 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
           <Field name='postCode' render={labelInputField('Post Code')} />
         </div>
-      </div>
+      </FormBlock>
 
-      <div className='property-photo'>
+      <FormBlock className='property-photo'>
         <Uppy type='photo_url' text='Upload a Photo!' />
         {/* {urls.photo_url ? <p>{urls.photo_url}</p> : null} */}
-      </div>
+      </FormBlock>
 
-      <div className='property-prices'>
-        <h3>Prices</h3>
-        $
+      <FormBlock className='property-prices'>
+        <h2>Prices</h2>
         <Field
           name='pricePerNight'
           render={labelInputField('Price per Night')}
         />
-        $<Field name='feePerGuest' render={labelInputField('Fee per Guest')} />
-        $<Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
-      </div>
+        <Field name='feePerGuest' render={labelInputField('Fee per Guest')} />
+        <Field name='cleaningFee' render={labelInputField('Cleaning Fee')} />
+      </FormBlock>
 
-      <div className='property-resources'>
-        <h3>Resources</h3>
+      <FormBlock className='property-resources'>
+        <h2>Resources</h2>
         <label>Choose a default assistant.</label>
         <br />
         {assistants ? (
@@ -110,7 +117,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <Uppy type='ast_guide' text='Upload Assistant Guide' />
         <br />
         <Uppy type='guest_guide' text='Upload Guest Guide' />
-      </div>
+      </FormBlock>
       <br />
 
       <button
