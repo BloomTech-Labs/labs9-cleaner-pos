@@ -83,7 +83,13 @@ This app uses Firebase to allow users to login using Google, Facebook, Twitter, 
 
 ## Stripe
 
-All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the project, as well as the user billing their guests. Information about the Stripe API can be found [in their documentation](https://stripe.com/docs/api).
+Our app allows users to bill their guests directly through the site. All payments are processed using Stripe via the react-stripe-elements plugin. Once payment information is submitted, it is converted to a token that can be safely sent to the server. Since our app does not handle sensitive credit card data directly, the financial and legal liability of the project and its users will be limited. Information about the Stripe API can be found [in their documentation](https://stripe.com/docs/api).
+
+## APIs
+
+### Leaflet Maps
+
+Leaflet Maps is a lightweight API that provides basic map services. The map is rendered with just a few lines of code and a defined height attribute, and other add-on features can be implemented as needed via third-party plugins found in the Leaflet documentation. We use the map to provide a visual reference to the properties being managed by Lodgel, and also to reference the distance between properties and assistant location to better coordinate service efforts for guests. For more information, please see [the Leaflet documentation](https://leafletjs.com/) and [the React-Leaflet documentation](https://react-leaflet.js.org/).
 
 ## Environment Variables
 
