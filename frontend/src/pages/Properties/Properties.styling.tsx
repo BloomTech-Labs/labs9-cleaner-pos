@@ -4,7 +4,7 @@ import DropDown from '../../components/DropDown';
 import { ComponentClass } from 'react';
 
 const cardHeight = 168;
-const pxToRem = (px: number): string => `${px / 16}rem`;
+const pxToRem = (px: number) => px / 16;
 const bp = `816px`;
 
 const PropContainer = styled('div')`
@@ -13,6 +13,9 @@ const PropContainer = styled('div')`
   justify-content: center;
   align-items: center;
   .new-property__button {
+		font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+		font-weight: normal;
+		font-size: ${pxToRem(20)}rem;
     background: var(--color-accent-alt);
   }
 
@@ -204,8 +207,9 @@ const Assistant = styled(DropDown)`
 `;
 
 const HouseHeader = styled('h2')`
-  font-size: 2.25rem;
-  font-weight: normal;
+	font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+  font-size: ${pxToRem(36)}rem;
   text-align: left;
   max-width: 290px;
   /* margin-bottom: 1.5rem; */

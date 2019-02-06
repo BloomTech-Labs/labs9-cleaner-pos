@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { Container } from '../../components/';
+import { Button, Container } from '../../components/';
 
-const pxToRem = (px: number): string => `${px / 16}rem`;
+const pxToRem = (px: number) => px / 16;
 const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 // Some size constants
 const boxHeight = '5rem';
@@ -74,6 +74,11 @@ const HeaderWrapper = styled('div')`
 
   /* Sizing */
   margin-bottom: 2.25rem;
+	.invite-btn {
+		font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+		font-weight: normal;
+		font-size: ${pxToRem(20)}rem;
+	}
 
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
@@ -179,7 +184,9 @@ const InfoBox = styled('div')`
 `;
 
 const AssistantHeader = styled('span')`
-  font-size: 1.8rem;
+	font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: ${pxToRem(36)}rem;
   top: 0;
   left: 0;
   text-align: left;
