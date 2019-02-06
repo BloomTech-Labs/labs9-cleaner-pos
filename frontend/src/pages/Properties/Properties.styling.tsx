@@ -162,7 +162,7 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-  background-color: var(--color-bg-main);
+  background-color: var(--color-accent-light);
   padding: 0.5rem 1rem;
   text-align: center;
   border: var(--border);
@@ -196,7 +196,7 @@ const Assistant = styled('div')`
   border: var(--border);
   padding: 1rem;
   /* Color */
-  background-color: var(--color-bg-main);
+  background-color: var(--color-accent-light);
   /* Text */
   font-weight: bolder;
 
@@ -226,8 +226,9 @@ const Assistant = styled('div')`
   }
 `;
 
-const HouseHeader = styled('span')`
-  font-size: 2rem;
+const HouseHeader = styled('h2')`
+  font-size: 2.25rem;
+  font-weight: normal;
   text-align: left;
   max-width: 290px;
   /* margin-bottom: 1.5rem; */
