@@ -162,21 +162,23 @@ const NewGuestView = (formProps: MyGuestProps) => {
           </div>
         </div>
       </FormBlock>
-      <Button
-        className='back'
-        data-testid='button-back'
-        onClick={formProps.goBack}
-      >
-        Go Back ↩
-      </Button>
-      <Button
-        className='submit'
-        type='submit'
-        data-testid='button-submit'
-        disabled={isSubmitting || !dirty}
-      >
-        {isSubmitting ? 'Submitted' : 'Submit'}
-      </Button>
+      <div className='primary-buttons'>
+        <Button
+          className='back'
+          data-testid='button-back'
+          onClick={formProps.goBack}
+        >
+          Go Back ↩
+        </Button>
+        <Button
+          className='submit'
+          type='submit'
+          data-testid='button-submit'
+          disabled={isSubmitting || !dirty}
+        >
+          {isSubmitting ? 'Submitted' : 'Submit'}
+        </Button>
+      </div>
       {status && status.msg && (
         <div className='status' data-testid='div-status'>
           {status.msg}
