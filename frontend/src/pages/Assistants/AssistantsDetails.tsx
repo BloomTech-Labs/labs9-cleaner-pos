@@ -238,12 +238,6 @@ const AssistantDetails = (props: any) => {
     });
     setFetch((prev) => !prev);
   }
-  const defaultAdresses: any = [];
-  if (assistant) {
-    assistant.default_house.map((h: any) =>
-      defaultAdresses.push(h.house_address),
-    );
-  }
 
   async function deleteAst() {
     await axiosFetch('delete', `${url}/assistants/${id}`).catch((e: any) => {
