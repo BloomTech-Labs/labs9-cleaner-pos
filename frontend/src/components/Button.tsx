@@ -36,14 +36,18 @@ const Button = ({
     height: auto;
     padding: 0.5rem 1rem;
     border: 0;
+    border-radius: 0.25rem;
     /* Text */
-    font-weight: condensed;
-    font-size: 1.25rem;
+    font-weight: normal;
+    font-size: 1rem;
     /* Color */
-    background: ${buttonColor};
+    background: ${!disabled ? buttonColor : '#66615e'};
     color: var(--color-button-text);
     /* Cursor */
-    cursor: ${disabled ? 'auto' : 'pointer'};
+    cursor: ${!disabled ? 'pointer' : 'initial'};
+    i {
+      color: var(--color-button-text);
+    }
   `;
   return (
     <>
