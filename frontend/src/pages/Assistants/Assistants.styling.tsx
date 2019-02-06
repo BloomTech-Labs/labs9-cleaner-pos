@@ -13,7 +13,7 @@ const AssistantItem = styled('div')`
   background: var(--color-bg-secondary);
   color: var(--color-text-dark);
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   margin-bottom: 2.25rem;
 
   /* Sizing */
@@ -152,6 +152,7 @@ const InfoBox = styled('div')`
   height: ${boxHeight};
   width: ${boxWidth};
   border: var(--border);
+  border-radius: var(--border-radius);
   /* Text */
   text-align: center;
   font-size: 1.5rem;

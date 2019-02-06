@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { Button, Container } from '../../components/index';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 // Styled Components
 import {
   PropContainer,
@@ -37,6 +40,7 @@ const Properties = () => {
   // Snackbar state
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
+  console.log('houses:', houses);
   // Snackbar functions
   function handleClose(event: any, reason: string) {
     if (reason === 'clickaway') {
@@ -171,33 +175,33 @@ const Properties = () => {
                             datatestid='house-button'
                           />
                         </Link>
-                        <Link to={`/houses/${house.id}#resources`}>
+                        <Link
+                          to={{ pathname: `/properties/new`, state: house }}
+                        >
                           <Button
                             className='property-button'
-                            text='Edit Resources'
+                            text='Edit Property'
                             datatestid='house-button'
                           />
                         </Link>
                       </ButtonContainer>
-                      <Assistant>
-                        <label>Default Assistant</label>
-                        <select
-                          data-testid='assistant-select'
-                          onChange={(event) => postAst(event, house.id)}
-                        >
-                          <option defaultValue={house.default_ast}>
-                            {house.default_ast_name}
-                          </option>
-                          {house.openAst.map((ast: any) => {
-                            if (ast.ast_id !== house.default_ast) {
-                              return (
-                                <option key={ast.ast_id} value={ast.ast_id}>
-                                  {ast.full_name}
-                                </option>
-                              );
-                            }
-                          })}
-                        </select>
+                      <Assistant
+                        label='Default Assistant'
+                        data-testid='assistant-select'
+                        onChange={(event) => postAst(event, house.id)}
+                      >
+                        <option defaultValue={house.default_ast}>
+                          {house.default_ast_name}
+                        </option>
+                        {house.openAst.map((ast: any) => {
+                          if (ast.ast_id !== house.default_ast) {
+                            return (
+                              <option key={ast.ast_id} value={ast.ast_id}>
+                                {ast.full_name}
+                              </option>
+                            );
+                          }
+                        })}
                       </Assistant>
                     </CardBody>
                   </CardContent>

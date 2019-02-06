@@ -1,4 +1,7 @@
 import styled from '@emotion/styled';
+// Components
+import DropDown from '../../components/DropDown';
+import { ComponentClass } from 'react';
 
 const cardHeight = 168;
 const pxToRem = (px: number): string => `${px / 16}rem`;
@@ -41,7 +44,7 @@ const HouseItem = styled('div')`
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
@@ -94,7 +97,7 @@ const ThumbNail = styled('img')`
   width: 35%;
   height: ${pxToRem(cardHeight - 1)};
   margin-right: 2rem;
-  border-radius: 5px 0 0 5px;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
 
   @media only screen and (max-width: ${bp}) {
     margin: 0;
@@ -166,6 +169,7 @@ const CheckList = styled('div')`
   padding: 0.5rem 1rem;
   text-align: center;
   border: var(--border);
+  border-radius: var(--border-radius);
   font-size: 1.5rem;
   font-weight: bold;
   display: flex;
@@ -187,40 +191,13 @@ const CheckList = styled('div')`
   }
 `;
 
-const Assistant = styled('div')`
+const Assistant = styled(DropDown)`
   width: ${pxToRem(184)};
   margin-right: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: var(--border);
-  padding: 1rem;
-  /* Color */
-  background-color: var(--color-accent-light);
-  /* Text */
-  font-weight: bolder;
-
-  label {
-    /* Color */
-    color: var(--color-text-accent);
-    /* Text */
-    font-size: 1rem;
-  }
-
-  select {
-    width: 100%;
-    margin-top: 0.5rem;
-    border: none;
-    border-bottom: 1px solid var(--color-border-strong);
-    /* Color */
-    background-color: var(--color-bg-accent-light);
-    /* Text */
-    font-size: 1rem;
-  }
 
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};
-    padding: 20px 0 20px 0;
+    padding: 1.25rem;
     grid-row: 1;
     grid-column: 2;
   }

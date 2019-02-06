@@ -133,6 +133,18 @@ export const GuestDetailStyle = styled('div')`
     background-color: var(--color-button-background-alt);
   }
 
+  .guests-buttons-filter .before {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+  }
+
+  .guests-buttons-filter .during {
+    border-radius: 0;
+  }
+
+  .guests-buttons-filter .after {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  }
+
   .guest-info--checklist-bottom .active {
     color: var(--color-button-text);
     background-color: var(--color-button-background);
