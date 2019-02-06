@@ -13,7 +13,7 @@ const AssistantItem = styled('div')`
   background: var(--color-bg-secondary);
   color: var(--color-text-dark);
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   margin-bottom: 2.25rem;
 
   /* Sizing */
@@ -152,6 +152,7 @@ const InfoBox = styled('div')`
   height: ${boxHeight};
   width: ${boxWidth};
   border: var(--border);
+  border-radius: var(--border-radius);
   /* Text */
   text-align: center;
   font-size: 1.5rem;
@@ -176,36 +177,6 @@ const InfoBox = styled('div')`
     width: 45%;
   }
 `;
-
-// const Asst = styled('div')`
-//   /* Sizing */
-//   width: ${boxWidth};
-//   height: ${boxHeight};
-//   border: var(--border);
-//   /* Text */
-//   text-align: center;
-//   font-size: 1.5rem;
-//   font-weight: light;
-//   line-height: 1.25;
-//   /* Flex */
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   /* Color */
-//   background-color: var(--color-bg-tertiary);
-//   .secondary {
-//     color: var(--color-text-accent);
-//   }
-//   p {
-//     margin: 0;
-//     font-size: 1rem;
-//     font-weight: normal;
-//   }
-//   @media screen and (max-width: 550px) {
-//     width: 45%;
-//   }
-// `;
 
 const AssistantHeader = styled('span')`
   font-size: 1.8rem;
@@ -321,7 +292,7 @@ const AsstProperty = styled('div')`
   flex-direction: column;
 
   .deleteButton {
-    background-color: red;
+    background-color: var(--color-error);
   }
 `;
 

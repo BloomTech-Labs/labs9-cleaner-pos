@@ -16,6 +16,9 @@ export const findHouses = (manager: number[], astId?: number) => {
       'house.guest_guide',
       'house.ast_guide',
       'house.photo_url',
+      'house.price',
+      'house.cleaning_fee',
+      'house.extra_guest_fee',
     )
     .whereIn('house.manager', manager);
   // if getting houses for an ast, we want to only show houses
@@ -56,6 +59,9 @@ export const findAllHousesByAstId = (astId: number) => {
       'house.manager',
       'house.guest_guide',
       'house.ast_guide',
+      'house.price',
+      'house.cleaning_fee',
+      'house.extra_guest_fee',
     )
     .map(async (e: any) => {
       const openAst = await db('house_ast')

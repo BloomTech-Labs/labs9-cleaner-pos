@@ -15,9 +15,7 @@ import {
 import Modal from '@material-ui/core/Modal';
 import { useFetch, axiosFetch } from '../../helpers/';
 import img from '../assets/ronald.jpg';
-import { hostname } from 'os';
 import loadingIndicator from '../utils/loading.svg';
-import styled from '@emotion/styled';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -29,12 +27,9 @@ const AssistantCard = (props: any) => {
   function handleModal() {
     setModalStatus(!modalStatus);
   }
-  useEffect(
-    () => {
-      setTaskLoad(0);
-    },
-    [props.assistant],
-  );
+  useEffect(() => {
+    setTaskLoad(0);
+  }, [props.assistant]);
   return (
     <AssistantBar className={assistant.className}>
       <AsstDetail>

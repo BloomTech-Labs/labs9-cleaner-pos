@@ -14,10 +14,8 @@ const pxToRem = (px: number) => px / 16;
 export const GuestsDiv = styled(Container)`
   .guests-header {
     /* Sizing & Box Model */
-    height: ${pxToRem(48)}rem;
+    /* height: ${pxToRem(48)}rem; */
     width: 100%;
-    margin: ${pxToRem(36)}rem 0;
-
     /* Flexbox */
     display: flex;
     justify-content: space-between;
@@ -67,6 +65,18 @@ export const GuestsDiv = styled(Container)`
     /* Color */
     color: var(--color-text-dark);
     background-color: var(--color-button-background-alt);
+  }
+
+  .guests-buttons-filter .upcoming {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+  }
+
+  .guests-buttons-filter .incomplete {
+    border-radius: 0;
+  }
+
+  .guests-buttons-filter .complete {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
 
   .guests-buttons-filter button.button-filter:hover,
@@ -189,6 +199,7 @@ export const StyledGuestCard = styled(GuestCard)`
       width: ${pxToRem(206)}rem;
       height: 100%;
       margin-bottom: 1rem;
+      border-radius: var(--border-radius);
     }
 
     .info-check-in {
@@ -208,6 +219,7 @@ export const StyledGuestCard = styled(GuestCard)`
       width: ${pxToRem(206)}rem;
       height: 80%;
       margin: 0 1rem 1rem 0;
+      border-radius: var(--border-radius);
 
       /* Grid */
       grid-column: 4;

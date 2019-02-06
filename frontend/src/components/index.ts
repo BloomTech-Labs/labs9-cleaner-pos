@@ -5,6 +5,7 @@ import Sidebar from './Sidebar/Sidebar';
 import FileUpload from './FileUpload';
 import LeafletMap from './Leaflet/Leaflet';
 import RowContainer from './RowContainer';
+import DropDown from './DropDown';
 
 export {
   Button,
@@ -14,4 +15,5 @@ export {
   LeafletMap,
   FileUpload,
   RowContainer,
+  DropDown,
 };

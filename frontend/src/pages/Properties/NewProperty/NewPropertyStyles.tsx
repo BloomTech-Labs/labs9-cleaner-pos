@@ -8,6 +8,7 @@ import { ComponentClass } from 'react';
 
 export const NewPropertyStyled = styled(Form)`
   /* Box Model & Sizing */
+  max-width: 1000px;
   margin: auto;
   /* Text */
   text-align: left;
@@ -30,9 +31,9 @@ export const NewPropertyStyled = styled(Form)`
   }
 
   .image-preview img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+    max-width: 20rem;
+    max-height: 20rem;
+    /* object-fit: cover; */
     margin-bottom: 1.5rem;
   }
 
@@ -61,27 +62,6 @@ export const NewPropertyStyled = styled(Form)`
   .ast-dropdown {
     margin: auto;
     padding: 1rem;
-    border: var(--border);
-    /* Color */
-    background-color: var(--color-bg-accent-light);
-    /* Text */
-    font-weight: bolder;
-    label {
-      /* Color */
-      color: var(--color-text-accent-dark);
-      /* Text */
-      font-size: 1rem;
-    }
-    select {
-      width: 100%;
-      margin-top: 0.5rem;
-      border: none;
-      border-bottom: 1px solid var(--color-border-strong);
-      /* Color */
-      background-color: var(--color-bg-accent-light);
-      /* Text */
-      font-size: 1rem;
-    }
   }
 
   .property-resources--guides {

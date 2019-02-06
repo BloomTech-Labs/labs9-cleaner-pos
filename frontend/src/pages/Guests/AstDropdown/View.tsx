@@ -1,6 +1,7 @@
 import React from 'react';
 // Components
 import Snackbar from '../../../components/Snackbar';
+
 // Styled Components
 import { Wrapper } from './Styles';
 // Types
@@ -28,15 +29,15 @@ export const AstDropdownView = (props: {
 
   // Good working code
   return (
-    <Wrapper className='ast-dropdown'>
+    <>
       <Snackbar
         snackbarOpen={props.snackbarOpen}
         snackbarClose={props.snackbarClose}
         message='Assistant successfully updated.'
       />
-      <label>Reassign Assistant</label>
-      <br />
-      <select
+      <Wrapper
+        className='ast-dropdown'
+        label='Reassign Assistant'
         data-testid='assistant-select'
         onChange={(e) => onChangeFunc(e, house.id)}
       >
@@ -52,7 +53,37 @@ export const AstDropdownView = (props: {
             );
           }
         })}
-      </select>
-    </Wrapper>
+      </Wrapper>
+    </>
   );
+
+  // Previous Working
+  // return (
+  //   <Wrapper className='ast-dropdown'>
+  //     <Snackbar
+  //       snackbarOpen={props.snackbarOpen}
+  //       snackbarClose={props.snackbarClose}
+  //       message='Assistant successfully updated.'
+  //     />
+  //     <label>Reassign Assistant</label>
+  //     <br />
+  //     <select
+  //       data-testid='assistant-select'
+  //       onChange={(e) => onChangeFunc(e, house.id)}
+  //     >
+  //       <option defaultValue={house.default_ast_name}>
+  //         {house.default_ast_name}
+  //       </option>
+  //       {house.openAst.map((ast: any) => {
+  //         if (ast.ast_id !== house.default_ast) {
+  //           return (
+  //             <option key={ast.ast_id} value={ast.ast_id}>
+  //               {ast.full_name}
+  //             </option>
+  //           );
+  //         }
+  //       })}
+  //     </select>
+  //   </Wrapper>
+  // );
 };

@@ -28,7 +28,7 @@ This is a Lambda Labs Capstone Project designed for rental property management. 
     * Allow employees to track their progress
     * Allow employees to reassign tasks to other employees
     * Automatically generate guest invoices
-    * Allow property managers to add new properties, assign properties to employees, and create and edit task checklists for employees
+    * Allow property managers to add new properties, assign properties to employees, create and edit task checklists for employees, and bill guests directly
     * Allow guests to view readiness of their assigned rental property and pay their invoice online
 
 ## Tech Stack
@@ -83,7 +83,19 @@ This app uses Firebase to allow users to login using Google, Facebook, Twitter, 
 
 ## Stripe
 
-All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the project. Information about the Stripe API can be found [in their documentation](https://stripe.com/docs/api).
+Our app allows users to bill their guests directly through the site. All payments are processed using Stripe via the react-stripe-elements plugin. Once payment information is submitted, it is converted to a token that can be safely sent to the server. Since our app does not handle sensitive credit card data directly, the financial and legal liability of the project and its users will be limited. Information about the Stripe API can be found [in their documentation](https://stripe.com/docs/api).
+
+## Sendgrid
+
+Our project uses Sendgrid to allow property managers to automatically and effectively communicate with the assistants preparing their properties for new guests. With one click, a manager can send an email to an assistant inviting them to work on a particular property. Because Sendgrid is managing the emails externally, we can keep our app more lean, efficient, and secure. Information about Sendgrid can be found [in their documentation](https://sendgrid.com/docs/API_Reference/api_v3.html).
+
+## Amazon S3
+
+Amazon S3 stores static files for our app. These files include the property photos and assistant checklists that users will upload themselves. Their cloud storage services are secure and reliable, so our users can be assured that their data will be available when and where they need it to be. Amazon S3 is also easily scalable should the app demand higher request rates. For more information, see the [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/#lang/en_us).
+
+## Leaflet Maps
+
+Leaflet Maps is a lightweight API that provides basic map services. The map is rendered with just a few lines of code and a defined height attribute, and other add-on features can be implemented as needed via third-party plugins found in the Leaflet documentation. We use the map to provide a visual reference to the properties being managed by Lodgel, and also to reference the distance between properties and assistant location to better coordinate service efforts for guests. For more information, please see [the Leaflet documentation](https://leafletjs.com/) and [the React-Leaflet documentation](https://react-leaflet.js.org/).
 
 ## Environment Variables
 
