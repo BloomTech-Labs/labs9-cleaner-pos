@@ -50,7 +50,7 @@ describe('future accordion component', () => {
     const basePlan = getByText(/lodgel basic/i);
     const advPlan = getByText(/lodgel professional/i);
     expect(basePlan).toHaveTextContent('Lodgel Basic: FREE*');
-    expect(advPlan).toHaveTextContent('Lodgel Professional: 99$ / Month');
+    expect(advPlan).toHaveTextContent('Lodgel Professional');
   });
 
   test('should render a form component', () => {

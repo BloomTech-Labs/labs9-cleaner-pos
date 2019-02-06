@@ -15,6 +15,12 @@ const SubBox = styled('div')`
     display: none;
     opacity: 0;
   }
+  @media only screen and (max-width: 800px) {
+    flex-direction: column;
+    .root {
+      border: var(--border);
+    }
+  }
 `;
 
 const SVGContainer = styled('div')`

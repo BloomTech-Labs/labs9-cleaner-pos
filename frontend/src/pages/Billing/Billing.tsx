@@ -75,7 +75,7 @@ const Billing = () => {
             >
               <List style={{ padding: '0' }}>
                 <ListSubheader
-                  classes={{}}
+                  classes={{ root: 'list-subheader' }}
                   style={{
                     background: 'var(--color-bg-main)',
                     borderBottom: 'var(--border)',

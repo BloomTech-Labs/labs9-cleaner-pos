@@ -79,7 +79,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         />
         <div className='state p-primary-o'>
           <label htmlFor='plan2' onClick={() => 'hello'}>
-            Lodgel Professional: 99$ / Month
+            Lodgel Professional
           </label>
         </div>
       </div>

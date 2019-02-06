@@ -17,6 +17,8 @@ export const AccordionContainer = styled('dl')`
   border: var(--border);
   margin: 0;
   width: 50%;
-  min-width: 350px;
   height: 100%;
+  @media only screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;
