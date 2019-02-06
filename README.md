@@ -51,7 +51,7 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
     * Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
     * Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
-		* TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
+	* TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
 ### Frontend deployed to Netlify
 
@@ -101,9 +101,9 @@ In order for the app to function correctly, the user must set up their own envir
     * REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
 In your backend, create a .env file that includes the following:
-		* STAGING_DB - optional development db for using functionality not available in SQLite
-		* NODE_ENV - set to "development" until ready for "production"
-		* JWT_SECRET - you can generate this by using a python shell and running import random
+	* STAGING_DB - optional development db for using functionality not available in SQLite
+	*  NODE_ENV - set to "development" until ready for "production"
+	* JWT_SECRET - you can generate this by using a python shell and running import random
 ''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&*(-*=+)') for i in range(50)])
 		* SENDGRID_API_KEY - this is generated in your Sendgrid account
 		* stripe_secret - this is generated in the Stripe dashboard
@@ -124,7 +124,7 @@ Start the development server by running npm dev:server or yarn dev:server.
 
     * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
-   	* start - starts the production server after a build is created
+  * start - starts the production server after a build is created
     * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 ## Contributing
@@ -140,10 +140,10 @@ If you are having an issue with the existing project code, please submit a bug r
 	2. Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
 	3. Create a live example of the problem.
 	4. Submit a detailed bug report including the following information:
-		* your environment & browser
-		* steps to reproduce the issue
-		* actual and expected outcomes
-		* where you believe the issue is originating from and any potential solutions you have considered
+	* your environment & browser
+	* steps to reproduce the issue
+	* actual and expected outcomes
+	* where you believe the issue is originating from and any potential solutions you have considered
 
 ### Feature Requests
 
