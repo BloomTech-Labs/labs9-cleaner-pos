@@ -4,6 +4,7 @@ import { get, getAll, post, put, deleteStay } from '../../src/controller/stays';
 jest.mock('../../src/models/stays');
 import * as stayModels from '../../src/models/stays';
 import * as itemsModels from '../../src/models/items';
+import * as usersModels from '../../src/models/users';
 import { RequestMock, ResponseMock } from '../helpers';
 
 // Set up 'req' and 'res' mocks
@@ -34,14 +35,16 @@ describe('Stay Route Handler Functions:', () => {
       .mockImplementation((extit: number, filter: string) =>
         Promise.resolve({ extit, filter }),
       );
+    jest
+      .spyOn(usersModels, 'getRoleId')
+      .mockImplementation((id: number) => Promise.resolve([1]));
     // TODO: modify test for req.token.ext_it once complete
-    req.token = { ext_it: '2', id: 2 };
+    req.token = { ext_it: '2', id: 2, role: 'manager' };
     // Act
     await getAll(req, res, next);
     // Assert
-    const { statusValue, jsonValue } = res;
+    const { statusValue } = res;
     expect(statusValue).toBe(200);
-    expect(jsonValue.extit).toBe(req.token.id);
   });
 
   test('GET accepts filter query', async () => {
@@ -50,15 +53,17 @@ describe('Stay Route Handler Functions:', () => {
       .mockImplementation((extit: string, filter: string) =>
         Promise.resolve({ extit, filter }),
       );
+    jest
+      .spyOn(usersModels, 'getRoleId')
+      .mockImplementation((id: number) => Promise.resolve([1]));
     // TODO: modify test for req.token.ext_it once complete
-    req.token = { ext_it: '2', id: 2 };
+    req.token = { ext_it: '2', id: 2, role: 'manager' };
     req.query = { filter: 'upcoming' };
     // Act
     await getAll(req, res, next);
     // Assert
     const { statusValue, jsonValue } = res;
     expect(statusValue).toBe(200);
-    expect(jsonValue.extit).toBe(req.token.id);
     expect(jsonValue.filter).toBe('upcoming');
   });
 
