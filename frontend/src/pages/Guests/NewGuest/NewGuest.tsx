@@ -121,11 +121,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
           </label>
           <br />
           {houses ? (
-            <Field
-              name='houseId'
-              component='select'
-              render={DropDown(houses)}
-            />
+            <Field name='houseId' render={DropDown(houses)} />
           ) : (
             <div>Loading</div>
           )}
