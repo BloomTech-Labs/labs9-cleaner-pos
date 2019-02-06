@@ -10,6 +10,10 @@ import { ManagerHouse } from './types';
 const StyledSelect = styled(Select as ComponentClass<any>)`
   width: 100%;
   margin-top: 0.5rem;
+  /* Flex */
+  display: flex;
+  align-items: center;
+
   .select {
     color: var(--color-accent);
   }
@@ -25,13 +29,17 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+`;
 
-  img {
-    width: 1.5rem;
-    height: 1.5rem;
-    object-fit: cover;
-    margin-right: 2rem;
-  }
+const MenuImage = styled.img`
+  width: 10.67rem;
+  height: 6rem;
+  object-fit: cover;
+  margin-right: 2rem;
+`;
+
+const MenuItemStyled = styled(MenuItem as ComponentClass<any>)`
+  margin: 1rem 0;
 `;
 
 const DropDown = (houses: ManagerHouse[]) => ({ field, form }: FieldProps) => {
@@ -42,28 +50,19 @@ const DropDown = (houses: ManagerHouse[]) => ({ field, form }: FieldProps) => {
           <em>Choose a property</em>
         </MenuItem>
         {houses.map((house) => (
-          <MenuItem
+          <MenuItemStyled
             style={{ margin: '1rem 0' }}
             className='menu-item'
             key={house.id}
             value={house.id}
           >
-            <img
-              // Inline styles needed as when the dropbox is open
-              // The img's are in another div, taking it out of reach
-              // of our CSS
-              style={{
-                width: '6rem',
-                height: '3.375rem',
-                objectFit: 'cover',
-                marginRight: '2rem',
-              }}
+            <MenuImage
               className='house-photo'
               src={house.photo_url}
               alt={house.name}
             />
             {house.name}
-          </MenuItem>
+          </MenuItemStyled>
         ))}
       </StyledSelect>
     </Wrapper>

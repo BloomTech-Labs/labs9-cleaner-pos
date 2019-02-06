@@ -13,6 +13,41 @@ export const StyledForm = styled(Form)`
     margin-right: 0.5rem;
   }
 
+  .check-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .check {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      text-align: center;
+      font-weight: bolder;
+    }
+
+    label {
+      margin-top: 0.5rem;
+      color: var(--color-text-accent);
+      font-weight: 500;
+    }
+  }
+
+  .extra-guests {
+    margin: 2rem 0;
+    /* Flex */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    span {
+      margin-right: 1rem;
+    }
+  }
+
   .guest-info--fields {
     margin-bottom: 2rem;
     /* Grid */

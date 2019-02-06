@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Formik, Field } from 'formik';
 // Components
 import Datepicker from 'react-datepicker';
+import DropDown from './Dropdown';
+import Button from '../../../components/Button';
 // Styled Components
 import { FormBlock, StyledForm, StyledTextField } from './styles';
 // Types
@@ -119,55 +121,62 @@ const NewGuestView = (formProps: MyGuestProps) => {
           </label>
           <br />
           {houses ? (
-            <Field name='houseId' component='select' placeholder='Property'>
-              <option value={-1}>Choose a property</option>
-              {houses.map((house) => (
-                <option key={house.id} value={house.id}>
-                  {house.name}
-                </option>
-              ))}
-            </Field>
+            <Field
+              name='houseId'
+              component='select'
+              render={DropDown(houses)}
+            />
           ) : (
             <div>Loading</div>
           )}
           <br />
           <br />
-          {/* TODO: Make it impossible to set Check-In date before today */}
-          <label htmlFor='checkIn'>Check-In Date</label>
-          {/* Resource: https://stackoverflow.com/a/52273407 */}
-          <Datepicker
-            name='checkIn'
-            selected={values.checkIn}
-            onChange={(e) => setFieldValue('checkIn', e)}
-          />
+          <div className='check-group'>
+            {/* TODO: Make it impossible to set Check-In date before today */}
+            <div className='check check-in'>
+              {/* Resource: https://stackoverflow.com/a/52273407 */}
+              <Datepicker
+                name='checkIn'
+                selected={values.checkIn}
+                onChange={(e) => setFieldValue('checkIn', e)}
+              />
+              <label htmlFor='checkIn'>Check-In Date</label>
+            </div>
+            <br />
+            <div className='check check-out'>
+              <Datepicker
+                name='checkOut'
+                selected={values.checkOut}
+                onChange={(e) => setFieldValue('checkOut', e)}
+              />
+              <label htmlFor='checkOut'>Check-Out Date</label>
+            </div>
+          </div>
           <br />
-          <label htmlFor='checkOut'>Check-Out Date</label>
-          <Datepicker
-            name='checkOut'
-            selected={values.checkOut}
-            onChange={(e) => setFieldValue('checkOut', e)}
-          />
-          <br />
-          <br />
-          <Field name='extraGuests' render={labelInputField('Extra Guests')} />
+          <div className='extra-guests'>
+            <span>How many other guests are there?</span>
+            <Field
+              name='extraGuests'
+              render={labelInputField('Extra Guests')}
+            />
+          </div>
         </div>
       </FormBlock>
-      <br />
-      <button
+      <Button
+        className='back'
+        data-testid='button-back'
+        onClick={formProps.goBack}
+      >
+        Go Back ↩
+      </Button>
+      <Button
         className='submit'
         type='submit'
         data-testid='button-submit'
         disabled={isSubmitting || !dirty}
       >
         {isSubmitting ? 'Submitted' : 'Submit'}
-      </button>
-      <button
-        className='back'
-        data-testid='button-back'
-        onClick={formProps.goBack}
-      >
-        Go Back ↩
-      </button>
+      </Button>
       {status && status.msg && (
         <div className='status' data-testid='div-status'>
           {status.msg}
