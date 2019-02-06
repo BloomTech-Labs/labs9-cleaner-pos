@@ -66,7 +66,7 @@ const Sidebar = (props: LinkProps) => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>
-              <Link to='/properties'>Property</Link>
+              <Link to='/properties'>Properties</Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <Link to='/guests'>Guests</Link>
