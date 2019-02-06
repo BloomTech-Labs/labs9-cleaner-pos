@@ -12,6 +12,7 @@ import {
   CTA,
   BigLogo,
   Logo,
+  Icon,
   HeroContainer,
   Description,
   Screenshot,
@@ -44,7 +45,17 @@ const Landing = (props: RouteComponentProps) => {
         <h2>Simplify managing your rental properties.</h2>
       </CTA>
       <HeroContainer>
-        <SectionHeader>Properties</SectionHeader>
+          <DescContainer>
+            <Description>
+              <DescHeader>Welcome to Lodgel</DescHeader>
+              <p>
+                This is just placeholder while I format some stuff.
+              </p>
+            </Description>
+          </DescContainer>
+
+      </HeroContainer>
+      <HeroContainer>
           <DescContainer>
             <Description>
               <DescHeader>Manage your Properties</DescHeader>
@@ -56,10 +67,11 @@ const Landing = (props: RouteComponentProps) => {
               </p>
             </Description>
           </DescContainer>
-        <Screenshot src={house} alt='house' />
+          <Icon className='fas fa-igloo fa-4x'></Icon>
+          <Icon className='fas fa-home fa-4x'></Icon>
+          <Icon className='fas fa-warehouse fa-4x'></Icon>
       </HeroContainer>
       <HeroContainer>
-        <SectionHeader>Guests</SectionHeader>
           <Description>
             <DescHeader>Keep Tabs on you Guests</DescHeader>
               <p>
@@ -69,10 +81,9 @@ const Landing = (props: RouteComponentProps) => {
                 met.
               </p>
           </Description>
-        <Screenshot src={house} alt='house' />
+
       </HeroContainer>
       <HeroContainer>
-        <SectionHeader>Assistants</SectionHeader>
           <Description>
             <DescHeader>Coordinate your Assistants</DescHeader>
               <p>
@@ -83,7 +94,7 @@ const Landing = (props: RouteComponentProps) => {
                 in real time as they complete their tasks.
               </p>
           </Description>
-        <Screenshot src={house} alt='house' />
+
       </HeroContainer>
       <Footer>
         <a href='/'>

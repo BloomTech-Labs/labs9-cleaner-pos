@@ -9,7 +9,7 @@ const Nav = styled('nav')`
   a {
     text-decoration: none;
     font-size: 2.1rem;
-    color: black;
+    color: var(--color-main-dark);
   }
 `;
 
@@ -53,6 +53,7 @@ const CTA = styled('div')`
   align-items: center;
   justify-content: space-between;
   margin: 1.5rem auto;
+  border-bottom: solid 1px var(--color-main-dark);
 `;
 
 const Footer = styled('div')`
@@ -71,7 +72,7 @@ const Footer = styled('div')`
     font-family: 'Roboto';
     font-size: 1.4rem;
     text-decoration: none;
-    color: #3c3c3c;
+    color: var(--color-main-dark);
   }
 `;
 
@@ -85,9 +86,15 @@ const Logo = styled('img')`
   width: 100px;
 `;
 
+const Icon = styled('div')`
+  margin: 0 auto;
+  padding: 1rem;
+`;
+
 const HeroContainer = styled('div')`
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   border: 1px solid var(--color-main-dark);
   margin: 1rem auto;
   width: 100%;
@@ -148,6 +155,7 @@ export {
   CTA,
   BigLogo,
   Logo,
+  Icon,
   HeroContainer,
   Description,
   Screenshot,
