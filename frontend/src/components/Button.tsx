@@ -15,6 +15,7 @@ interface ButtonProps {
   type?: string;
   disabled?: boolean;
   children?: any;
+  tooltip?: string;
 }
 
 const Button = ({
@@ -26,6 +27,7 @@ const Button = ({
   disabled,
   type,
   children,
+  tooltip,
 }: ButtonProps) => {
   const buttonColor = color || 'var(--color-button-background)';
   const StyledButton = styled('button')`
@@ -51,7 +53,7 @@ const Button = ({
   `;
   return (
     <>
-      <Tooltip title='Please add missing options'>
+      <Tooltip title={tooltip || ''}>
         <StyledButton
           className={className}
           onClick={onClick}
