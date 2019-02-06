@@ -7,6 +7,8 @@ import {
   postStayData,
   putStayData,
 } from '../models/stays';
+import { getRoleId } from '../models/users';
+import { findAstMan } from '../models/assistants';
 // Type Definitions
 import { Request, Response, NextFunction } from 'express';
 import { RequestMock, ResponseMock } from '../../__tests__/helpers';
@@ -57,9 +59,19 @@ export async function getAll(
   }
 
   try {
-    const { id } = req.token;
+    const { id, role } = req.token;
     // const stays = await findAllStays(String(extit), filter);
-    const stays = await findAllStays(id, filter);
+    let stays: any;
+    let ids;
+    if (role === 'assistant') {
+      const ast = await getRoleId(id, true);
+      const astMan = await findAstMan(ast.id);
+      ids = astMan;
+    } else {
+      const manager = await getRoleId(req.token.id);
+      ids = [manager.id];
+    }
+    stays = await findAllStays(ids, filter);
     res.status(200).json(stays);
   } catch (e) {
     e.statusCode = e.statusCode || 400;

@@ -69,20 +69,16 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
 }
 
 export async function findAllStays(
-  userId: number,
+  id: number[],
   filter?: 'all' | 'upcoming' | 'incomplete' | 'complete',
 ): Promise<any> {
   const filterValue = filter || 'all';
 
   try {
-    // Find manager id
-    // const { id } = await findUserByExt_it(userExtIt);
-    const { id } = await getRoleId(userId);
-
     // Find all house ids related to properties manager owns
     const houses = await db('house')
       .select('id')
-      .where({ manager: id })
+      .whereIn('house.manager', id)
       .map((val: any) => val.id);
 
     // Find all stays related to all found houses
