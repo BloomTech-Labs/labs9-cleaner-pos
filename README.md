@@ -122,10 +122,10 @@ Start the development server by running npm dev:server or yarn dev:server.
 
 ### Other Scripts
 
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-  * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+* typecheck - runs the TypeScript compiler
+* build - creates a build of the application
+* start - starts the production server after a build is created
+* test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 ## Contributing
 
@@ -140,10 +140,10 @@ If you are having an issue with the existing project code, please submit a bug r
 	2. Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
 	3. Create a live example of the problem.
 	4. Submit a detailed bug report including the following information:
-	* your environment & browser
-	* steps to reproduce the issue
-	* actual and expected outcomes
-	* where you believe the issue is originating from and any potential solutions you have considered
+* your environment & browser
+* steps to reproduce the issue
+* actual and expected outcomes
+* where you believe the issue is originating from and any potential solutions you have considered
 
 ### Feature Requests
 
