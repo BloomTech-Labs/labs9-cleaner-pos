@@ -74,11 +74,11 @@ const HeaderWrapper = styled('div')`
 
   /* Sizing */
   margin-bottom: 2.25rem;
-	.invite-btn {
-		font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
-		font-weight: normal;
-		font-size: ${pxToRem(20)}rem;
-	}
+  .invite-btn {
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: ${pxToRem(20)}rem;
+  }
 
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
@@ -184,14 +184,14 @@ const InfoBox = styled('div')`
 `;
 
 const AssistantHeader = styled('span')`
-	font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
-	font-weight: normal;
-	font-size: ${pxToRem(36)}rem;
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: ${pxToRem(36)}rem;
   top: 0;
   left: 0;
   text-align: left;
   align-items: flex-start;
-  max-width: 18.125rem;
+  /*max-width: 18.125rem;*/
 `;
 
 const AssistantDetailContainer = styled(Container)`

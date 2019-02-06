@@ -13,9 +13,9 @@ const PropContainer = styled('div')`
   justify-content: center;
   align-items: center;
   .new-property__button {
-		font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
-		font-weight: normal;
-		font-size: ${pxToRem(20)}rem;
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: ${pxToRem(20)}rem;
     background: var(--color-accent-alt);
   }
 
@@ -207,8 +207,8 @@ const Assistant = styled(DropDown)`
 `;
 
 const HouseHeader = styled('h2')`
-	font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
-	font-weight: normal;
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  font-weight: normal;
   font-size: ${pxToRem(36)}rem;
   text-align: left;
   max-width: 290px;
