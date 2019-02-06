@@ -67,7 +67,7 @@ const NavBar = styled('nav')`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid var(--color-border-strong);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
   }
@@ -85,9 +85,13 @@ const SettingsWrapper = styled('div')`
   display: flex;
   align-items: center;
   margin-right: 1rem;
+  :last-of-type {
+    margin-right: 0;
+  }
   .signout {
     border: none;
-    background-color: #eeeff5;
+    background-color: #ffffff;
+    width: 40px;
   }
   @media only screen and (min-width: ${bp}) {
     display: flex;
@@ -106,7 +110,10 @@ const StyledLink = styled(NavLink)`
   text-decoration: none;
   padding: 0 4rem;
   @media only screen and (min-width: ${bp}) {
-    padding: 0 1.75rem;
+    :first-of-type {
+      padding-left: 0;
+    }
+    padding: 0 2rem;
     float: left;
     text-decoration: none;
     color: var(--color-text-dark);
