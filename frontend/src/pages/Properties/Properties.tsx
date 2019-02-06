@@ -184,6 +184,7 @@ const Properties = () => {
                       </ButtonContainer>
                       <Assistant
                         label='Default Assistant'
+                        data-testid='assistant-select'
                         onChange={(event) => postAst(event, house.id)}
                       >
                         <option defaultValue={house.default_ast}>

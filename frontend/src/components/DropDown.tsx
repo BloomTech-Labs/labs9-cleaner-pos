@@ -40,22 +40,16 @@ const Wrapper = styled.div`
   }
 `;
 
-const DropDown = ({
-  className,
-  label,
-  value,
-  onChange,
-  children,
-  testId,
-}: {
+const DropDown = (props: {
   className?: string;
   label?: string;
   value?: any;
   onChange: (event: any) => void;
   children: any;
-  testId?: string;
+  'data-testid'?: string;
 }) => {
-  const appliedTestId = testId || 'dropdown';
+  const { className, label, value, onChange, children } = props;
+  const appliedTestId = props['data-testid'] || 'dropdown';
   const appliedValue = value !== undefined ? { value } : {};
 
   return (

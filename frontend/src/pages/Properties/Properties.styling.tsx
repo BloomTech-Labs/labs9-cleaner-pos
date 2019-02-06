@@ -41,7 +41,7 @@ const HouseItem = styled('div')`
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
@@ -94,7 +94,7 @@ const ThumbNail = styled('img')`
   width: 35%;
   height: ${pxToRem(cardHeight - 1)};
   margin-right: 2rem;
-  border-radius: 5px 0 0 5px;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
 
   @media only screen and (max-width: ${bp}) {
     margin: 0;
@@ -166,6 +166,7 @@ const CheckList = styled('div')`
   padding: 0.5rem 1rem;
   text-align: center;
   border: var(--border);
+  border-radius: var(--border-radius);
   font-size: 1.5rem;
   font-weight: bold;
   display: flex;

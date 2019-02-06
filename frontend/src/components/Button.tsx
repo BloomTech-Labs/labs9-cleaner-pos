@@ -38,7 +38,7 @@ const Button = ({
     height: auto;
     padding: 0.5rem 1rem;
     border: 0;
-    border-radius: 0.25rem;
+    border-radius: var(--border-radius);
     /* Text */
     font-weight: normal;
     font-size: 1rem;
