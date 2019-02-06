@@ -61,7 +61,7 @@ code {
 }
 
 h1 {
-  margin: 0 0 1rem 0;
+  margin: 2rem 0 1rem 0;
   /* Text */
   font-size: var(--header-font-size-primary);
   font-family: 'Roboto Medium', Arial, sans-serif;

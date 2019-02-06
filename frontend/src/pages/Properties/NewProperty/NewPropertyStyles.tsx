@@ -8,6 +8,7 @@ import { ComponentClass } from 'react';
 
 export const NewPropertyStyled = styled(Form)`
   /* Box Model & Sizing */
+  max-width: 1000px;
   margin: auto;
   /* Text */
   text-align: left;
