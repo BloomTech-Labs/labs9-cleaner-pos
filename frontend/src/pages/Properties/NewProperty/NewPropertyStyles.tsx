@@ -30,9 +30,9 @@ export const NewPropertyStyled = styled(Form)`
   }
 
   .image-preview img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+    max-width: 20rem;
+    max-height: 20rem;
+    /* object-fit: cover; */
     margin-bottom: 1.5rem;
   }
 
