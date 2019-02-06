@@ -321,7 +321,7 @@ const AsstProperty = styled('div')`
   flex-direction: column;
 
   .deleteButton {
-    background-color: red;
+    background-color: var(--color-error);
   }
 `;
 
