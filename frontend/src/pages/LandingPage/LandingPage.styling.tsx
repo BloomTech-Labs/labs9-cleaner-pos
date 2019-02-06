@@ -89,8 +89,12 @@ const HeroContainer = styled('div')`
   display: flex;
   justify-content: space-evenly;
   border: 1px solid black;
+  margin: 1rem auto;
   width: 100%;
   background-color: white;
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const Description = styled('div')`
@@ -99,6 +103,9 @@ const Description = styled('div')`
   text-align: left;
   margin-left: 1rem;
   padding: 1rem;
+  p {
+    font-family: Roboto;
+  }
 `;
 
 const Screenshot = styled('img')`
