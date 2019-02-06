@@ -51,8 +51,7 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
     * Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
     * Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
-
-- TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
+		* TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
 ### Frontend deployed to Netlify
 
@@ -103,7 +102,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 In your backend, create a .env file that includes the following:
 		* STAGING_DB - optional development db for using functionality not available in SQLite
-		* NODE*ENV - set to "development" until ready for "production"
+		* NODE_ENV - set to "development" until ready for "production"
 		* JWT_SECRET - you can generate this by using a python shell and running import random
 ''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&*(-*=+)') for i in range(50)])
 		* SENDGRID_API_KEY - this is generated in your Sendgrid account
@@ -137,10 +136,10 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 ### Issue/Bug Request
 
 If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
-	* Check first to see if your issue has already been reported.
-	* Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
-	* Create a live example of the problem.
-	* Submit a detailed bug report including the following information:
+	1. Check first to see if your issue has already been reported.
+	2. Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+	3. Create a live example of the problem.
+	4. Submit a detailed bug report including the following information:
 		* your environment & browser
 		* steps to reproduce the issue
 		* actual and expected outcomes
