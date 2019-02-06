@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Formik, Field } from 'formik';
 // Components
-import { TextField } from '@material-ui/core';
 import Datepicker from 'react-datepicker';
+import DropDown from './Dropdown';
+import Button from '../../../components/Button';
 // Styled Components
-import { StyledForm, StyledTextField } from './styles';
+import { FormBlock, StyledForm, StyledTextField } from './styles';
 // Types
 import {
   ManagerHouse,
@@ -54,115 +55,126 @@ const NewGuestView = (formProps: MyGuestProps) => {
   } = formProps;
   return (
     <StyledForm>
-      <h2 className='title'>New Reservation</h2>
+      <h1 className='title'>New Reservation</h1>
       <br />
-      <h3>Guest Information</h3>
-      <div className='guest-info--fields'>
-        <Field
-          name='fullName'
-          value={values.fullName}
-          autoComplete='billing name'
-          render={labelInputField('Name')}
-        />
+      <FormBlock>
+        <h2>Guest Information</h2>
+        <div className='guest-info--fields'>
+          <Field
+            name='fullName'
+            value={values.fullName}
+            autoComplete='billing name'
+            render={labelInputField('Name')}
+          />
 
-        <Field
-          name='email'
-          value={values.email}
-          autoComplete='billing email'
-          render={labelInputField('Email')}
-        />
+          <Field
+            name='email'
+            value={values.email}
+            autoComplete='billing email'
+            render={labelInputField('Email')}
+          />
 
-        <Field
-          name='phone'
-          autoComplete='billing phone'
-          render={labelInputField('Phone Number')}
-        />
+          <Field
+            name='phone'
+            autoComplete='billing phone'
+            render={labelInputField('Phone Number')}
+          />
 
-        <Field
-          name='address1'
-          autoComplete='billing street-address'
-          render={labelInputField('Address')}
-        />
+          <Field
+            name='address1'
+            autoComplete='billing street-address'
+            render={labelInputField('Address')}
+          />
 
-        <Field name='address2' render={labelInputField('Address (cont.)')} />
+          <Field
+            name='address2'
+            render={labelInputField('Address (continued)')}
+          />
 
-        <Field
-          name='city'
-          autoComplete='billing address-level2'
-          render={labelInputField('City')}
-        />
+          <Field
+            name='city'
+            autoComplete='billing address-level2'
+            render={labelInputField('City')}
+          />
 
-        <Field
-          name='state'
-          autoComplete='billing address-level1'
-          render={labelInputField('State · Province · Region')}
-        />
+          <Field
+            name='state'
+            autoComplete='billing address-level1'
+            render={labelInputField('State · Province · Region')}
+          />
 
-        <Field
-          name='country'
-          autoComplete='billing country-name'
-          render={labelInputField('Country')}
-        />
+          <Field
+            name='country'
+            autoComplete='billing country-name'
+            render={labelInputField('Country')}
+          />
 
-        <Field name='postCode' render={labelInputField('Post Code')} />
+          <Field name='postCode' render={labelInputField('Post Code')} />
+        </div>
+      </FormBlock>
+      <FormBlock>
+        <h2>Reservation Information</h2>
+        <div className='guest-stay--fields'>
+          {/* TODO: Implement auto-complete search bar */}
+          <label htmlFor='houseId'>
+            Which property will the guest be staying at?
+          </label>
+          <br />
+          {houses ? (
+            <Field name='houseId' render={DropDown(houses)} />
+          ) : (
+            <div>Loading</div>
+          )}
+          <br />
+          <br />
+          <div className='check-group'>
+            {/* TODO: Make it impossible to set Check-In date before today */}
+            <div className='check check-in'>
+              {/* Resource: https://stackoverflow.com/a/52273407 */}
+              <Datepicker
+                name='checkIn'
+                selected={values.checkIn}
+                onChange={(e) => setFieldValue('checkIn', e)}
+              />
+              <label htmlFor='checkIn'>Check-In Date</label>
+            </div>
+            <br />
+            <div className='check check-out'>
+              <Datepicker
+                name='checkOut'
+                selected={values.checkOut}
+                onChange={(e) => setFieldValue('checkOut', e)}
+              />
+              <label htmlFor='checkOut'>Check-Out Date</label>
+            </div>
+          </div>
+          <br />
+          <div className='extra-guests'>
+            <span>How many other guests are there?</span>
+            <Field
+              name='extraGuests'
+              render={labelInputField('Extra Guests')}
+            />
+          </div>
+        </div>
+      </FormBlock>
+      <div className='primary-buttons'>
+        <Button
+          className='back'
+          data-testid='button-back'
+          onClick={formProps.goBack}
+        >
+          Go Back ↩
+        </Button>
+        <Button
+          className='submit'
+          type='submit'
+          data-testid='button-submit'
+          disabled={isSubmitting || !dirty}
+        >
+          {isSubmitting ? 'Submitted' : 'Submit'}
+        </Button>
       </div>
-
-      <h3>Reservation Information</h3>
-      <div className='guest-stay--fields'>
-        {/* TODO: Implement auto-complete search bar */}
-        <label htmlFor='houseId'>
-          Which property will the guest be staying at?
-        </label>
-        <br />
-        {houses ? (
-          <Field name='houseId' component='select' placeholder='Property'>
-            <option value={-1}>Choose a property</option>
-            {houses.map((house) => (
-              <option key={house.id} value={house.id}>
-                {house.name}
-              </option>
-            ))}
-          </Field>
-        ) : (
-          <div>Loading</div>
-        )}
-        <br />
-        <br />
-        {/* TODO: Make it impossible to set Check-In date before today */}
-        <label htmlFor='checkIn'>Check-In Date</label>
-        {/* Resource: https://stackoverflow.com/a/52273407 */}
-        <Datepicker
-          name='checkIn'
-          selected={values.checkIn}
-          onChange={(e) => setFieldValue('checkIn', e)}
-        />
-        <br />
-        <label htmlFor='checkOut'>Check-Out Date</label>
-        <Datepicker
-          name='checkOut'
-          selected={values.checkOut}
-          onChange={(e) => setFieldValue('checkOut', e)}
-        />
-        <br />
-        <br />
-        <Field name='extraGuests' render={labelInputField('Extra Guests')} />
-      </div>
-      <br />
-      <button
-        className='submit'
-        type='submit'
-        data-testid='button-submit'
-        disabled={isSubmitting || !dirty}
-      >
-        {isSubmitting ? 'Submitted' : 'Submit'}
-      </button>
-      <button
-        className='back'
-        data-testid='button-back'
-        onClick={formProps.goBack}
-      >
-        Go Back ↩
-      </button>
       {status && status.msg && (
         <div className='status' data-testid='div-status'>
           {status.msg}

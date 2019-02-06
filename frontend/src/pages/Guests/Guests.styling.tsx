@@ -14,10 +14,8 @@ const pxToRem = (px: number) => px / 16;
 export const GuestsDiv = styled(Container)`
   .guests-header {
     /* Sizing & Box Model */
-    height: ${pxToRem(48)}rem;
+    /* height: ${pxToRem(48)}rem; */
     width: 100%;
-    margin: ${pxToRem(36)}rem 0;
-
     /* Flexbox */
     display: flex;
     justify-content: space-between;
