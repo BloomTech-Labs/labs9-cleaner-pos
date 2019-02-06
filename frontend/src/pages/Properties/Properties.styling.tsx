@@ -197,7 +197,7 @@ const Assistant = styled(DropDown)`
 
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};
-    padding: 20px 0 20px 0;
+    padding: 1.25rem;
     grid-row: 1;
     grid-column: 2;
   }
