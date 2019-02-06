@@ -59,7 +59,7 @@ const Footer = styled('div')`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 2px solid #393534;
+  border-top: 2px solid var(--color-main-dark);
   padding: .5rem 0;
   /* position: fixed; */
   margin: 0 auto;
@@ -88,10 +88,10 @@ const Logo = styled('img')`
 const HeroContainer = styled('div')`
   display: flex;
   justify-content: space-evenly;
-  border: 1px solid black;
+  border: 1px solid var(--color-main-dark);
   margin: 1rem auto;
   width: 100%;
-  background-color: white;
+  background-color: var(--color-main-light);
   @media only screen and (max-width: 700px) {
     flex-direction: column;
   }
@@ -106,6 +106,9 @@ const Description = styled('div')`
   p {
     font-family: Roboto;
   }
+  @media only screen and (max-width: 700px) {
+    padding: .5rem;
+  }
 `;
 
 const Screenshot = styled('img')`
@@ -114,14 +117,22 @@ const Screenshot = styled('img')`
 `;
 
 const SectionHeader = styled('div')`
-  color: #4593B6;
+  color: var(--color-accent);
   font-size: 1.25rem;
   padding: 1rem;
+  @media only screen and (max-width: 700px) {
+    font-size: 1.5rem;
+    color: var(--color-main-dark);
+    padding-top: 1rem;
+  }
 `;
 
 const DescHeader = styled('div')`
-  color: #4593B6;
+  color: var(--color-accent);
   font-size: 1.25rem;
+  @media only screen and (max-width: 700px) {
+    border-bottom: 1px solid var(--color-main-dark);
+  }
 `;
 
 const DescContainer = styled('div')`
