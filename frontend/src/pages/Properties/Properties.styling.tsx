@@ -23,7 +23,7 @@ const PropContainer = styled('div')`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   @media only screen and (max-width: ${bp}) {

@@ -27,6 +27,7 @@
     "firebase": "^5.7.2",
     "formik": "^1.4.2",
     "jest-dom": "^3.0.0",
+    "jss": "^9.8.7",
     "leaflet": "^1.4.0",
     "query-string": "^6.2.0",
     "react": "16.8",
