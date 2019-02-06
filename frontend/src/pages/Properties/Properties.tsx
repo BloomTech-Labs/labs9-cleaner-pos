@@ -110,7 +110,7 @@ const Properties = () => {
                 : null
             }
           >
-            <Button text='New Property' className='new-property__button' />
+            <Button text='+ New Property' className='new-property__button' />
           </Link>
         </div>
         {loading ? (
