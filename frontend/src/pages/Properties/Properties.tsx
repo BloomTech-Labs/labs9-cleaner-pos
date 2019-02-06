@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { Button, Container } from '../../components/index';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 // Styled Components
 import {
   PropContainer,
@@ -180,24 +183,31 @@ const Properties = () => {
                         </Link>
                       </ButtonContainer>
                       <Assistant>
-                        <label>Default Assistant</label>
-                        <select
+                        <InputLabel htmlFor='ast-dropdown'>
+                          Default Assistant
+                        </InputLabel>
+                        {/* <select
                           data-testid='assistant-select'
                           onChange={(event) => postAst(event, house.id)}
+                        > */}
+                        <NativeSelect
+                          inputProps={{
+                            'data-testid': 'assistant-select',
+                            id: 'ast-dropdown',
+                          }}
+                          onChange={(event) => postAst(event, house.id)}
+                          value={house.default_ast}
                         >
-                          <option defaultValue={house.default_ast}>
-                            {house.default_ast_name}
-                          </option>
                           {house.openAst.map((ast: any) => {
-                            if (ast.ast_id !== house.default_ast) {
-                              return (
-                                <option key={ast.ast_id} value={ast.ast_id}>
-                                  {ast.full_name}
-                                </option>
-                              );
-                            }
+                            return (
+                              <option key={ast.ast_id} value={ast.ast_id}>
+                                {ast.full_name}
+                              </option>
+                            );
                           })}
-                        </select>
+                        </NativeSelect>
+
+                        {/* </select> */}
                       </Assistant>
                     </CardBody>
                   </CardContent>
