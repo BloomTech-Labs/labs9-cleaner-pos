@@ -78,15 +78,11 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 ## Firebase
 
-This app uses Firebase to allow users to login using Google, Facebook, Twitter, Github, email, and phone. This is a feature that many users demand as they might not wish to have a separate login for every website. We use Firebase in conjunction with JSON web tokens (JWT) to authenticate users and ensure that all information in the app is handled securely.
-
-## Sendgrid
-
-We have designed this app to use Sendgrid for managing email campaigns. This relieves us of the responsibility of handling email addresses and campaigns through the app. This keeps the project slim while still allowing room for further development.
+This app uses Firebase to allow users to login using Google, Facebook, Twitter, Github, email, and phone. This is a feature that many users demand as they might not wish to have a separate login for every website. We use Firebase in conjunction with JSON web tokens (JWT) to authenticate users and ensure that all information in the app is handled securely. Information about the Firebase API can be found [in their documentation](https://firebase.google.com/docs/reference/)
 
 ## Stripe
 
-All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the project.
+All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the project. Information about the Stripe API can be found [in their documentation](https://stripe.com/docs/api).
 
 ## Environment Variables
 
@@ -110,10 +106,6 @@ In your backend, create a .env file that includes the following:
 ''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50)])
 	* SENDGRID_API_KEY - this is generated in your Sendgrid account
 	* stripe_secret - this is generated in the Stripe dashboard
-
-## Authentication
-
-This app uses Firebase to allow users to login with Google, Facebook, Twitter, Github, email, or phone.Uusers are authenticated using JSON web tokens (JWT).
 
 ## Testing
 
