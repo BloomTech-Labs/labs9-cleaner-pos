@@ -42,8 +42,6 @@ const Sidebar = (props: LinkProps) => {
     props.history.push('/');
   };
 
-  const user = useContext(UserContext);
-
   return (
     <Container {...props}>
       <div className='menu'>
@@ -91,17 +89,45 @@ const Sidebar = (props: LinkProps) => {
             </div> */}
             <div>
               <StyledLink to='/properties'>
-                <h4>Properties</h4>
+                <h4
+                  style={{
+                    borderBottom: props.location.pathname.match(
+                      '/properties/*.*?',
+                    )
+                      ? '2px solid var(--color-accent-alt)'
+                      : '0',
+                  }}
+                >
+                  Properties
+                </h4>
               </StyledLink>
             </div>
             <div>
               <StyledLink to='/guests'>
-                <h4>Guests</h4>
+                <h4
+                  style={{
+                    borderBottom: props.location.pathname.match('/guests/*.*?')
+                      ? '2px solid var(--color-accent-alt)'
+                      : '0',
+                  }}
+                >
+                  Guests
+                </h4>
               </StyledLink>
             </div>
             <div>
               <StyledLink to='/assistants'>
-                <h4>Assistants</h4>
+                <h4
+                  style={{
+                    borderBottom: props.location.pathname.match(
+                      '/assistants/*.*?',
+                    )
+                      ? '2px solid var(--color-accent-alt)'
+                      : '0',
+                  }}
+                >
+                  Assistants
+                </h4>
               </StyledLink>
             </div>
           </StyledUL>
