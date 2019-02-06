@@ -16,7 +16,7 @@ import {
   StyledUL,
   StyledLink,
 } from './Sidebar.styling';
-import { ContentTextFormat } from 'material-ui/svg-icons';
+import logo from '../../assets/lodgel.jpg';
 
 interface LinkProps extends RouteComponentProps {
   onClick?: () => MouseEvent;
@@ -87,6 +87,15 @@ const Sidebar = (props: LinkProps) => {
                 <h4>Reports</h4>
               </StyledLink>
             </div> */}
+            <div>
+              <StyledLink to='/'>
+                <img
+                  style={{ height: '100px', width: '100px' }}
+                  src={logo}
+                  alt='Lodgel logo'
+                />
+              </StyledLink>
+            </div>
             <div>
               <StyledLink to='/properties'>
                 <h4
