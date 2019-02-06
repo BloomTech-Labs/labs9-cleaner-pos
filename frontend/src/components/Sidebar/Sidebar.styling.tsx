@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
 
-const bp = '700px';
+const bp = '780px';
 
 const conditionallyHideSidebar = (property: string) => (
   props: RouteComponentProps,
@@ -48,13 +48,12 @@ const Container = styled('div')`
 
   .menu {
     height: 100%;
-    margin-top: 2rem;
     width: 100%;
     display: ${conditionallyHideSidebar('flex')};
     justify-content: space-between;
     align-items: baseline;
-    margin: 2rem 0;
-    padding-bottom: 1rem;
+    margin: 0 0;
+    padding: 1rem 0;
     border-bottom: var(--border);
   }
 
@@ -74,9 +73,7 @@ const NavBar = styled('nav')`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid var(--color-border-strong);
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
+    /* padding-bottom: 0.75rem; */
   }
 `;
 
@@ -100,7 +97,7 @@ const SettingsWrapper = styled('div')`
   }
   .signout {
     border: none;
-    background-color: #ffffff;
+    background-color: #fff;
     width: 40px;
     padding: 0;
     font-size: 1.35rem;
@@ -137,6 +134,9 @@ const StyledLink = styled(NavLink)`
       font-weight: condensed;
       font-size: 24px;
     }
+  }
+  @media only screen and (min-width: 700) {
+    padding: 0 2rem;
   }
 `;
 
