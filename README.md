@@ -4,11 +4,11 @@
 
 ### Contributors:
 
-|   [Kelly Frohwein](https://github.com/kelfro)  |   [Chris Honda](https://github.com/honda0306)   |    [Ronald Libago](https://github.com/Mister-Corn)    |   [Nando Theessen](https://github.com/NandoTheessen)  |   [William VanDolah](https://github.com/wvandolah)  |
-|:----------------:|:----------------:|:---------------:|:---------------:|:---------------:| 
-| [<img src="./assets/kelly.jpg" width = "200" />](https://github.com/kelfro) | [<img src="./assets/honda.jpg" width = "170" />](https://github.com/honda0306)  | [<img src="https://avatars1.githubusercontent.com/u/36778342" width = "250" />](https://github.com/Mister-Corn) | [<img src="https://avatars1.githubusercontent.com/u/37676385" width = "250" />](https://github.com/NandoTheessen) | [<img src="./assets/william.jpg" width = "250" />](https://github.com/wvandolah) 
-| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kelfro)  |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)  | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)  
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kelly-frohwein-30404116a/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ichirohonda/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ronald-libago-96487815b/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nandotheessen/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-vandolah-89717477/) | 
+|                                                [Kelly Frohwein](https://github.com/kelfro)                                                |                                         [Chris Honda](https://github.com/honda0306)                                          |                                             [Ronald Libago](https://github.com/Mister-Corn)                                              |                                       [Nando Theessen](https://github.com/NandoTheessen)                                       |                                              [William VanDolah](https://github.com/wvandolah)                                              |
+| :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                                [<img src="./assets/kelly.jpg" width = "200" />](https://github.com/kelfro)                                |                        [<img src="./assets/honda.jpg" width = "170" />](https://github.com/honda0306)                        |             [<img src="https://avatars1.githubusercontent.com/u/36778342" width = "250" />](https://github.com/Mister-Corn)              |       [<img src="https://avatars1.githubusercontent.com/u/37676385" width = "250" />](https://github.com/NandoTheessen)        |                              [<img src="./assets/william.jpg" width = "250" />](https://github.com/wvandolah)                              |
+|                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kelfro)                            |                    [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                    |                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                         |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                   |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                           |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kelly-frohwein-30404116a/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ichirohonda/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ronald-libago-96487815b/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nandotheessen/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/william-vandolah-89717477/) |
 
 <br>
 <br>
@@ -20,27 +20,28 @@
 
 ## Project Overview
 
-This is a Lambda Labs Capstone Project designed for rental property management. It consolidates key tasks like invoicing and employee management into one central location.  
+This is a Lambda Labs Capstone Project designed for rental property management. It consolidates key tasks like invoicing and employee management into one central location.
 
 ### Key Features
 
-	* Manage multiple properties and multiple employees
-	* Allow employees to track their progress
-	* Allow employees to reassign tasks to other employees
-	* Automatically generate guest invoices
-	* Allow property managers to add new properties, assign properties to employees, and create and edit task checklists for employees
-	* Allow guests to view readiness of their assigned rental property and pay their invoice online
+    * Manage multiple properties and multiple employees
+    * Allow employees to track their progress
+    * Allow employees to reassign tasks to other employees
+    * Automatically generate guest invoices
+    * Allow property managers to add new properties, assign properties to employees, and create and edit task checklists for employees
+    * Allow guests to view readiness of their assigned rental property and pay their invoice online
 
 ## Tech Stack
 
 ### Frontend built using:
+
 #### React
 
 With its vast eco-system and modular nature React is a great choice for developing the front-end of our project.
 
-	* The associated documentation, community and 3rd party packages are excellent
-	* It allows for reusability of already written components which reduces development time
-	* It is a tried and tested framework that will help us avoid sudden shifts in the technology causing major refactors
+    * The associated documentation, community and 3rd party packages are excellent
+    * It allows for reusability of already written components which reduces development time
+    * It is a tried and tested framework that will help us avoid sudden shifts in the technology causing major refactors
 
 #### React Hooks
 
@@ -48,9 +49,10 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 #### Typescript
 
-	* Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
-	* Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
-  * TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
+    * Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
+    * Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
+
+- TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
 ### Frontend deployed to Netlify
 
@@ -58,17 +60,17 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
 #### Node.js, Express.js
 
-	* Node.js offers a single free codebase that is fast, easy to learn, and offers multiple modules. Collaborators can quickly get up to speed and easily modify and maintain the code for longterm stability.
-	* Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
-	* There is very detailed documentation available for each.
-	* There also widespread community support for Node and Express.
+    * Node.js offers a single free codebase that is fast, easy to learn, and offers multiple modules. Collaborators can quickly get up to speed and easily modify and maintain the code for longterm stability.
+    * Express.js allows us to code and customize the back-end to our liking, and gives us more control on what and how the back-end handles requests.
+    * There is very detailed documentation available for each.
+    * There also widespread community support for Node and Express.
 
-#### PostgreSQL 
+#### PostgreSQL
 
-	* Saves the necessary data in an efficient way
-	* Allows for easy queries through JOIN support
-	* Allows for very easy deployment
-	* Has a great community around it and is future proof / very independent of new trends
+    * Saves the necessary data in an efficient way
+    * Allows for easy queries through JOIN support
+    * Allows for very easy deployment
+    * Has a great community around it and is future proof / very independent of new trends
 
 #### Data Model
 
@@ -88,24 +90,24 @@ All user payments are processed using Stripe via the react-stripe-elements plugi
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file in the frontend folder containing the following:
 
-	* REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-	* REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-	* REACT_APP_databaseURL - in the Firebase dashboard
-	* REACT_APP_projectID - in the Firebase dashboard
-	* REACT_APP_storageBucket - in the Firebase dashboard
-	* REACT_APP_messagingSenderId - in the Firebase dashboard
-	* REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-	* REACT_APP_backendURL - optional for your local development server
-	* REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-	* REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+    * REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
+    * REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
+    * REACT_APP_databaseURL - in the Firebase dashboard
+    * REACT_APP_projectID - in the Firebase dashboard
+    * REACT_APP_storageBucket - in the Firebase dashboard
+    * REACT_APP_messagingSenderId - in the Firebase dashboard
+    * REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
+    * REACT_APP_backendURL - optional for your local development server
+    * REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
+    * REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
 In your backend, create a .env file that includes the following:
-	* STAGING_DB - optional development db for using functionality not available in SQLite
-	* NODE_ENV - set to "development" until ready for "production"
-	* JWT_SECRET - you can generate this by using a python shell and running import random
-''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50)])
-	* SENDGRID_API_KEY - this is generated in your Sendgrid account
-	* stripe_secret - this is generated in the Stripe dashboard
+		* STAGING_DB - optional development db for using functionality not available in SQLite
+		* NODE*ENV - set to "development" until ready for "production"
+		* JWT_SECRET - you can generate this by using a python shell and running import random
+''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&*(-*=+)') for i in range(50)])
+		* SENDGRID_API_KEY - this is generated in your Sendgrid account
+		* stripe_secret - this is generated in the Stripe dashboard
 
 ## Testing
 
@@ -121,11 +123,10 @@ Start the development server by running npm dev:server or yarn dev:server.
 
 ### Other Scripts
 
-	* typecheck - runs the TypeScript compiler
-	* build - creates a build of the application
- 	* start - starts the production server after a build is created
-	* test - runs tests in __tests__ directory
-	* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * typecheck - runs the TypeScript compiler
+    * build - creates a build of the application
+   	* start - starts the production server after a build is created
+    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 ## Contributing
 
@@ -143,7 +144,7 @@ If you are having an issue with the existing project code, please submit a bug r
 		* your environment & browser
 		* steps to reproduce the issue
 		* actual and expected outcomes
-		* Where you believe the issue is originating from and any potential solutions you have considered
+		* where you believe the issue is originating from and any potential solutions you have considered
 
 ### Feature Requests
 
@@ -153,22 +154,20 @@ We would love to hear from you about new features which would improve this app a
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
 
-Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too. 
+Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too.
 
 #### Pull Request Guidelines
 
-	* Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-	* Update the README.md with details of changes to the interface, including new environment variables, exposed ports, useful file locations and container parameters.
-	* Ensure that your code conforms to our existing code conventions and test coverage.
-	* Include the relevant issue number, if applicable.
-	* You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
- 
+    * Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+    * Update the README.md with details of changes to the interface, including new environment variables, exposed ports, useful file locations and container parameters.
+    * Ensure that your code conforms to our existing code conventions and test coverage.
+    * Include the relevant issue number, if applicable.
+    * You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
+
 ### Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
-		
 
 ## Documentation
-	
-See [Backend Documentation](https://cleaner-pos.herokuapp.com/) for details on the backend of our project.
 
+See [Backend Documentation](https://cleaner-pos.herokuapp.com/) for details on the backend of our project.
