@@ -194,33 +194,6 @@ const CheckList = styled('div')`
 const Assistant = styled(DropDown)`
   width: ${pxToRem(184)};
   margin-right: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: var(--border);
-  padding: 1rem;
-  /* Color */
-  background-color: var(--color-accent-light);
-  /* Text */
-  font-weight: bolder;
-
-  label {
-    /* Color */
-    color: var(--color-text-accent);
-    /* Text */
-    font-size: 1rem;
-  }
-
-  select {
-    width: 100%;
-    margin-top: 0.5rem;
-    border: none;
-    border-bottom: 1px solid var(--color-border-strong);
-    /* Color */
-    background-color: var(--color-bg-accent-light);
-    /* Text */
-    font-size: 1rem;
-  }
 
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};

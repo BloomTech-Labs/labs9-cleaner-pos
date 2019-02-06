@@ -19,9 +19,12 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-// const StyledNativeSelect = styled(NativeSelect as ComponentClass<any>)``;
+const StyledNativeSelect = styled(NativeSelect as ComponentClass<any>)`
+  /* width: 100%; */
+`;
 
 const Wrapper = styled.div`
+  width: 100%;
   border: var(--border);
   padding: 1rem;
   border-radius: 5px;
@@ -56,14 +59,14 @@ const DropDown = (props: {
     <MuiThemeProvider theme={theme}>
       <Wrapper className={className}>
         {label ? <InputLabel htmlFor='dropdown'>{label}</InputLabel> : null}
-        <NativeSelect
+        <StyledNativeSelect
           // tslint:disable-next-line
           inputProps={{ 'data-testid': appliedTestId, id: 'dropdown' }}
           onChange={onChange}
           {...appliedValue}
         >
           {children}
-        </NativeSelect>
+        </StyledNativeSelect>
       </Wrapper>
     </MuiThemeProvider>
   );

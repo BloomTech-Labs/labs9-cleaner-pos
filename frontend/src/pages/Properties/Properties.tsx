@@ -180,7 +180,7 @@ const Properties = () => {
                         >
                           <Button
                             className='property-button'
-                            text='Edit Properties'
+                            text='Edit Property'
                             datatestid='house-button'
                           />
                         </Link>
