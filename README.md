@@ -139,11 +139,7 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 	* Check first to see if your issue has already been reported.
 	* Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
 	* Create a live example of the problem.
-	* Submit a detailed bug report including the following information:
-> your environment & browser
-> steps to reproduce the issue
-> actual and expected outcomes
-> where you believe the issue is originating from and any potential solutions you have considered
+	* Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
