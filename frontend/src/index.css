@@ -2,14 +2,14 @@
   /* General Colors */
   /* --- Original Colors */
   --color-main-dark: #393534;
-  --color-main-medium: #ffffff;
+  --color-main-medium: #e4e4e4;
   --color-main-light: #ffffff;
-  --color-accent: #2563f5;
+  --color-accent: #428acb;
   --color-accent-light: #ffffff;
   --color-accent-dark: rgba(57, 53, 52, 1);
-  --color-accent-alt: #874ce0;
+  --color-accent-alt: #74bef9;
   --color-border: rgba(57, 53, 52, 0.125);
-  --color-border-strong: rgba(132, 132, 132, 1);
+  --color-border-strong: rgba(132, 132, 132, 0.5);
   --color-error: #ee788c;
   /* Background Colors */
   --color-bg-main: var(--color-main-medium);
@@ -41,7 +41,6 @@
 }
 
 body {
-  max-width: 1000px;
   width: 100%;
   margin: auto;
   padding: 0;
