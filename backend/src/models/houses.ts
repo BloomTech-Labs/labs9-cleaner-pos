@@ -2,8 +2,8 @@ import { QueryBuilder } from 'knex';
 import db from '../../data/dbConfig';
 import { House } from '../interface';
 
-export const findHouses = (manager: number[]) => {
-  return db('house')
+export const findHouses = (manager: number[], astId?: number) => {
+  const query: QueryBuilder = db('house')
     .leftJoin('assistant', { 'house.default_ast': 'assistant.id' })
     .leftJoin('user', { 'assistant.user_id': 'user.id' })
     .select(
@@ -16,24 +16,31 @@ export const findHouses = (manager: number[]) => {
       'house.guest_guide',
       'house.ast_guide',
       'house.photo_url',
+      'house.price',
+      'house.cleaning_fee',
+      'house.extra_guest_fee',
     )
-    .whereIn('house.manager', manager)
-    .map(async (e: any) => {
-      const openAst = await db('house_ast')
-        .where({ 'house_ast.house_id': e.id })
-        .leftJoin('assistant', { 'house_ast.ast_id': 'assistant.id' })
-        .leftJoin('user', { 'assistant.user_id': 'user.id' })
-        .select(
-          'user.full_name',
-          'assistant.id as ast_id',
-          'house_ast.house_id',
-        );
-      const checkList = await db('list')
-        .where({ 'list.house_id': e.id })
-        .leftJoin('items', { 'list.id': 'items.list_id' })
-        .count('items.task');
-      return { ...e, openAst, checkList };
-    });
+    .whereIn('house.manager', manager);
+  // if getting houses for an ast, we want to only show houses
+  // where the ast is linked on house_ast table
+  if (astId) {
+    query
+      .leftJoin('house_ast', { 'house.id': 'house_ast.house_id' })
+      .where({ 'house_ast.ast_id': astId });
+  }
+
+  return query.map(async (e: any) => {
+    const openAst = await db('house_ast')
+      .where({ 'house_ast.house_id': e.id })
+      .leftJoin('assistant', { 'house_ast.ast_id': 'assistant.id' })
+      .leftJoin('user', { 'assistant.user_id': 'user.id' })
+      .select('user.full_name', 'assistant.id as ast_id', 'house_ast.house_id');
+    const checkList = await db('list')
+      .where({ 'list.house_id': e.id })
+      .leftJoin('items', { 'list.id': 'items.list_id' })
+      .count('items.task');
+    return { ...e, openAst, checkList };
+  });
 };
 
 // TODO: Combine with original findHouses by gating where clause
@@ -52,6 +59,9 @@ export const findAllHousesByAstId = (astId: number) => {
       'house.manager',
       'house.guest_guide',
       'house.ast_guide',
+      'house.price',
+      'house.cleaning_fee',
+      'house.extra_guest_fee',
     )
     .map(async (e: any) => {
       const openAst = await db('house_ast')

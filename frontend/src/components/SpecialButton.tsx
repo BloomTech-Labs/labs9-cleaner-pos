@@ -32,8 +32,8 @@ const SpecialButton = ({
       border: var(--border);
       width: 125px;
       height: 40px;
-      color: black;
-      background-color: white;
+      color: ${buttonColor || '#000000'};
+      background-color: #ffffff;
       font-size: 1.35rem;
     }
   `;

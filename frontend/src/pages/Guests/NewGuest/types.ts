@@ -71,6 +71,7 @@ export interface ManagerHouse {
   name: string;
   address: string;
   manager_id: number;
+  photo_url: string;
 }
 
 export interface MyGuestProps extends FormikProps<NewGuestInitialValues> {

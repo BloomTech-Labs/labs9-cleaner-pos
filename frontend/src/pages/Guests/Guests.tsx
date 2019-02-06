@@ -14,10 +14,7 @@ const Guests = () => {
   const url =
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
   const [active, setActive] = useState('upcoming' as FilterArgs);
-  const [stays, error, loading] = useFetch(
-    // `${url}/stays?filter=${active}&test=true`,
-    `${url}/stays?filter=${active}`,
-  );
+  const [stays, error, loading] = useFetch(`${url}/stays?filter=${active}`);
 
   const activeClass = (filter: FilterArgs) =>
     active === filter ? 'active' : '';
@@ -27,7 +24,7 @@ const Guests = () => {
       <div className='guests-header'>
         <h2>Guests</h2>
         <Link to='/guests/new'>
-          <Button text='New Guest' color='var(--color-text-accent)' />
+          <Button text='+ New Guest' color='var(--color-accent-alt)' />
         </Link>
       </div>
       <div className='guests-buttons-filter'>

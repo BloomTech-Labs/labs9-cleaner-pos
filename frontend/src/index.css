@@ -2,26 +2,19 @@
   /* General Colors */
   /* --- Original Colors */
   --color-main-dark: #393534;
-  --color-main-medium: #eeeff5;
+  --color-main-medium: #e4e4e4;
   --color-main-light: #ffffff;
-  --color-accent: #4593b6;
-  --color-accent-light: #ebf8f8;
+  --color-accent: #428acb;
+  --color-accent-light: #ffffff;
+  --color-accent-dark: rgba(57, 53, 52, 1);
+  --color-accent-alt: #74bef9;
   --color-border: rgba(57, 53, 52, 0.125);
-  --color-border-strong: rgba(57, 53, 52, 0.5);
-  --color-error: #b8003f;
-  /* --- Test Colors */
-  --color-main-dark: #021516;
-  /* --color-main-medium: #ebf0f1;
-  --color-main-light: #ffffff;
-  --color-accent: #167c80;
-  --color-accent-light: #eaf7f7;
-  --color-border: rgba(2, 21, 22, 0.125);
-  --color-border-strong: rgba(2, 21, 22, 0.5);
-  --color-error: #b8003f; */
+  --color-border-strong: rgba(132, 132, 132, 0.5);
+  --color-error: #ee788c;
   /* Background Colors */
   --color-bg-main: var(--color-main-medium);
   --color-bg-secondary: var(--color-main-light);
-  --color-bg-tertiary: var(--color-accent-light);
+  --color-bg-tertiary: var(--color-main-light);
   --color-bg-accent: var(--color-accent);
   --color-bg-accent-light: var(--color-accent-light);
   /* Button Colors */
@@ -34,7 +27,9 @@
   /* Text Colors */
   --color-text-dark: var(--color-main-dark);
   --color-text-light: var(--color-main-light);
+  --color-text-accent-light: var(--color-accent-light);
   --color-text-accent: var(--color-accent);
+  --color-text-accent-dark: var(--color-accent-dark);
   /* Header Font Sizes */
   --header-font-size-primary: 1.5rem;
   --header-font-size-secondary: 1.25rem;
@@ -43,18 +38,19 @@
   --border: 1px solid var(--color-border);
   --border-alt: sub;
   --border-bottom: 1px solid var(--color-border);
+  --border-radius: 5px;
 }
 
 body {
-  max-width: 1000px;
   width: 100%;
   margin: auto;
   padding: 0;
   color: var(--color-text-dark);
   background-color: var(--color-bg-main);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -65,6 +61,7 @@ code {
 }
 
 h1 {
+  margin: 2rem 0 1rem 0;
   /* Text */
   font-size: var(--header-font-size-primary);
   font-family: 'Roboto Medium', Arial, sans-serif;
@@ -75,11 +72,18 @@ a {
 }
 
 h2 {
+  margin: 0 0 1rem 0;
   /* Text */
   font-size: var(--header-font-size-secondary);
   font-family: 'Roboto Medium', Arial, sans-serif;
 }
 
 h3 {
+  margin: 0 0 1rem 0;
+  /* Text */
   font-size: 1rem;
+}
+
+i {
+  color: var(--color-main-dark);
 }

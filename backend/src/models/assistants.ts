@@ -55,7 +55,7 @@ export function addAstToAllManHouse(astId: number, manId: number) {
 }
 
 // Finds an ast by astId. gets user info and houses. used on ast detail FE page
-export function findOneAssistant(astId: number) {
+export function findOneAssistant(astId: number, manId: number) {
   return db('assistant')
     .join('user', 'user.id', '=', 'assistant.user_id')
     .select(
@@ -70,7 +70,11 @@ export function findOneAssistant(astId: number) {
     .then(async (e: any) => {
       const defA: any = [];
       const defHouse = await db('house')
-        .select('house.id as house_id', 'house.name as house_name')
+        .select(
+          'house.id as house_id',
+          'house.name as house_name',
+          'house.address as house_address',
+        )
         .where({ 'house.default_ast': astId })
         .map((h: any) => {
           defA.push(h.house_id);
@@ -80,11 +84,32 @@ export function findOneAssistant(astId: number) {
         .leftJoin('house', {
           'house_ast.house_id': 'house.id',
         })
-        .select('house.id as house_id', 'house.name as house_name')
+        .select(
+          'house.id as house_id',
+          'house.name as house_name',
+          'house.address as house_address',
+        )
         .where({ 'house_ast.ast_id': astId })
         // filters out the houses that a ast is already default
-        .whereNotIn('house_ast.house_id', defA);
-      return { ...e, default_house: defHouse, avl_houses: avlHouses };
+        .whereNotIn('house_ast.house_id', defA)
+        .map((h: any) => {
+          defA.push(h.house_id);
+          return h;
+        });
+      const avlAddHouses = await db('house')
+        .select(
+          'house.id as house_id',
+          'house.name as house_name',
+          'house.address as house_address',
+        )
+        .where({ 'house.manager': manId })
+        .whereNotIn('house.id', defA);
+      return {
+        ...e,
+        avl_add_houses: avlAddHouses,
+        avl_houses: avlHouses,
+        default_house: defHouse,
+      };
     });
 }
 
@@ -100,4 +125,26 @@ export function findAstMan(id: number): any {
 
 export function addAstToHouse(houseId: number, astId: number) {
   return db('house_ast').insert({ house_id: houseId, ast_id: astId });
+}
+
+export function removeAstHouse(houseId: number, astId: number) {
+  return db('house_ast')
+    .where({ ast_id: astId, house_id: houseId })
+    .del();
+}
+
+export async function deleteAst(astId: number) {
+  try {
+    await db('house_ast')
+      .where({ ast_id: astId })
+      .del();
+    await db('manager_ast')
+      .where({ ast_id: astId })
+      .del();
+    await db('house')
+      .where({ default_ast: astId })
+      .update({ default_ast: null });
+  } catch (e) {
+    console.error(e);
+  }
 }

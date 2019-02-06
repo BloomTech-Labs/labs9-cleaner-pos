@@ -57,7 +57,6 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     let house: any;
-    let ids;
     if (id) {
       house = await findHouse(id);
     } else {
@@ -65,13 +64,11 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
       if (req.token.role === 'assistant') {
         const ast = await getRoleId(req.token.id, true);
         const astMan = await findAstMan(ast.id);
-        ids = astMan;
+        house = await findHouses(astMan, req.token.id);
       } else {
         const manager = await getRoleId(req.token.id);
-        ids = [manager.id];
+        house = await findHouses([manager.id]);
       }
-
-      house = await findHouses(ids);
     }
     if (house === undefined) {
       throw Error('no user');

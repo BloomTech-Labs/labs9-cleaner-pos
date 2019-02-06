@@ -11,11 +11,8 @@ const pxVh = pxToVUnitMaker(1920);
 
 const headerHeight = pxRem(144);
 
-export const GuestDetailStyle = styled('div')`
+export const GuestDetailStyle = styled(Container)`
   /* Sizing & Box Model */
-  max-width: 1000px;
-  width: 100%;
-  margin: auto;
 
   /* Header CSS */
   .guest-header {
@@ -131,6 +128,18 @@ export const GuestDetailStyle = styled('div')`
     /* Color */
     color: var(--color-text-dark);
     background-color: var(--color-button-background-alt);
+  }
+
+  .guests-buttons-filter .before {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+  }
+
+  .guests-buttons-filter .during {
+    border-radius: 0;
+  }
+
+  .guests-buttons-filter .after {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
 
   .guest-info--checklist-bottom .active {

@@ -47,13 +47,13 @@ describe('future accordion component', () => {
         <MyStoreCheckout />
       </StripeProvider>,
     );
-    const basePlan = getByText(/baseplan/i);
-    const advPlan = getByText(/advanced/i);
-    expect(basePlan).toHaveTextContent('Baseplan: 9.99$ / house / month');
-    expect(advPlan).toHaveTextContent('Advanced: 50$ / month');
+    const basePlan = getByText(/lodgel basic/i);
+    const advPlan = getByText(/lodgel professional/i);
+    expect(basePlan).toHaveTextContent('Lodgel Basic: FREE*');
+    expect(advPlan).toHaveTextContent('Lodgel Professional');
   });
 
-  test('should render a form component', () => {
+  test.skip('should render a form component', () => {
     const { getByTestId } = render(
       <StripeProvider stripe={null}>
         <MyStoreCheckout />

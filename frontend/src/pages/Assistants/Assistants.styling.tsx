@@ -12,6 +12,9 @@ const AssistantItem = styled('div')`
   /* Color */
   background: var(--color-bg-secondary);
   color: var(--color-text-dark);
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: var(--border-radius);
+  margin-bottom: 2.25rem;
 
   /* Sizing */
   height: ${pxToRem(168)};
@@ -28,7 +31,13 @@ const AssistantItem = styled('div')`
   &:hover {
     transform: scale(1.025);
   }
+  .button__see-more {
+    width: 100%;
+  }
 
+  h1 {
+    margin: 1rem 0;
+  }
   .check-boxes {
     display: flex;
     flex-flow: row nowrap;
@@ -104,6 +113,7 @@ const ThumbNail = styled('img')`
   width: 18.75rem;
   height: 100%;
   object-fit: cover;
+  border-radius: 5px 0 0 5px;
 `;
 
 const CardHeading = styled('div')`
@@ -142,6 +152,7 @@ const InfoBox = styled('div')`
   height: ${boxHeight};
   width: ${boxWidth};
   border: var(--border);
+  border-radius: var(--border-radius);
   /* Text */
   text-align: center;
   font-size: 1.5rem;
@@ -167,36 +178,6 @@ const InfoBox = styled('div')`
   }
 `;
 
-// const Asst = styled('div')`
-//   /* Sizing */
-//   width: ${boxWidth};
-//   height: ${boxHeight};
-//   border: var(--border);
-//   /* Text */
-//   text-align: center;
-//   font-size: 1.5rem;
-//   font-weight: light;
-//   line-height: 1.25;
-//   /* Flex */
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   /* Color */
-//   background-color: var(--color-bg-tertiary);
-//   .secondary {
-//     color: var(--color-text-accent);
-//   }
-//   p {
-//     margin: 0;
-//     font-size: 1rem;
-//     font-weight: normal;
-//   }
-//   @media screen and (max-width: 550px) {
-//     width: 45%;
-//   }
-// `;
-
 const AssistantHeader = styled('span')`
   font-size: 1.8rem;
   top: 0;
@@ -212,6 +193,16 @@ const AssistantDetailContainer = styled(Container)`
 
   .container-map {
     width: 70%;
+    height: 50vh;
+  }
+
+  .my-leaflet-map-container img {
+    max-height: none;
+  }
+  .leaflet-pane {
+    img {
+      position: absolute;
+    }
   }
 
   .detail-img {
@@ -224,7 +215,7 @@ const AssistantDetailContainer = styled(Container)`
     padding-left: 1rem;
     /* Text */
     text-align: left;
-    line-height: 0.5;
+    /* line-height: 1; */
   }
 
   .detail-txt h3 {
@@ -237,6 +228,7 @@ const AssistantDetailContainer = styled(Container)`
     margin: 1rem 0;
     /* Flex */
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
   }
 
@@ -309,6 +301,10 @@ const AsstProperty = styled('div')`
   /* Flex */
   display: flex;
   flex-direction: column;
+
+  .deleteButton {
+    background-color: var(--color-error);
+  }
 `;
 
 const PropertyContainer = styled('div')`
@@ -370,6 +366,28 @@ const HouseItem = styled.p`
     display: inline-block;
     margin-left: 1rem;
   }
+  &:hover .pointer {
+    cursor: pointer;
+  }
+`;
+
+const ModalStyle = styled('div')`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+  outline: 'none';
+  padding: 0 0 2rem 0;
+
+  .modalButton {
+    position: absolute;
+    bottom: 5%;
+    right: 10%;
+  }
 `;
 
 export {
@@ -389,4 +407,5 @@ export {
   PropertyHeading,
   PropertyList,
   HouseItem,
+  ModalStyle,
 };

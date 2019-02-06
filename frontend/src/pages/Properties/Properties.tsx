@@ -1,6 +1,14 @@
 import React, { useContext } from 'react';
-import { Button, Container } from '../../components/index';
 import axios from 'axios';
+// Components
+import { Link } from 'react-router-dom';
+import { Button, Container } from '../../components/index';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+// Styled Components
 import {
   PropContainer,
   HouseItem,
@@ -13,14 +21,15 @@ import {
   CheckList,
   HouseHeader,
 } from './Properties.styling';
+// Types
 import { AxiosRequestConfig } from 'axios';
-import { useFetch } from '../../helpers/';
 import { House } from './types';
-import { Link } from 'react-router-dom';
-import loadingIndicator from '../utils/loading.svg';
+// Utils
+import { useFetch } from '../../helpers/';
 import { UserContext } from '../../App';
+// Assets
+import loadingIndicator from '../utils/loading.svg';
 import defaultHouse from '../../assets/house_alt.jpg';
-// Original Url: https://www.samplemcdougald.org/wp-content/uploads/2017/10/visit-sample-mcdougald-300x300.jpg
 
 const Properties = () => {
   const url =
@@ -28,6 +37,18 @@ const Properties = () => {
   /* Axios calls to fetch / update properties */
   const [houses, error, loading] = useFetch(`${url}/houses`);
   const { subscription } = useContext(UserContext);
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+  console.log('houses:', houses);
+  // Snackbar functions
+  function handleClose(event: any, reason: string) {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  }
 
   async function postAst(
     event: React.FormEvent<HTMLSelectElement>,
@@ -38,7 +59,7 @@ const Properties = () => {
       headers: { Authorization: token },
     };
     try {
-      const [astId, fullName] = event.currentTarget.value.split(':');
+      const astId = event.currentTarget.value;
       const res = await axios.put(
         `http://localhost:4500/houses/${id}`,
         {
@@ -46,6 +67,7 @@ const Properties = () => {
         },
         headers,
       );
+      setSnackbarOpen(true);
     } catch (e) {
       throw e;
     }
@@ -55,6 +77,32 @@ const Properties = () => {
     <Container>
       <PropContainer>
         <div className='properties-header'>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={snackbarOpen}
+            autoHideDuration={3000}
+            onClose={handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={
+              <span id='message-id'>Assistant successfully updated.</span>
+            }
+            action={[
+              <IconButton
+                key='close'
+                aria-label='Close'
+                color='inherit'
+                // @ts-ignore
+                onClick={handleClose}
+              >
+                <i className='fas fa-times' />
+              </IconButton>,
+            ]}
+          />
           <HouseHeader>Recent Properties</HouseHeader>
           {}
           <Link
@@ -66,7 +114,7 @@ const Properties = () => {
                 : null
             }
           >
-            <Button text='New Property' />
+            <Button text='+ New Property' className='new-property__button' />
           </Link>
         </div>
         {loading ? (
@@ -99,7 +147,10 @@ const Properties = () => {
           ? houses.map((house: House) => {
               return (
                 <HouseItem key={house.id} data-testid='house-item'>
-                  <ThumbNail src={defaultHouse} alt='house' />
+                  <ThumbNail
+                    src={house.photo_url || defaultHouse}
+                    alt='house'
+                  />
                   <CardContent>
                     <CardHeading>
                       <h4>{house.name}</h4>
@@ -124,33 +175,33 @@ const Properties = () => {
                             datatestid='house-button'
                           />
                         </Link>
-                        <Link to={`/houses/${house.id}#resources`}>
+                        <Link
+                          to={{ pathname: `/properties/new`, state: house }}
+                        >
                           <Button
                             className='property-button'
-                            text='Edit Resources'
+                            text='Edit Property'
                             datatestid='house-button'
                           />
                         </Link>
                       </ButtonContainer>
-                      <Assistant>
-                        Default Assistant
-                        <select
-                          data-testid='assistant-select'
-                          onChange={(event) => postAst(event, house.id)}
-                        >
-                          <option defaultValue={house.default_ast_name}>
-                            {house.default_ast}: {house.default_ast_name}
-                          </option>
-                          {house.openAst.map((ast: any) => {
-                            if (ast.ast_id !== house.default_ast) {
-                              return (
-                                <option key={ast.ast_id}>
-                                  {ast.ast_id}: {ast.full_name}
-                                </option>
-                              );
-                            }
-                          })}
-                        </select>
+                      <Assistant
+                        label='Default Assistant'
+                        data-testid='assistant-select'
+                        onChange={(event) => postAst(event, house.id)}
+                      >
+                        <option defaultValue={house.default_ast}>
+                          {house.default_ast_name}
+                        </option>
+                        {house.openAst.map((ast: any) => {
+                          if (ast.ast_id !== house.default_ast) {
+                            return (
+                              <option key={ast.ast_id} value={ast.ast_id}>
+                                {ast.full_name}
+                              </option>
+                            );
+                          }
+                        })}
                       </Assistant>
                     </CardBody>
                   </CardContent>
