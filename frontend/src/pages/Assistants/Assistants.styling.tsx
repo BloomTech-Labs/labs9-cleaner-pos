@@ -192,6 +192,16 @@ const AssistantDetailContainer = styled(Container)`
 
   .container-map {
     width: 70%;
+    height: 50vh;
+  }
+
+  .my-leaflet-map-container img {
+    max-height: none;
+  }
+  .leaflet-pane {
+    img {
+      position: absolute;
+    }
   }
 
   .detail-img {
@@ -217,6 +227,7 @@ const AssistantDetailContainer = styled(Container)`
     margin: 1rem 0;
     /* Flex */
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
   }
 
