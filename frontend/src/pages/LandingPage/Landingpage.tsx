@@ -63,9 +63,9 @@ const Landing = (props: RouteComponentProps) => {
         <Description>
           <DescHeader>Keep Tabs on you Guests</DescHeader>
           <p>
-            Your guests are the heart of your business. To help you deliver
+            Your guests are the heart of your business. To help you deliver the
             high-quality service that your guests deserve, we have created customizable
-            checklists that ensures all of your guests' needs are met.
+            checklists that ensure all of your guests' needs are met.
           </p>
         </Description>
         <Screenshot src={house} alt='house' />
