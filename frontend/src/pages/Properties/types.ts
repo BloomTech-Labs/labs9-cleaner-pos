@@ -23,6 +23,7 @@ export interface House {
   guest_guide?: any;
   ast_guide?: any;
   checkList?: any;
+  photo_url: string;
   openAst?: any;
   default_ast_name: string;
 }
