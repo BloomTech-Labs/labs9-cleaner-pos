@@ -22,4 +22,4 @@ When your guest is ready to check out, you can generate an invoice for them, and
 Stripe. Simply select a subscription plan based on the number of properties you manage, sign up for a Stripe account, and 
 you are ready to go!
 
-Are you ready to try Lodgel? Contact the team today!
+Are you ready to try Lodgel? Sign up today!
