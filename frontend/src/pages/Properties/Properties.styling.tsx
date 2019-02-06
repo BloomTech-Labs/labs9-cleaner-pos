@@ -9,6 +9,9 @@ const PropContainer = styled('div')`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .new-property__button {
+    background: var(--color-accent-alt);
+  }
 
   .properties-header {
     /* Box Model */

@@ -108,7 +108,7 @@ const Sidebar = (props: LinkProps) => {
         </NavWrapper>
         <SettingsWrapper>
           <Link to='/billing'>
-            <Button type='button' text='Subscribe' />
+            <Button text='Subscribe' className='header-bar--subscribe-button' />
           </Link>
           <StyledLink to='/settings'>
             <i className='fas fa-cog' />

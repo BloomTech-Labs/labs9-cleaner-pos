@@ -88,6 +88,9 @@ const SettingsWrapper = styled('div')`
   :last-of-type {
     margin-right: 0;
   }
+  .header-bar--subscribe-button {
+    background: var(--color-accent-alt);
+  }
   .signout {
     border: none;
     background-color: #ffffff;
