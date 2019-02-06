@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Tooltip from '@material-ui/core/Tooltip';
 
 // functionality is different
 // text is different
@@ -30,6 +31,7 @@ const Button = ({
   const StyledButton = styled('button')`
     /* Sizing */
     max-width: 200px;
+    width: 200px;
     max-height: 64px;
     height: auto;
     padding: 0.5rem 1rem;
@@ -41,20 +43,22 @@ const Button = ({
     background: ${buttonColor};
     color: var(--color-button-text);
     /* Cursor */
-    cursor: pointer;
+    cursor: ${disabled ? 'auto' : 'pointer'};
   `;
   return (
     <>
-      <StyledButton
-        className={className}
-        onClick={onClick}
-        type={type || 'button'}
-        data-testid={datatestid}
-        disabled={disabled}
-      >
-        {text}
-        {children}
-      </StyledButton>
+      <Tooltip title='Please add missing options'>
+        <StyledButton
+          className={className}
+          onClick={onClick}
+          type={type || 'button'}
+          data-testid={datatestid}
+          disabled={disabled}
+        >
+          {text}
+          {children}
+        </StyledButton>
+      </Tooltip>
     </>
   );
 };
