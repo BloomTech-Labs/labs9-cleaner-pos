@@ -28,6 +28,9 @@ const PropContainer = styled('div')`
     justify-content: space-between;
     align-items: flex-end;
   }
+  @media only screen and (max-width: 900px) {
+		padding: 0 10px 0 10px;
+	}
 
   @media only screen and (max-width: ${bp}) {
     .properties-header {
