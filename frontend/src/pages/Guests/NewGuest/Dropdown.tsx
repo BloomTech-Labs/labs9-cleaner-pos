@@ -38,6 +38,12 @@ const MenuImage = styled.img`
   margin-right: 2rem;
 `;
 
+const MenuIcon = styled.i`
+  font-size: 3rem;
+  width: 10.67rem;
+  margin-right: 2rem;
+`;
+
 const MenuItemStyled = styled(MenuItem as ComponentClass<any>)`
   margin: 1rem 0;
 `;
@@ -56,11 +62,15 @@ const DropDown = (houses: ManagerHouse[]) => ({ field, form }: FieldProps) => {
             key={house.id}
             value={house.id}
           >
-            <MenuImage
-              className='house-photo'
-              src={house.photo_url}
-              alt={house.name}
-            />
+            {house.photo_url ? (
+              <MenuImage
+                className='house-photo'
+                src={house.photo_url}
+                alt={house.name}
+              />
+            ) : (
+              <MenuIcon className='fas fa-home' />
+            )}
             {house.name}
           </MenuItemStyled>
         ))}
