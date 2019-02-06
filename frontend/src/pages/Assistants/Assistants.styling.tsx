@@ -177,36 +177,6 @@ const InfoBox = styled('div')`
   }
 `;
 
-// const Asst = styled('div')`
-//   /* Sizing */
-//   width: ${boxWidth};
-//   height: ${boxHeight};
-//   border: var(--border);
-//   /* Text */
-//   text-align: center;
-//   font-size: 1.5rem;
-//   font-weight: light;
-//   line-height: 1.25;
-//   /* Flex */
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   /* Color */
-//   background-color: var(--color-bg-tertiary);
-//   .secondary {
-//     color: var(--color-text-accent);
-//   }
-//   p {
-//     margin: 0;
-//     font-size: 1rem;
-//     font-weight: normal;
-//   }
-//   @media screen and (max-width: 550px) {
-//     width: 45%;
-//   }
-// `;
-
 const AssistantHeader = styled('span')`
   font-size: 1.8rem;
   top: 0;
@@ -321,7 +291,7 @@ const AsstProperty = styled('div')`
   flex-direction: column;
 
   .deleteButton {
-    background-color: red;
+    background-color: var(--color-error);
   }
 `;
 

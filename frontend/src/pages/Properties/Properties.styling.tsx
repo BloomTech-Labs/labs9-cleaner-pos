@@ -9,6 +9,9 @@ const PropContainer = styled('div')`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .new-property__button {
+    background: var(--color-accent-alt);
+  }
 
   .properties-header {
     /* Box Model */
@@ -105,7 +108,7 @@ const CardHeading = styled('div')`
 
   h4 {
     margin: 0;
-    color: var(--color-text-accent);
+    color: var(--color-text-accent-dark);
     font-family: Roboto;
     font-weight: bold;
     font-size: 1.5rem;
@@ -159,7 +162,7 @@ const CardBody = styled('div')`
 `;
 
 const CheckList = styled('div')`
-  background-color: var(--color-bg-tertiary);
+  background-color: var(--color-accent-light);
   padding: 0.5rem 1rem;
   text-align: center;
   border: var(--border);
@@ -173,7 +176,7 @@ const CheckList = styled('div')`
     margin: 0;
     color: var(--color-text-accent);
     font-size: 1rem;
-    font-weight: light;
+    font-weight: 400;
   }
 
   @media only screen and (max-width: ${bp}) {
@@ -193,13 +196,13 @@ const Assistant = styled('div')`
   border: var(--border);
   padding: 1rem;
   /* Color */
-  background-color: var(--color-bg-accent-light);
+  background-color: var(--color-accent-light);
   /* Text */
   font-weight: bolder;
 
   label {
     /* Color */
-    color: var(--color-text-accent-dark);
+    color: var(--color-text-accent);
     /* Text */
     font-size: 1rem;
   }
@@ -223,8 +226,9 @@ const Assistant = styled('div')`
   }
 `;
 
-const HouseHeader = styled('span')`
-  font-size: 2rem;
+const HouseHeader = styled('h2')`
+  font-size: 2.25rem;
+  font-weight: normal;
   text-align: left;
   max-width: 290px;
   /* margin-bottom: 1.5rem; */
