@@ -11,11 +11,8 @@ const pxVh = pxToVUnitMaker(1920);
 
 const headerHeight = pxRem(144);
 
-export const GuestDetailStyle = styled('div')`
+export const GuestDetailStyle = styled(Container)`
   /* Sizing & Box Model */
-  max-width: 1000px;
-  width: 100%;
-  margin: auto;
 
   /* Header CSS */
   .guest-header {

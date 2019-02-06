@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Container, Button, LeafletMap } from '../../components/index';
+import { Button, LeafletMap } from '../../components/index';
 import {
   AssistantBar,
   AsstDetail,
@@ -27,9 +27,12 @@ const AssistantCard = (props: any) => {
   function handleModal() {
     setModalStatus(!modalStatus);
   }
-  useEffect(() => {
-    setTaskLoad(0);
-  }, [props.assistant]);
+  useEffect(
+    () => {
+      setTaskLoad(0);
+    },
+    [props.assistant],
+  );
   return (
     <AssistantBar className={assistant.className}>
       <AsstDetail>
@@ -248,17 +251,30 @@ const AssistantDetails = (props: any) => {
   return (
     <AssistantDetailContainer>
       {error.error ? 'Whoops! Something went wrong! :(' : null}
+      <div
+        role='alert'
+        aria-live='assertive'
+        style={{ display: 'flex', flexDirection: 'column' }}
+      >
+        {loading ? (
+          <img src={loadingIndicator} alt='animated loading indicator' />
+        ) : null}
+
+        <p style={{ display: 'none' }}>Content is loading...</p>
+      </div>
       {assistant ? (
-        <AssistantCard
-          className='assistant-card'
-          assistant={assistant}
-          removeDefault={removeDefault}
-          addRemoveHouse={addRemoveHouse}
-          goBack={goBack}
-          deleteAst={deleteAst}
-        />
+        <>
+          <AssistantCard
+            className='assistant-card'
+            assistant={assistant}
+            removeDefault={removeDefault}
+            addRemoveHouse={addRemoveHouse}
+            goBack={goBack}
+            deleteAst={deleteAst}
+          />
+          <LeafletMap ast={assistant} />
+        </>
       ) : null}
-      <LeafletMap />
     </AssistantDetailContainer>
   );
 };

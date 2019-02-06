@@ -72,7 +72,7 @@ const Billing = () => {
                   classes={{ root: 'list-subheader' }}
                   style={{
                     background: 'var(--color-bg-main)',
-                    borderBottom: 'var(--border)',
+                    border: 'var(--border)',
                     height: '3.75rem',
                     padding: '0.5rem',
                   }}
@@ -103,7 +103,7 @@ const Billing = () => {
                   </Avatar>
                   <ListItemText
                     primary='Charge 1.5% of Earnings'
-                    secondary='Once you’re happy and making money, we charge 1% of booking earnings.'
+                    secondary='Once you’re happy and making money, we charge 1.5% of booking earnings.'
                   />
                 </ListItem>
                 <ListItem>
