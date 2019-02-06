@@ -10,6 +10,10 @@ const Header = styled('span')`
     padding-left: 32px;
     color: white;
   }
+  h3 {
+    padding-left: 16px;
+    color: white;
+  }
 `;
 
 const Card = styled('div')`
@@ -26,37 +30,38 @@ const Card = styled('div')`
 `;
 
 const Positioner = styled('div')`
-  width: 50%;
+  width: 100%;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: space-evenly;
+  align-items: flex-start;
   justify-content: space-around;
+  border: ${(props: any) =>
+    props.outline ? '1px solid var(--color-border)' : null};
   .fancy-button {
     width: 100%;
   }
-  /* border: 1px solid red; */
+  .;
 `;
 const LeftContainer = styled('div')`
-  width: 50%;
+  width: 30%;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: space-evenly;
-  justify-content: center;
-  border: var(--border);
-  border-right: 0;
+  justify-content: flex-start;
+  border: 1px solid var(--color-border);
   background: var(--color-bg-secondary);
 `;
 
 const RightContainer = styled('div')`
-  width: 50%;
-  padding: 20px;
+  width: 70%;
+  /* padding: 20px; */
+  margin: 0 0 0 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: var(--border);
+  align-items: flex-start;
+  justify-content: flex_start;
+  border: 1px solid var(--color-border);
   border-left: 0;
   background: var(--color-bg-secondary);
 `;
@@ -66,7 +71,27 @@ const Checkbox = styled('input')`
 `;
 
 const UserCard = styled('div')`
-  border: 1px solid var(--color-border);
+  width: 100%;
+  text-align: left;
+
+  .line-item {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  span {
+    width: 100px;
+  }
+  .line-info {
+    text-transform: capitalize;
+  }
+  .small-button {
+    height: 20px;
+    width: 75px;
+    padding: 0;
+    margin-bottom: 5px;
+  }
 `;
 
 const ThumbNail = styled('img')`
