@@ -1,9 +1,7 @@
 ## Introducing Lodgel – the property management application that streamlines the rental process.
-Lodgel removes the hassle of ensuring your properties are ready for guests by coordinating turnover assistants
-between properties and customizing checklists with tasks based on the needs of your guests. And if your guests
-have a special request? No problem. The checklists can be updated anytime something else is needed, and you can 
-check in on your turnover assistants to ensure the job is done on time. We even integrated Stripe - one of the world's leading
-payment processors, so you can get paid as soon as your guests check out.
+Lodgel is designed to take the hassle out of out of your property management experience.
+You can quickly delegate tasks to your turnover assistants, conveniently schedule guests and securely capture 
+their payments at the click of a button, all while enjoying the support of our great team.
 
 Users register for an account, and right away, they can start adding properties to their list.
 To ensure each guest is taken care of, checklists can be made that detail tasks that need to be taken care of
