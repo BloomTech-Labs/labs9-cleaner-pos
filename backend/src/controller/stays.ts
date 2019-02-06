@@ -63,11 +63,12 @@ export async function getAll(
     // const stays = await findAllStays(String(extit), filter);
     let stays: any;
     if (role === 'assistant') {
+      // if user is an assistant, we find ast_id, find all asigned managers
       const ast = await getRoleId(id, true);
       const astMan = await findAstMan(ast.id);
       stays = await findAllStays(astMan, filter, id);
     } else {
-      const manager = await getRoleId(req.token.id);
+      const manager = await getRoleId(id);
       stays = await findAllStays([manager.id], filter);
     }
     res.status(200).json(stays);

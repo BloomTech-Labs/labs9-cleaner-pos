@@ -18,6 +18,8 @@ export const findHouses = (manager: number[], astId?: number) => {
       'house.photo_url',
     )
     .whereIn('house.manager', manager);
+  // if getting houses for an ast, we want to only show houses
+  // where the ast is linked on house_ast table
   if (astId) {
     query
       .leftJoin('house_ast', { 'house.id': 'house_ast.house_id' })

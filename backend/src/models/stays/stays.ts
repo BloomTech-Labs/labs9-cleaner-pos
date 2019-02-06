@@ -79,13 +79,16 @@ export async function findAllStays(
     // Find all house ids related to properties manager owns
     const qHouse: QueryBuilder = db('house')
       .select('house.id')
-      .leftJoin('house_ast', { 'house.id': 'house_ast.house_id' })
-      // .where({ 'house_ast.ast_id': 10 })
       .whereIn('house.manager', id);
 
+    // if getting stays for an ast, we need to only show houses
+    // where the ast is linked on house_ast table
     if (astId) {
-      qHouse.where({ 'house_ast.ast_id': astId });
+      qHouse
+        .leftJoin('house_ast', { 'house.id': 'house_ast.house_id' })
+        .where({ 'house_ast.ast_id': astId });
     }
+    // this is going to return an array of house ids
     const houses = await qHouse.map((val: any) => val.id);
 
     // Find all stays related to all found houses
