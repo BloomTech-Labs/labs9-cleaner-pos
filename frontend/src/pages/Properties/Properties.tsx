@@ -40,6 +40,7 @@ const Properties = () => {
   // Snackbar state
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
+  console.log('houses:', houses);
   // Snackbar functions
   function handleClose(event: any, reason: string) {
     if (reason === 'clickaway') {
@@ -174,10 +175,12 @@ const Properties = () => {
                             datatestid='house-button'
                           />
                         </Link>
-                        <Link to={`/houses/${house.id}#resources`}>
+                        <Link
+                          to={{ pathname: `/properties/new`, state: house }}
+                        >
                           <Button
                             className='property-button'
-                            text='Edit Resources'
+                            text='Edit Properties'
                             datatestid='house-button'
                           />
                         </Link>
