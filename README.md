@@ -28,7 +28,7 @@ This is a Lambda Labs Capstone Project designed for rental property management. 
     * Allow employees to track their progress
     * Allow employees to reassign tasks to other employees
     * Automatically generate guest invoices
-    * Allow property managers to add new properties, assign properties to employees, and create and edit task checklists for employees
+    * Allow property managers to add new properties, assign properties to employees, create and edit task checklists for employees, and bill guests directly
     * Allow guests to view readiness of their assigned rental property and pay their invoice online
 
 ## Tech Stack
@@ -83,7 +83,7 @@ This app uses Firebase to allow users to login using Google, Facebook, Twitter, 
 
 ## Stripe
 
-All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the project. Information about the Stripe API can be found [in their documentation](https://stripe.com/docs/api).
+All user payments are processed using Stripe via the react-stripe-elements plugin. Once the user submits their payment information, it is converted to a token that can be safely sent to the server. This eliminates the need for our app to handle sensitive credit card data and minimizes the financial and legal liability of the project, as well as the user billing their guests. Information about the Stripe API can be found [in their documentation](https://stripe.com/docs/api).
 
 ## Environment Variables
 
