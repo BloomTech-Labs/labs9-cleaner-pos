@@ -51,17 +51,19 @@ const Button = ({
   `;
   return (
     <>
-      <Tooltip title='Please add missing options'>
-        <StyledButton
-          className={className}
-          onClick={onClick}
-          type={type || 'button'}
-          data-testid={datatestid}
-          disabled={disabled}
-        >
-          {text}
-          {children}
-        </StyledButton>
+      <Tooltip title={disabled ? 'Please add missing options' : ''}>
+        <span>
+          <StyledButton
+            className={className}
+            onClick={onClick}
+            type={type || 'button'}
+            data-testid={datatestid}
+            disabled={disabled}
+          >
+            {text}
+            {children}
+          </StyledButton>
+        </span>
       </Tooltip>
     </>
   );
