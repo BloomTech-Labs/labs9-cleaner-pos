@@ -40,18 +40,73 @@ export const PropertyLists = (props: ListProps) => {
     setInputItem(false);
   };
 
-  useEffect(
-    () => {
-      setTaskLoad(0);
-    },
-    [props],
-  );
+  useEffect(() => {
+    setTaskLoad(0);
+  }, [props]);
+
+  console.log('list props:', props.list);
+
+  const renderListItem = ({ list_id, task, items_id }: List) => {
+    if (items_id === null) {
+      return null;
+    } else if (edit === items_id) {
+      return (
+        <TaskDiv key={items_id}>
+          <TextField value={newItem} onChange={handleChange} />
+          <WhiteButton
+            text='Submit'
+            onClick={() => {
+              props.putTasks(task, newItem);
+              setNewItem('');
+              setTaskLoad(items_id);
+              setEdit(0);
+            }}
+          />
+          <WhiteButton
+            text='Cancel'
+            onClick={() => {
+              setEdit(0);
+              setNewItem('');
+            }}
+          />
+        </TaskDiv>
+      );
+    } else {
+      return (
+        <div key={items_id} className='task'>
+          <SecondaryText
+            onClick={() => {
+              setEdit(items_id);
+              setNewItem(task);
+            }}
+          >
+            {items_id === taskLoad ? (
+              <img src={loadingIndicator} alt='animated loading indicator' />
+            ) : (
+              task
+            )}
+          </SecondaryText>
+          <span
+            onClick={() => {
+              props.deleteTasks(items_id);
+              setTaskLoad(items_id);
+            }}
+          >
+            {' '}
+            <i className='fas fa-times' />
+          </span>
+        </div>
+      );
+    }
+  };
+
   return (
     <ListDiv>
       <Header>{props.type}</Header>
       <ItemDiv>
         <TaskDiv>
-          {props.list.map((task) => {
+          {props.list.map(renderListItem)}
+          {/* {props.list.map((task) => {
             return (
               <div key={task.items_id} className='listMap'>
                 {edit === task.items_id ? (
@@ -104,7 +159,7 @@ export const PropertyLists = (props: ListProps) => {
                 )}
               </div>
             );
-          })}
+          })} */}
         </TaskDiv>
         {inputItem ? (
           <>
@@ -153,12 +208,9 @@ export const AfterPropertyLists = (props: ListProps) => {
     props.deleteList(props.list_id);
   };
 
-  useEffect(
-    () => {
-      setTaskLoad(0);
-    },
-    [props],
-  );
+  useEffect(() => {
+    setTaskLoad(0);
+  }, [props]);
   return (
     <AfterListDiv2 data-testid='after-list'>
       <AfterHeader>{props.type}</AfterHeader>

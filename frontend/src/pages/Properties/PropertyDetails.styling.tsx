@@ -32,11 +32,13 @@ export const PropertyContainer = styled(Container)`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: 100%;
+
+  h1 {
+    margin: 0;
+  }
 `;
 
 export const Top = styled(PropertyContainer)`
-  margin: 0 ${pxToRem(22)}rem;
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -77,6 +79,8 @@ export const MainText = styled.div`
 `;
 
 export const SecondaryText = styled.div`
+  margin-left: 1rem;
+  padding: 1rem 0;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(20)}rem;
   @media only screen and (max-width: 900px) {
@@ -88,13 +92,13 @@ export const SecondaryText = styled.div`
 
 export const Header = styled('div')`
   width: 100%;
-  padding: ${pxToRem(16)}rem ${pxToRem(28)}rem;
-  height: ${pxToRem(60)}rem;
+  padding: 0.5rem ${pxToRem(28)}rem;
+  /* height: ${pxToRem(40)}rem; */
   background: var(--color-text-accent);
   text-align: left;
   color: white;
-  font-family: 'Roboto', Arial, sans-serif;
-  font-size: ${pxToRem(24)}rem;
+  font-family: 'Roboto Medium', Arial, sans-serif;
+  font-size: ${pxToRem(20)}rem;
 `;
 
 export const ListContainer = styled('div')`
@@ -119,8 +123,9 @@ export const ListDiv = styled('div')`
 `;
 
 export const ItemDiv = styled('div')`
-  padding: ${pxToRem(29)}rem ${pxToRem(23)}rem;
-  margin: ${pxToRem(24)}rem ${pxToRem(28)}rem;
+  /* padding: 0 ${pxToRem(23)}rem ${pxToRem(29)}rem ${pxToRem(23)}rem; */
+  padding-bottom: ${pxToRem(29)}rem;
+  /* margin: ${pxToRem(24)}rem ${pxToRem(28)}rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -138,9 +143,16 @@ export const TaskDiv = styled('div')`
   }
 
   .task {
+    width: 100%;
+    border-bottom: var(--border-bottom);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .task span {
+    margin-right: 1rem;
+    padding: 1rem 0;
   }
 `;
 

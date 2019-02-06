@@ -141,6 +141,7 @@ const PropertyDetails = (props: any) => {
               />
             </PropertyButtons>
           </Top>
+          <h1>List Builder</h1>
           <ListContainer>
             {lists.before ? (
               <PropertyLists
