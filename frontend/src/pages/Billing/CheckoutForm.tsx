@@ -52,6 +52,7 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
 
   return (
     <div>
+      <h3>Choose your plan!! 💰</h3>
       <div className='list-checkbox pretty p-default p-round p-smooth'>
         <input
           type='checkbox'
