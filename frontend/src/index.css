@@ -7,13 +7,13 @@
   --color-accent: #4593b6;
   --color-accent-light: #ebf8f8;
   --color-accent-dark: #2c5e74;
-  --color-border: rgba(57, 53, 52, 0.125);
+  --color-border: rgba(57, 53, 52, 0.25);
   --color-border-strong: rgba(57, 53, 52, 0.5);
   --color-error: #b8003f;
   /* Background Colors */
   --color-bg-main: var(--color-main-medium);
   --color-bg-secondary: var(--color-main-light);
-  --color-bg-tertiary: var(--color-accent-light);
+  --color-bg-tertiary: var(--color-main-light);
   --color-bg-accent: var(--color-accent);
   --color-bg-accent-light: var(--color-accent-light);
   /* Button Colors */

@@ -1,4 +1,7 @@
 import styled from '@emotion/styled';
+// Components
+import DropDown from '../../components/DropDown';
+import { ComponentClass } from 'react';
 
 const cardHeight = 168;
 const pxToRem = (px: number): string => `${px / 16}rem`;
@@ -184,21 +187,9 @@ const CheckList = styled('div')`
   }
 `;
 
-const Assistant = styled('div')`
+const Assistant = styled(DropDown)`
   width: ${pxToRem(184)};
   margin-right: 2rem;
-  border: var(--border);
-  padding: 1rem;
-  border-radius: 5px;
-  /* Flex */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  }
-
-  label {
-    color: var(--color-text-accent);
-  }
 
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};

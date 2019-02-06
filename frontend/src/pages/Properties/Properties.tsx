@@ -182,32 +182,22 @@ const Properties = () => {
                           />
                         </Link>
                       </ButtonContainer>
-                      <Assistant>
-                        <InputLabel htmlFor='ast-dropdown'>
-                          Default Assistant
-                        </InputLabel>
-                        {/* <select
-                          data-testid='assistant-select'
-                          onChange={(event) => postAst(event, house.id)}
-                        > */}
-                        <NativeSelect
-                          inputProps={{
-                            'data-testid': 'assistant-select',
-                            id: 'ast-dropdown',
-                          }}
-                          onChange={(event) => postAst(event, house.id)}
-                          value={house.default_ast}
-                        >
-                          {house.openAst.map((ast: any) => {
+                      <Assistant
+                        label='Default Assistant'
+                        onChange={(event) => postAst(event, house.id)}
+                      >
+                        <option defaultValue={house.default_ast}>
+                          {house.default_ast_name}
+                        </option>
+                        {house.openAst.map((ast: any) => {
+                          if (ast.ast_id !== house.default_ast) {
                             return (
                               <option key={ast.ast_id} value={ast.ast_id}>
                                 {ast.full_name}
                               </option>
                             );
-                          })}
-                        </NativeSelect>
-
-                        {/* </select> */}
+                          }
+                        })}
                       </Assistant>
                     </CardBody>
                   </CardContent>
