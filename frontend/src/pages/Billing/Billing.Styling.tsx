@@ -17,9 +17,20 @@ const SubBox = styled('div')`
   }
   @media only screen and (max-width: 800px) {
     flex-direction: column;
+    height: 100%;
     .root {
       border: var(--border);
     }
+  }
+`;
+
+const ListContainer = styled('div')`
+  width: '100%';
+  height: '50%';
+  background: 'white';
+  @media only screen and (max-width: 800px) {
+    height: 100%;
+    border: var(--border);
   }
 `;
 
@@ -84,4 +95,11 @@ const Header = styled('h2')`
   font-size: 150%;
 `;
 
-export { SubBox, AccordionItemBody, Confirmation, Header, SVGContainer };
+export {
+  AccordionItemBody,
+  Confirmation,
+  Header,
+  ListContainer,
+  SubBox,
+  SVGContainer,
+};

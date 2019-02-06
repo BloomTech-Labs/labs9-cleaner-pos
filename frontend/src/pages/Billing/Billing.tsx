@@ -5,7 +5,7 @@ import Accordion, {
   AccordionItemBody,
 } from '../../components/Accordion/Accordion';
 import { Link } from 'react-router-dom';
-import { SubBox, Header, SVGContainer } from './Billing.Styling';
+import { Header, ListContainer, SVGContainer, SubBox } from './Billing.Styling';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -66,20 +66,14 @@ const Billing = () => {
               borderLeft: '0',
             }}
           >
-            <div
-              style={{
-                width: '100%',
-                height: '50%',
-                background: 'white',
-              }}
-            >
+            <ListContainer>
               <List style={{ padding: '0' }}>
                 <ListSubheader
                   classes={{ root: 'list-subheader' }}
                   style={{
                     background: 'var(--color-bg-main)',
                     borderBottom: 'var(--border)',
-                    height: '62px',
+                    height: '3.75rem',
                     padding: '0.5rem',
                   }}
                 >
@@ -122,15 +116,8 @@ const Billing = () => {
                   />
                 </ListItem>
               </List>
-            </div>
-            <div
-              style={{
-                width: '100%',
-                height: '50%',
-                border: 'var(--border)',
-                background: 'white',
-              }}
-            >
+            </ListContainer>
+            <ListContainer>
               <List style={{ padding: '0' }}>
                 <ListSubheader
                   style={{
@@ -179,7 +166,7 @@ const Billing = () => {
                   />
                 </ListItem>
               </List>
-            </div>
+            </ListContainer>
           </div>
         </BillingContext.Provider>
       </SubBox>
