@@ -62,16 +62,14 @@ export async function getAll(
     const { id, role } = req.token;
     // const stays = await findAllStays(String(extit), filter);
     let stays: any;
-    let ids;
     if (role === 'assistant') {
       const ast = await getRoleId(id, true);
       const astMan = await findAstMan(ast.id);
-      ids = astMan;
+      stays = await findAllStays(astMan, filter, id);
     } else {
       const manager = await getRoleId(req.token.id);
-      ids = [manager.id];
+      stays = await findAllStays([manager.id], filter);
     }
-    stays = await findAllStays(ids, filter);
     res.status(200).json(stays);
   } catch (e) {
     e.statusCode = e.statusCode || 400;
