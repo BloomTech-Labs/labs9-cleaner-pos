@@ -74,7 +74,7 @@ const Sidebar = (props: LinkProps) => {
           </StyledLink>
           <SpecialButton
             onClick={() => logOut()}
-            className='fas fa-sign-out-alt'
+            className='fas fa-sign-out-alt signout'
           />
         </SettingsWrapper>
       </div>
@@ -88,7 +88,7 @@ const Sidebar = (props: LinkProps) => {
               </StyledLink>
             </div> */}
             <div>
-              <StyledLink to='/'>
+              <StyledLink to='/' className='header-bar--logo'>
                 <img
                   style={{ height: '100px', width: '100px' }}
                   src={logo}

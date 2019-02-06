@@ -39,6 +39,13 @@ const Container = styled('div')`
     margin-right: 1rem;
   }
 
+  .header-bar--logo {
+    display: none;
+    @media only screen and (min-width: 900px) {
+      display: block;
+    }
+  }
+
   .menu {
     height: 100%;
     margin-top: 2rem;
@@ -95,6 +102,8 @@ const SettingsWrapper = styled('div')`
     border: none;
     background-color: #ffffff;
     width: 40px;
+    padding: 0;
+    font-size: 1.35rem;
   }
   @media only screen and (min-width: ${bp}) {
     display: flex;
