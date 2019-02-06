@@ -45,23 +45,26 @@ const Wrapper = styled.div`
 
 const DropDown = (props: {
   className?: string;
+  name?: string;
   label?: string;
   value?: any;
   onChange: (event: any) => void;
   children: any;
   'data-testid'?: string;
 }) => {
-  const { className, label, value, onChange, children } = props;
+  const { className, name, label, value, onChange, children } = props;
   const appliedTestId = props['data-testid'] || 'dropdown';
   const appliedValue = value !== undefined ? { value } : {};
 
   return (
     <MuiThemeProvider theme={theme}>
       <Wrapper className={className}>
-        {label ? <InputLabel htmlFor='dropdown'>{label}</InputLabel> : null}
+        {label ? (
+          <InputLabel htmlFor={name || 'dropdown'}>{label}</InputLabel>
+        ) : null}
         <StyledNativeSelect
           // tslint:disable-next-line
-          inputProps={{ 'data-testid': appliedTestId, id: 'dropdown' }}
+          inputProps={{ 'data-testid': appliedTestId, id: name || 'dropdown' }}
           onChange={onChange}
           {...appliedValue}
         >
