@@ -16,6 +16,51 @@ const SubBox = styled('div')`
     opacity: 0;
   }
 `;
+
+const SVGContainer = styled('div')`
+  display: flex;
+  justify-content: center;
+  .svg-success {
+    margin: 0 auto;
+    stroke-width: 2px;
+    stroke: #8ec343;
+    fill: none;
+    & path {
+      stroke-dasharray: 17px, 17px;
+      stroke-dashoffset: 0px;
+      -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+      animation: checkmark 0.25s ease-in-out 0.7s backwards;
+    }
+    & circle {
+      stroke-dasharray: 76px, 76px;
+      stroke-dashoffset: 0px;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      -webkit-animation: checkmark-circle 0.6s ease-in-out forwards;
+      animation: checkmark-circle 0.6s ease-in-out forwards;
+    }
+  }
+
+  @keyframes checkmark {
+    0% {
+      stroke-dashoffset: 17px;
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes checkmark-circle {
+    0% {
+      stroke-dashoffset: 76px;
+    }
+
+    100% {
+      stroke-dashoffset: 0px;
+    }
+  }
+`;
 const AccordionItemBody = styled('dd')`
   border: var(--border);
 `;
@@ -33,4 +78,4 @@ const Header = styled('h2')`
   font-size: 150%;
 `;
 
-export { SubBox, AccordionItemBody, Confirmation, Header };
+export { SubBox, AccordionItemBody, Confirmation, Header, SVGContainer };

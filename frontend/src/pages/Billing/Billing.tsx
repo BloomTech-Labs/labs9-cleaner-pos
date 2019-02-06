@@ -5,7 +5,7 @@ import Accordion, {
   AccordionItemBody,
 } from '../../components/Accordion/Accordion';
 import { Link } from 'react-router-dom';
-import { SubBox, Confirmation, Header } from './Billing.Styling';
+import { SubBox, Header, SVGContainer } from './Billing.Styling';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -33,14 +33,26 @@ const Billing = () => {
 
             <AccordionItemBody>
               {!!(confirm.confirm && confirm.confirm.plan) ? (
-                <>
-                  <h3>Thank you for subscribing to Lodgel Professional!</h3>
-                  <Confirmation>
-                    <Link to='/properties'>
-                      <Button text='Take me to my properties!' />
-                    </Link>
-                  </Confirmation>
-                </>
+                <div style={{ textAlign: 'center' }}>
+                  <h3>Thank You!</h3>
+                  <SVGContainer>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='128'
+                      height='128'
+                      viewBox='-263.5 236.5 26 26'
+                    >
+                      <g className='svg-success'>
+                        <circle cx='-250.5' cy='249.5' r='12' />
+                        <path d='M-256.46 249.65l3.9 3.74 8.02-7.8' />
+                      </g>
+                    </svg>
+                  </SVGContainer>
+                  <h3>Welcome to Lodgel!</h3>
+                  <Link to='/properties'>
+                    <Button text='To My Properties' />
+                  </Link>
+                </div>
               ) : null}
             </AccordionItemBody>
           </Accordion>
