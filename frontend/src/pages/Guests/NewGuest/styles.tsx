@@ -6,10 +6,13 @@ import { Form } from 'formik';
 import { ComponentClass } from 'react';
 
 export const StyledForm = styled(Form)`
+  max-width: 1000px;
+  margin: auto;
   text-align: left;
 
   h1 {
     margin: 0;
+    margin-top: 2rem;
   }
 
   label {
@@ -52,14 +55,19 @@ export const StyledForm = styled(Form)`
       margin: 1rem 0;
     }
     input {
+      padding: 0.5rem 0;
+      border-radius: var(--border-radius);
+      /* Text */
       text-align: center;
-      font-weight: bolder;
+      font-family: 'Roboto Medium', Arial, Helvetica, sans-serif;
+      font-size: 1rem;
     }
 
     label {
       margin-top: 0.5rem;
       color: var(--color-text-accent);
-      font-weight: 500;
+      font-size: 1.125rem;
+      font-weight: bolder;
     }
   }
 

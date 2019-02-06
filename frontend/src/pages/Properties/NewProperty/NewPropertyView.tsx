@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 // Components
 import { Field } from 'formik';
-import { Button } from './../../../components';
+import { Button, DropDown } from './../../../components';
 import InputAdornment from '@material-ui/core/InputAdornment';
 // Styled Components
 import {
@@ -164,7 +164,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
       <FormBlock className='property-resources'>
         <h2>Resources</h2>
-        <div className='ast-dropdown'>
+        {/* <div className='ast-dropdown'>
           <label>Choose a default assistant.</label>
           {assistants ? (
             <Field name='defaultAst' component='select' placeholder='Assistant'>
@@ -180,7 +180,28 @@ const NewPropertyView = (formProps: MyFormProps) => {
           ) : (
             <img src={loadingIndicator} alt='animated loading indicator' />
           )}
-        </div>
+        </div> */}
+        <Field
+          name='defaultAst'
+          render={({ field, form }: FieldProps) => {
+            return (
+              <DropDown
+                {...field}
+                label='Choose a default assistant.'
+                className='ast-dropdown'
+              >
+                <option value={-1} key={'default'}>
+                  Choose an assistant
+                </option>
+                {assistants.map((ast) => (
+                  <option key={ast.ast_id} value={ast.ast_id}>
+                    {ast.full_name}
+                  </option>
+                ))}
+              </DropDown>
+            );
+          }}
+        />
         <br />
         <br />
         <div className='property-resources--guides'>

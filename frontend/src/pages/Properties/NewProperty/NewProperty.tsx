@@ -56,6 +56,9 @@ const NewProperty = (props: RouteComponentProps) => {
         extra_guest_fee,
         price,
         name,
+        photo_url,
+        ast_guide,
+        guest_guide,
       }: {
         address: string;
         cleaning_fee: number;
@@ -64,6 +67,9 @@ const NewProperty = (props: RouteComponentProps) => {
         price: number;
         name: string;
         default_ast_name: string;
+        photo_url: string;
+        ast_guide: string;
+        guest_guide: string;
       } = props.location.state;
       const addressSplit = address.split('\n');
       const [
@@ -90,6 +96,11 @@ const NewProperty = (props: RouteComponentProps) => {
 
       setAssistants(props.location.state.openAst);
       setStartValues(loadValues);
+      setUrls({
+        photo_url,
+        ast_guide,
+        guest_guide,
+      });
       setEdit(true);
     }
   }, []);
