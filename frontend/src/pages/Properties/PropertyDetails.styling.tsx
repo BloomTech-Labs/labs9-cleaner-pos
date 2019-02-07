@@ -32,6 +32,7 @@ export const PropertyContainer = styled(Container)`
   justify-content: flex-start;
   align-items: flex-start;
   max-width: 100%;
+	padding: 15px;
 `;
 
 export const Top = styled(PropertyContainer)`
