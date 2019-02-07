@@ -14,9 +14,9 @@ const props: any = {
 };
 
 describe('Settings dashboard', () => {
-  test('should indluce a button with the text Stripe', async () => {
+  test('should indluce a header with the text Contact Info', async () => {
     const { getAllByText } = renderWithRouter(<Settings {...props} />, {});
-    const label = await waitForElement(() => getAllByText(/Stripe/i));
+    const label = await waitForElement(() => getAllByText(/Contact Info/i));
     await wait(() => {
       expect(label.length).toBe(1);
     });
