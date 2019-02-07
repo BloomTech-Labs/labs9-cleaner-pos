@@ -98,7 +98,7 @@ const Properties = () => {
               </IconButton>,
             ]}
           />
-          <HouseHeader>Recent Properties</HouseHeader>
+          <HouseHeader>Properties</HouseHeader>
           {}
           <Link
             to='/properties/new'

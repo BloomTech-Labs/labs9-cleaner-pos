@@ -188,12 +188,13 @@ const InfoBox = styled('div')`
 `;
 
 const AssistantHeader = styled('span')`
-  font-size: 1.8rem;
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 2.25rem;
   top: 0;
   left: 0;
   text-align: left;
   align-items: flex-start;
-  max-width: 18.125rem;
 `;
 
 const AssistantDetailContainer = styled(Container)`

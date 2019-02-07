@@ -45,10 +45,10 @@ const PropContainer = styled('div')`
 `;
 
 const HouseHeader = styled('h2')`
-  font-size: 2.25rem;
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
   font-weight: normal;
-  text-align: left;
-  max-width: 290px;
+  font-size: 2.25rem;
+
   /* margin-bottom: 1.5rem; */
   @media only screen and (max-width: 500px) {
     margin: 0 0 1.5rem 0;
