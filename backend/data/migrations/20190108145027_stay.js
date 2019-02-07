@@ -18,6 +18,7 @@ exports.up = function(knex, Promise) {
     table.date('check_in');
     table.date('check_out');
     table.string('url_id');
+    table.string('stripe_receipt');
     table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 };
