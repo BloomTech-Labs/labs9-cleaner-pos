@@ -61,17 +61,30 @@ export const PropertyLists = (props: ListProps) => {
   /* Outside click detection
      Closes edit input field if user clicks outside of it
   */
-  const inputRef = useRef(null as any);
-  const cancelInputOnClick = (event: any) => {
-    if (inputRef.current && !inputRef.current.contains(event.target)) {
-      cancelInput();
+  const newRef = useRef(null as any);
+  const editRef = useRef(null as any);
+  const changeOnOutsideClick = (
+    ref: React.MutableRefObject<any>,
+    cb: () => void,
+  ) => (event: any) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      cb();
     }
   };
 
+  const cancelInputOnClick = changeOnOutsideClick(editRef, cancelInput);
+  const toggleTextOnClick = changeOnOutsideClick(newRef, toggleText);
+
   useEffect(() => {
-    document.addEventListener('mousedown', cancelInputOnClick);
+    document.addEventListener('mousedown', (event) => {
+      cancelInputOnClick(event);
+      toggleTextOnClick(event);
+    });
     return () => {
-      document.removeEventListener('mousedown', cancelInputOnClick);
+      document.removeEventListener('mousedown', (event) => {
+        cancelInputOnClick(event);
+        toggleTextOnClick(event);
+      });
     };
   });
   /* End of click detection */
@@ -82,7 +95,7 @@ export const PropertyLists = (props: ListProps) => {
       return null;
     } else if (edit === task.items_id) {
       return (
-        <div ref={inputRef} className='task' key={task.items_id}>
+        <div ref={editRef} className='task' key={task.items_id}>
           <StyledTextField value={newItem} onChange={handleChange} />
           <div className='icon-group'>
             <IconButton
@@ -137,14 +150,17 @@ export const PropertyLists = (props: ListProps) => {
         <TaskDiv>{props.list ? props.list.map(renderListItem) : null}</TaskDiv>
         {inputItem ? (
           <>
-            <TextField
-              placeholder='Add New Item'
-              value={newItem}
-              onChange={handleChange}
-              onSubmit={handleNew}
-            />
-            <WhiteButton text='Submit' onClick={handleNew} />
-            <WhiteButton text='Cancel' onClick={toggleText} />
+            <div ref={newRef} className='task'>
+              <StyledTextField value={newItem} onChange={handleChange} />
+              <div className='icon-group'>
+                <IconButton onClick={handleNew}>
+                  <i className='fas fa-check' />
+                </IconButton>
+                <IconButton onClick={toggleText}>
+                  <i className='fas fa-times' />
+                </IconButton>
+              </div>
+            </div>
           </>
         ) : (
           <WhiteButton text='+ Add New Item' onClick={toggleText} />
