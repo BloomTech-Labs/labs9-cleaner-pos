@@ -98,7 +98,11 @@ server
   .get(stays.getAll)
   .post(stays.post);
 
-server.route('/stays/:id').get(stays.get);
+server
+  .route('/stays/:id')
+  .get(stays.get)
+  .put(stays.put);
+
 const options = {
   filePath: '../uploads',
   providerOptions: {

@@ -72,7 +72,9 @@ export const GuestDetailView = (props: GuestProps) => {
   console.log('GuestDetailView Props', props);
   const {
     stay_id,
+    guest_id,
     guest_name,
+    email,
     phone,
     address,
     house_id,
@@ -91,7 +93,9 @@ export const GuestDetailView = (props: GuestProps) => {
 
   const stayDetails = {
     stay_id,
+    guest_id,
     guest_name,
+    email,
     phone,
     address,
     house_id,

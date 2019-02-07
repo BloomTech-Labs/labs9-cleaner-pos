@@ -46,6 +46,7 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
   return db('stay')
     .where({ 'stay.id': stayId })
     .select(
+      'user.id AS guest_id',
       'user.full_name AS guest_name',
       'user.email AS email',
       'user.phone AS phone',

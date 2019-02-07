@@ -18,6 +18,7 @@ export type FilterArgs = 'all' | 'upcoming' | 'complete' | 'incomplete';
 
 export interface IncomingGuestProps {
   stay_id: number;
+  guest_id: number;
   guest_name: string;
   email: string;
   phone: string;

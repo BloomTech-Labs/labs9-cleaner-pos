@@ -14,7 +14,7 @@ import {
   NewGuestInitialValues,
   SignupSchema,
 } from './types';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { FormikActions, FieldProps, FormikProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 // Utils
@@ -263,9 +263,17 @@ const NewGuest = (props: RouteComponentProps) => {
         role: 'guest',
       };
 
-      const result = await axios.post(`${url}/guests/`, userData, headers);
+      let result: any;
+      if (props.location && props.location.state) {
+        const id = props.location.state.guest_id;
+        console.log('id:', id);
+        result = { data: [id] };
+      } else {
+        result = await axios.post(`${url}/guests/`, userData, headers);
+      }
 
       const userId = result.data[0];
+      console.log('userId', userId);
 
       const stayData = {
         guest_id: userId,
@@ -274,7 +282,15 @@ const NewGuest = (props: RouteComponentProps) => {
         check_in: checkIn,
         check_out: checkOut,
       };
-      await axios.post(`${url}/stays/`, stayData, headers);
+
+      if (props.location && props.location.state) {
+        const id = props.location.state.stay_id;
+        console.log('stayId:', id);
+        await axios.put(`${url}/stays/${id}`, stayData, headers);
+      } else {
+        await axios.post(`${url}/stays/`, stayData, headers);
+      }
+
       await actions.setSubmitting(false);
       await actions.setStatus('Submission successful. Thank you!');
       props.history.push('/guests');
