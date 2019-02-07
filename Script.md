@@ -24,7 +24,8 @@ you are ready to go!
 
 Are you ready to try Lodgel? Sign up today!
 
-# Technical Justification
+# Tech Stack
+When we started planning the tech stack of our project, we had many different elements to consider, including the languages and technologies we would use for our front- and back-ends, database, and scripting. Ultimately, we decided on React.js for our front-end, Node.js for our back-end, Postgres for our database, and TypeScript for scripting.
 ## React: 
 We chose to develop the front-end in React because its highly flexible nature allows for rapid prototyping and simple maintenance. Instead of having to change styling or functionality for each individual component that needs it, a few small adjustments can be made that propogates through the whole application and has the potential to exponentially reduce maintenance time.
 
