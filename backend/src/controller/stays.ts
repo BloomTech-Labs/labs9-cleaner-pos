@@ -108,7 +108,7 @@ export async function put(req: Requests, res: Responses, next: Nexts) {
       e.statusCode = 500;
       throw e;
     }
-    res.status(201).send(count);
+    res.status(200).json({ count });
   } catch (e) {
     if (e.statusCode === undefined) {
       e.statusCode = 400;

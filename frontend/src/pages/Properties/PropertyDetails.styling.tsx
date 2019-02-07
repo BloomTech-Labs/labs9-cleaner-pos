@@ -21,7 +21,6 @@ export const PropertyButtons = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   button {
     width: 200px;
     height: ${pxToRem(36)}rem;
@@ -63,7 +62,6 @@ export const PropertyContainer = styled(Container)`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-
   h1 {
     margin: 0;
   }
@@ -77,7 +75,6 @@ export const Top = styled(PropertyContainer)`
   align-items: center;
   /* Text */
   text-align: left;
-
   span {
     border: none;
   }
@@ -185,18 +182,15 @@ export const ItemDiv = styled('div')`
   justify-content: space-between;
   background-color: var(--color-bg-secondary);
   flex-grow: 1;
-
   @media only screen and (max-width: 900px) {
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-
   .listMap {
     width: 100%;
   }
-
   .task {
     width: 100%;
     border-bottom: var(--border-bottom);
@@ -205,12 +199,10 @@ export const ItemDiv = styled('div')`
     justify-content: space-between;
     align-items: center;
   }
-
   .task span {
     margin-right: 1rem;
     padding: 1rem 0;
   }
-
   .trash {
     margin-left: 1rem;
     cursor: pointer;
@@ -247,17 +239,14 @@ export const AfterListDiv = styled(ListDiv)`
     justify-content: center;
     align-items: center;
   }
-
   .header-after {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
   .header-after span {
     margin: 0;
   }
-
   .header-after button {
     margin: 0;
     background-color: var(--color-button-text);
@@ -277,7 +266,6 @@ export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
   .delete button {
     border-radius: var(--border-radius);
     background-color: var(--color-error);
@@ -311,7 +299,6 @@ export const AfterHeader = styled(Header)`
   color: var(--color-button-text-alt);
   border-bottom: solid #707070 1px;
   justify-content: flex-start;
-
   @media only screen and (max-width: 400px) {
     max-width: 90%;
     align-self: centered;

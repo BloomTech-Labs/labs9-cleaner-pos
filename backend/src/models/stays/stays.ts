@@ -46,7 +46,11 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
   return db('stay')
     .where({ 'stay.id': stayId })
     .select(
+      'user.id AS guest_id',
       'user.full_name AS guest_name',
+      'user.email AS email',
+      'user.phone AS phone',
+      'user.address AS address',
       'house.id AS house_id',
       'house.name AS house_name',
       'house.photo_url AS photo_url',
@@ -58,6 +62,7 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
       'house.extra_guest_fee as extra_fee',
       'house.cleaning_fee AS cleaning_fee',
       'extra_guests as extra_guests',
+      'stay.stripe_receipt AS stay_receipt',
       'stay.id AS stay_id',
       'check_in',
       'check_out',

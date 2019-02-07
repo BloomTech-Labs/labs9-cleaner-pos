@@ -32,7 +32,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
   const [pic, setPic] = useState('');
   const [user, error, loading] = useFetch(`${url}/users`, fetch);
   const [paymentError, setPaymentError] = useState({ err: false, message: '' });
-  const addressArray = user ? user.address.split('\n') : '';
+  const addressArray = user && user.address ? user.address.split('\n') : '';
   if (addressArray && addressArray.length < 6) {
     addressArray.splice(1, 0, '');
   }
@@ -56,6 +56,8 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       axios
         .post(`${url}/connect`, { authorizationCode }, headers)
         .then((res) => {
+          localStorage.setItem('connteced', 'true');
+          userC.setConnect(true);
           props.history.replace('/settings');
         })
         .catch((e) => e);
@@ -132,7 +134,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
                         <div className='line-item'>
                           <span>Stripe: </span>
                           <div>
-                            {user.stripeUID ? (
+                            {userC.connected ? (
                               'Connected!'
                             ) : (
                               <a href={stripeOauthUrl}>

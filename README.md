@@ -22,6 +22,8 @@
 
 This is a Lambda Labs Capstone Project designed for rental property management. It consolidates key tasks like invoicing and employee management into one central location.
 
+You can find the project at [https://cleanerpos.netlify.com/](https://cleanerpos.netlify.com/).
+
 ### Key Features
 
     * Manage multiple properties and multiple employees

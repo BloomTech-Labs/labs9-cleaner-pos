@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, SetStateAction } from 'react';
 import { Route, Switch, withRouter } from 'react-router';
 import {
   LandingPage,
@@ -24,21 +24,26 @@ interface UserData {
   loggedIn: boolean;
   role: any;
   subscription: number;
+  connected: boolean;
   setValue: any;
   setRole: any;
   setLogin: any;
+  setConnect: any;
 }
 const token = localStorage.getItem('token');
 const subscription = localStorage.getItem('subscription');
 const savedRole = localStorage.getItem('role');
+const connected = localStorage.getItem('connected');
 
 const defaultValue = {
   loggedIn: false,
   role: savedRole || 'none',
   subscription: 0,
+  connected: false,
   setValue: 0,
   setRole: 0,
   setLogin: 0,
+  setConnect: 0,
 };
 
 export const UserContext = createContext<UserData>(defaultValue);
@@ -47,11 +52,13 @@ const App = () => {
   const [subvalue, setValue] = useState(Number(subscription));
   const [role, setRole] = useState(savedRole);
   const [login, setLogin] = useState(token ? true : false);
+  const [connect, setConnect] = useState(Boolean(connected) ? true : false);
 
   const contextValue = {
     loggedIn: login,
     role,
     subscription: subvalue,
+    connected: connect,
   };
   return (
     <div className='App'>
@@ -62,6 +69,7 @@ const App = () => {
           setValue,
           setRole,
           setLogin,
+          setConnect,
         }}
       >
         <Sidebar />

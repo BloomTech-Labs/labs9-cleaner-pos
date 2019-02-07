@@ -48,12 +48,6 @@ const Positioner = styled('div')`
       width: 150px;
     }
   }
-  @media only screen and (max-width: 520px) {
-    button {
-      width: 120px;
-      padding: 5px 0 5px 0;
-    }
-  }
 `;
 const LeftContainer = styled('div')`
   width: 30%;
@@ -70,6 +64,11 @@ const LeftContainer = styled('div')`
 
     .left-mob {
       flex-direction: row;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .left-mob {
+      flex-direction: column;
     }
   }
 `;

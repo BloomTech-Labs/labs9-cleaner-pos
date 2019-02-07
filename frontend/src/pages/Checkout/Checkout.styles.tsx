@@ -11,6 +11,7 @@ export const CheckoutContainer = styled(Container)`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    min-height: 633px;
 
     @media only screen and (max-width: 1000px) {
       margin: 0 1rem;
@@ -139,6 +140,7 @@ export const Invoice = styled('div')`
   }
   .submit-payment {
     background: var(--color-accent-alt);
+    margin: 0 auto;
     margin-bottom: 24px;
   }
   .payment-button {
@@ -153,6 +155,51 @@ export const Invoice = styled('div')`
     background: var(--color-accent-alt);
     margin-top: 12px;
     margin-bottom: 24px;
+  }
+`;
+
+export const SVGContainer = styled('div')`
+  display: flex;
+  justify-content: center;
+  .svg-success {
+    margin: 0 auto;
+    stroke-width: 2px;
+    stroke: #8ec343;
+    fill: none;
+    & path {
+      stroke-dasharray: 17px, 17px;
+      stroke-dashoffset: 0px;
+      -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+      animation: checkmark 0.25s ease-in-out 0.7s backwards;
+    }
+    & circle {
+      stroke-dasharray: 76px, 76px;
+      stroke-dashoffset: 0px;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      -webkit-animation: checkmark-circle 0.6s ease-in-out forwards;
+      animation: checkmark-circle 0.6s ease-in-out forwards;
+    }
+  }
+
+  @keyframes checkmark {
+    0% {
+      stroke-dashoffset: 17px;
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes checkmark-circle {
+    0% {
+      stroke-dashoffset: 76px;
+    }
+
+    100% {
+      stroke-dashoffset: 0px;
+    }
   }
 `;
 
