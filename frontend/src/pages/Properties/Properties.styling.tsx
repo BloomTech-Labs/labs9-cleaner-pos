@@ -33,6 +33,21 @@ const PropContainer = styled('div')`
   }
 `;
 
+const HouseHeader = styled('h2')`
+  font-size: 2.25rem;
+  font-weight: normal;
+  text-align: left;
+  max-width: 290px;
+  /* margin-bottom: 1.5rem; */
+  @media only screen and (max-width: 500px) {
+    margin: 0 0 1.5rem 0;
+  }
+  @media only screen and (max-width: ${bp}) {
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+  }
+`;
+
 const HouseItem = styled('div')`
   max-width: ${1136 * 0.9}px;
   height: ${cardHeight}px;
@@ -66,31 +81,6 @@ const HouseItem = styled('div')`
   }
 `;
 
-const ButtonContainer = styled('div')`
-  height: 6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
-  .property-button {
-    width: ${pxToRem(166)};
-    font-size: 1.25rem;
-    padding: 0.25rem 1rem;
-  }
-  @media only screen and (max-width: ${bp}) {
-    /* padding: 10px 0 10px 0; */
-    grid-row: 2;
-    grid-column: span 2;
-    margin: 0 auto 2rem auto;
-
-    .property-button {
-      width: 50vw;
-      max-width: ${bp};
-    }
-  }
-`;
-
 const ThumbNail = styled('img')`
   object-fit: cover;
   width: 35%;
@@ -102,6 +92,16 @@ const ThumbNail = styled('img')`
     margin: 0;
     width: 100%;
     height: 6rem;
+  }
+`;
+
+const CardContent = styled('div')`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @media only screen and (max-width: ${bp}) {
+    justify-content: space-around;
+    align-items: flex-start;
   }
 `;
 
@@ -134,15 +134,6 @@ const CardHeading = styled('div')`
     p {
       text-align: left;
     }
-  }
-`;
-const CardContent = styled('div')`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  @media only screen and (max-width: ${bp}) {
-    justify-content: space-around;
-    align-items: flex-start;
   }
 `;
 
@@ -207,18 +198,28 @@ const Assistant = styled(DropDown)`
   }
 `;
 
-const HouseHeader = styled('h2')`
-  font-size: 2.25rem;
-  font-weight: normal;
-  text-align: left;
-  max-width: 290px;
-  /* margin-bottom: 1.5rem; */
-  @media only screen and (max-width: 500px) {
-    margin: 0 0 1.5rem 0;
+const ButtonContainer = styled('div')`
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .property-button {
+    width: ${pxToRem(166)};
+    font-size: 1.25rem;
+    padding: 0.25rem 1rem;
   }
   @media only screen and (max-width: ${bp}) {
-    margin: 0 0 1.5rem 0;
-    text-align: center;
+    /* padding: 10px 0 10px 0; */
+    grid-row: 2;
+    grid-column: span 2;
+    margin: 0 auto 2rem auto;
+
+    .property-button {
+      width: 50vw;
+      max-width: ${bp};
+    }
   }
 `;
 

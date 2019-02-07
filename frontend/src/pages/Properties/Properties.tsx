@@ -42,7 +42,6 @@ const Properties = () => {
     if (reason === 'clickaway') {
       return;
     }
-
     setSnackbarOpen(false);
   }
 
