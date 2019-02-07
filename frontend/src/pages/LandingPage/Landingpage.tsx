@@ -45,12 +45,12 @@ const Landing = (props: RouteComponentProps) => {
             props.history.push('/Login');
           }}
         />
-        <h2>Simplify managing your rental properties.</h2>
+        <h2>Simplify Managing Your Rental Properties.</h2>
       </CTA>
       <HeroContainer>
         <DescContainer>
           <Description>
-            <DescHeader>Welcome to Lodgel</DescHeader>
+            <DescHeader>Welcome To Lodgel</DescHeader>
             <p>
               Lodgel is designed to take the hassle out of out of your property
               management experience. You can quickly delegate tasks to your
@@ -67,7 +67,7 @@ const Landing = (props: RouteComponentProps) => {
       <HeroContainer>
         <DescContainer>
           <Description>
-            <DescHeader>Manage your Properties</DescHeader>
+            <DescHeader>Manage Your Properties</DescHeader>
             <p>
               A detailed view for each of your properties is at your fingertips.
               You have the freedom to add and remove properties as your
@@ -85,7 +85,7 @@ const Landing = (props: RouteComponentProps) => {
       <HeroContainer>
         <DescContainer>
           <Description>
-            <DescHeader>Keep Tabs on you Guests</DescHeader>
+            <DescHeader>Keep Tabs On Your Guests</DescHeader>
             <p>
               Your guests are the heart of your business. To help you deliver
               the high-quality service that your guests deserve, we have created
@@ -103,7 +103,7 @@ const Landing = (props: RouteComponentProps) => {
       <HeroContainer>
         <DescContainer>
           <Description>
-            <DescHeader>Coordinate your Assistants</DescHeader>
+            <DescHeader>Coordinate Your Assistants</DescHeader>
             <p>
               Your time is valuable, and managing multiple properties can be
               stressful. Assistants can be invaluable in exceeding guest
