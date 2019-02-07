@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   /* Color */
-  background-color: var(--color-bg-tertiary);
+  background-color: var(--color-bg-secondary);
   label {
     margin-bottom: 0.5rem;
     /* Text */
