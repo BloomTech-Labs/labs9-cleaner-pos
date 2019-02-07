@@ -23,3 +23,7 @@ Stripe. Simply select a subscription plan based on the number of properties you 
 you are ready to go!
 
 Are you ready to try Lodgel? Sign up today!
+
+# Technical Justification
+We chose to develop the front-end in React because its highly flexible nature allows for rapid prototyping and simple maintenance. Instead of having to change styling or functionality for each individual component that needs it, a few small adjustments can be made that propogates through the whole application and has the potential to exponentially reduce maintenance time.
+The justification for using Node.js in the back-end is similar to that of the front-end. The high level of customization that Node.js provides allows for near-total freedom in terms of functionality and performance. 
