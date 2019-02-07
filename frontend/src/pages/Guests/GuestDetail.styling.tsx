@@ -11,11 +11,8 @@ const pxVh = pxToVUnitMaker(1920);
 
 const headerHeight = pxRem(144);
 
-export const GuestDetailStyle = styled('div')`
+export const GuestDetailStyle = styled(Container)`
   /* Sizing & Box Model */
-  max-width: 1000px;
-  width: 100%;
-  margin: auto;
 
   /* Header CSS */
   .guest-header {
@@ -255,7 +252,7 @@ export const GuestDetailStyle = styled('div')`
 
   .button-checkout {
     width: 100%;
-    background-color: #0aa047;
+    background-color: var(--color-accent-alt);
   }
 
   @media only screen and (min-width: 700px) {

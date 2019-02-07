@@ -20,6 +20,11 @@ export const GuestsDiv = styled(Container)`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 1rem;
+    @media only screen and (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .guests-header h2 {
@@ -30,6 +35,9 @@ export const GuestsDiv = styled(Container)`
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     font-weight: normal;
     font-size: ${pxToRem(36)}rem;
+    @media only screen and (max-width: 700px) {
+      margin-bottom: 0.5rem;
+    }
   }
 
   .guests-header button {
@@ -40,8 +48,8 @@ export const GuestsDiv = styled(Container)`
   }
 
   .guests-buttons-filter {
-    display: block;
-    margin: auto auto auto 0;
+    margin-top: 1rem;
+
   }
 
   .guests-cards {
@@ -136,7 +144,7 @@ export const StyledGuestCard = styled(GuestCard)`
   }
 
   .user-image {
-    border-radius: 5px 0 0 5px;
+    border-radius: 100%;
     height: ${pxToRem(72)}rem;
     width: ${pxToRem(72)}rem;
     /* Grid */
@@ -163,7 +171,7 @@ export const StyledGuestCard = styled(GuestCard)`
     padding: 0;
     height: ${pxToRem(height)}rem;
     border: var(--border-alt);
-    margin: 0 0 ${pxToRem(36)}rem 0;
+    margin: 0 !important;
 
     /* Grid */
     display: grid;
@@ -258,7 +266,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--color-bg-tertiary);
+  background-color: var(--color-bg-secondary);
 
   div[class^='text-'] {
     display: block;

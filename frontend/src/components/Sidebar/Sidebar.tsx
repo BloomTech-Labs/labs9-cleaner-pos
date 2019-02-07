@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Mark from '@material-ui/core/Button';
@@ -16,6 +16,7 @@ import {
   StyledLink,
 } from './Sidebar.styling';
 import logo from '../../assets/lodgel.jpg';
+import { UserContext } from '../../App';
 
 interface LinkProps extends RouteComponentProps {
   onClick?: () => MouseEvent;
@@ -23,6 +24,7 @@ interface LinkProps extends RouteComponentProps {
 
 const Sidebar = (props: LinkProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const { setLogin } = useContext(UserContext);
 
   const handleClick = (e: any) => {
     setAnchorEl(e.currentTarget);
@@ -37,6 +39,7 @@ const Sidebar = (props: LinkProps) => {
     localStorage.removeItem('id');
     localStorage.removeItem('role');
     localStorage.removeItem('firebaseui::rememberedAccounts');
+    setLogin(false);
     // TODO: Use actual firebase signout function to sign out
     props.history.push('/');
   };
@@ -65,15 +68,18 @@ const Sidebar = (props: LinkProps) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
-              <Link to='/properties'>Properties</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/guests'>Guests</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/assistants'>Assistants</Link>
-            </MenuItem>
+            <Link to='/properties'>
+              <MenuItem onClick={handleClose}>Properties</MenuItem>
+            </Link>
+            <Link to='/guests'>
+              <MenuItem onClick={handleClose}>Guests</MenuItem>
+            </Link>
+            <Link to='/assistants'>
+              <MenuItem onClick={handleClose}>Assistants</MenuItem>
+            </Link>
+            <Link to='/billing'>
+              <MenuItem onClick={handleClose}>Subscribe</MenuItem>
+            </Link>
           </Menu>
           <SettingsWrapper>
             <StyledLink to='/settings'>

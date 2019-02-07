@@ -55,6 +55,7 @@ interface PostFormProps extends RouteComponentProps {
   setting_text: boolean;
   stripeUID: null | string;
   setShow: any;
+  setFetch: any;
 }
 
 const PostForm = (props: PostFormProps) => {
@@ -75,7 +76,7 @@ const PostForm = (props: PostFormProps) => {
 
   let startValues: InitialValueProps = {};
   let location: string = '';
-  const { setShow } = props;
+  const { setShow, setFetch } = props;
 
   if (props.location && props.id) {
     const { address, email, ext_it, full_name, phone } = props;
@@ -152,6 +153,7 @@ const PostForm = (props: PostFormProps) => {
             await actions.setSubmitting(false);
             await actions.setStatus('Submission successful. Thank you!');
             if (setShow !== undefined) {
+              setFetch(true);
               setShow(false);
             } else {
               props.history.push('properties');
@@ -262,7 +264,7 @@ const PostForm = (props: PostFormProps) => {
               <br />
               {/* // TODO: mess with button component to accept optional props} */}
               <Button
-                className='submit'
+                classNameS='submit'
                 type='submit'
                 datatestid='button-submit'
                 disabled={isSubmitting || !dirty}

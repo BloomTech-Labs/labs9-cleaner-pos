@@ -8,6 +8,7 @@ import { Button } from '../../components/index';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BillingContext } from './Billing';
 import loadingIndicator from '../utils/loading.svg';
+import { UserContext } from '../../App';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -19,6 +20,8 @@ const headers: AxiosRequestConfig = {
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   // @ts-ignore
   const { setConfirm, setShownIndex } = useContext(BillingContext);
+  const { setValue } = useContext(UserContext);
+
   const [loading, setLoading] = useState(false);
   const [plan, setPlan] = useState<any>(0);
   const handleSubmit = async (ev: FormEvent) => {
@@ -32,7 +35,6 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       const { token } = await props.stripe.createToken({});
       const response = await axios.post(
         `${url}/payments`,
-
         {
           // @ts-ignore
           token: token.id,
@@ -40,10 +42,13 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         },
         headers,
       );
-      localStorage.setItem('subscription', response.data.plan);
+      const sub = response.data.plan === '1' ? 1 : 2;
+      console.log(response.data.plan, sub);
+      localStorage.setItem('subscription', String(sub));
       setLoading(false);
       setConfirm({ confirm: response.data });
       setShownIndex(1);
+      setValue(sub);
     } catch (e) {
       console.log(e);
     }
@@ -85,35 +90,41 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       </div>
       <br />
       <br />
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: '350px', margin: 'auto' }}
-        data-testid='checkout-form'
-      >
+      <form onSubmit={handleSubmit} data-testid='checkout-form'>
         <label>
           Card details
           <br />
           <br />
           <CardElement />
         </label>
-        <div style={{ marginBottom: '24px' }} />
-        <Button
-          onClick={handleSubmit}
-          text={loading ? '' : 'Subscribe!'}
-          datatestid='confirm-payment'
-          disabled={plan === 0 ? true : false}
+        <div
+          style={{
+            marginTop: '2rem',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
         >
-          <div
-            role='alert'
-            aria-live='assertive'
-            style={{ display: 'flex', flexDirection: 'column' }}
+          <Button
+            className='billing--subscribe-button'
+            onClick={handleSubmit}
+            color='var(--color-accent-alt)'
+            text={loading ? '' : 'Subscribe!'}
+            datatestid='confirm-payment'
+            disabled={plan === 0 ? true : false}
           >
-            {loading ? (
-              <img src={loadingIndicator} alt='animated loading indicator' />
-            ) : null}
-            <p style={{ display: 'none' }}>Content is loading...</p>
-          </div>
-        </Button>
+            <div
+              role='alert'
+              aria-live='assertive'
+              style={{ display: 'flex', flexDirection: 'column' }}
+            >
+              {loading ? (
+                <img src={loadingIndicator} alt='animated loading indicator' />
+              ) : null}
+              <p style={{ display: 'none' }}>Content is loading...</p>
+            </div>
+          </Button>
+        </div>
       </form>
     </div>
   );

@@ -54,6 +54,7 @@ const Container = styled('div')`
     align-items: baseline;
     margin: 0 0;
     padding: 1rem 0;
+    color: var(--color-main-dark);
     border-bottom: var(--border);
   }
 
