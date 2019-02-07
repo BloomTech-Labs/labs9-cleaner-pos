@@ -14,8 +14,8 @@ the property they maintain. You can also assign them to properties if needed, wh
 and effort in finding someone to cover another turnover assistant in the event they are unavailable.
 
 You can also keep tabs on your guest throughout their entire rental experience. After putting in a reservation,
-you can keep your turnover assistants up to date with your guests needs by adding items to their checklists. Since your 
-guests' needs may change over the course of their stay, you can add to-do items during your guests' stay as well,
+managers can keep turnover assistants up to date with your guests needs by adding items to property checklists. Since your 
+guests' needs may change over the course of their stay, managers can add to-do items during guests' stay as well,
 which will help ensure they have the best possible experience. 
 
 When your guest is ready to check out, you can generate an invoice for them, and can also process their payment through
@@ -40,4 +40,5 @@ In addition, it also serves as communication between developers. Type declaratio
 PostgresQL is a SQL-style databse, which makes relational database development simpler in earlier stages, but becomes more time-consuming as scale increases. Designing queries is much easier to create and maintain than other database systems, which makes query design simple, effective, and reusable.
 
 ## Travis CI:
-Travis CI is meant to prevent regressions from being merged into the live application. We configured Travis to run all of our tests before each commit, and also create a mock Pull Request to ensure the build would render properly. 
+To ensure consistently high build qualities and prevent regressions we implemented Travis as our CI tool.
+It automatically runs test on branches and PRs and maintains high confidence when merging.
