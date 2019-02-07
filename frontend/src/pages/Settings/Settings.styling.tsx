@@ -20,9 +20,10 @@ const Header = styled('span')`
 
 const Card = styled('div')`
   width: 100%;
-  background: var(--color-bg-main);
+  background: var(--color-bg-secondary);
   display: flex;
-  padding: 20px;
+  border: var(--border);
+
   h3 {
     font-family: 'Roboto';
     font-weight: condensed;
@@ -56,13 +57,12 @@ const Positioner = styled('div')`
 `;
 const LeftContainer = styled('div')`
   width: 30%;
-  padding: 20px;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-secondary);
+  border-right: var(--border);
 
   @media only screen and (max-width: 700px) {
     width: 100%;
@@ -76,14 +76,11 @@ const LeftContainer = styled('div')`
 
 const RightContainer = styled('div')`
   width: 70%;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  border: 1px solid var(--color-border);
-  border-left: 0;
-  background: var(--color-bg-secondary);
 
   .reg {
   }
@@ -104,8 +101,9 @@ const UserCard = styled('div')`
   .line-item {
     display: flex;
     flex-direction: row;
-    margin: 10px;
-    border-bottom: 1px solid var(--color-border);
+    margin: 0 10px 0 10px;
+    padding: 7px;
+    border-bottom: var(--border);
   }
   span {
     width: 120px;
@@ -118,6 +116,8 @@ const UserCard = styled('div')`
     width: 75px;
     padding: 0;
     margin-bottom: 5px;
+  }
+  div {
   }
 `;
 
