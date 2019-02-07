@@ -41,6 +41,7 @@ export const StyledForm = styled(Form)`
     grid-gap: ${36 / 16}rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
+      'header   header   header   .'
       'title    title    title        .'
       'email    email    phone    phone'
       'address1 address1 address1 address1'
@@ -50,6 +51,13 @@ export const StyledForm = styled(Form)`
       '.        submit   submit    .'
       '.        status   status   .';
 
+    .header {
+      grid-area: header;
+      margin-top: 2rem;
+      margin-bottom: 0rem;
+      justify-self: start;
+      text-align: left;
+    }
     .title {
       grid-area: title;
     }

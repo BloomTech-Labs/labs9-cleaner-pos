@@ -202,12 +202,19 @@ const PostForm = (props: PostFormProps) => {
             touched,
             values,
           } = formProps;
+          console.log(location);
+          console.log(props.location);
           return (
             <StyledForm>
-              <div>
+              <div className='header'>
                 <h2 style={{ color: 'black' }} className='title'>
-                  {location === '/postreg' ? 'Just a few more things!' : null}
+                  {props.location.pathname === '/postreg'
+                    ? 'Just a few more things!'
+                    : null}
                 </h2>
+                {props.location.pathname === '/postreg' && (
+                  <p>Complete your registration by filling in the following!</p>
+                )}
               </div>
               <Field
                 name='email'
