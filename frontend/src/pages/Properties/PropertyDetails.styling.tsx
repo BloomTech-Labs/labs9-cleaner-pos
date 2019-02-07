@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Container, Button } from '../../components/index';
+import { TextField } from '@material-ui/core';
+import { ComponentClass } from 'react';
 
 const pxToRem = (px: number) => px / 16;
 const cardHeight = pxToRem(84);
@@ -155,4 +157,52 @@ export const AfterHeader = styled(Header)`
 export const AfterItemDiv = styled(ItemDiv)`
   padding: ${pxToRem(24)}rem ${pxToRem(28)}rem;
   margin: 0;
+`;
+
+export const ButtonGroup = styled('div')`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .delete button {
+    border-radius: var(--border-radius);
+    background-color: var(--color-error);
+  }
+`;
+
+export const DialogButton = styled(Button)`
+  margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1rem;
+`;
+
+export const DialogStay = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const IconButton = styled(Button)`
+  background-color: inherit;
+  width: auto;
+  height: auto;
+  margin: 0.5rem;
+  .fa-check {
+    color: var(--color-text-accent);
+  }
+  .fa-times {
+    color: var(--color-border-strong);
+  }
+`;
+
+export const StyledTextField = styled(TextField as ComponentClass<any>)`
+  margin-left: 1rem;
+  font-size: 1.125rem;
+  padding: 0.6875rem 0;
 `;
