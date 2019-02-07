@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { Button, Container } from '../../components/';
+import { Container } from '../../components/';
 
-const pxToRem = (px: number) => px / 16;
+const pxToRem = (px: number): string => `${px / 16}rem`;
 const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 // Some size constants
 const boxHeight = '5rem';
@@ -15,17 +15,13 @@ const AssistantItem = styled('div')`
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
   border-radius: var(--border-radius);
   margin-bottom: 2.25rem;
-
   /* Sizing */
   height: ${pxToRem(168)};
   border: var(--border-alt);
-
   /* Flex */
   display: flex;
-
   /* Text */
   text-align: left;
-
   /* Hover Effects */
   /* transition: all 0.1s ease-in-out;
   &:hover {
@@ -34,7 +30,6 @@ const AssistantItem = styled('div')`
   .button__see-more {
     width: 100%;
   }
-
   h1 {
     margin: 1rem 0;
   }
@@ -45,19 +40,16 @@ const AssistantItem = styled('div')`
     align-items: center;
     width: 100%;
   }
-
   @media only screen and (max-width: ${bp}) {
     width: 100%;
     height: 100%;
     /* Flex */
     flex-direction: column;
     align-items: flex-start;
-
     .check-boxes {
       flex-flow: row wrap;
       margin-bottom: 1rem;
     }
-
     .list-img {
       margin: 1rem auto 0 auto;
       width: 4.5rem;
@@ -71,7 +63,6 @@ const HeaderWrapper = styled('div')`
   /* Flex */
   display: flex;
   justify-content: space-between;
-
   /* Sizing */
   margin-bottom: 2.25rem;
   .new-ast__button {
@@ -82,10 +73,6 @@ const HeaderWrapper = styled('div')`
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     font-size: 1.25rem;
   }
-  @media only screen and (max-width: 900px) {
-    padding: 0 10px 0 10px;
-  }
-
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     align-items: center;
@@ -106,13 +93,11 @@ const ButtonContainer = styled('div')`
   justify-content: space-around;
   /* Text */
   font-size: ${pxToRem(20)};
-
   @media screen and (max-width: 550px) {
     margin: auto;
     margin: 1rem 0;
     flex-basis: 100%;
     width: 100%;
-
     button {
       width: 100%;
       max-width: 550px;
@@ -131,12 +116,10 @@ const CardHeading = styled('div')`
   width: 100%;
   line-height: 0.5;
   margin-bottom: 0.5rem;
-
   h1 {
     font-size: 1.25rem;
     color: var(--color-text-accent);
   }
-
   p {
     font-size: 1rem;
   }
@@ -202,12 +185,10 @@ const AssistantHeader = styled('span')`
 const AssistantDetailContainer = styled(Container)`
   display: flex;
   flex-flow: row wrap;
-
   .container-map {
     width: 65%;
     height: 75vh;
   }
-
   .my-leaflet-map-container img {
     max-height: none;
   }
@@ -216,12 +197,10 @@ const AssistantDetailContainer = styled(Container)`
       position: absolute;
     }
   }
-
   .detail-img {
     width: 96px;
     height: 96px;
   }
-
   .detail-txt {
     /* Sizing */
     padding-left: 1rem;
@@ -229,12 +208,10 @@ const AssistantDetailContainer = styled(Container)`
     text-align: left;
     /* line-height: 1; */
   }
-
   .detail-txt h3 {
     font-family: 'Roboto Light', Arial, Helvetica, sans-serif;
     font-weight: lighter;
   }
-
   .button-group {
     /* Sizing */
     margin: ${pxToRem(5)} 0;
@@ -244,16 +221,13 @@ const AssistantDetailContainer = styled(Container)`
     justify-content: space-between;
     align-items: flex-start;
   }
-
   .button-group button {
     font-size: 1rem;
   }
-
   @media screen and (max-width: 700px) {
     /* In smaller screens, make page columnar.
        Have map and AsstDetail swap places */
     flex-direction: column;
-
     .container-map {
       /* Flex */
       order: -1;
@@ -270,19 +244,16 @@ const AssistantDetailContainer = styled(Container)`
       position: sticky !important;
       top: 0 !important;
     }
-
     .assistant-card {
       /* Flex */
       order: 2;
       /* Sizing */
       width: 100%;
     }
-
     .detail-img {
       width: 72px;
       height: 72px;
     }
-
     .button-group {
       margin: 0;
     }
@@ -292,7 +263,6 @@ const AssistantDetailContainer = styled(Container)`
 const AssistantBar = styled('div')`
   /* Size */
   padding-right: 0.5rem;
-
   width: 35%;
   max-width: 21rem;
   /* Flex */
@@ -317,11 +287,9 @@ const AsstDetail = styled('div')`
 const AsstProperty = styled('div')`
   /* Sizing */
   width: 100%;
-
   /* Flex */
   display: flex;
   flex-direction: column;
-
   .deleteButton {
     background-color: var(--color-error);
     margin-bottom: ${pxToRem(5)};
@@ -343,7 +311,6 @@ const PropertyContainer = styled('div')`
   justify-content: flex-start;
   /* Color */
   background: white;
-
   .button-new {
     /* Sizing */
     padding: 0.25rem 0.5rem;
@@ -371,7 +338,6 @@ const PropertyHeading = styled('div')`
   background: var(--color-bg-accent);
   /* Text */
   text-align: left;
-
   h2 {
     font-size: 1rem;
     margin: 0.5rem 0 0.5rem 0;
@@ -389,7 +355,6 @@ const HouseItem = styled.p`
   .hide {
     display: none;
   }
-
   &:hover .hide {
     display: inline-block;
     margin-left: 1rem;
@@ -410,7 +375,6 @@ const ModalStyle = styled('div')`
     0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
   outline: none;
   padding: 0 0 2rem 0;
-
   .modalButton {
     position: absolute;
     bottom: 5%;
