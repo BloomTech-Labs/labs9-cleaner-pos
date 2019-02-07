@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import house from '../../assets/house_alt.jpg';
 
@@ -28,8 +27,10 @@ const LoginDiv = styled('div')`
     /* Flexbox */
     display: flex;
     align-items: center;
+    flex-direction: column;
 
     /* Sizing and Box Model */
+    min-width: 240px;
     height: 100%;
     margin: auto;
 
