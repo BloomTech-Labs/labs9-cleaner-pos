@@ -53,7 +53,7 @@ describe('future accordion component', () => {
     expect(advPlan).toHaveTextContent('Lodgel Professional');
   });
 
-  test('should render a form component', () => {
+  test.skip('should render a form component', () => {
     const { getByTestId } = render(
       <StripeProvider stripe={null}>
         <MyStoreCheckout />

@@ -85,35 +85,41 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       </div>
       <br />
       <br />
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: '350px', margin: 'auto' }}
-        data-testid='checkout-form'
-      >
+      <form onSubmit={handleSubmit} data-testid='checkout-form'>
         <label>
           Card details
           <br />
           <br />
           <CardElement />
         </label>
-        <div style={{ marginBottom: '24px' }} />
-        <Button
-          onClick={handleSubmit}
-          text={loading ? '' : 'Subscribe!'}
-          datatestid='confirm-payment'
-          disabled={plan === 0 ? true : false}
+        <div
+          style={{
+            marginTop: '2rem',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
         >
-          <div
-            role='alert'
-            aria-live='assertive'
-            style={{ display: 'flex', flexDirection: 'column' }}
+          <Button
+            className='billing--subscribe-button'
+            onClick={handleSubmit}
+            color='var(--color-accent-alt)'
+            text={loading ? '' : 'Subscribe!'}
+            datatestid='confirm-payment'
+            disabled={plan === 0 ? true : false}
           >
-            {loading ? (
-              <img src={loadingIndicator} alt='animated loading indicator' />
-            ) : null}
-            <p style={{ display: 'none' }}>Content is loading...</p>
-          </div>
-        </Button>
+            <div
+              role='alert'
+              aria-live='assertive'
+              style={{ display: 'flex', flexDirection: 'column' }}
+            >
+              {loading ? (
+                <img src={loadingIndicator} alt='animated loading indicator' />
+              ) : null}
+              <p style={{ display: 'none' }}>Content is loading...</p>
+            </div>
+          </Button>
+        </div>
       </form>
     </div>
   );

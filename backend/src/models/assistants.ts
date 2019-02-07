@@ -70,7 +70,11 @@ export function findOneAssistant(astId: number, manId: number) {
     .then(async (e: any) => {
       const defA: any = [];
       const defHouse = await db('house')
-        .select('house.id as house_id', 'house.name as house_name')
+        .select(
+          'house.id as house_id',
+          'house.name as house_name',
+          'house.address as house_address',
+        )
         .where({ 'house.default_ast': astId })
         .map((h: any) => {
           defA.push(h.house_id);
@@ -80,7 +84,11 @@ export function findOneAssistant(astId: number, manId: number) {
         .leftJoin('house', {
           'house_ast.house_id': 'house.id',
         })
-        .select('house.id as house_id', 'house.name as house_name')
+        .select(
+          'house.id as house_id',
+          'house.name as house_name',
+          'house.address as house_address',
+        )
         .where({ 'house_ast.ast_id': astId })
         // filters out the houses that a ast is already default
         .whereNotIn('house_ast.house_id', defA)
@@ -89,7 +97,11 @@ export function findOneAssistant(astId: number, manId: number) {
           return h;
         });
       const avlAddHouses = await db('house')
-        .select('house.id as house_id', 'house.name as house_name')
+        .select(
+          'house.id as house_id',
+          'house.name as house_name',
+          'house.address as house_address',
+        )
         .where({ 'house.manager': manId })
         .whereNotIn('house.id', defA);
       return {
