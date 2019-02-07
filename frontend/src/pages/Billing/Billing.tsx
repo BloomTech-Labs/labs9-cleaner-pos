@@ -70,7 +70,9 @@ const Billing = () => {
             }}
           >
             <ListContainer>
-              <List style={{ padding: '0' }}>
+              <List
+                style={{ padding: '0', background: 'var(--color-main-light)' }}
+              >
                 <ListSubheader
                   classes={{ root: 'list-subheader' }}
                   style={{

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 const SubBox = styled('div')`
+  background: var(--color-main-light);
   padding: 20px;
   display: flex;
   height: 100%;
@@ -27,7 +28,8 @@ const SubBox = styled('div')`
 const ListContainer = styled('div')`
   width: '100%';
   height: '50%';
-  background: 'white';
+  background: var(--color-main-light);
+  margin-bottom: 1rem;
   @media only screen and (max-width: 800px) {
     height: 100%;
     border: var(--border);
