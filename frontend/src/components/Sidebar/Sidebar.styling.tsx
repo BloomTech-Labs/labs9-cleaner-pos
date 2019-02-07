@@ -52,7 +52,7 @@ const Container = styled('div')`
     display: ${conditionallyHideSidebar('flex')};
     justify-content: space-between;
     align-items: center;
-    margin: 0 0;
+    margin: 0;
     padding: 1rem 0;
     color: var(--color-main-dark);
     border-bottom: var(--border);
@@ -89,7 +89,7 @@ const NavWrapper = styled('div')`
 const SettingsWrapper = styled('div')`
   display: flex;
   align-items: center;
-  margin-right: 1rem;
+  margin-right: auto;
   :last-of-type {
     margin-right: 0;
   }
@@ -118,7 +118,7 @@ const StyledUL = styled('div')`
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
-  padding: 0 4rem;
+  padding: 0 3rem;
   @media only screen and (min-width: ${bp}) {
     :first-of-type {
       padding-left: 0;
@@ -144,7 +144,7 @@ const StyledLink = styled(NavLink)`
 const Logo = styled('img')`
   height: 40px;
   width: 40px;
-  margin-left: 7.5rem;
+  margin-left: 5rem;
 `;
 
 export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink, Logo };
