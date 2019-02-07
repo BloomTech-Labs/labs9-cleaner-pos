@@ -117,8 +117,8 @@ export const GuestsDiv = styled(Container)`
 
 export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
-  width: 95vw;
-  margin: 0 0.5rem 2rem 0.5rem;
+  width: 95%;
+  margin: 0 auto 2rem auto;
   padding: 1rem;
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
   border-radius: var(--border-radius);
