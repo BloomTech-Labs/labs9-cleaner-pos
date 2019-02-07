@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 import { Lists, List, ListProps } from './types';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
@@ -12,6 +12,8 @@ import {
   AfterItemDiv,
   AfterListDiv2,
   SecondaryText,
+  IconButton,
+  StyledTextField,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';
 import loadingIndicator from '../utils/loading.svg';
@@ -44,56 +46,84 @@ export const PropertyLists = (props: ListProps) => {
     setTaskLoad(0);
   }, [props]);
 
-  console.log('list props:', props.list);
+  /* Submit and Cancel functions */
+  const submitInput = (task: string, newItem: any, items_id: number) => () => {
+    props.putTasks(task, newItem);
+    setNewItem('');
+    setTaskLoad(items_id);
+    setEdit(0);
+  };
 
-  const renderListItem = ({ list_id, task, items_id }: List) => {
-    if (items_id === null) {
+  const cancelInput = () => {
+    setEdit(0);
+    setNewItem('');
+  };
+  /* Outside click detection
+     Closes edit input field if user clicks outside of it
+  */
+  const inputRef = useRef(null as any);
+  const cancelInputOnClick = (event: any) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      cancelInput();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', cancelInputOnClick);
+    return () => {
+      document.removeEventListener('mousedown', cancelInputOnClick);
+    };
+  });
+  /* End of click detection */
+
+  const renderListItem = (task: List) => {
+    console.log('items_id', task.items_id, 'task', task.task);
+    if (task.items_id === null) {
       return null;
-    } else if (edit === items_id) {
+    } else if (edit === task.items_id) {
       return (
-        <TaskDiv key={items_id}>
-          <TextField value={newItem} onChange={handleChange} />
-          <WhiteButton
-            text='Submit'
-            onClick={() => {
-              props.putTasks(task, newItem);
-              setNewItem('');
-              setTaskLoad(items_id);
-              setEdit(0);
-            }}
-          />
-          <WhiteButton
-            text='Cancel'
-            onClick={() => {
-              setEdit(0);
-              setNewItem('');
-            }}
-          />
-        </TaskDiv>
+        <div ref={inputRef} className='task' key={task.items_id}>
+          <StyledTextField value={newItem} onChange={handleChange} />
+          <div className='icon-group'>
+            <IconButton
+              onClick={() => {
+                props.putTasks(task, newItem);
+                setNewItem('');
+                setTaskLoad(task.items_id);
+                setEdit(0);
+              }}
+            >
+              <i className='fas fa-check' />
+            </IconButton>
+            <IconButton onClick={cancelInput}>
+              <i className='fas fa-times' />
+            </IconButton>
+          </div>
+        </div>
       );
     } else {
       return (
-        <div key={items_id} className='task'>
+        <div className='task' key={task.items_id}>
           <SecondaryText
             onClick={() => {
-              setEdit(items_id);
-              setNewItem(task);
+              setEdit(task.items_id);
+              setNewItem(task.task);
             }}
           >
-            {items_id === taskLoad ? (
+            {task.items_id === taskLoad ? (
               <img src={loadingIndicator} alt='animated loading indicator' />
             ) : (
-              task
+              task.task
             )}
           </SecondaryText>
           <span
             onClick={() => {
-              props.deleteTasks(items_id);
-              setTaskLoad(items_id);
+              props.deleteTasks(task.items_id);
+              setTaskLoad(task.items_id);
             }}
           >
             {' '}
-            <i className='fas fa-times' />
+            <i className='fas fa-trash-alt trash' />
           </span>
         </div>
       );
@@ -104,63 +134,7 @@ export const PropertyLists = (props: ListProps) => {
     <ListDiv>
       <Header>{props.type}</Header>
       <ItemDiv>
-        <TaskDiv>
-          {props.list.map(renderListItem)}
-          {/* {props.list.map((task) => {
-            return (
-              <div key={task.items_id} className='listMap'>
-                {edit === task.items_id ? (
-                  <TaskDiv>
-                    <TextField value={newItem} onChange={handleChange} />
-                    <WhiteButton
-                      text='Submit'
-                      onClick={() => {
-                        props.putTasks(task, newItem);
-                        setNewItem('');
-                        setTaskLoad(task.items_id);
-                        setEdit(0);
-                      }}
-                    />
-                    <WhiteButton
-                      text='Cancel'
-                      onClick={() => {
-                        setEdit(0);
-                        setNewItem('');
-                      }}
-                    />
-                  </TaskDiv>
-                ) : (
-                  <div className='task'>
-                    <SecondaryText
-                      onClick={() => {
-                        setEdit(task.items_id);
-                        setNewItem(task.task);
-                      }}
-                    >
-                      {task.items_id === taskLoad ? (
-                        <img
-                          src={loadingIndicator}
-                          alt='animated loading indicator'
-                        />
-                      ) : (
-                        task.task
-                      )}
-                    </SecondaryText>
-                    <span
-                      onClick={() => {
-                        props.deleteTasks(task.items_id);
-                        setTaskLoad(task.items_id);
-                      }}
-                    >
-                      {' '}
-                      <i className='fas fa-times' />
-                    </span>
-                  </div>
-                )}
-              </div>
-            );
-          })} */}
-        </TaskDiv>
+        <TaskDiv>{props.list ? props.list.map(renderListItem) : null}</TaskDiv>
         {inputItem ? (
           <>
             <TextField

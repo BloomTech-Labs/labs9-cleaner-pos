@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Container, Button } from '../../components/index';
+import { TextField } from '@material-ui/core';
+import { ComponentClass } from 'react';
 
 const pxToRem = (px: number) => px / 16;
 const cardHeight = pxToRem(84);
@@ -18,13 +20,31 @@ export const BackButton = styled(Button)`
 export const PropertyButtons = styled('div')``;
 
 export const WhiteButton = styled(Button)`
+  border: var(--border);
+  margin: 1rem 0;
   color: var(--color-button-text-alt);
   background-color: var(--color-button-text-action);
-  /* border: solid #707070 1px; */
-  border: var(--border);
   width: ${pxToRem(161)}rem;
   height: ${pxToRem(36)}rem;
   font-size: ${pxToRem(16)}rem;
+`;
+
+export const IconButton = styled(Button)`
+  background-color: inherit;
+  width: auto;
+  height: auto;
+  .fa-check {
+    color: var(--color-text-accent);
+  }
+  .fa-times {
+    color: var(--color-border-strong);
+  }
+`;
+
+export const StyledTextField = styled(TextField as ComponentClass<any>)`
+  margin-left: 1rem;
+  font-size: 1.125rem;
+  padding: 0.6875rem 0;
 `;
 
 export const PropertyContainer = styled(Container)`
@@ -82,7 +102,7 @@ export const SecondaryText = styled.div`
   margin-left: 1rem;
   padding: 1rem 0;
   font-family: 'Roboto Bold', Arial, sans-serif;
-  font-size: ${pxToRem(20)}rem;
+  font-size: 1.125rem;
   @media only screen and (max-width: 900px) {
     width: 100%;
     text-align: center;
@@ -92,7 +112,7 @@ export const SecondaryText = styled.div`
 
 export const Header = styled('div')`
   width: 100%;
-  padding: 0.5rem ${pxToRem(28)}rem;
+  padding: 0.5rem 1rem;
   /* height: ${pxToRem(40)}rem; */
   background: var(--color-text-accent);
   text-align: left;
@@ -131,12 +151,6 @@ export const ItemDiv = styled('div')`
   justify-content: space-between;
   background-color: var(--color-bg-secondary);
   flex-grow: 1;
-`;
-
-export const TaskDiv = styled('div')`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 
   .listMap {
     width: 100%;
@@ -148,12 +162,24 @@ export const TaskDiv = styled('div')`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   .task span {
     margin-right: 1rem;
     padding: 1rem 0;
   }
+
+  .trash {
+    cursor: pointer;
+    color: var(--color-error);
+  }
+`;
+
+export const TaskDiv = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 // after List
