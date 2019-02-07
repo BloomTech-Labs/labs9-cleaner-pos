@@ -27,10 +27,10 @@ const AssistantItem = styled('div')`
   text-align: left;
 
   /* Hover Effects */
-  transition: all 0.1s ease-in-out;
+  /* transition: all 0.1s ease-in-out;
   &:hover {
     transform: scale(1.025);
-  }
+  } */
   .button__see-more {
     width: 100%;
   }
@@ -74,14 +74,18 @@ const HeaderWrapper = styled('div')`
 
   /* Sizing */
   margin-bottom: 2.25rem;
-  .invite-btn {
+  .new-ast__button {
+    background: var(--color-accent);
+    width: 200px;
+    height: 40px;
+    padding: 0.5rem 1rem;
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: ${pxToRem(20)}rem;
+    font-size: 1.25rem;
   }
   @media only screen and (max-width: 900px) {
     padding: 0 10px 0 10px;
   }
+
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     align-items: center;
@@ -188,12 +192,11 @@ const InfoBox = styled('div')`
 const AssistantHeader = styled('span')`
   font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
   font-weight: normal;
-  font-size: ${pxToRem(36)}rem;
+  font-size: 2.25rem;
   top: 0;
   left: 0;
   text-align: left;
   align-items: flex-start;
-  /*max-width: 18.125rem;*/
 `;
 
 const AssistantDetailContainer = styled(Container)`

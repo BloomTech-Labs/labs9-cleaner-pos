@@ -34,6 +34,11 @@ const Sidebar = (props: LinkProps) => {
     setAnchorEl(null);
   };
 
+  const goAndClose = (path: string) => () => {
+    handleClose();
+    props.history.push(path);
+  };
+
   const logOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
@@ -68,18 +73,10 @@ const Sidebar = (props: LinkProps) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <Link to='/properties'>
-              <MenuItem onClick={handleClose}>Properties</MenuItem>
-            </Link>
-            <Link to='/guests'>
-              <MenuItem onClick={handleClose}>Guests</MenuItem>
-            </Link>
-            <Link to='/assistants'>
-              <MenuItem onClick={handleClose}>Assistants</MenuItem>
-            </Link>
-            <Link to='/billing'>
-              <MenuItem onClick={handleClose}>Subscribe</MenuItem>
-            </Link>
+            <MenuItem onClick={goAndClose('/properties')}>Property</MenuItem>
+            <MenuItem onClick={goAndClose('/guests')}>Guests</MenuItem>
+            <MenuItem onClick={goAndClose('/assistants')}>Assistants</MenuItem>
+            <MenuItem onClick={goAndClose('/billing')}>Subscribe</MenuItem>
           </Menu>
           <SettingsWrapper>
             <StyledLink to='/settings'>
