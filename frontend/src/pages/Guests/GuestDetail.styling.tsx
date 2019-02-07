@@ -71,6 +71,7 @@ export const GuestDetailStyle = styled(Container)`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    margin-bottom: 2rem;
   }
 
   .checkin,
@@ -82,8 +83,17 @@ export const GuestDetailStyle = styled(Container)`
   .guest-header--buttons {
     /* Flex */
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-between;
+
+    @media only screen and (max-width: 431px) {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .back {
+        margin-top: 1rem;
+      }
+    }
   }
 
   .guest-header--checkdates .text-main {
@@ -97,9 +107,6 @@ export const GuestDetailStyle = styled(Container)`
     font-size: 1rem;
   }
 
-  .back {
-    margin: 1rem 0 0 0;
-  }
   /* Guest-Info CSS */
   .guest-info {
     border: none;
@@ -112,6 +119,15 @@ export const GuestDetailStyle = styled(Container)`
   }
 
   /* Checklists */
+
+  .guest-info--checklist {
+    max-width: 470px;
+
+    @media only screen and (max-width: 900px) {
+      width: 96%;
+      max-width: none;
+    }
+  }
   /* Guest Checklist Buttons */
   .guest-info--checklist-bottom .guests-buttons-filter {
     margin: 0;
@@ -152,6 +168,7 @@ export const GuestDetailStyle = styled(Container)`
     display: block;
     margin-bottom: 0.5rem;
     text-align: left;
+    overflow: hidden;
   }
 
   /* Checklist Sublist */
@@ -214,6 +231,18 @@ export const GuestDetailStyle = styled(Container)`
     grid-gap: 1.25rem;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: 432px) {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
+      align-items: center;
+
+      .ast-dropdown,
+      .guide {
+        margin: 1rem 0;
+      }
+    }
   }
 
   .ast-dropdown {
@@ -255,7 +284,7 @@ export const GuestDetailStyle = styled(Container)`
     background-color: var(--color-accent-alt);
   }
 
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 900px) {
     .guest-info--top {
       display: block;
     }
@@ -308,6 +337,7 @@ export const GuestDetailStyle = styled(Container)`
 
     .guest-header--checkdates {
       /* Box Model & Sizing */
+      margin-bottom: 0;
       width: 100%;
 
       /* Flex */
@@ -316,6 +346,10 @@ export const GuestDetailStyle = styled(Container)`
       /* Grid */
       grid-column: 4 / -1;
       grid-row: 1;
+
+      @media only screen and (max-width: 900px) {
+        margin-bottom: 0;
+      }
     }
 
     .checkin,
@@ -325,11 +359,53 @@ export const GuestDetailStyle = styled(Container)`
     }
 
     .guest-header--buttons {
+      width: 100%;
+      margin: 1rem 0 0 0;
+      padding: 1rem 0 !important;
       /* Grid */
-      grid-column: 5 / 7;
+      grid-column: 4 / 7;
       grid-row: 2;
       justify-self: end;
       align-self: flex-end;
+      /* Flex */
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      a,
+      button {
+        margin: 0;
+        padding: 1rem 0;
+        height: ${37 / 16}rem;
+      }
+
+      .edit,
+      .back {
+        margin: 0;
+        padding: 1rem;
+      }
+
+      @media only screen and (min-width: 900px) {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        a,
+        button {
+          margin: 0;
+          height: ${37 / 16}rem;
+          padding: 0;
+        }
+
+        .edit,
+        .back {
+          margin: 0;
+          padding: 0 !important;
+        }
+      }
     }
 
     .guest-info--bottom {

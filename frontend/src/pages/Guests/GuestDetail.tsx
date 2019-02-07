@@ -68,21 +68,40 @@ const GuestDetail = (props: RouteComponentProps) => {
   );
 };
 
-export const GuestDetailView = ({
-  stay_id,
-  guest_name,
-  house_id,
-  house_name,
-  house_address,
-  default_ast,
-  guest_guide,
-  ast_guide,
-  check_in,
-  check_out,
-  errors,
-  Uppy,
-  goBack,
-}: GuestProps) => {
+export const GuestDetailView = (props: GuestProps) => {
+  const {
+    stay_id,
+    guest_id,
+    guest_name,
+    email,
+    phone,
+    address,
+    house_id,
+    house_name,
+    house_address,
+    default_ast,
+    extra_guests,
+    guest_guide,
+    ast_guide,
+    check_in,
+    check_out,
+    errors,
+    Uppy,
+    goBack,
+  } = props;
+
+  const stayDetails = {
+    stay_id,
+    guest_id,
+    guest_name,
+    email,
+    phone,
+    address,
+    house_id,
+    extra_guests,
+    check_in,
+    check_out,
+  };
   return (
     <GuestDetailStyle>
       {errors.error && <div>{errors.msg}</div>}
@@ -106,6 +125,14 @@ export const GuestDetailView = ({
           />
         </div>
         <div className='guest-header--buttons'>
+          <Link to={{ pathname: `/guests/new`, state: stayDetails }}>
+            <Button
+              className='edit'
+              text='Edit Reservation'
+              color='var(--color-button-background)'
+              // datatestid='button-edit'
+            />
+          </Link>
           <Button
             className='back'
             text='Go Back ↩'

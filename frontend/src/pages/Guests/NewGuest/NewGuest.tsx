@@ -14,7 +14,7 @@ import {
   NewGuestInitialValues,
   SignupSchema,
 } from './types';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { FormikActions, FieldProps, FormikProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 // Utils
@@ -263,7 +263,14 @@ const NewGuest = (props: RouteComponentProps) => {
         role: 'guest',
       };
 
-      const result = await axios.post(`${url}/guests/`, userData, headers);
+      let result: any;
+      if (props.location && props.location.state) {
+        const id = props.location.state.guest_id;
+        await axios.put(`${url}/guests/${id}`, userData, headers);
+        result = { data: [id] };
+      } else {
+        result = await axios.post(`${url}/guests/`, userData, headers);
+      }
 
       const userId = result.data[0];
 
@@ -274,7 +281,14 @@ const NewGuest = (props: RouteComponentProps) => {
         check_in: checkIn,
         check_out: checkOut,
       };
-      await axios.post(`${url}/stays/`, stayData, headers);
+
+      if (props.location && props.location.state) {
+        const id = props.location.state.stay_id;
+        await axios.put(`${url}/stays/${id}`, stayData, headers);
+      } else {
+        await axios.post(`${url}/stays/`, stayData, headers);
+      }
+
       await actions.setSubmitting(false);
       await actions.setStatus('Submission successful. Thank you!');
       props.history.push('/guests');
@@ -302,11 +316,52 @@ const NewGuest = (props: RouteComponentProps) => {
     }
   };
 
+  const setInitialValues = (
+    routeProps: RouteComponentProps,
+  ): NewGuestInitialValues => {
+    if (routeProps.location && routeProps.location.state) {
+      const {
+        guest_name,
+        email,
+        phone,
+        address,
+        house_id,
+        extra_guests,
+        check_in,
+        check_out,
+        diff,
+      } = routeProps.location.state;
+
+      const addressArray = address ? address.split('\n') : '';
+      if (addressArray && addressArray.length < 6) {
+        addressArray.splice(1, 0, '');
+      }
+
+      return {
+        fullName: guest_name,
+        email,
+        phone,
+        address1: addressArray[0],
+        address2: addressArray[1],
+        city: addressArray[2],
+        state: addressArray[3],
+        country: addressArray[4],
+        postCode: addressArray[5],
+        houseId: house_id,
+        extraGuests: extra_guests,
+        checkIn: new Date(check_in),
+        checkOut: new Date(check_out),
+      };
+    } else {
+      return emptyValues;
+    }
+  };
+
   const goBack = () => props.history.push('/guests');
 
   return (
     <Formik
-      initialValues={emptyValues}
+      initialValues={setInitialValues(props)}
       validationSchema={SignupSchema}
       onSubmit={onSubmit}
       render={(formProps) => (
