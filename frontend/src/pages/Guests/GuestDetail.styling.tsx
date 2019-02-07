@@ -83,8 +83,17 @@ export const GuestDetailStyle = styled(Container)`
   .guest-header--buttons {
     /* Flex */
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-between;
+
+    @media only screen and (max-width: 431px) {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .back {
+        margin-top: 1rem;
+      }
+    }
   }
 
   .guest-header--checkdates .text-main {
@@ -212,6 +221,18 @@ export const GuestDetailStyle = styled(Container)`
     grid-gap: 1.25rem;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: 432px) {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
+      align-items: center;
+
+      .ast-dropdown,
+      .guide {
+        margin: 1rem 0;
+      }
+    }
   }
 
   .ast-dropdown {
@@ -398,12 +419,6 @@ export const GuestDetailStyle = styled(Container)`
     .stay-code div {
       text-align: center;
       justify-self: center;
-    }
-  }
-
-  @media only screen and (min-width: 431) {
-    .guest-header--buttons .edit {
-      margin-bottom: 0.5rem;
     }
   }
 `;
