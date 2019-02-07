@@ -302,11 +302,52 @@ const NewGuest = (props: RouteComponentProps) => {
     }
   };
 
+  const setInitialValues = (
+    routeProps: RouteComponentProps,
+  ): NewGuestInitialValues => {
+    if (routeProps.location && routeProps.location.state) {
+      const {
+        guest_name,
+        email,
+        phone,
+        address,
+        house_id,
+        extra_guests,
+        check_in,
+        check_out,
+        diff,
+      } = routeProps.location.state;
+
+      const addressArray = address ? address.split('\n') : '';
+      if (addressArray && addressArray.length < 6) {
+        addressArray.splice(1, 0, '');
+      }
+
+      return {
+        fullName: guest_name,
+        email,
+        phone,
+        address1: addressArray[0],
+        address2: addressArray[1],
+        city: addressArray[2],
+        state: addressArray[3],
+        country: addressArray[4],
+        postCode: addressArray[5],
+        houseId: house_id,
+        extraGuests: extra_guests,
+        checkIn: check_in,
+        checkOut: check_out,
+      };
+    } else {
+      return emptyValues;
+    }
+  };
+
   const goBack = () => props.history.push('/guests');
 
   return (
     <Formik
-      initialValues={emptyValues}
+      initialValues={setInitialValues(props)}
       validationSchema={SignupSchema}
       onSubmit={onSubmit}
       render={(formProps) => (

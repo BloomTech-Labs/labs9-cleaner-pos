@@ -19,10 +19,14 @@ export type FilterArgs = 'all' | 'upcoming' | 'complete' | 'incomplete';
 export interface IncomingGuestProps {
   stay_id: number;
   guest_name: string;
+  email: string;
+  phone: string;
+  address: string;
   house_id: number;
   house_name: string;
   house_address: string;
   default_ast: string;
+  extra_guests: number;
   guest_guide: string;
   ast_guide: string;
   check_in: string;
@@ -37,7 +41,6 @@ export interface GuestProps extends IncomingGuestProps {
   // tslint:disable-next-line
   Uppy: (props: { type?: string; id?: number; text?: string }) => JSX.Element;
   goBack: () => void;
-  goEdit: () => void;
 }
 
 // Checklists
