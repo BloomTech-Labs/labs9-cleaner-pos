@@ -172,7 +172,7 @@ describe('Stay Route Handler Functions:', () => {
     await put(req, res, next);
     // Assert
     const { sendValue, statusValue } = res;
-    expect(statusValue).toBe(201);
+    expect(statusValue).toBe(200);
     expect(sendValue).toBe(1);
   });
 

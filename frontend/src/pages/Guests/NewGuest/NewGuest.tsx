@@ -267,6 +267,7 @@ const NewGuest = (props: RouteComponentProps) => {
       if (props.location && props.location.state) {
         const id = props.location.state.guest_id;
         console.log('id:', id);
+        await axios.put(`${url}/guests/${id}`, userData, headers);
         result = { data: [id] };
       } else {
         result = await axios.post(`${url}/guests/`, userData, headers);

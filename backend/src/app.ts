@@ -39,6 +39,8 @@ server
 
 server.route('/guests').post(guests.post);
 
+server.route('/guests/:id').put(guests.put);
+
 server
   .route('/houses')
   .get(houses.get)
