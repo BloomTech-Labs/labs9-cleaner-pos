@@ -295,12 +295,12 @@ const HouseItemF = styled('div')`
       justify-content: space-between;
     }
     .logo-holder {
-      height: 75%;
+      height: 60%;
     }
     .filler-text {
-      margin: 0;
+      margin: 0 0 1.5rem 0;
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     .filler-icon {
       width: 100%;

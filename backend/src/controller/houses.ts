@@ -64,7 +64,7 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
       if (req.token.role === 'assistant') {
         const ast = await getRoleId(req.token.id, true);
         const astMan = await findAstMan(ast.id);
-        house = await findHouses(astMan, req.token.id);
+        house = await findHouses(astMan, ast.id);
       } else {
         const manager = await getRoleId(req.token.id);
         house = await findHouses([manager.id]);

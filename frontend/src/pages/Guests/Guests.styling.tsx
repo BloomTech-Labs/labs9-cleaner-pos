@@ -276,10 +276,7 @@ export const StyledGuestCardFiller = styled('div')`
   /* Color */
   background-color: var(--color-bg-secondary);
   /* Hover Effects */
-  transition: all 0.1s ease-in-out;
-  &:hover {
-    transform: scale(1.025);
-  }
+
   .text-content {
     /* Grid */
     font-family: 'Roboto Bold', Arial, sans-serif;

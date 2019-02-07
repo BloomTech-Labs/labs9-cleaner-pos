@@ -64,6 +64,7 @@ export const PropertyContainer = styled(Container)`
   align-items: flex-start;
   h1 {
     margin: 0;
+    padding-left: 0.5rem;
   }
 `;
 
@@ -94,6 +95,7 @@ export const HouseInfo = styled('div')`
   #address {
     margin-left: 0;
     padding: 0.5rem 0;
+    padding-left: 0.5rem;
     font-family: 'Roboto Bold', Arial, sans-serif;
     font-size: 1.125rem;
     text-align: left;
@@ -113,6 +115,7 @@ export const MainText = styled.div`
   width: 100%;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
+  padding-left: 0.5rem;
   @media only screen and (max-width: 900px) {
     width: 100%;
   }
