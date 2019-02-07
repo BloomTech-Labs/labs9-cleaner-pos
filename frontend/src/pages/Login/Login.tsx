@@ -16,6 +16,7 @@ import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
 import queryString from 'query-string';
 import { UserContext } from '../../App';
+import logo from '../../assets/lodgel.jpg';
 
 interface LoginProps extends RouteComponentProps {
   onUser: any;
@@ -107,6 +108,11 @@ const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
     <Container>
       <LoginDiv>
         <div className='login-container'>
+          <img
+            src={logo}
+            alt='Lodgel Logo'
+            // style={{ position: 'absolute', top: '0', left: '0' }}
+          />
           <StyledFireBaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
         </div>
       </LoginDiv>

@@ -10,7 +10,7 @@
   --color-accent-dark: rgba(57, 53, 52, 1);
   --color-border: rgba(57, 53, 52, 0.125);
   --color-border-strong: rgba(132, 132, 132, 0.5);
-  --color-error: red;
+  --color-error: #fc5c65;
   /* Background Colors */
   --color-bg-main: var(--color-main-medium);
   --color-bg-secondary: var(--color-main-light);
