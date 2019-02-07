@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 // Components
 import DropDown from '../../components/DropDown';
-import { ComponentClass } from 'react';
 
 const cardHeight = 168;
 const pxToRem = (px: number): string => `${px / 16}rem`;
@@ -13,7 +12,7 @@ const PropContainer = styled('div')`
   justify-content: center;
   align-items: center;
   .new-property__button {
-    background: var(--color-accent-alt);
+    background: var(--color-accent);
   }
 
   .properties-header {
@@ -111,7 +110,7 @@ const CardHeading = styled('div')`
 
   h4 {
     margin: 0;
-    color: var(--color-text-accent-dark);
+    color: var(--color-text-accent);
     font-family: Roboto;
     font-weight: bold;
     font-size: 1.5rem;
@@ -151,6 +150,7 @@ const CardBody = styled('div')`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-right: 2rem;
   @media only screen and (max-width: ${bp}) {
     /* flex-direction: column;
     flex: 1; */
@@ -164,36 +164,40 @@ const CardBody = styled('div')`
   }
 `;
 
-const CheckList = styled('div')`
-  background-color: var(--color-accent-light);
-  padding: 0.5rem 1rem;
-  text-align: center;
+const InfoBox = styled('div')`
+  /* Sizing */
+  height: 5rem;
+  width: 30%;
   border: var(--border);
   border-radius: var(--border-radius);
+  /* Text */
+  text-align: center;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: light;
+  line-height: 1.25;
+  /* Flex */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: space-around;
+  /* Color */
+  background-color: var(--color-bg-secondary);
   p {
     margin: 0;
-    color: var(--color-text-accent);
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: normal;
   }
-
-  @media only screen and (max-width: ${bp}) {
-    padding: 0.75rem;
-    margin: 0;
-    grid-column: 1;
-    grid-row: 1;
+  .secondary {
+    color: var(--color-text-accent);
+  }
+  @media screen and (max-width: 550px) {
+    width: 45%;
+    min-width: 80px;
   }
 `;
 
 const Assistant = styled(DropDown)`
-  width: ${pxToRem(184)};
-  margin-right: 2rem;
+  width: 30%;
 
   @media only screen and (max-width: ${bp}) {
     width: ${pxToRem(160)};
@@ -223,10 +227,10 @@ export {
   HouseHeader,
   HouseItem,
   CardBody,
+  InfoBox,
   ThumbNail,
   CardContent,
   ButtonContainer,
   CardHeading,
   Assistant,
-  CheckList,
 };
