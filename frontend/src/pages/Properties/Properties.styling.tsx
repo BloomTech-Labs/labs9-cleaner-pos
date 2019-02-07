@@ -140,9 +140,33 @@ const CardContent = styled('div')`
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  .filler {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .filler-icon {
+    margin: 0 5rem 0 5rem;
+  }
+
+  .fa-angle-double-up {
+    color: var(--color-accent);
+    font-size: 3rem;
+  }
   @media only screen and (max-width: ${bp}) {
     justify-content: space-around;
     align-items: flex-start;
+
+    .filler {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+    .filler-text {
+      margin-right: 2rem;
+    }
   }
 `;
 

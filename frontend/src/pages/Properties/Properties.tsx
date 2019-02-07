@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button, Container } from '../../components/index';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
+import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
 // Styled Components
 import {
   PropContainer,
@@ -139,74 +140,85 @@ const Properties = () => {
             </Link>
           </div>
         ) : null}
-        {houses
-          ? houses.map((house: House) => {
-              return (
-                <HouseItem key={house.id} data-testid='house-item'>
-                  <ThumbNail
-                    src={house.photo_url || defaultHouse}
-                    alt='house'
-                  />
-                  <CardContent>
-                    <CardHeading>
-                      <h4>{house.name}</h4>
-                      <p>{house.address}</p>
-                    </CardHeading>
-                    <CardBody>
-                      <InfoBox>
-                        <p>Checklist Items</p>
-                        <div className='secondary'>
-                          {house.checkList[0].count}
-                        </div>
-                      </InfoBox>
-                      <Assistant
-                        label='Default Assistant'
-                        data-testid='assistant-select'
-                        onChange={(event) => postAst(event, house.id)}
+        {houses && houses.length > 0 ? (
+          houses.map((house: House) => {
+            return (
+              <HouseItem key={house.id} data-testid='house-item'>
+                <ThumbNail src={house.photo_url || defaultHouse} alt='house' />
+                <CardContent>
+                  <CardHeading>
+                    <h4>{house.name}</h4>
+                    <p>{house.address}</p>
+                  </CardHeading>
+                  <CardBody>
+                    <InfoBox>
+                      <p>Checklist Items</p>
+                      <div className='secondary'>
+                        {house.checkList[0].count}
+                      </div>
+                    </InfoBox>
+                    <Assistant
+                      label='Default Assistant'
+                      data-testid='assistant-select'
+                      onChange={(event) => postAst(event, house.id)}
+                    >
+                      <option defaultValue={house.default_ast}>
+                        {house.default_ast_name}
+                      </option>
+                      {house.openAst.map((ast: any) => {
+                        if (ast.ast_id !== house.default_ast) {
+                          return (
+                            <option key={ast.ast_id} value={ast.ast_id}>
+                              {ast.full_name}
+                            </option>
+                          );
+                        }
+                      })}
+                    </Assistant>
+                    <ButtonContainer>
+                      <Link
+                        to={{
+                          pathname: `properties/${house.id}`,
+                          hash: '#checklists',
+                          state: house,
+                        }}
                       >
-                        <option defaultValue={house.default_ast}>
-                          {house.default_ast_name}
-                        </option>
-                        {house.openAst.map((ast: any) => {
-                          if (ast.ast_id !== house.default_ast) {
-                            return (
-                              <option key={ast.ast_id} value={ast.ast_id}>
-                                {ast.full_name}
-                              </option>
-                            );
-                          }
-                        })}
-                      </Assistant>
-                      <ButtonContainer>
-                        <Link
-                          to={{
-                            pathname: `properties/${house.id}`,
-                            hash: '#checklists',
-                            state: house,
-                          }}
-                        >
-                          <Button
-                            className='property-button'
-                            text='Edit Checklists'
-                            datatestid='house-button'
-                          />
-                        </Link>
-                        <Link
-                          to={{ pathname: `/properties/new`, state: house }}
-                        >
-                          <Button
-                            className='property-button'
-                            text='Edit Property'
-                            datatestid='house-button'
-                          />
-                        </Link>
-                      </ButtonContainer>
-                    </CardBody>
-                  </CardContent>
-                </HouseItem>
-              );
-            })
-          : null}
+                        <Button
+                          className='property-button'
+                          text='Edit Checklists'
+                          datatestid='house-button'
+                        />
+                      </Link>
+                      <Link to={{ pathname: `/properties/new`, state: house }}>
+                        <Button
+                          className='property-button'
+                          text='Edit Property'
+                          datatestid='house-button'
+                        />
+                      </Link>
+                    </ButtonContainer>
+                  </CardBody>
+                </CardContent>
+              </HouseItem>
+            );
+          })
+        ) : (
+          <HouseItem>
+            <ThumbNail
+              style={{ objectFit: 'contain' }}
+              src={notxt_Lodgel}
+              alt='house'
+            />
+            <CardContent>
+              <CardHeading className='filler'>
+                <h4 className='filler-text'>Start adding Properties!</h4>
+                <span className='filler-icon'>
+                  <i className='fas fa-angle-double-up' />
+                </span>
+              </CardHeading>
+            </CardContent>
+          </HouseItem>
+        )}
       </PropContainer>
     </Container>
   );
