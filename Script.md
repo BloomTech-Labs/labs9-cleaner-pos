@@ -1,4 +1,4 @@
-## Introducing Lodgel – the property management application that streamlines the rental process.
+# Introducing Lodgel – the property management application that streamlines the rental process.
 Lodgel is designed to take the hassle out of out of your property management experience.
 You can quickly delegate tasks to your turnover assistants, conveniently schedule guests and securely capture 
 their payments at the click of a button, all while enjoying the support of our great team.
@@ -36,8 +36,8 @@ We chose to use Typescript for two main reasons: type-checking and communication
 
 In addition, it also serves as communication between developers. Type declarations can be read by other developers, which gives them insight how they should approach their code if they're dealing with the same type of data. Deep TypeScript integration in VS Code allows us to even have Intellisense on functions we wrote ourselves.
 
-## PostgresQL
-PostgresQL is a SQL-style databse, which makes relational database development simpler in earlier stages, but becomes more time-consuming as scale increases. Designing queries is much easier to create and maintain than other database systems, which makes query design simple, effective, and reusable.
+## PostgreSQL
+PostgreSQL is an open source SQL-style databse, which makes relational database development simpler in earlier stages, but becomes more time-consuming as scale increases. Designing queries is much easier to create and maintain than other database systems, which makes query design simple, effective, and reusable.
 
 ## Travis CI:
 To ensure consistently high build qualities and prevent regressions we implemented Travis as our CI tool.
