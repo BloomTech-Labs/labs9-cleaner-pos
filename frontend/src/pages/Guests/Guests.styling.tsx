@@ -20,9 +20,6 @@ export const GuestsDiv = styled(Container)`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-		@media only screen and (max-width: 900px) {
-			padding: 0 10px 0 10px;
-		}
   }
 
   .guests-header h2 {
@@ -89,6 +86,10 @@ export const GuestsDiv = styled(Container)`
     background-color: var(--color-button-background);
   }
 
+	@media only screen and (max-width: 900px) {
+		padding: 0 10px 0 10px;
+	}
+	
   @media only screen and (min-width: 720px) {
     /* Flexbox */
     display: flex;
