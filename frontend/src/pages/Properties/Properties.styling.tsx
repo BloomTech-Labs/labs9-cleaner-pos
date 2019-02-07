@@ -163,9 +163,14 @@ const CardContent = styled('div')`
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
+      padding-left: 50%;
     }
     .filler-text {
-      margin-right: 2rem;
+      /* margin-right: 2rem; */
+    }
+    .filler-icon {
+      margin: 0;
+      padding-right: 2rem;
     }
   }
 `;
