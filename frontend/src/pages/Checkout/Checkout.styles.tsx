@@ -11,6 +11,7 @@ export const CheckoutContainer = styled(Container)`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    min-height: 633px;
 
     @media only screen and (max-width: 1000px) {
       margin: 0 1rem;
