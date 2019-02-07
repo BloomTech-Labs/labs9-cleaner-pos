@@ -186,14 +186,14 @@ const Checkout = (props: CheckoutProps) => {
                 <div
                   style={{
                     margin: 'auto',
-                    color: 'var(--color-accent)',
+                    color: 'var(--color-accent-light)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}
                 >
-                  This stay has already been paid!
+                  This invoice has already been paid
                   <a
                     href={stay.stripe_receipt}
                     rel='noopen noreferer'
