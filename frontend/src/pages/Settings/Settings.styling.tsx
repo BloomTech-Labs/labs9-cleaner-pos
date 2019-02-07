@@ -4,16 +4,14 @@ const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 
 const Header = styled('span')`
   width: 100%;
-  background: var(--color-bg-accent);
+  //background: var(--color-bg-accent);
   text-align: left;
   h2 {
-    padding-left: 32px;
-    color: white;
-    margin: 0.5rem 0 0.5rem 0;
-  }
-  h3 {
-    padding-left: 16px;
-    color: white;
+		font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+		font-weight: normal;
+		font-size: 36px;
+    padding-left: 10px;
+    //color: white;
     margin: 0.5rem 0 0.5rem 0;
   }
 `;
