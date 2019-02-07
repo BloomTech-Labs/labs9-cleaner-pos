@@ -175,7 +175,7 @@ export const StyledGuestCard = styled(GuestCard)`
     padding: 0;
     height: ${pxToRem(height)}rem;
     border: var(--border-alt);
-    margin: 0 !important;
+    margin: 0 0 2rem 0;
 
     /* Grid */
     display: grid;
