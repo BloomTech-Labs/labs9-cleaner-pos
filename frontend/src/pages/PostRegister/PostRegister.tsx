@@ -100,6 +100,12 @@ const PostForm = (props: PostFormProps) => {
     location = props.location.pathname;
   }
 
+  const whereAreWe = (path: string) => {
+    if (props && props.location) {
+      return props.location.pathname === path;
+    }
+  };
+
   const labelInputField = (label: string) => {
     return ({ field, form }: FieldProps) => {
       const { name } = field;
@@ -202,17 +208,14 @@ const PostForm = (props: PostFormProps) => {
             touched,
             values,
           } = formProps;
-          console.log(location);
-          console.log(props.location);
+
           return (
             <StyledForm>
               <div className='header'>
                 <h2 style={{ color: 'black' }} className='title'>
-                  {props.location.pathname === '/postreg'
-                    ? 'Just a few more things!'
-                    : null}
+                  {whereAreWe('/postreg') ? 'Just a few more things!' : null}
                 </h2>
-                {props.location.pathname === '/postreg' && (
+                {whereAreWe('/postreg') && (
                   <p>Complete your registration by filling in the following!</p>
                 )}
               </div>
