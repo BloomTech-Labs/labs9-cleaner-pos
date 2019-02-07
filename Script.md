@@ -36,5 +36,8 @@ We chose to use Typescript for two main reasons: type-checking and communication
 
 In addition, it also serves as communication between developers. Type declarations can be read by other developers, which gives them insight how they should approach their code if they're dealing with the same type of data. Deep TypeScript integration in VS Code allows us to even have Intellisense on functions we wrote ourselves.
 
+## PostgresQL
+PostgresQL is a SQL-style databse, which makes relational database development simpler in earlier stages, but becomes more time-consuming as scale increases. Designing queries is much easier to create and maintain than other database systems, which makes query design simple, effective, and reusable.
+
 ## Travis CI:
 Travis CI is meant to prevent regressions from being merged into the live application. We configured Travis to run all of our tests before each commit, and also create a mock Pull Request to ensure the build would render properly. 
