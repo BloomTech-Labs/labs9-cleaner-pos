@@ -71,6 +71,7 @@ export const GuestDetailStyle = styled(Container)`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    margin-bottom: 2rem;
   }
 
   .checkin,
@@ -97,9 +98,6 @@ export const GuestDetailStyle = styled(Container)`
     font-size: 1rem;
   }
 
-  .back {
-    margin: 1rem 0 0 0;
-  }
   /* Guest-Info CSS */
   .guest-info {
     border: none;
@@ -255,7 +253,7 @@ export const GuestDetailStyle = styled(Container)`
     background-color: var(--color-accent-alt);
   }
 
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 900px) {
     .guest-info--top {
       display: block;
     }
@@ -308,6 +306,7 @@ export const GuestDetailStyle = styled(Container)`
 
     .guest-header--checkdates {
       /* Box Model & Sizing */
+      margin-bottom: 0;
       width: 100%;
 
       /* Flex */
@@ -316,6 +315,10 @@ export const GuestDetailStyle = styled(Container)`
       /* Grid */
       grid-column: 4 / -1;
       grid-row: 1;
+
+      @media only screen and (max-width: 900px) {
+        margin-bottom: 0;
+      }
     }
 
     .checkin,
@@ -325,11 +328,53 @@ export const GuestDetailStyle = styled(Container)`
     }
 
     .guest-header--buttons {
+      width: 100%;
+      margin: 1rem 0 0 0;
+      padding: 1rem 0 !important;
       /* Grid */
-      grid-column: 5 / 7;
+      grid-column: 4 / 7;
       grid-row: 2;
       justify-self: end;
       align-self: flex-end;
+      /* Flex */
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      a,
+      button {
+        margin: 0;
+        padding: 1rem 0;
+        height: ${37 / 16}rem;
+      }
+
+      .edit,
+      .back {
+        margin: 0;
+        padding: 1rem;
+      }
+
+      @media only screen and (min-width: 900px) {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        a,
+        button {
+          margin: 0;
+          height: ${37 / 16}rem;
+          padding: 0;
+        }
+
+        .edit,
+        .back {
+          margin: 0;
+          padding: 0 !important;
+        }
+      }
     }
 
     .guest-info--bottom {
@@ -353,6 +398,12 @@ export const GuestDetailStyle = styled(Container)`
     .stay-code div {
       text-align: center;
       justify-self: center;
+    }
+  }
+
+  @media only screen and (min-width: 431) {
+    .guest-header--buttons .edit {
+      margin-bottom: 0.5rem;
     }
   }
 `;

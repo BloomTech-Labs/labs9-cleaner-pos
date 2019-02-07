@@ -127,7 +127,7 @@ export const GuestDetailView = (props: GuestProps) => {
         <div className='guest-header--buttons'>
           <Link to={{ pathname: `/guests/new`, state: stayDetails }}>
             <Button
-              // className='edit'
+              className='edit'
               text='Edit Reservation'
               color='var(--color-button-background)'
               // datatestid='button-edit'
