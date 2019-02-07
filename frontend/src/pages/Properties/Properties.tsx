@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import { Button, Container } from '../../components/index';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
+import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
 // Styled Components
 import {
   PropContainer,
   HouseItem,
   CardBody,
+  HouseItemF,
   ThumbNail,
   CardContent,
   ButtonContainer,
@@ -202,6 +204,23 @@ const Properties = () => {
               );
             })
           : null}
+        {houses && houses.length === 0 ? (
+          <HouseItemF>
+            <img
+              className='logo-holder'
+              style={{ objectFit: 'contain' }}
+              src={notxt_Lodgel}
+              alt='house'
+            />
+            <h4 className='filler-text'>Start adding Properties!</h4>
+            {/* <div className='filler'>
+              <h4 className='filler-text'>Start adding Properties!</h4>
+              <div className='filler-icon'>
+                <i className='fas fa-angle-double-up' />
+              </div>
+            </div> */}
+          </HouseItemF>
+        ) : null}
       </PropContainer>
     </Container>
   );

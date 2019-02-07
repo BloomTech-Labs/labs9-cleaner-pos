@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { Container } from '../../components/';
+import { Button, Container } from '../../components/';
 
-const pxToRem = (px: number): string => `${px / 16}rem`;
+const pxToRem = (px: number) => px / 16;
 const pxToVw = (px: number): string => `${(px / 1080) * 100}vw`;
 // Some size constants
 const boxHeight = '5rem';
@@ -74,7 +74,6 @@ const HeaderWrapper = styled('div')`
 
   /* Sizing */
   margin-bottom: 2.25rem;
-
   .new-ast__button {
     background: var(--color-accent);
     width: 200px;
@@ -82,6 +81,9 @@ const HeaderWrapper = styled('div')`
     padding: 0.5rem 1rem;
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     font-size: 1.25rem;
+  }
+  @media only screen and (max-width: 900px) {
+    padding: 0 10px 0 10px;
   }
 
   @media only screen and (max-width: ${bp}) {

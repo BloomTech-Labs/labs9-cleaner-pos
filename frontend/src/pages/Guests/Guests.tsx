@@ -6,7 +6,11 @@ import { FilterArgs } from './types';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 // Styling & Styled Components
-import { GuestsDiv, StyledGuestCard } from './Guests.styling';
+import {
+  GuestsDiv,
+  StyledGuestCard,
+  StyledGuestCardFiller,
+} from './Guests.styling';
 import { useFetch } from '../../helpers';
 import loadingIndicator from '../utils/loading.svg';
 
@@ -63,6 +67,11 @@ const Guests = () => {
               </Link>
             ))
           : null}
+        {stays && stays.length === 0 ? (
+          <StyledGuestCardFiller>
+            <div className='text-content'>No {active} Guests</div>
+          </StyledGuestCardFiller>
+        ) : null}
         <div />
       </div>
     </GuestsDiv>

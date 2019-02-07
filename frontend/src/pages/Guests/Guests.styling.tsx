@@ -96,7 +96,9 @@ export const GuestsDiv = styled(Container)`
     color: var(--color-button-text);
     background-color: var(--color-button-background);
   }
-
+	@media only screen and (max-width: 900px) {
+		padding: 0 10px 0 10px;
+	}
   @media only screen and (min-width: 720px) {
     /* Flexbox */
     display: flex;
@@ -304,4 +306,40 @@ export const SecondaryText = styled.div`
   font-family: 'Roboto Light', Arial, sans-serif;
   font-size: ${pxToRem(16)}rem;
   color: var(--color-text-dark);
+`;
+
+export const StyledGuestCardFiller = styled('div')`
+  /* Sizing and Box Model */
+  width: 95vw;
+
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: 5px;
+
+  width: 100%;
+  padding: ${pxToRem(36)}rem;
+  height: ${pxToRem(height)};
+  border: var(--border-alt);
+
+  /* Grid */
+  display: flex;
+
+  /* Color */
+
+  background-color: var(--color-bg-secondary);
+
+  /* Hover Effects */
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.025);
+  }
+
+  .text-content {
+    /* Grid */
+    font-family: 'Roboto Bold', Arial, sans-serif;
+    text-align: Center;
+    font-weight: bolder;
+    font-size: ${pxToRem(20)}rem;
+    color: var(--color-text-accent);
+    text-transform: capitalize;
+  }
 `;

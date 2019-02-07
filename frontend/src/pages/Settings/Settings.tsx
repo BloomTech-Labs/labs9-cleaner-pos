@@ -32,7 +32,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
   const [pic, setPic] = useState('');
   const [user, error, loading] = useFetch(`${url}/users`, fetch);
   const [paymentError, setPaymentError] = useState({ err: false, message: '' });
-  const addressArray = user ? user.address.split('\n') : '';
+  const addressArray = user && user.address ? user.address.split('\n') : '';
   if (addressArray && addressArray.length < 6) {
     addressArray.splice(1, 0, '');
   }

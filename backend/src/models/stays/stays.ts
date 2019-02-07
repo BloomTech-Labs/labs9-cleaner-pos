@@ -62,6 +62,7 @@ export function findStaySummaryStandardized(stayId: number): QueryBuilder {
       'house.extra_guest_fee as extra_fee',
       'house.cleaning_fee AS cleaning_fee',
       'extra_guests as extra_guests',
+      'stay.stripe_receipt AS stay_receipt',
       'stay.id AS stay_id',
       'check_in',
       'check_out',
