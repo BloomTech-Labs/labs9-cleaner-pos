@@ -169,7 +169,7 @@ const Checkout = (props: CheckoutProps) => {
                     {stay.extra_guests} Extra Guests x ${stay.extra_fee}
                   </span>
                   <span>
-                    {stringifyCost(stay.extra_fee * stay.extra_guests)}
+                    ${stringifyCost(stay.extra_fee * stay.extra_guests)}
                   </span>
                 </InvoiceBox>
               ) : null}
