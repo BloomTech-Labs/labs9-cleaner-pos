@@ -114,7 +114,11 @@ const Properties = () => {
                 : null
             }
           >
-            <Button text='+ New Property' className='new-property__button' />
+            <Button
+              text='+ New Property'
+              className='new-property__button'
+              color='var(--color-accent)'
+            />
           </Link>
         </div>
         {loading ? (

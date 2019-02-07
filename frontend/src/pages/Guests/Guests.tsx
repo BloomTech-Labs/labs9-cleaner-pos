@@ -24,7 +24,7 @@ const Guests = () => {
       <div className='guests-header'>
         <h2>Guests</h2>
         <Link to='/guests/new'>
-          <Button text='+ New Guest' color='var(--color-accent-alt)' />
+          <Button text='+ New Guest' color='var(--color-accent)' />
         </Link>
       </div>
       <div className='guests-buttons-filter'>

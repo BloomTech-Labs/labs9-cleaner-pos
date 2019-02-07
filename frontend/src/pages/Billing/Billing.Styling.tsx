@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 const SubBox = styled('div')`
   padding: 20px;
   display: flex;
-  height: 60vh;
+  height: 100%;
   .checkmark {
     color: var(--color-accent);
   }
