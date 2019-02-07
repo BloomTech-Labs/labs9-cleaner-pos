@@ -164,7 +164,7 @@ const InfoBox = styled('div')`
   justify-content: center;
   align-items: space-around;
   /* Color */
-  background-color: var(--color-bg-tertiary);
+  background-color: var(--color-bg-secondary);
   p {
     margin: 0;
     font-size: 1rem;
@@ -193,6 +193,16 @@ const AssistantDetailContainer = styled(Container)`
 
   .container-map {
     width: 70%;
+    height: 50vh;
+  }
+
+  .my-leaflet-map-container img {
+    max-height: none;
+  }
+  .leaflet-pane {
+    img {
+      position: absolute;
+    }
   }
 
   .detail-img {
@@ -218,6 +228,7 @@ const AssistantDetailContainer = styled(Container)`
     margin: 1rem 0;
     /* Flex */
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
   }
 
@@ -369,7 +380,7 @@ const ModalStyle = styled('div')`
   background-color: #fff;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
-  outline: 'none';
+  outline: none;
   padding: 0 0 2rem 0;
 
   .modalButton {

@@ -134,15 +134,19 @@ export const Invoice = styled('div')`
     color: var(--color-text-accent);
   }
   .submit-payment {
+    background: var(--color-accent-alt);
     margin-bottom: 24px;
   }
   .payment-button {
+    background: var(--color-accent-alt);
     margin: 0 auto;
   }
   .connect-button {
+    background: var(--color-accent-alt);
     margin-bottom: 24px;
   }
   .receipt-button {
+    background: var(--color-accent-alt);
     margin-top: 12px;
     margin-bottom: 24px;
   }
