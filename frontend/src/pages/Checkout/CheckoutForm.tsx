@@ -16,7 +16,7 @@ const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
 
 const CheckoutForm = (props: any) => {
-  const { sum } = useContext(PaymentContext);
+  const { sum, stay_id } = useContext(PaymentContext);
   const { subscription } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ error: false, message: '' });
@@ -44,6 +44,7 @@ const CheckoutForm = (props: any) => {
           token: token.id,
           amount: sum,
           subscription,
+          stay_id,
         };
         const { data }: AxiosResponse = await axios.post(
           `${url}/connect/createpayment`,
