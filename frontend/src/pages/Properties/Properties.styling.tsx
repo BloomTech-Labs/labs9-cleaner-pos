@@ -270,6 +270,7 @@ const ButtonContainer = styled('div')`
 const HouseItemF = styled('div')`
   width: 100%;
   height: ${pxToRem(168)};
+  padding: 1rem;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -305,7 +306,7 @@ const HouseItemF = styled('div')`
   @media only screen and (max-width: ${bp}) {
     width: 100%;
     flex-direction: column;
-
+    padding: 0;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 
     .filler {

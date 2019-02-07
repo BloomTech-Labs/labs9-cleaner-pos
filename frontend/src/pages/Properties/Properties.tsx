@@ -212,7 +212,6 @@ const Properties = () => {
               src={notxt_Lodgel}
               alt='house'
             />
-
             <h4 className='filler-text'>Start adding Properties!</h4>
             {/* <div className='filler'>
               <h4 className='filler-text'>Start adding Properties!</h4>
