@@ -77,6 +77,7 @@ const HouseItem = styled('div')`
 
   @media only screen and (max-width: ${bp}) {
     width: 95%;
+    height: 100%;
     justify-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, 1fr);

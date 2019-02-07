@@ -132,7 +132,7 @@ export const StyledGuestCard = styled(GuestCard)`
   } */
 
   .user-image {
-    border-radius: 5px 0 0 5px;
+    border-radius: 100%;
     height: ${pxToRem(72)}rem;
     width: ${pxToRem(72)}rem;
     /* Grid */
@@ -171,7 +171,7 @@ export const StyledGuestCard = styled(GuestCard)`
 
     .user-image {
       /* Sizing & Box Model*/
-      border-radius: 0%;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
       width: 100%;
       height: ${pxToRem(height)}rem;
       object-fit: cover;
