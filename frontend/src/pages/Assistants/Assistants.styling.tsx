@@ -75,6 +75,15 @@ const HeaderWrapper = styled('div')`
   /* Sizing */
   margin-bottom: 2.25rem;
 
+  .new-ast__button {
+    background: var(--color-accent);
+    width: 200px;
+    height: 40px;
+    padding: 0.5rem 1rem;
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-size: 1.25rem;
+  }
+
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     align-items: center;
