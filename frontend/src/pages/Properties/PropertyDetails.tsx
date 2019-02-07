@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { PropertyLists, AfterPropertyLists } from './PropertyLists';
 import {
   PropertyContainer,
-	HouseInfo,
-	PropertyButtons,
+  HouseInfo,
+  PropertyButtons,
   ThumbNail,
   Top,
   MainText,

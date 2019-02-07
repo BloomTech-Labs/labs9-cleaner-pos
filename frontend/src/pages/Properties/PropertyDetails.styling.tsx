@@ -9,13 +9,12 @@ export const BackButton = styled(Button)`
   width: ${pxToRem(156)}rem;
   height: ${pxToRem(48)}rem;
   font-size: ${pxToRem(20)}rem;
-	border: 0.25px solid black;
-	@media only screen and (max-width: 900px) {
-	}
+  border: 0.25px solid black;
+  @media only screen and (max-width: 900px) {
+  }
 `;
 
-export const PropertyButtons = styled('div')`
-`;
+export const PropertyButtons = styled('div')``;
 
 export const WhiteButton = styled(Button)`
   color: var(--colour-button-text-alt);
@@ -32,7 +31,7 @@ export const PropertyContainer = styled(Container)`
   justify-content: flex-start;
   align-items: flex-start;
   max-width: 100%;
-	padding: 15px;
+  padding: 15px;
 `;
 
 export const Top = styled(PropertyContainer)`
@@ -40,28 +39,27 @@ export const Top = styled(PropertyContainer)`
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-	justify-content: space-between;
-	align-items: center;
+  justify-content: space-between;
+  align-items: center;
   /* Text */
   text-align: left;
   @media only screen and (max-width: 900px) {
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
   }
 `;
 
-export const HouseInfo = styled('div')`
-`;
+export const HouseInfo = styled('div')``;
 
 export const ThumbNail = styled('img')`
   width: ${cardWeidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
   @media only screen and (max-width: 900px) {
-  	margin: 0 auto;
-	  padding: 10px;
+    margin: 0 auto;
+    padding: 10px;
   }
 `;
 export const MainText = styled.div`
@@ -69,7 +67,7 @@ export const MainText = styled.div`
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(36)}rem;
   @media only screen and (max-width: 900px) {
-	  width: 100%;
+    width: 100%;
   }
 `;
 
@@ -77,9 +75,9 @@ export const SecondaryText = styled.div`
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: ${pxToRem(24)}rem;
   @media only screen and (max-width: 900px) {
-		width: 100%;
-		text-align: center;
-		padding-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
   }
 `;
 
@@ -100,9 +98,9 @@ export const ListContainer = styled('div')`
   justify-content: space-between;
   flex-flow: row wrap;
   @media only screen and (max-width: 900px) {
-  	flex-direction: column;
-		justify-content: center;
-		align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 export const ListDiv = styled('div')`
