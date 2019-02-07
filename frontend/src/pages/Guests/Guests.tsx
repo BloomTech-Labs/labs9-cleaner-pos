@@ -6,7 +6,11 @@ import { FilterArgs } from './types';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 // Styling & Styled Components
-import { GuestsDiv, StyledGuestCard } from './Guests.styling';
+import {
+  GuestsDiv,
+  StyledGuestCard,
+  StyledGuestCardFiller,
+} from './Guests.styling';
 import { useFetch } from '../../helpers';
 import loadingIndicator from '../utils/loading.svg';
 
@@ -56,13 +60,17 @@ const Guests = () => {
         {loading ? (
           <img src={loadingIndicator} alt='animated loading indicator' />
         ) : null}
-        {stays
-          ? stays.map((stay: any) => (
-              <Link key={stay.stay_id} to={`/guests/${stay.stay_id}`}>
-                <StyledGuestCard {...stay} />
-              </Link>
-            ))
-          : null}
+        {stays && stays.length > 0 ? (
+          stays.map((stay: any) => (
+            <Link key={stay.stay_id} to={`/guests/${stay.stay_id}`}>
+              <StyledGuestCard {...stay} />
+            </Link>
+          ))
+        ) : (
+          <StyledGuestCardFiller>
+            <div className='text-content'>No {active} Guests</div>
+          </StyledGuestCardFiller>
+        )}
         <div />
       </div>
     </GuestsDiv>
