@@ -3,7 +3,7 @@ import { UserContext } from '../../App';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Container } from '../../components/index';
-import house from '../../assets/house.jpg';
+import house from '../../assets/house_alt.jpg';
 import lodgel from '../../assets/lodgel.jpg';
 import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
 import {
