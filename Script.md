@@ -24,8 +24,9 @@ you are ready to go!
 
 Are you ready to try Lodgel? Sign up today!
 
-# Tech Stack
+# Tech Stack:
 When we started planning the tech stack of our project, we had many different elements to consider, including the languages and technologies we would use for our front- and back-ends, database, and scripting. Ultimately, we decided on React.js for our front-end, Node.js for our back-end, Postgres for our database, and TypeScript for scripting.
+
 ## React: 
 We chose to develop the front-end in React because its highly flexible nature allows for rapid prototyping and simple maintenance. Instead of having to change styling or functionality for each individual component that needs it, a few small adjustments can be made that propogates through the whole application and has the potential to exponentially reduce maintenance time.
 
@@ -43,3 +44,6 @@ PostgreSQL is an open source SQL-style databse, which makes relational database 
 ## Travis CI:
 To ensure consistently high build qualities and prevent regressions we implemented Travis as our CI tool.
 It automatically runs test on branches and PRs and maintains high confidence when merging.
+
+## APIs:
+To streamline certain points of functionality, we chose a few third-party APIs to assist us. Stripe is integrated as the payment processor to outsource PCI compliance and monetary liability, and minimizes delays for property managers that want to get paid after each stay. Leaflet Maps is a lightweight map that conveniently indicates property location to assist with logistic planning, and due to its small package size, it has no noticeable negative impact on application performance. Uppy, an open source file management service, was chosen because it ensures the integrity of file uploads to user accounts and has unparalleled flexibility by fetching files from local devices and multiple cloud services such as Google Drive and Dropbox.

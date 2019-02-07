@@ -271,8 +271,8 @@ const NewGuest = (props: RouteComponentProps) => {
         guest_id: userId,
         house_id: houseId,
         extra_guests: +extraGuests,
-        check_in: checkIn,
-        check_out: checkOut,
+        check_in: checkIn.toISOString(),
+        check_out: checkOut.toISOString(),
       };
       await axios.post(`${url}/stays/`, stayData, headers);
       await actions.setSubmitting(false);
