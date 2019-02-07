@@ -27,10 +27,10 @@ const AssistantItem = styled('div')`
   text-align: left;
 
   /* Hover Effects */
-  transition: all 0.1s ease-in-out;
+  /* transition: all 0.1s ease-in-out;
   &:hover {
     transform: scale(1.025);
-  }
+  } */
   .button__see-more {
     width: 100%;
   }

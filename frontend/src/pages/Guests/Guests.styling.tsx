@@ -126,10 +126,10 @@ export const StyledGuestCard = styled(GuestCard)`
   background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
-  transition: all 0.1s ease-in-out;
+  /* transition: all 0.1s ease-in-out;
   &:hover {
     transform: scale(1.025);
-  }
+  } */
 
   .user-image {
     border-radius: 5px 0 0 5px;

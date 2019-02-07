@@ -52,7 +52,7 @@ const HouseHeader = styled('h2')`
 
 const HouseItem = styled('div')`
   width: 100%;
-  height: ${pxToRem(172)};
+  height: ${pxToRem(168)};
   margin-top: 2.25rem;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -102,7 +102,7 @@ const HouseItem = styled('div')`
 const ThumbNail = styled('img')`
   grid-area: thumbnail;
   width: 100%;
-  height: ${pxToRem(172)};
+  height: ${pxToRem(168)};
   object-fit: cover;
   margin-right: 2rem;
   border-radius: var(--border-radius) 0 0 var(--border-radius);
