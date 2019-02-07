@@ -40,7 +40,8 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         },
         headers,
       );
-      localStorage.setItem('subscription', response.data.plan);
+      const sub = response.data.plan === 1 ? 1 : 2;
+      localStorage.setItem('subscription', String(sub));
       setLoading(false);
       setConfirm({ confirm: response.data });
       setShownIndex(1);
