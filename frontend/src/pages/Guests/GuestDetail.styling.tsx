@@ -119,6 +119,15 @@ export const GuestDetailStyle = styled(Container)`
   }
 
   /* Checklists */
+
+  .guest-info--checklist {
+    max-width: 470px;
+
+    @media only screen and (max-width: 900px) {
+      width: 96%;
+      max-width: none;
+    }
+  }
   /* Guest Checklist Buttons */
   .guest-info--checklist-bottom .guests-buttons-filter {
     margin: 0;
@@ -159,6 +168,7 @@ export const GuestDetailStyle = styled(Container)`
     display: block;
     margin-bottom: 0.5rem;
     text-align: left;
+    overflow: hidden;
   }
 
   /* Checklist Sublist */
