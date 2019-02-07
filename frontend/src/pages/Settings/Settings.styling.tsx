@@ -23,7 +23,6 @@ const Card = styled('div')`
   background: var(--color-bg-main);
   display: flex;
   padding: 20px;
-  border: var(--border);
   h3 {
     font-family: 'Roboto';
     font-weight: condensed;
