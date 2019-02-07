@@ -46,6 +46,7 @@ const GuestDetail = (props: RouteComponentProps) => {
     },
   );
 
+  const goEdit = () => props.history.push('/guests/edit');
   const goBack = () => props.history.push('/guests');
 
   return (
@@ -54,6 +55,7 @@ const GuestDetail = (props: RouteComponentProps) => {
         <GuestDetailView
           {...stay}
           Uppy={guideUpload}
+          goEdit={goEdit}
           goBack={goBack}
           errors={error}
         />
@@ -81,6 +83,7 @@ export const GuestDetailView = ({
   check_out,
   errors,
   Uppy,
+  goEdit,
   goBack,
 }: GuestProps) => {
   return (
@@ -106,6 +109,13 @@ export const GuestDetailView = ({
           />
         </div>
         <div className='guest-header--buttons'>
+          <Button
+            className='edit'
+            text='Edit Reservation'
+            color='var(--color-button-background)'
+            datatestid='button-edit'
+            onClick={goEdit}
+          />
           <Button
             className='back'
             text='Go Back ↩'
