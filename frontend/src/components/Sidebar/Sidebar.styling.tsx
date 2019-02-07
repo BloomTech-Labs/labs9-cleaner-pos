@@ -53,7 +53,7 @@ const Container = styled('div')`
     justify-content: space-between;
     align-items: center;
     margin: 0;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     color: var(--color-main-dark);
     border-bottom: var(--border);
   }
@@ -100,7 +100,8 @@ const SettingsWrapper = styled('div')`
     border: none;
     background-color: #fff;
     width: 40px;
-    padding: 0;
+    padding-right: 1rem;
+    margin-right: 0;
     font-size: 1.35rem;
   }
   @media only screen and (min-width: ${bp}) {
@@ -118,7 +119,7 @@ const StyledUL = styled('div')`
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
-  padding: 0 3rem;
+  padding: 0 1rem 0 1rem;
   @media only screen and (min-width: ${bp}) {
     :first-of-type {
       padding-left: 0;
@@ -144,7 +145,7 @@ const StyledLink = styled(NavLink)`
 const Logo = styled('img')`
   height: 40px;
   width: 40px;
-  margin-left: 5rem;
+  margin-left: 2rem;
 `;
 
 export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink, Logo };
