@@ -51,7 +51,7 @@ const Container = styled('div')`
     width: 100%;
     display: ${conditionallyHideSidebar('flex')};
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     margin: 0 0;
     padding: 1rem 0;
     color: var(--color-main-dark);
@@ -142,8 +142,9 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Logo = styled('img')`
-  height: 100px;
-  width: 100px;
+  height: 40px;
+  width: 40px;
+  margin-left: 7.5rem;
 `;
 
 export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink, Logo };
