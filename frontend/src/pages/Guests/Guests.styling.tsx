@@ -20,6 +20,11 @@ export const GuestsDiv = styled(Container)`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 1rem;
+    @media only screen and (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .guests-header h2 {
@@ -30,6 +35,9 @@ export const GuestsDiv = styled(Container)`
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     font-weight: normal;
     font-size: ${pxToRem(36)}rem;
+    @media only screen and (max-width: 700px) {
+      margin-bottom: 0.5rem;
+    }
   }
 
   .guests-header button {
@@ -40,8 +48,8 @@ export const GuestsDiv = styled(Container)`
   }
 
   .guests-buttons-filter {
-    display: block;
-    margin: auto auto auto 0;
+    margin-top: 1rem;
+
   }
 
   .guests-cards {
