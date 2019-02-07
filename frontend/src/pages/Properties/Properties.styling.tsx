@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 import DropDown from '../../components/DropDown';
 
 const cardHeight = 168;
-
 const desktopHeight = '80%';
 const mobileWidth = '80%';
+
 const pxToRem = (px: number): string => `${px / 16}rem`;
 const bp = `900px`;
 
@@ -15,9 +15,6 @@ const PropContainer = styled('div')`
   justify-content: center;
   align-items: center;
   .new-property__button {
-    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: ${pxToRem(20)}rem;
     background: var(--color-accent);
     width: 200px;
     height: 40px;
@@ -25,7 +22,6 @@ const PropContainer = styled('div')`
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     font-size: 1.25rem;
   }
-
   .properties-header {
     /* Box Model */
     width: 100%;
@@ -34,19 +30,13 @@ const PropContainer = styled('div')`
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    @media only screen and (max-width: 900px) {
-      padding: 0 10px 0 10px;
-    }
-
     h2 {
       margin: 0;
     }
-
     @media only screen and (max-width: ${bp}) {
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-
       h2 {
         margin: 0 0 1.25rem 0;
       }
@@ -58,7 +48,6 @@ const HouseHeader = styled('h2')`
   font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 2.25rem;
-
   /* margin-bottom: 1.5rem; */
   /* @media only screen and (max-width: ${bp}) {
     margin: 0 0 1.5rem 0;
@@ -78,7 +67,6 @@ const HouseItem = styled('div')`
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
   border-radius: var(--border-radius);
   background-color: var(--color-bg-secondary);
-
   /* Hover Effects */
   /* transition: all 0.1s ease-in-out;
   &:hover {
@@ -93,7 +81,6 @@ const HouseItem = styled('div')`
   grid-template-areas:
     'thumbnail cardHeading cardHeading .'
     'thumbnail infoBox     dropDown    buttons';
-
   @media only screen and (max-width: ${bp}) {
     width: 95%;
     height: 100%;
@@ -106,7 +93,6 @@ const HouseItem = styled('div')`
       'infoBox     dropDown'
       'buttons     buttons';
   }
-
   @media only screen and (max-width: 600px) {
     grid-template-rows: repeat(5, 1fr);
     grid-template-areas:
@@ -126,7 +112,6 @@ const ThumbNail = styled('img')`
   object-fit: cover;
   margin-right: 2rem;
   border-radius: var(--border-radius) 0 0 var(--border-radius);
-
   @media only screen and (max-width: ${bp}) {
     margin: 0;
     width: 100%;
@@ -147,7 +132,6 @@ const CardHeading = styled('div')`
   grid-area: cardHeading;
   align-self: flex-end;
   height: ${desktopHeight};
-
   h4 {
     margin: 0;
     color: var(--color-text-accent);
@@ -155,14 +139,12 @@ const CardHeading = styled('div')`
     font-weight: bold;
     font-size: 1.25rem;
   }
-
   p {
     font-weight: light;
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
   }
-
   @media only screen and (max-width: ${bp}) {
     justify-self: start;
     margin-left: 2rem;
@@ -173,12 +155,10 @@ const CardHeading = styled('div')`
       text-align: left;
     }
   }
-
   @media only screen and (max-width: 600px) {
     h4 {
       font-size: 1rem;
     }
-
     p {
       font-size: 0.75rem;
     }
@@ -224,14 +204,12 @@ const InfoBox = styled('div')`
   .secondary {
     color: var(--color-text-accent);
   }
-
   @media only screen and (max-width: ${bp}) {
     height: 100%;
     width: ${mobileWidth};
     justify-self: start;
     margin-left: 2rem;
   }
-
   @media only screen and (max-width: 600px) {
     margin: 0;
     justify-self: center;
@@ -242,7 +220,6 @@ const Assistant = styled(DropDown)`
   grid-area: dropDown;
   height: ${desktopHeight};
   width: 100%;
-
   @media only screen and (max-width: ${bp}) {
     height: 100%;
     width: ${mobileWidth};
@@ -256,7 +233,6 @@ const ButtonContainer = styled('div')`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
   .property-button {
     width: ${pxToRem(166)};
     font-size: 1rem;
@@ -301,11 +277,9 @@ const HouseItemF = styled('div')`
   .logo-holder {
     height: 100%;
   }
-
   .filler-icon {
     margin: 0 5rem 0 5rem;
   }
-
   .fa-angle-double-up {
     color: var(--color-accent);
     font-size: 5rem;
@@ -315,7 +289,6 @@ const HouseItemF = styled('div')`
     flex-direction: column;
     padding: 0;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-
     .filler {
       display: flex;
       flex-direction: column-reverse;
