@@ -35,7 +35,7 @@ const Properties = () => {
     process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
   /* Axios calls to fetch / update properties */
   const [houses, error, loading] = useFetch(`${url}/houses`);
-  const { subscription } = useContext(UserContext);
+  const { subscription, role } = useContext(UserContext);
   // Snackbar state
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
@@ -101,18 +101,19 @@ const Properties = () => {
             ]}
           />
           <HouseHeader>Properties</HouseHeader>
-          {}
-          <Link
-            to='/properties/new'
-            // @ts-ignore
-            onClick={
-              subscription === 0 && houses && houses.length >= 3
-                ? (e) => e.preventDefault()
-                : null
-            }
-          >
-            <Button text='+ New Property' className='new-property__button' />
-          </Link>
+          {role === 'manager' && (
+            <Link
+              to='/properties/new'
+              // @ts-ignore
+              onClick={
+                subscription === 0 && houses && houses.length >= 3
+                  ? (e) => e.preventDefault()
+                  : null
+              }
+            >
+              <Button text='+ New Property' className='new-property__button' />
+            </Link>
+          )}
         </div>
         {loading ? (
           <img src={loadingIndicator} alt='animated loading indicator' />
