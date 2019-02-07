@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Container, Button, LeafletMap } from '../../components/index';
+import { Button, LeafletMap } from '../../components/index';
 import {
   AssistantBar,
   AsstDetail,
@@ -14,7 +14,7 @@ import {
 } from './Assistants.styling';
 import Modal from '@material-ui/core/Modal';
 import { useFetch, axiosFetch } from '../../helpers/';
-import img from '../assets/ronald.jpg';
+import defaultUser from '../../assets/default-user.jpg';
 import loadingIndicator from '../utils/loading.svg';
 
 const url =
@@ -27,13 +27,21 @@ const AssistantCard = (props: any) => {
   function handleModal() {
     setModalStatus(!modalStatus);
   }
-  useEffect(() => {
-    setTaskLoad(0);
-  }, [props.assistant]);
+  console.log(assistant.className);
+  useEffect(
+    () => {
+      setTaskLoad(0);
+    },
+    [props.assistant],
+  );
   return (
     <AssistantBar className={assistant.className}>
       <AsstDetail>
-        <ThumbNail className='detail-img' src={img} alt={assistant.full_name} />
+        <ThumbNail
+          className='detail-img'
+          src={assistant.photo_url || defaultUser}
+          alt={assistant.full_name}
+        />
         <div className='detail-txt'>
           <h2>{assistant.full_name}</h2>
           <h3>{assistant.address}</h3>
@@ -46,11 +54,7 @@ const AssistantCard = (props: any) => {
             text='Delete Assistant'
             className='deleteButton'
           />
-          <Button
-            onClick={() => props.goBack()}
-            text=' Go Back'
-            className='fas fa-arrow-left'
-          />
+          <Button onClick={() => props.goBack()} text='Go Back ↩' />
         </div>
         <PropertyContainer>
           <PropertyHeading>
@@ -245,20 +249,25 @@ const AssistantDetails = (props: any) => {
   function goBack() {
     props.history.push('/assistants');
   }
-  return (
+  return loading && !assistant ? (
+    <img src={loadingIndicator} alt='animated loading indicator' />
+  ) : (
     <AssistantDetailContainer>
       {error.error ? 'Whoops! Something went wrong! :(' : null}
+
       {assistant ? (
-        <AssistantCard
-          className='assistant-card'
-          assistant={assistant}
-          removeDefault={removeDefault}
-          addRemoveHouse={addRemoveHouse}
-          goBack={goBack}
-          deleteAst={deleteAst}
-        />
+        <>
+          <AssistantCard
+            className='assistant-card'
+            assistant={assistant}
+            removeDefault={removeDefault}
+            addRemoveHouse={addRemoveHouse}
+            goBack={goBack}
+            deleteAst={deleteAst}
+          />
+          <LeafletMap ast={assistant} />
+        </>
       ) : null}
-      <LeafletMap />
     </AssistantDetailContainer>
   );
 };

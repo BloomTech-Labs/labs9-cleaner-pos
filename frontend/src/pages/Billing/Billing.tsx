@@ -5,7 +5,13 @@ import Accordion, {
   AccordionItemBody,
 } from '../../components/Accordion/Accordion';
 import { Link } from 'react-router-dom';
-import { Header, ListContainer, SVGContainer, SubBox } from './Billing.Styling';
+import {
+  DescriptionContainer,
+  Header,
+  ListContainer,
+  SVGContainer,
+  SubBox,
+} from './Billing.Styling';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -23,7 +29,7 @@ const Billing = () => {
 
   return (
     <Container>
-      <Header>Billing</Header>
+      <Header>Subscription</Header>
       <SubBox>
         <BillingContext.Provider value={{ setConfirm, setShownIndex }}>
           <Accordion index={shownIndex} setIndex={setShownIndex}>
@@ -50,31 +56,29 @@ const Billing = () => {
                   </SVGContainer>
                   <h3>Welcome to Lodgel!</h3>
                   <Link to='/properties'>
-                    <Button text='To My Properties' />
+                    <Button
+                      text='To My Properties'
+                      color='var(--color-accent-alt)'
+                    />
                   </Link>
                 </div>
               ) : null}
             </AccordionItemBody>
           </Accordion>
-          <div
-            style={{
-              border: 'var(--border)',
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              borderLeft: '0',
-            }}
-          >
+          <DescriptionContainer>
             <ListContainer>
-              <List style={{ padding: '0' }}>
+              <List
+                style={{ padding: '0', background: 'var(--color-main-light)' }}
+              >
                 <ListSubheader
                   classes={{ root: 'list-subheader' }}
                   style={{
-                    background: 'var(--color-bg-main)',
-                    borderBottom: 'var(--border)',
+                    border: 'var(--border)',
                     height: '3.75rem',
                     padding: '0.5rem',
+                    background: 'var(--color-accent)',
+                    color: 'var(--color-main-light)',
+                    marginBottom: '1rem',
                   }}
                 >
                   <h3 style={{ margin: '0' }}>Lodgel Basic</h3>
@@ -103,7 +107,7 @@ const Billing = () => {
                   </Avatar>
                   <ListItemText
                     primary='Charge 1.5% of Earnings'
-                    secondary='Once you’re happy and making money, we charge 1% of booking earnings.'
+                    secondary='Once you’re happy and making money, we charge 1.5% of booking earnings.'
                   />
                 </ListItem>
                 <ListItem>
@@ -121,10 +125,12 @@ const Billing = () => {
               <List style={{ padding: '0' }}>
                 <ListSubheader
                   style={{
-                    background: 'var(--color-bg-main)',
                     borderBottom: 'var(--border)',
                     height: '62px',
                     padding: '0.5rem',
+                    background: 'var(--color-accent)',
+                    color: 'var(--color-main-light)',
+                    marginBottom: '1rem',
                   }}
                 >
                   <h3 style={{ margin: '0' }}>Lodgel Professional</h3>
@@ -134,8 +140,8 @@ const Billing = () => {
                     <i className='fas fa-check-square' />
                   </Avatar>
                   <ListItemText
-                    primary='One Month Free Trial'
-                    secondary='Risk free trial'
+                    primary='Only 99$ Per Month'
+                    secondary='Reduce transaction costs immediately'
                   />
                 </ListItem>
                 <ListItem>
@@ -167,7 +173,7 @@ const Billing = () => {
                 </ListItem>
               </List>
             </ListContainer>
-          </div>
+          </DescriptionContainer>
         </BillingContext.Provider>
       </SubBox>
     </Container>

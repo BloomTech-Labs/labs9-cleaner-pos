@@ -15,6 +15,8 @@ import app from '../../firebase.setup';
 import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
 import queryString from 'query-string';
+import { UserContext } from '../../App';
+import logo from '../../assets/lodgel.jpg';
 
 interface LoginProps extends RouteComponentProps {
   onUser: any;
@@ -26,6 +28,7 @@ const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
   // creates a ref that will be used as component wide variable and exists
   // throughout it's lifecycle
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
+  const { setRole } = useContext(UserContext);
   const { ast, manager } = queryString.parse(location.search);
 
   // Configuration for the firebase OAuth component
@@ -91,6 +94,7 @@ const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
 
         if (data.first) {
           history.push('/postreg');
+          setRole(ast ? 'assistant' : 'manager');
         } else {
           history.push('/properties');
         }
@@ -104,6 +108,11 @@ const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
     <Container>
       <LoginDiv>
         <div className='login-container'>
+          <img
+            src={logo}
+            alt='Lodgel Logo'
+            // style={{ position: 'absolute', top: '0', left: '0' }}
+          />
           <StyledFireBaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
         </div>
       </LoginDiv>

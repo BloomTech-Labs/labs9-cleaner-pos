@@ -55,6 +55,7 @@ interface PostFormProps extends RouteComponentProps {
   setting_text: boolean;
   stripeUID: null | string;
   setShow: any;
+  setFetch: any;
 }
 
 const PostForm = (props: PostFormProps) => {
@@ -75,7 +76,7 @@ const PostForm = (props: PostFormProps) => {
 
   let startValues: InitialValueProps = {};
   let location: string = '';
-  const { setShow } = props;
+  const { setShow, setFetch } = props;
 
   if (props.location && props.id) {
     const { address, email, ext_it, full_name, phone } = props;
@@ -98,6 +99,12 @@ const PostForm = (props: PostFormProps) => {
 
     location = props.location.pathname;
   }
+
+  const whereAreWe = (path: string) => {
+    if (props && props.location) {
+      return props.location.pathname === path;
+    }
+  };
 
   const labelInputField = (label: string) => {
     return ({ field, form }: FieldProps) => {
@@ -152,6 +159,7 @@ const PostForm = (props: PostFormProps) => {
             await actions.setSubmitting(false);
             await actions.setStatus('Submission successful. Thank you!');
             if (setShow !== undefined) {
+              setFetch(true);
               setShow(false);
             } else {
               props.history.push('properties');
@@ -200,12 +208,16 @@ const PostForm = (props: PostFormProps) => {
             touched,
             values,
           } = formProps;
+
           return (
             <StyledForm>
-              <div>
+              <div className='header'>
                 <h2 style={{ color: 'black' }} className='title'>
-                  {location === '/postreg' ? 'Just a few more things!' : null}
+                  {whereAreWe('/postreg') ? 'Just a few more things!' : null}
                 </h2>
+                {whereAreWe('/postreg') && (
+                  <p>Complete your registration by filling in the following!</p>
+                )}
               </div>
               <Field
                 name='email'
@@ -262,7 +274,7 @@ const PostForm = (props: PostFormProps) => {
               <br />
               {/* // TODO: mess with button component to accept optional props} */}
               <Button
-                className='submit'
+                classNameS='submit'
                 type='submit'
                 datatestid='button-submit'
                 disabled={isSubmitting || !dirty}

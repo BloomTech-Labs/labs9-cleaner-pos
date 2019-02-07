@@ -185,7 +185,7 @@ const Checkout = (props: CheckoutProps) => {
                 <Button
                   className='payment-button'
                   text={stay.diff ? `Pay $ ${stringifyCost(total)}` : `Pay`}
-                  color={stay.diff ? '#0aa047' : '#736f6c'}
+                  color={stay.diff ? 'var(--color-accent-alt)' : '#736f6c'}
                   onClick={() => {
                     setShow(true);
                   }}
