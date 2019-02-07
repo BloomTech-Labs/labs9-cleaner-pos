@@ -27,19 +27,22 @@ const PropContainer = styled('div')`
     width: 100%;
     /* Flex */
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
 
     h2 {
       margin: 0;
     }
-  }
 
-  @media only screen and (max-width: ${bp}) {
-    .properties-header {
-      flex-flow: column nowrap;
-      align-items: flex-start;
+    @media only screen and (max-width: ${bp}) {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        margin: 0 0 1.25rem 0;
+      }
     }
   }
 `;
@@ -50,13 +53,13 @@ const HouseHeader = styled('h2')`
   font-size: 2.25rem;
 
   /* margin-bottom: 1.5rem; */
-  @media only screen and (max-width: 500px) {
-    margin: 0 0 1.5rem 0;
-  }
-  @media only screen and (max-width: ${bp}) {
+  /* @media only screen and (max-width: ${bp}) {
     margin: 0 0 1.5rem 0;
     text-align: center;
   }
+  @media only screen and (max-width: 500px) {
+    margin: 0 0 1.5rem 0;
+  } */
 `;
 
 const HouseItem = styled('div')`

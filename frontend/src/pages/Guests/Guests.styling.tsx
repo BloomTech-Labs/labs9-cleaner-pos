@@ -18,18 +18,29 @@ export const GuestsDiv = styled(Container)`
     width: 100%;
     /* Flexbox */
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    @media only screen and (min-width: 720px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
   }
 
   .guests-header h2 {
     /* Sizing & Box Model*/
-    margin: 0;
+    margin: 0 0 1.25rem 0;
 
     /* Text */
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     font-weight: normal;
     font-size: ${pxToRem(36)}rem;
+
+    @media only screen and (min-width: 720px) {
+      margin: 0;
+    }
   }
 
   .guests-header button {
