@@ -22,7 +22,7 @@ import { NumberSelector } from './NumberSelector';
 interface CheckoutProps extends RouteComponentProps {
   match: any;
 }
-export const PaymentContext = createContext({ sum: 0 });
+export const PaymentContext = createContext({ sum: 0, stay_id: 0 });
 
 const Checkout = (props: CheckoutProps) => {
   // const [error, setError] = useState<any>({ msg: '', error: false });
@@ -99,7 +99,6 @@ const Checkout = (props: CheckoutProps) => {
        Thanks to https://stackoverflow.com/a/31581206
     */
     amt.toLocaleString(undefined, { minimumFractionDigits: 2 });
-
   return (
     <CheckoutContainer>
       {stayLoading ? (
@@ -169,19 +168,45 @@ const Checkout = (props: CheckoutProps) => {
                     {stay.extra_guests} Extra Guests x ${stay.extra_fee}
                   </span>
                   <span>
-                    {stringifyCost(stay.extra_fee * stay.extra_guests)}
+                    ${stringifyCost(stay.extra_fee * stay.extra_guests)}
                   </span>
                 </InvoiceBox>
               ) : null}
               {show && (
                 // @ts-ignore
-                <PaymentContext.Provider value={{ sum: total }}>
+                <PaymentContext.Provider
+                  value={{ sum: total, stay_id: stay.stay_id }}
+                >
                   <StripeProvider apiKey={key}>
                     <MyStoreCheckout sum={stay.total} />
                   </StripeProvider>
                 </PaymentContext.Provider>
               )}
-              {show ? null : (
+              {stay.stay_receipt ? (
+                <div
+                  style={{
+                    margin: 'auto',
+                    color: 'var(--color-accent-light)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  This invoice has already been paid
+                  <a
+                    href={stay.stripe_receipt}
+                    rel='noopen noreferer'
+                    target='_blank'
+                  >
+                    <Button
+                      text='Receipt'
+                      color='#0AA047'
+                      className='receipt-button'
+                    />
+                  </a>
+                </div>
+              ) : show ? null : (
                 <Button
                   className='payment-button'
                   text={stay.diff ? `Pay $ ${stringifyCost(total)}` : `Pay`}
