@@ -54,7 +54,7 @@ const Button = ({
   return (
     <>
       <Tooltip title={disabled ? 'Please add missing options' : ''}>
-        <span>
+        <span className={className}>
           <StyledButton
             className={className}
             onClick={onClick}
