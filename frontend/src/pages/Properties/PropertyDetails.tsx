@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { PropertyLists, AfterPropertyLists } from './PropertyLists';
 import {
   PropertyContainer,
+	HouseInfo,
+	PropertyButtons,
   ThumbNail,
   Top,
   MainText,
@@ -10,7 +12,6 @@ import {
   BackButton,
   Header,
   AfterListDiv,
-  AfterStay,
   WhiteButton,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';

@@ -14,6 +14,9 @@ export const BackButton = styled(Button)`
 	}
 `;
 
+export const PropertyButtons = styled('div')`
+`;
+
 export const WhiteButton = styled(Button)`
   color: var(--colour-button-text-alt);
   background-color: var(--colour-button-background-alt);
@@ -29,7 +32,6 @@ export const PropertyContainer = styled(Container)`
   justify-content: flex-start;
   align-items: flex-start;
   max-width: 100%;
-	padding: 15px;
 `;
 
 export const Top = styled(PropertyContainer)`
@@ -47,6 +49,9 @@ export const Top = styled(PropertyContainer)`
 		text-align: center;
 		width: 100%;
   }
+`;
+
+export const HouseInfo = styled('div')`
 `;
 
 export const ThumbNail = styled('img')`
