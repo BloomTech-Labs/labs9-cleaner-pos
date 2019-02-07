@@ -252,7 +252,7 @@ export const GuestDetailStyle = styled(Container)`
 
   .button-checkout {
     width: 100%;
-    background-color: #0aa047;
+    background-color: var(--color-accent-alt);
   }
 
   @media only screen and (min-width: 700px) {

@@ -254,7 +254,7 @@ export const InfoDiv = styled.div`
   justify-content: space-evenly;
 
   /* Color */
-  background-color: var(--color-bg-tertiary);
+  background-color: var(--color-bg-secondary);
 
   div[class^='text-'] {
     display: block;

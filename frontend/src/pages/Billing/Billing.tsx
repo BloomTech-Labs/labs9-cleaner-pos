@@ -50,7 +50,10 @@ const Billing = () => {
                   </SVGContainer>
                   <h3>Welcome to Lodgel!</h3>
                   <Link to='/properties'>
-                    <Button text='To My Properties' />
+                    <Button
+                      text='To My Properties'
+                      color='var(--color-accent-alt)'
+                    />
                   </Link>
                 </div>
               ) : null}
@@ -67,14 +70,18 @@ const Billing = () => {
             }}
           >
             <ListContainer>
-              <List style={{ padding: '0' }}>
+              <List
+                style={{ padding: '0', background: 'var(--color-main-light)' }}
+              >
                 <ListSubheader
                   classes={{ root: 'list-subheader' }}
                   style={{
-                    background: 'var(--color-bg-main)',
                     border: 'var(--border)',
                     height: '3.75rem',
                     padding: '0.5rem',
+                    background: 'var(--color-accent)',
+                    color: 'var(--color-main-light)',
+                    marginBottom: '1rem',
                   }}
                 >
                   <h3 style={{ margin: '0' }}>Lodgel Basic</h3>
@@ -121,10 +128,12 @@ const Billing = () => {
               <List style={{ padding: '0' }}>
                 <ListSubheader
                   style={{
-                    background: 'var(--color-bg-main)',
                     borderBottom: 'var(--border)',
                     height: '62px',
                     padding: '0.5rem',
+                    background: 'var(--color-accent)',
+                    color: 'var(--color-main-light)',
+                    marginBottom: '1rem',
                   }}
                 >
                   <h3 style={{ margin: '0' }}>Lodgel Professional</h3>

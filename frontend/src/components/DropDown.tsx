@@ -33,13 +33,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   /* Color */
-  background-color: var(--color-bg-tertiary);
+  background-color: var(--color-bg-secondary);
   label {
     margin-bottom: 0.5rem;
     /* Text */
     font-family: 'Roboto Medium', 'Helvetica', 'Arial', sans-serif;
     font-weight: normal;
-    color: var(--color-text-accent);
+    /* color: var(--color-text-accent); */
   }
 `;
 
