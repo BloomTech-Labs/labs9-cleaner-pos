@@ -79,9 +79,9 @@ const HeaderWrapper = styled('div')`
     font-weight: normal;
     font-size: ${pxToRem(20)}rem;
   }
-	@media only screen and (max-width: 900px) {
-		padding: 0 10px 0 10px;
-	}
+  @media only screen and (max-width: 900px) {
+    padding: 0 10px 0 10px;
+  }
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
     align-items: center;
