@@ -22,48 +22,30 @@ import Billing from './pages/Billing/Billing';
 
 interface UserData {
   loggedIn: boolean;
-  role: any;
+  role: string;
   subscription: number;
-  setValue: any;
-  setRole: any;
-  setLogin: any;
 }
 const token = localStorage.getItem('token');
+const role = localStorage.getItem('role') || '';
 const subscription = localStorage.getItem('subscription');
-const savedRole = localStorage.getItem('role');
 
 const defaultValue = {
   loggedIn: false,
-  role: savedRole || 'none',
+  role,
   subscription: 0,
-  setValue: 0,
-  setRole: 0,
-  setLogin: 0,
 };
 
 export const UserContext = createContext<UserData>(defaultValue);
 
 const App = () => {
-  const [subvalue, setValue] = useState(Number(subscription));
-  const [role, setRole] = useState(savedRole);
-  const [login, setLogin] = useState(token ? true : false);
-
   const contextValue = {
-    loggedIn: login,
+    loggedIn: token ? true : false,
     role,
-    subscription: subvalue,
+    subscription: Number(subscription),
   };
   return (
     <div className='App'>
-      <UserContext.Provider
-        value={{
-          ...contextValue,
-          subscription: subvalue,
-          setValue,
-          setRole,
-          setLogin,
-        }}
-      >
+      <UserContext.Provider value={contextValue}>
         <Sidebar />
         <Switch>
           <Route exact path='/' component={LandingPage} />

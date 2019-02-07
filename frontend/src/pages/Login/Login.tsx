@@ -15,7 +15,6 @@ import app from '../../firebase.setup';
 import Container from '../../components/Container';
 import LoginDiv from './Login.styling';
 import queryString from 'query-string';
-import { UserContext } from '../../App';
 
 interface LoginProps extends RouteComponentProps {
   onUser: any;
@@ -27,7 +26,6 @@ const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
   // creates a ref that will be used as component wide variable and exists
   // throughout it's lifecycle
   const observer: MutableRefObject<any> = useRef<Unsubscribe>(null);
-  const { setRole } = useContext(UserContext);
   const { ast, manager } = queryString.parse(location.search);
 
   // Configuration for the firebase OAuth component
@@ -93,7 +91,6 @@ const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
 
         if (data.first) {
           history.push('/postreg');
-          setRole(ast ? 'assistant' : 'manager');
         } else {
           history.push('/properties');
         }

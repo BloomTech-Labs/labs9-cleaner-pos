@@ -12,7 +12,6 @@ interface ButtonProps {
   datatestid?: string;
   color?: string;
   className?: string;
-  classNameS?: string;
   type?: string;
   disabled?: boolean;
   children?: any;
@@ -24,7 +23,6 @@ const Button = ({
   datatestid,
   color,
   className,
-  classNameS,
   disabled,
   type,
   children,

@@ -93,19 +93,11 @@ export const Top = styled(PropertyContainer)`
   }
 `;
 
-export const HouseInfo = styled('div')`
-  #address {
-    margin-left: 0;
-    padding: 0.5rem 0;
-    font-family: 'Roboto Bold', Arial, sans-serif;
-    font-size: 1.125rem;
-    text-align: left;
-  }
-`;
+export const HouseInfo = styled('div')``;
 
 export const ThumbNail = styled('img')`
-  width: ${cardWidth * 2}rem;
-  height: ${cardHeight * 2}rem;
+  width: ${cardWidth}rem;
+  height: ${cardHeight}rem;
   object-fit: cover;
   @media only screen and (max-width: 900px) {
     margin: 0 auto;
@@ -122,8 +114,8 @@ export const MainText = styled.div`
 `;
 
 export const SecondaryText = styled.div`
-  padding: 0.5rem 0;
   margin-left: 1rem;
+  padding: 1rem 0;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: 1.125rem;
   text-align: left;

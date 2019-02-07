@@ -5,13 +5,7 @@ import Accordion, {
   AccordionItemBody,
 } from '../../components/Accordion/Accordion';
 import { Link } from 'react-router-dom';
-import {
-  DescriptionContainer,
-  Header,
-  ListContainer,
-  SVGContainer,
-  SubBox,
-} from './Billing.Styling';
+import { Header, ListContainer, SVGContainer, SubBox } from './Billing.Styling';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -29,7 +23,7 @@ const Billing = () => {
 
   return (
     <Container>
-      <Header>Subscription</Header>
+      <Header>Billing</Header>
       <SubBox>
         <BillingContext.Provider value={{ setConfirm, setShownIndex }}>
           <Accordion index={shownIndex} setIndex={setShownIndex}>
@@ -65,7 +59,16 @@ const Billing = () => {
               ) : null}
             </AccordionItemBody>
           </Accordion>
-          <DescriptionContainer>
+          <div
+            style={{
+              border: 'var(--border)',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              borderLeft: '0',
+            }}
+          >
             <ListContainer>
               <List
                 style={{ padding: '0', background: 'var(--color-main-light)' }}
@@ -140,8 +143,8 @@ const Billing = () => {
                     <i className='fas fa-check-square' />
                   </Avatar>
                   <ListItemText
-                    primary='Only 99$ Per Month'
-                    secondary='Reduce transaction costs immediately'
+                    primary='One Month Free Trial'
+                    secondary='Risk free trial'
                   />
                 </ListItem>
                 <ListItem>
@@ -173,7 +176,7 @@ const Billing = () => {
                 </ListItem>
               </List>
             </ListContainer>
-          </DescriptionContainer>
+          </div>
         </BillingContext.Provider>
       </SubBox>
     </Container>

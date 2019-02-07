@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Mark from '@material-ui/core/Button';
@@ -16,7 +16,6 @@ import {
   StyledLink,
 } from './Sidebar.styling';
 import logo from '../../assets/lodgel.jpg';
-import { UserContext } from '../../App';
 
 interface LinkProps extends RouteComponentProps {
   onClick?: () => MouseEvent;
@@ -24,7 +23,6 @@ interface LinkProps extends RouteComponentProps {
 
 const Sidebar = (props: LinkProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { setLogin } = useContext(UserContext);
 
   const handleClick = (e: any) => {
     setAnchorEl(e.currentTarget);
@@ -44,7 +42,6 @@ const Sidebar = (props: LinkProps) => {
     localStorage.removeItem('id');
     localStorage.removeItem('role');
     localStorage.removeItem('firebaseui::rememberedAccounts');
-    setLogin(false);
     // TODO: Use actual firebase signout function to sign out
     props.history.push('/');
   };
