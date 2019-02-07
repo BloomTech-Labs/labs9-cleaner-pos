@@ -167,7 +167,7 @@ const CardHeading = styled('div')`
     }
   }
 
-  @mdia only screen and (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
     h4 {
       font-size: 1rem;
     }
@@ -267,10 +267,74 @@ const ButtonContainer = styled('div')`
   }
 `;
 
+const HouseItemF = styled('div')`
+  width: 100%;
+  height: ${pxToRem(168)};
+  padding: 1rem;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-top: 2.25rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-secondary);
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 2.25rem;
+  color: var(--color-accent);
+  .filler {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--color-accent);
+  }
+  .logo-holder {
+    height: 100%;
+  }
+
+  .filler-icon {
+    margin: 0 5rem 0 5rem;
+  }
+
+  .fa-angle-double-up {
+    color: var(--color-accent);
+    font-size: 5rem;
+  }
+  @media only screen and (max-width: ${bp}) {
+    width: 100%;
+    flex-direction: column;
+    padding: 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+    .filler {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+    }
+    .logo-holder {
+      height: 75%;
+    }
+    .filler-text {
+      margin: 0;
+      text-align: center;
+      font-size: 2rem;
+    }
+    .filler-icon {
+      width: 100%;
+      margin: 0;
+      padding-left: 20%;
+    }
+  }
+`;
+
 export {
   PropContainer,
   HouseHeader,
   HouseItem,
+  HouseItemF,
   CardBody,
   InfoBox,
   ThumbNail,
