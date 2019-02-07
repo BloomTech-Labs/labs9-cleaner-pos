@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Mark from '@material-ui/core/Button';
@@ -18,6 +18,7 @@ import {
 } from './Sidebar.styling';
 import logo from '../../assets/lodgel.jpg';
 import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
+import { UserContext } from '../../App';
 
 interface LinkProps extends RouteComponentProps {
   onClick?: () => MouseEvent;
@@ -25,6 +26,7 @@ interface LinkProps extends RouteComponentProps {
 
 const Sidebar = (props: LinkProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const { setLogin } = useContext(UserContext);
 
   const handleClick = (e: any) => {
     setAnchorEl(e.currentTarget);
@@ -34,11 +36,17 @@ const Sidebar = (props: LinkProps) => {
     setAnchorEl(null);
   };
 
+  const goAndClose = (path: string) => () => {
+    handleClose();
+    props.history.push(path);
+  };
+
   const logOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
     localStorage.removeItem('firebaseui::rememberedAccounts');
+    setLogin(false);
     // TODO: Use actual firebase signout function to sign out
     props.history.push('/');
   };
@@ -67,18 +75,10 @@ const Sidebar = (props: LinkProps) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
-              <Link to='/properties'>Property</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/guests'>Guests</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/assistants'>Assistants</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/billing'>Subscribe</Link>
-            </MenuItem>
+            <MenuItem onClick={goAndClose('/properties')}>Property</MenuItem>
+            <MenuItem onClick={goAndClose('/guests')}>Guests</MenuItem>
+            <MenuItem onClick={goAndClose('/assistants')}>Assistants</MenuItem>
+            <MenuItem onClick={goAndClose('/billing')}>Subscribe</MenuItem>
           </Menu>
           <Logo src={notxt_Lodgel} alt='Lodgel logo' />
           <SettingsWrapper>

@@ -12,10 +12,10 @@ interface ButtonProps {
   datatestid?: string;
   color?: string;
   className?: string;
+  classNameS?: string;
   type?: string;
   disabled?: boolean;
   children?: any;
-  tooltip?: string;
 }
 
 const Button = ({
@@ -24,13 +24,14 @@ const Button = ({
   datatestid,
   color,
   className,
+  classNameS,
   disabled,
   type,
   children,
-  tooltip,
 }: ButtonProps) => {
   const buttonColor = color || 'var(--color-button-background)';
   const StyledButton = styled('button')`
+    opacity: 1;
     /* Sizing */
     max-width: 200px;
     width: 200px;
@@ -51,10 +52,24 @@ const Button = ({
       color: var(--color-button-text);
     }
   `;
-  return (
+
+  const RetButton = () => (
+    <StyledButton
+      className={className}
+      onClick={onClick}
+      type={type || 'button'}
+      data-testid={datatestid}
+      disabled={disabled}
+    >
+      {text}
+      {children}
+    </StyledButton>
+  );
+
+  return type === 'submit' ? (
     <>
       <Tooltip title={disabled ? 'Please add missing options' : ''}>
-        <span className={className}>
+        <span className={classNameS}>
           <StyledButton
             className={className}
             onClick={onClick}
@@ -68,6 +83,8 @@ const Button = ({
         </span>
       </Tooltip>
     </>
+  ) : (
+    <RetButton />
   );
 };
 

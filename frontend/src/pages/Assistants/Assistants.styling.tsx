@@ -27,10 +27,10 @@ const AssistantItem = styled('div')`
   text-align: left;
 
   /* Hover Effects */
-  transition: all 0.1s ease-in-out;
+  /* transition: all 0.1s ease-in-out;
   &:hover {
     transform: scale(1.025);
-  }
+  } */
   .button__see-more {
     width: 100%;
   }
@@ -74,6 +74,15 @@ const HeaderWrapper = styled('div')`
 
   /* Sizing */
   margin-bottom: 2.25rem;
+
+  .new-ast__button {
+    background: var(--color-accent);
+    width: 200px;
+    height: 40px;
+    padding: 0.5rem 1rem;
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-size: 1.25rem;
+  }
 
   @media only screen and (max-width: ${bp}) {
     flex-direction: column;
@@ -179,21 +188,22 @@ const InfoBox = styled('div')`
 `;
 
 const AssistantHeader = styled('span')`
-  font-size: 1.8rem;
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 2.25rem;
   top: 0;
   left: 0;
   text-align: left;
   align-items: flex-start;
-  max-width: 18.125rem;
 `;
 
 const AssistantDetailContainer = styled(Container)`
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 
   .container-map {
-    width: 70%;
-    height: 50vh;
+    width: 65%;
+    height: 75vh;
   }
 
   .my-leaflet-map-container img {
@@ -225,11 +235,12 @@ const AssistantDetailContainer = styled(Container)`
 
   .button-group {
     /* Sizing */
-    margin: 1rem 0;
+    margin: ${pxToRem(5)} 0;
     /* Flex */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
   }
 
   .button-group button {
@@ -243,7 +254,7 @@ const AssistantDetailContainer = styled(Container)`
 
     .container-map {
       /* Flex */
-      order: 1;
+      order: -1;
       /* Sizing */
       width: 100%;
       height: 40vh;
@@ -279,11 +290,18 @@ const AssistantDetailContainer = styled(Container)`
 const AssistantBar = styled('div')`
   /* Size */
   padding-right: 0.5rem;
-  height: 54rem;
-  width: 21rem;
+
+  width: 35%;
+  max-width: 21rem;
   /* Flex */
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 700px) {
+    margin-top: ${pxToRem(10)};
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
 `;
 
 const AsstDetail = styled('div')`
@@ -304,13 +322,19 @@ const AsstProperty = styled('div')`
 
   .deleteButton {
     background-color: var(--color-error);
+    margin-bottom: ${pxToRem(5)};
+  }
+  @media screen and (max-width: 700px) {
+    .deleteButton {
+      margin-bottom: ${pxToRem(1)};
+    }
   }
 `;
 
 const PropertyContainer = styled('div')`
   /* Size */
   border: var(--border);
-  margin: 1rem 0;
+  margin: 0;
   /* Flex */
   display: flex;
   flex-flow: column nowrap;
@@ -322,6 +346,7 @@ const PropertyContainer = styled('div')`
     /* Sizing */
     padding: 0.25rem 0.5rem;
     margin-right: 1rem;
+    width: ${pxToRem(75)};
     /* Text */
     font-size: 1rem;
     /* Color */
@@ -347,6 +372,7 @@ const PropertyHeading = styled('div')`
 
   h2 {
     font-size: 1rem;
+    margin: 0.5rem 0 0.5rem 0;
   }
 `;
 

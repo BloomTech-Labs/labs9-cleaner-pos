@@ -14,7 +14,12 @@ import {
   AfterListDiv,
   AfterStay,
   WhiteButton,
+  DialogButton,
+  ButtonGroup,
+  DialogStay,
 } from './PropertyDetails.styling';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
@@ -33,6 +38,7 @@ const PropertyDetails = (props: any) => {
   );
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [shouldFetch, setShouldFetch] = useState(true);
+  const [delLoading, setLoading] = useState(false);
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
   const [lists, setLists] = useState({} as Lists);
@@ -46,6 +52,16 @@ const PropertyDetails = (props: any) => {
       const res = await axios.get(`${url}/lists/${id}`, headers);
       setLists(res.data);
       setShouldFetch(false);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  }
+  async function removeProperty(id: number) {
+    setLoading(true);
+    try {
+      const res = await axios.delete(`${url}/houses/${id}`, headers);
+      setLoading(false);
+      props.history.push('/properties');
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
@@ -125,7 +141,7 @@ const PropertyDetails = (props: any) => {
             <HouseInfo>
               <ThumbNail src={property.photo_url} alt='house' />
               <MainText data-testid='house-detail'>{property.name}</MainText>
-              <SecondaryText>{property.address}</SecondaryText>
+              <SecondaryText id='address'>{property.address}</SecondaryText>
             </HouseInfo>
             <PropertyButtons>
               <Link to={{ pathname: '/properties/new', state: property }}>
@@ -139,8 +155,21 @@ const PropertyDetails = (props: any) => {
                 color='var(--color-text-accent)'
                 onClick={() => props.history.push('/properties')}
               />
+              <BackButton
+                text={delLoading ? '' : 'Remove Property'}
+                color='var(--color-error)'
+                onClick={() => removeProperty(property.id)}
+              >
+                {delLoading ? (
+                  <img
+                    src={loadingIndicator}
+                    alt='animated loading indicator'
+                  />
+                ) : null}
+              </BackButton>
             </PropertyButtons>
           </Top>
+          <h1>List Builder</h1>
           <ListContainer>
             {lists.before ? (
               <PropertyLists
@@ -168,7 +197,10 @@ const PropertyDetails = (props: any) => {
             )}
           </ListContainer>
           <AfterListDiv>
-            <Header>After Stay</Header>
+            <Header className='header-after'>
+              After Stay{' '}
+              <WhiteButton text='+ New Stay List' onClick={toggleText} />
+            </Header>
             {lists.after ? (
               lists.after.map((aList: any) => {
                 return (
@@ -187,29 +219,41 @@ const PropertyDetails = (props: any) => {
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />
             )}
-            {inputItem ? (
-              <>
+            <Dialog
+              maxWidth='sm'
+              fullWidth={true}
+              className='dialog'
+              open={inputItem}
+              onClose={toggleText}
+              aria-labelledby='simple-dialog-title'
+            >
+              <DialogTitle
+                style={{ textAlign: 'center' }}
+                id='simple-dialog-title'
+              >
+                New After Stay List
+              </DialogTitle>
+              <DialogStay>
                 <TextField
                   placeholder='Number of hours'
                   type='number'
                   value={newItem}
                   onChange={handleChange}
                 />
-                <WhiteButton text='Submit' onClick={newList} />
-                <WhiteButton text='Cancel' onClick={toggleText} />
-              </>
-            ) : (
-              <>
-                {shouldFetch ? (
-                  <img
-                    src={loadingIndicator}
-                    alt='animated loading indicator'
+                <ButtonGroup>
+                  <DialogButton
+                    className='submit'
+                    text='Submit'
+                    onClick={newList}
                   />
-                ) : (
-                  <WhiteButton text='+ New Stay List' onClick={toggleText} />
-                )}
-              </>
-            )}
+                  <DialogButton
+                    className='cancel'
+                    text='Cancel'
+                    onClick={toggleText}
+                  />
+                </ButtonGroup>
+              </DialogStay>
+            </Dialog>
           </AfterListDiv>
         </PropertyContainer>
       )}
