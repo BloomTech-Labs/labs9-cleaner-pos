@@ -52,6 +52,7 @@ const HouseHeader = styled('h2')`
 
 const HouseItem = styled('div')`
   width: 100%;
+  height: ${pxToRem(172)};
   margin-top: 2.25rem;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -101,7 +102,7 @@ const HouseItem = styled('div')`
 const ThumbNail = styled('img')`
   grid-area: thumbnail;
   width: 100%;
-  height: ${pxToRem(189)};
+  height: ${pxToRem(172)};
   object-fit: cover;
   margin-right: 2rem;
   border-radius: var(--border-radius) 0 0 var(--border-radius);
@@ -132,7 +133,7 @@ const CardHeading = styled('div')`
     color: var(--color-text-accent);
     font-family: Roboto;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   p {
@@ -150,6 +151,16 @@ const CardHeading = styled('div')`
     }
     p {
       text-align: left;
+    }
+  }
+
+  @mdia only screen and (max-width: 600px) {
+    h4 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.75rem;
     }
   }
 `;
