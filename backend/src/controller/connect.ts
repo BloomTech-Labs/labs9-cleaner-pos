@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import { stripe } from '../util/stripe.setup';
 import { updateUserById, findUser } from '../models/users';
 import axios, { AxiosRequestConfig } from 'axios';
+import { putStayData } from '../models/stays/';
+import { House } from '../interface';
 
 const deleteL = (req: Request, res: Response, next: NextFunction) => {
   res.status(200).send({ message: 'connection removed' });
@@ -46,7 +48,7 @@ const createPayment = async (
   next: NextFunction,
 ) => {
   try {
-    const { amount, subscription } = req.body;
+    const { amount, subscription, stay_id } = req.body;
     const stripeToken = req.body.token;
     const { id } = req.token;
 
@@ -83,14 +85,13 @@ const createPayment = async (
       // tslint:disable-next-line
       application_fee: fee,
     });
+
+    // @ts-ignore
+    await putStayData(stay_id, { stripe_receipt: charge.receipt_url });
     res
       .status(200)
       .send({ msg: 'Payment succeeded!', receipt: charge.receipt_url });
   } catch (e) {
-    if (e.raw.param === 'destination[account]') {
-      e.statusCode = 401;
-      next(e);
-    }
     e.statusCode = 500;
     next(e);
   }
