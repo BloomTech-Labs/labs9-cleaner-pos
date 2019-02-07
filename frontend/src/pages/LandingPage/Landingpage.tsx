@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../App';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Container } from '../../components/index';
@@ -24,14 +25,21 @@ import {
 } from './LandingPage.styling';
 
 const Landing = (props: RouteComponentProps) => {
+  const { loggedIn } = useContext(UserContext);
   return (
     <Container>
       {/* <DescHeader>A POS that helps you keep things clean</DescHeader> */}
       <Nav>
         <BigLogo src={lodgel} alt='Lodgel logo' />
-        <Link to='/Login'>
-          <Button text='Sign In' color='var(--color-accent)' />
-        </Link>
+        {loggedIn ? (
+          <Link to='/properties'>
+            <Button text='Dashboard' color='var(--color-accent)' />
+          </Link>
+        ) : (
+          <Link to='/Login'>
+            <Button text='Sign In' color='var(--color-accent)' />
+          </Link>
+        )}
       </Nav>
 
       <Wrapper>
