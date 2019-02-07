@@ -36,7 +36,6 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
   if (addressArray && addressArray.length < 6) {
     addressArray.splice(1, 0, '');
   }
-  console.log(addressArray);
   let subInfo = 'Not Subscribed';
   if (userC.subscription === 1) {
     subInfo = 'Basic';
@@ -64,7 +63,6 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
   }, []);
 
   const UrlFileUpload = FileUploadHOF(async (urls: string, type?: string) => {
-    console.log(urls);
     await axiosFetch('put', `${url}/users`, {
       photoUrl: urls,
     }).catch((e: any) => {
