@@ -39,7 +39,7 @@ const Wrapper = styled.div`
     /* Text */
     font-family: 'Roboto Medium', 'Helvetica', 'Arial', sans-serif;
     font-weight: normal;
-    color: var(--color-text-accent);
+    /* color: var(--color-text-accent); */
   }
 `;
 
