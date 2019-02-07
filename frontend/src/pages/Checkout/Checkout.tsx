@@ -84,7 +84,7 @@ const Checkout = (props: CheckoutProps) => {
        Won't update value if new value will be less than 0.
     */
     if (stay.hasOwnProperty(property)) {
-      if (num >= 0) {
+      if (num >= 1) {
         setStay({ ...stay, [property]: num });
       }
     } else {

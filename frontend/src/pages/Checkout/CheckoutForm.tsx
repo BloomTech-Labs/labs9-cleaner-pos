@@ -1,9 +1,5 @@
 import React, { FormEvent, useContext, useState } from 'react';
-import {
-  ReactStripeElements,
-  injectStripe,
-  CardElement,
-} from 'react-stripe-elements';
+import { injectStripe, CardElement } from 'react-stripe-elements';
 import { UserContext } from '../../App';
 import { Link } from 'react-router-dom';
 import { PaymentContext } from './Checkout';
