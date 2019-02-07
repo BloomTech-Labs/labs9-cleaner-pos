@@ -271,6 +271,7 @@ const HouseItemF = styled('div')`
   width: 100%;
   height: ${pxToRem(168)};
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   margin-top: 2.25rem;
   text-align: left;
@@ -281,12 +282,16 @@ const HouseItemF = styled('div')`
   font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 2.25rem;
+  color: var(--color-accent);
   .filler {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     color: var(--color-accent);
+  }
+  .logo-holder {
+    height: 100%;
   }
 
   .filler-icon {
@@ -298,8 +303,8 @@ const HouseItemF = styled('div')`
     font-size: 5rem;
   }
   @media only screen and (max-width: ${bp}) {
-    margin: 0;
     width: 100%;
+    flex-direction: column;
 
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 
@@ -308,19 +313,18 @@ const HouseItemF = styled('div')`
       flex-direction: column-reverse;
       justify-content: space-between;
     }
+    .logo-holder {
+      height: 75%;
+    }
     .filler-text {
       margin: 0;
+      text-align: center;
+      font-size: 2rem;
     }
     .filler-icon {
       width: 100%;
       margin: 0;
       padding-left: 20%;
-    }
-  }
-  @media only screen and (max-width: 500px) {
-    .filler {
-      padding-left: 0;
-      font-size: 1.5rem;
     }
   }
 `;

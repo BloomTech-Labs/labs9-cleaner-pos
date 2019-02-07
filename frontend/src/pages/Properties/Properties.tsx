@@ -207,16 +207,19 @@ const Properties = () => {
         {houses && houses.length === 0 ? (
           <HouseItemF>
             <img
+              className='logo-holder'
               style={{ objectFit: 'contain' }}
               src={notxt_Lodgel}
               alt='house'
             />
-            <div className='filler'>
+
+            <h4 className='filler-text'>Start adding Properties!</h4>
+            {/* <div className='filler'>
               <h4 className='filler-text'>Start adding Properties!</h4>
               <div className='filler-icon'>
                 <i className='fas fa-angle-double-up' />
               </div>
-            </div>
+            </div> */}
           </HouseItemF>
         ) : null}
       </PropContainer>
