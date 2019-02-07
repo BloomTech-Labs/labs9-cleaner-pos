@@ -318,6 +318,7 @@ const NewGuest = (props: RouteComponentProps) => {
         diff,
       } = routeProps.location.state;
 
+      console.log('initialValues:', routeProps.location.state);
       const addressArray = address ? address.split('\n') : '';
       if (addressArray && addressArray.length < 6) {
         addressArray.splice(1, 0, '');
@@ -335,8 +336,8 @@ const NewGuest = (props: RouteComponentProps) => {
         postCode: addressArray[5],
         houseId: house_id,
         extraGuests: extra_guests,
-        checkIn: check_in,
-        checkOut: check_out,
+        checkIn: new Date(check_in),
+        checkOut: new Date(check_out),
       };
     } else {
       return emptyValues;
