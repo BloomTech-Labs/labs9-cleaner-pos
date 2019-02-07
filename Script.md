@@ -25,10 +25,16 @@ you are ready to go!
 Are you ready to try Lodgel? Sign up today!
 
 # Technical Justification
-React: We chose to develop the front-end in React because its highly flexible nature allows for rapid prototyping and simple maintenance. Instead of having to change styling or functionality for each individual component that needs it, a few small adjustments can be made that propogates through the whole application and has the potential to exponentially reduce maintenance time.
+## React: 
+We chose to develop the front-end in React because its highly flexible nature allows for rapid prototyping and simple maintenance. Instead of having to change styling or functionality for each individual component that needs it, a few small adjustments can be made that propogates through the whole application and has the potential to exponentially reduce maintenance time.
 
-Node.js: The justification for using Node.js in the back-end is similar to that of the front-end. The high level of customization that Node.js provides allows for near-total freedom in terms of functionality and performance. There is a tradeoff to this much control: if one endpoint breaks, chances are high that it will greatly affect other areas of functionality. 
+## Node.js: 
+The justification for using Node.js in the back-end is similar to that of the front-end. The high level of customization that Node.js provides allows for near-total freedom in terms of functionality and performance. There is a tradeoff to this much control: if one endpoint breaks, chances are high that it will greatly affect other areas of functionality. 
 
-TypeScript: We chose to use Typescript for two main reasons: type-checking and communication. Stronger typing allows us to avoid common mistakes that are hard to debug, such as misinterpreting the shape of the data and accessing non-existent properties or mapping over data which are not arrays.
+## TypeScript: 
+We chose to use Typescript for two main reasons: type-checking and communication. Stronger typing allows us to avoid common mistakes that are hard to debug, such as misinterpreting the shape of the data and accessing non-existent properties or mapping over data which are not arrays.
 
 In addition, it also serves as communication between developers. Type declarations can be read by other developers, which gives them insight how they should approach their code if they're dealing with the same type of data. Deep TypeScript integration in VS Code allows us to even have Intellisense on functions we wrote ourselves.
+
+## Travis CI:
+Travis CI is meant to prevent regressions from being merged into the live application. We configured Travis to run all of our tests before each commit, and also create a mock Pull Request to ensure the build would render properly. 
