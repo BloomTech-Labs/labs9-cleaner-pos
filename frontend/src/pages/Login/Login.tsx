@@ -93,7 +93,7 @@ const Login: FunctionComponent<LoginProps> = ({ history, location }) => {
 
         if (data.first) {
           history.push('/postreg');
-          setRole(ast ? 'Assistant' : 'Manager');
+          setRole(ast ? 'assistant' : 'manager');
         } else {
           history.push('/properties');
         }
