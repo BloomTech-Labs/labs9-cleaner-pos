@@ -14,8 +14,10 @@ import {
   SettingsWrapper,
   StyledUL,
   StyledLink,
+  Logo,
 } from './Sidebar.styling';
 import logo from '../../assets/lodgel.jpg';
+import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
 
 interface LinkProps extends RouteComponentProps {
   onClick?: () => MouseEvent;
@@ -78,6 +80,7 @@ const Sidebar = (props: LinkProps) => {
               <Link to='/billing'>Subscribe</Link>
             </MenuItem>
           </Menu>
+          <Logo src={notxt_Lodgel} alt='Lodgel logo' />
           <SettingsWrapper>
             <StyledLink to='/settings'>
               <i className='fas fa-cog' />

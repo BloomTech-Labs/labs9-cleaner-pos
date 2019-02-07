@@ -141,4 +141,9 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink };
+const Logo = styled('img')`
+  height: 100px;
+  width: 100px;
+`;
+
+export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink, Logo };
