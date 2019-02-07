@@ -18,10 +18,22 @@ const SubBox = styled('div')`
   }
   @media only screen and (max-width: 800px) {
     flex-direction: column;
+    border: 0;
     height: 100%;
     .root {
       border: var(--border);
     }
+  }
+`;
+
+const DescriptionContainer = styled('div')`
+  border: var(--border);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  @media only screen and (max-width: 800px) {
+    border: 0;
   }
 `;
 
@@ -100,6 +112,7 @@ const Header = styled('h2')`
 export {
   AccordionItemBody,
   Confirmation,
+  DescriptionContainer,
   Header,
   ListContainer,
   SubBox,
