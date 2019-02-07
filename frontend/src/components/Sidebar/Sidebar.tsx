@@ -14,8 +14,10 @@ import {
   SettingsWrapper,
   StyledUL,
   StyledLink,
+  Logo,
 } from './Sidebar.styling';
 import logo from '../../assets/lodgel.jpg';
+import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
 import { UserContext } from '../../App';
 
 interface LinkProps extends RouteComponentProps {
@@ -78,6 +80,7 @@ const Sidebar = (props: LinkProps) => {
             <MenuItem onClick={goAndClose('/assistants')}>Assistants</MenuItem>
             <MenuItem onClick={goAndClose('/billing')}>Subscribe</MenuItem>
           </Menu>
+          <Logo src={notxt_Lodgel} alt='Lodgel logo' />
           <SettingsWrapper>
             <StyledLink to='/settings'>
               <i className='fas fa-cog' />
