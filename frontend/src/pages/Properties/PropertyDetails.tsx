@@ -14,7 +14,12 @@ import {
   AfterListDiv,
   AfterStay,
   WhiteButton,
+  DialogButton,
+  ButtonGroup,
+  DialogStay,
 } from './PropertyDetails.styling';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
@@ -141,6 +146,7 @@ const PropertyDetails = (props: any) => {
               />
             </PropertyButtons>
           </Top>
+          <h1>List Builder</h1>
           <ListContainer>
             {lists.before ? (
               <PropertyLists
@@ -168,7 +174,10 @@ const PropertyDetails = (props: any) => {
             )}
           </ListContainer>
           <AfterListDiv>
-            <Header>After Stay</Header>
+            <Header className='header-after'>
+              After Stay{' '}
+              <WhiteButton text='+ New Stay List' onClick={toggleText} />
+            </Header>
             {lists.after ? (
               lists.after.map((aList: any) => {
                 return (
@@ -187,29 +196,41 @@ const PropertyDetails = (props: any) => {
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />
             )}
-            {inputItem ? (
-              <>
+            <Dialog
+              maxWidth='sm'
+              fullWidth={true}
+              className='dialog'
+              open={inputItem}
+              onClose={toggleText}
+              aria-labelledby='simple-dialog-title'
+            >
+              <DialogTitle
+                style={{ textAlign: 'center' }}
+                id='simple-dialog-title'
+              >
+                New After Stay List
+              </DialogTitle>
+              <DialogStay>
                 <TextField
                   placeholder='Number of hours'
                   type='number'
                   value={newItem}
                   onChange={handleChange}
                 />
-                <WhiteButton text='Submit' onClick={newList} />
-                <WhiteButton text='Cancel' onClick={toggleText} />
-              </>
-            ) : (
-              <>
-                {shouldFetch ? (
-                  <img
-                    src={loadingIndicator}
-                    alt='animated loading indicator'
+                <ButtonGroup>
+                  <DialogButton
+                    className='submit'
+                    text='Submit'
+                    onClick={newList}
                   />
-                ) : (
-                  <WhiteButton text='+ New Stay List' onClick={toggleText} />
-                )}
-              </>
-            )}
+                  <DialogButton
+                    className='cancel'
+                    text='Cancel'
+                    onClick={toggleText}
+                  />
+                </ButtonGroup>
+              </DialogStay>
+            </Dialog>
           </AfterListDiv>
         </PropertyContainer>
       )}
