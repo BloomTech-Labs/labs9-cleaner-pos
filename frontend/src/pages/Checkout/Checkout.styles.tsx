@@ -32,6 +32,8 @@ export const CheckoutContainer = styled(Container)`
     line-height: 2;
     /* Color */
     background-color: white;
+    /* Box Shadow */
+    box-shadow: var(--box-shadow);
 
     @media only screen and (max-width: ${bp}) {
       width: 95%;
@@ -125,6 +127,8 @@ export const Invoice = styled('div')`
   background-color: white;
   /* Text */
   text-align: left;
+  /* Box Shadow */
+  box-shadow: var(--box-shadow);
 
   div {
     margin-bottom: 24px;

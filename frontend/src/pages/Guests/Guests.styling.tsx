@@ -18,25 +18,28 @@ export const GuestsDiv = styled(Container)`
     width: 100%;
     /* Flexbox */
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 1rem;
-    @media only screen and (max-width: 700px) {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    @media only screen and (min-width: 720px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
     }
   }
 
   .guests-header h2 {
     /* Sizing & Box Model*/
-    margin: 0;
+    margin: 0 0 1.25rem 0;
 
     /* Text */
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     font-weight: normal;
     font-size: ${pxToRem(36)}rem;
-    @media only screen and (max-width: 700px) {
-      margin-bottom: 0.5rem;
+
+    @media only screen and (min-width: 720px) {
+      margin: 0;
     }
   }
 
@@ -48,8 +51,8 @@ export const GuestsDiv = styled(Container)`
   }
 
   .guests-buttons-filter {
-    margin-top: 1rem;
-
+    display: block;
+    margin: 2rem 0;
   }
 
   .guests-cards {
@@ -106,19 +109,19 @@ export const GuestsDiv = styled(Container)`
       align-items: flex-end;
     }
 
-    .guests-buttons-filter {
+    /* .guests-buttons-filter {
       margin: auto auto ${pxToRem(36)}rem 0;
-    }
+    } */
   }
 `;
 
 export const StyledGuestCard = styled(GuestCard)`
   /* Sizing and Box Model */
-  width: 95vw;
-  margin: 2.25rem 0.5rem;
+  width: 95%;
+  margin: 0 auto 2rem auto;
   padding: 1rem;
   box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 
   /* Grid */
   display: grid;
@@ -134,10 +137,10 @@ export const StyledGuestCard = styled(GuestCard)`
   background-color: var(--color-bg-secondary);
 
   /* Hover Effects */
-  transition: all 0.1s ease-in-out;
+  /* transition: all 0.1s ease-in-out;
   &:hover {
     transform: scale(1.025);
-  }
+  } */
 
   .user-image {
     border-radius: 100%;
@@ -156,9 +159,14 @@ export const StyledGuestCard = styled(GuestCard)`
     justify-self: start;
   }
 
+  div[class^='info-check'] {
+    border-radius: var(--border-radius);
+  }
+
   .info-progress {
     /* Grid */
     grid-column: span 2;
+    border-radius: var(--border-radius);
   }
 
   @media only screen and (min-width: 720px) {
@@ -179,7 +187,7 @@ export const StyledGuestCard = styled(GuestCard)`
 
     .user-image {
       /* Sizing & Box Model*/
-      border-radius: 0%;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
       width: 100%;
       height: ${pxToRem(height)}rem;
       object-fit: cover;
