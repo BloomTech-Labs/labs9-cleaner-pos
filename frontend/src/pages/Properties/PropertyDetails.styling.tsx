@@ -5,7 +5,7 @@ import { ComponentClass } from 'react';
 
 const pxToRem = (px: number) => px / 16;
 const cardHeight = pxToRem(84);
-const cardWeidth = pxToRem(120);
+const cardWidth = pxToRem(120);
 
 export const BackButton = styled(Button)`
   width: ${pxToRem(156)}rem;
@@ -56,7 +56,7 @@ export const Top = styled(PropertyContainer)`
 export const HouseInfo = styled('div')``;
 
 export const ThumbNail = styled('img')`
-  width: ${cardWeidth}rem;
+  width: ${cardWidth}rem;
   height: ${cardHeight}rem;
   object-fit: cover;
   @media only screen and (max-width: 900px) {
