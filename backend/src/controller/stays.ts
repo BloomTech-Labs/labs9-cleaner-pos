@@ -66,7 +66,7 @@ export async function getAll(
       // if user is an assistant, we find ast_id, find all asigned managers
       const ast = await getRoleId(id, true);
       const astMan = await findAstMan(ast.id);
-      stays = await findAllStays(astMan, filter, id);
+      stays = await findAllStays(astMan, filter, ast.id);
     } else {
       const manager = await getRoleId(id);
       stays = await findAllStays([manager.id], filter);
