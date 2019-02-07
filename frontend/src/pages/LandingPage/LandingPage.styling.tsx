@@ -54,6 +54,9 @@ const CTA = styled('div')`
   justify-content: space-between;
   margin: 1.5rem auto;
   border-bottom: solid 1px var(--color-main-dark);
+  h2 {
+    margin-top: 2rem;
+  }
 `;
 
 const Footer = styled('div')`
@@ -93,9 +96,11 @@ const Icon = styled('div')`
 
 const HeroContainer = styled('div')`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid var(--color-main-dark);
+  border: var(--border);
+  border-radius: 5px;
+  padding: 0 2rem;
   margin: 1rem auto;
   width: 100%;
   background-color: var(--color-main-light);
@@ -108,6 +113,7 @@ const Description = styled('div')`
   display: flex;
   flex-direction: column;
   text-align: left;
+  max-width: 650px;
   margin-left: 1rem;
   padding: 1rem;
   p {
@@ -146,6 +152,12 @@ const DescContainer = styled('div')`
   display: flex;
 `;
 
+const IconContainer = styled('div')`
+  display: flex;
+  text-align: center;
+  width: 112px;
+`;
+
 export {
   Footer,
   CenterImg,
@@ -162,4 +174,5 @@ export {
   SectionHeader,
   DescHeader,
   DescContainer,
+  IconContainer,
 };
