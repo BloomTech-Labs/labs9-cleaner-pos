@@ -228,5 +228,4 @@ export const GuestDetailView = (props: GuestProps) => {
     </GuestDetailStyle>
   );
 };
-
 export default GuestDetail;

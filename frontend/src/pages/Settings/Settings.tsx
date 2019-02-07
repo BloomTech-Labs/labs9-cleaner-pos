@@ -56,6 +56,8 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       axios
         .post(`${url}/connect`, { authorizationCode }, headers)
         .then((res) => {
+          localStorage.setItem('connteced', 'true');
+          userC.setConnect(true);
           props.history.replace('/settings');
         })
         .catch((e) => e);
@@ -132,7 +134,7 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
                         <div className='line-item'>
                           <span>Stripe: </span>
                           <div>
-                            {user.stripeUID ? (
+                            {userC.connected ? (
                               'Connected!'
                             ) : (
                               <a href={stripeOauthUrl}>
