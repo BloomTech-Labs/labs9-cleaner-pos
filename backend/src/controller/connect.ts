@@ -46,28 +46,42 @@ const createPayment = async (
   next: NextFunction,
 ) => {
   try {
-    const { amount } = req.body;
+    const { amount, subscription } = req.body;
     const stripeToken = req.body.token;
     const { id } = req.token;
 
     const user = await findUser(id);
-    if (user.stripeUID === '') {
+    if (user.stripeUID === null) {
       next({
         ...new Error(
           'Please connect to stripe first, before processing payments',
         ),
-        statusCode: 400,
+        statusCode: 401,
       });
       return;
     }
+    if (!subscription) {
+      next({
+        ...new Error('Please subscribe in order to use this feature!'),
+        statusCode: 400,
+      });
+    }
+
+    const fee =
+      subscription === 1
+        ? Math.floor(0.015 * (amount * 100))
+        : Math.floor(0.01 * (amount * 100));
 
     const charge = await stripe.charges.create({
       amount: Math.round(amount * 100),
       currency: 'usd',
+      description: `Payment for your stay with Lodgel`,
       destination: {
         account: user.stripeUID,
       },
       source: stripeToken,
+      // tslint:disable-next-line
+      application_fee: fee,
     });
     res
       .status(200)
