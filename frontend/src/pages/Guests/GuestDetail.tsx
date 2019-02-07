@@ -69,7 +69,6 @@ const GuestDetail = (props: RouteComponentProps) => {
 };
 
 export const GuestDetailView = (props: GuestProps) => {
-  console.log('GuestDetailView Props', props);
   const {
     stay_id,
     guest_id,

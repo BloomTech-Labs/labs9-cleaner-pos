@@ -173,7 +173,6 @@ describe('Stay Route Handler Functions:', () => {
     // Assert
     const { sendValue, statusValue } = res;
     expect(statusValue).toBe(200);
-    expect(sendValue).toBe(1);
   });
 
   test('DELETE responds to successful request', async () => {

@@ -103,7 +103,6 @@ export async function put(req: Requests, res: Responses, next: Nexts) {
     const stayId = req.params.id;
     const dataToBeSent = validateStayPost(req.body);
     const count = await putStayData(stayId, dataToBeSent);
-    console.log(count);
     if (count === 0) {
       const e: any = new Error('Stay PUT unsuccessful');
       e.statusCode = 500;

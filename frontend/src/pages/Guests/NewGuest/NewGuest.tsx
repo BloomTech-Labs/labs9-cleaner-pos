@@ -266,7 +266,6 @@ const NewGuest = (props: RouteComponentProps) => {
       let result: any;
       if (props.location && props.location.state) {
         const id = props.location.state.guest_id;
-        console.log('id:', id);
         await axios.put(`${url}/guests/${id}`, userData, headers);
         result = { data: [id] };
       } else {
@@ -274,7 +273,6 @@ const NewGuest = (props: RouteComponentProps) => {
       }
 
       const userId = result.data[0];
-      console.log('userId', userId);
 
       const stayData = {
         guest_id: userId,
@@ -286,7 +284,6 @@ const NewGuest = (props: RouteComponentProps) => {
 
       if (props.location && props.location.state) {
         const id = props.location.state.stay_id;
-        console.log('stayId:', id);
         await axios.put(`${url}/stays/${id}`, stayData, headers);
       } else {
         await axios.post(`${url}/stays/`, stayData, headers);
@@ -335,7 +332,6 @@ const NewGuest = (props: RouteComponentProps) => {
         diff,
       } = routeProps.location.state;
 
-      console.log('initialValues:', routeProps.location.state);
       const addressArray = address ? address.split('\n') : '';
       if (addressArray && addressArray.length < 6) {
         addressArray.splice(1, 0, '');
