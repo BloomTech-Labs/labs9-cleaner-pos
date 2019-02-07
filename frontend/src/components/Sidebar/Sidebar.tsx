@@ -65,18 +65,18 @@ const Sidebar = (props: LinkProps) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
-              <Link to='/properties'>Property</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/guests'>Guests</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/assistants'>Assistants</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/billing'>Subscribe</Link>
-            </MenuItem>
+            <Link to='/properties'>
+              <MenuItem onClick={handleClose}>Properties</MenuItem>
+            </Link>
+            <Link to='/guests'>
+              <MenuItem onClick={handleClose}>Guests</MenuItem>
+            </Link>
+            <Link to='/assistants'>
+              <MenuItem onClick={handleClose}>Assistants</MenuItem>
+            </Link>
+            <Link to='/billing'>
+              <MenuItem onClick={handleClose}>Subscribe</MenuItem>
+            </Link>
           </Menu>
           <SettingsWrapper>
             <StyledLink to='/settings'>
