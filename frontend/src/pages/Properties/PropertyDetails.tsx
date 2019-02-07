@@ -38,6 +38,7 @@ const PropertyDetails = (props: any) => {
   );
   const [errors, setErrors] = useState({ msg: '', error: false });
   const [shouldFetch, setShouldFetch] = useState(true);
+  const [delLoading, setLoading] = useState(false);
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
   const [lists, setLists] = useState({} as Lists);
@@ -51,6 +52,16 @@ const PropertyDetails = (props: any) => {
       const res = await axios.get(`${url}/lists/${id}`, headers);
       setLists(res.data);
       setShouldFetch(false);
+    } catch (e) {
+      axiosErrorHandler(setErrors);
+    }
+  }
+  async function removeProperty(id: number) {
+    setLoading(true);
+    try {
+      const res = await axios.delete(`${url}/houses/${id}`, headers);
+      setLoading(false);
+      props.history.push('/properties');
     } catch (e) {
       axiosErrorHandler(setErrors);
     }
@@ -144,6 +155,18 @@ const PropertyDetails = (props: any) => {
                 color='var(--color-text-accent)'
                 onClick={() => props.history.push('/properties')}
               />
+              <BackButton
+                text={delLoading ? '' : 'Remove Property'}
+                color='var(--color-error)'
+                onClick={() => removeProperty(property.id)}
+              >
+                {delLoading ? (
+                  <img
+                    src={loadingIndicator}
+                    alt='animated loading indicator'
+                  />
+                ) : null}
+              </BackButton>
             </PropertyButtons>
           </Top>
           <h1>List Builder</h1>
