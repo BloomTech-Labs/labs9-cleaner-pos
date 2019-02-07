@@ -316,7 +316,7 @@ const AsstProperty = styled('div')`
   }
   @media screen and (max-width: 700px) {
     .deleteButton {
-      margin: ${pxToRem(1)};
+      margin-bottom: ${pxToRem(1)};
     }
   }
 `;
