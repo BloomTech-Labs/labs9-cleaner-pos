@@ -9,10 +9,12 @@ const Header = styled('span')`
   h2 {
     padding-left: 32px;
     color: white;
+    margin: 0.5rem 0 0.5rem 0;
   }
   h3 {
     padding-left: 16px;
     color: white;
+    margin: 0.5rem 0 0.5rem 0;
   }
 `;
 
@@ -26,7 +28,12 @@ const Card = styled('div')`
     font-family: 'Roboto';
     font-weight: condensed;
   }
-  min-height: ${pxToRem(700)};
+  min-height: ${pxToRem(800)};
+
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+    padding: 0;
+  }
 `;
 
 const Positioner = styled('div')`
@@ -34,14 +41,19 @@ const Positioner = styled('div')`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
-  border: ${(props: any) =>
-    props.outline ? '1px solid var(--color-border)' : null};
-  .fancy-button {
-    width: 100%;
+  @media only screen and (max-width: 1000px) {
+    button {
+      width: 150px;
+    }
   }
-  .;
+  @media only screen and (max-width: 520px) {
+    button {
+      width: 120px;
+      padding: 5px 0 5px 0;
+    }
+  }
 `;
 const LeftContainer = styled('div')`
   width: 30%;
@@ -49,21 +61,37 @@ const LeftContainer = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   border: 1px solid var(--color-border);
   background: var(--color-bg-secondary);
+
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    margin: 0;
+
+    .left-mob {
+      flex-direction: row;
+    }
+  }
 `;
 
 const RightContainer = styled('div')`
   width: 70%;
-  /* padding: 20px; */
   margin: 0 0 0 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex_start;
+  justify-content: flex-start;
   border: 1px solid var(--color-border);
   border-left: 0;
   background: var(--color-bg-secondary);
+
+  .reg {
+  }
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    margin: 15px 0 0 0;
+  }
 `;
 
 const Checkbox = styled('input')`
@@ -77,11 +105,11 @@ const UserCard = styled('div')`
   .line-item {
     display: flex;
     flex-direction: row;
-    margin: 5px;
+    margin: 10px;
     border-bottom: 1px solid var(--color-border);
   }
   span {
-    width: 100px;
+    width: 120px;
   }
   .line-info {
     text-transform: capitalize;
@@ -95,10 +123,14 @@ const UserCard = styled('div')`
 `;
 
 const ThumbNail = styled('img')`
+  max-width: 150px;
   width: ${pxToVw(125 * 0.9)};
   margin: 0 auto;
   height: auto;
   object-fit: cover;
+  @media only screen and (max-width: 1000px) {
+    width: 130px;
+  }
 `;
 
 export {

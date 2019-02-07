@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { FileUploadHOF } from '../../components/FileUpload';
 import { PostRegister } from '../../pages/';
-import { useFetch } from '../../helpers';
+import { useFetch, axiosFetch } from '../../helpers';
 import { UserContext } from '../../App';
 import { Container, Button } from '../../components/';
 import {
@@ -27,11 +27,16 @@ ${clientId}&scope=read_write`;
 
 const Settings: React.SFC<RouteComponentProps> = (props) => {
   const userC = useContext(UserContext);
-  const [user, error, loading] = useFetch(`${url}/users`);
   const [show, setShow] = useState(false);
+  const [fetch, setFetch] = useState(false);
+  const [pic, setPic] = useState('');
+  const [user, error, loading] = useFetch(`${url}/users`, fetch);
   const [paymentError, setPaymentError] = useState({ err: false, message: '' });
-  console.log(user);
-  console.log(userC);
+  const addressArray = user ? user.address.split('\n') : '';
+  if (addressArray && addressArray.length < 6) {
+    addressArray.splice(1, 0, '');
+  }
+  console.log(addressArray);
   let subInfo = 'Not Subscribed';
   if (userC.subscription === 1) {
     subInfo = 'Basic';
@@ -57,10 +62,15 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
         .catch((e) => e);
     }
   }, []);
-  const UrlFileUpload = FileUploadHOF((urls: string, type?: string) => {
-    if (type) {
-      console.log(urls);
-    }
+
+  const UrlFileUpload = FileUploadHOF(async (urls: string, type?: string) => {
+    console.log(urls);
+    await axiosFetch('put', `${url}/users`, {
+      photoUrl: urls,
+    }).catch((e: any) => {
+      console.error(e);
+    });
+    setFetch((prev) => !prev);
   });
 
   const userProps = { ...props, ...user };
@@ -74,23 +84,17 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
           <div>Something went wrong! Please refresh this page</div>
         ) : null}
         <LeftContainer>
-          <Positioner outline>
-            <div>
+          <Positioner className='left-mob'>
+            <Positioner>
               {user ? <ThumbNail src={user.photoUrl || defaultUser} /> : null}
               <h3>{user ? user.full_name : null}</h3>
-            </div>
+            </Positioner>
             <Positioner>
               <UrlFileUpload type='photo_url' text='Change Photo' />
             </Positioner>
             <Positioner>
               <Button text='Update Contact' onClick={() => setShow(!show)} />
             </Positioner>
-          </Positioner>
-          <Positioner>
-            <p>Connect your stripe account:</p>
-            <a href={stripeOauthUrl}>
-              <Button text='Connect' />
-            </a>
           </Positioner>
         </LeftContainer>
         <RightContainer>
@@ -99,7 +103,12 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
               <Header>
                 <h3>Update Contact Info</h3>
               </Header>
-              <PostRegister {...userProps} setShow={setShow} />
+              <PostRegister
+                className=''
+                {...userProps}
+                setShow={setShow}
+                setFetch={setFetch}
+              />
             </>
           ) : (
             <>
@@ -157,17 +166,27 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
                     </div>
                     <div className='line-item'>
                       <span>Address: </span>
-                      {user.address
-                        ? user.address
-                            .split('\n')
-                            .map((e: string, i: number) => {
-                              return (
-                                <div style={{ marginRight: '5px' }} key={i}>
-                                  {e}
-                                </div>
-                              );
-                            })
-                        : null}
+                      <div>{addressArray[0]}</div>
+                    </div>
+                    <div className='line-item'>
+                      <span>Address (cont.): </span>
+                      <div>{addressArray[1]}</div>
+                    </div>
+                    <div className='line-item'>
+                      <span>City: </span>
+                      <div>{addressArray[2]}</div>
+                    </div>
+                    <div className='line-item'>
+                      <span>State: </span>
+                      <div>{addressArray[3]}</div>
+                    </div>
+                    <div className='line-item'>
+                      <span>Country: </span>
+                      <div>{addressArray[4]}</div>
+                    </div>
+                    <div className='line-item'>
+                      <span>Post Code: </span>
+                      <div>{addressArray[5]}</div>
                     </div>
                     <div className='line-item'>
                       <span>Phone: </span>
@@ -182,68 +201,6 @@ const Settings: React.SFC<RouteComponentProps> = (props) => {
       </Card>
     </Container>
   );
-  // return (
-  //   <Container>
-  //     <Header>
-  //       <h2>Account Settings</h2>
-  //       <Card>
-  //         {error.msg ? (
-  //           <div>Something went wrong! Please refresh this page</div>
-  //         ) : null}
-  //         <LeftContainer>
-  //           <Positioner>
-  //             <p>Connect your stripe account:</p>
-  //             <a href={stripeOauthUrl}>
-  //               <Button className='fancy-button' text='Connect' />
-  //             </a>
-  //           </Positioner>
-  //           <Positioner>
-  //             <>
-  //               <p>Update your profile:</p>
-  //               <Button text='Update' onClick={() => setShow(!show)} />
-  //             </>
-  //           </Positioner>
-  //         </LeftContainer>
-  //         <RightContainer>
-  //           {show ? (
-  //             <PostRegister {...userProps} setShow={setShow} />
-  //           ) : (
-  //             <>
-  //               <UserCard>
-  //                 {loading ? (
-  //                   <img src={loadingIndicator} alt='animated loader' />
-  //                 ) : null}
-  //                 {user ? (
-  //                   <ThumbNail src={user.photoUrl || defaultUser} />
-  //                 ) : null}
-  //                 {user ? (
-  //                   <>
-  //                     <h3>{user ? user.full_name : null}</h3>
-  //                     <p>Email: {user.email}</p>
-  //                     <p>
-  //                       Address:{' '}
-  //                       {user.address
-  //                         ? user.address
-  //                             .split('\n')
-  //                             .map((e: string, i: number) => {
-  //                               return (
-  //                                 <span style={{ marginRight: '5px' }} key={i}>
-  //                                   {e}
-  //                                 </span>
-  //                               );
-  //                             })
-  //                         : null}
-  //                     </p>
-  //                   </>
-  //                 ) : null}
-  //               </UserCard>
-  //             </>
-  //           )}
-  //         </RightContainer>
-  //       </Card>
-  //     </Header>
-  //   </Container>
-  // );
 };
 
 export default Settings;
