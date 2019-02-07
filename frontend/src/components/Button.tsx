@@ -12,6 +12,7 @@ interface ButtonProps {
   datatestid?: string;
   color?: string;
   className?: string;
+  classNameS?: string;
   type?: string;
   disabled?: boolean;
   children?: any;
@@ -23,6 +24,7 @@ const Button = ({
   datatestid,
   color,
   className,
+  classNameS,
   disabled,
   type,
   children,
@@ -67,8 +69,17 @@ const Button = ({
   return type === 'submit' ? (
     <>
       <Tooltip title={disabled ? 'Please add missing options' : ''}>
-        <span className={className}>
-          <RetButton />
+        <span className={classNameS}>
+          <StyledButton
+            className={className}
+            onClick={onClick}
+            type={type || 'button'}
+            data-testid={datatestid}
+            disabled={disabled}
+          >
+            {text}
+            {children}
+          </StyledButton>
         </span>
       </Tooltip>
     </>

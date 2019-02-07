@@ -274,7 +274,7 @@ const PostForm = (props: PostFormProps) => {
               <br />
               {/* // TODO: mess with button component to accept optional props} */}
               <Button
-                className='submit'
+                classNameS='submit'
                 type='submit'
                 datatestid='button-submit'
                 disabled={isSubmitting || !dirty}

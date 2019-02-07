@@ -8,6 +8,7 @@ import { Button } from '../../components/index';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BillingContext } from './Billing';
 import loadingIndicator from '../utils/loading.svg';
+import { UserContext } from '../../App';
 
 const url =
   process.env.REACT_APP_backendURL || 'https://cleaner-pos.herokuapp.com';
@@ -19,6 +20,8 @@ const headers: AxiosRequestConfig = {
 const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
   // @ts-ignore
   const { setConfirm, setShownIndex } = useContext(BillingContext);
+  const { setValue } = useContext(UserContext);
+
   const [loading, setLoading] = useState(false);
   const [plan, setPlan] = useState<any>(0);
   const handleSubmit = async (ev: FormEvent) => {
@@ -32,7 +35,6 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
       const { token } = await props.stripe.createToken({});
       const response = await axios.post(
         `${url}/payments`,
-
         {
           // @ts-ignore
           token: token.id,
@@ -40,10 +42,13 @@ const CheckoutForm = (props: ReactStripeElements.InjectedStripeProps) => {
         },
         headers,
       );
-      localStorage.setItem('subscription', response.data.plan);
+      const sub = response.data.plan === '1' ? 1 : 2;
+      console.log(response.data.plan, sub);
+      localStorage.setItem('subscription', String(sub));
       setLoading(false);
       setConfirm({ confirm: response.data });
       setShownIndex(1);
+      setValue(sub);
     } catch (e) {
       console.log(e);
     }

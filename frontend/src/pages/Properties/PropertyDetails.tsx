@@ -130,7 +130,7 @@ const PropertyDetails = (props: any) => {
             <HouseInfo>
               <ThumbNail src={property.photo_url} alt='house' />
               <MainText data-testid='house-detail'>{property.name}</MainText>
-              <SecondaryText>{property.address}</SecondaryText>
+              <SecondaryText id='address'>{property.address}</SecondaryText>
             </HouseInfo>
             <PropertyButtons>
               <Link to={{ pathname: '/properties/new', state: property }}>
