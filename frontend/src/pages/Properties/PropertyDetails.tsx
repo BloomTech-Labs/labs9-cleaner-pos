@@ -14,7 +14,12 @@ import {
   AfterListDiv,
   AfterStay,
   WhiteButton,
+  DialogButton,
+  ButtonGroup,
+  DialogStay,
 } from './PropertyDetails.styling';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
@@ -169,7 +174,10 @@ const PropertyDetails = (props: any) => {
             )}
           </ListContainer>
           <AfterListDiv>
-            <Header>After Stay</Header>
+            <Header className='header-after'>
+              After Stay{' '}
+              <WhiteButton text='+ New Stay List' onClick={toggleText} />
+            </Header>
             {lists.after ? (
               lists.after.map((aList: any) => {
                 return (
@@ -188,7 +196,7 @@ const PropertyDetails = (props: any) => {
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />
             )}
-            {inputItem ? (
+            {/* {inputItem ? (
               <>
                 <TextField
                   placeholder='Number of hours'
@@ -210,7 +218,37 @@ const PropertyDetails = (props: any) => {
                   <WhiteButton text='+ New Stay List' onClick={toggleText} />
                 )}
               </>
-            )}
+            )} */}
+            <Dialog
+              className='dialog'
+              open={inputItem}
+              onClose={toggleText}
+              aria-labelledby='simple-dialog-title'
+            >
+              <DialogTitle id='simple-dialog-title'>
+                New After Stay List
+              </DialogTitle>
+              <DialogStay>
+                <TextField
+                  placeholder='Number of hours'
+                  type='number'
+                  value={newItem}
+                  onChange={handleChange}
+                />
+                <ButtonGroup>
+                  <DialogButton
+                    className='submit'
+                    text='Submit'
+                    onClick={newList}
+                  />
+                  <DialogButton
+                    className='cancel'
+                    text='Cancel'
+                    onClick={toggleText}
+                  />
+                </ButtonGroup>
+              </DialogStay>
+            </Dialog>
           </AfterListDiv>
         </PropertyContainer>
       )}

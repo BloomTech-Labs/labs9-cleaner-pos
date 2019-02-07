@@ -135,7 +135,6 @@ export const PropertyLists = (props: ListProps) => {
               setTaskLoad(task.items_id);
             }}
           >
-            {' '}
             <i className='fas fa-trash-alt trash' />
           </span>
         </div>
@@ -201,66 +200,108 @@ export const AfterPropertyLists = (props: ListProps) => {
   useEffect(() => {
     setTaskLoad(0);
   }, [props]);
+
+  /* Submit and Cancel functions */
+  const submitInput = (task: string, newItem: any, items_id: number) => () => {
+    props.putTasks(task, newItem);
+    setNewItem('');
+    setTaskLoad(items_id);
+    setEdit(0);
+  };
+
+  const cancelInput = () => {
+    setEdit(0);
+    setNewItem('');
+  };
+  /* Outside click detection
+     Closes edit input field if user clicks outside of it
+  */
+  const newRef = useRef(null as any);
+  const editRef = useRef(null as any);
+  const changeOnOutsideClick = (
+    ref: React.MutableRefObject<any>,
+    cb: () => void,
+  ) => (event: any) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      cb();
+    }
+  };
+
+  const cancelInputOnClick = changeOnOutsideClick(editRef, cancelInput);
+  const toggleTextOnClick = changeOnOutsideClick(newRef, toggleText);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', (event) => {
+      cancelInputOnClick(event);
+      toggleTextOnClick(event);
+    });
+    return () => {
+      document.removeEventListener('mousedown', (event) => {
+        cancelInputOnClick(event);
+        toggleTextOnClick(event);
+      });
+    };
+  });
+  /* End of click detection */
+
+  const renderListItem = (task: List) => {
+    console.log('items_id', task.items_id, 'task', task.task);
+    if (task.items_id === null) {
+      return null;
+    } else if (edit === task.items_id) {
+      return (
+        <div ref={editRef} className='task' key={task.items_id}>
+          <StyledTextField value={newItem} onChange={handleChange} />
+          <div className='icon-group'>
+            <IconButton
+              onClick={() => {
+                props.putTasks(task, newItem);
+                setNewItem('');
+                setTaskLoad(task.items_id);
+                setEdit(0);
+              }}
+            >
+              <i className='fas fa-check' />
+            </IconButton>
+            <IconButton onClick={cancelInput}>
+              <i className='fas fa-times' />
+            </IconButton>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className='task' key={task.items_id}>
+          <SecondaryText
+            onClick={() => {
+              setEdit(task.items_id);
+              setNewItem(task.task);
+            }}
+          >
+            {task.items_id === taskLoad ? (
+              <img src={loadingIndicator} alt='animated loading indicator' />
+            ) : (
+              task.task
+            )}
+          </SecondaryText>
+          <span
+            onClick={() => {
+              props.deleteTasks(task.items_id);
+              setTaskLoad(task.items_id);
+            }}
+          >
+            <i className='fas fa-trash-alt trash' />
+          </span>
+        </div>
+      );
+    }
+  };
+
   return (
     <AfterListDiv2 data-testid='after-list'>
       <AfterHeader>{props.type}</AfterHeader>
       <AfterItemDiv>
-        <TaskDiv>
-          {props.list.map((task) => {
-            return (
-              <div key={task.items_id} className='listMap'>
-                {edit === task.items_id ? (
-                  <TaskDiv>
-                    <TextField value={newItem} onChange={handleChange} />
-                    <WhiteButton
-                      text='Submit'
-                      onClick={() => {
-                        props.putTasks(task, newItem);
-                        setNewItem('');
-                        setTaskLoad(task.items_id);
-                        setEdit(0);
-                      }}
-                    />
-                    <WhiteButton
-                      text='Cancel'
-                      onClick={() => {
-                        setEdit(0);
-                        setNewItem('');
-                      }}
-                    />
-                  </TaskDiv>
-                ) : (
-                  <div className='task'>
-                    <SecondaryText
-                      onClick={() => {
-                        setEdit(task.items_id);
-                        setNewItem(task.task);
-                      }}
-                    >
-                      {task.items_id === taskLoad ? (
-                        <img
-                          src={loadingIndicator}
-                          alt='animated loading indicator'
-                        />
-                      ) : (
-                        task.task
-                      )}
-                    </SecondaryText>
-                    <span
-                      onClick={() => {
-                        props.deleteTasks(task.items_id);
-                        setTaskLoad(task.items_id);
-                      }}
-                    >
-                      {' '}
-                      <i className='fas fa-times' />
-                    </span>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </TaskDiv>
+        <TaskDiv>{props.list.map(renderListItem)}</TaskDiv>
         {inputItem ? (
           <div>
             <TextField

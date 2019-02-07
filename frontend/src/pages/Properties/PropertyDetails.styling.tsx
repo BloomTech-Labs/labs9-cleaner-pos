@@ -17,13 +17,23 @@ export const BackButton = styled(Button)`
   }
 `;
 
-export const PropertyButtons = styled('div')``;
+export const PropertyButtons = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  button {
+    width: 200px;
+    height: ${pxToRem(36)}rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+`;
 
 export const WhiteButton = styled(Button)`
-  border: var(--border);
-  margin: 1rem 0;
-  color: var(--color-button-text-alt);
-  background-color: var(--color-button-text-action);
+  margin: 1rem auto;
+  /* color: var(--color-button-text-alt);
+  background-color: var(--color-button-text-action); */
   width: ${pxToRem(161)}rem;
   height: ${pxToRem(36)}rem;
   font-size: ${pxToRem(16)}rem;
@@ -33,6 +43,7 @@ export const IconButton = styled(Button)`
   background-color: inherit;
   width: auto;
   height: auto;
+  margin: 0.5rem;
   .fa-check {
     color: var(--color-text-accent);
   }
@@ -103,6 +114,7 @@ export const SecondaryText = styled.div`
   padding: 1rem 0;
   font-family: 'Roboto Bold', Arial, sans-serif;
   font-size: 1.125rem;
+  text-align: left;
   @media only screen and (max-width: 900px) {
     width: 100%;
     text-align: center;
@@ -114,11 +126,16 @@ export const Header = styled('div')`
   width: 100%;
   padding: 0.5rem 1rem;
   /* height: ${pxToRem(40)}rem; */
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
   background: var(--color-text-accent);
   text-align: left;
   color: white;
   font-family: 'Roboto Medium', Arial, sans-serif;
   font-size: ${pxToRem(20)}rem;
+  /* Flex */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const ListContainer = styled('div')`
@@ -136,7 +153,8 @@ export const ListDiv = styled('div')`
   width: 45%;
   min-width: ${pxToRem(254)}rem;
   /* border: solid #707070 1px; */
-  border: var(--border);
+  box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  border-radius: var(--border-radius);
   margin: ${pxToRem(36)}rem 0;
   display: flex;
   flex-direction: column;
@@ -145,6 +163,7 @@ export const ListDiv = styled('div')`
 export const ItemDiv = styled('div')`
   /* padding: 0 ${pxToRem(23)}rem ${pxToRem(29)}rem ${pxToRem(23)}rem; */
   padding-bottom: ${pxToRem(29)}rem;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
   /* margin: ${pxToRem(24)}rem ${pxToRem(28)}rem; */
   display: flex;
   flex-direction: column;
@@ -171,6 +190,7 @@ export const ItemDiv = styled('div')`
   }
 
   .trash {
+    margin-left: 1rem;
     cursor: pointer;
     color: var(--color-error);
   }
@@ -203,6 +223,46 @@ export const AfterListDiv = styled(ListDiv)`
     justify-content: center;
     align-items: center;
   }
+
+  .header-after {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-after span {
+    margin: 0;
+  }
+
+  .header-after button {
+    margin: 0;
+    background-color: var(--color-button-text);
+    color: var(--color-button-background);
+  }
+`;
+
+export const DialogStay = styled.div`
+  margin: 1rem 0;
+  width: 128px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+export const DialogButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 1rem;
 `;
 
 export const AfterListDiv2 = styled(ListDiv)`
