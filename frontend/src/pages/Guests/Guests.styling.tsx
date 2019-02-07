@@ -96,7 +96,9 @@ export const GuestsDiv = styled(Container)`
     color: var(--color-button-text);
     background-color: var(--color-button-background);
   }
-
+	@media only screen and (max-width: 900px) {
+		padding: 0 10px 0 10px;
+	}
   @media only screen and (min-width: 720px) {
     /* Flexbox */
     display: flex;

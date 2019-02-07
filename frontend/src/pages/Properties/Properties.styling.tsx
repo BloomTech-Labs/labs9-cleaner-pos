@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import DropDown from '../../components/DropDown';
 
 const cardHeight = 168;
+
 const desktopHeight = '80%';
 const mobileWidth = '80%';
 const pxToRem = (px: number): string => `${px / 16}rem`;
@@ -14,6 +15,9 @@ const PropContainer = styled('div')`
   justify-content: center;
   align-items: center;
   .new-property__button {
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: ${pxToRem(20)}rem;
     background: var(--color-accent);
     width: 200px;
     height: 40px;
@@ -30,6 +34,9 @@ const PropContainer = styled('div')`
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+    @media only screen and (max-width: 900px) {
+      padding: 0 10px 0 10px;
+    }
 
     h2 {
       margin: 0;
