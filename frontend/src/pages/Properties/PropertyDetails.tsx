@@ -196,36 +196,18 @@ const PropertyDetails = (props: any) => {
             ) : (
               <img src={loadingIndicator} alt='animated loading indicator' />
             )}
-            {/* {inputItem ? (
-              <>
-                <TextField
-                  placeholder='Number of hours'
-                  type='number'
-                  value={newItem}
-                  onChange={handleChange}
-                />
-                <WhiteButton text='Submit' onClick={newList} />
-                <WhiteButton text='Cancel' onClick={toggleText} />
-              </>
-            ) : (
-              <>
-                {shouldFetch ? (
-                  <img
-                    src={loadingIndicator}
-                    alt='animated loading indicator'
-                  />
-                ) : (
-                  <WhiteButton text='+ New Stay List' onClick={toggleText} />
-                )}
-              </>
-            )} */}
             <Dialog
+              maxWidth='sm'
+              fullWidth={true}
               className='dialog'
               open={inputItem}
               onClose={toggleText}
               aria-labelledby='simple-dialog-title'
             >
-              <DialogTitle id='simple-dialog-title'>
+              <DialogTitle
+                style={{ textAlign: 'center' }}
+                id='simple-dialog-title'
+              >
                 New After Stay List
               </DialogTitle>
               <DialogStay>

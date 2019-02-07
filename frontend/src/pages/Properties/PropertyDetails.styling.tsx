@@ -77,6 +77,10 @@ export const Top = styled(PropertyContainer)`
   align-items: center;
   /* Text */
   text-align: left;
+
+  span {
+    border: none;
+  }
   @media only screen and (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
@@ -158,6 +162,9 @@ export const ListDiv = styled('div')`
   margin: ${pxToRem(36)}rem 0;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const ItemDiv = styled('div')`
@@ -170,6 +177,13 @@ export const ItemDiv = styled('div')`
   justify-content: space-between;
   background-color: var(--color-bg-secondary);
   flex-grow: 1;
+
+  @media only screen and (max-width: 900px) {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   .listMap {
     width: 100%;
@@ -214,9 +228,11 @@ export const AfterStay = styled('div')`
 export const AfterListDiv = styled(ListDiv)`
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-around;
   align-items: top;
   width: 100%;
   margin: ${pxToRem(36)}rem 0;
+  background-color: var(--color-main-light);
   @media only screen and (max-width: 600px) {
     flex-wrap: nowrap;
     flex-direction: column;
@@ -242,8 +258,6 @@ export const AfterListDiv = styled(ListDiv)`
 `;
 
 export const DialogStay = styled.div`
-  margin: 1rem 0;
-  width: 128px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -251,23 +265,33 @@ export const DialogStay = styled.div`
 `;
 
 export const ButtonGroup = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
+
+  .delete button {
+    border-radius: var(--border-radius);
+    background-color: var(--color-error);
+  }
 `;
 
 export const DialogButton = styled(Button)`
+  margin: 1rem 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
   text-align: center;
   font-size: 1rem;
 `;
 
 export const AfterListDiv2 = styled(ListDiv)`
-  margin: ${pxToRem(36)}rem ${pxToRem(28)}rem;
-  width: ${pxToRem(255)}rem;
+  margin: 2rem 0;
+  width: 45%;
+  @media only screen and (max-width: 900px) {
+    margin: 2rem 1rem;
+  }
   @media only screen and (max-width: 400px) {
     border: none;
   }
@@ -279,6 +303,7 @@ export const AfterHeader = styled(Header)`
   color: var(--color-button-text-alt);
   border-bottom: solid #707070 1px;
   justify-content: flex-start;
+
   @media only screen and (max-width: 400px) {
     max-width: 90%;
     align-self: centered;
@@ -289,7 +314,7 @@ export const AfterHeader = styled(Header)`
 `;
 
 export const AfterItemDiv = styled(ItemDiv)`
-  padding: ${pxToRem(24)}rem ${pxToRem(28)}rem;
+  /* padding: ${pxToRem(24)}rem ${pxToRem(28)}rem; */
   margin: 0;
   @media only screen and (max-width: 400px) {
     max-width: 90%;

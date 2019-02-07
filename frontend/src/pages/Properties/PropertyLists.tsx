@@ -14,6 +14,7 @@ import {
   SecondaryText,
   IconButton,
   StyledTextField,
+  ButtonGroup,
 } from './PropertyDetails.styling';
 import { TextField } from '@material-ui/core';
 import loadingIndicator from '../utils/loading.svg';
@@ -90,7 +91,6 @@ export const PropertyLists = (props: ListProps) => {
   /* End of click detection */
 
   const renderListItem = (task: List) => {
-    console.log('items_id', task.items_id, 'task', task.task);
     if (task.items_id === null) {
       return null;
     } else if (edit === task.items_id) {
@@ -303,21 +303,41 @@ export const AfterPropertyLists = (props: ListProps) => {
       <AfterItemDiv>
         <TaskDiv>{props.list.map(renderListItem)}</TaskDiv>
         {inputItem ? (
-          <div>
-            <TextField
+          // <div>
+          //   <TextField
+          //     placeholder='Add New Item'
+          //     required={true}
+          //     value={newItem}
+          //     onChange={handleChange}
+          //   />
+          //   <WhiteButton text='Submit' onClick={handleNew} />
+          //   <WhiteButton text='Cancel' onClick={toggleText} />
+          // </div>
+          <div ref={newRef} className='task'>
+            <StyledTextField
               placeholder='Add New Item'
               required={true}
               value={newItem}
               onChange={handleChange}
             />
-            <WhiteButton text='Submit' onClick={handleNew} />
-            <WhiteButton text='Cancel' onClick={toggleText} />
+            <div className='icon-group'>
+              <IconButton onClick={handleNew}>
+                <i className='fas fa-check' />
+              </IconButton>
+              <IconButton onClick={toggleText}>
+                <i className='fas fa-times' />
+              </IconButton>
+            </div>
           </div>
         ) : (
-          <div>
+          <ButtonGroup>
             <WhiteButton text='+ Add New Item' onClick={toggleText} />
-            <WhiteButton text='Delete List' onClick={handleListDelete} />
-          </div>
+            <WhiteButton
+              className='delete'
+              text='Delete List'
+              onClick={handleListDelete}
+            />
+          </ButtonGroup>
         )}
       </AfterItemDiv>
     </AfterListDiv2>
