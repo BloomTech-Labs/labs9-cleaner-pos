@@ -25,6 +25,10 @@ const PropContainer = styled('div')`
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: flex-end;
+
+    h2 {
+      margin: 0;
+    }
   }
 
   @media only screen and (max-width: ${bp}) {
