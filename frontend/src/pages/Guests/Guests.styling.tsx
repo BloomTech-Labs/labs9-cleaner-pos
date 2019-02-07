@@ -21,7 +21,7 @@ export const GuestsDiv = styled(Container)`
     justify-content: space-between;
     align-items: flex-end;
 		@media only screen and (max-width: 900px) {
-			padding: 0 10px 0 10pxq
+			padding: 0 10px 0 10px;
 		}
   }
 
