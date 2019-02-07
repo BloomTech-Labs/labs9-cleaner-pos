@@ -60,17 +60,18 @@ const Guests = () => {
         {loading ? (
           <img src={loadingIndicator} alt='animated loading indicator' />
         ) : null}
-        {stays && stays.length > 0 ? (
-          stays.map((stay: any) => (
-            <Link key={stay.stay_id} to={`/guests/${stay.stay_id}`}>
-              <StyledGuestCard {...stay} />
-            </Link>
-          ))
-        ) : (
+        {stays
+          ? stays.map((stay: any) => (
+              <Link key={stay.stay_id} to={`/guests/${stay.stay_id}`}>
+                <StyledGuestCard {...stay} />
+              </Link>
+            ))
+          : null}
+        {stays && stays.length === 0 ? (
           <StyledGuestCardFiller>
             <div className='text-content'>No {active} Guests</div>
           </StyledGuestCardFiller>
-        )}
+        ) : null}
         <div />
       </div>
     </GuestsDiv>

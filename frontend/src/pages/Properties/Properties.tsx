@@ -140,69 +140,75 @@ const Properties = () => {
             </Link>
           </div>
         ) : null}
-        {houses && houses.length > 0 ? (
-          houses.map((house: House) => {
-            return (
-              <HouseItem key={house.id} data-testid='house-item'>
-                <ThumbNail src={house.photo_url || defaultHouse} alt='house' />
-                <CardContent>
-                  <CardHeading>
-                    <h4>{house.name}</h4>
-                    <p>{house.address}</p>
-                  </CardHeading>
-                  <CardBody>
-                    <InfoBox>
-                      <p>Checklist Items</p>
-                      <div className='secondary'>
-                        {house.checkList[0].count}
-                      </div>
-                    </InfoBox>
-                    <Assistant
-                      label='Default Assistant'
-                      data-testid='assistant-select'
-                      onChange={(event) => postAst(event, house.id)}
-                    >
-                      <option defaultValue={house.default_ast}>
-                        {house.default_ast_name}
-                      </option>
-                      {house.openAst.map((ast: any) => {
-                        if (ast.ast_id !== house.default_ast) {
-                          return (
-                            <option key={ast.ast_id} value={ast.ast_id}>
-                              {ast.full_name}
-                            </option>
-                          );
-                        }
-                      })}
-                    </Assistant>
-                    <ButtonContainer>
-                      <Link
-                        to={{
-                          pathname: `properties/${house.id}`,
-                          hash: '#checklists',
-                          state: house,
-                        }}
+        {houses
+          ? houses.map((house: House) => {
+              return (
+                <HouseItem key={house.id} data-testid='house-item'>
+                  <ThumbNail
+                    src={house.photo_url || defaultHouse}
+                    alt='house'
+                  />
+                  <CardContent>
+                    <CardHeading>
+                      <h4>{house.name}</h4>
+                      <p>{house.address}</p>
+                    </CardHeading>
+                    <CardBody>
+                      <InfoBox>
+                        <p>Checklist Items</p>
+                        <div className='secondary'>
+                          {house.checkList[0].count}
+                        </div>
+                      </InfoBox>
+                      <Assistant
+                        label='Default Assistant'
+                        data-testid='assistant-select'
+                        onChange={(event) => postAst(event, house.id)}
                       >
-                        <Button
-                          className='property-button'
-                          text='Edit Checklists'
-                          datatestid='house-button'
-                        />
-                      </Link>
-                      <Link to={{ pathname: `/properties/new`, state: house }}>
-                        <Button
-                          className='property-button'
-                          text='Edit Property'
-                          datatestid='house-button'
-                        />
-                      </Link>
-                    </ButtonContainer>
-                  </CardBody>
-                </CardContent>
-              </HouseItem>
-            );
-          })
-        ) : (
+                        <option defaultValue={house.default_ast}>
+                          {house.default_ast_name}
+                        </option>
+                        {house.openAst.map((ast: any) => {
+                          if (ast.ast_id !== house.default_ast) {
+                            return (
+                              <option key={ast.ast_id} value={ast.ast_id}>
+                                {ast.full_name}
+                              </option>
+                            );
+                          }
+                        })}
+                      </Assistant>
+                      <ButtonContainer>
+                        <Link
+                          to={{
+                            pathname: `properties/${house.id}`,
+                            hash: '#checklists',
+                            state: house,
+                          }}
+                        >
+                          <Button
+                            className='property-button'
+                            text='Edit Checklists'
+                            datatestid='house-button'
+                          />
+                        </Link>
+                        <Link
+                          to={{ pathname: `/properties/new`, state: house }}
+                        >
+                          <Button
+                            className='property-button'
+                            text='Edit Property'
+                            datatestid='house-button'
+                          />
+                        </Link>
+                      </ButtonContainer>
+                    </CardBody>
+                  </CardContent>
+                </HouseItem>
+              );
+            })
+          : null}
+        {houses && houses.length === 0 ? (
           <HouseItem>
             <ThumbNail
               style={{ objectFit: 'contain' }}
@@ -218,7 +224,7 @@ const Properties = () => {
               </CardHeading>
             </CardContent>
           </HouseItem>
-        )}
+        ) : null}
       </PropContainer>
     </Container>
   );
