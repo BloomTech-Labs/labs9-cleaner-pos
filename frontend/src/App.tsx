@@ -24,6 +24,7 @@ interface UserData {
   loggedIn: boolean;
   role: string;
   subscription: number;
+  setValue: any;
 }
 const token = localStorage.getItem('token');
 const role = localStorage.getItem('role') || '';
@@ -33,19 +34,24 @@ const defaultValue = {
   loggedIn: false,
   role,
   subscription: 0,
+  setValue: 0,
 };
 
 export const UserContext = createContext<UserData>(defaultValue);
 
 const App = () => {
+  const [value, setValue] = useState(Number(subscription));
+
   const contextValue = {
     loggedIn: token ? true : false,
     role,
-    subscription: Number(subscription),
+    subscription: value,
   };
   return (
     <div className='App'>
-      <UserContext.Provider value={contextValue}>
+      <UserContext.Provider
+        value={{ ...contextValue, subscription: value, setValue }}
+      >
         <Sidebar />
         <Switch>
           <Route exact path='/' component={LandingPage} />
