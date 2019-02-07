@@ -32,6 +32,8 @@ export const CheckoutContainer = styled(Container)`
     line-height: 2;
     /* Color */
     background-color: white;
+    /* Box Shadow */
+    box-shadow: var(--box-shadow);
 
     @media only screen and (max-width: ${bp}) {
       width: 95%;
@@ -125,6 +127,8 @@ export const Invoice = styled('div')`
   background-color: white;
   /* Text */
   text-align: left;
+  /* Box Shadow */
+  box-shadow: var(--box-shadow);
 
   div {
     margin-bottom: 24px;
@@ -134,15 +138,19 @@ export const Invoice = styled('div')`
     color: var(--color-text-accent);
   }
   .submit-payment {
+    background: var(--color-accent-alt);
     margin-bottom: 24px;
   }
   .payment-button {
+    background: var(--color-accent-alt);
     margin: 0 auto;
   }
   .connect-button {
+    background: var(--color-accent-alt);
     margin-bottom: 24px;
   }
   .receipt-button {
+    background: var(--color-accent-alt);
     margin-top: 12px;
     margin-bottom: 24px;
   }

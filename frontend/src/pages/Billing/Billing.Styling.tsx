@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
 const SubBox = styled('div')`
+  background: var(--color-main-light);
   padding: 20px;
   display: flex;
-  height: 60vh;
+  height: 100%;
   .checkmark {
     color: var(--color-accent);
   }
@@ -17,6 +18,7 @@ const SubBox = styled('div')`
   }
   @media only screen and (max-width: 800px) {
     flex-direction: column;
+    border: 0;
     height: 100%;
     .root {
       border: var(--border);
@@ -24,10 +26,22 @@ const SubBox = styled('div')`
   }
 `;
 
+const DescriptionContainer = styled('div')`
+  border: var(--border);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  @media only screen and (max-width: 800px) {
+    border: 0;
+  }
+`;
+
 const ListContainer = styled('div')`
   width: '100%';
   height: '50%';
-  background: 'white';
+  background: var(--color-main-light);
+  margin-bottom: 1rem;
   @media only screen and (max-width: 800px) {
     height: 100%;
     border: var(--border);
@@ -98,6 +112,7 @@ const Header = styled('h2')`
 export {
   AccordionItemBody,
   Confirmation,
+  DescriptionContainer,
   Header,
   ListContainer,
   SubBox,

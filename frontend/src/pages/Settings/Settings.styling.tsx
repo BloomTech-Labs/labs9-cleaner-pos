@@ -9,56 +9,85 @@ const Header = styled('span')`
   h2 {
     padding-left: 32px;
     color: white;
+    margin: 0.5rem 0 0.5rem 0;
+  }
+  h3 {
+    padding-left: 16px;
+    color: white;
+    margin: 0.5rem 0 0.5rem 0;
   }
 `;
 
 const Card = styled('div')`
   width: 100%;
-  background: var(--color-bg-main);
+  background: var(--color-bg-secondary);
   display: flex;
-  padding: 20px;
   border: var(--border);
+
   h3 {
     font-family: 'Roboto';
     font-weight: condensed;
   }
-  min-height: ${pxToRem(700)};
+  min-height: ${pxToRem(800)};
+
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+    padding: 0;
+  }
 `;
 
 const Positioner = styled('div')`
-  width: 50%;
+  width: 100%;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: space-evenly;
+  align-items: center;
   justify-content: space-around;
-  .fancy-button {
-    width: 100%;
+  @media only screen and (max-width: 1000px) {
+    button {
+      width: 150px;
+    }
   }
-  /* border: 1px solid red; */
+  @media only screen and (max-width: 520px) {
+    button {
+      width: 120px;
+      padding: 5px 0 5px 0;
+    }
+  }
 `;
 const LeftContainer = styled('div')`
-  width: 50%;
-  padding: 20px;
+  width: 30%;
+
   display: flex;
   flex-direction: column;
-  align-items: space-evenly;
-  justify-content: center;
-  border: var(--border);
-  border-right: 0;
-  background: var(--color-bg-secondary);
+  justify-content: flex-start;
+  align-items: center;
+  border-right: var(--border);
+
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    margin: 0;
+
+    .left-mob {
+      flex-direction: row;
+    }
+  }
 `;
 
 const RightContainer = styled('div')`
-  width: 50%;
-  padding: 20px;
+  width: 70%;
+  margin: 0 0 0 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: var(--border);
-  border-left: 0;
-  background: var(--color-bg-secondary);
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .reg {
+  }
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    margin: 15px 0 0 0;
+  }
 `;
 
 const Checkbox = styled('input')`
@@ -66,14 +95,41 @@ const Checkbox = styled('input')`
 `;
 
 const UserCard = styled('div')`
-  border: 1px solid var(--color-border);
+  width: 100%;
+  text-align: left;
+
+  .line-item {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px 0 10px;
+    padding: 7px;
+    border-bottom: var(--border);
+  }
+  span {
+    width: 120px;
+  }
+  .line-info {
+    text-transform: capitalize;
+  }
+  .small-button {
+    height: 20px;
+    width: 75px;
+    padding: 0;
+    margin-bottom: 5px;
+  }
+  div {
+  }
 `;
 
 const ThumbNail = styled('img')`
+  max-width: 150px;
   width: ${pxToVw(125 * 0.9)};
   margin: 0 auto;
   height: auto;
   object-fit: cover;
+  @media only screen and (max-width: 1000px) {
+    width: 130px;
+  }
 `;
 
 export {

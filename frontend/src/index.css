@@ -5,24 +5,23 @@
   --color-main-medium: #e4e4e4;
   --color-main-light: #ffffff;
   --color-accent: #428acb;
-  --color-accent-light: #ffffff;
+  --color-accent-alt: #ff9713;
+  --color-accent-light: #74bef9;
   --color-accent-dark: rgba(57, 53, 52, 1);
-  --color-accent-alt: #74bef9;
   --color-border: rgba(57, 53, 52, 0.125);
   --color-border-strong: rgba(132, 132, 132, 0.5);
-  --color-error: #ee788c;
+  --color-error: #fc5c65;
   /* Background Colors */
   --color-bg-main: var(--color-main-medium);
   --color-bg-secondary: var(--color-main-light);
-  --color-bg-tertiary: var(--color-main-light);
+  --color-bg-tertiary: var(--color-main-dark);
   --color-bg-accent: var(--color-accent);
   --color-bg-accent-light: var(--color-accent-light);
   /* Button Colors */
   --color-button-text: var(--color-main-light);
-  --color-button-background: var(--color-accent);
-  --color-button-text-alt: var(--color-accent);
+  --color-button-text-alt: var(--color-main-dark);
+  --color-button-background: var(--color-accent-light);
   --color-button-background-alt: var(--color-main-light);
-  --color-button-background-action: #7e8d66;
   --color-button-text-action: var(--color-main-light);
   /* Text Colors */
   --color-text-dark: var(--color-main-dark);
@@ -39,6 +38,7 @@
   --border-alt: sub;
   --border-bottom: 1px solid var(--color-border);
   --border-radius: 5px;
+  --box-shadow: 0 1px #ffffff inset, 0 1px 3px rgba(34, 25, 25, 0.4);
 }
 
 body {
@@ -59,7 +59,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
 h1 {
   margin: 2rem 0 1rem 0;
   /* Text */

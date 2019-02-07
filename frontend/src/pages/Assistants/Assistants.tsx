@@ -71,7 +71,7 @@ const Assistants = () => {
         <HeaderWrapper>
           <AssistantHeader>Turnover Assistants</AssistantHeader>
           <Link to='/invite'>
-            <Button className='invite-btn' text='+ New Assistant' color='var(--color-accent-alt)' />
+            <Button text='+ New Assistant' className='new-ast__button' />
           </Link>
         </HeaderWrapper>
         <div
