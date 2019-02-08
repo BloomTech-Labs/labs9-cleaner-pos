@@ -27,7 +27,7 @@ const AssistantCard = (props: any) => {
   function handleModal() {
     setModalStatus(!modalStatus);
   }
-  console.log(assistant.className);
+
   useEffect(
     () => {
       setTaskLoad(0);

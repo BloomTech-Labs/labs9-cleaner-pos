@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { PropertyLists, AfterPropertyLists } from './PropertyLists';
 import {
   PropertyContainer,
@@ -24,6 +24,7 @@ import { TextField } from '@material-ui/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { axiosErrorHandler } from '../utils';
 import { useFetch } from '../../helpers';
+import { UserContext } from '../../App';
 import { Lists, List } from './types';
 import loadingIndicator from '../utils/loading.svg';
 import { Link } from 'react-router-dom';
@@ -42,6 +43,7 @@ const PropertyDetails = (props: any) => {
   const [newItem, setNewItem] = useState('');
   const [inputItem, setInputItem] = useState(false);
   const [lists, setLists] = useState({} as Lists);
+  const { role } = useContext(UserContext);
 
   const headers: AxiosRequestConfig = {
     headers: { Authorization: localStorage.getItem('token') },
@@ -155,18 +157,22 @@ const PropertyDetails = (props: any) => {
                 color='var(--color-text-accent)'
                 onClick={() => props.history.push('/properties')}
               />
-              <BackButton
-                text={delLoading ? '' : 'Remove Property'}
-                color='var(--color-error)'
-                onClick={() => removeProperty(property.id)}
-              >
-                {delLoading ? (
-                  <img
-                    src={loadingIndicator}
-                    alt='animated loading indicator'
-                  />
-                ) : null}
-              </BackButton>
+              {role === 'manager' && (
+                <>
+                  <BackButton
+                    text={delLoading ? '' : 'Remove Property'}
+                    color='var(--color-error)'
+                    onClick={() => removeProperty(property.id)}
+                  >
+                    {delLoading ? (
+                      <img
+                        src={loadingIndicator}
+                        alt='animated loading indicator'
+                      />
+                    ) : null}
+                  </BackButton>
+                </>
+              )}
             </PropertyButtons>
           </Top>
           <h1>List Builder</h1>

@@ -256,8 +256,8 @@ const NewGuest = (props: RouteComponentProps) => {
         guest_id: userId,
         house_id: houseId,
         extra_guests: +extraGuests,
-        check_in: checkIn,
-        check_out: checkOut,
+        check_in: checkIn.toISOString(),
+        check_out: checkOut.toISOString(),
       };
       if (props.location && props.location.state) {
         const id = props.location.state.stay_id;

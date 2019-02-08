@@ -26,7 +26,7 @@ interface LinkProps extends RouteComponentProps {
 
 const Sidebar = (props: LinkProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { setLogin } = useContext(UserContext);
+  const { setLogin, role } = useContext(UserContext);
 
   const handleClick = (e: any) => {
     setAnchorEl(e.currentTarget);
@@ -77,8 +77,14 @@ const Sidebar = (props: LinkProps) => {
           >
             <MenuItem onClick={goAndClose('/properties')}>Property</MenuItem>
             <MenuItem onClick={goAndClose('/guests')}>Guests</MenuItem>
-            <MenuItem onClick={goAndClose('/assistants')}>Assistants</MenuItem>
-            <MenuItem onClick={goAndClose('/billing')}>Subscribe</MenuItem>
+            {role === 'manager' && (
+              <>
+                <MenuItem onClick={goAndClose('/assistants')}>
+                  Assistants
+                </MenuItem>
+                <MenuItem onClick={goAndClose('/billing')}>Subscribe</MenuItem>
+              </>
+            )}
           </Menu>
           <Logo src={notxt_Lodgel} alt='Lodgel logo' />
           <SettingsWrapper>
@@ -140,29 +146,37 @@ const Sidebar = (props: LinkProps) => {
                 </StyledLink>
               </div>
               <div>
-                <StyledLink to='/assistants'>
-                  <h4
-                    style={{
-                      borderBottom: props.location.pathname.match(
-                        '/assistants/*.*?',
-                      )
-                        ? '2px solid var(--color-accent-alt)'
-                        : '0',
-                    }}
-                  >
-                    Assistants
-                  </h4>
-                </StyledLink>
+                {role === 'manager' && (
+                  <>
+                    <StyledLink to='/assistants'>
+                      <h4
+                        style={{
+                          borderBottom: props.location.pathname.match(
+                            '/assistants/*.*?',
+                          )
+                            ? '2px solid var(--color-accent-alt)'
+                            : '0',
+                        }}
+                      >
+                        Assistants
+                      </h4>
+                    </StyledLink>
+                  </>
+                )}
               </div>
             </StyledUL>
           </NavWrapper>
           <SettingsWrapper>
-            <Link to='/billing'>
-              <Button
-                text='Subscribe'
-                className='header-bar--subscribe-button'
-              />
-            </Link>
+            {role === 'manager' && (
+              <>
+                <Link to='/billing'>
+                  <Button
+                    text='Subscribe'
+                    className='header-bar--subscribe-button'
+                  />
+                </Link>
+              </>
+            )}
             <StyledLink to='/settings'>
               <i className='fas fa-cog' />
             </StyledLink>

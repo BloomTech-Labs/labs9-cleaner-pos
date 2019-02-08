@@ -119,6 +119,9 @@ const StyledUL = styled('div')`
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
+  :active {
+    border: none;
+  }
   padding: 0 1rem 0 1rem;
   @media only screen and (min-width: ${bp}) {
     :first-of-type {
@@ -148,4 +151,12 @@ const Logo = styled('img')`
   margin-left: 2rem;
 `;
 
-export { Container, NavBar, NavWrapper, SettingsWrapper, StyledUL, StyledLink, Logo };
+export {
+  Container,
+  NavBar,
+  NavWrapper,
+  SettingsWrapper,
+  StyledUL,
+  StyledLink,
+  Logo,
+};
