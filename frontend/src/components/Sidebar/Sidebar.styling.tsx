@@ -39,13 +39,6 @@ const Container = styled('div')`
     margin-right: 1rem;
   }
 
-  .header-bar--logo {
-    display: none;
-    @media only screen and (min-width: 900px) {
-      display: block;
-    }
-  }
-
   .menu {
     height: 100%;
     width: 100%;
