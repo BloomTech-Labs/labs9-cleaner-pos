@@ -212,18 +212,6 @@ const AssistantDetailContainer = styled(Container)`
     font-family: 'Roboto Light', Arial, Helvetica, sans-serif;
     font-weight: lighter;
   }
-  .button-group {
-    /* Sizing */
-    margin: ${pxToRem(5)} 0;
-    /* Flex */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  .button-group button {
-    font-size: 1rem;
-  }
   @media screen and (max-width: 700px) {
     /* In smaller screens, make page columnar.
        Have map and AsstDetail swap places */
@@ -250,13 +238,6 @@ const AssistantDetailContainer = styled(Container)`
       /* Sizing */
       width: 100%;
     }
-    .detail-img {
-      width: 72px;
-      height: 72px;
-    }
-    .button-group {
-      margin: 0;
-    }
   }
 `;
 
@@ -268,20 +249,54 @@ const AssistantBar = styled('div')`
   /* Flex */
   display: flex;
   flex-direction: column;
+  /* background: var(--color-bg-secondary); */
+
+  .button-group {
+    /* Sizing */
+    margin-top: 1rem;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 1rem;
+  }
   @media screen and (max-width: 700px) {
     margin-top: ${pxToRem(10)};
     width: 100%;
     max-width: 100%;
     padding: 0;
+    img {
+      height: 100%;
+    }
+    .button-group {
+      flex-direction: row;
+      justify-content: space-around;
+      margin-bottom: 1rem;
+    }
+  }
+  @media only screen and (max-width: 430px) {
+    .button-group {
+      flex-direction: column;
+      align-items: center;
+      button {
+        margin-bottom: 5px;
+      }
+    }
   }
 `;
 
 const AsstDetail = styled('div')`
   height: 6rem;
   color: var(--color-text-dark);
-  background: var(--color-bg-main);
+  background: var(--color-bg-secondary);
+  box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: row;
+  @media only screen and (max-width: 700px) {
+    /* margin-left: 2rem; */
+    border-radius: var(--border-radius);
+  }
 `;
 
 const AsstProperty = styled('div')`
@@ -304,7 +319,8 @@ const AsstProperty = styled('div')`
 const PropertyContainer = styled('div')`
   /* Size */
   border: var(--border);
-  margin: 0;
+  margin-top: 1rem;
+  padding-left: 2rem;
   /* Flex */
   display: flex;
   flex-flow: column nowrap;
@@ -322,20 +338,21 @@ const PropertyContainer = styled('div')`
     color: var(--color-button-text-alt);
     background-color: var(--color-button-background-alt);
   }
+  @media only screen and (max-width: 700px) {
+    box-shadow: var(--box-shadow);
+  }
 `;
 
 const PropertyHeading = styled('div')`
   /* Size */
-  border-bottom: 1px solid var(--color-border);
-  padding-left: 1rem;
+  border-radius: var(--border-radius);
   /* Flex */
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   /* Color */
-  color: var(--color-text-light);
-  background: var(--color-bg-accent);
+  color: var(--color-text-accent);
   /* Text */
   text-align: left;
   h2 {
@@ -346,8 +363,6 @@ const PropertyHeading = styled('div')`
 
 const PropertyList = styled.div`
   /* Sizing */
-  padding: 0.75rem 0 0.75rem 0.75rem;
-  /* Text */
   text-align: left;
 `;
 
