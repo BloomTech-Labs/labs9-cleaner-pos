@@ -253,13 +253,15 @@ const AssistantBar = styled('div')`
 
   .button-group {
     /* Sizing */
-    margin-top: 1rem;
     /* Flex */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     font-size: 1rem;
+    margin-bottom: 0.5rem;
+    .deleteButton {
+      margin-top: 5px;
+    }
   }
   @media screen and (max-width: 700px) {
     margin-top: ${pxToRem(10)};
@@ -321,6 +323,7 @@ const PropertyContainer = styled('div')`
   border: var(--border);
   margin-top: 1rem;
   padding-left: 2rem;
+  box-shadow: var(--box-shadow);
   /* Flex */
   display: flex;
   flex-flow: column nowrap;
@@ -335,11 +338,10 @@ const PropertyContainer = styled('div')`
     /* Text */
     font-size: 1rem;
     /* Color */
-    color: var(--color-button-text-alt);
-    background-color: var(--color-button-background-alt);
+    color: var(--color-accent);
+    background-color: var(--color-bg-secondary);
   }
   @media only screen and (max-width: 700px) {
-    box-shadow: var(--box-shadow);
   }
 `;
 
