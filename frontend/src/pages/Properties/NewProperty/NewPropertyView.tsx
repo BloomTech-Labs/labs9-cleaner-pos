@@ -106,7 +106,6 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
   return (
     <NewPropertyStyled>
-      <h1 style={{ paddingLeft: '2rem' }}>Properties</h1>
       <FormBlock className='property-info'>
         <h2>Information</h2>
         <div className='property-info--fields'>
@@ -137,7 +136,11 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <div className='image-preview'>
           {urls.photo_url ? (
             <img
-              style={{ marginBottom: '1.5rem' }}
+              style={{
+                marginBottom: '1.5rem',
+                maxHeight: '250px',
+                maxWidth: '100%',
+              }}
               src={urls.photo_url}
               alt='Uploaded Image'
             />
@@ -206,8 +209,6 @@ const NewPropertyView = (formProps: MyFormProps) => {
             );
           }}
         />
-        <br />
-        <br />
         <div className='property-resources--guides'>
           <div className='guide left'>
             {urls.ast_guide ? (

@@ -72,9 +72,13 @@ export const NewPropertyStyled = styled(Form)`
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
+    padding-top: 1rem;
 
     @media only screen and (max-width: 700px) {
       flex-flow: row wrap;
+    }
+    @media only screen and (max-width: 463px) {
+      padding-top: 0;
     }
   }
 
@@ -84,13 +88,15 @@ export const NewPropertyStyled = styled(Form)`
     justify-content: center;
     align-items: center;
 
-    @media only screen and (max-width: 700px) {
-      margin: 1rem 0;
-    }
-
     i {
       font-size: 2.5rem;
       margin-bottom: 1rem;
+    }
+
+    @media only screen and (max-width: 463px) {
+      i {
+        margin-top: 1rem;
+      }
     }
   }
   .primary-buttons {
