@@ -106,7 +106,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
   return (
     <NewPropertyStyled>
-      <h1>Properties</h1>
+      <h1 style={{ paddingLeft: '2rem' }}>Properties</h1>
       <FormBlock className='property-info'>
         <h2>Information</h2>
         <div className='property-info--fields'>
@@ -136,12 +136,16 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <h2>Property Photo</h2>
         <div className='image-preview'>
           {urls.photo_url ? (
-            <img src={urls.photo_url} alt='Uploaded Image' />
+            <img
+              style={{ marginBottom: '1.5rem' }}
+              src={urls.photo_url}
+              alt='Uploaded Image'
+            />
           ) : (
-            <i className='fas fa-home' />
+            <i className='fas fa-home' style={{ marginBottom: '1.5rem' }} />
           )}
+          <Uppy type='photo_url' text='Upload a Photo!' />
         </div>
-        <Uppy type='photo_url' text='Upload a Photo!' />
       </FormBlock>
 
       <FormBlock className='property-prices'>
@@ -213,7 +217,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
             ) : (
               <i className='fas fa-question' />
             )}
-            <Uppy type='ast_guide' text='Upload Assistant Guide' />
+            <Uppy type='ast_guide' text='Add Assistant Guide' />
           </div>
           <div className='guide right'>
             {urls.guest_guide ? (
@@ -223,7 +227,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
             ) : (
               <i className='fas fa-question' />
             )}
-            <Uppy type='guest_guide' text='Upload Guest Guide' />
+            <Uppy type='guest_guide' text='Add Guest Guide' />
           </div>
         </div>
       </FormBlock>

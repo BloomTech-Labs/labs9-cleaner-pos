@@ -26,15 +26,10 @@ export const NewPropertyStyled = styled(Form)`
 
   .image-preview i {
     margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
     font-size: 5rem;
-  }
-
-  .image-preview img {
     max-width: 20rem;
     max-height: 20rem;
     /* object-fit: cover; */
-    margin-bottom: 1.5rem;
   }
 
   .property-prices--fields {
@@ -55,6 +50,14 @@ export const NewPropertyStyled = styled(Form)`
 
       .field {
         flex-basis: 100%;
+      }
+    }
+    .image-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        border-radius: var(--border-radius);
       }
     }
   }
