@@ -33,7 +33,11 @@ const AssistantCard = (assistant: Assistant) => {
         <CardBody>
           <CardHeading>
             <h1>{assistant.full_name}</h1>
-            <p>Test Address</p>
+            <p>
+              {assistant.address && assistant.address.split('\n')[0]}
+              {', '}
+              {assistant.address && assistant.address.split('\n')[2]}
+            </p>
           </CardHeading>
           <div className='check-boxes'>
             <InfoBox>
