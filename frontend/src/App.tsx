@@ -1,5 +1,5 @@
 import React, { createContext, useState, SetStateAction } from 'react';
-import { Route, Switch, withRouter } from 'react-router';
+import { Route, Switch, withRouter, RouteComponentProps } from 'react-router';
 import {
   LandingPage,
   Properties,
@@ -74,7 +74,11 @@ const App = () => {
       >
         <Sidebar />
         <Switch>
-          <Route exact path='/' component={LandingPage} />
+          <Route
+            exact
+            path='/'
+            render={(props: RouteComponentProps) => <LandingPage {...props} />}
+          />
           <Route exact path='/assistants' component={Assistants} />
           <Route exact path='/assistants/:id' component={AssistantDetails} />
           <Route exact path='/billing' component={Billing} />
