@@ -7,6 +7,7 @@ import { Button, Container } from '../../components/index';
 import house from '../../assets/house_alt.jpg';
 import lodgel from '../../assets/lodgel.jpg';
 import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
+import Slide from '@material-ui/core/Slide';
 import {
   Footer,
   CenterImg,
@@ -23,56 +24,77 @@ import {
   DescHeader,
   DescContainer,
   IconContainer,
+  Screen,
 } from './LandingPage.styling';
 
 const Landing = (props: RouteComponentProps) => {
   const { loggedIn } = useContext(UserContext);
   const [currPage, setCurrPage] = useState(0);
 
-  const transitions = useTransition(currPage, currPage, {
-    from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-    leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
-  });
-
-  const renderScreenBasedOnCurrPage = (page: number) => {
-    console.log(page);
-    const screens = [screenA, screenB];
-    return screens[page](setCurrPage);
-  };
+  const isPage = (page: number) => page === currPage;
 
   return (
-    <>
-      {transitions.map(({ item, transitionProps, key }: any) => (
-        <animated.div key={key} style={transitionProps}>
-          {renderScreenBasedOnCurrPage(currPage)}
-        </animated.div>
-      ))}
-    </>
+    <Container>
+      <Nav>
+        <BigLogo src={lodgel} alt='Lodgel logo' />
+        {loggedIn ? (
+          <Link to='/properties'>
+            <Button text='Dashboard' color='var(--color-accent)' />
+          </Link>
+        ) : (
+          <Link to='/Login'>
+            <Button text='Sign In' color='var(--color-accent)' />
+          </Link>
+        )}
+      </Nav>
+      <Slide direction='right' in={isPage(0)} mountOnEnter unmountOnExit>
+        <ScreenA setCurrPage={setCurrPage} {...props} />
+      </Slide>
+      <Slide direction='right' in={isPage(1)} mountOnEnter unmountOnExit>
+        <ScreenB setCurrPage={setCurrPage} {...props} />
+      </Slide>
+    </Container>
   );
 };
 
-const screenA = (setCurrPage: React.Dispatch<React.SetStateAction<number>>) => (
-  <div className='a'>
-    A
-    <button
-      onClick={(e) => {
-        e.preventDefault();
-        setCurrPage(1);
-      }}
-    >
-      Next
-    </button>
-  </div>
+const ScreenA = (
+  props: RouteComponentProps & {
+    setCurrPage: React.Dispatch<React.SetStateAction<number>>;
+  },
+) => (
+  <>
+    <Wrapper>
+      <CenterImg src={house} alt='Beautiful house with a pool' />
+    </Wrapper>
+    <CTA>
+      <Button
+        text='Get started'
+        color='var(--color-accent)'
+        onClick={() => {
+          props.history.push('/Login');
+        }}
+      />
+      <Button
+        text='Learn More'
+        color='var(--color-accent)'
+        onClick={() => props.setCurrPage((prev: number) => prev + 1)}
+      />
+      <h2>Simplify Managing Your Rental Properties.</h2>
+    </CTA>
+  </>
 );
 
-const screenB = (setCurrPage: React.Dispatch<React.SetStateAction<number>>) => (
+const ScreenB = (
+  props: RouteComponentProps & {
+    setCurrPage: React.Dispatch<React.SetStateAction<number>>;
+  },
+) => (
   <div className='b'>
     B{' '}
     <button
       onClick={(e) => {
         e.preventDefault();
-        setCurrPage(0);
+        props.setCurrPage(0);
       }}
     >
       Previous

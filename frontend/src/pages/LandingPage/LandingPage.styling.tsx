@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { animated } from 'react-spring';
 
 const Nav = styled('nav')`
   margin: 0 auto;
@@ -11,6 +12,10 @@ const Nav = styled('nav')`
     font-size: 2.1rem;
     color: var(--color-main-dark);
   }
+`;
+
+const Screen = styled(animated.div)`
+  will-change: transform, opacity;
 `;
 
 const Wrapper = styled('div')`
@@ -64,7 +69,7 @@ const Footer = styled('div')`
   justify-content: space-around;
   align-items: center;
   border-top: 2px solid var(--color-main-dark);
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   /* position: fixed; */
   margin: 0 auto;
   /* left: 0px;
@@ -120,7 +125,7 @@ const Description = styled('div')`
     font-family: Roboto;
   }
   @media only screen and (max-width: 700px) {
-    padding: .5rem;
+    padding: 0.5rem;
   }
 `;
 
@@ -175,4 +180,5 @@ export {
   DescHeader,
   DescContainer,
   IconContainer,
+  Screen,
 };
