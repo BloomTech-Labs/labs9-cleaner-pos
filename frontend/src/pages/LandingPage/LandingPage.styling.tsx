@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
-import { animated } from 'react-spring';
+import { Button, Container } from '../../components/index';
+import { ComponentClass } from 'react';
+
+const LandingContainer = styled(Container)`
+  margin: 0;
+`;
 
 const Nav = styled('nav')`
+  height: 10vh;
   margin: 0 auto;
   width: 80%;
   display: flex;
@@ -14,8 +20,8 @@ const Nav = styled('nav')`
   }
 `;
 
-const Screen = styled(animated.div)`
-  will-change: transform, opacity;
+export const Screen = styled.div`
+  height: 75vh;
 `;
 
 const Wrapper = styled('div')`
@@ -58,13 +64,14 @@ const CTA = styled('div')`
   align-items: center;
   justify-content: space-between;
   margin: 1.5rem auto;
-  border-bottom: solid 1px var(--color-main-dark);
+  /* border-bottom: solid 1px var(--color-main-dark); */
   h2 {
     margin-top: 2rem;
   }
 `;
 
 const Footer = styled('div')`
+  height: 10vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -180,5 +187,5 @@ export {
   DescHeader,
   DescContainer,
   IconContainer,
-  Screen,
+  LandingContainer,
 };

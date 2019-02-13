@@ -7,7 +7,7 @@ import { Button, Container } from '../../components/index';
 import house from '../../assets/house_alt.jpg';
 import lodgel from '../../assets/lodgel.jpg';
 import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
-import Slide from '@material-ui/core/Slide';
+import Fade from '@material-ui/core/Fade';
 import {
   Footer,
   CenterImg,
@@ -24,6 +24,7 @@ import {
   DescHeader,
   DescContainer,
   IconContainer,
+  LandingContainer,
   Screen,
 } from './LandingPage.styling';
 
@@ -34,7 +35,7 @@ const Landing = (props: RouteComponentProps) => {
   const isPage = (page: number) => page === currPage;
 
   return (
-    <Container>
+    <LandingContainer>
       <Nav>
         <BigLogo src={lodgel} alt='Lodgel logo' />
         {loggedIn ? (
@@ -47,13 +48,23 @@ const Landing = (props: RouteComponentProps) => {
           </Link>
         )}
       </Nav>
-      <Slide direction='right' in={isPage(0)} mountOnEnter unmountOnExit>
+      <Fade in={isPage(0)} mountOnEnter unmountOnExit>
         <ScreenA setCurrPage={setCurrPage} {...props} />
-      </Slide>
-      <Slide direction='right' in={isPage(1)} mountOnEnter unmountOnExit>
+      </Fade>
+      <Fade in={isPage(1)} mountOnEnter unmountOnExit>
         <ScreenB setCurrPage={setCurrPage} {...props} />
-      </Slide>
-    </Container>
+      </Fade>
+      <Footer>
+        <a href='/'>
+          <Logo src={lodgel} alt='Lodgel logo' />
+        </a>
+        <a href='https://example.com'>Email</a>
+        <a href='https://twitter.com'>Twitter</a>
+        <a href='https://github.com/Lambda-School-Labs/labs9-cleaner-pos'>
+          GitHub
+        </a>
+      </Footer>
+    </LandingContainer>
   );
 };
 
@@ -62,7 +73,7 @@ const ScreenA = (
     setCurrPage: React.Dispatch<React.SetStateAction<number>>;
   },
 ) => (
-  <>
+  <Screen>
     <Wrapper>
       <CenterImg src={house} alt='Beautiful house with a pool' />
     </Wrapper>
@@ -77,11 +88,11 @@ const ScreenA = (
       <Button
         text='Learn More'
         color='var(--color-accent)'
-        onClick={() => props.setCurrPage((prev: number) => prev + 1)}
+        onClick={() => props.setCurrPage((prev) => prev + 1)}
       />
       <h2>Simplify Managing Your Rental Properties.</h2>
     </CTA>
-  </>
+  </Screen>
 );
 
 const ScreenB = (
@@ -89,18 +100,30 @@ const ScreenB = (
     setCurrPage: React.Dispatch<React.SetStateAction<number>>;
   },
 ) => (
-  <div className='b'>
-    B{' '}
-    <button
-      onClick={(e) => {
-        e.preventDefault();
-        props.setCurrPage(0);
-      }}
-    >
-      Previous
-    </button>
-    {/* <button onClick={() => setCurrPage((prev) => prev + 1)}>Next</button> */}
-  </div>
+  <Screen>
+    <HeroContainer>
+      <DescContainer>
+        <Description>
+          <DescHeader>Welcome To Lodgel</DescHeader>
+          <p>
+            Lodgel is designed to take the hassle out of out of your property
+            management experience. You can quickly delegate tasks to your
+            turnover assistants, conveniently schedule guests and securely
+            capture their payments at the click of a button, all while enjoying
+            the support of our great team.
+          </p>
+        </Description>
+      </DescContainer>
+      <IconContainer>
+        <Logo src={notxt_Lodgel} alt='Lodgel logo' />
+      </IconContainer>
+    </HeroContainer>
+    <Button
+      text='Go Back'
+      color='var(--color-accent)'
+      onClick={() => props.setCurrPage((prev) => prev - 1)}
+    />
+  </Screen>
 );
 
 export default Landing;
