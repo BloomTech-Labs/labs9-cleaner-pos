@@ -5,10 +5,12 @@ import data from '../../data/seeds/data/assistantsData';
 import knex from 'knex';
 import knexConfig from '../../knexfile';
 import jwt from 'jsonwebtoken';
+const supertest = request(app);
 
 // Mock db in users model functions
 jest.mock('../../data/dbConfig');
 import db from '../../data/dbConfig';
+import { AxiosResponse } from 'axios';
 
 const testDb = knex(knexConfig.test);
 // @ts-ignore
@@ -52,15 +54,11 @@ describe('/assistant routes', () => {
       .expect(200, done);
   });
 
-  test('returns the correct number of asts', (done) => {
-    request(app)
-      .get('/assistants')
-      .set(headers)
-      .expect(200)
-      .then(({ body }) => {
-        expect(body.length).toBe(3);
-        done();
-      });
+  test('returns the correct number of asts', async () => {
+    const response = await supertest.get('/assistants').set(headers);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveLength(3);
   });
 
   test('get all ast return 403 if no token', (done) => {

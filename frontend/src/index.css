@@ -6,7 +6,8 @@
   --color-main-light: #ffffff;
   --color-accent: #428acb;
   --color-accent-alt: #ff9713;
-  --color-accent-light: #74bef9;
+  --color-accent-light: #428acb;
+  --color-accent-light-2: #74bef9;
   --color-accent-dark: rgba(57, 53, 52, 1);
   --color-border: rgba(57, 53, 52, 0.125);
   --color-border-strong: rgba(132, 132, 132, 0.5);

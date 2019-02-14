@@ -36,6 +36,15 @@ const AssistantCard = (props: any) => {
   );
   return (
     <AssistantBar className={assistant.className}>
+      <div className='button-group'>
+        <Button onClick={() => props.goBack()} text='Go Back ↩' />
+        <Button
+          onClick={() => props.deleteAst()}
+          text='Delete Assistant'
+          className='deleteButton'
+          color='var(--color-error)'
+        />
+      </div>
       <AsstDetail>
         <ThumbNail
           className='detail-img'
@@ -48,14 +57,6 @@ const AssistantCard = (props: any) => {
         </div>
       </AsstDetail>
       <AsstProperty>
-        <div className='button-group'>
-          <Button
-            onClick={() => props.deleteAst()}
-            text='Delete Assistant'
-            className='deleteButton'
-          />
-          <Button onClick={() => props.goBack()} text='Go Back ↩' />
-        </div>
         <PropertyContainer>
           <PropertyHeading>
             <h2>Default Properties</h2>

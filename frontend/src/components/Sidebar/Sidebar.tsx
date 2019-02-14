@@ -75,7 +75,7 @@ const Sidebar = (props: LinkProps) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={goAndClose('/properties')}>Property</MenuItem>
+            <MenuItem onClick={goAndClose('/properties')}>Properties</MenuItem>
             <MenuItem onClick={goAndClose('/guests')}>Guests</MenuItem>
             {role === 'manager' && (
               <>

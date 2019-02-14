@@ -106,7 +106,6 @@ const NewPropertyView = (formProps: MyFormProps) => {
 
   return (
     <NewPropertyStyled>
-      <h1>Properties</h1>
       <FormBlock className='property-info'>
         <h2>Information</h2>
         <div className='property-info--fields'>
@@ -136,12 +135,20 @@ const NewPropertyView = (formProps: MyFormProps) => {
         <h2>Property Photo</h2>
         <div className='image-preview'>
           {urls.photo_url ? (
-            <img src={urls.photo_url} alt='Uploaded Image' />
+            <img
+              style={{
+                marginBottom: '1.5rem',
+                maxHeight: '250px',
+                maxWidth: '100%',
+              }}
+              src={urls.photo_url}
+              alt='Uploaded Image'
+            />
           ) : (
-            <i className='fas fa-home' />
+            <i className='fas fa-home' style={{ marginBottom: '1.5rem' }} />
           )}
+          <Uppy type='photo_url' text='Upload a Photo!' />
         </div>
-        <Uppy type='photo_url' text='Upload a Photo!' />
       </FormBlock>
 
       <FormBlock className='property-prices'>
@@ -202,8 +209,6 @@ const NewPropertyView = (formProps: MyFormProps) => {
             );
           }}
         />
-        <br />
-        <br />
         <div className='property-resources--guides'>
           <div className='guide left'>
             {urls.ast_guide ? (
@@ -213,7 +218,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
             ) : (
               <i className='fas fa-question' />
             )}
-            <Uppy type='ast_guide' text='Upload Assistant Guide' />
+            <Uppy type='ast_guide' text='Add Assistant Guide' />
           </div>
           <div className='guide right'>
             {urls.guest_guide ? (
@@ -223,7 +228,7 @@ const NewPropertyView = (formProps: MyFormProps) => {
             ) : (
               <i className='fas fa-question' />
             )}
-            <Uppy type='guest_guide' text='Upload Guest Guide' />
+            <Uppy type='guest_guide' text='Add Guest Guide' />
           </div>
         </div>
       </FormBlock>

@@ -16,7 +16,6 @@ const PropContainer = styled('div')`
   align-items: center;
   .new-property__button {
     background: var(--color-accent);
-    width: 200px;
     height: 40px;
     padding: 0.5rem 1rem;
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
@@ -82,7 +81,6 @@ const HouseItem = styled('div')`
     'thumbnail cardHeading cardHeading .'
     'thumbnail infoBox     dropDown    buttons';
   @media only screen and (max-width: ${bp}) {
-    width: 95%;
     height: 100%;
     justify-items: center;
     grid-template-columns: 1fr 1fr;
