@@ -5,6 +5,7 @@ import * as email from '../../src/controller/email';
 import * as user from '../../src/models/users';
 import { send } from '../../src/controller/email';
 import { RequestMock, ResponseMock } from '../helpers';
+const supertest = request(app);
 // Set up 'req' and 'res' mocks
 let req: RequestMock;
 let res = new ResponseMock();
@@ -45,7 +46,7 @@ describe('/test email routes', () => {
 
     expect(statusValue).toBe(200);
   });
-  test('receive 403 if missing token', (done) => {
+  test('receive 403 if missing token', async () => {
     const sends = {
       ast_name: 'James',
       link_address: 'www.google.com',
@@ -56,9 +57,8 @@ describe('/test email routes', () => {
     jest
       .spyOn(email, 'sgSend')
       .mockImplementationOnce(() => Promise.resolve(undefined));
-    request(app)
-      .post('/email/')
-      .send(sends)
-      .expect(403, done);
+    const response = await supertest.post('/email/').send(sends);
+
+    expect(response.status).toBe(403);
   });
 });
