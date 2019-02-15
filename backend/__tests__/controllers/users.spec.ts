@@ -1,6 +1,7 @@
 import 'jest';
 import request from 'supertest';
 import app from '../../src/app';
+const supertest = request(app);
 
 import knex from 'knex';
 import knexConfig from '../../knexfile';
@@ -56,13 +57,11 @@ describe('/user routes', () => {
     }
   };
 
-  test('GET request with no token returns a 403', (done) => {
-    request(app)
-      .get('/users/1')
-      .expect(403, done);
+  test('GET request with no token returns a 403', async () => {
+    await supertest.get('/users/1').expect(403);
   });
 
-  test('PUT request with no token returns a 403', (done) => {
+  test('PUT request with no token returns a 403', async () => {
     const newUser = {
       address: 'bbah',
       email: 'rl@rl.com',
@@ -71,19 +70,17 @@ describe('/user routes', () => {
       phone: '3235551111',
       role: 'manager',
     };
-    request(app)
+    await supertest
       .put('/users/1')
       .send(newUser)
-      .expect(403, done);
+      .expect(403);
   });
 
-  test('DELETE request with no token returns 403', (done) => {
-    request(app)
-      .delete('/users/2')
-      .expect(403, done);
+  test('DELETE request with no token returns 403', async () => {
+    await supertest.delete('/users/2').expect(403);
   });
 
-  test('GET request with invalid id returns a 404', (done) => {
+  test('GET request with invalid id returns a 404', async () => {
     const faultyToken: string = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 2,
@@ -97,37 +94,31 @@ describe('/user routes', () => {
       Accept: 'application/json',
       Authorization: faultyToken,
     };
-    request(app)
+    await supertest
       .get('/users/99')
       .set(wrongHeaders)
-      .expect(404, done);
+      .expect(404);
   });
 
-  test('GET request with id returns a specific user', (done) => {
-    request(app)
+  test('GET request with id returns a specific user', async () => {
+    const { body } = await supertest
       .get('/users/1')
       .set(headers)
-      .expect(200)
-      .then(({ body }) => {
-        expect(typeof body).toBe('object');
-        done();
-      });
+      .expect(200);
+    expect(body).toHaveProperty('id');
   });
 
   // Test is being skipped because functionality was changed
   // Now `get` only returns one user based on ext_it
-  test.skip('GET request with no id returns all users', (done) => {
-    request(app)
+  test.skip('GET request with no id returns all users', async () => {
+    const { body } = await supertest
       .get('/users')
       .set(headers)
-      .expect(200)
-      .then(({ body }) => {
-        expect(body.length).toBe(data.length);
-        done();
-      });
+      .expect(200);
+    expect(body.length).toBe(data.length);
   });
 
-  test('POST request is successful', (done) => {
+  test('POST request is successful', async () => {
     const newUser = {
       address: 'bbah',
       email: 'rl@rl.com',
@@ -136,18 +127,15 @@ describe('/user routes', () => {
       phone: '3235551111',
       role: 'manager',
     };
-    request(app)
+    await supertest
       .post('/users')
       .send(newUser)
       .set('Accept', 'application/json')
-      .then((res) => {
-        expect(res.status).toBe(201);
-        done();
-      });
-    // .expect(201 || 200, done);
+      .expect(201);
+    // .expect(201 || 200);
   });
 
-  test('PUT request is successful', (done) => {
+  test('PUT request is successful', async () => {
     const newUser = {
       address: 'bbah',
       email: 'rl@rl.com',
@@ -156,25 +144,18 @@ describe('/user routes', () => {
       phone: '3235551111',
       role: 'manager',
     };
-    request(app)
+    const { body } = await supertest
       .put('/users/1')
       .send(newUser)
       .set(headers)
-      .expect(201)
-      .then((res) => {
-        expect(res.body).toBe(1);
-        done();
-      });
+      .expect(201);
+    expect(body).toBe(1);
   });
 
-  test('DELETE request is successful', (done) => {
-    request(app)
+  test('DELETE request is successful', async () => {
+    await supertest
       .delete('/users/2')
       .set(headers)
-      .expect(200)
-      .then(({ body }) => {
-        expect(body).toBe(1);
-        done();
-      });
+      .expect(200);
   });
 });

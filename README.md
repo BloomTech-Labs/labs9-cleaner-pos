@@ -16,6 +16,7 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://app.netlify.com/sites/cleanerpos/deploys)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Project Overview
@@ -53,7 +54,7 @@ React Hooks simplify working with React due to use near exclusive use of functio
 
     * Stricter type-checking will speed up development by reducing time spent on finding bugs and limiting the number of bugs introduced in the first place.
     * Explicit type declarations will communicate to other developers the intent and use of a given piece of code.
-	* TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
+    * TypeScript integrates very well with webpack and babel, both of which are essential tools for using modern JS features.
 
 ### Frontend deployed to Netlify
 
@@ -114,13 +115,13 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-In your backend, create a .env file that includes the following:  
+In your backend, create a .env file that includes the following:
 
-	*  STAGING_DB - optional development db for using functionality not available in SQLite  
-	*  NODE_ENV - set to "development" until ready for "production"  
-	*  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])  
-	*  SENDGRID_API_KEY - this is generated in your Sendgrid account  
-	*  stripe_secret - this is generated in the Stripe dashboard  
+    *  STAGING_DB - optional development db for using functionality not available in SQLite
+    *  NODE_ENV - set to "development" until ready for "production"
+    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
+    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
+    *  stripe_secret - this is generated in the Stripe dashboard
 
 ## Testing
 
@@ -136,10 +137,10 @@ Start the development server by running npm dev:server or yarn dev:server.
 
 ### Other Scripts
 
-	* typecheck - runs the TypeScript compiler
-	* build - creates a build of the application
-	* start - starts the production server after a build is created
-	* test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * typecheck - runs the TypeScript compiler
+    * build - creates a build of the application
+    * start - starts the production server after a build is created
+    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 ## Contributing
 
@@ -149,11 +150,11 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 ### Issue/Bug Request
 
-	* If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
-	* Check first to see if your issue has already been reported.
-	* Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
-	* Create a live example of the problem.
-	* Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+    * If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
+    * Check first to see if your issue has already been reported.
+    * Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+    * Create a live example of the problem.
+    * Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
