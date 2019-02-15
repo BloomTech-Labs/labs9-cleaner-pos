@@ -1,6 +1,7 @@
 import 'jest';
 import request from 'supertest';
 import app from '../../src/app';
+const supertest = request(app);
 
 // Temporary access token to test authentication
 import jwt from 'jsonwebtoken';
@@ -40,72 +41,36 @@ jest.mock('stripe', () => () => {
 // });
 
 describe('/payments routes', () => {
-  test('Should deny get request without auth token', async (done) => {
+  test('Should return status 403 and no message on get', async () => {
     try {
-      const res = await request(app).get('/payments');
+      const { body } = await await supertest.get('/payments').expect(403);
 
-      expect(res.status).toBe(403);
-      expect(res.body).not.toHaveProperty(
+      expect(body).not.toHaveProperty(
         'message',
         'Payment gateway up and running!',
       );
-      done();
     } catch (e) {
       return e;
     }
   });
 
-  test('Should deny post request without auth token', (done) => {
-    request(app)
-      .post('/payments')
-      .then((res) => {
-        expect(res.status).toBe(403);
-        done();
-      })
-      .catch((e) => e);
+  test('Should deny post request without auth token', async () => {
+    await supertest.post('/payments').expect(403);
   });
 
-  test('Should return status 200 and message on get', async (done) => {
-    try {
-      const res = await request(app)
-        .get('/payments')
-        .set(headers);
-
-      expect(res.status).toBe(200);
-      expect(res.body).toHaveProperty(
-        'message',
-        'Payment gateway up and running!',
-      );
-      done();
-    } catch (e) {
-      return e;
-    }
-  });
-  test('should return a status 400 if post without customer id', (done) => {
-    request(app)
+  test('should return a status 400 if post without customer id', async () => {
+    const { body } = await supertest
       .post('/payments')
       .set(headers)
-      .then((res) => {
-        expect(res.status).toBe(400);
-        expect(res.body).toHaveProperty(
-          'message',
-          'Please include a valid token!',
-        );
-        done();
-      })
-      .catch((e) => e);
+      .expect(400);
+    expect(body).toHaveProperty('message', 'Please include a valid token!');
   });
-  test.skip('should return a customer id & message on succesful subscription', (done) => {
-    request(app)
+
+  test('should not return a customer id & message on succesful subscription given invalid token', async () => {
+    await supertest
       .post('/payments')
       .send({ id: 'tok-whatever' })
       .set(headers)
-      .then((res) => {
-        expect(res.body).toHaveProperty('customer', 'cus-123123132');
-        expect(res.body).toHaveProperty('message');
-        expect(res.status).toBe(201);
-        done();
-      })
-      .catch((e) => e);
+      .expect(400);
   });
 });
