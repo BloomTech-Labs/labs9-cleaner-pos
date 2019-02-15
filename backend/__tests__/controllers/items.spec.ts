@@ -4,6 +4,7 @@ import app from '../../src/app';
 
 import knex from 'knex';
 import knexConfig from '../../knexfile';
+const supertest = request(app);
 
 // Mock db in users model functions
 jest.mock('../../data/dbConfig');
@@ -40,105 +41,94 @@ describe('/item routes', () => {
     }
   });
 
-  test('Unable to get all lists without token', (done) => {
-    request(app)
-      .get('/items')
-      .expect(403, done);
+  test('Unable to get all lists without token', async () => {
+    await supertest.get('/items').expect(403);
   });
 
-  test('Unable to get single lists without token', (done) => {
-    request(app)
-      .get('/items/1')
-      .expect(403, done);
+  test('Unable to get single lists without token', async () => {
+    await supertest.get('/items/1').expect(403);
   });
 
-  test('Unable to post without token', (done) => {
+  test('Unable to post without token', async () => {
     const newItem = {
       list_id: 258,
       task: 'lions tigers and snakes',
     };
-    request(app)
+    await supertest
       .post('/items/')
       .send(newItem)
-      .expect(403, done);
+      .expect(403);
   });
 
-  test('Unable to delete item without token', (done) => {
-    request(app)
-      .delete('/items/5')
-      .expect(403, done);
+  test('Unable to delete item without token', async () => {
+    await supertest.delete('/items/5').expect(403);
   });
 
-  test('Unable to put item without token', (done) => {
+  test('Unable to put item without token', async () => {
     const newItem = {
       list_id: 299,
       task: 'lions tigers and snakes',
     };
-    request(app)
+    supertest
       .put('/items/599')
       .send(newItem)
-      .expect(403, done);
+      .expect(403);
   });
 
-  test('Able to get all lists', (done) => {
-    request(app)
+  test('Able to get all lists', async () => {
+    const { body } = await supertest
       .get('/items')
       .set(headers)
-      .expect(200)
-      .then(({ body }) => {
-        expect(typeof body).toBe('object');
-        expect(Object.keys(body[0])).toHaveLength(3);
-        done();
-      });
+      .expect(200);
+
+    expect(body).toHaveProperty('length');
+    expect(Object.keys(body[0])).toHaveLength(3);
   });
 
-  test('Able to get single lists', (done) => {
-    request(app)
+  test('Able to get single lists', async () => {
+    const { body } = await supertest
       .get('/items/1')
       .set(headers)
-      .expect(200)
-      .then(({ body }) => {
-        expect(typeof body).toBe('object');
-        expect(Object.keys(body[0])).toHaveLength(3);
-        done();
-      });
+      .expect(200);
+    expect(body).toHaveProperty('length');
+    expect(Object.keys(body[0])).toHaveLength(3);
   });
 
-  test('Unable to get single lists of unreal item', (done) => {
-    request(app)
+  test('Unable to get single lists of unreal item', async () => {
+    await supertest
       .get('/items/199')
       .set(headers)
-      .expect(404, done);
+      .expect(404);
   });
 
-  test('unable to post if valid List id isnt given', (done) => {
+  test('unable to post if valid List id isnt given', async () => {
     const newItem = {
       list_id: 258,
       task: 'lions tigers and snakes',
     };
-    request(app)
+    await supertest
       .post('/items/')
       .send(newItem)
       .set(headers)
-      .expect(400, done);
+      .expect(400);
   });
 
-  test('able to delete item', (done) => {
-    request(app)
+  test('able to delete item', async () => {
+    await supertest
       .delete('/items/5')
       .set(headers)
-      .expect(200, done);
+      .expect(200);
   });
 
-  test('unable to put item when invalid list_id is given', (done) => {
+  test('unable to put item when invalid list_id is given', async () => {
     const newItem = {
       list_id: 299,
       task: 'lions tigers and snakes',
     };
-    request(app)
+    await supertest
       .put('/items/599')
       .set(headers)
       .send(newItem)
-      .expect(400, done);
+      .expect(400);
   });
 });
