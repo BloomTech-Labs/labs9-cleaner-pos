@@ -41,17 +41,24 @@ describe('/assistant routes', () => {
     }
   });
 
-  test('get all ast return 403 if no token', (done) => {
-    request(app)
-      .get('/assistants')
-      .expect(403, done);
+  test('get all ast return 403 if no token', async () => {
+    const response = await supertest.get('/assistants');
+
+    expect(response.status).toBe(403);
   });
 
-  test('get all ast', (done) => {
-    request(app)
-      .get('/assistants')
-      .set(headers)
-      .expect(200, done);
+<<<<<<< HEAD
+  test('returns the correct number of asts', async () => {
+    const response = await supertest.get('/assistants').set(headers);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveLength(3);
+=======
+  test('get all ast', async () => {
+    const response = await supertest.get('/assistants').set(headers);
+
+    expect(response.status).toBe(200);
+>>>>>>> b8dbe6797c095aa1005d4f8170064dcb85a7d1a6
   });
 
   test('returns the correct number of asts', async () => {
@@ -61,27 +68,18 @@ describe('/assistant routes', () => {
     expect(response.body).toHaveLength(3);
   });
 
-  test('get all ast return 403 if no token', (done) => {
-    request(app)
-      .get('/assistants/1')
-      .expect(403, done);
+  test('get one ast', async () => {
+    const response = await supertest.get('/assistants/1').set(headers);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('ast_id');
   });
 
-  test('get one ast', (done) => {
-    request(app)
+  test('get correct ast by id', async () => {
+    const response = await supertest
       .get('/assistants/1')
       .set(headers)
-      .expect(200, done);
-  });
-
-  test('get correct ast by id', (done) => {
-    request(app)
-      .get('/assistants/1')
-      .set(headers)
-      .expect(200)
-      .then(({ body }) => {
-        expect(body.user_id).toBe(data[0].user_id);
-        done();
-      });
+      .expect(200);
+    expect(response.body.user_id).toBe(data[0].user_id);
   });
 });
