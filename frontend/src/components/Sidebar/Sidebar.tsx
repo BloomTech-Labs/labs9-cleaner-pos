@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
+// Components
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Mark from '@material-ui/core/Button';
 import { Link, withRouter } from 'react-router-dom';
+import firebase from 'firebase/app';
 // Types
 import { RouteComponentProps } from 'react-router-dom';
-
+// Styles
 import { Button, SpecialButton } from '../index';
 import {
   Container,
@@ -16,8 +18,10 @@ import {
   StyledLink,
   Logo,
 } from './Sidebar.styling';
+// Assets
 import logo from '../../assets/lodgel.jpg';
 import notxt_Lodgel from '../../assets/notxt_Lodgel.jpg';
+// Context
 import { UserContext } from '../../App';
 
 interface LinkProps extends RouteComponentProps {
@@ -42,19 +46,31 @@ const Sidebar = (props: LinkProps) => {
   };
 
   const logOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.removeItem('role');
-    localStorage.removeItem('firebaseui::rememberedAccounts');
-    setLogin(false);
-    // TODO: Use actual firebase signout function to sign out
-    props.history.push('/');
+    const signOut = (error?: any) => {
+      // If there's an error, we'll console.error it
+      // We will still remove all tokens and push user
+      // back to root.
+      if (error) {
+        console.error('Sign out not successful.');
+        console.error(error);
+      }
+      localStorage.removeItem('token');
+      localStorage.removeItem('id');
+      localStorage.removeItem('role');
+      setLogin(false);
+      props.history.push('/');
+    };
+
+    firebase
+      .auth()
+      .signOut()
+      .then(signOut, signOut);
   };
 
   return (
     <div
       style={{
-        maxWidth: '9000px',
+        maxWidth: 'none',
         width: '100%',
         borderBottom: '3px solid var(--color-border-strong)',
         background: 'white',
