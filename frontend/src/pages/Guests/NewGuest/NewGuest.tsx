@@ -109,6 +109,14 @@ const NewGuest = (props: RouteComponentProps) => {
         check_in: checkIn.toISOString(),
         check_out: checkOut.toISOString(),
       };
+
+      console.log(
+        'onSubmit checkIn:',
+        stayData.check_in,
+        'checkOut:',
+        stayData.check_out,
+      );
+
       if (props.location && props.location.state) {
         const id = props.location.state.stay_id;
         await axios.put(`${url}/stays/${id}`, stayData, headers);
@@ -161,6 +169,8 @@ const NewGuest = (props: RouteComponentProps) => {
       if (addressArray && addressArray.length < 6) {
         addressArray.splice(1, 0, '');
       }
+
+      console.log('initialValues checkin:', check_in, 'checkout:', check_out);
       return {
         fullName: guest_name,
         email,
