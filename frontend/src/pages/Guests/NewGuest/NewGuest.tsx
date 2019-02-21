@@ -258,8 +258,6 @@ const NewGuestView = (formProps: MyGuestProps) => {
     }
   };
 
-  console.log('areDatesValid', areDatesValid(values.checkIn, values.checkOut));
-
   const disableButton = (
     isSubmitting: boolean,
     dirty: boolean,
