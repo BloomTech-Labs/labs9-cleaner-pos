@@ -228,51 +228,6 @@ const NewGuestView = (formProps: MyGuestProps) => {
     };
   };
 
-  const setCheckDate = (checkStatus: string) => (date: Date | null) => {
-    if (date === null) {
-      return;
-    }
-    const selectedDateWithTimeZeroed = new Date(date.setHours(0, 0, 0, 0));
-    setFieldValue(checkStatus, selectedDateWithTimeZeroed);
-  };
-
-  const areDatesValid = (
-    a: Date,
-    b: Date,
-  ): { result: boolean; message: string } => {
-    const z = function zeroOutTime(date: Date) {
-      // Get rid of that pesky time stamp
-      return date.setHours(0, 0, 0, 0);
-    };
-    // A should be before B
-    const datesAreChronological: boolean = z(a) <= z(b);
-    // A should be on or after today's date
-    const beforeDateIsOK: boolean = z(a) >= z(new Date(Date.now()));
-
-    if (!datesAreChronological) {
-      return {
-        result: datesAreChronological,
-        message: 'Check-out Date must be at or after Check-In Date.',
-      };
-    } else if (!beforeDateIsOK) {
-      return {
-        result: beforeDateIsOK,
-        message: 'Check-In Date must be today or later.',
-      };
-    } else {
-      return { result: datesAreChronological && beforeDateIsOK, message: '' };
-    }
-  };
-
-  const disableButton = (
-    isSubmitting: boolean,
-    dirty: boolean,
-    dateCheckResult: { result: boolean; message: string },
-  ): boolean => {
-    // Return true if isSubmitting is true, dirty is false, or if dates are invalid
-    return isSubmitting || !dirty || !dateCheckResult.result;
-  };
-
   return (
     <StyledForm>
       <h1 className='title'>New Reservation</h1>
@@ -346,7 +301,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
               <Datepicker
                 name='checkIn'
                 selected={values.checkIn}
-                onChange={setCheckDate('checkIn')}
+                onChange={setCheckDate(setFieldValue, 'checkIn')}
               />
               <label htmlFor='checkIn'>Check-In Date</label>
             </div>
@@ -355,7 +310,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
               <Datepicker
                 name='checkOut'
                 selected={values.checkOut}
-                onChange={setCheckDate('checkOut')}
+                onChange={setCheckDate(setFieldValue, 'checkOut')}
               />
               <label htmlFor='checkOut'>Check-Out Date</label>
             </div>
@@ -403,6 +358,57 @@ const NewGuestView = (formProps: MyGuestProps) => {
       )}
     </StyledForm>
   );
+};
+
+/* Date Helper Functions */
+
+export const setCheckDate = (
+  setFieldValue: (field: string, value: any) => void,
+  checkStatus: string,
+) => (date: Date | null) => {
+  if (date === null) {
+    return;
+  }
+  const inputDate = new Date(date.getTime());
+  inputDate.setHours(0, 0, 0, 0);
+  setFieldValue(checkStatus, inputDate);
+};
+
+export const areDatesValid = (
+  a: Date,
+  b: Date,
+): { result: boolean; message: string } => {
+  const z = function zeroOutTime(date: Date) {
+    // Get rid of that pesky time stamp
+    return date.setHours(0, 0, 0, 0);
+  };
+  // A should be before B
+  const datesAreChronological: boolean = z(a) <= z(b);
+  // A should be on or after today's date
+  const beforeDateIsOK: boolean = z(a) >= z(new Date(Date.now()));
+
+  if (!datesAreChronological) {
+    return {
+      result: datesAreChronological,
+      message: 'Check-out Date must be at or after Check-In Date.',
+    };
+  } else if (!beforeDateIsOK) {
+    return {
+      result: beforeDateIsOK,
+      message: 'Check-In Date must be today or later.',
+    };
+  } else {
+    return { result: datesAreChronological && beforeDateIsOK, message: '' };
+  }
+};
+
+export const disableButton = (
+  isSubmitting: boolean,
+  dirty: boolean,
+  dateCheckResult: { result: boolean; message: string },
+): boolean => {
+  // Return true if isSubmitting is true, dirty is false, or if dates are invalid
+  return isSubmitting || !dirty || !dateCheckResult.result;
 };
 
 export default NewGuest;
