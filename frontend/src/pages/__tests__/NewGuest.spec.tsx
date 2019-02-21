@@ -1,5 +1,8 @@
+/**
+ * @jest-environment jsdom
+ */
 import React from 'react';
-import { cleanup, wait } from 'react-testing-library';
+import { cleanup, wait, render, fireEvent } from 'react-testing-library';
 import { renderWithRouter } from '../../helpers/functions';
 import NewGuest, {
   setCheckDate,
@@ -7,6 +10,7 @@ import NewGuest, {
   disableButton,
 } from '../Guests/NewGuest';
 import 'jest';
+import { ExpansionPanelActions } from '@material-ui/core';
 
 describe('Date Helper Functions', () => {
   beforeEach(() => {
@@ -134,7 +138,7 @@ describe('UI Helper Functions', () => {
       expect(result).toBe(true);
     });
 
-    test('Returns true if form is untouched', () => {
+    test('Returns true if dates are invalid', () => {
       // Arrange
       const isSubmitting = true;
       const dirty = false;
@@ -147,5 +151,48 @@ describe('UI Helper Functions', () => {
       // Assert
       expect(result).toBe(true);
     });
+  });
+});
+
+describe('UI:', () => {
+  beforeAll(() => {
+    localStorage.setItem('token', 'whatever');
+  });
+
+  afterAll(() => {
+    localStorage.clear();
+    jest.clearAllMocks();
+  });
+
+  afterAll(() => jest.clearAllMocks());
+
+  test('datePicker is on the DOM', () => {
+    // Arrange
+    const { container, debug, getByTestId } = renderWithRouter(
+      // @ts-ignore
+      <NewGuest />,
+      {},
+    );
+    // Act
+    const checkIn = container.querySelector('.dp-checkIn');
+    // Assert
+    expect(checkIn).toBeTruthy();
+  });
+
+  test('Error div appears upon selecting invalid dates', () => {
+    // Arrange
+    const { container, debug, getByTestId } = renderWithRouter(
+      // @ts-ignore
+      <NewGuest />,
+      {},
+    );
+    const checkIn = container.querySelector('.dp-checkIn');
+    // Act
+    fireEvent.change(checkIn, { target: { value: '01/01/2001' } });
+    expect(checkIn.value).toBe('01/01/2001');
+    // Assert
+    const errorDiv = getByTestId('date-error');
+    expect(errorDiv).toBeTruthy();
+    expect(errorDiv.textContent).toBe('Check-in date must be today or later.');
   });
 });

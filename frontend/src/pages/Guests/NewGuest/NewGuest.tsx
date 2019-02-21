@@ -299,6 +299,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
             <div className='check check-in'>
               {/* Resource: https://stackoverflow.com/a/52273407 */}
               <Datepicker
+                className='dp-checkIn'
                 name='checkIn'
                 selected={values.checkIn}
                 onChange={setCheckDate(setFieldValue, 'checkIn')}
@@ -308,6 +309,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
             <br />
             <div className='check check-out'>
               <Datepicker
+                className='dp-checkOut'
                 name='checkOut'
                 selected={values.checkOut}
                 onChange={setCheckDate(setFieldValue, 'checkOut')}
@@ -316,7 +318,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
             </div>
           </div>
           {areDatesValid(values.checkIn, values.checkOut).message && (
-            <div className='date-error'>
+            <div className='date-error' data-testid='date-error'>
               {areDatesValid(values.checkIn, values.checkOut).message}
             </div>
           )}
