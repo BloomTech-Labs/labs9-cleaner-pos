@@ -390,12 +390,12 @@ export const areDatesValid = (
   if (!datesAreChronological) {
     return {
       result: datesAreChronological,
-      message: 'Check-out Date must be at or after Check-In Date.',
+      message: 'Check-out date must be at or after check-in date.',
     };
   } else if (!beforeDateIsOK) {
     return {
       result: beforeDateIsOK,
-      message: 'Check-In Date must be today or later.',
+      message: 'Check-in date must be today or later.',
     };
   } else {
     return { result: datesAreChronological && beforeDateIsOK, message: '' };
