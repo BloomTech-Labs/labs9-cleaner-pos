@@ -14,8 +14,8 @@ import {
   NewGuestInitialValues,
   SignupSchema,
 } from './types';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { FormikActions, FieldProps, FormikProps } from 'formik';
+import { AxiosRequestConfig } from 'axios';
+import { FormikActions, FieldProps } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 // Utils
 import { emptyValues } from './types';
@@ -236,7 +236,10 @@ const NewGuestView = (formProps: MyGuestProps) => {
     setFieldValue(checkStatus, selectedDateWithTimeZeroed);
   };
 
-  const areDatesValid = (a: Date, b: Date): [boolean, string] => {
+  const areDatesValid = (
+    a: Date,
+    b: Date,
+  ): { result: boolean; message: string } => {
     const z = function zeroOutTime(date: Date) {
       // Get rid of that pesky time stamp
       return date.setHours(0, 0, 0, 0);
@@ -247,24 +250,27 @@ const NewGuestView = (formProps: MyGuestProps) => {
     const beforeDateIsOK: boolean = z(a) >= z(new Date(Date.now()));
 
     if (!datesAreChronological) {
-      return [
-        datesAreChronological,
-        'Check-out Date must be at or after Check-In Date.',
-      ];
+      return {
+        result: datesAreChronological,
+        message: 'Check-out Date must be at or after Check-In Date.',
+      };
     } else if (!beforeDateIsOK) {
-      return [beforeDateIsOK, 'Check-In Date must be today or later.'];
+      return {
+        result: beforeDateIsOK,
+        message: 'Check-In Date must be today or later.',
+      };
     } else {
-      return [datesAreChronological && beforeDateIsOK, ''];
+      return { result: datesAreChronological && beforeDateIsOK, message: '' };
     }
   };
 
   const disableButton = (
     isSubmitting: boolean,
     dirty: boolean,
-    dateCheckResult: [boolean, string],
+    dateCheckResult: { result: boolean; message: string },
   ): boolean => {
-    // Return true if isSubmitting is true, dirty is false, or if dateA > dateB
-    return isSubmitting || !dirty || !dateCheckResult[0];
+    // Return true if isSubmitting is true, dirty is false, or if dates are invalid
+    return isSubmitting || !dirty || !dateCheckResult.result;
   };
 
   return (
@@ -354,9 +360,9 @@ const NewGuestView = (formProps: MyGuestProps) => {
               <label htmlFor='checkOut'>Check-Out Date</label>
             </div>
           </div>
-          {areDatesValid(values.checkIn, values.checkOut)[1] && (
+          {areDatesValid(values.checkIn, values.checkOut).message && (
             <div className='date-error'>
-              {areDatesValid(values.checkIn, values.checkOut)[1]}
+              {areDatesValid(values.checkIn, values.checkOut).message}
             </div>
           )}
           <br />
