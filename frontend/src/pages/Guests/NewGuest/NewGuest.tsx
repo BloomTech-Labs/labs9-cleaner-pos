@@ -110,13 +110,6 @@ const NewGuest = (props: RouteComponentProps) => {
         check_out: checkOut.toISOString(),
       };
 
-      console.log(
-        'onSubmit checkIn:',
-        stayData.check_in,
-        'checkOut:',
-        stayData.check_out,
-      );
-
       if (props.location && props.location.state) {
         const id = props.location.state.stay_id;
         await axios.put(`${url}/stays/${id}`, stayData, headers);
@@ -170,7 +163,6 @@ const NewGuest = (props: RouteComponentProps) => {
         addressArray.splice(1, 0, '');
       }
 
-      console.log('initialValues checkin:', check_in, 'checkout:', check_out);
       return {
         fullName: guest_name,
         email,
@@ -237,10 +229,10 @@ const NewGuestView = (formProps: MyGuestProps) => {
   };
 
   const setCheckDate = (checkStatus: string) => (date: Date | null) => {
-    if (date === null) return;
+    if (date === null) {
+      return;
+    }
     const selectedDateWithTimeZeroed = new Date(date.setHours(0, 0, 0, 0));
-    console.log(`${checkStatus} date:`, selectedDateWithTimeZeroed);
-    console.log('Iso Date String:', selectedDateWithTimeZeroed.toISOString());
     setFieldValue(checkStatus, selectedDateWithTimeZeroed);
   };
 
