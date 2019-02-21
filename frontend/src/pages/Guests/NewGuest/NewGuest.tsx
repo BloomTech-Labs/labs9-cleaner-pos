@@ -22,158 +22,6 @@ import { emptyValues } from './types';
 import { axiosErrorHandler } from '../../utils';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const labelInputField = (label: string) => {
-  return ({ field, form }: FieldProps) => {
-    const { name, value } = field;
-    const { touched, errors } = form;
-    const errorState = Boolean(errors[name] && touched[name]);
-    return (
-      <StyledTextField
-        error={errorState}
-        inputProps={{ ...field, 'data-testid': `input-${name}` }}
-        InputLabelProps={{ 'data-testid': `label-${name}` }}
-        className={`field-${name}`}
-        data-testid={`field-${name}`}
-        label={errorState ? errors[name] : label}
-        {...field}
-      />
-    );
-  };
-};
-const NewGuestView = (formProps: MyGuestProps) => {
-  const {
-    dirty,
-    errors,
-    handleReset,
-    isSubmitting,
-    status,
-    touched,
-    values,
-    houses,
-    setFieldValue,
-  } = formProps;
-  return (
-    <StyledForm>
-      <h1 className='title'>New Reservation</h1>
-      <br />
-      <FormBlock>
-        <h2>Guest Information</h2>
-        <div className='guest-info--fields'>
-          <Field
-            name='fullName'
-            value={values.fullName}
-            autoComplete='billing name'
-            render={labelInputField('Name')}
-          />
-          <Field
-            name='email'
-            value={values.email}
-            autoComplete='billing email'
-            render={labelInputField('Email')}
-          />
-          <Field
-            name='phone'
-            autoComplete='billing phone'
-            render={labelInputField('Phone Number')}
-          />
-          <Field
-            name='address1'
-            autoComplete='billing street-address'
-            render={labelInputField('Address')}
-          />
-          <Field
-            name='address2'
-            render={labelInputField('Address (continued)')}
-          />
-          <Field
-            name='city'
-            autoComplete='billing address-level2'
-            render={labelInputField('City')}
-          />
-          <Field
-            name='state'
-            autoComplete='billing address-level1'
-            render={labelInputField('State · Province · Region')}
-          />
-          <Field
-            name='country'
-            autoComplete='billing country-name'
-            render={labelInputField('Country')}
-          />
-          <Field name='postCode' render={labelInputField('Post Code')} />
-        </div>
-      </FormBlock>
-      <FormBlock>
-        <h2>Reservation Information</h2>
-        <div className='guest-stay--fields'>
-          {/* TODO: Implement auto-complete search bar */}
-          <label htmlFor='houseId'>
-            Which property will the guest be staying at?
-          </label>
-          <br />
-          {houses ? (
-            <Field name='houseId' render={DropDown(houses)} />
-          ) : (
-            <div>Loading</div>
-          )}
-          <br />
-          <br />
-          <div className='check-group'>
-            {/* TODO: Make it impossible to set Check-In date before today */}
-            <div className='check check-in'>
-              {/* Resource: https://stackoverflow.com/a/52273407 */}
-              <Datepicker
-                name='checkIn'
-                selected={values.checkIn}
-                onChange={(e) => setFieldValue('checkIn', e)}
-              />
-              <label htmlFor='checkIn'>Check-In Date</label>
-            </div>
-            <br />
-            <div className='check check-out'>
-              <Datepicker
-                name='checkOut'
-                selected={values.checkOut}
-                onChange={(e) => setFieldValue('checkOut', e)}
-              />
-              <label htmlFor='checkOut'>Check-Out Date</label>
-            </div>
-          </div>
-          <br />
-          <div className='extra-guests'>
-            <span>How many other guests are there?</span>
-            <Field
-              name='extraGuests'
-              render={labelInputField('Extra Guests')}
-            />
-          </div>
-        </div>
-      </FormBlock>
-      <div className='primary-buttons'>
-        <Button
-          className='back'
-          data-testid='button-back'
-          onClick={formProps.goBack}
-        >
-          Go Back ↩
-        </Button>
-        <Button
-          className='submit'
-          type='submit'
-          data-testid='button-submit'
-          disabled={isSubmitting || !dirty}
-        >
-          {isSubmitting ? 'Submitted' : 'Submit'}
-        </Button>
-      </div>
-      {status && status.msg && (
-        <div className='status' data-testid='div-status'>
-          {status.msg}
-        </div>
-      )}
-    </StyledForm>
-  );
-};
 const NewGuest = (props: RouteComponentProps) => {
   const [houses, setHouses] = useState([] as ManagerHouse[]);
   const [errors, setErrors] = useState({ msg: '', error: false });
@@ -196,6 +44,7 @@ const NewGuest = (props: RouteComponentProps) => {
     };
     return { url, headers };
   };
+
   useEffect(() => {
     // Get properties manager manages
     const {
@@ -209,6 +58,7 @@ const NewGuest = (props: RouteComponentProps) => {
       })
       .catch(axiosErrorHandler(setErrors));
   }, []);
+
   const onSubmit = async (
     values: NewGuestInitialValues,
     actions: FormikActions<NewGuestInitialValues>,
@@ -291,6 +141,7 @@ const NewGuest = (props: RouteComponentProps) => {
       }
     }
   };
+
   const setInitialValues = (
     routeProps: RouteComponentProps,
   ): NewGuestInitialValues => {
@@ -341,4 +192,169 @@ const NewGuest = (props: RouteComponentProps) => {
     />
   );
 };
+
+const NewGuestView = (formProps: MyGuestProps) => {
+  const {
+    dirty,
+    errors,
+    handleReset,
+    isSubmitting,
+    status,
+    touched,
+    values,
+    houses,
+    setFieldValue,
+  } = formProps;
+
+  /* Helper Child Component for Text Fields */
+  const labelInputField = (label: string) => {
+    return ({ field, form }: FieldProps) => {
+      const { name, value } = field;
+      const { touched, errors } = form;
+      const errorState = Boolean(errors[name] && touched[name]);
+      return (
+        <StyledTextField
+          error={errorState}
+          inputProps={{ ...field, 'data-testid': `input-${name}` }}
+          InputLabelProps={{ 'data-testid': `label-${name}` }}
+          className={`field-${name}`}
+          data-testid={`field-${name}`}
+          label={errorState ? errors[name] : label}
+          {...field}
+        />
+      );
+    };
+  };
+
+  const setCheckDate = (checkStatus: string) => (date: Date | null) => {
+    if (date === null) return;
+    const selectedDateWithTimeZeroed = new Date(date.setHours(0, 0, 0, 0));
+    console.log(`${checkStatus} date:`, selectedDateWithTimeZeroed);
+    console.log('Iso Date String:', selectedDateWithTimeZeroed.toISOString());
+    setFieldValue(checkStatus, selectedDateWithTimeZeroed);
+  };
+
+  return (
+    <StyledForm>
+      <h1 className='title'>New Reservation</h1>
+      <br />
+      <FormBlock>
+        <h2>Guest Information</h2>
+        <div className='guest-info--fields'>
+          <Field
+            name='fullName'
+            value={values.fullName}
+            autoComplete='billing name'
+            render={labelInputField('Name')}
+          />
+          <Field
+            name='email'
+            value={values.email}
+            autoComplete='billing email'
+            render={labelInputField('Email')}
+          />
+          <Field
+            name='phone'
+            autoComplete='billing phone'
+            render={labelInputField('Phone Number')}
+          />
+          <Field
+            name='address1'
+            autoComplete='billing street-address'
+            render={labelInputField('Address')}
+          />
+          <Field
+            name='address2'
+            render={labelInputField('Address (continued)')}
+          />
+          <Field
+            name='city'
+            autoComplete='billing address-level2'
+            render={labelInputField('City')}
+          />
+          <Field
+            name='state'
+            autoComplete='billing address-level1'
+            render={labelInputField('State · Province · Region')}
+          />
+          <Field
+            name='country'
+            autoComplete='billing country-name'
+            render={labelInputField('Country')}
+          />
+          <Field name='postCode' render={labelInputField('Post Code')} />
+        </div>
+      </FormBlock>
+      <FormBlock>
+        <h2>Reservation Information</h2>
+        <div className='guest-stay--fields'>
+          {/* TODO: Implement auto-complete search bar */}
+          <label htmlFor='houseId'>
+            Which property will the guest be staying at?
+          </label>
+          <br />
+          {houses ? (
+            <Field name='houseId' render={DropDown(houses)} />
+          ) : (
+            <div>Loading</div>
+          )}
+          <br />
+          <br />
+          <div className='check-group'>
+            {/* TODO: Make it impossible to set Check-In date before today */}
+            <div className='check check-in'>
+              {/* Resource: https://stackoverflow.com/a/52273407 */}
+              <Datepicker
+                name='checkIn'
+                selected={values.checkIn}
+                onChange={setCheckDate('checkIn')}
+              />
+              <label htmlFor='checkIn'>Check-In Date</label>
+            </div>
+            <br />
+            <div className='check check-out'>
+              <Datepicker
+                name='checkOut'
+                selected={values.checkOut}
+                onChange={setCheckDate('checkOut')}
+              />
+              <label htmlFor='checkOut'>Check-Out Date</label>
+            </div>
+          </div>
+          <br />
+          <div className='extra-guests'>
+            <span>How many other guests are there?</span>
+            <Field
+              name='extraGuests'
+              render={labelInputField('Extra Guests')}
+            />
+          </div>
+        </div>
+      </FormBlock>
+      <div className='primary-buttons'>
+        <Button
+          className='back'
+          data-testid='button-back'
+          onClick={formProps.goBack}
+        >
+          Go Back ↩
+        </Button>
+        <Button
+          className='submit'
+          type='submit'
+          data-testid='button-submit'
+          disabled={isSubmitting || !dirty}
+        >
+          {isSubmitting ? 'Submitted' : 'Submit'}
+        </Button>
+      </div>
+      {status && status.msg && (
+        <div className='status' data-testid='div-status'>
+          {status.msg}
+        </div>
+      )}
+    </StyledForm>
+  );
+};
+
 export default NewGuest;
