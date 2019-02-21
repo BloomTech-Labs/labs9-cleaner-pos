@@ -37,12 +37,20 @@ export const StyledForm = styled(Form)`
 
   .check-group {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-around;
 
     @media only screen and (max-width: 600px) {
       flex-direction: column;
     }
+  }
+
+  .date-error {
+    margin: 2rem 0 1rem 0;
+    padding: 1rem;
+    text-align: center;
+    background-color: #ff7675;
+    border-radius: 5px;
   }
 
   .check {
@@ -54,6 +62,7 @@ export const StyledForm = styled(Form)`
     @media only screen and (max-width: 600px) {
       margin: 1rem 0;
     }
+
     input {
       padding: 0.5rem 0;
       border-radius: var(--border-radius);

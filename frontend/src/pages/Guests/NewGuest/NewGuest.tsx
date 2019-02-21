@@ -266,7 +266,7 @@ const NewGuestView = (formProps: MyGuestProps) => {
     dateCheckResult: [boolean, string],
   ): boolean => {
     // Return true if isSubmitting is true, dirty is false, or if dateA > dateB
-    return isSubmitting || !dirty || dateCheckResult[0];
+    return isSubmitting || !dirty || !dateCheckResult[0];
   };
 
   return (
@@ -356,6 +356,11 @@ const NewGuestView = (formProps: MyGuestProps) => {
               <label htmlFor='checkOut'>Check-Out Date</label>
             </div>
           </div>
+          {areDatesValid(values.checkIn, values.checkOut)[1] && (
+            <div className='date-error'>
+              {areDatesValid(values.checkIn, values.checkOut)[1]}
+            </div>
+          )}
           <br />
           <div className='extra-guests'>
             <span>How many other guests are there?</span>
