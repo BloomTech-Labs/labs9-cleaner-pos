@@ -236,6 +236,39 @@ const NewGuestView = (formProps: MyGuestProps) => {
     setFieldValue(checkStatus, selectedDateWithTimeZeroed);
   };
 
+  const areDatesValid = (a: Date, b: Date): [boolean, string] => {
+    const z = function zeroOutTime(date: Date) {
+      // Get rid of that pesky time stamp
+      return date.setHours(0, 0, 0, 0);
+    };
+    // A should be before B
+    const datesAreChronological: boolean = z(a) <= z(b);
+    // A should be on or after today's date
+    const beforeDateIsOK: boolean = z(a) >= z(new Date(Date.now()));
+
+    if (!datesAreChronological) {
+      return [
+        datesAreChronological,
+        'Check-out Date must be at or after Check-In Date.',
+      ];
+    } else if (!beforeDateIsOK) {
+      return [beforeDateIsOK, 'Check-In Date must be today or later.'];
+    } else {
+      return [datesAreChronological && beforeDateIsOK, ''];
+    }
+  };
+
+  console.log('areDatesValid', areDatesValid(values.checkIn, values.checkOut));
+
+  const disableButton = (
+    isSubmitting: boolean,
+    dirty: boolean,
+    dateCheckResult: [boolean, string],
+  ): boolean => {
+    // Return true if isSubmitting is true, dirty is false, or if dateA > dateB
+    return isSubmitting || !dirty || dateCheckResult[0];
+  };
+
   return (
     <StyledForm>
       <h1 className='title'>New Reservation</h1>
@@ -345,7 +378,11 @@ const NewGuestView = (formProps: MyGuestProps) => {
           className='submit'
           type='submit'
           data-testid='button-submit'
-          disabled={isSubmitting || !dirty}
+          disabled={disableButton(
+            isSubmitting,
+            dirty,
+            areDatesValid(values.checkIn, values.checkOut),
+          )}
         >
           {isSubmitting ? 'Submitted' : 'Submit'}
         </Button>
