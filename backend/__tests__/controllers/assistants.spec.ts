@@ -47,18 +47,13 @@ describe('/assistant routes', () => {
     expect(response.status).toBe(403);
   });
 
-<<<<<<< HEAD
   test('returns the correct number of asts', async () => {
-    const response = await supertest.get('/assistants').set(headers);
+    const response = await supertest
+      .get('/assistants')
+      .set(headers)
+      .expect(200);
 
-    expect(response.status).toBe(200);
     expect(response.body).toHaveLength(3);
-=======
-  test('get all ast', async () => {
-    const response = await supertest.get('/assistants').set(headers);
-
-    expect(response.status).toBe(200);
->>>>>>> b8dbe6797c095aa1005d4f8170064dcb85a7d1a6
   });
 
   test('returns the correct number of asts', async () => {
