@@ -2,15 +2,18 @@
  * @jest-environment jsdom
  */
 import React from 'react';
+// React-testing-library imports
 import { cleanup, wait, render, fireEvent } from 'react-testing-library';
 import { renderWithRouter } from '../../helpers/functions';
+// Test Subjects
 import NewGuest, {
   setCheckDate,
   areDatesValid,
   disableButton,
 } from '../Guests/NewGuest';
+// Jest Imports
 import 'jest';
-import { ExpansionPanelActions } from '@material-ui/core';
+import 'jest-dom/extend-expect';
 
 describe('Date Helper Functions', () => {
   beforeEach(() => {
@@ -181,7 +184,7 @@ describe('UI:', () => {
 
   test('Error div appears upon selecting invalid dates', () => {
     // Arrange
-    const { container, debug, getByTestId } = renderWithRouter(
+    const { container, getByTestId } = renderWithRouter(
       // @ts-ignore
       <NewGuest />,
       {},
@@ -194,5 +197,21 @@ describe('UI:', () => {
     const errorDiv = getByTestId('date-error');
     expect(errorDiv).toBeTruthy();
     expect(errorDiv.textContent).toBe('Check-in date must be today or later.');
+  });
+
+  test('Button is disabled upon selecting invalid dates', () => {
+    // Arrange
+    const { container, getByTestId } = renderWithRouter(
+      // @ts-ignore
+      <NewGuest />,
+      {},
+    );
+    const checkIn = container.querySelector('.dp-checkIn');
+    // Act
+    fireEvent.change(checkIn, { target: { value: '01/01/2001' } });
+    expect(checkIn.value).toBe('01/01/2001');
+    // Assert
+    const submit = container.querySelector('.submit');
+    expect(submit).toHaveAttribute('disabled');
   });
 });
