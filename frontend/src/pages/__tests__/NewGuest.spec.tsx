@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import React from 'react';
 // React-testing-library imports
 import { cleanup, wait, render, fireEvent } from 'react-testing-library';
