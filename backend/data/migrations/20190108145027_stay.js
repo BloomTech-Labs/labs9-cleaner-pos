@@ -15,8 +15,8 @@ exports.up = function(knex, Promise) {
       .references('house.id')
       .onDelete('CASCADE');
     table.integer('extra_guests');
-    table.date('check_in');
-    table.date('check_out');
+    table.timestamp('check_in');
+    table.timestamp('check_out');
     table.string('url_id');
     table.string('stripe_receipt');
     table.timestamp('created_at').defaultTo(knex.fn.now());
