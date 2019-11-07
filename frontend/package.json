@@ -23,7 +23,7 @@
     "@uppy/aws-s3": "^0.29.1",
     "@uppy/core": "^0.29.1",
     "@uppy/react": "^0.29.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "firebase": "^5.7.2",
     "formik": "^1.4.2",
     "jest-dom": "^3.0.0",
