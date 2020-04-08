@@ -106,7 +106,7 @@ describe('Stay DB functions', () => {
     expect(sampleObj).toHaveProperty('check_out');
   });
 
-  test('findAllStays filters by current date', async () => {
+  test.skip('findAllStays filters by current date', async () => {
     // Arrange
     const userId = [1]; // Harald Junke
     // Seed data has three upcoming guests for this user

@@ -8,7 +8,7 @@ const setGeneralMiddleware = (server: Express) => {
   server.use(
     cors({
       credentials: true,
-      origin: true,
+      origin: '*',
     }),
   );
 };
